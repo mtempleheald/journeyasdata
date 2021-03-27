@@ -78,5 +78,9 @@ A Question Component has the following distinct features
 
 This will allow us to compose any type of question
 
+
+# Thoughts and Ideas?
 RL - Just wondering if we need to allow A component within a Question to allow us to do the type of question  "When did you buy your caravan [DD]/[MM]/[YYYY]  [X] I have not bought the caravan yet" option.
 
+RL - Do we want a Component to allow us to link JS?
+    e.g. a Javascript snippet could be a Component?
