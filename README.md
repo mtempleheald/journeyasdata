@@ -52,3 +52,31 @@ This template comes with a script to set up a TypeScript development environment
 ```bash
 node scripts/setupTypeScript.js
 ```
+# Components
+The Jounrney is comprised of one or more "Components" which, when put together, can be used to gain information along the journey.
+
+At some point in the journey, a special component will push all the collected data up to a specific location to be stashed for later use.
+
+Components can be made up of other components.
+
+A coponent can be made up of a Question.
+
+A Question Component has the following distinct features
+
+1. Id
+1. Question Text
+1. Help Icon
+1. Help Text Header
+1. Help Text Body
+1. Answer Type
+1. Answer Data Set
+1. Default Answer
+1. Answer Format
+1. Css Class
+1. Validation[]
+1. Validation Messages[]
+
+This will allow us to compose any type of question
+
+RL - Just wondering if we need to allow A component within a Question to allow us to do the type of question  "When did you buy your caravan [DD]/[MM]/[YYYY]  [X] I have not bought the caravan yet" option.
+
