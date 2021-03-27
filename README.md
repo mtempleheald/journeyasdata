@@ -83,10 +83,20 @@ This will allow us to compose any type of question
 
 # Thoughts and Ideas?
 RL - Just wondering if we need to allow A component within a Question to allow us to do the type of question  "When did you buy your caravan [DD]/[MM]/[YYYY]  [X] I have not bought the caravan yet" option.
+MTH - Perhaps this fits in with the composite component in the hierarchy above.  I would hope we don't need composite composite components, but worth considering.
 
 RL - Do we want a Component to allow us to link JS?
     e.g. a Javascript snippet could be a Component?
+MTH - Needs to be as simple as possible.  Simple validation should be exclusively data-driven - annotations + generic JS, from questionset data.
+Each question could have a single additional action (blur,leave... depending on type) - trigger complex validations or other action - this would be based on id, injected by code, brand-specific and not subject to A/B testing.
 
 RL - I know this is going further, but a Q&B engine has a "default" brand.  When deeplinking from an Aggregator, we read the recalled data from CDL and rebrand accordingly.
-
 e.g. The default for Autonet Car is the Orange scheme (Autonet Protect - https://protect.quote-secure.co.uk/pc), but if you deeplink from an Agg in which a quote was generate for Protect Plus, then the URL will be the same, but the branding will change dynamically to the pink / purple scheme (https://protectplus.quote-secure.co.uk/pc) 
+MTH - [Svelte Themer](https://svelte-themer.now.sh/) could be an option if we need dynamic theming.
+
+MTH - API security - is CORS sufficient?
+
+MTH - routing - [SvelteKit](https://kit.svelte.dev/docs) is worth considering, succeeds Sapper, pure client size url based routing is difficult to achieve otherwise. 
+
+MTH - A bit early right now but we need to consider Azure hosting - see [SvelteKit Adapters](https://kit.svelte.dev/docs#adapters)
+
