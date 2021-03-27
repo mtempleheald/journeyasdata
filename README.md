@@ -11,6 +11,7 @@ The aim of this project is to prove that option 2 can be delivered in 3 distinct
 - theming - distinct stylesheet for different brands.  Components handle the general styling.
 - code - pull together the theme and journey data to generate a functioning journey.
 
+
 # Extra features
 
 - A/B testing - does NOT cover code, but does cover data
@@ -19,9 +20,9 @@ The aim of this project is to prove that option 2 can be delivered in 3 distinct
 
 # Getting started
 
-`npm install` to import dependencies
-`npm run dev` to launch locally with live reload
-`npm run build` to build for production
+`npm install` to import dependencies  
+`npm run dev` to launch locally with live reload  
+`npm run build` to build for production  
 
 
 
