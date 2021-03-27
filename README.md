@@ -1,51 +1,28 @@
-*Looking for a shareable component template? Go here --> [sveltejs/component-template](https://github.com/sveltejs/component-template)*
+# Journey as Data
 
----
+There are very few distinct types of website out there:
+1. wiki/documentation - best served by markdown, static site generators
+1. journey - a series of questions culminating in the offer of a service
+1. shop - data-driven, filter by as many things as possible
+1. gaming/visualisation - can't really generalise but web assembly is the future here
 
-# svelte app
+The aim of this project is to prove that option 2 can be delivered in 3 distinct parts:
+- journey as data - represent all questions/refdata/tooltips etc as a json file
+- theming - distinct stylesheet for different brands.  Components handle the general styling.
+- code - pull together the theme and journey data to generate a functioning journey.
 
-This is a project template for [Svelte](https://svelte.dev) apps. It lives at https://github.com/sveltejs/template.
+# Extra features
 
-To create a new project based on this template using [degit](https://github.com/Rich-Harris/degit):
-
-```bash
-npx degit sveltejs/template svelte-app
-cd svelte-app
-```
-
-*Note that you will need to have [Node.js](https://nodejs.org) installed.*
+- A/B testing - does NOT cover code, but does cover data
+- URL based routing (not hash-based)
 
 
-## Get started
+# Getting started
 
-Install the dependencies...
+`npm install` to import dependencies
+`npm run dev` to launch locally with live reload
+`npm run build` to build for production
 
-```bash
-cd svelte-app
-npm install
-```
-
-...then start [Rollup](https://rollupjs.org):
-
-```bash
-npm run dev
-```
-
-Navigate to [localhost:5000](http://localhost:5000). You should see your app running. Edit a component file in `src`, save it, and reload the page to see your changes.
-
-By default, the server will only respond to requests from localhost. To allow connections from other computers, edit the `sirv` commands in package.json to include the option `--host 0.0.0.0`.
-
-If you're using [Visual Studio Code](https://code.visualstudio.com/) we recommend installing the official extension [Svelte for VS Code](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode). If you are using other editors you may need to install a plugin in order to get syntax highlighting and intellisense.
-
-## Building and running in production mode
-
-To create an optimised version of the app:
-
-```bash
-npm run build
-```
-
-You can run the newly built app with `npm run start`. This uses [sirv](https://github.com/lukeed/sirv), which is included in your package.json's `dependencies` so that the app will work when you deploy to platforms like [Heroku](https://heroku.com).
 
 
 ## Single-page app mode
@@ -64,42 +41,4 @@ This template comes with a script to set up a TypeScript development environment
 
 ```bash
 node scripts/setupTypeScript.js
-```
-
-Or remove the script via:
-
-```bash
-rm scripts/setupTypeScript.js
-```
-
-## Deploying to the web
-
-### With [Vercel](https://vercel.com)
-
-Install `vercel` if you haven't already:
-
-```bash
-npm install -g vercel
-```
-
-Then, from within your project folder:
-
-```bash
-cd public
-vercel deploy --name my-project
-```
-
-### With [surge](https://surge.sh/)
-
-Install `surge` if you haven't already:
-
-```bash
-npm install -g surge
-```
-
-Then, from within your project folder:
-
-```bash
-npm run build
-surge public my-project.surge.sh
 ```
