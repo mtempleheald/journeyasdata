@@ -25,6 +25,8 @@ Journey data:
 
 - A/B testing - does NOT cover code, but does cover data
 - URL based routing (not hash-based)
+- Branding - The page must be brandable so it looks different depending on various factors (e.g. Linked from Google, URL, Cookie, etc.)
+- Secure - No PII data to be left on the local machine
 
 
 # Getting started
@@ -84,3 +86,7 @@ RL - Just wondering if we need to allow A component within a Question to allow u
 
 RL - Do we want a Component to allow us to link JS?
     e.g. a Javascript snippet could be a Component?
+
+RL - I know this is going further, but a Q&B engine has a "default" brand.  When deeplinking from an Aggregator, we read the recalled data from CDL and rebrand accordingly.
+
+e.g. The default for Autonet Car is the Orange scheme (Autonet Protect - https://protect.quote-secure.co.uk/pc), but if you deeplink from an Agg in which a quote was generate for Protect Plus, then the URL will be the same, but the branding will change dynamically to the pink / purple scheme (https://protectplus.quote-secure.co.uk/pc) 
