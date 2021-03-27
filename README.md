@@ -11,6 +11,15 @@ The aim of this project is to prove that option 2 can be delivered in 3 distinct
 - theming - distinct stylesheet for different brands.  Components handle the general styling.
 - code - pull together the theme and journey data to generate a functioning journey.
 
+Journey data:
+- journey (identified by product + version)
+  - page (url-aligned)
+    - section (block of content, may have logo or other presentational elements)
+      - display (paragraphs, images...)
+      - question (input element with wrapping presentational elements)
+      - composite (multiple fields combined into a single component, e.g. address lookup)
+        - display
+        - question 
 
 # Extra features
 
