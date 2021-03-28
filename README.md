@@ -36,6 +36,13 @@ Journey data:
 `npm run build` to build for production  
 
 
+# Contribution guide
+
+Follow [Git Flow](https://guides.github.com/introduction/flow/) branching strategy - name branch according to intent, keep it small and focused, don't break anything.  
+Advised to use VS Code editor with default formatting settings for consistency and to avoid whitespace merge issues.
+Any PR should trigger CI (pending), a PR which fails any step will not be merged until the issue is corrected.
+Proposed work items are available in the Projects tab.
+
 
 ## Single-page app mode
 
