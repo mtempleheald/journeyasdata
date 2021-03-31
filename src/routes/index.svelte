@@ -1,5 +1,5 @@
 <script>
-    import QuestionSet from "$lib/QuestionSet.svelte";
+
 </script>
     
 <svelte:head>
@@ -14,13 +14,9 @@
     </ul>
 </nav>
 
-<br>
-<br>
-<br>
-<p>This question set data came from a json file, including markdown for pre and post question</p>
-<p>These questions need to be loaded by page, from a master question set</p>
-<QuestionSet/>
-
+<p>Some introductory stuff goes here</p>
+<p>Possibly marketing nonsense</p>
+<p>Possibly compliance stuff about how we'll handle customer data</p>
 
 <style>
     nav {
