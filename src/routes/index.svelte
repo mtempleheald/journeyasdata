@@ -33,9 +33,6 @@
     :global(body) {
         margin: 0;
     }
-    header {
-        border-bottom: 1px solid black;
-    }
     nav {
         background-color: gainsboro;
         float:left;
