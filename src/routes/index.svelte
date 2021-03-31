@@ -8,7 +8,7 @@
 
 <header>
     <h1>Question Set demo</h1>
-    <p>This question set data came from a json file, including markdown for pre and post question</p>
+    
 </header>
 
 <span>This could be a nice wizard progress bar</span>
@@ -18,7 +18,8 @@
 <li><a href="/page3">Page 3</a></li>
 </ul>
 
-<span>These questions need to be loaded by page, from a master question set</span>
+<p>This question set data came from a json file, including markdown for pre and post question</p>
+<p>These questions need to be loaded by page, from a master question set</p>
 <QuestionSet/>
 
 
