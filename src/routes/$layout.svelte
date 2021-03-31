@@ -6,6 +6,16 @@
 <slot></slot>
 
 <style>
+    /* alternative approach at https://github.com/josefaidt/svelte-themer */
+    :root {
+        --colour-background: lightblue;
+        --colour-highlight: khaki;
+        --colour-text: black;
+        --border-style: solid;
+    }
+    :global(body) {
+        margin: 0;
+    }
     header {
         border-bottom: 1px solid black;
     }

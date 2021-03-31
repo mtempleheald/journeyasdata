@@ -23,16 +23,6 @@
 
 
 <style>
-    /* alternative approach at https://github.com/josefaidt/svelte-themer */
-    :root {
-    --colour-background: lightblue;
-    --colour-highlight: khaki;
-    --colour-text: black;
-    --border-style: solid;
-    }
-    :global(body) {
-        margin: 0;
-    }
     nav {
         background-color: gainsboro;
         float:left;
