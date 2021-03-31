@@ -36,6 +36,13 @@ Journey data:
 `npm run build` to build for production  
 
 
+# Contribution guide
+
+Follow [Git Flow](https://guides.github.com/introduction/flow/) branching strategy - name branch according to intent, keep it small and focused, don't break anything.  
+Advised to use VS Code editor with default formatting settings for consistency and to avoid whitespace merge issues.
+Any PR should trigger CI (pending), a PR which fails any step will not be merged until the issue is corrected.
+Proposed work items are available in the Projects tab.
+
 
 ## Single-page app mode
 
@@ -90,8 +97,10 @@ RL - Do we want a Component to allow us to link JS?
 MTH - Needs to be as simple as possible.  Simple validation should be exclusively data-driven - annotations + generic JS, from questionset data.
 Each question could have a single additional action (blur,leave... depending on type) - trigger complex validations or other action - this would be based on id, injected by code, brand-specific and not subject to A/B testing.
 
-RL - I know this is going further, but a Q&B engine has a "default" brand.  When deeplinking from an Aggregator, we read the recalled data from CDL and rebrand accordingly.
-e.g. The default for Autonet Car is the Orange scheme (Autonet Protect - https://protect.quote-secure.co.uk/pc), but if you deeplink from an Agg in which a quote was generate for Protect Plus, then the URL will be the same, but the branding will change dynamically to the pink / purple scheme (https://protectplus.quote-secure.co.uk/pc) 
+RL - I know this is going further, but a our site needs a "default" brand.  When linking to us from a 3rd party site via URL, we may need to reload their data and rebrand accordingly.
+
+RL - We also need to consider a mechanism whereby answering a question in a particular way prevents them from continuing the journey - e.g.  Do you wish to answer these questions? [Y]/[N].  Answering N would prevent them from contuing so we display a nice message saying "well thanks for wasting your own time" and prevent them form clicking the NEXT button.
+
 MTH - [Svelte Themer](https://svelte-themer.now.sh/) could be an option if we need dynamic theming.
 
 MTH - API security - is CORS sufficient?
