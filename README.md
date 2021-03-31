@@ -38,37 +38,24 @@ Journey data:
 
 # Contribution guide
 
-Follow [Git Flow](https://guides.github.com/introduction/flow/) branching strategy - name branch according to intent, keep it small and focused, don't break anything.  
+Follow [Git Flow](https://guides.github.com/introduction/flow/) branching strategy - name branch according to intent, keep it small and focused, don't break anything.  Commits to be made on feature branches off develop, PR made to merge changes back into develop.  
+
+Any PR should trigger CI (TBC), a PR which fails any step will not be merged until the issue is corrected.
+
 Advised to use VS Code editor with default formatting settings for consistency and to avoid whitespace merge issues.
-Any PR should trigger CI (pending), a PR which fails any step will not be merged until the issue is corrected.
+
 Proposed work items are available in the Projects tab.
 
 
-## Single-page app mode
-
-By default, sirv will only respond to requests that match files in `public`. This is to maximise compatibility with static fileservers, allowing you to deploy your app anywhere.
-
-If you're building a single-page app (SPA) with multiple routes, sirv needs to be able to respond to requests for *any* path. You can make it so by editing the `"start"` command in package.json:
-
-```js
-"start": "sirv public --single"
-```
-
-## Using TypeScript
-
-This template comes with a script to set up a TypeScript development environment, you can run it immediately after cloning the template with:
-
-```bash
-node scripts/setupTypeScript.js
-```
 # Components
-The Jounrney is comprised of one or more "Components" which, when put together, can be used to gain information along the journey.
+
+The Journey is comprised of one or more "Components" which, when put together, can be used to gain information along the journey.
 
 At some point in the journey, a special component will push all the collected data up to a specific location to be stashed for later use.
 
 Components can be made up of other components.
 
-A coponent can be made up of a Question.
+A component can be made up of a Question.
 
 A Question Component has the following distinct features
 
@@ -89,6 +76,7 @@ This will allow us to compose any type of question
 
 
 # Thoughts and Ideas?
+
 RL - Just wondering if we need to allow A component within a Question to allow us to do the type of question  "When did you buy your caravan [DD]/[MM]/[YYYY]  [X] I have not bought the caravan yet" option.
 MTH - Perhaps this fits in with the composite component in the hierarchy above.  I would hope we don't need composite composite components, but worth considering.
 
@@ -104,8 +92,6 @@ RL - We also need to consider a mechanism whereby answering a question in a part
 MTH - [Svelte Themer](https://svelte-themer.now.sh/) could be an option if we need dynamic theming.
 
 MTH - API security - is CORS sufficient?
-
-MTH - routing - [SvelteKit](https://kit.svelte.dev/docs) is worth considering, succeeds Sapper, pure client size url based routing is difficult to achieve otherwise. 
 
 MTH - A bit early right now but we need to consider Azure hosting - see [SvelteKit Adapters](https://kit.svelte.dev/docs#adapters)
 
