@@ -6,10 +6,6 @@
 	<title>Question Set Demo</title>
 </svelte:head>
 
-<header>
-    <h1>Question Set demo</h1>    
-</header>
-
 <nav>
     <ul>
         <li><a href="/page1">Page 1</a></li>
