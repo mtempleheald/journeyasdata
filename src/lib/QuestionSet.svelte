@@ -1,6 +1,6 @@
 <script>
-  import TextQuestion from './TextQuestion.svelte';
-  import { questionSet } from './stores';
+  import TextQuestion from '$lib/TextQuestion.svelte';
+  import { questionSet } from '$lib/stores';
   import snarkdown from 'snarkdown';// https://github.com/developit/snarkdown/blob/master/test/index.js
 
   const qs = [
