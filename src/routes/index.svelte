@@ -7,17 +7,20 @@
 </svelte:head>
 
 <header>
-    <h1>Question Set demo</h1>
-    
+    <h1>Question Set demo</h1>    
 </header>
 
-<span>This could be a nice wizard progress bar</span>
-<ul>
-<li><a href="/page1">Page 1</a></li>
-<li><a href="/page2">Page 2</a></li>
-<li><a href="/page3">Page 3</a></li>
-</ul>
+<nav>
+    <ul>
+        <li><a href="/page1">Page 1</a></li>
+        <li><a href="/page2">Page 2</a></li>
+        <li><a href="/page3">Page 3</a></li>
+    </ul>
+</nav>
 
+<br>
+<br>
+<br>
 <p>This question set data came from a json file, including markdown for pre and post question</p>
 <p>These questions need to be loaded by page, from a master question set</p>
 <QuestionSet/>
@@ -30,5 +33,31 @@
     --colour-highlight: khaki;
     --colour-text: black;
     --border-style: solid;
+    }
+    :global(body) {
+        margin: 0;
+    }
+    header {
+        border-bottom: 1px solid black;
+    }
+    nav {
+        background-color: gainsboro;
+        float:left;
+        width: 100%;
+    }
+    ul {
+        text-align: center;
+    }
+    li {
+        display: inline;
+    }
+    a {
+        text-decoration: none;
+        padding: 1rem 2rem;
+        background-color: gray;
+    }
+    a:hover {
+        text-decoration: underline;
+        background-color: goldenrod;
     }
 </style>
