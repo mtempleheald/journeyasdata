@@ -10,7 +10,7 @@
 			return {
 				props: {
 					questionSetData: await res.json(),
-                    pagetitle: await `${page.params.pagetitle}`
+          pagetitle: await `${page.params.pagetitle}`
 				}
 			};
 		}
@@ -24,6 +24,7 @@
 
 <script>
     import TextQuestion from '$lib/TextQuestion.svelte';
+    import SectionLayout from '$lib/SectionLayout.svelte';
     import { questionSet } from '$lib/stores';
     import snarkdown from 'snarkdown';// https://github.com/developit/snarkdown/blob/master/test/index.js
     export let pagetitle;
@@ -39,7 +40,11 @@
 
 <p>Currently showing all questions, need to limit to just the current page</p>
 
-{#each $questionSet as q}
+<!-- TODO: Replace loop of pages with a filter to just this page -->
+{#each $questionSet.pages as p} 
+{#each p.sections as s}
+<SectionLayout>
+{#each s.components as q}
 {#if q.type == "TextQuestion"}
   <TextQuestion
     id="{q.id}"
@@ -59,4 +64,7 @@
   </div>
   </TextQuestion>
 {/if}
+{/each}
+</SectionLayout>
+{/each}
 {/each}
