@@ -2,6 +2,10 @@
     import WizardBar from '$lib/WizardBar.svelte';
 </script>
 
+<svelte:head>
+	<title>Question Set Demo</title>
+</svelte:head>
+
 <header>
     <img src="https://fakeimg.pl/250x100/?text=Logo" alt="logo">
     <h1>Question Set demo</h1>    

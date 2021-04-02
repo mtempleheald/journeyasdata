@@ -1,10 +1,11 @@
 <script>
-
+    export let title;
+    export let logo;
 </script>
     
 <section>
-    <img src="https://fakeimg.pl/100x50/?text=Section%20Logo" alt="logo">
-    <span>Section title</span>
+    <img src={logo} alt="logo">
+    <span>{title}</span>
     <slot></slot>
 </section>
 
