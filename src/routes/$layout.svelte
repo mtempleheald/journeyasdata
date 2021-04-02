@@ -6,6 +6,7 @@
 	<title>Question Set Demo</title>
 </svelte:head>
 
+
 <header>
     <img src="https://fakeimg.pl/250x100/?text=Logo" alt="logo">
     <h1>Question Set demo</h1>    
@@ -13,6 +14,7 @@
 <WizardBar/>
 
 <slot></slot>
+
 
 <style>
     /* alternative approach at https://github.com/josefaidt/svelte-themer */

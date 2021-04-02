@@ -7,7 +7,7 @@
     {
       "page": {
         "url": "text-questions",
-        "title": "Page demoing Text Question"
+        "title": "Text Questions"
       },
       "sections": [
         {
@@ -48,7 +48,7 @@
     {
       "page": {
         "url": "display-questions",
-        "title": "Page demoing Display Only Question"
+        "title": "Display Only Questions"
       },
       "sections": [
         {
@@ -85,7 +85,7 @@
     {
       "page": {
         "url": "composites",
-        "title": "Page demoing complex components"
+        "title": "Complex components"
       },
       "sections": [
         {
