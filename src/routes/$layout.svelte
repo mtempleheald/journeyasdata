@@ -20,7 +20,12 @@
         --question-colour-bg: lightblue;
         --question-colour-bg-highlight: khaki;
         --question-colour-text: black;
+        --question-colour-text-highlight: black;
         --border-style: solid;
+        --address-colour-bg: lightblue;
+        --address-colour-bg-highlight: lightblue;
+        --address-colour-text: black;
+        --address-colour-text-highlight: black;
     }
     :global(body) {
         margin: 0;

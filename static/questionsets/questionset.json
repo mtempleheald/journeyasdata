@@ -81,6 +81,29 @@
           ]
         }
       ]
+    },
+    {
+      "page": {
+        "url": "composites",
+        "title": "Page demoing complex components"
+      },
+      "sections": [
+        {
+          "section": {
+            "title": "Section containing address component",
+            "logo": "https://fakeimg.pl/100x50/?text=Address%20Logo"
+          },
+          "components": [
+            {
+              "type": "AddressLookup",
+              "postcodeLabel": "Postcode",
+              "postcodePlaceholder": "MK10 0BZ",
+              "buttonLabel": "Search",
+              "houseLabel": "Property"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
