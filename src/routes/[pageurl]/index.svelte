@@ -23,12 +23,12 @@
 </script>
 
 <script>
+    import AddressLookup from '$lib/AddressLookup.svelte';
     import DisplayOnlyQuestion from '$lib/DisplayOnlyQuestion.svelte';
     import TextQuestion from '$lib/TextQuestion.svelte';
     import SectionLayout from '$lib/SectionLayout.svelte';
     import { questionSet } from '$lib/stores';
     import snarkdown from 'snarkdown';// https://github.com/developit/snarkdown/blob/master/test/index.js
-    export let pagetitle;
     export let pageurl;
     export let questionSetData;
     questionSet.set(questionSetData);
@@ -79,6 +79,13 @@
     {/if} 
   </div>
   </DisplayOnlyQuestion>
+{/if}
+{#if q.type == "AddressLookup"}
+  <AddressLookup 
+    postcodePlaceholder={q.postcodePlaceholder} 
+    postcodeLabel={q.postcodeLabel} 
+    buttonLabel={q.buttonLabel}
+    houseLabel={q.houseLabel}/>
 {/if}
 {/each}
 </SectionLayout>

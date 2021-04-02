@@ -8,10 +8,10 @@
     export let addressLine4 = "";
 
     // display components & defaults
-    export let postcodeLabel = "Postcode:";
+    export let postcodeLabel = "Postcode";
     export let postcodePlaceholder = "MK10 0BZ";
     export let buttonLabel = "Search";
-    export let houseLabel = "Select property:";
+    export let houseLabel = "Property";
 
     export let active;
     export let hovering;
