@@ -14,7 +14,7 @@ For simplicity, I have not defined base data types, we all know what these are.
 
 [DataType] : [StandardDataType] | [CustomData]
 
-[Question] { 
+[Question] 
 	Id := [Int]
 	LabelText := [String]
 	Type := [QuestionType]
@@ -26,29 +26,63 @@ For simplicity, I have not defined base data types, we all know what these are.
 	PreText := [String]
 	PostText := [String]
 	CssClass := [String]
-}
+
 		
-[ValuesType] {
+[ValuesType] 
 	Minimum := [StandardDataType] (This would be a value for Int, Precision for Decimal, Length for String, Date / Time for Date/Time types) 
 	Maximum := [StandardDataType] (This would be a value for Int, Precision for Decimal, Length for String, Date / Time for Date/Time types)
 	Default := [StandardDataType] 
 
-}
+
 
 [QuestionType]  := "Radio" | "Checkbox" | "Text" | "Textbox"
 
-[HelpTextType] {
+[HelpTextType] 
 	Title := [String]
 	Body := [String]
 
-}
+
 
 [ValidationCollection] := [ValidationCollection], [ValidationType] | [ValidationType]
 
-[ValidationType] {
+[ValidationType] 
     Rule := [ValidationRule]
     Value := [StandardDataType]
     Message := [String]
-}
+
 ​	
 [ValidationRule] := "RequiredField" | "MustBeGreaterThan" | "MustBeLessThan" | "MustMatchExpression" | <Any others we want to add into here>
+
+
+[QuestionCollection]
+    Questions := [QuestionCollection], [Question] | [Question]
+
+
+[Component]
+    Questions := [QuestionCollection]
+    Script := [String]
+    ?? Do we want something else here ??
+
+[ComponentCollection]
+    Components := [ComponentCollection], [Component] | [Component]
+
+
+[Section]
+    Title := [String]
+    Pre := [String]
+    Post := [String]
+    Components : [ComponentCollection]
+
+[SectionCollection]
+    Section := [SectionCollection], [Section] | [Section]
+
+[Page]
+    Sections := [SectionCollection]
+
+[PagesCollection]
+    Path := [String]
+    Pages := [PagesCollection], [Page] | [Page]
+
+[Journey]
+    Title := [String]
+    Pages := [PagesCollection]
