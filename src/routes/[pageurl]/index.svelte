@@ -9,7 +9,6 @@
     if (res.ok) {
 			return {
 				props: {
-					questionSetData: await res.json(),
           pageurl: await `${page.params.pageurl}`
 				}
 			};
@@ -30,8 +29,6 @@
     import { questionSet } from '$lib/stores';
     import snarkdown from 'snarkdown';// https://github.com/developit/snarkdown/blob/master/test/index.js
     export let pageurl;
-    export let questionSetData;
-    questionSet.set(questionSetData);
 </script>
 
 
