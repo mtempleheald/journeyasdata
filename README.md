@@ -107,5 +107,29 @@ MTH - API security - is CORS sufficient?
 
 MTH - routing - [SvelteKit](https://kit.svelte.dev/docs) is worth considering, succeeds Sapper, pure client size url based routing is difficult to achieve otherwise. 
 
-MTH - A bit early right now but we need to consider Azure hosting - see [SvelteKit Adapters](https://kit.svelte.dev/docs#adapters)
+MTH - A bit early right now but we need to consider Azure hosting - see [SvelteKit Adapters](https://kit.svelte.dev/docs#adapters) -- Too late, we have 12 months of it now :D
+
+
+RL - Idea!
+
+QUESTION PAGES
+==============
+Question = id, Text, Type, ValidationCollection, Helptext {Header, Body}, PlaceholderText, DefaultAnswer + other items
+
+Component = Question(s) + Component(s)
+
+VirtualPage = Component(s)
+
+Journey = VirtualPage(s)
+
+PRESENTATION PAGES
+==================
+Presentation Item = ????  to be defined ???
+
+Presentation Panel = Presentation Item(s)
+
+Presentation Page = Presentation Items + Component(s)
+
+
+
 
