@@ -17,3 +17,9 @@ Theming is what makes this possible.
 - Avoid `:global()` styles where possible, this breaks the component boundaries and we lose the benefits of scoped styling provided by Svelte
 - Absolutely no hard-coded data in any low level components, ever - expose an optional parameter instead.
 
+## CSS Variables
+
+--question-colour-bg
+--question-colour-bg-highlight
+--question-colour-text
+--question-colour-text-highlight

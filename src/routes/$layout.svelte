@@ -2,6 +2,11 @@
     import WizardBar from '$lib/WizardBar.svelte';
 </script>
 
+<svelte:head>
+	<title>Question Set Demo</title>
+</svelte:head>
+
+
 <header>
     <img src="https://fakeimg.pl/250x100/?text=Logo" alt="logo">
     <h1>Question Set demo</h1>    
@@ -10,13 +15,19 @@
 
 <slot></slot>
 
+
 <style>
     /* alternative approach at https://github.com/josefaidt/svelte-themer */
     :root {
-        --colour-background: lightblue;
-        --colour-highlight: khaki;
-        --colour-text: black;
+        --question-colour-bg: lightblue;
+        --question-colour-bg-highlight: khaki;
+        --question-colour-text: black;
+        --question-colour-text-highlight: black;
         --border-style: solid;
+        --address-colour-bg: lightblue;
+        --address-colour-bg-highlight: lightblue;
+        --address-colour-text: black;
+        --address-colour-text-highlight: black;
     }
     :global(body) {
         margin: 0;

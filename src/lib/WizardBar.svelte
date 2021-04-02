@@ -1,14 +1,18 @@
 <script>
-
+    import { questionSet } from '$lib/stores';
 </script>
     
+
 <nav>
     <ul>
-        <li><a href="/page1">Page 1</a></li>
-        <li><a href="/page2">Page 2</a></li>
-        <li><a href="/page3">Page 3</a></li>
+    {#each $questionSet as qs}
+    {#each qs.pages as p}
+        <li><a href="{p.page.url}">{p.page.title}</a></li>
+    {/each}
+    {/each}
     </ul>
 </nav>
+
 
 <style>
     nav {
