@@ -23,6 +23,7 @@
 </script>
 
 <script>
+    import DisplayOnlyQuestion from '$lib/DisplayOnlyQuestion.svelte';
     import TextQuestion from '$lib/TextQuestion.svelte';
     import SectionLayout from '$lib/SectionLayout.svelte';
     import { questionSet } from '$lib/stores';
@@ -63,6 +64,23 @@
     {/if} 
   </div>
   </TextQuestion>
+{/if}
+{#if q.type == "DisplayOnlyQuestion"}
+  <DisplayOnlyQuestion>
+  <div slot="pre">
+    {#if q.pre}
+      {@html snarkdown(q.pre)}
+    {/if}
+  </div>
+  <div slot="main">
+    {@html snarkdown(q.content)}
+  </div>
+  <div slot="post">
+    {#if q.post}
+      {@html snarkdown(q.post)}
+    {/if} 
+  </div>
+  </DisplayOnlyQuestion>
 {/if}
 {/each}
 </SectionLayout>
