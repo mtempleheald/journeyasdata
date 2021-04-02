@@ -6,8 +6,8 @@
   "pages": [
     {
       "page": {
-        "url": "example-page",
-        "title": "Page 1"
+        "url": "text-questions",
+        "title": "Page demoing Text Question"
       },
       "sections": [
         {
@@ -40,6 +40,43 @@
               "type": "TextQuestion",
               "pre": "Perhaps we don't want a question, just some _italic_ text",
               "post": "And some more __bold__ text"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "page": {
+        "url": "display-questions",
+        "title": "Page demoing Display Only Question"
+      },
+      "sections": [
+        {
+          "section": {
+            "title": "",
+            "logo": null
+          },
+          "components": [
+            {
+              "type": "DisplayOnlyQuestion",
+              "content": "Just content, no markdown"
+            },
+            {
+              "id": 1,
+              "type": "DisplayOnlyQuestion",
+              "content": "__markdown__ content",
+              "pre": "__markdown__ before content",
+              "post": "__markdown__ after content"
+            },
+            {
+              "type": "DisplayOnlyQuestion",
+              "content": "__markdown__ content",
+              "post": "__markdown__ after content"
+            },
+            {
+              "type": "DisplayOnlyQuestion",
+              "content": "__markdown__ content",
+              "pre": "__markdown__ before content"
             }
           ]
         }
