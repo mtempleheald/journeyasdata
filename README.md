@@ -104,7 +104,9 @@ Question = id, Text, Type, ValidationCollection, Helptext {Header, Body}, Placeh
 
 Component = Question(s) + Component(s)
 
-VirtualPage = Component(s)
+Section = Component(s)
+
+VirtualPage = Section(s) + Component(s)
 
 Journey = VirtualPage(s)
 
