@@ -1,7 +1,12 @@
+<script>
+    import WizardBar from '$lib/WizardBar.svelte';
+</script>
+
 <header>
     <img src="https://fakeimg.pl/250x100/?text=Logo" alt="logo">
     <h1>Question Set demo</h1>    
 </header>
+<WizardBar/>
 
 <slot></slot>
 
