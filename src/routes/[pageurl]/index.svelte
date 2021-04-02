@@ -3,20 +3,10 @@
 	 * @type {import('@sveltejs/kit').Load}
 	 */
 	export async function load({ page, fetch, session, context }) {
-		const url = `/questionsets/questionset.json`;
-		const res = await fetch(url);
-    
-    if (res.ok) {
-			return {
-				props: {
-          pageurl: await `${page.params.pageurl}`
-				}
-			};
-		}
-
-    return {
-			status: res.status,
-			error: new Error(`Could not load ${url}`)
+		return {
+      props: {
+        pageurl: await `${page.params.pageurl}`
+      }
 		};
 	}
 </script>
