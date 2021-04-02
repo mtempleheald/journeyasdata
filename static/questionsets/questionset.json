@@ -1,27 +1,49 @@
-[
-  {
-    "id" : 1,
-    "label": "Question Label",
-    "type": "TextQuestion",
-    "placeholder": "Placeholder...",
-    "help": "Help text",
-    "pre": "# Markdown before question 1",
-    "post": "__Markdown after question 1__"
+{
+  "questionset": {
+    "show-wizard": true,
+    "title": "Questionset Demo"
   },
-  {
-    "id" : 2,
-    "label": "Lable & question only",
-    "type": "TextQuestion"
-  },
-  {
-    "id" : 3,
-    "type" : "TextQuestion",
-    "placeholder" : "label replacement?",
-    "pre" : "This isn't a label, but _pre-text_"
-  },
-  {
-    "type" : "TextQuestion",
-    "pre" : "Perhaps we don't want a question, just some _italic_ text",
-    "post" : "And some more __bold__ text"
-  }
-]
+  "pages": [
+    {
+      "page": {
+        "url": "example-page",
+        "title": "Page 1"
+      },
+      "sections": [
+        {
+          "section": {
+            "title": "",
+            "logo": null
+          },
+          "components": [
+            {
+              "id": 1,
+              "label": "Question Label",
+              "type": "TextQuestion",
+              "placeholder": "Placeholder...",
+              "help": "Help text",
+              "pre": "# Markdown before question 1",
+              "post": "__Markdown after question 1__"
+            },
+            {
+              "id": 2,
+              "label": "Lable & question only",
+              "type": "TextQuestion"
+            },
+            {
+              "id": 3,
+              "type": "TextQuestion",
+              "placeholder": "label replacement?",
+              "pre": "This isn't a label, but _pre-text_"
+            },
+            {
+              "type": "TextQuestion",
+              "pre": "Perhaps we don't want a question, just some _italic_ text",
+              "post": "And some more __bold__ text"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
