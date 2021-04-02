@@ -12,8 +12,8 @@
       "sections": [
         {
           "section": {
-            "title": "",
-            "logo": null
+            "title": "Section containing text questions",
+            "logo": "https://fakeimg.pl/100x50/?text=Section%20Logo"
           },
           "components": [
             {
@@ -53,8 +53,8 @@
       "sections": [
         {
           "section": {
-            "title": "",
-            "logo": null
+            "title": "Section containing display only questions",
+            "logo": "https://fakeimg.pl/100x50/?text=Section%20Logo"
           },
           "components": [
             {

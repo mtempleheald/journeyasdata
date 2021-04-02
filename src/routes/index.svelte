@@ -2,9 +2,7 @@
     
 </script>
     
-<svelte:head>
-	<title>Question Set Demo</title>
-</svelte:head>
+
 
 
 <p>Some introductory stuff goes here</p>
