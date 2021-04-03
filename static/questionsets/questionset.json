@@ -19,7 +19,7 @@
             {
               "id": 1,
               "label": "Required question label",
-              "type": "TextQuestion",
+              "type": "Textbox",
               "placeholder": "Placeholder...",
               "required": true,
               "errorMessage": "Please enter valid data",
@@ -30,16 +30,16 @@
             {
               "id": 2,
               "label": "Lable & question only",
-              "type": "TextQuestion"
+              "type": "Textbox"
             },
             {
               "id": 3,
-              "type": "TextQuestion",
+              "type": "Textbox",
               "placeholder": "label replacement?",
               "pre": "This isn't a label, but _pre-text_"
             },
             {
-              "type": "TextQuestion",
+              "type": "Textbox",
               "pre": "Perhaps we don't want a question, just some _italic_ text",
               "post": "And some more __bold__ text"
             }
@@ -60,23 +60,23 @@
           },
           "components": [
             {
-              "type": "DisplayOnlyQuestion",
+              "type": "Displayblock",
               "content": "Just content, no markdown"
             },
             {
               "id": 1,
-              "type": "DisplayOnlyQuestion",
+              "type": "Displayblock",
               "content": "__markdown__ content",
               "pre": "__markdown__ before content",
               "post": "__markdown__ after content"
             },
             {
-              "type": "DisplayOnlyQuestion",
+              "type": "Displayblock",
               "content": "__markdown__ content",
               "post": "__markdown__ after content"
             },
             {
-              "type": "DisplayOnlyQuestion",
+              "type": "Displayblock",
               "content": "__markdown__ content",
               "pre": "__markdown__ before content"
             }
@@ -99,7 +99,7 @@
             {
               "id": 1,
               "label": "Required question label",
-              "type": "DropdownQuestion",
+              "type": "Dropdown",
               "placeholder": "Placeholder...",
               "required": true,
               "refdata": "context.list",
@@ -110,7 +110,7 @@
             },
             {
               "id": 2,
-              "type": "DropdownQuestion",
+              "type": "Dropdown",
               "label": "Label & question only",
               "refdata": "context.list"
             }
@@ -131,7 +131,7 @@
           },
           "components": [
             {
-              "type": "AddressLookup",
+              "type": "Address",
               "postcodeLabel": "Postcode",
               "postcodePlaceholder": "MK10 0BZ",
               "buttonLabel": "Search",

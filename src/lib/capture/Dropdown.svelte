@@ -1,17 +1,24 @@
-<script>
-    import HelpText from '$lib/HelpText.svelte';
+<script lang="typescript">
+    import { onMount } from 'svelte';
+    import Helptext from '$lib/display/Helptext.svelte';
 
     export let id;
     export let label;
+    export let refdata;
     export let help;
     export let placeholder;
     export let required = false;
     export let errorMessage = '';
     let fallbackError;
     let valid = true;
+    let values = [];
+    
+    onMount(async () => {
+        const res = await fetch ('/api/refdata/' + refdata);
+        values = await res.json();
+    });
 
     function validate(event) {
-        // https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation#the_constraint_validation_api
         let input = event.target;
         if (input.validity.valid) {
             valid = true;
@@ -22,6 +29,9 @@
             fallbackError = input.validationMessage;
             // could potentially stop and refocus here, but visible should be enough
         }
+    }
+    function selectValue(event) {
+        // TODO: add to risk store
     }
 
     let active;
@@ -43,16 +53,22 @@
         {#if required}
             <span class="required">*</span>
         {/if}
-        <input type="text"
+        <select
             id="{id}" 
             name="{id}" 
-            placeholder="{placeholder}" 
+            data-reference="{refdata}"
             required="{required}"
-            on:blur={validate}/>
+            on:blur={selectValue}
+            >
+            <option value="">{placeholder ? placeholder : '-- select --'}</option>
+            {#each values as val}
+                <option value="{val.key}" on:click={selectValue}>{val.value}</option>
+            {/each}
+        </select>
         
     {/if}
     {#if help}
-        <HelpText>{help}</HelpText>
+        <Helptext>{help}</Helptext>
     {/if}
     {#if !valid}
         <span class="error">{errorMessage ?? fallbackError}</span>

@@ -23,12 +23,15 @@ import { validate_component } from "svelte/internal";
     let addresses: any[];
     let address : any;
     let searching = true;
+    let postcodeInput;
     let validpostcode = true;  
     async function lookupAddress(event) {
+        if (validpostcode) {
         searching = true;
         await fetch (`/api/addresses?postcode=` + postcode)
                 .then(resp => resp.json())
                 .then(data => addresses = data);
+        }
     }  
     function changePostcode(event) {
         let input = event.target;
@@ -38,9 +41,10 @@ import { validate_component } from "svelte/internal";
         }
         else {
             validpostcode = false;
+            postcodeInput.focus();
         }
     }
-    function selectAddress(event) {
+    function selectAddress(event) {        
         searching = false;
         address = addresses.filter(a => a.house == house)[0];
     }
@@ -50,17 +54,21 @@ import { validate_component } from "svelte/internal";
         addresses = null;
         house = '';
         address = null;
-    }    
+        validpostcode = true;
+        postcodeInput.focus();
+    }
     
 </script>
 
 
 <div class="address {active} {validpostcode?'':'invalid'}" on:mouseenter={enter} on:mouseleave={leave}>
-    {#if searching }
+    <div class="{searching ? '' : 'hidden'}">
     <label>
         <span>{postcodeLabel}</span>
         <input class="postcode"
+            type="text"
             bind:value={postcode} 
+            bind:this={postcodeInput}
             on:focus="{reset}" 
             on:blur="{changePostcode}"
             placeholder="{postcodePlaceholder}" 
@@ -69,21 +77,21 @@ import { validate_component } from "svelte/internal";
     </label>
     <button type="button" on:click="{lookupAddress}">{buttonLabel}</button>
     <br/>
-        {#if addresses}
-            <label>
-                <span>{houseLabel}</span>
-                <select 
-                    bind:value={house} 
-                    on:blur={selectAddress} 
-                    required>
-                    <option value="">-- select --</option>
-                    {#each addresses as a}
-                        <option value="{a.house}" on:click={selectAddress}>{a.house}</option>
-                    {/each}
-                </select>
-            </label>
-        {/if}
+    {#if addresses}
+    <label>
+        <span>{houseLabel}</span>
+        <select 
+            bind:value={house} 
+            on:blur={selectAddress} 
+            required>
+            <option value="">-- select --</option>
+            {#each addresses as a}
+                <option value="{a.house}" on:click={selectAddress}>{a.house}</option>
+            {/each}
+        </select>
+    </label>
     {/if}
+    </div>
     {#if !searching}
     <div class="address-display">
         <span>{address.house}</span>
@@ -123,5 +131,8 @@ import { validate_component } from "svelte/internal";
     .invalid {
         background-color: var(--question-color-bg-error, palevioletred);
         color: var(--question-color-text-error, black);
+    }
+    .hidden {
+        display: none;
     }
 </style>

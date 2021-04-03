@@ -1,5 +1,5 @@
 <script>
-    import { questionSet } from '$lib/stores';
+    import { questionSet } from '$lib/stores/questionset';
 </script>
     
 
