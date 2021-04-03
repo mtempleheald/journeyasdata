@@ -24,42 +24,46 @@ import { validate_component } from "svelte/internal";
     let address : any;
     let searching = true;
     let validpostcode = true;  
-    function lookupAddress(event) {
+    async function lookupAddress(event) {
         searching = true;
+        await fetch (`/api/addresses?postcode=` + postcode)
+                .then(resp => resp.json())
+                .then(data => addresses = data);
+
         // TODO: grab list of addresses by postcode from endpoint
-        addresses = [{
-                postcode: "MK10 0BZ",
-                house: "123",
-                addressline1: 'Fake Street',
-                addressline2: 'Springfield',
-                addressline3: '',
-                addressline4: 'Ohia Maud',
-            },
-            {
-                postcode: "MK10 0BZ",
-                house: "456",
-                addressline1: 'Fake Street',
-                addressline2: 'Springfield',
-                addressline3: '',
-                addressline4: 'Ohia Maud',
-            },
-            {
-                postcode: "MK10 0BZ",
-                house: "789",
-                addressline1: 'Fake Street',
-                addressline2: 'Springfield',
-                addressline3: '',
-                addressline4: 'Ohia Maud',
-            },
-            {
-                postcode: "MK10 0BZ",
-                house: "The pig sty",
-                addressline1: 'Fake Street',
-                addressline2: 'Springfield',
-                addressline3: '',
-                addressline4: 'Ohia Maud',
-            }
-        ];
+        // addresses = [{
+        //         postcode: "MK10 0BZ",
+        //         house: "123",
+        //         addressline1: 'Fake Street',
+        //         addressline2: 'Springfield',
+        //         addressline3: '',
+        //         addressline4: 'Ohia Maud',
+        //     },
+        //     {
+        //         postcode: "MK10 0BZ",
+        //         house: "456",
+        //         addressline1: 'Fake Street',
+        //         addressline2: 'Springfield',
+        //         addressline3: '',
+        //         addressline4: 'Ohia Maud',
+        //     },
+        //     {
+        //         postcode: "MK10 0BZ",
+        //         house: "789",
+        //         addressline1: 'Fake Street',
+        //         addressline2: 'Springfield',
+        //         addressline3: '',
+        //         addressline4: 'Ohia Maud',
+        //     },
+        //     {
+        //         postcode: "MK10 0BZ",
+        //         house: "The pig sty",
+        //         addressline1: 'Fake Street',
+        //         addressline2: 'Springfield',
+        //         addressline3: '',
+        //         addressline4: 'Ohia Maud',
+        //     }
+        // ];
     }  
     function changePostcode(event) {
         let input = event.target;
