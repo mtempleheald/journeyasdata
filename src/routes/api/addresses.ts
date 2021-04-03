@@ -6,7 +6,9 @@
 export async function get({ query }) {
 
     const postcode = query.get('postcode');
-    
+
+    // TODO: call actual API using https://www.npmjs.com/package/node-fetch
+
     return {
         body: [
             {
