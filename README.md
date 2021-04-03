@@ -8,10 +8,49 @@ There are very few distinct types of website out there:
 
 The aim of this project is to prove that option 2 can be delivered in 3 distinct parts:
 - journey as data - represent all questions/refdata/tooltips etc as a json file
-- theming - distinct stylesheet for different brands.  Components handle the general styling.
+- themes as css variables - distinct stylesheet for different brands.  Components handle the general styling.
 - code - pull together the theme and journey data to generate a functioning journey.
 
-Journey data:
+Deployment process:
+[![](https://mermaid.ink/img/eyJjb2RlIjoiZ3JhcGggVERcblxuICBjb2RlW0NvZGVdIC0tPiBjaVtDSV1cbiAgY2kgLS0-IGNkW0NEXVxuICBjZCAtLT4gZW52W0Vudmlyb25tZW50XVxuICBjZCAtLXVwZGF0ZS0tPiBwXG5cbiAgcXNbUXVlc3Rpb25TZXRdIC0tcHVibGlzaC0tPiBwW1B1Ymxpc2hlcl1cbiAgdGhlbWVbVGhlbWVdIC0tcHVibGlzaC0tPiBwW1B1Ymxpc2hlcl1cblxuICBwIC0tPiB2e3ZhbGlkP31cbiAgdiAtLT58eWVzfCBlbnZcbiAgdiAtLT58bm98IE5vdGlmeSIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In0sInVwZGF0ZUVkaXRvciI6ZmFsc2V9)](https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiZ3JhcGggVERcblxuICBjb2RlW0NvZGVdIC0tPiBjaVtDSV1cbiAgY2kgLS0-IGNkW0NEXVxuICBjZCAtLT4gZW52W0Vudmlyb25tZW50XVxuICBjZCAtLXVwZGF0ZS0tPiBwXG5cbiAgcXNbUXVlc3Rpb25TZXRdIC0tcHVibGlzaC0tPiBwW1B1Ymxpc2hlcl1cbiAgdGhlbWVbVGhlbWVdIC0tcHVibGlzaC0tPiBwW1B1Ymxpc2hlcl1cblxuICBwIC0tPiB2e3ZhbGlkP31cbiAgdiAtLT58eWVzfCBlbnZcbiAgdiAtLT58bm98IE5vdGlmeSIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In0sInVwZGF0ZUVkaXRvciI6ZmFsc2V9)
+
+
+# Extra features
+
+- URL based routing (not hash-based) - handled by [SvelteKit](https://kit.svelte.dev)
+- Data security - No PII data left on the local machine - data is held in memory only by default in [Svelte stores](https://svelte.dev/docs#svelte_store)
+- API security - [SvelteKit will server-render pages on demand](https://kit.svelte.dev/docs#ssr-and-javascript) and [endpoints only run on the server](https://kit.svelte.dev/docs#routing-endpoints)
+- A/B testing - does NOT cover code, but does cover data
+- Source/Affinity based branding - If redirected from google or some other aggregator we want to style certain aspects differently, e.g. logos
+
+
+# Getting started
+
+See `docs/Themes.md` for details about styling.
+See `docs/Structure.md` for details about data structures.
+See [Svelte](https://svelte.dev) to learn about Svelte.
+See [SvelteKit](https://kit.svelte.dev) to learn about SvelteKit.
+
+To run the application locally:
+
+`npm install` to import dependencies  
+`npm run dev` to launch locally with live reload  
+`npm run build` to build for production
+
+
+# Contribution guide
+
+Follow [Git Flow](https://guides.github.com/introduction/flow/) branching strategy - name branch according to intent, keep it small and focused, don't break anything.  Commits to be made on feature branches off develop, PR made to merge changes back into develop.  
+
+Any PR should trigger CI (TODO), a PR which fails any step will not be merged until the issue is corrected.
+
+Advised to use VS Code editor with default formatting settings for consistency and to avoid whitespace merge issues.
+
+Proposed work items are available in the Projects tab.
+
+
+# Journey / QuestionSet
+
 - journey (identified by product + version)
   - page (url-aligned)
     - section (block of content, may have logo or other presentational elements)
@@ -21,54 +60,18 @@ Journey data:
         - display
         - question 
 
-# Extra features
-
-- A/B testing - does NOT cover code, but does cover data
-- URL based routing (not hash-based)
-- Branding - The page must be brandable so it looks different depending on various factors (e.g. Linked from Google, URL, Cookie, etc.)
-- Secure - No PII data to be left on the local machine
+more detail can be found in `docs/Structure.md`
 
 
-# Getting started
-
-`npm install` to import dependencies  
-`npm run dev` to launch locally with live reload  
-`npm run build` to build for production  
-
-
-# Contribution guide
-
-Follow [Git Flow](https://guides.github.com/introduction/flow/) branching strategy - name branch according to intent, keep it small and focused, don't break anything.  
-Advised to use VS Code editor with default formatting settings for consistency and to avoid whitespace merge issues.
-Any PR should trigger CI (pending), a PR which fails any step will not be merged until the issue is corrected.
-Proposed work items are available in the Projects tab.
-
-
-## Single-page app mode
-
-By default, sirv will only respond to requests that match files in `public`. This is to maximise compatibility with static fileservers, allowing you to deploy your app anywhere.
-
-If you're building a single-page app (SPA) with multiple routes, sirv needs to be able to respond to requests for *any* path. You can make it so by editing the `"start"` command in package.json:
-
-```js
-"start": "sirv public --single"
-```
-
-## Using TypeScript
-
-This template comes with a script to set up a TypeScript development environment, you can run it immediately after cloning the template with:
-
-```bash
-node scripts/setupTypeScript.js
-```
 # Components
-The Jounrney is comprised of one or more "Components" which, when put together, can be used to gain information along the journey.
+
+The Journey is comprised of one or more "Components" which, when put together, can be used to gain information along the journey.
 
 At some point in the journey, a special component will push all the collected data up to a specific location to be stashed for later use.
 
 Components can be made up of other components.
 
-A coponent can be made up of a Question.
+A component can be made up of a Question.
 
 A Question Component has the following distinct features
 
@@ -89,6 +92,7 @@ This will allow us to compose any type of question
 
 
 # Thoughts and Ideas?
+
 RL - Just wondering if we need to allow A component within a Question to allow us to do the type of question  "When did you buy your caravan [DD]/[MM]/[YYYY]  [X] I have not bought the caravan yet" option.
 MTH - Perhaps this fits in with the composite component in the hierarchy above.  I would hope we don't need composite composite components, but worth considering.
 
@@ -105,8 +109,6 @@ MTH - [Svelte Themer](https://svelte-themer.now.sh/) could be an option if we ne
 
 MTH - API security - is CORS sufficient?
 
-MTH - routing - [SvelteKit](https://kit.svelte.dev/docs) is worth considering, succeeds Sapper, pure client size url based routing is difficult to achieve otherwise. 
-
 MTH - A bit early right now but we need to consider Azure hosting - see [SvelteKit Adapters](https://kit.svelte.dev/docs#adapters) -- Too late, we have 12 months of it now :D
 
 
@@ -118,7 +120,9 @@ Question = id, Text, Type, ValidationCollection, Helptext {Header, Body}, Placeh
 
 Component = Question(s) + Component(s)
 
-VirtualPage = Component(s)
+Section = Component(s)
+
+VirtualPage = Section(s) + Component(s)
 
 Journey = VirtualPage(s)
 
@@ -129,7 +133,6 @@ Presentation Item = ????  to be defined ???
 Presentation Panel = Presentation Item(s)
 
 Presentation Page = Presentation Items + Component(s)
-
 
 
 
