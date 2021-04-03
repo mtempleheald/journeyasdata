@@ -14,6 +14,7 @@
 <script>
     import AddressLookup from '$lib/AddressLookup.svelte';
     import DisplayOnlyQuestion from '$lib/DisplayOnlyQuestion.svelte';
+    import DropdownQuestion from '$lib/DropdownQuestion.svelte';
     import TextQuestion from '$lib/TextQuestion.svelte';
     import SectionLayout from '$lib/SectionLayout.svelte';
     import { questionSet } from '$lib/stores';
@@ -51,6 +52,28 @@
     {/if} 
   </div>
   </TextQuestion>
+{/if}
+{#if q.type == "DropdownQuestion"}
+  <DropdownQuestion
+    id="{q.id}"
+    label="{q.label}"
+    refdata="{q.refdata}"
+    placeholder="{q.placeholder ?? ''}"
+    help="{q.help ?? ''}"
+    required="{q.required ?? false}"
+    errorMessage="{q.errorMessage ?? ''}"
+  >
+  <div slot="pre">
+    {#if q.pre}
+      {@html snarkdown(q.pre)}
+    {/if}
+  </div>
+  <div slot="post">
+    {#if q.post}
+      {@html snarkdown(q.post)}
+    {/if} 
+  </div>
+  </DropdownQuestion>
 {/if}
 {#if q.type == "DisplayOnlyQuestion"}
   <DisplayOnlyQuestion>
