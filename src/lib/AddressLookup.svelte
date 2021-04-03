@@ -1,13 +1,9 @@
-<script>
+<script lang="typescript">
 import { validate_component } from "svelte/internal";
 
     // required data
-    export let postcode = "";
-    export let house = "";
-    export let addressLine1 = "";
-    export let addressLine2 = "";
-    export let addressLine3 = "";
-    export let addressLine4 = "";
+    export let postcode : string = "";
+    export let house : string = "";    
 
     // display components & defaults
     export let postcodeLabel = "Postcode";
@@ -24,47 +20,74 @@ import { validate_component } from "svelte/internal";
     }  
 
     // functional components
-    let houseList;
+    let addresses: any[];
+    let address : any;
     let searching = true;
-    let valid = true;  
+    let validpostcode = true;  
     function lookupAddress(event) {
         searching = true;
-        houseList = ["1","2","3","The pig sty"];
+        // TODO: grab list of addresses by postcode from endpoint
+        addresses = [{
+                postcode: "MK10 0BZ",
+                house: "123",
+                addressline1: 'Fake Street',
+                addressline2: 'Springfield',
+                addressline3: '',
+                addressline4: 'Ohia Maud',
+            },
+            {
+                postcode: "MK10 0BZ",
+                house: "456",
+                addressline1: 'Fake Street',
+                addressline2: 'Springfield',
+                addressline3: '',
+                addressline4: 'Ohia Maud',
+            },
+            {
+                postcode: "MK10 0BZ",
+                house: "789",
+                addressline1: 'Fake Street',
+                addressline2: 'Springfield',
+                addressline3: '',
+                addressline4: 'Ohia Maud',
+            },
+            {
+                postcode: "MK10 0BZ",
+                house: "The pig sty",
+                addressline1: 'Fake Street',
+                addressline2: 'Springfield',
+                addressline3: '',
+                addressline4: 'Ohia Maud',
+            }
+        ];
     }  
     function changePostcode(event) {
         let input = event.target;
         postcode = input.value.toUpperCase();
         if (input.validity.valid) {
-            valid = true;
+            validpostcode = true;
         }
         else {
-            valid = false;
+            validpostcode = false;
         }
     }
     function selectAddress(event) {
-        valid = true;
         searching = false;
-        // TODO: replace with endpoint call
-        addressLine1 = "Fake St";
-        addressLine2 = "Springfield";
-        addressLine3 = "";
-        addressLine4 = "Ohiya Maud";
+        console.log(addresses);
+        address = addresses.filter(a => a.house == house)[0];
     }
     function reset(event) {
         searching = true;
         postcode = '';
-        houseList = '';
+        addresses = null;
         house = '';
-        addressLine1 = '';
-        addressLine2 = '';
-        addressLine3 = '';
-        addressLine4 = '';
+        address = null;
     }    
     
 </script>
 
 
-<div class="address {active} {valid?'':'invalid'}" on:mouseenter={enter} on:mouseleave={leave}>
+<div class="address {active} {validpostcode?'':'invalid'}" on:mouseenter={enter} on:mouseleave={leave}>
     {#if searching }
     <label>
         <span>{postcodeLabel}</span>
@@ -78,15 +101,16 @@ import { validate_component } from "svelte/internal";
     </label>
     <button type="button" on:click="{lookupAddress}">{buttonLabel}</button>
     <br/>
-        {#if houseList}
+        {#if addresses}
             <label>
                 <span>{houseLabel}</span>
                 <select 
                     bind:value={house} 
                     on:blur={selectAddress} 
                     required>
-                    {#each houseList as h}
-                        <option value="{h}" on:click={selectAddress}>{h}</option>
+                    <option value="">-- select --</option>
+                    {#each addresses as a}
+                        <option value="{a.house}" on:click={selectAddress}>{a.house}</option>
                     {/each}
                 </select>
             </label>
@@ -94,12 +118,12 @@ import { validate_component } from "svelte/internal";
     {/if}
     {#if !searching}
     <div class="address-display">
-        <span>{house}</span>
-        {#if addressLine1}<span>{addressLine1}</span>{/if}
-        {#if addressLine2}<span>{addressLine2}</span>{/if}
-        {#if addressLine3}<span>{addressLine3}</span>{/if}
-        {#if addressLine4}<span>{addressLine4}</span>{/if}
-        <span>{postcode}</span>
+        <span>{address.house}</span>
+        {#if address.addressline1}<span>{address.addressline1}</span>{/if}
+        {#if address.addressline2}<span>{address.addressline2}</span>{/if}
+        {#if address.addressline3}<span>{address.addressline3}</span>{/if}
+        {#if address.addressline4}<span>{address.addressline4}</span>{/if}
+        <span>{address.postcode}</span>
     </div>
     <button type="button" on:click="{reset}">Find another address</button>
     {/if}
