@@ -22,8 +22,7 @@
 </script>
 
 
-{#each $questionSet as qs}
-{#each qs.pages as p} 
+{#each $questionSet.pages as p} 
 {#if p.page.url == pageurl}
 <h1>{p.page.title}</h1>
 {#each p.sections as s}
@@ -81,5 +80,4 @@
 </SectionLayout>
 {/each}
 {/if}
-{/each}
 {/each}

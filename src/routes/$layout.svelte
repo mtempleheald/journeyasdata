@@ -1,5 +1,23 @@
+<script context="module">
+	/**
+	 * @type {import('@sveltejs/kit').Load}
+	 */
+	export async function load({ page, fetch, session, context }) {
+        // console.log('Loading questionset'); // proves that this isn't loaded on each subsequent page request
+        const url = '/questionsets/questionset.json';
+        let qs;
+        await fetch(url)
+                .then(resp => resp.json())
+                .then(data => qs = data);
+        questionSet.set(qs);
+        
+		return {};
+	}
+</script>
+
 <script>
     import WizardBar from '$lib/WizardBar.svelte';
+    import { questionSet } from '$lib/stores';
 </script>
 
 <svelte:head>

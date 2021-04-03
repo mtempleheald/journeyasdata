@@ -5,10 +5,8 @@
 
 <nav>
     <ul>
-    {#each $questionSet as qs}
-    {#each qs.pages as p}
+    {#each $questionSet.pages as p}
         <li><a href="{p.page.url}">{p.page.title}</a></li>
-    {/each}
     {/each}
     </ul>
 </nav>
