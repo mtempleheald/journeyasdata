@@ -8,10 +8,49 @@ There are very few distinct types of website out there:
 
 The aim of this project is to prove that option 2 can be delivered in 3 distinct parts:
 - journey as data - represent all questions/refdata/tooltips etc as a json file
-- theming - distinct stylesheet for different brands.  Components handle the general styling.
+- themes as css variables - distinct stylesheet for different brands.  Components handle the general styling.
 - code - pull together the theme and journey data to generate a functioning journey.
 
-Journey data:
+Deployment process:
+[![](https://mermaid.ink/img/eyJjb2RlIjoiZ3JhcGggVERcblxuICBjb2RlW0NvZGVdIC0tPiBjaVtDSV1cbiAgY2kgLS0-IGNkW0NEXVxuICBjZCAtLT4gZW52W0Vudmlyb25tZW50XVxuICBjZCAtLXVwZGF0ZS0tPiBwXG5cbiAgcXNbUXVlc3Rpb25TZXRdIC0tcHVibGlzaC0tPiBwW1B1Ymxpc2hlcl1cbiAgdGhlbWVbVGhlbWVdIC0tcHVibGlzaC0tPiBwW1B1Ymxpc2hlcl1cblxuICBwIC0tPiB2e3ZhbGlkP31cbiAgdiAtLT58eWVzfCBlbnZcbiAgdiAtLT58bm98IE5vdGlmeSIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In0sInVwZGF0ZUVkaXRvciI6ZmFsc2V9)](https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiZ3JhcGggVERcblxuICBjb2RlW0NvZGVdIC0tPiBjaVtDSV1cbiAgY2kgLS0-IGNkW0NEXVxuICBjZCAtLT4gZW52W0Vudmlyb25tZW50XVxuICBjZCAtLXVwZGF0ZS0tPiBwXG5cbiAgcXNbUXVlc3Rpb25TZXRdIC0tcHVibGlzaC0tPiBwW1B1Ymxpc2hlcl1cbiAgdGhlbWVbVGhlbWVdIC0tcHVibGlzaC0tPiBwW1B1Ymxpc2hlcl1cblxuICBwIC0tPiB2e3ZhbGlkP31cbiAgdiAtLT58eWVzfCBlbnZcbiAgdiAtLT58bm98IE5vdGlmeSIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In0sInVwZGF0ZUVkaXRvciI6ZmFsc2V9)
+
+
+# Extra features
+
+- URL based routing (not hash-based) - handled by [SvelteKit](https://kit.svelte.dev)
+- Data security - No PII data left on the local machine - data is held in memory only by default in [Svelte stores](https://svelte.dev/docs#svelte_store)
+- API security - [SvelteKit will server-render pages on demand](https://kit.svelte.dev/docs#ssr-and-javascript) and [endpoints only run on the server](https://kit.svelte.dev/docs#routing-endpoints)
+- A/B testing - does NOT cover code, but does cover data
+- Source/Affinity based branding - If redirected from google or some other aggregator we want to style certain aspects differently, e.g. logos
+
+
+# Getting started
+
+See `docs/Themes.md` for details about styling.
+See `docs/Structure.md` for details about data structures.
+See [Svelte](https://svelte.dev) to learn about Svelte.
+See [SvelteKit](https://kit.svelte.dev) to learn about SvelteKit.
+
+To run the application locally:
+
+`npm install` to import dependencies  
+`npm run dev` to launch locally with live reload  
+`npm run build` to build for production
+
+
+# Contribution guide
+
+Follow [Git Flow](https://guides.github.com/introduction/flow/) branching strategy - name branch according to intent, keep it small and focused, don't break anything.  Commits to be made on feature branches off develop, PR made to merge changes back into develop.  
+
+Any PR should trigger CI (TODO), a PR which fails any step will not be merged until the issue is corrected.
+
+Advised to use VS Code editor with default formatting settings for consistency and to avoid whitespace merge issues.
+
+Proposed work items are available in the Projects tab.
+
+
+# Journey / QuestionSet
+
 - journey (identified by product + version)
   - page (url-aligned)
     - section (block of content, may have logo or other presentational elements)
@@ -21,35 +60,7 @@ Journey data:
         - display
         - question 
 
-# Extra features
-
-- A/B testing - does NOT cover code, but does cover data
-- URL based routing (not hash-based)
-- Branding - The page must be brandable so it looks different depending on various factors (e.g. Linked from Google, URL, Cookie, etc.)
-- Secure - No PII data to be left on the local machine
-
-
-# Getting started
-
-`npm install` to import dependencies  
-`npm run dev` to launch locally with live reload  
-`npm run build` to build for production  
-
-
-# Contribution guide
-
-Follow [Git Flow](https://guides.github.com/introduction/flow/) branching strategy - name branch according to intent, keep it small and focused, don't break anything.  Commits to be made on feature branches off develop, PR made to merge changes back into develop.  
-
-Any PR should trigger CI (TBC), a PR which fails any step will not be merged until the issue is corrected.
-
-Advised to use VS Code editor with default formatting settings for consistency and to avoid whitespace merge issues.
-
-Proposed work items are available in the Projects tab.
-
-
-# Deployment vision
-
-[![](https://mermaid.ink/img/eyJjb2RlIjoiZ3JhcGggVERcblxuICBjb2RlW0NvZGVdIC0tPiBjaVtDSV1cbiAgY2kgLS0-IGNkW0NEXVxuICBjZCAtLT4gZW52W0Vudmlyb25tZW50XVxuICBjZCAtLXVwZGF0ZS0tPiBwXG5cbiAgcXNbUXVlc3Rpb25TZXRdIC0tcHVibGlzaC0tPiBwW1B1Ymxpc2hlcl1cbiAgdGhlbWVbVGhlbWVdIC0tcHVibGlzaC0tPiBwW1B1Ymxpc2hlcl1cblxuICBwIC0tPiB2e3ZhbGlkP31cbiAgdiAtLT58eWVzfCBlbnZcbiAgdiAtLT58bm98IE5vdGlmeSIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In0sInVwZGF0ZUVkaXRvciI6ZmFsc2V9)](https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiZ3JhcGggVERcblxuICBjb2RlW0NvZGVdIC0tPiBjaVtDSV1cbiAgY2kgLS0-IGNkW0NEXVxuICBjZCAtLT4gZW52W0Vudmlyb25tZW50XVxuICBjZCAtLXVwZGF0ZS0tPiBwXG5cbiAgcXNbUXVlc3Rpb25TZXRdIC0tcHVibGlzaC0tPiBwW1B1Ymxpc2hlcl1cbiAgdGhlbWVbVGhlbWVdIC0tcHVibGlzaC0tPiBwW1B1Ymxpc2hlcl1cblxuICBwIC0tPiB2e3ZhbGlkP31cbiAgdiAtLT58eWVzfCBlbnZcbiAgdiAtLT58bm98IE5vdGlmeSIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In0sInVwZGF0ZUVkaXRvciI6ZmFsc2V9)
+more detail can be found in `docs/Structure.md`
 
 
 # Components

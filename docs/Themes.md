@@ -10,10 +10,11 @@ Theming is what makes this possible.
 
 ## Principles
 
-- Components are responsible for basic "quality" display, e.g. appropriate borders/margins to avoid looking unprofessional
-- Website-level themes are responsible for the consistent look-and-feel and define the colour pallette.  See `src/$layout.svelte`.
+- Components responsible for their own "quality" cosmetics, e.g. appropriate border/margin/padding to avoid looking unprofessional
+- Components must be agnostic to screen/viewport/font size - design for mobile-first and use rem or other dynamic sizing where necessary
+- Website-level themes are responsible for the consistent look-and-feel and define the colour pallette.
 - Each component defines its own defaults for relevant properties, but exposes customisable CSS variables
-- Avoid `:global()` styles where possible, this breaks the component boundaries and we lose the benefits of scoped styling provided by Svelte
+- Avoid `:global()` styles otherwise - breaks component boundaries, lose the benefits of Svelte's scoped styling
 - Absolutely no hard-coded data in any low level components, ever - expose an optional parameter instead.
 
 ## CSS Variables
