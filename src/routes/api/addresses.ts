@@ -6,7 +6,7 @@
 export async function get({ query }) {
 
     const postcode = query.get('postcode');
-
+    
     return {
         body: [
             {
