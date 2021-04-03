@@ -4,8 +4,10 @@
 </script>
     
 <section>
-    <img src={logo} alt="logo">
-    <span>{title}</span>
+    <header>
+        <img src={logo} alt="logo">
+        <h3>{title}</h3>
+    </header>
     <slot></slot>
 </section>
 
@@ -13,12 +15,19 @@
     section {
         border: 1px solid black;
     }
-    img {
-        float: left;
+    header {
+        display: flex;
+        flex-direction: row;
     }
-    span {
+    img {
+        height: 50px;
+        width: 100px;
+    }
+    h3 {
         height: 50px;
         line-height: 50px;
-        float: none;
+        width: calc(100vw - 100px);
+        margin: 0;
+        padding: 0 1rem;
     }
 </style>

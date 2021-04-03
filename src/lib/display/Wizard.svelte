@@ -14,12 +14,13 @@
 
 <style>
     nav {
-        background-color: gainsboro;
-        float:left;
         width: 100%;
     }
     ul {
         text-align: center;
+        background-color: gainsboro;
+        padding: 1rem 0;
+        margin: 0;
     }
     li {
         display: inline;
@@ -27,7 +28,7 @@
     a {
         text-decoration: none;
         padding: 1rem 2rem;
-        background-color: gray;
+        background-color: gainsboro;
     }
     a:hover {
         text-decoration: underline;

@@ -49,8 +49,42 @@
     },
     {
       "page": {
+        "url": "dropdown-questions",
+        "title": "Dropdown Questions"
+      },
+      "sections": [
+        {
+          "section": {
+            "title": "Section containing dropdown questions",
+            "logo": "https://fakeimg.pl/100x50/?text=Section%20Logo"
+          },
+          "components": [
+            {
+              "id": 1,
+              "label": "Required question label",
+              "type": "Dropdown",
+              "placeholder": "Placeholder...",
+              "required": true,
+              "refdata": "context.list",
+              "errorMessage": "Please select an option",
+              "help": "Help text",
+              "pre": "# Markdown before question 1",
+              "post": "__Markdown after question 1__"
+            },
+            {
+              "id": 2,
+              "type": "Dropdown",
+              "label": "Label & question only",
+              "refdata": "context.list"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "page": {
         "url": "display-questions",
-        "title": "Display Only Questions"
+        "title": "Display Only"
       },
       "sections": [
         {
@@ -79,40 +113,6 @@
               "type": "Displayblock",
               "content": "__markdown__ content",
               "pre": "__markdown__ before content"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "page": {
-        "url": "dropdown-questions",
-        "title": "Dropdown Questions"
-      },
-      "sections": [
-        {
-          "section": {
-            "title": "Section containing dropdown questions",
-            "logo": "https://fakeimg.pl/100x50/?text=Section%20Logo"
-          },
-          "components": [
-            {
-              "id": 1,
-              "label": "Required question label",
-              "type": "Dropdown",
-              "placeholder": "Placeholder...",
-              "required": true,
-              "refdata": "context.list",
-              "errorMessage": "Please select an option",
-              "help": "Help text",
-              "pre": "# Markdown before question 1",
-              "post": "__Markdown after question 1__"
-            },
-            {
-              "id": 2,
-              "type": "Dropdown",
-              "label": "Label & question only",
-              "refdata": "context.list"
             }
           ]
         }

@@ -25,7 +25,7 @@
 
 {#each $questionSet.pages as p} 
 {#if p.page.url == pageurl}
-<h1>{p.page.title}</h1>
+<h2>{p.page.title}</h2>
 {#each p.sections as s}
 <Section
   title={s.section.title}
@@ -104,3 +104,13 @@
 {/each}
 {/if}
 {/each}
+
+
+<style>
+  h2 {
+    margin: 0;
+    padding: 1rem;
+    height: 1rem;
+    line-height: 1rem;
+  }
+</style>

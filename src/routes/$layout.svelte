@@ -52,15 +52,18 @@
     }
     header {
         border-bottom: 1px solid black;
+        display: flex;
+        flex-direction: row;
     }
     img {
         height: 100px;
-        float: left;
+        width: 250px;
     }
     h1 {
         height: 100px;
         line-height: 100px;
-        margin: 0 2rem;
-        float: none;
+        padding: 0 1rem;
+        margin: 0;
+        width: calc(100vw - 250px);
     }
 </style>
