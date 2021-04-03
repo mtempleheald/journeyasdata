@@ -1,12 +1,9 @@
 <script>
     let active;
-    let hovering;
     function enter() {
-        hovering = true;
         active = "active";
     }
     function leave() {
-        hovering = false;
         active = "";
     }
 </script>
@@ -30,7 +27,7 @@
 </style>
 
 
-<div class="question {active}" on:mouseenter={enter} on:mouseleave={leave} hovering={hovering}>
+<div class="question {active}" on:mouseenter={enter} on:mouseleave={leave} >
     <slot name="pre"></slot>
     <slot name="main"></slot>
     <slot name="post"></slot>

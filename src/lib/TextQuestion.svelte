@@ -3,22 +3,34 @@
     export let label;
     export let help;
     export let placeholder;
+    export let required = false;
+
     let active;
-    let hovering;
     function enter() {
-        hovering = true;
         active = "active";
     }
     function leave() {
-        hovering = false;
         active = "";
     }
 </script>
 
 
+<div class="question {active}" on:mouseenter={enter} on:mouseleave={leave} >
+    <slot name="pre"></slot>
+    {#if label}
+      <label for="{id}">{label}</label>
+    {/if}
+    {#if id}
+    <input placeholder="{placeholder}" type="text" id="{id}" name="{id}" required="{required}"/>
+    {/if}
+    {#if help}
+        <span class="tooltip">{help}</span>
+    {/if}
+    <slot name="post"></slot>
+</div>
+
+
 <style>
-    /* CSS in Svelte https://css-tricks.com/what-i-like-about-writing-styles-with-svelte/ */
-    /* We can refer to global styles here to grab variables for skinning */
     :global(.question) {
         background-color: var(--question-colour-bg,white);
         color: var(--colour-text, black);
@@ -34,19 +46,3 @@
         padding: 0.5rem;
     }
 </style>
-
-
-<div class="question {active}" on:mouseenter={enter} on:mouseleave={leave} hovering={hovering}>
-    <slot name="pre"></slot>
-    {#if label}
-      <label for="{id}">{label}</label>
-    {/if}
-    {#if id}
-    <input placeholder="{placeholder}" type="text" id="{id}" name="{id}"/>
-    {/if}
-    {#if help}
-        <span class="tooltip">{help}</span>
-    {/if}
-    <slot name="post"></slot>
-</div>
-  

@@ -13,13 +13,25 @@ Theming is what makes this possible.
 - Components are responsible for basic "quality" display, e.g. appropriate borders/margins to avoid looking unprofessional
 - Website-level themes are responsible for the consistent look-and-feel and define the colour pallette.  See `src/$layout.svelte`.
 - Each component defines its own defaults for relevant properties, but exposes customisable CSS variables
-  e.g. --textquestion-background-colour would be exposed by the TextQuestion component
 - Avoid `:global()` styles where possible, this breaks the component boundaries and we lose the benefits of scoped styling provided by Svelte
 - Absolutely no hard-coded data in any low level components, ever - expose an optional parameter instead.
 
 ## CSS Variables
 
+Questions
+```
 --question-colour-bg
---question-colour-bg-highlight
 --question-colour-text
+--question-colour-bg-highlight
 --question-colour-text-highlight
+--question-colour-bg-error
+--question-colour-text-error
+```
+
+Address component
+```
+--address-colour-bg
+--address-colour-bg-highlight
+--address-colour-text
+--address-colour-text-highlight
+```

@@ -1,4 +1,6 @@
 <script>
+import { validate_component } from "svelte/internal";
+
     // required data
     export let postcode = "";
     export let house = "";
@@ -14,13 +16,10 @@
     export let houseLabel = "Property";
 
     export let active;
-    export let hovering;
     function enter() {
-        hovering = true;
         active = "active";
     }
     function leave() {
-        hovering = false;
         active = "";
     }  
 
@@ -46,13 +45,22 @@
         addressLine3 = "";
         addressLine4 = "";
     }
+    function upper(event) {
+        postcode = event.target.value.toUpperCase()
+    }
 </script>
 
 
-<div class="address" on:mouseenter={enter} on:mouseleave={leave} hovering={hovering}>
+<div class="address {active}" on:mouseenter={enter} on:mouseleave={leave}>
     <label>
         <span>{postcodeLabel}</span>
-        <input bind:value={postcode} on:focus="{reset}" placeholder="{postcodePlaceholder}"/>
+        <input class="postcode"
+            bind:value={postcode} 
+            on:focus="{reset}" 
+            on:blur="{upper}"
+            placeholder="{postcodePlaceholder}" 
+            required 
+            maxlength="8"/>
     </label>
     <button type="button" on:click="{lookupAddress}">{buttonLabel}</button>
     <br/>
@@ -98,5 +106,8 @@
     }
     .address-display span {
         display: block;
+    }
+    .postcode {
+        text-transform: uppercase;
     }
 </style>
