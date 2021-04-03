@@ -15,7 +15,7 @@ import { validate_component } from "svelte/internal";
     export let buttonLabel = "Search";
     export let houseLabel = "Property";
 
-    export let active;
+    let active;
     function enter() {
         active = "active";
     }
@@ -24,58 +24,75 @@ import { validate_component } from "svelte/internal";
     }  
 
     // functional components
-    export let houseList = [];
-    export let searching = false;
+    let houseList;
+    let searching = true;
+    let valid = true;  
     function lookupAddress(event) {
         searching = true;
         houseList = ["1","2","3","The pig sty"];
+    }  
+    function changePostcode(event) {
+        let input = event.target;
+        postcode = input.value.toUpperCase();
+        if (input.validity.valid) {
+            valid = true;
+        }
+        else {
+            valid = false;
+        }
     }
     function selectAddress(event) {
+        valid = true;
         searching = false;
+        // TODO: replace with endpoint call
         addressLine1 = "Fake St";
         addressLine2 = "Springfield";
         addressLine3 = "";
         addressLine4 = "Ohiya Maud";
     }
     function reset(event) {
-        searching = false;
-        house = "";
-        addressLine1 = "";
-        addressLine2 = "";
-        addressLine3 = "";
-        addressLine4 = "";
-    }
-    function upper(event) {
-        postcode = event.target.value.toUpperCase()
-    }
+        searching = true;
+        postcode = '';
+        houseList = '';
+        house = '';
+        addressLine1 = '';
+        addressLine2 = '';
+        addressLine3 = '';
+        addressLine4 = '';
+    }    
+    
 </script>
 
 
-<div class="address {active}" on:mouseenter={enter} on:mouseleave={leave}>
+<div class="address {active} {valid?'':'invalid'}" on:mouseenter={enter} on:mouseleave={leave}>
+    {#if searching }
     <label>
         <span>{postcodeLabel}</span>
         <input class="postcode"
             bind:value={postcode} 
             on:focus="{reset}" 
-            on:blur="{upper}"
+            on:blur="{changePostcode}"
             placeholder="{postcodePlaceholder}" 
             required 
             maxlength="8"/>
     </label>
     <button type="button" on:click="{lookupAddress}">{buttonLabel}</button>
     <br/>
-    {#if searching && postcode}
-        <label>
-            <span>{houseLabel}</span>
-            <select bind:value={house} on:blur={selectAddress} required>
-                {#each houseList as h}
-                    <option value="{h}" on:click={selectAddress}>{h}</option>
-                {/each}
-            </select>
-        </label>
+        {#if houseList}
+            <label>
+                <span>{houseLabel}</span>
+                <select 
+                    bind:value={house} 
+                    on:blur={selectAddress} 
+                    required>
+                    {#each houseList as h}
+                        <option value="{h}" on:click={selectAddress}>{h}</option>
+                    {/each}
+                </select>
+            </label>
+        {/if}
     {/if}
-    <br/>
-    {#if !searching && house}
+    {#if !searching}
     <div class="address-display">
         <span>{house}</span>
         {#if addressLine1}<span>{addressLine1}</span>{/if}
@@ -84,6 +101,7 @@ import { validate_component } from "svelte/internal";
         {#if addressLine4}<span>{addressLine4}</span>{/if}
         <span>{postcode}</span>
     </div>
+    <button type="button" on:click="{reset}">Find another address</button>
     {/if}
 </div>
 
@@ -109,5 +127,9 @@ import { validate_component } from "svelte/internal";
     }
     .postcode {
         text-transform: uppercase;
+    }
+    .invalid {
+        background-color: var(--question-color-bg-error, palevioletred);
+        color: var(--question-color-text-error, black);
     }
 </style>
