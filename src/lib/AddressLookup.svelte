@@ -67,7 +67,7 @@ import { validate_component } from "svelte/internal";
     {#if searching && postcode}
         <label>
             <span>{houseLabel}</span>
-            <select bind:value={house} on:blur={selectAddress}>
+            <select bind:value={house} on:blur={selectAddress} required>
                 {#each houseList as h}
                     <option value="{h}" on:click={selectAddress}>{h}</option>
                 {/each}

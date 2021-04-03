@@ -18,9 +18,11 @@
           "components": [
             {
               "id": 1,
-              "label": "Question Label",
+              "label": "Required question label",
               "type": "TextQuestion",
               "placeholder": "Placeholder...",
+              "required": true,
+              "errorMessage": "Please enter valid data",
               "help": "Help text",
               "pre": "# Markdown before question 1",
               "post": "__Markdown after question 1__"

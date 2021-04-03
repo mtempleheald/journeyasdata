@@ -21,10 +21,10 @@ Theming is what makes this possible.
 Questions
 ```
 --question-colour-bg
---question-colour-text
 --question-colour-bg-highlight
---question-colour-text-highlight
 --question-colour-bg-error
+--question-colour-text
+--question-colour-text-highlight
 --question-colour-text-error
 ```
 

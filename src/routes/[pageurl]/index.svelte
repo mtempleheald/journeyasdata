@@ -38,6 +38,8 @@
     label="{q.label}"
     placeholder="{q.placeholder ?? ''}"
     help="{q.help ?? ''}"
+    required="{q.required ?? false}"
+    errorMessage="{q.errorMessage ?? ''}"
   >
   <div slot="pre">
     {#if q.pre}
