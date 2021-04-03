@@ -86,3 +86,59 @@ For simplicity, I have not defined base data types, we all know what these are.
 [Journey]
     Title := [String]
     Pages := [PagesCollection]
+
+
+```mermaid
+classDiagram
+        Journey <|-- Page
+        Page <|-- Section
+        Section <|-- Component
+        Component <|-- Question
+
+        class Journey{
+            +String Title
+            +Page[] Pages
+        }
+
+        class Page{
+            +String Path
+            +Section[] Sections
+        }
+
+        class Section{
+            +String Title
+            +String PreText
+            +String PostText
+            +Component[] Components
+        }
+
+        class Component{
+            +Question[] Questions
+            +String[] ScriptUrl
+        }
+
+        class Question{
+            +Int Id
+	        +String LabelText
+	        +String Type
+	        +String Name
+	        +String Values
+	        +String Placeholder
+	        +Help Help
+	        +Validation[] Validation
+	        +String PreText
+	        +String PostText
+	        +String CssClass
+        }
+      
+      class Help{
+          +String Title
+          +String Body
+      }
+
+      class Validation{
+          +String Rule
+          +String Value
+          +String Message
+      }
+```
