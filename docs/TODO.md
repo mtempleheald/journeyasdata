@@ -46,7 +46,8 @@ Central place to capture outstanding work to do, to aid co-ordination.
 
   How do we define stores when components may be optional?  
   `key = writable('value')` would require dynamic JS  
-  `data = writable([Dictionary<k,v>])` could be inefficient but seems to be the sensible option for PoC
+  `data = writable([Dictionary<k,v>])` could be inefficient, filter by key for all components when one changes  
+  [Event Dispatcher](https://svelte.dev/docs#createEventDispatcher) may help - parent (pages component) owns the data, children tell it when to update what, children can subscribe to find values of siblings.  Sadly [Context](https://svelte.dev/docs#setContext) can only be set on component initialisation.  
 
   [The problem, simplified](https://stackoverflow.com/questions/63928002/how-can-i-dynamically-define-a-value-bind-in-svelte)   
   e.g. show this question only if that question has a Yes answer  

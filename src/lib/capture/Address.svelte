@@ -57,7 +57,18 @@ import { validate_component } from "svelte/internal";
         validpostcode = true;
         postcodeInput.focus();
     }
-    
+    // https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Client-side_JavaScript_frameworks/Svelte_reactivity_lifecycle_accessibility
+    // doesn't seem to work - why can't I type in a focused field?  
+    function selectOnFocus(node) {
+        if (node && typeof node.select === 'function' ) {               // make sure node is defined and has a select() method
+            const onFocus = event => node.select()                        // event handler
+            node.addEventListener('focus', onFocus)                       // when node gets focus call onFocus()
+            return {
+            destroy: () => node.removeEventListener('focus', onFocus)   // this will be executed when the node is removed from the DOM
+            }
+        }
+    }
+
 </script>
 
 
@@ -73,7 +84,9 @@ import { validate_component } from "svelte/internal";
             on:blur="{changePostcode}"
             placeholder="{postcodePlaceholder}" 
             required 
-            maxlength="8"/>
+            maxlength="8"
+            use:selectOnFocus 
+        />
     </label>
     <button type="button" on:click="{lookupAddress}">{buttonLabel}</button>
     <br/>
