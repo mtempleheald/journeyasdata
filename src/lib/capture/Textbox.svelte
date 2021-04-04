@@ -1,5 +1,7 @@
 <script>
     import Helptext from '$lib/display/Helptext.svelte';
+	import { createEventDispatcher } from 'svelte';
+    import { getContext } from 'svelte'
 
     export let id;
     export let label;
@@ -10,17 +12,19 @@
     let fallbackError;
     let valid = true;
 
-    function validate(event) {
+    function act(event) {
         // https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation#the_constraint_validation_api
         let input = event.target;
         if (input.validity.valid) {
             valid = true;
             fallbackError = '';
+            dispatch('valueChange', {key: "" + id + "", value: "" + input.value + ""});
         }
         else {
             valid = false;
             fallbackError = input.validationMessage;
             // could potentially stop and refocus here, but visible should be enough
+            dispatch('valueChange', {key: "" + id + "", value: ""});
         }
     }
 
@@ -31,8 +35,10 @@
     function leave() {
         active = "";
     }
+    
+    // publish any value changes up to parent (pages component)
+    const dispatch = createEventDispatcher();
 </script>
-
 
 <div class="question {active} {valid?'':'invalid'}" on:mouseenter={enter} on:mouseleave={leave} >
     <slot name="pre"></slot>
@@ -48,7 +54,7 @@
             name="{id}" 
             placeholder="{placeholder}" 
             required="{required}"
-            on:blur={validate}/>
+            on:blur={act}/>
         
     {/if}
     {#if help}
@@ -59,7 +65,7 @@
     {/if}
     <slot name="post"></slot>
 </div>
-
+    
 
 <style>
     :global(.question) {

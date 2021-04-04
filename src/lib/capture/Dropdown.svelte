@@ -1,5 +1,6 @@
 <script lang="typescript">
     import { onMount } from 'svelte';
+    import { createEventDispatcher } from 'svelte';
     import Helptext from '$lib/display/Helptext.svelte';
 
     export let id;
@@ -30,8 +31,8 @@
             // could potentially stop and refocus here, but visible should be enough
         }
     }
-    function selectValue(event) {
-        // TODO: add to risk store
+    function act(event) {
+        dispatch('valueChange', {key: "" + id + "", value: "" + event.target.value + ""});
     }
 
     let active;
@@ -41,6 +42,9 @@
     function leave() {
         active = "";
     }
+
+    // publish any value changes up to parent (pages component)
+    const dispatch = createEventDispatcher();
 </script>
 
 
@@ -58,11 +62,11 @@
             name="{id}" 
             data-reference="{refdata}"
             required="{required}"
-            on:blur={selectValue}
+            on:blur={act}
             >
             <option value="">{placeholder ? placeholder : '-- select --'}</option>
             {#each values as val}
-                <option value="{val.key}" on:click={selectValue}>{val.value}</option>
+                <option value="{val.key}" on:click={act}>{val.value}</option>
             {/each}
         </select>
         
