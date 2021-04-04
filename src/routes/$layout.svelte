@@ -27,7 +27,7 @@
 
 <header>
     <img src="https://fakeimg.pl/250x100/?text=Logo" alt="logo">
-    <h1>Question Set demo</h1>    
+    <h1>Question Set Demo</h1>    
 </header>
 <Wizard/>
 

@@ -24,85 +24,79 @@
 
 
 {#each $questionSet.pages as p} 
-{#if p.page.url == pageurl}
-<h2>{p.page.title}</h2>
-{#each p.sections as s}
-<Section
-  title={s.section.title}
-  logo={s.section.logo}
->
-{#each s.components as q}
-{#if q.type == "Textbox"}
-  <Textbox
-    id="{q.id}"
-    label="{q.label}"
-    placeholder="{q.placeholder ?? ''}"
-    help="{q.help ?? ''}"
-    required="{q.required ?? false}"
-    errorMessage="{q.errorMessage ?? ''}"
-  >
-  <div slot="pre">
-    {#if q.pre}
-      {@html snarkdown(q.pre)}
-    {/if}
-  </div>
-  <div slot="post">
-    {#if q.post}
-      {@html snarkdown(q.post)}
-    {/if} 
-  </div>
-</Textbox>
-{/if}
-{#if q.type == "Dropdown"}
-  <Dropdown
-    id="{q.id}"
-    label="{q.label}"
-    refdata="{q.refdata}"
-    placeholder="{q.placeholder ?? ''}"
-    help="{q.help ?? ''}"
-    required="{q.required ?? false}"
-    errorMessage="{q.errorMessage ?? ''}"
-  >
-  <div slot="pre">
-    {#if q.pre}
-      {@html snarkdown(q.pre)}
-    {/if}
-  </div>
-  <div slot="post">
-    {#if q.post}
-      {@html snarkdown(q.post)}
-    {/if} 
-  </div>
-  </Dropdown>
-{/if}
-{#if q.type == "Displayblock"}
-  <Displayblock>
-  <div slot="pre">
-    {#if q.pre}
-      {@html snarkdown(q.pre)}
-    {/if}
-  </div>
-  <div slot="main">
-    {@html snarkdown(q.content)}
-  </div>
-  <div slot="post">
-    {#if q.post}
-      {@html snarkdown(q.post)}
-    {/if} 
-  </div>
-  </Displayblock>
-{/if}
-{#if q.type == "Address"}
-  <Address 
-    postcodePlaceholder={q.postcodePlaceholder} 
-    postcodeLabel={q.postcodeLabel} 
-    buttonLabel={q.buttonLabel}
-    houseLabel={q.houseLabel}/>
-{/if}
-{/each}
-</Section>
-{/each}
-{/if}
+  {#if p.page.url == pageurl}
+    <h2>{p.page.title}</h2>
+    {#each p.sections as s}
+      <Section title={s.section.title} logo={s.section.logo}>
+        {#each s.components as q}
+          {#if q.type == "Textbox" || q.type == "Email"}  
+            <Textbox
+              id="{q.id}"
+              label="{q.label}"
+              placeholder="{q.placeholder ?? ''}"
+              help="{q.help ?? ''}"
+              required="{q.required ?? false}"
+              errorMessage="{q.errorMessage ?? ''}"
+            >
+            <div slot="pre">
+              {#if q.pre}
+                {@html snarkdown(q.pre)}
+              {/if}
+            </div>
+            <div slot="post">
+              {#if q.post}
+                {@html snarkdown(q.post)}
+              {/if} 
+            </div>
+          </Textbox>
+          {:else if q.type == "Dropdown"}
+            <Dropdown
+              id="{q.id}"
+              label="{q.label}"
+              refdata="{q.refdata}"
+              placeholder="{q.placeholder ?? ''}"
+              help="{q.help ?? ''}"
+              required="{q.required ?? false}"
+              errorMessage="{q.errorMessage ?? ''}"
+            >
+            <div slot="pre">
+              {#if q.pre}
+                {@html snarkdown(q.pre)}
+              {/if}
+            </div>
+            <div slot="post">
+              {#if q.post}
+                {@html snarkdown(q.post)}
+              {/if} 
+            </div>
+            </Dropdown>
+          {:else if q.type == "Displayblock"}
+            <Displayblock>
+            <div slot="pre">
+              {#if q.pre}
+                {@html snarkdown(q.pre)}
+              {/if}
+            </div>
+            <div slot="main">
+              {@html snarkdown(q.content)}
+            </div>
+            <div slot="post">
+              {#if q.post}
+                {@html snarkdown(q.post)}
+              {/if} 
+            </div>
+            </Displayblock>
+          {:else if q.type == "Address"}
+            <Address 
+              postcodePlaceholder={q.postcodePlaceholder} 
+              postcodeLabel={q.postcodeLabel} 
+              buttonLabel={q.buttonLabel}
+              houseLabel={q.houseLabel}/>
+          {/if}
+        {/each}
+      </Section>
+    {/each}
+  {/if}
 {/each}
 
 

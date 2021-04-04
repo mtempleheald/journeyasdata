@@ -18,7 +18,7 @@
           "components": [
             {
               "id": 1,
-              "label": "Required question label",
+              "label": "1 Required question label",
               "type": "Textbox",
               "placeholder": "Placeholder...",
               "required": true,
@@ -29,14 +29,19 @@
             },
             {
               "id": 2,
-              "label": "Lable & question only",
+              "label": "2 Label& question only",
               "type": "Textbox"
             },
             {
               "id": 3,
+              "label": "3 Allow us to spam you silly",
+              "type": "Email"
+            },
+            {
+              "id": 4,
               "type": "Textbox",
               "placeholder": "label replacement?",
-              "pre": "This isn't a label, but _pre-text_"
+              "pre": "4 This isn't a label, but _pre-text_"
             },
             {
               "type": "Textbox",
