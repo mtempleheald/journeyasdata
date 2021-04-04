@@ -9,8 +9,7 @@ Central place to capture outstanding work to do, to aid co-ordination.
   Does border colour always equal primary text colour?  What about border style?  
   Do hyperlinks always match highlight text colour?  
   Where do we need rounded corners?  Does the radius vary much?
-- [ ] Deployment/hosting - aiming for Azure initially [Node web app in Azure](https://docs.microsoft.com/en-us/azure/app-service/quickstart-nodejs?pivots=platform-linux) & [Pricing](https://azure.microsoft.com/en-us/pricing/details/app-service/linux/)
-
+- [ ] Deployment/hosting - aiming for Azure initially [Node web app in Azure](https://docs.microsoft.com/en-us/azure/app-service/quickstart-nodejs?pivots=platform-linux) & [Pricing](https://azure.microsoft.com/en-us/pricing/details/app-service/linux/) - Another option is Rod alredy pays for unlimited IONOS hosting and has a domain, registering a new domain would only be about £1 for 12 months.
 ## Components
 
 - [x] Textbox capture component  
