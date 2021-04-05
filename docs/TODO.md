@@ -22,7 +22,7 @@ Central place to capture outstanding work to do, to aid co-ordination.
 - [ ] Radiobutton capture component - a more generalised form of YesNo
 - [ ] Iconbutton capture component - Radiobutton with icons instead of words
 - [ ] Number capture component - `<input type="number">`, including number validation (min/max)
-- [ ] Email capture component - `<input type="email">`
+- [X] Email capture component - `<input type="email">`
 - [ ] Slider slider component - Number capture displayed differently
 
 ## Integration
