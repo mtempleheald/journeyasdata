@@ -188,7 +188,55 @@
         "title": "Friends & Family"
       },
       "sections": [
-
+        {
+          "section": {
+            "title": "Summary of others"
+          },
+          "components": [
+            {
+              "type": "Textbox",
+              "post": "__TODO:__ convert to Add other button "
+            }            
+          ]
+        },
+        {
+          "section": {
+            "sectionid": "other",
+            "title": "Add other",
+            "minRepeats": "0",
+            "maxRepeats": "5"
+          },
+          "components": [
+            {
+              "id": "{sectionid}-{repeat}-title",
+              "label": "Title",
+              "type": "Dropdown",
+              "placeholder": "Please Select",
+              "refdata": "global.persontitle"
+            },
+            {
+              "id": "firstname",
+              "label": "First name",
+              "type": "Textbox",
+              "placeholder": "Homer",
+              "required": true
+            },
+            {
+              "id": "surname",
+              "label": "Surname",
+              "type": "Textbox",
+              "placeholder": "Simpson",
+              "required": true
+            },
+            {
+              "id": "dob",
+              "label": "Date of birth",
+              "type": "Textbox",
+              "placeholder": "DD/MM/YYYY",
+              "post": "__TODO:__ convert this to date component"
+            }
+          ]
+        }
       ]
     },
     {

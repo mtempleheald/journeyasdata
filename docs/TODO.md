@@ -9,6 +9,7 @@ Central place to capture outstanding work to do, to aid co-ordination.
   Does border colour always equal primary text colour?  What about border style?  
   Do hyperlinks always match highlight text colour?  
   Where do we need rounded corners?  Does the radius vary much?
+- [ ] Outline some realistic scenarios, e.g. back prevention, multiple tabs, compliance etc
 - [ ] Deployment/hosting - aiming for Azure initially [Node web app in Azure](https://docs.microsoft.com/en-us/azure/app-service/quickstart-nodejs?pivots=platform-linux) & [Pricing](https://azure.microsoft.com/en-us/pricing/details/app-service/linux/) - Another option is Rod alredy pays for unlimited IONOS hosting and has a domain, registering a new domain would only be about £1 for 12 months.
 ## Components
 
@@ -17,6 +18,7 @@ Central place to capture outstanding work to do, to aid co-ordination.
 - [x] Dropdown capture component
 - [x] Address capture component
 - [x] Displayblock display component
+- [ ] Button component
 - [ ] Wizard display component - exists but need to be dynamic - show current page, plus optionally disable previous pages (evil marketing)
 - [ ] Vehicle capture component - use smaller question components for consistent look and feel [Vehicle API](https://github.com/rod-laycock/journeyasdata-service/tree/master/data/vehicle) - some progress made, needs extending
 - [ ] YesNo capture component
