@@ -12,7 +12,7 @@
       "sections": [
         {
           "section": {
-            "title": "Vehicle selection",
+            "title": "Vehicle selection (manual)",
             "logo": "https://fakeimg.pl/100x50/?text=Vehicle%20Logo"
           },
           "components": [
@@ -29,9 +29,25 @@
               "id": "vehicle_type",
               "type": "Textbox",
               "label": "Vehicle type:",
-              "placeholder": "replace with Iconbutton selection",
               "required": true,
-              "errorMessage": "Pick a vehicle to continue"
+              "errorMessage": "Pick a vehicle to continue",
+              "post": "__TODO:__ replace with Iconbutton"
+            }
+          ]
+        },
+        {
+          "section": {
+            "title": "Vehicle selection (lookup)",
+            "logo": "https://fakeimg.pl/100x50/?text=Vehicle%20Logo"
+          },
+          "components": [
+            {
+              "type": "Vehicle",
+              "regnumLabel": "Registration number",
+              "regnumPlaceholder": "YOUR REG",
+              "buttonLabel": "Search",
+              "errorMessage": "Failed to find vehicle",
+              "post": "__TODO:__ possibly change vehicle lookup to a section component"
             }
           ]
         },

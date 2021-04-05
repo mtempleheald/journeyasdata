@@ -69,8 +69,8 @@
     }
     /* The rest is not global - the component controls how it is presented, other than skins (colours, borders etc) */
     .vehicle {
-        margin: 0.5rem;
-        padding: 0.5rem;
+        margin: 0rem;
+        padding: 0rem;
     }
     /* needs to move to TextQuestion 
     .regnum {
