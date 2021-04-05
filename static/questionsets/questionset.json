@@ -18,7 +18,7 @@
           "components": [
             {
               "id": "regnum",
-              "type": "Textbox",
+              "type": "Text",
               "label": "Vehicle reg",
               "placeholder": "YOUR REG",
               "required": false,
@@ -27,7 +27,7 @@
             },
             {
               "id": "vehicle_type",
-              "type": "Textbox",
+              "type": "Text",
               "label": "Vehicle type:",
               "required": true,
               "errorMessage": "Pick a vehicle to continue",
@@ -59,7 +59,7 @@
           "components": [
             {
               "id": "manufacture_location",
-              "type": "Textbox",
+              "type": "Text",
               "label": "Vehicle manufacture location",
               "post": "__TODO:__ replace with Iconbutton component"
             }
@@ -73,7 +73,7 @@
           "components": [
             {
               "id": "vehicle_mileage",
-              "type": "Textbox",
+              "type": "Text",
               "html5type": "Number",
               "label": "Mileage",
               "placeholder": "5000",
@@ -107,21 +107,21 @@
             {
               "id": "firstname",
               "label": "First name",
-              "type": "Textbox",
+              "type": "Text",
               "placeholder": "Homer",
               "required": true
             },
             {
               "id": "surname",
               "label": "Surname",
-              "type": "Textbox",
+              "type": "Text",
               "placeholder": "Simpson",
               "required": true
             },
             {
               "id": "dob",
               "label": "Date of birth",
-              "type": "Textbox",
+              "type": "Text",
               "html5type": "Date",
               "placeholder": "DD/MM/YYYY",
               "post": "__TODO:__ convert this to date component"
@@ -129,7 +129,7 @@
             {
               "id": "email",
               "label": "Email Address",
-              "type": "Textbox",
+              "type": "Text",
               "html5type": "Email",
               "placeholder": "homer@simpsons.com",
               "required": true
@@ -156,7 +156,7 @@
             },
             {
               "id": "telephone",
-              "type": "Textbox",
+              "type": "Text",
               "label": "Telephone number",
               "placeholder": "07070707070",
               "help": "you guessed it, for spam purposes",
@@ -164,7 +164,7 @@
             },
             {
               "id": "telephone_secondary",
-              "type": "Textbox",
+              "type": "Text",
               "label": "Secondary telephone number",
               "placeholder": "07070707070",
               "help": "you guessed it, for spam purposes",
@@ -204,7 +204,7 @@
           },
           "components": [
             {
-              "type": "Textbox",
+              "type": "Text",
               "post": "__TODO:__ convert to Add other button "
             }            
           ]
@@ -227,21 +227,21 @@
             {
               "id": "firstname",
               "label": "First name",
-              "type": "Textbox",
+              "type": "Text",
               "placeholder": "Homer J",
               "required": true
             },
             {
               "id": "surname",
               "label": "Surname",
-              "type": "Textbox",
+              "type": "Text",
               "placeholder": "Simpson",
               "required": true
             },
             {
               "id": "dob",
               "label": "Date of birth",
-              "type": "Textbox",
+              "type": "Text",
               "placeholder": "DD/MM/YYYY",
               "post": "__TODO:__ convert this to date component"
             }
@@ -263,7 +263,7 @@
           "components": [
             {
               "id": "has_convictions",
-              "type": "Textbox",
+              "type": "Text",
               "label": "Got any convictions?",
               "help": "we don't serve criminals yo",
               "post": "__TODO:__ switch to YesNo button type"
@@ -289,14 +289,14 @@
       "sections": [
         {
           "section": {
-            "title": "Textbox Section",
+            "title": "Text Section",
             "logo": "https://fakeimg.pl/100x50/?text=Section%20Logo"
           },
           "components": [
             {
               "id": 1,
               "label": "1 Required question label",
-              "type": "Textbox",
+              "type": "Text",
               "placeholder": "Placeholder...",
               "required": true,
               "errorMessage": "Please enter valid data",
@@ -307,7 +307,7 @@
             {
               "id": 2,
               "label": "2 Label& question only",
-              "type": "Textbox"
+              "type": "Text"
             },
             {
               "id": 3,
@@ -316,12 +316,12 @@
             },
             {
               "id": 4,
-              "type": "Textbox",
+              "type": "Text",
               "placeholder": "label replacement?",
               "pre": "4 This isn't a label, but _pre-text_"
             },
             {
-              "type": "Textbox",
+              "type": "Text",
               "pre": "Perhaps we don't want a question, just some _italic_ text",
               "post": "And some more __bold__ text"
             }
@@ -457,101 +457,89 @@
           },
           "components": [
             {
-              "id": "textbox",
-              "label": "Testbox",
-              "type": "Textbox",
-              "placeholder": "Textbox",
+              "id": "Text",
+              "label": "Text",
+              "type": "Text",
+              "placeholder": "Text",
               "required": true
             },
             {
-              "id": "email",
+              "id": "colour",
               "label": "Colour",
-              "type": "Textbox",
-              "html5type": "color",
+              "type": "Colour",
               "required": true
             },
             {
               "id": "email",
               "label": "Email",
-              "type": "Textbox",
-              "html5type": "email",
+              "type": "Email",
               "placeholder": "email@domain.com",
               "required": true
             },
             {
               "id": "range",
               "label": "Range",
-              "type": "Textbox",
-              "html5type": "range",
+              "type": "Slider",
               "placeholder": "?",
               "required": true
             },
             {
               "id": "time",
               "label": "Time",
-              "type": "Textbox",
-              "html5type": "time",
+              "type": "Time",
               "required": true
             },
             {
               "id": "date",
               "label": "Date",
-              "type": "Textbox",
-              "html5type": "date",
+              "type": "Date",
               "required": true
             },
             {
               "id": "month",
               "label": "Month",
-              "type": "Textbox",
-              "html5type": "month",
+              "type": "Month",
               "required": true
             },
             {
               "id": "search",
               "label": "Search",
-              "type": "Textbox",
-              "html5type": "search",
+              "type": "Search",
               "placeholder": "Search me",
               "required": true
             },
             {
               "id": "url",
               "label": "Url",
-              "type": "Textbox",
-              "html5type": "url",
-              "placeholder": "www.goole.com",
+              "type": "Url",
+              "placeholder": "www.google.com",
               "required": true
             },
             {
               "id": "datetimelocal",
               "label": "DateTime Local",
-              "type": "Textbox",
-              "html5type": "datetime-local",
+              "type": "Datetime",
               "placeholder": "??",
               "required": true
             },
             {
               "id": "number",
               "label": "Number",
-              "type": "Textbox",
-              "html5type": "number",
+              "type": "Number",
               "placeholder": "99",
               "required": true
             },
             {
               "id": "tel",
               "label": "Tel",
-              "type": "Textbox",
-              "html5type": "tel",
+              "type": "Telephone",
               "placeholder": "07777777777",
               "required": true
             },
             {
               "id": "week",
               "label": "Week",
-              "type": "Textbox",
-              "html5type": "week",
+              "type": "Week",
               "placeholder": "3",
               "required": true
             }
