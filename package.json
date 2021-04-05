@@ -4,7 +4,7 @@
 	"scripts": {
 		"dev": "svelte-kit dev",
 		"build": "svelte-kit build",
-		"start": "svelte-kit start --port 8080",
+		"start": "svelte-kit start --port 8080 --experimental-modules",
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write ."
 	},
