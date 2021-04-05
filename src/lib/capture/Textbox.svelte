@@ -10,7 +10,7 @@
     export let placeholder;
     export let required = false;
     export let errorMessage = '';
-    export let format = 'Text';
+    export let html5type = 'Text';
 
     let fallbackError;
     let valid = true;
@@ -52,7 +52,7 @@
         {#if required}
             <span class="required">*</span>
         {/if}
-        <input type="{format}"
+        <input type="{html5type}"
             id="{id}" 
             name="{id}" 
             placeholder="{placeholder}" 
