@@ -51,7 +51,9 @@
       {#each s.components as q}
         <!-- {writeToStore(q.id, '')}  -  moving this into input components I think -->
         {#if ["Colour","Date","Datetime","Email","Month","Number","Search","Slider","Text","Telephone","Time","Url","Week"].includes(q.type)}
-        <svelte:component this={Textbox}
+        <svelte:component 
+          this={Textbox} 
+          type="{q.type ?? 'text'}"
           on:valueChange="{childUpdated}"
           id="{q.id}"
           label="{q.label}"
@@ -59,7 +61,6 @@
           help="{q.help ?? ''}"
           required="{q.required ?? false}"
           errorMessage="{q.errorMessage ?? ''}"
-          type="{q.type ?? 'text'}"
         >
           <div slot="pre">
             {#if q.pre}

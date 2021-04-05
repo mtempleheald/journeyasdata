@@ -10,7 +10,7 @@
     export let placeholder;
     export let required = false;
     export let errorMessage = '';
-    export let type = 'Text';
+    export let type = 'text';
     let html5type;
     switch (type) {
         case 'Colour' : html5type = 'color'; break;
