@@ -17,7 +17,6 @@
     import Displayblock from '$lib/display/Displayblock.svelte';
     import Dropdown from '$lib/capture/Dropdown.svelte';
     import Textbox from '$lib/capture/Textbox.svelte';
-    import Email from '$lib/capture/Email.svelte';
     import Section from '$lib/display/Section.svelte';
     import { questionSet } from '$lib/stores/questionset';
     import snarkdown from 'snarkdown';// https://github.com/developit/snarkdown/blob/master/test/index.js
@@ -51,8 +50,8 @@
         logo={s.section.logo}>
       {#each s.components as q}
         <!-- {writeToStore(q.id, '')} -->
-        {#if q.type == "Textbox"}
-          <Textbox
+        {#if q.type == "Textbox"}  
+        <Textbox
             on:valueChange="{childUpdated}"
             id="{q.id}"
             label="{q.label}"
@@ -60,6 +59,7 @@
             help="{q.help ?? ''}"
             required="{q.required ?? false}"
             errorMessage="{q.errorMessage ?? ''}"
+            format="{q.format ?? 'Text'}"
           >
             <div slot="pre">
               {#if q.pre}
@@ -72,27 +72,6 @@
               {/if} 
             </div>
           </Textbox>
-        {:else if q.type == "Email"}
-          <Email
-            on:valueChange="{childUpdated}"
-            id="{q.id}"
-            label="{q.label}"
-            placeholder="{q.placeholder ?? ''}"
-            help="{q.help ?? ''}"
-            required="{q.required ?? false}"
-            errorMessage="{q.errorMessage ?? ''}"
-          >
-            <div slot="pre">
-              {#if q.pre}
-                {@html snarkdown(q.pre)}
-              {/if}
-            </div>
-            <div slot="post">
-              {#if q.post}
-                {@html snarkdown(q.post)}
-              {/if} 
-            </div>
-          </Email>
         {:else if q.type == "Dropdown"}
           <Dropdown
             on:valueChange="{childUpdated}"

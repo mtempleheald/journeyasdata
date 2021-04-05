@@ -74,6 +74,7 @@
             {
               "id": "vehicle_mileage",
               "type": "Textbox",
+              "format": "Number",
               "label": "Mileage",
               "placeholder": "5000",
               "help": "Total mileage",
@@ -121,8 +122,17 @@
               "id": "dob",
               "label": "Date of birth",
               "type": "Textbox",
+              "format": "Date",
               "placeholder": "DD/MM/YYYY",
               "post": "__TODO:__ convert this to date component"
+            },
+            {
+              "id": "email",
+              "label": "Email Address",
+              "type": "Textbox",
+              "format": "Email",
+              "placeholder": "homer@simpsons.com",
+              "required": true
             }
           ]
         },
@@ -218,7 +228,7 @@
               "id": "firstname",
               "label": "First name",
               "type": "Textbox",
-              "placeholder": "Homer",
+              "placeholder": "Homer J",
               "required": true
             },
             {
