@@ -13,6 +13,7 @@ Central place to capture outstanding work to do, to aid co-ordination.
 ## Components
 
 - [x] Textbox capture component  
+- [x] Email capture component - `<input type="email">`  
 - [x] Dropdown capture component
 - [x] Address capture component
 - [x] Displayblock display component
@@ -22,7 +23,6 @@ Central place to capture outstanding work to do, to aid co-ordination.
 - [ ] Radiobutton capture component - a more generalised form of YesNo
 - [ ] Iconbutton capture component - Radiobutton with icons instead of words
 - [ ] Number capture component - `<input type="number">`, including number validation (min/max)
-- [ ] Email capture component - `<input type="email">`
 - [ ] Slider slider component - Number capture displayed differently
 
 ## Integration
@@ -54,4 +54,5 @@ Central place to capture outstanding work to do, to aid co-ordination.
   e.g. apply complex validation across multiple inputs  
   e.g. push data to backend once sufficient data captured instead of requiring the user to click submit  
 
-  
+- [ ] Repeating sections - e.g. car insurance multiple drivers or multiple vehicles.  
+  This complicates the value storage aspect - array of multivalue or multiple arrays?  Both have issues.  Probably an aspect of the custom data store.
