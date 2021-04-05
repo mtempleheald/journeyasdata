@@ -13,6 +13,7 @@
 
 <script>
     import Address from '$lib/capture/Address.svelte';
+    import Vehicle from '$lib/capture/Vehicle.svelte';
     import Displayblock from '$lib/display/Displayblock.svelte';
     import Dropdown from '$lib/capture/Dropdown.svelte';
     import Textbox from '$lib/capture/Textbox.svelte';
@@ -137,6 +138,12 @@
             postcodeLabel={q.postcodeLabel} 
             buttonLabel={q.buttonLabel}
             houseLabel={q.houseLabel}/>
+        {:else if q.type == "Vehicle"}
+          <Vehicle 
+            regnumPlaceholder={q.regnumPlaceholder} 
+            regnumLabel={q.regnumLabel} 
+            buttonLabel={q.buttonLabel}
+            errorMessage={q.errorMessage}/>
         {/if}
       {/each}
       </Section>

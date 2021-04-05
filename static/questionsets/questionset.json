@@ -6,13 +6,232 @@
   "pages": [
     {
       "page": {
-        "url": "text-questions",
-        "title": "Text Questions"
+        "url": "vehicle",
+        "title": "Vehicle"
       },
       "sections": [
         {
           "section": {
-            "title": "Section containing text questions",
+            "title": "Vehicle selection (manual)",
+            "logo": "https://fakeimg.pl/100x50/?text=Vehicle%20Logo"
+          },
+          "components": [
+            {
+              "id": "regnum",
+              "type": "Textbox",
+              "label": "Vehicle reg",
+              "placeholder": "YOUR REG",
+              "required": false,
+              "errorMessage": "Please enter a reg",
+              "help": "the yellow rectangle on the back of your car has some letters on it, we need those"
+            },
+            {
+              "id": "vehicle_type",
+              "type": "Textbox",
+              "label": "Vehicle type:",
+              "required": true,
+              "errorMessage": "Pick a vehicle to continue",
+              "post": "__TODO:__ replace with Iconbutton"
+            }
+          ]
+        },
+        {
+          "section": {
+            "title": "Vehicle selection (lookup)",
+            "logo": "https://fakeimg.pl/100x50/?text=Vehicle%20Logo"
+          },
+          "components": [
+            {
+              "type": "Vehicle",
+              "regnumLabel": "Registration number",
+              "regnumPlaceholder": "YOUR REG",
+              "buttonLabel": "Search",
+              "errorMessage": "Failed to find vehicle",
+              "post": "__TODO:__ possibly change vehicle lookup to a section component"
+            }
+          ]
+        },
+        {
+          "section": {
+            "title": "Vehicle details",
+            "logo":"https://fakeimg.pl/100x50/?text=Vehicle%20Logo"
+          },
+          "components": [
+            {
+              "id": "manufacture_location",
+              "type": "Textbox",
+              "label": "Vehicle manufacture location",
+              "post": "__TODO:__ replace with Iconbutton component"
+            }
+          ]
+        },
+        {
+          "section": {
+            "title": "Vehicle usage",
+            "logo":"https://fakeimg.pl/100x50/?text=Vehicle%20Logo"
+          },
+          "components": [
+            {
+              "id": "vehicle_mileage",
+              "type": "Textbox",
+              "label": "Mileage",
+              "placeholder": "5000",
+              "help": "Total mileage",
+              "post": "__TODO:__ replace with slider/number select"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "page": 
+      {
+        "url": "driver",
+        "title": "You"
+      },
+      "sections": [
+        {
+          "section": {
+            "title": "Personal details",
+            "logo": "https://fakeimg.pl/100x50/?text=Person%20Logo"
+          },
+          "components": [
+            {
+              "id": "title",
+              "label": "Title",
+              "type": "Dropdown",
+              "placeholder": "Please Select",
+              "refdata": "global.persontitle"
+            },
+            {
+              "id": "firstname",
+              "label": "First name",
+              "type": "Textbox",
+              "placeholder": "Homer",
+              "required": true
+            },
+            {
+              "id": "surname",
+              "label": "Surname",
+              "type": "Textbox",
+              "placeholder": "Simpson",
+              "required": true
+            },
+            {
+              "id": "dob",
+              "label": "Date of birth",
+              "type": "Textbox",
+              "placeholder": "DD/MM/YYYY",
+              "post": "__TODO:__ convert this to date component"
+            }
+          ]
+        },
+        {
+          "section": {
+            "title": "Contact details",
+            "logo": "https://fakeimg.pl/100x50/?text=Contact%20Logo"
+          },
+          "components": [
+            {
+              "id": "",
+              "type": "Address"
+            },
+            {
+              "id": "email_address",
+              "type": "Email",
+              "label": "Email address",
+              "placeholder": "chunkylover53@aol.com",
+              "help": "we want to spam you",
+              "post": "we will email you whether you like it or not"
+            },
+            {
+              "id": "telephone",
+              "type": "Textbox",
+              "label": "Telephone number",
+              "placeholder": "07070707070",
+              "help": "you guessed it, for spam purposes",
+              "post": "__TODO:__ replace with telephone component"
+            },
+            {
+              "id": "telephone_secondary",
+              "type": "Textbox",
+              "label": "Secondary telephone number",
+              "placeholder": "07070707070",
+              "help": "you guessed it, for spam purposes",
+              "post": "__TODO:__ replace with telephone component"
+            }
+          ]
+        },
+        {
+          "section": {
+            "title": "Employment details",
+            "logo": "https://fakeimg.pl/100x50/?text=Employment%20Logo"
+          },
+          "components": [
+            
+          ]
+        },
+        {
+          "section": {
+            "title": "Experience details",
+            "logo": "https://fakeimg.pl/100x50/?text=Experience%20Logo"
+          },
+          "components": [
+            
+          ]
+        }
+      ]
+    },
+    {
+      "page": {
+        "url": "other-people",
+        "title": "Friends & Family"
+      },
+      "sections": [
+
+      ]
+    },
+    {
+      "page": {
+        "url": "legal",
+        "title": "Legal stuff"
+      },
+      "sections": [
+        {
+          "section": {
+            "title": "Convictions",
+            "logo":"https://fakeimg.pl/100x50/?text=Convictions%20Logo"
+          },
+          "components": [
+            {
+              "id": "has_convictions",
+              "type": "Textbox",
+              "label": "Got any convictions?",
+              "help": "we don't serve criminals yo",
+              "post": "__TODO:__ switch to YesNo button type"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "page": {
+        "url": "contractual",
+        "title": "Contract stuff"
+      },
+      "sections": [
+
+      ]
+    },
+    {
+      "page": {
+        "url": "demo-questions",
+        "title": "Questions demo"
+      },
+      "sections": [
+        {
+          "section": {
+            "title": "Textbox Section",
             "logo": "https://fakeimg.pl/100x50/?text=Section%20Logo"
           },
           "components": [
@@ -49,18 +268,24 @@
               "post": "And some more __bold__ text"
             }
           ]
-        }
-      ]
-    },
-    {
-      "page": {
-        "url": "dropdown-questions",
-        "title": "Dropdown Questions"
-      },
-      "sections": [
+        },
         {
           "section": {
-            "title": "Section containing dropdown questions",
+            "title": "Email Section",
+            "logo": "https://fakeimg.pl/100x50/?text=Section%20Logo"
+          },
+          "components": [
+            {
+              "id": "email_address_demo",
+              "type": "Email",
+              "label": "3 Allow us to spam you silly",
+              "placeholder": "chunkylover53@aol.com"
+            }
+          ]
+        },
+        {
+          "section": {
+            "title": "Dropdown Section",
             "logo": "https://fakeimg.pl/100x50/?text=Section%20Logo"
           },
           "components": [
@@ -88,13 +313,13 @@
     },
     {
       "page": {
-        "url": "display-questions",
-        "title": "Display Only"
+        "url": "display",
+        "title": "Display demo"
       },
       "sections": [
         {
           "section": {
-            "title": "Section containing display only questions",
+            "title": "Displayblock Section",
             "logo": "https://fakeimg.pl/100x50/?text=Section%20Logo"
           },
           "components": [
@@ -131,7 +356,7 @@
       "sections": [
         {
           "section": {
-            "title": "Section containing address component",
+            "title": "Address Section",
             "logo": "https://fakeimg.pl/100x50/?text=Address%20Logo"
           },
           "components": [
@@ -141,6 +366,21 @@
               "postcodePlaceholder": "MK10 0BZ",
               "buttonLabel": "Search",
               "houseLabel": "Property"
+            }
+          ]
+        },
+        {
+          "section": {
+            "title": "Vehicle Section",
+            "logo": "https://fakeimg.pl/100x50/?text=Vehicle%20Logo"
+          },
+          "components": [
+            {
+              "type": "Vehicle",
+              "regnumLabel": "Registration number",
+              "regnumPlaceholder": "YOUR REG",
+              "buttonLabel": "Search",
+              "errorMessage": "Failed to find vehicle"
             }
           ]
         }

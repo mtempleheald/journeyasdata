@@ -1,5 +1,4 @@
 <script lang="typescript">
-import { validate_component } from "svelte/internal";
 
     // required data
     export let postcode : string = "";
