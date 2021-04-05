@@ -4,7 +4,7 @@ Central place to capture outstanding work to do, to aid co-ordination.
 
 ## Analysis
 
-- [ ] Collate style options from various journeys - different brands, products (car,bike,home,pet...).
+- [ ] Collate style options from various journeys - different brands, products (car,bike,home,pet...).  extend `/docs/Themes.md`  
   Is there a consistent approach to colour palette?  
   Does border colour always equal primary text colour?  What about border style?  
   Do hyperlinks always match highlight text colour?  

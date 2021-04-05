@@ -340,7 +340,7 @@
       "sections": [
         {
           "section": {
-            "title": "Section containing address component",
+            "title": "Address Section",
             "logo": "https://fakeimg.pl/100x50/?text=Address%20Logo"
           },
           "components": [
@@ -350,6 +350,21 @@
               "postcodePlaceholder": "MK10 0BZ",
               "buttonLabel": "Search",
               "houseLabel": "Property"
+            }
+          ]
+        },
+        {
+          "section": {
+            "title": "Vehicle Section",
+            "logo": "https://fakeimg.pl/100x50/?text=Vehicle%20Logo"
+          },
+          "components": [
+            {
+              "type": "Vehicle",
+              "regnumLabel": "Registration number",
+              "regnumPlaceholder": "YOUR REG",
+              "buttonLabel": "Search",
+              "errorMessage": "Failed to find vehicle"
             }
           ]
         }

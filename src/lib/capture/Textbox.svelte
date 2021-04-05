@@ -4,6 +4,7 @@
     import { getContext } from 'svelte'
 
     export let id;
+    export let value = '';
     export let label;
     export let help;
     export let placeholder;
@@ -54,6 +55,7 @@
             name="{id}" 
             placeholder="{placeholder}" 
             required="{required}"
+            value="{value}"
             on:blur={act}/>
         
     {/if}
