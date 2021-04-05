@@ -18,7 +18,7 @@ Central place to capture outstanding work to do, to aid co-ordination.
 - [x] Address capture component
 - [x] Displayblock display component
 - [ ] Wizard display component - exists but need to be dynamic - show current page, plus optionally disable previous pages (evil marketing)
-- [ ] Vehicle capture component - use smaller question components for consistent look and feel [Vehicle API](https://github.com/rod-laycock/journeyasdata-service/tree/master/data/vehicle)
+- [ ] Vehicle capture component - use smaller question components for consistent look and feel [Vehicle API](https://github.com/rod-laycock/journeyasdata-service/tree/master/data/vehicle) - some progress made, needs extending
 - [ ] YesNo capture component
 - [ ] Radiobutton capture component - a more generalised form of YesNo
 - [ ] Iconbutton capture component - Radiobutton with icons instead of words
@@ -28,7 +28,7 @@ Central place to capture outstanding work to do, to aid co-ordination.
 ## Integration
 
 - [x] External [API stubs](https://github.com/rod-laycock/journeyasdata-service) to use for demo
-- [ ] Refdata SvelteKit endpoint - currently hard-coded, use API with fallbacks
+- [ ] Refdata SvelteKit endpoint - currently hard-coded, use API with fallbacks [node fetch](https://www.npmjs.com/package/node-fetch)
 - [ ] Address SvelteKit endpoint - currently hard-coded, use API with fallbacks
 - [ ] Vehicle SvelteKit endpoint - complete with vehicle component
 - [ ] CompleteCapture SvelteKit endpoint - submit all user data to backend API to complete data capture phase of the journey
@@ -56,3 +56,6 @@ Central place to capture outstanding work to do, to aid co-ordination.
 
 - [ ] Repeating sections - e.g. car insurance multiple drivers or multiple vehicles.  
   This complicates the value storage aspect - array of multivalue or multiple arrays?  Both have issues.  Probably an aspect of the custom data store.
+- [ ] Separate validation from content  
+  IDs and validation are defined by developers when sorting integration, to ensure that the journey works  
+  Cosmetics are managed by business users, e.g. help text, error message wording, which component to use (slider vs default number etc)
