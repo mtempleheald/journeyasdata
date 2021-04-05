@@ -4,7 +4,8 @@
 	"scripts": {
 		"dev": "svelte-kit dev",
 		"build": "svelte-kit build",
-		"start": "svelte-kit start --port 8080 --experimental-modules",
+		"start": "svelte-kit start",
+		"start_azure_debug": "svelte-kit start --inspect=0.0.0.0:$APPSVC_TUNNEL_PORT",
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write ."
 	},
