@@ -74,7 +74,7 @@
             {
               "id": "vehicle_mileage",
               "type": "Textbox",
-              "format": "Number",
+              "html5type": "Number",
               "label": "Mileage",
               "placeholder": "5000",
               "help": "Total mileage",
@@ -122,7 +122,7 @@
               "id": "dob",
               "label": "Date of birth",
               "type": "Textbox",
-              "format": "Date",
+              "html5type": "Date",
               "placeholder": "DD/MM/YYYY",
               "post": "__TODO:__ convert this to date component"
             },
@@ -130,7 +130,7 @@
               "id": "email",
               "label": "Email Address",
               "type": "Textbox",
-              "format": "Email",
+              "html5type": "Email",
               "placeholder": "homer@simpsons.com",
               "required": true
             }
@@ -439,6 +439,121 @@
               "regnumPlaceholder": "YOUR REG",
               "buttonLabel": "Search",
               "errorMessage": "Failed to find vehicle"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "page": {
+        "url": "allcomponents",
+        "title": "All components"
+      },
+      "sections": [
+        {
+          "section": {
+            "title": "Text",
+            "logo": "https://fakeimg.pl/100x50/?text=Text%20Logo"
+          },
+          "components": [
+            {
+              "id": "textbox",
+              "label": "Testbox",
+              "type": "Textbox",
+              "placeholder": "Textbox",
+              "required": true
+            },
+            {
+              "id": "email",
+              "label": "Colour",
+              "type": "Textbox",
+              "html5type": "color",
+              "required": true
+            },
+            {
+              "id": "email",
+              "label": "Email",
+              "type": "Textbox",
+              "html5type": "email",
+              "placeholder": "email@domain.com",
+              "required": true
+            },
+            {
+              "id": "range",
+              "label": "Range",
+              "type": "Textbox",
+              "html5type": "range",
+              "placeholder": "?",
+              "required": true
+            },
+            {
+              "id": "time",
+              "label": "Time",
+              "type": "Textbox",
+              "html5type": "time",
+              "required": true
+            },
+            {
+              "id": "date",
+              "label": "Date",
+              "type": "Textbox",
+              "html5type": "date",
+              "required": true
+            },
+            {
+              "id": "month",
+              "label": "Month",
+              "type": "Textbox",
+              "html5type": "month",
+              "required": true
+            },
+            {
+              "id": "search",
+              "label": "Search",
+              "type": "Textbox",
+              "html5type": "search",
+              "placeholder": "Search me",
+              "required": true
+            },
+            {
+              "id": "url",
+              "label": "Url",
+              "type": "Textbox",
+              "html5type": "url",
+              "placeholder": "www.goole.com",
+              "required": true
+            },
+            {
+              "id": "datetimelocal",
+              "label": "DateTime Local",
+              "type": "Textbox",
+              "html5type": "datetime-local",
+              "placeholder": "??",
+              "required": true
+            },
+            {
+              "id": "number",
+              "label": "Number",
+              "type": "Textbox",
+              "html5type": "number",
+              "placeholder": "99",
+              "required": true
+            },
+            {
+              "id": "tel",
+              "label": "Tel",
+              "type": "Textbox",
+              "html5type": "tel",
+              "placeholder": "07777777777",
+              "required": true
+            },
+            {
+              "id": "week",
+              "label": "Week",
+              "type": "Textbox",
+              "html5type": "week",
+              "placeholder": "3",
+              "required": true
             }
           ]
         }

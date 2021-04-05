@@ -59,7 +59,7 @@
             help="{q.help ?? ''}"
             required="{q.required ?? false}"
             errorMessage="{q.errorMessage ?? ''}"
-            format="{q.format ?? 'Text'}"
+            html5type="{q.format ?? 'Text'}"
           >
             <div slot="pre">
               {#if q.pre}
