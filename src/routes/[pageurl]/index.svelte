@@ -49,29 +49,30 @@
         title={s.section.title}
         logo={s.section.logo}>
       {#each s.components as q}
-        <!-- {writeToStore(q.id, '')} -->
-        {#if q.type == "Textbox"}  
-        <Textbox
-            on:valueChange="{childUpdated}"
-            id="{q.id}"
-            label="{q.label}"
-            placeholder="{q.placeholder ?? ''}"
-            help="{q.help ?? ''}"
-            required="{q.required ?? false}"
-            errorMessage="{q.errorMessage ?? ''}"
-            html5type="{q.format ?? 'Text'}"
-          >
-            <div slot="pre">
-              {#if q.pre}
-                {@html snarkdown(q.pre)}
-              {/if}
-            </div>
-            <div slot="post">
-              {#if q.post}
-                {@html snarkdown(q.post)}
-              {/if} 
-            </div>
-          </Textbox>
+        <!-- {writeToStore(q.id, '')}  -  moving this into input components I think -->
+        {#if ["Colour","Date","Datetime","Email","Month","Number","Search","Slider","Text","Telephone","Time","Url","Week"].includes(q.type)}
+        <svelte:component 
+          this={Textbox} 
+          type="{q.type ?? 'text'}"
+          on:valueChange="{childUpdated}"
+          id="{q.id}"
+          label="{q.label}"
+          placeholder="{q.placeholder ?? ''}"
+          help="{q.help ?? ''}"
+          required="{q.required ?? false}"
+          errorMessage="{q.errorMessage ?? ''}"
+        >
+          <div slot="pre">
+            {#if q.pre}
+              {@html snarkdown(q.pre)}
+            {/if}
+          </div>
+          <div slot="post">
+            {#if q.post}
+              {@html snarkdown(q.post)}
+            {/if} 
+          </div>
+        </svelte:component>
         {:else if q.type == "Dropdown"}
           <Dropdown
             on:valueChange="{childUpdated}"

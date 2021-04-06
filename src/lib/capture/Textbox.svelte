@@ -10,7 +10,15 @@
     export let placeholder;
     export let required = false;
     export let errorMessage = '';
-    export let html5type = 'Text';
+    export let type = 'text';
+    let html5type;
+    switch (type) {
+        case 'Colour' : html5type = 'color'; break;
+        case 'Datetime' : html5type = 'datetime-local'; break;
+        case 'Slider' : html5type = 'range'; break;
+        case 'Telephone' : html5type = 'tel'; break;
+        default: html5type = type.toLowerCase();
+    }
 
     let fallbackError;
     let valid = true;
