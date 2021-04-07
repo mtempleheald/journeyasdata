@@ -58,6 +58,11 @@
           },
           "components": [
             {
+              "id": "hasalarm",
+              "type": "Yesno",
+              "label": "Alarmed? You should be!"
+            },
+            {
               "id": "manufacture_location",
               "type": "Text",
               "label": "Vehicle manufacture location",

@@ -24,6 +24,7 @@
 
     import { setContext } from 'svelte'
     import { writable } from 'svelte/store'
+import Yesno from '$lib/capture/Yesno.svelte';
 
     function writeToStore(key, value) {
       const w = writable(value);
@@ -73,6 +74,26 @@
             {/if} 
           </div>
         </svelte:component>
+        {:else if q.type == "Yesno"}
+          <Yesno
+            on:valueChange="{childUpdated}"
+            id="{q.id}"
+            label="{q.label}"
+            help="{q.help ?? ''}"
+            required="{q.required ?? false}"
+            errorMessage="{q.errorMessage ?? ''}"
+          >
+            <div slot="pre">
+              {#if q.pre}
+                {@html snarkdown(q.pre)}
+              {/if}
+            </div>
+            <div slot="post">
+              {#if q.post}
+                {@html snarkdown(q.post)}
+              {/if} 
+            </div>
+            </Yesno>
         {:else if q.type == "Dropdown"}
           <Dropdown
             on:valueChange="{childUpdated}"
