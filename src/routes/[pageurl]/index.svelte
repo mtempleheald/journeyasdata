@@ -13,18 +13,20 @@
 
 <script>
     import Address from '$lib/capture/Address.svelte';
-    import Vehicle from '$lib/capture/Vehicle.svelte';
-    import Displayblock from '$lib/display/Displayblock.svelte';
+    import ButtonSelect from '$lib/capture/ButtonSelect.svelte';
     import Dropdown from '$lib/capture/Dropdown.svelte';
     import Textbox from '$lib/capture/Textbox.svelte';
+    import Vehicle from '$lib/capture/Vehicle.svelte';
+
+    import Displayblock from '$lib/display/Displayblock.svelte';
     import Section from '$lib/display/Section.svelte';
+
     import { questionSet } from '$lib/stores/questionset';
     import snarkdown from 'snarkdown';// https://github.com/developit/snarkdown/blob/master/test/index.js
     export let pageurl;
 
     import { setContext } from 'svelte'
     import { writable } from 'svelte/store'
-import Yesno from '$lib/capture/Yesno.svelte';
 
     function writeToStore(key, value) {
       const w = writable(value);
@@ -74,14 +76,15 @@ import Yesno from '$lib/capture/Yesno.svelte';
             {/if} 
           </div>
         </svelte:component>
-        {:else if q.type == "Yesno"}
-          <Yesno
+        {:else if q.type == "YesNo"}
+          <ButtonSelect
             on:valueChange="{childUpdated}"
             id="{q.id}"
             label="{q.label}"
             help="{q.help ?? ''}"
             required="{q.required ?? false}"
             errorMessage="{q.errorMessage ?? ''}"
+            datalist={[{value:"Y",display:"Yes"},{value:"N",display:"No"}]}
           >
             <div slot="pre">
               {#if q.pre}
@@ -93,7 +96,7 @@ import Yesno from '$lib/capture/Yesno.svelte';
                 {@html snarkdown(q.post)}
               {/if} 
             </div>
-            </Yesno>
+            </ButtonSelect>
         {:else if q.type == "Dropdown"}
           <Dropdown
             on:valueChange="{childUpdated}"

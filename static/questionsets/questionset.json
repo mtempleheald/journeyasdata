@@ -59,7 +59,7 @@
           "components": [
             {
               "id": "hasalarm",
-              "type": "Yesno",
+              "type": "YesNo",
               "label": "Alarmed? You should be!"
             },
             {
