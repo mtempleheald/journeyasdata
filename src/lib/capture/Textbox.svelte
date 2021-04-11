@@ -1,8 +1,5 @@
 <script>
-    // publish value changes up to parent
 	import { createEventDispatcher } from 'svelte';
-    const dispatch = createEventDispatcher();
-
     import { inputStore } from '$lib/stores/inputstore';
     import Helptext from '$lib/display/Helptext.svelte';
 
@@ -17,6 +14,7 @@
     export let type = 'text';
 
     // internal properties to support component logic
+    const dispatch = createEventDispatcher();
     let html5type;
     switch (type) {
         case 'Colour' : html5type = 'color'; break;
@@ -37,21 +35,19 @@
         active = "";
     }    
     function act(event) {
-        // regardless of any validation the store must reflect current state of user input
+        // the store must reflect current state of user input
         inputStore.input(event.target.id, event.target.value);
-        // https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation#the_constraint_validation_api
-        let input = event.target;
-        if (input.validity.valid) {
+        // also publish value changes up to parent
+        dispatch('valueChange', {key: "" + id + "", value: "" + event.target.value + ""});
+        // validate https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation#the_constraint_validation_api
+        if (event.target.validity.valid) {
             valid = true;
-            fallbackError = '';
-            dispatch('valueChange', {key: "" + id + "", value: "" + input.value + ""});
+            fallbackError = '';            
         }
         else {
             valid = false;
-            fallbackError = input.validationMessage;
-            // could potentially stop and refocus here, but visible should be enough
-            dispatch('valueChange', {key: "" + id + "", value: ""});
-        }        
+            fallbackError = event.target.validationMessage;
+        }
     }
 
 </script>

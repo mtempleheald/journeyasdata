@@ -1,17 +1,15 @@
 <script lang="typescript">
-	import { createEventDispatcher } from 'svelte';
-    const dispatch = createEventDispatcher();
+	import { createEventDispatcher, onMount } from 'svelte';    
+    import { inputStore } from '$lib/stores/inputstore';
+    import Helptext from '$lib/display/Helptext.svelte';
 
-    // 
-    import { onMount } from 'svelte';
+    // load refdata on component creation
     onMount(async () => {
         const res = await fetch ('/api/refdata/' + refdata);
         values = await res.json();
     });
 
-    import { inputStore } from '$lib/stores/inputstore';
-    import Helptext from '$lib/display/Helptext.svelte';
-
+    
     // expose component properties
     export let id;
     export let value = '';
@@ -23,6 +21,7 @@
     export let errorMessage = '';
 
     // internal properties to support component logic
+    const dispatch = createEventDispatcher();
     let fallbackError;
     let invalid = false;
     let values = [];

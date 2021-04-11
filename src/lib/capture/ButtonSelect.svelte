@@ -1,8 +1,5 @@
 <script lang="typescript">
-    // publish value changes up to parent
 	import { createEventDispatcher } from 'svelte';
-    const dispatch = createEventDispatcher();
-
     import { inputStore } from '$lib/stores/inputstore';
     import Helptext from '$lib/display/Helptext.svelte';
 
@@ -16,6 +13,7 @@
     export let datalist : any[] = [];
 
     // internal properties to support component logic
+    const dispatch = createEventDispatcher();
     let active;
 
     // component actions
