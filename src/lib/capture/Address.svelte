@@ -1,5 +1,4 @@
 <script lang="typescript">
-    import { createEventDispatcher } from 'svelte';
     import Dropdown from './Dropdown.svelte';
     import Textbox from './Textbox.svelte';
     
@@ -12,7 +11,6 @@
     export let houseLabel = "Property";
 
     // internal properties to support component logic
-    const dispatch = createEventDispatcher();
     let postcode : string;
     let property : string = "";
     let propertyLov : any[] = [];
