@@ -14,17 +14,17 @@
     export let id;
     export let value = '';
     export let label;
-    export let refdata;
     export let help;
     export let placeholder;
     export let required = false;
     export let errorMessage = '';
+    export let refdata; // pass data in by refdata lookup
+    export let values : any[] = []; // pass data in directly, overwritten by refdata
 
     // internal properties to support component logic
     const dispatch = createEventDispatcher();
     let fallbackError;
     let invalid = false;
-    let values = [];
     let active;
     
     // component actions
