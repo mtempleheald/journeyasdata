@@ -46,7 +46,7 @@ Any PR should trigger CI (TODO), a PR which fails any step will not be merged un
 
 Advised to use VS Code editor with default formatting settings for consistency and to avoid whitespace merge issues.
 
-Proposed work items are available in the Projects tab.
+see [TODO](https://github.com/mtempleheald/journeyasdata/blob/develop/docs/TODO.md) for inspiration.
 
 
 # Journey / QuestionSet

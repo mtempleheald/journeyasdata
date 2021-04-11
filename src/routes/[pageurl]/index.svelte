@@ -12,95 +12,155 @@
 </script>
 
 <script>
-    import AddressLookup from '$lib/AddressLookup.svelte';
-    import DisplayOnlyQuestion from '$lib/DisplayOnlyQuestion.svelte';
-    import DropdownQuestion from '$lib/DropdownQuestion.svelte';
-    import TextQuestion from '$lib/TextQuestion.svelte';
-    import SectionLayout from '$lib/SectionLayout.svelte';
-    import { questionSet } from '$lib/stores';
+    import Address from '$lib/capture/Address.svelte';
+    import ButtonSelect from '$lib/capture/ButtonSelect.svelte';
+    import Dropdown from '$lib/capture/Dropdown.svelte';
+    import Textbox from '$lib/capture/Textbox.svelte';
+    import Vehicle from '$lib/capture/Vehicle.svelte';
+
+    import Displayblock from '$lib/display/Displayblock.svelte';
+    import Section from '$lib/display/Section.svelte';
+
+    import { questionSet } from '$lib/stores/questionset';
     import snarkdown from 'snarkdown';// https://github.com/developit/snarkdown/blob/master/test/index.js
     export let pageurl;
+
+    import { setContext } from 'svelte'
+    import { writable } from 'svelte/store'
+
+    function writeToStore(key, value) {
+      const w = writable(value);
+      setContext(key, w); 
+    }
+    
+    function childUpdated(event) {
+      console.log(`dispatched event - {key: ${event.detail.key}, value: ${event.detail.value}}`)
+      //writeToStore(event.detail.key, event.detail.value) // can only setContext on component initialisation
+    }
+    function addressUpdated(event) {
+      console.log(`dispatched event - ${event.detail.key}`)
+    }
+
 </script>
 
 
 {#each $questionSet.pages as p} 
-{#if p.page.url == pageurl}
-<h1>{p.page.title}</h1>
-{#each p.sections as s}
-<SectionLayout 
-  title={s.section.title}
-  logo={s.section.logo}
->
-{#each s.components as q}
-{#if q.type == "TextQuestion"}
-  <TextQuestion
-    id="{q.id}"
-    label="{q.label}"
-    placeholder="{q.placeholder ?? ''}"
-    help="{q.help ?? ''}"
-    required="{q.required ?? false}"
-    errorMessage="{q.errorMessage ?? ''}"
-  >
-  <div slot="pre">
-    {#if q.pre}
-      {@html snarkdown(q.pre)}
-    {/if}
-  </div>
-  <div slot="post">
-    {#if q.post}
-      {@html snarkdown(q.post)}
-    {/if} 
-  </div>
-  </TextQuestion>
-{/if}
-{#if q.type == "DropdownQuestion"}
-  <DropdownQuestion
-    id="{q.id}"
-    label="{q.label}"
-    refdata="{q.refdata}"
-    placeholder="{q.placeholder ?? ''}"
-    help="{q.help ?? ''}"
-    required="{q.required ?? false}"
-    errorMessage="{q.errorMessage ?? ''}"
-  >
-  <div slot="pre">
-    {#if q.pre}
-      {@html snarkdown(q.pre)}
-    {/if}
-  </div>
-  <div slot="post">
-    {#if q.post}
-      {@html snarkdown(q.post)}
-    {/if} 
-  </div>
-  </DropdownQuestion>
-{/if}
-{#if q.type == "DisplayOnlyQuestion"}
-  <DisplayOnlyQuestion>
-  <div slot="pre">
-    {#if q.pre}
-      {@html snarkdown(q.pre)}
-    {/if}
-  </div>
-  <div slot="main">
-    {@html snarkdown(q.content)}
-  </div>
-  <div slot="post">
-    {#if q.post}
-      {@html snarkdown(q.post)}
-    {/if} 
-  </div>
-  </DisplayOnlyQuestion>
-{/if}
-{#if q.type == "AddressLookup"}
-  <AddressLookup 
-    postcodePlaceholder={q.postcodePlaceholder} 
-    postcodeLabel={q.postcodeLabel} 
-    buttonLabel={q.buttonLabel}
-    houseLabel={q.houseLabel}/>
-{/if}
+  {#if p.page.url == pageurl}
+    <h2>{p.page.title}</h2>
+    {#each p.sections as s}
+      <Section
+        title={s.section.title}
+        logo={s.section.logo}>
+      {#each s.components as q}
+        <!-- {writeToStore(q.id, '')}  -  moving this into input components I think -->
+        {#if ["Colour","Date","Datetime","Email","Month","Number","Search","Slider","Text","Telephone","Time","Url","Week"].includes(q.type)}
+        <svelte:component 
+          this={Textbox} 
+          type="{q.type ?? 'text'}"
+          on:valueChange="{childUpdated}"
+          id="{q.id}"
+          label="{q.label}"
+          placeholder="{q.placeholder ?? ''}"
+          help="{q.help ?? ''}"
+          required="{q.required ?? false}"
+          errorMessage="{q.errorMessage ?? ''}"
+        >
+          <div slot="pre">
+            {#if q.pre}
+              {@html snarkdown(q.pre)}
+            {/if}
+          </div>
+          <div slot="post">
+            {#if q.post}
+              {@html snarkdown(q.post)}
+            {/if} 
+          </div>
+        </svelte:component>
+        {:else if q.type == "YesNo"}
+          <ButtonSelect
+            on:valueChange="{childUpdated}"
+            id="{q.id}"
+            label="{q.label}"
+            help="{q.help ?? ''}"
+            required="{q.required ?? false}"
+            errorMessage="{q.errorMessage ?? ''}"
+            datalist={[{value:"Y",display:"Yes"},{value:"N",display:"No"}]}
+          >
+            <div slot="pre">
+              {#if q.pre}
+                {@html snarkdown(q.pre)}
+              {/if}
+            </div>
+            <div slot="post">
+              {#if q.post}
+                {@html snarkdown(q.post)}
+              {/if} 
+            </div>
+            </ButtonSelect>
+        {:else if q.type == "Dropdown"}
+          <Dropdown
+            on:valueChange="{childUpdated}"
+            id="{q.id}"
+            label="{q.label}"
+            refdata="{q.refdata}"
+            placeholder="{q.placeholder ?? ''}"
+            help="{q.help ?? ''}"
+            required="{q.required ?? false}"
+            errorMessage="{q.errorMessage ?? ''}"
+          >
+            <div slot="pre">
+              {#if q.pre}
+                {@html snarkdown(q.pre)}
+              {/if}
+            </div>
+            <div slot="post">
+              {#if q.post}
+                {@html snarkdown(q.post)}
+              {/if} 
+            </div>
+          </Dropdown>
+        {:else if q.type == "Displayblock"}
+          <Displayblock>
+            <div slot="pre">
+              {#if q.pre}
+                {@html snarkdown(q.pre)}
+              {/if}
+            </div>
+            <div slot="main">
+              {@html snarkdown(q.content)}
+            </div>
+            <div slot="post">
+              {#if q.post}
+                {@html snarkdown(q.post)}
+              {/if} 
+            </div>
+          </Displayblock>
+        {:else if q.type == "Address"}
+          <Address 
+            on:addressChange="{addressUpdated}"
+            postcodePlaceholder={q.postcodePlaceholder} 
+            postcodeLabel={q.postcodeLabel} 
+            buttonLabel={q.buttonLabel}
+            houseLabel={q.houseLabel}/>
+        {:else if q.type == "Vehicle"}
+          <Vehicle 
+            regnumPlaceholder={q.regnumPlaceholder} 
+            regnumLabel={q.regnumLabel} 
+            buttonLabel={q.buttonLabel}
+            errorMessage={q.errorMessage}/>
+        {/if}
+      {/each}
+      </Section>
+    {/each}
+  {/if}
 {/each}
-</SectionLayout>
-{/each}
-{/if}
-{/each}
+
+
+<style>
+  h2 {
+    margin: 0;
+    padding: 1rem;
+    height: 1rem;
+    line-height: 1rem;
+  }
+</style>

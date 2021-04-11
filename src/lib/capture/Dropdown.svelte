@@ -1,50 +1,52 @@
 <script lang="typescript">
-    import { onMount } from 'svelte';
-    import HelpText from '$lib/HelpText.svelte';
+	import { createEventDispatcher, onMount } from 'svelte';    
+    import { inputStore } from '$lib/stores/inputstore';
+    import Helptext from '$lib/display/Helptext.svelte';
 
+    // load refdata on component creation
+    onMount(async () => {
+        if (refdata) {
+            const res = await fetch ('/api/refdata/' + refdata);
+            values = await res.json();
+        }
+    });
+
+    
+    // expose component properties
     export let id;
+    export let value = '';
     export let label;
-    export let refdata;
     export let help;
     export let placeholder;
     export let required = false;
     export let errorMessage = '';
+    export let refdata; // pass data in by refdata lookup
+    export let values : any[] = []; // pass data in directly, overwritten by refdata
+
+    // internal properties to support component logic
+    const dispatch = createEventDispatcher();
     let fallbackError;
-    let valid = true;
-    let values = [];
-    
-    onMount(async () => {
-        const res = await fetch ('/api/refdata/' + refdata);
-        values = await res.json();
-    });
-
-    function validate(event) {
-        let input = event.target;
-        if (input.validity.valid) {
-            valid = true;
-            fallbackError = '';
-        }
-        else {
-            valid = false;
-            fallbackError = input.validationMessage;
-            // could potentially stop and refocus here, but visible should be enough
-        }
-    }
-    function selectValue(event) {
-        // TODO: add to risk store
-    }
-
+    let invalid = false;
     let active;
+    
+    // component actions
     function enter() {
         active = "active";
     }
     function leave() {
         active = "";
     }
+    function act(event) {
+        // regardless of any validation the store must reflect current state of user input
+        inputStore.input(event.target.id, event.target.value);
+        // publish value changes up to parent too
+        dispatch('valueChange', {key: "" + id + "", value: "" + event.target.value + ""});
+        invalid = (required && !event.target.value);
+    }
 </script>
 
 
-<div class="question {active} {valid?'':'invalid'}" on:mouseenter={enter} on:mouseleave={leave} >
+<div class="question {active} {invalid?'invalid':''}" on:mouseenter={enter} on:mouseleave={leave} >
     <slot name="pre"></slot>
     {#if label}
         <label for="{id}">{label}</label>
@@ -58,19 +60,19 @@
             name="{id}" 
             data-reference="{refdata}"
             required="{required}"
-            on:blur={selectValue}
+            on:blur={act}
             >
             <option value="">{placeholder ? placeholder : '-- select --'}</option>
             {#each values as val}
-                <option value="{val.key}" on:click={selectValue}>{val.value}</option>
+                <option value="{val.key}">{val.value}</option>
             {/each}
         </select>
-        
+        <input type="hidden" id="{id}_store" value="{$inputStore[id]}"/>
     {/if}
     {#if help}
-        <HelpText>{help}</HelpText>
+        <Helptext>{help}</Helptext>
     {/if}
-    {#if !valid}
+    {#if invalid}
         <span class="error">{errorMessage ?? fallbackError}</span>
     {/if}
     <slot name="post"></slot>

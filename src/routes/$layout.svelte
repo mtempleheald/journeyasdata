@@ -16,8 +16,8 @@
 </script>
 
 <script>
-    import WizardBar from '$lib/WizardBar.svelte';
-    import { questionSet } from '$lib/stores';
+    import Wizard from '$lib/display/Wizard.svelte';
+    import { questionSet } from '$lib/stores/questionset';
 </script>
 
 <svelte:head>
@@ -27,9 +27,9 @@
 
 <header>
     <img src="https://fakeimg.pl/250x100/?text=Logo" alt="logo">
-    <h1>Question Set demo</h1>    
+    <h1>Question Set Demo</h1>    
 </header>
-<WizardBar/>
+<Wizard/>
 
 <slot></slot>
 
@@ -52,15 +52,18 @@
     }
     header {
         border-bottom: 1px solid black;
+        display: flex;
+        flex-direction: row;
     }
     img {
         height: 100px;
-        float: left;
+        width: 250px;
     }
     h1 {
         height: 100px;
         line-height: 100px;
-        margin: 0 2rem;
-        float: none;
+        padding: 0 1rem;
+        margin: 0;
+        width: calc(100vw - 250px);
     }
 </style>
