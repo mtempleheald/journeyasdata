@@ -1,7 +1,9 @@
 <script lang="typescript">
-    import Helptext from '$lib/display/Helptext.svelte';
 	import { createEventDispatcher } from 'svelte';
+    import { inputStore } from '$lib/stores/inputstore';
+    import Helptext from '$lib/display/Helptext.svelte';
 
+    // expose component properties
     export let id;
     export let value = '';
     export let label;
@@ -10,32 +12,35 @@
     export let errorMessage = 'Please select an option';
     export let datalist : any[] = [];
 
-    function act(event) {
-        if (value == event.target.value) {
-            // toggle off
-           value = null; 
-        }
-        else {
-            // toggle on
-            value = event.target.value;
-        }
-        dispatch('valueChange', {key: "" + id + "", value: "" + value + ""});
-    }
-
+    // internal properties to support component logic
+    const dispatch = createEventDispatcher();
     let active;
+
+    // component actions
     function enter() {
         active = "active";
     }
     function leave() {
         active = "";
-    }
-    
-    // publish any value changes up to parent (pages component)
-    const dispatch = createEventDispatcher();
+    } 
+    function act(event) {        
+        if (value == event.target.value) {
+            // toggle off
+            value = null; 
+        }
+        else {
+            // toggle on
+            value = event.target.value;
+        }
+        // update store to reflect current state
+        inputStore.input(id, value);
+        // publish value changes up to parent too
+        dispatch('valueChange', {key: "" + id + "", value: "" + value + ""});              
+    }   
 </script>
 
 
-<div class="buttonselect {active} {required && value != null ? 'invalid' : ''}" on:mouseenter={enter} on:mouseleave={leave} >
+<div class="buttonselect {active} {required && value == null ? 'invalid' : ''}" on:mouseenter={enter} on:mouseleave={leave} >
     <slot name="pre"></slot>
     {#if label}
         <label for="{id}">{label}</label>
@@ -49,6 +54,7 @@
             bind:value={value}
             required="{required}"
         />
+        <input type="hidden" id="{id}_store" value="{$inputStore[id]}"/>
         {#each datalist as d}
         <button type="button" value="{d.value}" on:click="{act}" class="{value == d.value ? 'active' : ''}">{d.display}</button>
         {/each}

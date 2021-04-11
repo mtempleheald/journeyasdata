@@ -1,23 +1,24 @@
 <script lang="typescript">
     import Textbox from '$lib/capture/Textbox.svelte';
     
-    // parameters
-    let regnum : string = '';
+    // expose component properties    
     export let regnumLabel : string = 'Registration number';
     export let regnumPlaceholder : string = 'YOUR REG';
     export let buttonLabel : string = 'Search';
     export let errorMessage : string = 'Failed to find vehicle';
 
+    // internal properties to support component logic
+    let regnum : string = '';
     let vehicle : any;
-    
     let active;
+
+    // component actions
     function enter() {
         active = "active";
     }
     function leave() {
         active = "";
-    }  
-        
+    }        
     async function regUpdated(event) {
         if (event.detail.value) {
             await fetch (`/api/vehicle/` + event.detail.value.toUpperCase())
@@ -37,14 +38,14 @@
     
 
 <div class="vehicle">
-    <Textbox
-        on:valueChange="{regUpdated}"
+    <Textbox type="Upper"
         id="regnum"
         label="{regnumLabel}"
         placeholder="{regnumPlaceholder}"
         help="help us to help you"
-        required="true"
+        required=true
         errorMessage="{errorMessage}"
+        on:valueChange="{regUpdated}"
     ></Textbox>
     <button type="button">{buttonLabel}</button>
     <Textbox
@@ -72,16 +73,4 @@
         margin: 0rem;
         padding: 0rem;
     }
-    /* needs to move to TextQuestion 
-    .regnum {
-        text-transform: uppercase; 
-    }
-    .invalid {
-        background-color: var(--question-color-bg-error, palevioletred);
-        color: var(--question-color-text-error, black);
-    }
-    .hidden {
-        display: none;
-    }
-    */
 </style>

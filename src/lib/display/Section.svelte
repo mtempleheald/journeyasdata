@@ -14,6 +14,8 @@
 <style>
     section {
         border: 1px solid black;
+        margin: 1rem;
+        padding: 0.5rem;
     }
     header {
         display: flex;

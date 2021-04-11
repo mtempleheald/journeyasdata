@@ -130,14 +130,6 @@
               "html5type": "Date",
               "placeholder": "DD/MM/YYYY",
               "post": "__TODO:__ convert this to date component"
-            },
-            {
-              "id": "email",
-              "label": "Email Address",
-              "type": "Text",
-              "html5type": "Email",
-              "placeholder": "homer@simpsons.com",
-              "required": true
             }
           ]
         },
@@ -288,8 +280,8 @@
     },
     {
       "page": {
-        "url": "demo-questions",
-        "title": "Questions demo"
+        "url": "technical-demo",
+        "title": "Technical Demonstration"
       },
       "sections": [
         {
@@ -371,15 +363,29 @@
               "refdata": "context.list"
             }
           ]
-        }
-      ]
-    },
-    {
-      "page": {
-        "url": "display",
-        "title": "Display demo"
-      },
-      "sections": [
+        },
+        {
+          "section": {
+            "title": "Button Select Section",
+            "logo": "https://fakeimg.pl/100x50/?text=Section%20Logo"
+          },
+          "components": [
+            {
+              "id": "buttonselect",
+              "label": "It is a simple Yes/No question",
+              "type": "YesNo",
+              "required": true,
+              "errorMessage": "Please select an option",
+              "help": "Surely you can figure this out"
+            },
+            {
+              "id": 2,
+              "type": "Dropdown",
+              "label": "Label & question only",
+              "refdata": "context.list"
+            }
+          ]
+        },
         {
           "section": {
             "title": "Displayblock Section",
@@ -408,53 +414,7 @@
               "pre": "__markdown__ before content"
             }
           ]
-        }
-      ]
-    },
-    {
-      "page": {
-        "url": "composites",
-        "title": "Complex components"
-      },
-      "sections": [
-        {
-          "section": {
-            "title": "Address Section",
-            "logo": "https://fakeimg.pl/100x50/?text=Address%20Logo"
-          },
-          "components": [
-            {
-              "type": "Address",
-              "postcodeLabel": "Postcode",
-              "postcodePlaceholder": "MK10 0BZ",
-              "buttonLabel": "Search",
-              "houseLabel": "Property"
-            }
-          ]
         },
-        {
-          "section": {
-            "title": "Vehicle Section",
-            "logo": "https://fakeimg.pl/100x50/?text=Vehicle%20Logo"
-          },
-          "components": [
-            {
-              "type": "Vehicle",
-              "regnumLabel": "Registration number",
-              "regnumPlaceholder": "YOUR REG",
-              "buttonLabel": "Search",
-              "errorMessage": "Failed to find vehicle"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "page": {
-        "url": "allcomponents",
-        "title": "All components"
-      },
-      "sections": [
         {
           "section": {
             "title": "Text",
@@ -547,6 +507,36 @@
               "type": "Week",
               "placeholder": "3",
               "required": true
+            }
+          ]
+        },
+        {
+          "section": {
+            "title": "Address Section",
+            "logo": "https://fakeimg.pl/100x50/?text=Address%20Logo"
+          },
+          "components": [
+            {
+              "type": "Address",
+              "postcodeLabel": "Postcode",
+              "postcodePlaceholder": "MK10 0BZ",
+              "buttonLabel": "Search",
+              "houseLabel": "Property"
+            }
+          ]
+        },
+        {
+          "section": {
+            "title": "Vehicle Section",
+            "logo": "https://fakeimg.pl/100x50/?text=Vehicle%20Logo"
+          },
+          "components": [
+            {
+              "type": "Vehicle",
+              "regnumLabel": "Registration number",
+              "regnumPlaceholder": "YOUR REG",
+              "buttonLabel": "Search",
+              "errorMessage": "Failed to find vehicle"
             }
           ]
         }
