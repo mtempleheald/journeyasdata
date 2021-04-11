@@ -1,8 +1,12 @@
 <script>
-    import Helptext from '$lib/display/Helptext.svelte';
+    // publish value changes up to parent
 	import { createEventDispatcher } from 'svelte';
-    import { getContext } from 'svelte'
+    const dispatch = createEventDispatcher();
 
+    import { inputStore } from '$lib/stores/inputstore';
+    import Helptext from '$lib/display/Helptext.svelte';
+
+    // expose component properties
     export let id;
     export let value = '';
     export let label;
@@ -11,6 +15,8 @@
     export let required = false;
     export let errorMessage = '';
     export let type = 'text';
+
+    // internal properties to support component logic
     let html5type;
     switch (type) {
         case 'Colour' : html5type = 'color'; break;
@@ -19,11 +25,20 @@
         case 'Telephone' : html5type = 'tel'; break;
         default: html5type = type.toLowerCase();
     }
-
     let fallbackError;
     let valid = true;
-
+    let active;
+    
+    // component actions
+    function enter() {
+        active = "active";
+    }
+    function leave() {
+        active = "";
+    }    
     function act(event) {
+        // regardless of any validation the store must reflect current state of user input
+        inputStore.input(event.target.id, event.target.value);
         // https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation#the_constraint_validation_api
         let input = event.target;
         if (input.validity.valid) {
@@ -36,19 +51,9 @@
             fallbackError = input.validationMessage;
             // could potentially stop and refocus here, but visible should be enough
             dispatch('valueChange', {key: "" + id + "", value: ""});
-        }
+        }        
     }
 
-    let active;
-    function enter() {
-        active = "active";
-    }
-    function leave() {
-        active = "";
-    }
-    
-    // publish any value changes up to parent (pages component)
-    const dispatch = createEventDispatcher();
 </script>
 
 <div class="question {active} {valid?'':'invalid'}" on:mouseenter={enter} on:mouseleave={leave} >
@@ -67,7 +72,7 @@
             required="{required}"
             value="{value}"
             on:blur={act}/>
-        
+        <input type="hidden" value="{$inputStore[id]}"/>
     {/if}
     {#if help}
         <Helptext>{help}</Helptext>
