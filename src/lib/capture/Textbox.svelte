@@ -72,7 +72,7 @@
             required="{required}"
             value="{value}"
             on:blur={act}/>
-        <input type="hidden" value="{$inputStore[id]}"/>
+        <input type="hidden" id="{id}_store" value="{$inputStore[id]}"/>
     {/if}
     {#if help}
         <Helptext>{help}</Helptext>
