@@ -5,8 +5,10 @@
 
     // load refdata on component creation
     onMount(async () => {
-        const res = await fetch ('/api/refdata/' + refdata);
-        values = await res.json();
+        if (refdata) {
+            const res = await fetch ('/api/refdata/' + refdata);
+            values = await res.json();
+        }
     });
 
     
