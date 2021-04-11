@@ -2,7 +2,6 @@
     import { createEventDispatcher } from 'svelte';
     import Dropdown from './Dropdown.svelte';
     import Textbox from './Textbox.svelte';
-    import Displayblock from '$lib/display/Displayblock.svelte';
     
     // expose component properties
     export let postcodeLabel = "Postcode";
