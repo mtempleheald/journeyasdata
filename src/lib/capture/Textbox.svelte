@@ -21,6 +21,7 @@
         case 'Datetime' : html5type = 'datetime-local'; break;
         case 'Slider' : html5type = 'range'; break;
         case 'Telephone' : html5type = 'tel'; break;
+        case 'Upper' : html5type = 'text'; break;
         default: html5type = type.toLowerCase();
     }
     let fallbackError;
@@ -35,10 +36,11 @@
         active = "";
     }    
     function act(event) {
+        let val = (type=='Upper') ? event.target.value.toUpperCase() : event.target.value;
         // the store must reflect current state of user input
-        inputStore.input(event.target.id, event.target.value);
+        inputStore.input(event.target.id, val);
         // also publish value changes up to parent
-        dispatch('valueChange', {key: "" + id + "", value: "" + event.target.value + ""});
+        dispatch('valueChange', {key: "" + id + "", value: "" + val+ ""});
         // validate https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation#the_constraint_validation_api
         if (event.target.validity.valid) {
             valid = true;
@@ -62,6 +64,7 @@
             <span class="required">*</span>
         {/if}
         <input type="{html5type}"
+            class="{type=='Upper'?'upper':''}"
             id="{id}" 
             name="{id}" 
             placeholder="{placeholder}" 
@@ -101,5 +104,8 @@
     .invalid {
         background-color: var(--question-color-bg-error, palevioletred);
         color: var(--question-color-text-error, black);
+    }
+    .upper {
+        text-transform: uppercase;
     }
 </style>
