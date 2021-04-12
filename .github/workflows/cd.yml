@@ -50,6 +50,13 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: '14.x'
+        
+    - name: Change .js to .mjs
+      run: |
+        cp index.js index.mjs
+        cp app.js app.mjs
+        sed -i 's/.\/app.js/.\/app.mjs/' index.mjs
+      shell: bash
 
     - name: 'Deploy to Azure Web App'
       id: deploy-to-webapp
