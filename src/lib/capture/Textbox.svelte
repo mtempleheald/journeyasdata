@@ -1,5 +1,6 @@
 <script>
 	import { createEventDispatcher } from 'svelte';
+    import { blur } from 'svelte/transition';
     import { inputStore } from '$lib/stores/inputstore';
     import Helptext from '$lib/display/Helptext.svelte';
 
@@ -51,10 +52,13 @@
             fallbackError = event.target.validationMessage;
         }
     }
+    function focus(event) {
+        dispatch('focus', id);
+    }
 
 </script>
 
-<div class="question {active} {valid?'':'invalid'}" on:mouseenter={enter} on:mouseleave={leave} >
+<div transition:blur class="question {active} {valid?'':'invalid'}" on:mouseenter={enter} on:mouseleave={leave} >
     <slot name="pre"></slot>
     {#if label}
         <label for="{id}">{label}</label>
@@ -70,7 +74,8 @@
             placeholder="{placeholder}" 
             required="{required}"
             value="{value}"
-            on:blur={act}/>
+            on:blur={act}
+            on:focus={focus}/>
         <input type="hidden" id="{id}_store" value="{$inputStore[id]}"/>
     {/if}
     {#if help}
