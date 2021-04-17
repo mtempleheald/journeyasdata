@@ -54,7 +54,7 @@
         logo={s.section.logo}>
       {#each s.components as q}
         {#if !q.dependsupon || ($inputStore[q.dependsupon.id] == q.dependsupon.value)}
-          {#if ["Colour","Date","Datetime","Email","Month","Number","Search","Slider","Text","Telephone","Time","Url","Week"].includes(q.type)}
+          {#if ["Colour","Date","Datetime","Email","Month","Number","Search","Slider","Text","Telephone","Time","Upper","Url","Week"].includes(q.type)}
           <svelte:component 
             this={Textbox} 
             type="{q.type ?? 'text'}"
@@ -85,7 +85,28 @@
               help="{q.help ?? ''}"
               required="{q.required ?? false}"
               errorMessage="{q.errorMessage ?? ''}"
-              datalist={[{value:"Y",display:"Yes"},{value:"N",display:"No"}]}
+              values={[{value:"Y",display:"Yes"},{value:"N",display:"No"}]}
+            >
+              <div slot="pre">
+                {#if q.pre}
+                  {@html snarkdown(q.pre)}
+                {/if}
+              </div>
+              <div slot="post">
+                {#if q.post}
+                  {@html snarkdown(q.post)}
+                {/if} 
+              </div>
+              </ButtonSelect>
+          {:else if q.type == "ButtonSelect"}
+            <ButtonSelect
+              on:valueChange="{childUpdated}"
+              id="{q.id}"
+              label="{q.label}"
+              help="{q.help ?? ''}"
+              required="{q.required ?? false}"
+              errorMessage="{q.errorMessage ?? ''}"
+              values={q.values}
             >
               <div slot="pre">
                 {#if q.pre}
@@ -108,6 +129,7 @@
               help="{q.help ?? ''}"
               required="{q.required ?? false}"
               errorMessage="{q.errorMessage ?? ''}"
+              values={q.values}
             >
               <div slot="pre">
                 {#if q.pre}

@@ -6,92 +6,417 @@
   "pages": [
     {
       "page": {
-        "url": "vehicle",
-        "title": "Vehicle"
+        "url": "your-vehicle",
+        "title": "Your Vehicle"
       },
       "sections": [
         {
           "section": {
-            "title": "Vehicle selection (manual)",
+            "title": "Your Vehicle",
             "logo": "https://fakeimg.pl/100x50/?text=Vehicle%20Logo"
           },
           "components": [
             {
-              "id": "regnum",
-              "type": "Text",
-              "label": "Vehicle reg",
+              "id": "vehicleregnum",
+              "type": "Upper",
+              "label": "Vehicle registration number",
               "placeholder": "YOUR REG",
               "required": false,
               "errorMessage": "Please enter a reg",
               "help": "the yellow rectangle on the back of your car has some letters on it, we need those"
             },
             {
-              "id": "vehicle_type",
-              "type": "Text",
-              "label": "Vehicle type:",
+              "id": "vehicletype",
+              "type": "ButtonSelect",
+              "label": "Select your vehicle",
               "required": true,
               "errorMessage": "Pick a vehicle to continue",
-              "post": "__TODO:__ replace with Iconbutton"
+              "post": "__TODO:__ replace with Iconbutton",
+              "values": [
+                {
+                  "value": "single",
+                  "display": "Single"
+                },
+                {
+                  "value": "double",
+                  "display": "Double"
+                },
+                {
+                  "value": "family",
+                  "display": "Family size"
+                },
+                {
+                  "value": "marquee",
+                  "display": "Marquee"
+                }
+              ]
+            },
+            {
+              "id": "vehiclebase",
+              "type": "Dropdown",
+              "label": "Base vehicle make",
+              "required": true,
+              "errorMessage": "Please select an option to continue.",
+              "values": [
+                {
+                  "value": "ground",
+                  "display": "Ground"
+                },
+                {
+                  "value": "mat",
+                  "display": "mat"
+                }
+              ]
+            },
+            {
+              "id": "vehiclemanufacturer",
+              "type": "Dropdown",
+              "label": "Manufacturer/Converter",
+              "required": true,
+              "errorMessage": "Please select an option to continue.",
+              "values": [
+                {
+                  "value": "gooutdoors",
+                  "display": "Go Outdoors"
+                },
+                {
+                  "value": "decathlon",
+                  "display": "Decathlon"
+                },
+                {
+                  "value": "cotswold",
+                  "display": "Cotswold Company"
+                }
+              ]
+            },
+            {
+              "id": "vehiclemodel",
+              "type": "Dropdown",
+              "label": "Model",
+              "required": true,
+              "errorMessage": "Please select an option to continue.",
+              "values": [
+                {
+                  "value": "red",
+                  "display": "Red"
+                },
+                {
+                  "value": "green",
+                  "display": "Green"
+                },
+                {
+                  "value": "blue",
+                  "display": "Blue"
+                }
+              ]
+            },
+            {
+              "id": "vehicleyear",
+              "type": "Number",
+              "label": "Year of manufacture",
+              "required": true,
+              "errorMessage": "Please select an option to continue."
+            },
+            {
+              "id": "vehicleennginesize",
+              "type": "Number",
+              "label": "Engine cc",
+              "required": true,
+              "errorMessage": "Please complete this question to continue.",
+              "help": "Please enter the engine size in cubic centimeters (cc) rather than litres e.g. 1998 for the engine cc, rather than 2.0 for litres."
+            },
+            {
+              "id": "vehiclefuel",
+              "type": "Dropdown",
+              "label": "Fuel type",
+              "placeholder": "Please Select",
+              "required": true,
+              "errorMessage": "Please select an answer from the list.",
+              "values": [
+                {
+                  "value": "electric",
+                  "display": "Electric"
+                },
+                {
+                  "value": "petrol",
+                  "display": "Petrol"
+                },
+                {
+                  "value": "diesel",
+                  "display": "Diesel"
+                }
+              ]
+            },
+            {
+              "id": "vehicletransmission",
+              "type": "Dropdown",
+              "label": "Transmission type",
+              "required": true,
+              "errorMessage": "Please select an answer from the list.",
+              "values": [
+                {
+                  "value": "manual",
+                  "display": "Manual"
+                },
+                {
+                  "value": "automatic",
+                  "display": "Automatic"
+                }
+              ]
+            },
+            {
+              "id": "vehicledoorcount",
+              "type": "Number",
+              "label": "Number of doors",
+              "required": true,
+              "errorMessage": "Please select an answer from the list.",
+              "post": "__TODO:__ add min/max for numeric inputs"
             }
           ]
         },
         {
           "section": {
-            "title": "Vehicle selection (lookup)",
+            "title": "Vehicle Details",
             "logo": "https://fakeimg.pl/100x50/?text=Vehicle%20Logo"
           },
           "components": [
             {
-              "type": "Vehicle",
-              "regnumLabel": "Registration number",
-              "regnumPlaceholder": "YOUR REG",
-              "buttonLabel": "Search",
-              "errorMessage": "Failed to find vehicle",
-              "post": "__TODO:__ possibly change vehicle lookup to a section component"
-            }
-          ]
-        },
-        {
-          "section": {
-            "title": "Vehicle details",
-            "logo":"https://fakeimg.pl/100x50/?text=Vehicle%20Logo"
-          },
-          "components": [
-            {
-              "id": "hasalarm",
+              "id": "vehiclehasalarm",
               "type": "YesNo",
-              "label": "Alarmed? You should be!"
+              "label": "Is the vehicle fitted with an alarm/immobiliser?",
+              "required": true,
+              "errorMessage": "Please select an answer from the list."
             },
             {
-              "id": "manufacture_location",
-              "type": "Text",
-              "label": "Vehicle manufacture location",
-              "post": "__TODO:__ replace with Iconbutton component"
+              "id": "vehiclehastracker",
+              "type": "YesNo",
+              "label": "Is the vehicle fitted with a tracking device?",
+              "help": "A tracking device is an electronic homing device which is fitted to your vehicle. If your vehicle is stolen the device can be activated, allowing the police to track the vehicle to aid recovery."
+            },
+            {
+              "id": "vehiclehandedness",
+              "type": "ButtonSelect",
+              "label": "Is the vehicle right or left hand drive?",
+              "required": true,
+              "errorMessage": "Please select an option to continue.",
+              "post": "__TODO:__ replace with Iconbutton",
+              "values": [
+                {
+                  "value": "left",
+                  "display": "Left Hand Drive"
+                },
+                {
+                  "value": "right",
+                  "display": "Right Hand Drive"
+                }
+              ]
+            },
+            {
+              "id": "vehicleseatbeltcount",
+              "type": "Number",
+              "label": "How many belted seats does the vehicle have?",
+              "placeholder": "Please Select",
+              "required": true,
+              "errorMessage": "Please select an answer from the list.",
+              "post": "__TODO:__ add min/max for numeric inputs"
+            },
+            {
+              "id": "vehiclevalue",
+              "type": "Number",
+              "label": "What is the estimated value?",
+              "required": true,
+              "errorMessage": "Please complete this question to continue.",
+              "help": "Please note that this should be the approximate market value of the vehicle at present, to the nearest pound. Please enter only digits - no commas or full stops, e.g. 1000 or 20000."
+            },
+            {
+              "id": "vehiclepurchased",
+              "type": "YesNo",
+              "label": "Have you bought the vehicle yet?",
+              "required": true,
+              "errorMessage": "Please complete this question to continue."
             }
           ]
         },
         {
           "section": {
-            "title": "Vehicle usage",
-            "logo":"https://fakeimg.pl/100x50/?text=Vehicle%20Logo"
+            "title": "Manufacturing & Accessories",
+            "logo": "https://fakeimg.pl/100x50/?text=Garage%20Logo"
           },
           "components": [
             {
-              "id": "vehicle_mileage",
-              "type": "Text",
-              "html5type": "Number",
-              "label": "Mileage",
-              "placeholder": "5000",
-              "help": "Total mileage",
+              "id": "vehiclemanufacturelocation",
+              "type": "ButtonSelect",
+              "label": "Where was the vehicle manufactured?",
+              "required": true,
+              "errorMessage": "Please complete this question to continue.",
+              "post": "__TODO:__ replace with Iconbutton",
+              "values": [
+                {
+                  "value": "uk",
+                  "display": "UK"
+                },
+                {
+                  "value": "usa",
+                  "display": "USA"
+                },
+                {
+                  "value": "other",
+                  "display": "Other"
+                }
+              ]
+            },
+            {
+              "id": "vehicleconverted",
+              "type": "YesNo",
+              "label": "Is the vehicle professionally converted/purpose built?",
+              "required": true,
+              "errorMessage": "Please complete this question to continue."
+            },
+            {
+              "id": "vehiclemodified",
+              "type": "YesNo",
+              "label": "Has the vehicle been modified from the manufacturer’s or converter's specification?",
+              "required": true,
+              "errorMessage": "Please complete this question to continue.",
+              "help": "We only need to know about modifications that have been fitted to the vehicle after the motorhome or camper has been manufactured or professionally converted. These can include engine chipping or changes to the suspension, but only if completed retrospectively. We can only quote for a maximum of three modifications to a vehicle."
+            }
+          ]
+        },
+        {
+          "section": {
+            "title": "Use of the Vehicle",
+            "logo": "https://fakeimg.pl/100x50/?text=Vehicle%20Logo"
+          },
+          "components": [
+            {
+              "id": "vehicleowner",
+              "type": "Dropdown",
+              "label": "Who owns the vehicle?",
+              "placeholder": "Please Select",
+              "required": true,
+              "errorMessage": "Please select an answer from the list.",
+              "help": "The legal owner is the person or company who purchased the vehicle e.g. finance, hire purchase or leasing companies or the person purchasing the vehicle for spouse or child.",
+              "values": [
+                {
+                  "value": "proposer",
+                  "display": "Proposer"
+                },
+                {
+                  "value": "spouse",
+                  "display": "Spouse"
+                },
+                {
+                  "value": "company",
+                  "display": "Company"
+                }
+              ]
+            },
+            {
+              "id": "keeperisproposerorspouse",
+              "type": "YesNo",
+              "label": "Is the registered keeper of the vehicle the proposer or spouse?",
+              "required": true,
+              "errorMessage": "Please select an option to continue.",
+              "help": "The registered keeper is not necessarily the legal owner of the vehicle. The registered keeper is responsible for the vehicles day to day use on the road and is liable for licensing the vehicle. The registered keeper is named on the vehicle's V5C or log book."
+            },
+            {
+              "id": "vehicleovernightlocation",
+              "type": "Dropdown",
+              "label": " Where is the vehicle normally parked overnight? ",
+              "placeholder": "Please Select",
+              "required": true,
+              "errorMessage": "Please select an answer from the list.",
+              "help": "Please note that any off-road parking other than your driveway or a locked garage should be entered as On the Road. For storage at a storage location, please enter driveway.",
+              "values": [
+                {
+                  "value": "driveway",
+                  "display": "On a driveway"
+                },
+                {
+                  "value": "garage",
+                  "display": "In a locked garage"
+                },
+                {
+                  "value": "road",
+                  "display": "On the road"
+                }
+              ]
+            },
+            {
+              "id": "vehicleathomeovernight",
+              "type": "YesNo",
+              "label": "Is the vehicle parked overnight at your home address?",
+              "required": true,
+              "errorMessage": "Please select an option to continue."
+            },
+            {
+              "id": "vehicleuse",
+              "type": "Dropdown",
+              "label": "What will the vehicle be used for?",
+              "required": true,
+              "errorMessage": "Please select an answer from the list.",
+              "help": "Social Domestic and Pleasure Only - covers normal leisure use (such as camping, visiting friends and family, shopping) but not driving to and from work.  Social Domestic and Pleasure including commuting - covers leisure use plus commuting to a single, permanent place of work.  Business use - includes leisure use and also covers the designated drivers in connection with their jobs (for things like driving to different sites or offices and meetings away from the normal workplace).  Business Use including Commercial Travelling - Covers leisure use and also using the vehicle for commercial travel, for example delivering goods or door-to-door sales.",
+              "values": [
+                {
+                  "value": "socialdomestic",
+                  "display": "Social, Domestic and Pleasure Only"
+                },
+                {
+                  "value": "businesssolo",
+                  "display": "Business Use by you only"
+                },
+                {
+                  "value": "businessany",
+                  "display": "Business Use by any driver"
+                }
+              ]
+            },
+            {
+              "id": "vehiclemileageuk",
+              "type": "Number",
+              "label": "Approximately how many miles will this vehicle be driven in the UK in the next 12 months?",
+              "required": true,
+              "errorMessage": "Please complete this question to continue.",
+              "placeholder": "",
+              "help": "This includes mileage driven by any users of the vehicle as well as yourself within the UK.",
               "post": "__TODO:__ replace with slider/number select"
+            },
+            {
+              "id": "vehiclemileageeurope",
+              "type": "Number",
+              "label": "Approximately how many miles will this vehicle be driven in Europe in the next 12 months?",
+              "required": true,
+              "errorMessage": "Please enter a value between 0 and 99999.",
+              "placeholder": "",
+              "help": "This includes mileage driven by any users of the vehicle as well as yourself within the Europe, if you don’t drive in Europe, enter 0."
+            },
+            {
+              "id": "previousinsurancepaymentmethod",
+              "type": "ButtonSelect",
+              "label": "How did you pay for your last insurance?",
+              "required": true,
+              "errorMessage": "Please complete this question to continue.",
+              "values": [
+                {
+                  "value": "annual",
+                  "display": "Annual"
+                },
+                {
+                  "value": "monthly",
+                  "display": "Monthly"
+                },
+                {
+                  "value": "none",
+                  "display": "Not had insurance before"
+                }
+              ]
             }
           ]
         }
       ]
     },
     {
-      "page": 
-      {
+      "page": {
         "url": "driver",
         "title": "You"
       },
@@ -174,18 +499,14 @@
             "title": "Employment details",
             "logo": "https://fakeimg.pl/100x50/?text=Employment%20Logo"
           },
-          "components": [
-            
-          ]
+          "components": []
         },
         {
           "section": {
             "title": "Experience details",
             "logo": "https://fakeimg.pl/100x50/?text=Experience%20Logo"
           },
-          "components": [
-            
-          ]
+          "components": []
         }
       ]
     },
@@ -203,7 +524,7 @@
             {
               "type": "Text",
               "post": "__TODO:__ convert to Add other button "
-            }            
+            }
           ]
         },
         {
@@ -255,7 +576,7 @@
         {
           "section": {
             "title": "Convictions",
-            "logo":"https://fakeimg.pl/100x50/?text=Convictions%20Logo"
+            "logo": "https://fakeimg.pl/100x50/?text=Convictions%20Logo"
           },
           "components": [
             {
@@ -274,9 +595,7 @@
         "url": "contractual",
         "title": "Contract stuff"
       },
-      "sections": [
-
-      ]
+      "sections": []
     }
   ]
 }
