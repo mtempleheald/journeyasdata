@@ -147,8 +147,7 @@
         "url": "dropdowns",
         "title": "Dropdown selection"
       },
-      "sections":
-      [
+      "sections": [
         {
           "section": {
             "title": "Dropdown Section",
@@ -156,7 +155,7 @@
           },
           "components": [
             {
-              "id": 1,
+              "id": "dropdownfull",
               "label": "Required question label",
               "type": "Dropdown",
               "placeholder": "Placeholder...",
@@ -168,10 +167,25 @@
               "post": "__Markdown after question 1__"
             },
             {
-              "id": 2,
+              "id": "dropdown_refdata",
               "type": "Dropdown",
-              "label": "Label & question only",
+              "label": "Data passed in by reference",
               "refdata": "context.list"
+            },
+            {
+              "id": "dropdown_datalist",
+              "type": "Dropdown",
+              "label": "Data passed in via QS",
+              "values": [
+                {
+                  "key": "example1",
+                  "value": "Example 1"
+                },
+                {
+                  "key": "example2",
+                  "value": "Example 2"
+                }
+              ]
             }
           ]
         }
@@ -182,8 +196,7 @@
         "url": "buttons",
         "title": "Select buttons"
       },
-      "sections":
-      [
+      "sections": [
         {
           "section": {
             "title": "Button Select Section",

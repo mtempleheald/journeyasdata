@@ -1,7 +1,7 @@
 {
   "questionset": {
     "show-wizard": true,
-    "title": "Questionset Demo"
+    "title": "DangerTent Insurance"
   },
   "pages": [
     {
@@ -34,20 +34,20 @@
               "post": "__TODO:__ replace with Iconbutton",
               "values": [
                 {
-                  "value": "single",
-                  "display": "Single"
+                  "key": "single",
+                  "value": "Single"
                 },
                 {
-                  "value": "double",
-                  "display": "Double"
+                  "key": "double",
+                  "value": "Double"
                 },
                 {
-                  "value": "family",
-                  "display": "Family size"
+                  "key": "family",
+                  "value": "Family size"
                 },
                 {
-                  "value": "marquee",
-                  "display": "Marquee"
+                  "key": "marquee",
+                  "value": "Marquee"
                 }
               ]
             },
@@ -59,12 +59,12 @@
               "errorMessage": "Please select an option to continue.",
               "values": [
                 {
-                  "value": "ground",
-                  "display": "Ground"
+                  "key": "ground",
+                  "value": "Ground"
                 },
                 {
-                  "value": "mat",
-                  "display": "mat"
+                  "key": "mat",
+                  "value": "mat"
                 }
               ]
             },
@@ -76,16 +76,16 @@
               "errorMessage": "Please select an option to continue.",
               "values": [
                 {
-                  "value": "gooutdoors",
-                  "display": "Go Outdoors"
+                  "key": "gooutdoors",
+                  "value": "Go Outdoors"
                 },
                 {
-                  "value": "decathlon",
-                  "display": "Decathlon"
+                  "key": "decathlon",
+                  "value": "Decathlon"
                 },
                 {
-                  "value": "cotswold",
-                  "display": "Cotswold Company"
+                  "key": "cotswold",
+                  "value": "Cotswold Company"
                 }
               ]
             },
@@ -97,16 +97,16 @@
               "errorMessage": "Please select an option to continue.",
               "values": [
                 {
-                  "value": "red",
-                  "display": "Red"
+                  "key": "red",
+                  "value": "Red"
                 },
                 {
-                  "value": "green",
-                  "display": "Green"
+                  "key": "green",
+                  "value": "Green"
                 },
                 {
-                  "value": "blue",
-                  "display": "Blue"
+                  "key": "blue",
+                  "value": "Blue"
                 }
               ]
             },
@@ -134,16 +134,16 @@
               "errorMessage": "Please select an answer from the list.",
               "values": [
                 {
-                  "value": "electric",
-                  "display": "Electric"
+                  "key": "electric",
+                  "value": "Electric"
                 },
                 {
-                  "value": "petrol",
-                  "display": "Petrol"
+                  "key": "petrol",
+                  "value": "Petrol"
                 },
                 {
-                  "value": "diesel",
-                  "display": "Diesel"
+                  "key": "diesel",
+                  "value": "Diesel"
                 }
               ]
             },
@@ -155,12 +155,12 @@
               "errorMessage": "Please select an answer from the list.",
               "values": [
                 {
-                  "value": "manual",
-                  "display": "Manual"
+                  "key": "manual",
+                  "value": "Manual"
                 },
                 {
-                  "value": "automatic",
-                  "display": "Automatic"
+                  "key": "automatic",
+                  "value": "Automatic"
                 }
               ]
             },
@@ -202,12 +202,12 @@
               "post": "__TODO:__ replace with Iconbutton",
               "values": [
                 {
-                  "value": "left",
-                  "display": "Left Hand Drive"
+                  "key": "left",
+                  "value": "Left Hand Drive"
                 },
                 {
-                  "value": "right",
-                  "display": "Right Hand Drive"
+                  "key": "right",
+                  "value": "Right Hand Drive"
                 }
               ]
             },
@@ -252,16 +252,16 @@
               "post": "__TODO:__ replace with Iconbutton",
               "values": [
                 {
-                  "value": "uk",
-                  "display": "UK"
+                  "key": "uk",
+                  "value": "UK"
                 },
                 {
-                  "value": "usa",
-                  "display": "USA"
+                  "key": "usa",
+                  "value": "USA"
                 },
                 {
-                  "value": "other",
-                  "display": "Other"
+                  "key": "other",
+                  "value": "Other"
                 }
               ]
             },
@@ -298,16 +298,16 @@
               "help": "The legal owner is the person or company who purchased the vehicle e.g. finance, hire purchase or leasing companies or the person purchasing the vehicle for spouse or child.",
               "values": [
                 {
-                  "value": "proposer",
-                  "display": "Proposer"
+                  "key": "proposer",
+                  "value": "Proposer"
                 },
                 {
-                  "value": "spouse",
-                  "display": "Spouse"
+                  "key": "spouse",
+                  "value": "Spouse"
                 },
                 {
-                  "value": "company",
-                  "display": "Company"
+                  "key": "company",
+                  "value": "Company"
                 }
               ]
             },
@@ -329,16 +329,16 @@
               "help": "Please note that any off-road parking other than your driveway or a locked garage should be entered as On the Road. For storage at a storage location, please enter driveway.",
               "values": [
                 {
-                  "value": "driveway",
-                  "display": "On a driveway"
+                  "key": "driveway",
+                  "value": "On a driveway"
                 },
                 {
-                  "value": "garage",
-                  "display": "In a locked garage"
+                  "key": "garage",
+                  "value": "In a locked garage"
                 },
                 {
-                  "value": "road",
-                  "display": "On the road"
+                  "key": "road",
+                  "value": "On the road"
                 }
               ]
             },
@@ -358,16 +358,16 @@
               "help": "Social Domestic and Pleasure Only - covers normal leisure use (such as camping, visiting friends and family, shopping) but not driving to and from work.  Social Domestic and Pleasure including commuting - covers leisure use plus commuting to a single, permanent place of work.  Business use - includes leisure use and also covers the designated drivers in connection with their jobs (for things like driving to different sites or offices and meetings away from the normal workplace).  Business Use including Commercial Travelling - Covers leisure use and also using the vehicle for commercial travel, for example delivering goods or door-to-door sales.",
               "values": [
                 {
-                  "value": "socialdomestic",
-                  "display": "Social, Domestic and Pleasure Only"
+                  "key": "socialdomestic",
+                  "value": "Social, Domestic and Pleasure Only"
                 },
                 {
-                  "value": "businesssolo",
-                  "display": "Business Use by you only"
+                  "key": "businesssolo",
+                  "value": "Business Use by you only"
                 },
                 {
-                  "value": "businessany",
-                  "display": "Business Use by any driver"
+                  "key": "businessany",
+                  "value": "Business Use by any driver"
                 }
               ]
             },
@@ -398,16 +398,16 @@
               "errorMessage": "Please complete this question to continue.",
               "values": [
                 {
-                  "value": "annual",
-                  "display": "Annual"
+                  "key": "annual",
+                  "value": "Annual"
                 },
                 {
-                  "value": "monthly",
-                  "display": "Monthly"
+                  "key": "monthly",
+                  "value": "Monthly"
                 },
                 {
-                  "value": "none",
-                  "display": "Not had insurance before"
+                  "key": "none",
+                  "value": "Not had insurance before"
                 }
               ]
             }
@@ -581,10 +581,11 @@
           "components": [
             {
               "id": "has_convictions",
-              "type": "Text",
+              "type": "YesNo",
               "label": "Got any convictions?",
-              "help": "we don't serve criminals yo",
-              "post": "__TODO:__ switch to YesNo button type"
+              "required": true,
+              "errorMessage": "Select an option",
+              "help": "we don't serve criminals yo"
             }
           ]
         }

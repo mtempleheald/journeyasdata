@@ -21,13 +21,13 @@
 </script>
 
 <svelte:head>
-	<title>Question Set Demo</title>
+	<title>{$questionSet.questionset.title}</title>
 </svelte:head>
 
 
 <header>
-    <img src="https://fakeimg.pl/250x100/?text=Logo" alt="logo">
-    <h1>Question Set Demo</h1>    
+    <img src="https://fakeimg.pl/250x100/?text=Brand%20Logo" alt="logo">
+    <h1>{$questionSet.questionset.title}</h1>    
 </header>
 <Wizard/>
 
