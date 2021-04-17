@@ -379,6 +379,17 @@
               "help": "Surely you can figure this out"
             },
             {
+              "id": "dependentbuttonselect",
+              "type": "YesNo",
+              "label": "Yes/No dependent on Yes/No",
+              "required": true,
+              "help": "We require you to select this IF you answered Yes to the last question",
+              "dependsupon": {
+                "id": "buttonselect",
+                "value": "Y"
+              }
+            },
+            {
               "id": 2,
               "type": "Dropdown",
               "label": "Label & question only",
