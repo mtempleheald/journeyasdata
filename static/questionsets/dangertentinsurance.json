@@ -581,10 +581,11 @@
           "components": [
             {
               "id": "has_convictions",
-              "type": "Text",
+              "type": "YesNo",
               "label": "Got any convictions?",
-              "help": "we don't serve criminals yo",
-              "post": "__TODO:__ switch to YesNo button type"
+              "required": true,
+              "errorMessage": "Select an option",
+              "help": "we don't serve criminals yo"
             }
           ]
         }

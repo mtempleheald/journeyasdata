@@ -4,21 +4,21 @@ export type QuestionSet = {
     }
     pages: Page[];
 }
-type Page = {
+export type Page = {
     page: {
         url: string;
         title: string;
     }
     sections: Section[];
 }
-type Section = {
+export type Section = {
     section: {
         title?: string;
         logo?: string;
     }
     components: Component[];
 }
-type Component = {
+export type Component = {
     type: "Address" 
         | "ButtonSelect"
         | "Colour" 
@@ -53,7 +53,7 @@ type Component = {
         value: string;
     }
 }
-type Value = {
+export type Value = {
     value: string;
     display: string;
 }
