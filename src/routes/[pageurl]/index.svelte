@@ -141,7 +141,7 @@
               help="{q.help ?? ''}"
               required="{q.required ?? false}"
               errorMessage="{q.errorMessage ?? ''}"
-              values={q.values}
+              values={q.values ?? []}
             >
               <div slot="pre">
                 {#if q.pre}

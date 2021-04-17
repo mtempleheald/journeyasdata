@@ -54,6 +54,6 @@ export type Component = {
     }
 }
 export type Value = {
+    key: string;
     value: string;
-    display: string;
 }

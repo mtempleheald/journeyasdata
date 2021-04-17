@@ -64,7 +64,7 @@
             >
             <option value="">{placeholder ? placeholder : '-- select --'}</option>
             {#each values as val}
-                <option value="{val.key}">{val.display}</option>
+                <option value="{val.key}">{val.value}</option>
             {/each}
         </select>
         <input type="hidden" id="{id}_store" value="{$inputStore[id]}"/>
