@@ -4,7 +4,7 @@
 	 */
 	export async function load({ page, fetch, session, context }) {
         // console.log('Loading questionset'); // proves that this isn't loaded on each subsequent page request
-        const url = '/questionsets/questionset.json';
+        const url = '/questionsets/technicaldemo.json'; // change this to try out different questionsets
         let qs;
         await fetch(url)
                 .then(resp => resp.json())
