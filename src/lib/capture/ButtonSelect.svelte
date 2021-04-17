@@ -10,7 +10,7 @@
     export let help;
     export let required = false;
     export let errorMessage = 'Please select an option';
-    export let datalist : any[] = [];
+    export let values : any[] = [];
 
     // internal properties to support component logic
     const dispatch = createEventDispatcher();
@@ -55,14 +55,14 @@
             required="{required}"
         />
         <input type="hidden" id="{id}_store" value="{$inputStore[id]}"/>
-        {#each datalist as d}
-        <button type="button" value="{d.value}" on:click="{act}" class="{value == d.value ? 'active' : ''}">{d.display}</button>
+        {#each values as v}
+        <button type="button" value="{v.value}" on:click="{act}" class="{value == v.value ? 'active' : ''}">{v.display}</button>
         {/each}
     {/if}
     {#if help}
         <Helptext>{help}</Helptext>
     {/if}
-    {#if required && value != null}
+    {#if required && value == null}
         <span class="error">{errorMessage}</span>
     {/if}
     <slot name="post"></slot>

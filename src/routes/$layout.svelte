@@ -4,7 +4,7 @@
 	 */
 	export async function load({ page, fetch, session, context }) {
         // console.log('Loading questionset'); // proves that this isn't loaded on each subsequent page request
-        const url = '/questionsets/questionset.json';
+        const url = '/questionsets/technicaldemo.json'; // change this to try out different questionsets
         let qs;
         await fetch(url)
                 .then(resp => resp.json())
@@ -16,18 +16,18 @@
 </script>
 
 <script>
-    import Wizard from '$lib/display/Wizard.svelte';
+    import Wizard from '$lib/navigation/Wizard.svelte';
     import { questionSet } from '$lib/stores/questionset';
 </script>
 
 <svelte:head>
-	<title>Question Set Demo</title>
+	<title>{$questionSet.questionset.title}</title>
 </svelte:head>
 
 
 <header>
-    <img src="https://fakeimg.pl/250x100/?text=Logo" alt="logo">
-    <h1>Question Set Demo</h1>    
+    <img src="https://fakeimg.pl/250x100/?text=Brand%20Logo" alt="logo">
+    <h1>{$questionSet.questionset.title}</h1>    
 </header>
 <Wizard/>
 
