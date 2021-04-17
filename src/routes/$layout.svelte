@@ -16,7 +16,7 @@
 </script>
 
 <script>
-    import Wizard from '$lib/display/Wizard.svelte';
+    import Wizard from '$lib/navigation/Wizard.svelte';
     import { questionSet } from '$lib/stores/questionset';
 </script>
 
