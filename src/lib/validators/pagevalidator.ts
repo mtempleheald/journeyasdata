@@ -17,7 +17,7 @@ function SectionValid (
         ||  (c.dependsupon && inputs[c.dependsupon.id] != c.dependsupon.value) // a hidden question so we shouldn't validate it
         )
     })
-    return valid; // if we got this far then there are no invalid components
+    return valid;
 }
 
 function PageValid (

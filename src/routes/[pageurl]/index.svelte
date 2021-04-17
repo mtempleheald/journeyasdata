@@ -20,15 +20,14 @@
     import ButtonSelect from '$lib/capture/ButtonSelect.svelte';
     import Dropdown from '$lib/capture/Dropdown.svelte';
     import Displayblock from '$lib/display/Displayblock.svelte';
+    import NavButtons from '$lib/navigation/NavButtons.svelte';
     import Section from '$lib/display/Section.svelte';
     import Textbox from '$lib/capture/Textbox.svelte';
-    import Vehicle from '$lib/capture/Vehicle.svelte';   
+    import Vehicle from '$lib/capture/Vehicle.svelte';
 
     import { inputStore } from '$lib/stores/inputstore'
     import { questionSet } from '$lib/stores/questionset';
-    import { pageValidator } from '$lib/validators/pagevalidator';
     export let pageurl;
-    let isValid = true;
 
     function writeToStore(key, value) {
       const w = writable(value);
@@ -42,20 +41,8 @@
     function addressUpdated(event) {
       console.log(`dispatched event - ${event.detail.key}`)
     }
-    function validatePage(){
-      if (pageValidator.valid($questionSet,pageurl,$inputStore))
-      {
-        isValid = true;
-      }
-      else {
-        isValid = false;
-      }
-    }
 
 </script>
-
-<button type="button" on:click={validatePage}>VALIDATE PAGE TEST</button>
-<span>Validity status is {isValid}</span>
 
 {#each $questionSet.pages as p} 
   {#if p.page.url == pageurl}
@@ -190,6 +177,12 @@
     {/each}
   {/if}
 {/each}
+<NavButtons 
+      nextText = 'Next Page'
+      backText = 'Back'
+      pageurl = '{pageurl}'
+>
+</NavButtons>
 
 
 <style>
