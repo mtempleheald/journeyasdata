@@ -204,6 +204,26 @@
           },
           "components": [
             {
+              "id": "simpletextbutton",
+              "label": "This is a simple text button",
+              "type": "ButtonSelect",
+              "value": "Click Me",
+              "required": false,
+              "errorMessage": "Please select an option",
+              "help": "Surely you can figure this out",
+              "values": [
+                {
+                  "key": "simpletextbutton",
+                  "value": "simpletextbutton",
+                  "display": "Click me?"
+                }
+              ]
+            },
+
+
+
+            
+            {
               "id": "buttonselect",
               "label": "It is a simple Yes/No question",
               "type": "YesNo",

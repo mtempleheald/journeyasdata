@@ -7,6 +7,7 @@
     export let id;
     export let value = '';
     export let label;
+    export let image;
     export let help;
     export let required = false;
     export let errorMessage = 'Please select an option';
@@ -56,7 +57,8 @@
         />
         <input type="hidden" id="{id}_store" value="{$inputStore[id]}"/>
         {#each values as v}
-        <button type="button" value="{v.value}" on:click="{act}" class="{value == v.value ? 'active' : ''}">{v.display}</button>
+            <button type="button" value="{v.value}" on:click="{act}" class="{value == v.value ? 'active' : ''}">{v.display}
+            </button>
         {/each}
     {/if}
     {#if help}
