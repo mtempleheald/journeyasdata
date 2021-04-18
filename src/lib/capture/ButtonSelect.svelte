@@ -57,7 +57,10 @@
         />
         <input type="hidden" id="{id}_store" value="{$inputStore[id]}"/>
         {#each values as v}
-            <button type="button" value="{v.value}" on:click="{act}" class="{value == v.value ? 'active' : ''}">{v.display}
+            <button type="button" value="{v.value}" on:click="{act}" class="{value == v.value ? 'active' : ''}">{v.image != null ? '' : v.display ?? ''}
+                {#if v.image != null}
+                    <img src="{v.image}" width="{v.imageWidth}" height="{v.imageHeigh}" on:click="{act}" class="{value == v.value ? 'active' : ''}" alt="{v.display}" />
+                {/if}
             </button>
         {/each}
     {/if}
