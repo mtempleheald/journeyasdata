@@ -7,7 +7,6 @@
     export let id;
     export let value = '';
     export let label;
-    export let image;
     export let help;
     export let required = false;
     export let errorMessage = 'Please select an option';
@@ -24,20 +23,18 @@
     function leave() {
         active = "";
     } 
-    function act(event) {        
-        if (value == event.target.value) {
-            // toggle off
-            value = null; 
+    function updateValue(newValue) {
+        if (value == newValue) {
+            value = null; // toggle off
         }
         else {
-            // toggle on
-            value = event.target.value;
+            value = newValue;            
         }
         // update store to reflect current state
         inputStore.input(id, value);
         // publish value changes up to parent too
-        dispatch('valueChange', {key: "" + id + "", value: "" + value + ""});              
-    }   
+        dispatch('valueChange', {key: "" + id + "", value: "" + value + ""});   
+    }
 </script>
 
 
@@ -57,9 +54,10 @@
         />
         <input type="hidden" id="{id}_store" value="{$inputStore[id]}"/>
         {#each values as v}
-            <button type="button" value="{v.value}" on:click="{act}" class="{value == v.value ? 'active' : ''}">{v.image != null ? '' : v.display ?? ''}
+            <button type="button" value="{v.value}" on:click="{() => updateValue(v.value)}" class="{value == v.value ? 'active' : ''}">
+                {v.image != null ? '' : v.display ?? ''}
                 {#if v.image != null}
-                    <img src="{v.image}" width="{v.imageWidth}" height="{v.imageHeigh}" on:click="{act}" class="{value == v.value ? 'active' : ''}" alt="{v.display}" />
+                    <img src="{v.image}" width="{v.imageWidth}" height="{v.imageHeight}" class="{value == v.value ? 'active' : ''}" alt="{v.display}" />
                 {/if}
             </button>
         {/each}
