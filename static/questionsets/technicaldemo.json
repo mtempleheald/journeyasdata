@@ -204,6 +204,59 @@
           },
           "components": [
             {
+              "id": "simpletextbutton",
+              "label": "This is a simple text button",
+              "type": "ButtonSelect",
+              "value": "Click Me",
+              "required": false,
+              "errorMessage": "Please select an option",
+              "help": "Surely you can figure this out",
+              "values": [
+                {
+                  "key": "simpletextbutton",
+                  "value": "simpletextbutton",
+                  "display": "Click me?"
+                }
+              ]
+            },
+            {
+              "id": "simpleimagebutton",
+              "label": "This is a simple image  button",
+              "type": "ButtonSelect",
+              "required": true,
+              "errorMessage": "Please select an option",
+              "help": "Surely you can figure this out",
+              "values": [
+                {
+                  "key": "simplecarbutton",
+                  "value": "car",
+                  "image": "https://image.flaticon.com/icons/svg/58/58463.svg",
+                  "imageWidth": "128",
+                  "imageHeight": "128",
+                  "display": "Car"
+                },
+                {
+                  "key": "simplebikebutton",
+                  "value": "bike",
+                  "image": "https://image.flaticon.com/icons/png/128/130/130278.png",
+                  "imageWidth": "128",
+                  "imageHeight": "128",
+                  "display": "Bike"
+                },
+                {
+                  "key": "simplebusbutton",
+                  "value": "bus",
+                  "image": "https://image.freepik.com/free-icon/bus_318-142528.jpg",
+                  "imageWidth": "128",
+                  "imageHeight": "128",
+                  "display": "Bus"
+                }
+              ]
+            },
+
+
+            
+            {
               "id": "buttonselect",
               "label": "It is a simple Yes/No question",
               "type": "YesNo",
