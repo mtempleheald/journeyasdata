@@ -1,6 +1,4 @@
 <script lang="ts">
-    import { setContext } from 'svelte'
-    import { writable } from 'svelte/store'
     import snarkdown from 'snarkdown';// https://github.com/developit/snarkdown/blob/master/test/index.js
     import Address from '$lib/capture/Address.svelte';
     import ButtonSelect from '$lib/capture/ButtonSelect.svelte';

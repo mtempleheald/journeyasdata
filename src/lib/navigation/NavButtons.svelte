@@ -1,35 +1,34 @@
 <script lang="typescript">
-    import { inputStore } from '$lib/stores/inputstore'
     import { questionSet } from '$lib/stores/questionset';
+    import { inputStore } from '$lib/stores/inputstore'
+    import { validationStore } from '$lib/stores/validationstore';
     import { pageValidator } from '$lib/validators/pagevalidator';
     import { goto } from '$app/navigation';
 
     export let backText : string = 'Back';
     export let nextText : string = 'Next';
     export let pageurl : string;
-    let pageUrls : string[];
-    let pageUrlIndex : number;
 
-    //function setup(){
-        pageUrls = $questionSet.pages.map(p => p.page.url);
-        pageUrlIndex = pageUrls.indexOf(pageurl);
-    //}
+    let pageUrls: string[] = $questionSet.pages.map(p => p.page.url);
+    function nextPage() {
+        return (pageUrls.indexOf(pageurl) < pageUrls.length - 1) 
+            ? pageUrls[pageUrls.indexOf(pageurl) + 1] 
+            : pageurl
+    };
+    function prevPage() {
+        return (pageUrls.indexOf(pageurl) > 0) 
+            ? pageUrls[pageUrls.indexOf(pageurl) - 1] 
+            : pageurl
+    };
+
     function back(event) {
-        console.log ("Navigating back from " + pageurl);
-    //    setup();
-        if (pageUrlIndex > 0){
-            goto(pageUrls[pageUrlIndex - 1]);
-        }
+        console.log ("Navigating back to " + prevPage());
+        goto(prevPage())
     }
     function next(event) {
-        console.log ("Navigating forward from " + pageurl);
-    //    setup();
-        if (pageValidator.valid($questionSet, pageurl, $inputStore)) {
-            console.log ("Page valid, redirecting...");
-            // page valid, go to next page
-            if (pageUrlIndex < pageUrls.length){
-                goto(pageUrls[pageUrlIndex + 1]);
-            }
+        if (pageValidator.valid($questionSet, pageurl, $inputStore, $validationStore)) {
+            console.log ("Page valid, redirecting to " + nextPage());
+            goto(nextPage());
         }
         else {
             console.log("Page invalid, correct before trying again");
