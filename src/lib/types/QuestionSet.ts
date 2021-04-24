@@ -46,8 +46,10 @@ export type Component = {
     errorMessage?: string;
     help?: string;
     pre?: string;
+    content?: string;
     post?: string;
     values?: Value[];
+    refdata?: string;
     dependsupon?: {
         id: string;
         value: string;
