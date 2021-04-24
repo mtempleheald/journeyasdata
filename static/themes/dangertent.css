@@ -36,7 +36,7 @@
     --footer-link:               var(--sg-darkgreen);
     --section-bg:                var(--sg-white);
     --section-txt:               var(--sg-darkgreen);
-    --section-border:            var(--sg-white);
+    --section-border:            none;
     --section-link:              inherit;
     --section-header-bg:         var(--sg-darkgrey);
     --section-header-txt:        var(--sg-lightgreen);
@@ -70,4 +70,8 @@ body {
     margin: 0;
     padding: 0;
     border: 0;
+}
+section {
+    max-width: 1000px;
+    margin: 0.5rem auto;
 }

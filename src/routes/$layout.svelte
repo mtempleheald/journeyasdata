@@ -22,8 +22,8 @@
 
 <svelte:head>
 	<title>{$questionSet.questionset.title}</title>
-    <link rel='stylesheet' href='/themes/dangertent.css'>
-    <!-- <link rel='stylesheet' href='/themes/narolecash.css'> -->
+    <!-- <link rel='stylesheet' href='/themes/dangertent.css'> -->
+    <link rel='stylesheet' href='/themes/narolecash.css'>
 </svelte:head>
 
 <header>

@@ -36,7 +36,7 @@
     --footer-link:               inherit;
     --section-bg:                var(--cn-white);
     --section-txt:               var(--cn-darkgrey);
-    --section-border:            var(--cn-lightgrey);
+    --section-border:            1px solid var(--cn-darkgrey);
     --section-link:              var(--cn-darkgrey);
     --section-header-bg:         var(--cn-blue);
     --section-header-txt:        var(--cn-white);
@@ -70,4 +70,8 @@ body {
     margin: 0;
     padding: 0;
     border: 0;
+}
+section {
+    max-width: 1000px;
+    margin: 0.5rem auto;
 }
