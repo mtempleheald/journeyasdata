@@ -12,6 +12,7 @@
 </script>
 
 <script>
+    import Wizard from '$lib/navigation/Wizard.svelte';
     import NavButtons from '$lib/navigation/NavButtons.svelte';
     import Section from '$lib/display/Section.svelte';
     import { questionSet } from '$lib/stores/questionset';
@@ -20,6 +21,8 @@
 
 </script>
 
+
+<Wizard pageurl={pageurl}/>
 
 {#each $questionSet.pages as p} 
   {#if p.page.url == pageurl}

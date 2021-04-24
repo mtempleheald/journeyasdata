@@ -23,7 +23,7 @@
     --header-txt:                inherit;
     --header-link:               inherit;
     --nav-bg:                    var(--cn-white);
-    --nav-border:                var(--cn-lightgrey);
+    --nav-border:                1px solid var(--cn-lightgrey);
     --nav-txt:                   var(--cn-darkgrey);
     --nav-highlight-bg:          var(--cn-green);
     --nav-highlight-txt:         inherit;

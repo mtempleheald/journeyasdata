@@ -16,21 +16,19 @@
 </script>
 
 <script>
-    import Wizard from '$lib/navigation/Wizard.svelte';
     import { questionSet } from '$lib/stores/questionset';
 </script>
 
 
 <svelte:head>
 	<title>{$questionSet.questionset.title}</title>
+    <link rel='stylesheet' href='/themes/narolecash.css'>
 </svelte:head>
 
 <header>
     <img src="https://fakeimg.pl/250x100/?text=Brand%20Logo" alt="logo">
     <h1>{$questionSet.questionset.title}</h1>    
 </header>
-
-<Wizard/>
 
 <slot></slot>
 
