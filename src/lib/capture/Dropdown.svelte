@@ -14,13 +14,13 @@
     
     // expose component properties
     export let id;
-    export let value = '';
+    export let value = $inputStore[id] ?? '';
     export let label;
-    export let help;
-    export let placeholder;
+    export let help = '';
+    export let placeholder = '';
     export let required = false;
     export let errorMessage = '';
-    export let refdata; // pass data in by refdata lookup
+    export let refdata = ''; // pass data in by refdata lookup
     export let values : any[] = []; // pass data in directly, overwritten by refdata
 
     // internal properties to support component logic
@@ -58,13 +58,14 @@
         <select
             id="{id}" 
             name="{id}" 
+            value="{value}"
             data-reference="{refdata}"
             required="{required}"
             on:blur={act}
             >
-            <option value="">{placeholder ? placeholder : '-- select --'}</option>
+            <option value="">{!placeholder ? '-- select --' : placeholder}</option>
             {#each values as val}
-                <option value="{val.key}">{val.value}</option>
+                <option value="{val.key}" selected={value==val.value}>{val.value}</option>
             {/each}
         </select>
         <input type="hidden" id="{id}_store" value="{$inputStore[id]}"/>

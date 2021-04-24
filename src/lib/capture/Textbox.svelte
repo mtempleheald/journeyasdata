@@ -6,10 +6,10 @@
 
     // expose component properties
     export let id;
-    export let value = '';
+    export let value = $inputStore[id] ?? '';
     export let label;
-    export let help;
-    export let placeholder;
+    export let help = '';
+    export let placeholder = '';
     export let required = false;
     export let errorMessage = '';
     export let type = 'text';

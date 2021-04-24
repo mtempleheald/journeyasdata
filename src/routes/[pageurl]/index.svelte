@@ -83,7 +83,6 @@
               label="{q.label}"
               help="{q.help ?? ''}"
               required="{q.required ?? false}"
-              image="{q.image ?? ''}"
               errorMessage="{q.errorMessage ?? ''}"
               values={[{value:"Y",display:"Yes"},{value:"N",display:"No"}]}
             >

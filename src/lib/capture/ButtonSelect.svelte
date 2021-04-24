@@ -5,9 +5,9 @@
 
     // expose component properties
     export let id;
-    export let value = '';
+    export let value = $inputStore[id] ?? '';
     export let label;
-    export let help;
+    export let help = '';
     export let required = false;
     export let errorMessage = 'Please select an option';
     export let values : any[] = [];
