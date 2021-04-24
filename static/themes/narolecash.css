@@ -40,12 +40,15 @@
     --section-navbtn-txt:        var(--cn-white);
     --input-bg:                  var(--cn-white);
     --input-txt:                 var(--cn-darkgrey);
+    --input-active-txt:          var(--cn-darkgrey);
+    --input-active-bg:           var(--cn-lightgrey);
     --input-actionbtn-bg:        var(--cn-white);
     --input-actionbtn-txt:       var(--cn-green);
     --input-btn-bg:              var(--cn-white);
     --input-btn-txt:             var(--cn-darkgrey);
-    --input-error-bg:            var(--cn-pink);
+    --input-error-bg:            var(--cn-white);
     --input-error-txt:           var(--cn-red);
+    --input-error-msg-bg:        var(--cn-pink);
     --input-error-msg-txt:       var(--cn-darkgrey);
     --help-btn-bg:               var(--cn-white);
     --help-btn-txt:              var(--cn-blue);

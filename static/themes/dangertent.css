@@ -42,12 +42,15 @@
     --section-navbtn-txt:        var(--sg-white);
     --input-bg:                  var(--sg-white);
     --input-txt:                 var(--sg-darkgreen);
+    --input-active-txt:          inherit;
+    --input-active-bg:           inherit;
     --input-actionbtn-bg:        var(--sg-lightgreen);
     --input-actionbtn-txt:       var(--sg-darkgreen);
     --input-btn-bg:              var(--sg-lightgreen);
     --input-btn-txt:             var(--sg-darkgrey);
     --input-error-bg:            var(--sg-pink);
-    --input-error-txt:           var(--sg-red);
+    --input-error-txt:           var(--sg-darkgrey);
+    --input-error-msg-bg:        var(--sg-pink);
     --input-error-msg-txt:       var(--sg-red);
     --help-btn-bg:               var(--sg-darkgreen);
     --help-btn-txt:              var(--sg-white);

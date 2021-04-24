@@ -1,4 +1,4 @@
-<script lang="typescript">
+<script lang="ts">
     import { setContext } from 'svelte'
     import { writable } from 'svelte/store'
     import snarkdown from 'snarkdown';// https://github.com/developit/snarkdown/blob/master/test/index.js
