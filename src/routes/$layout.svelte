@@ -22,7 +22,8 @@
 
 <svelte:head>
 	<title>{$questionSet.questionset.title}</title>
-    <link rel='stylesheet' href='/themes/narolecash.css'>
+    <link rel='stylesheet' href='/themes/dangertent.css'>
+    <!-- <link rel='stylesheet' href='/themes/narolecash.css'> -->
 </svelte:head>
 
 <header>
@@ -34,21 +35,6 @@
 
 
 <style>
-    /* alternative approach at https://github.com/josefaidt/svelte-themer */
-    :root {
-        --question-colour-bg: lightblue;
-        --question-colour-bg-highlight: khaki;
-        --question-colour-text: black;
-        --question-colour-text-highlight: black;
-        --border-style: solid;
-        --address-colour-bg: lightblue;
-        --address-colour-bg-highlight: lightblue;
-        --address-colour-text: black;
-        --address-colour-text-highlight: black;
-    }
-    :global(body) {
-        margin: 0;
-    }
     header {
         border-bottom: 1px solid black;
         display: flex;

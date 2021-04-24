@@ -13,9 +13,11 @@
     /* font family */
     --sg-font:       "ITC Avant Garde Gothic W01","Avant Garde",Avantgarde,"Century Gothic",CenturyGothic,AppleGothic,Helvetica,Arial,sans-serif;
 
-    /* exposed properties (don't cross-reference, inherit or pull from above) */
-    --body-bg:                   var(--sg-lightgrey);
-    --body-family:               var(--sg-font);
+
+
+    
+
+    /* exposed properties (don't cross-reference, inherit or pull from above) */             
     --cookie-bg:                 var(--sg-lightgreen);
     --cookie-txt:                var(--sg-darkgrey);
     --cookie-link:               var(--sg-darkgreen);
@@ -41,9 +43,9 @@
     --section-navbtn-bg:         var(--sg-darkgreen);
     --section-navbtn-txt:        var(--sg-white);
     --input-bg:                  var(--sg-white);
-    --input-txt:                 var(--sg-darkgreen);
-    --input-active-txt:          inherit;
-    --input-active-bg:           inherit;
+    --input-txt:                 var(--sg-darkgrey);
+    --input-active-txt:          var(--sg-darkgrey);
+    --input-active-bg:           var(--sg-white);
     --input-actionbtn-bg:        var(--sg-lightgreen);
     --input-actionbtn-txt:       var(--sg-darkgreen);
     --input-btn-bg:              var(--sg-lightgreen);
@@ -58,5 +60,14 @@
     --help-btn-active-txt:       var(--sg-white);
     --help-bg:                   var(--sg-white);
     --help-txt:                  var(--sg-darkgrey);
-    --help-border:               var(--sg-white);
+    --help-border:               1px solid var(--sg-white);
+}
+
+/* global settings */
+body {
+    background-color: var(--sg-lightgrey);
+    font-family: var(--sg-font);
+    margin: 0;
+    padding: 0;
+    border: 0;
 }

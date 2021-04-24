@@ -11,9 +11,13 @@
     /* font family */
     --cn-font:      "Linotype - Praxis Next Regular"; /* Also Light, SemiBold */
 
+
+
+
+
+
+
     /* exposed properties (don't cross-reference, inherit or pull from above) */
-    --body-bg:                   var(--cn-white);
-    --body-family:               var(--cn-font);
     --cookie-bg:                 var(--cn-white);
     --cookie-txt:                var(--cn-darkgrey);
     --cookie-link:               var(--cn-darkgrey);
@@ -56,5 +60,14 @@
     --help-btn-active-txt:       var(--cn-white);
     --help-bg:                   var(--cn-white);
     --help-txt:                  var(--cn-darkgrey);
-    --help-border:               var(--cn-lightgrey);
+    --help-border:               1px solid var(--cn-lightgrey);
+}
+
+/* global settings */
+body {
+    background-color: var(--cn-white);
+    font-family: var(--cn-font);
+    margin: 0;
+    padding: 0;
+    border: 0;
 }
