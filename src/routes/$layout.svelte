@@ -20,15 +20,16 @@
     import { questionSet } from '$lib/stores/questionset';
 </script>
 
+
 <svelte:head>
 	<title>{$questionSet.questionset.title}</title>
 </svelte:head>
-
 
 <header>
     <img src="https://fakeimg.pl/250x100/?text=Brand%20Logo" alt="logo">
     <h1>{$questionSet.questionset.title}</h1>    
 </header>
+
 <Wizard/>
 
 <slot></slot>

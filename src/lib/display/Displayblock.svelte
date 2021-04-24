@@ -9,6 +9,13 @@
 </script>
 
 
+<div class="question {active}" on:mouseenter={enter} on:mouseleave={leave} >
+    <slot name="pre"></slot>
+    <slot name="main"></slot>
+    <slot name="post"></slot>
+</div>
+  
+
 <style>
     :global(.question) {
         background-color: var(--question-colour-bg,white);
@@ -25,11 +32,3 @@
         padding: 0.5rem;
     }
 </style>
-
-
-<div class="question {active}" on:mouseenter={enter} on:mouseleave={leave} >
-    <slot name="pre"></slot>
-    <slot name="main"></slot>
-    <slot name="post"></slot>
-</div>
-  

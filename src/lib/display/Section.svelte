@@ -3,6 +3,7 @@
     export let logo;
 </script>
     
+
 <section>
     <header>
         <img src={logo} alt="logo">
@@ -10,6 +11,7 @@
     </header>
     <slot></slot>
 </section>
+
 
 <style>
     section {
