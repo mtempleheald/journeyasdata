@@ -9,17 +9,17 @@
     import Textbox from '$lib/capture/Textbox.svelte';
     import Vehicle from '$lib/capture/Vehicle.svelte';
     import { inputStore } from '$lib/stores/inputstore';
+    import { validationStore } from '$lib/stores/validationstore';
     import type { Component } from '$lib/types/QuestionSet';
 
     export let component: Component;
 
-    function writeToStore(key, value) {
-        const w = writable(value);
-        setContext(key, w); 
-    }
-    function childUpdated(event) {
-      console.log(`dispatched event - {key: ${event.detail.key}, value: ${event.detail.value}}`)
-      //writeToStore(event.detail.key, event.detail.value) // can only setContext on component initialisation
+    function componentUpdated(event) {
+      console.log(`dispatched event - {key: ${event.detail.key}, value: ${event.detail.value}, valid: ${event.detail.valid}}`)
+      // update input store with latest value, regardless of validity
+      inputStore.input(event.detail.key, event.detail.value);
+      // update validation store for use by validators
+      validationStore.input(event.detail.key, event.detail.valid);
     }
     function addressUpdated(event) {
       console.log(`dispatched event - ${event.detail.key}`)
@@ -32,7 +32,7 @@
 <svelte:component 
   this={Textbox} 
   type="{component.type ?? 'text'}"
-  on:valueChange="{childUpdated}"
+  on:valueChange="{componentUpdated}"
   id="{component.id}"
   label="{component.label}"
   placeholder="{component.placeholder ?? ''}"
@@ -53,7 +53,7 @@
 </svelte:component>
 {:else if component.type == "YesNo"}
   <ButtonSelect
-    on:valueChange="{childUpdated}"
+    on:valueChange="{componentUpdated}"
     id="{component.id}"
     label="{component.label}"
     help="{component.help ?? ''}"
@@ -74,7 +74,7 @@
     </ButtonSelect>
 {:else if component.type == "ButtonSelect"}
   <ButtonSelect
-    on:valueChange="{childUpdated}"
+    on:valueChange="{componentUpdated}"
     id="{component.id}"
     label="{component.label}"
     help="{component.help ?? ''}"
@@ -95,7 +95,7 @@
     </ButtonSelect>
 {:else if component.type == "Dropdown"}
   <Dropdown
-    on:valueChange="{childUpdated}"
+    on:valueChange="{componentUpdated}"
     id="{component.id}"
     label="{component.label}"
     refdata="{component.refdata}"

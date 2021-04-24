@@ -33,7 +33,7 @@
         // update store to reflect current state
         inputStore.input(id, value);
         // publish value changes up to parent too
-        dispatch('valueChange', {key: "" + id + "", value: "" + value + ""});   
+        dispatch('valueChange', {key: id, value: value, valid: (!required || !!value) });   
     }
 </script>
 

@@ -5,7 +5,7 @@
     import Helptext from '$lib/display/Helptext.svelte';
 
     // expose component properties
-    export let id;
+    export let id = '';
     export let value = $inputStore[id] ?? '';
     export let label;
     export let help = '';
@@ -37,11 +37,9 @@
         active = "";
     }    
     function act(event) {
+        // transform
         let val = (type=='Upper') ? event.target.value.toUpperCase() : event.target.value;
-        // the store must reflect current state of user input
-        inputStore.input(event.target.id, val);
-        // also publish value changes up to parent
-        dispatch('valueChange', {key: "" + id + "", value: "" + val+ ""});
+        console.log(event.target);
         // validate https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation#the_constraint_validation_api
         if (event.target.validity.valid) {
             valid = true;
@@ -51,6 +49,8 @@
             valid = false;
             fallbackError = event.target.validationMessage;
         }
+        // publish changes up to parent, let it handle state
+        dispatch('valueChange', {key: id, value: val, valid: valid});
     }
     function focus(event) {
         dispatch('focus', id);

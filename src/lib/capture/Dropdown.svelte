@@ -37,10 +37,8 @@
         active = "";
     }
     function act(event) {
-        // regardless of any validation the store must reflect current state of user input
-        inputStore.input(event.target.id, event.target.value);
         // publish value changes up to parent too
-        dispatch('valueChange', {key: "" + id + "", value: "" + event.target.value + ""});
+        dispatch('valueChange', {key: id, value: event.target.value, valid: (!required || !!event.target.value)});
         invalid = (required && !event.target.value);
     }
 </script>
