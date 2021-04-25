@@ -14,13 +14,13 @@
     
     // expose component properties
     export let id;
-    export let value = '';
+    export let value = $inputStore[id] ?? '';
     export let label;
-    export let help;
-    export let placeholder;
+    export let help = '';
+    export let placeholder = '';
     export let required = false;
     export let errorMessage = '';
-    export let refdata; // pass data in by refdata lookup
+    export let refdata = ''; // pass data in by refdata lookup
     export let values : any[] = []; // pass data in directly, overwritten by refdata
 
     // internal properties to support component logic
@@ -37,10 +37,8 @@
         active = "";
     }
     function act(event) {
-        // regardless of any validation the store must reflect current state of user input
-        inputStore.input(event.target.id, event.target.value);
         // publish value changes up to parent too
-        dispatch('valueChange', {key: "" + id + "", value: "" + event.target.value + ""});
+        dispatch('valueChange', {key: id, value: event.target.value, valid: (!required || !!event.target.value)});
         invalid = (required && !event.target.value);
     }
 </script>
@@ -58,13 +56,14 @@
         <select
             id="{id}" 
             name="{id}" 
+            value="{value}"
             data-reference="{refdata}"
             required="{required}"
             on:blur={act}
             >
-            <option value="">{placeholder ? placeholder : '-- select --'}</option>
+            <option value="">{!placeholder ? '-- select --' : placeholder}</option>
             {#each values as val}
-                <option value="{val.key}">{val.value}</option>
+                <option value="{val.key}" selected={value==val.value}>{val.value}</option>
             {/each}
         </select>
         <input type="hidden" id="{id}_store" value="{$inputStore[id]}"/>
@@ -80,25 +79,26 @@
 
 
 <style>
-    :global(.question) {
-        background-color: var(--question-colour-bg,white);
-        color: var(--question-colour-text, black);
-        border: 1px var(--border-style, dashed) var(--question-colour-text, black);
-    }
-    :global(.question.active, .question:focus-within) {
-        background-color: var(--question-colour-bg-highlight, yellow);
-        color: var(--question-colour-text-highlight, var(--question-colour-text, black));
-    }
-    /* The rest is not global - the component controls how it is presented, other than skins (colours, borders etc) */
     .question {
         margin: 0.5rem;
         padding: 0.5rem;
+        background-color: var(--input-bg, white);
+        color: var(--input-txt, black);
+        border: var(--input-border, 1px solid black);
+    }
+    .question.active {
+        background-color: var(--input-active-bg, rgb(255, 255, 214));
+        color: var(--input-active-txt, black);
+    }
+    .question.invalid {
+        background-color: var(--input-error-bg, pink);
+        color: var(--input-error-txt, red);
     }
     .required {
         color: var(--question-colour-text, black);
     }
-    .invalid {
-        background-color: var(--question-color-bg-error, palevioletred);
-        color: var(--question-color-text-error, black);
+    .error {
+        background-color: var(--input-error-msg-bg, red);
+        color: var(--input-error-msg-txt, pink);
     }
 </style>

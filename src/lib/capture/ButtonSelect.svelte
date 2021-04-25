@@ -5,9 +5,9 @@
 
     // expose component properties
     export let id;
-    export let value = '';
+    export let value = $inputStore[id] ?? '';
     export let label;
-    export let help;
+    export let help = '';
     export let required = false;
     export let errorMessage = 'Please select an option';
     export let values : any[] = [];
@@ -23,20 +23,18 @@
     function leave() {
         active = "";
     } 
-    function act(event) {        
-        if (value == event.target.value) {
-            // toggle off
-            value = null; 
+    function updateValue(newValue) {
+        if (value == newValue) {
+            value = null; // toggle off
         }
         else {
-            // toggle on
-            value = event.target.value;
+            value = newValue;            
         }
         // update store to reflect current state
         inputStore.input(id, value);
         // publish value changes up to parent too
-        dispatch('valueChange', {key: "" + id + "", value: "" + value + ""});              
-    }   
+        dispatch('valueChange', {key: id, value: value, valid: (!required || !!value) });   
+    }
 </script>
 
 
@@ -56,7 +54,12 @@
         />
         <input type="hidden" id="{id}_store" value="{$inputStore[id]}"/>
         {#each values as v}
-        <button type="button" value="{v.value}" on:click="{act}" class="{value == v.value ? 'active' : ''}">{v.display}</button>
+            <button type="button" value="{v.value}" on:click="{() => updateValue(v.value)}" class="{value == v.value ? 'active' : ''}">
+                {v.image != null ? '' : v.display ?? ''}
+                {#if v.image != null}
+                    <img src="{v.image}" width="{v.imageWidth}" height="{v.imageHeight}" class="{value == v.value ? 'active' : ''}" alt="{v.display}" />
+                {/if}
+            </button>
         {/each}
     {/if}
     {#if help}
@@ -70,29 +73,30 @@
 
 
 <style>
-    :global(.buttonselect) {
-        background-color: var(--question-colour-bg,white);
-        color: var(--question-colour-text, black);
-        border: 1px var(--border-style, dashed) var(--question-colour-text, black);
-    }
-    :global(.buttonselect.active, .buttonselect:focus-within) {
-        background-color: var(--question-colour-bg-highlight, yellow);
-        color: var(--question-colour-text-highlight, var(--question-colour-text, black));
-    }
-    /* The rest is not global - the component controls how it is presented, other than skins (colours, borders etc) */
     .buttonselect {
         margin: 0.5rem;
         padding: 0.5rem;
+        background-color: var(--input-bg, white);
+        color: var(--input-txt, black);
+        border: var(--input-border, 1px solid black);
+    }
+    .buttonselect.active {
+        background-color: var(--input-active-bg, rgb(255, 255, 214));
+        color: var(--input-active-txt, black);
+    }
+    .buttonselect.invalid {
+        background-color: var(--input-error-bg, pink);
+        color: var(--input-error-txt, red);
     }
     .required {
         color: var(--question-colour-text, black);
     }
-    .invalid {
-        background-color: var(--question-color-bg-error, palevioletred);
-        color: var(--question-color-text-error, black);
+    .error {
+        background-color: var(--input-error-msg-bg, red);
+        color: var(--input-error-msg-txt, pink);
     }
     button.active {
-        background-color: var(--question-color-bg-highlight, yellow);
-        color: var(--question-color-text-highlight, black);
+        background-color: var(--input-active-bg, rgb(255, 255, 214));
+        color: var(--input-active-txt, black);
     }
 </style>

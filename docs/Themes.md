@@ -13,26 +13,7 @@ Theming is what makes this possible.
 - Components responsible for their own "quality" cosmetics, e.g. appropriate border/margin/padding to avoid looking unprofessional
 - Components must be agnostic to screen/viewport/font size - design for mobile-first and use rem or other dynamic sizing where necessary
 - Website-level themes are responsible for the consistent look-and-feel and define the colour pallette.
-- Each component defines its own defaults for relevant properties, but exposes customisable CSS variables
+- Each component defines its own defaults for relevant properties, but exposes customisable CSS variables, set in `/static/themes/`
 - Avoid `:global()` styles otherwise - breaks component boundaries, lose the benefits of Svelte's scoped styling
 - Absolutely no hard-coded data in any low level components, ever - expose an optional parameter instead.
 
-## CSS Variables
-
-Questions
-```
---question-colour-bg
---question-colour-bg-highlight
---question-colour-bg-error
---question-colour-text
---question-colour-text-highlight
---question-colour-text-error
-```
-
-Address component
-```
---address-colour-bg
---address-colour-bg-highlight
---address-colour-text
---address-colour-text-highlight
-```

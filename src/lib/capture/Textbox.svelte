@@ -5,11 +5,11 @@
     import Helptext from '$lib/display/Helptext.svelte';
 
     // expose component properties
-    export let id;
-    export let value = '';
+    export let id = '';
+    export let value = $inputStore[id] ?? '';
     export let label;
-    export let help;
-    export let placeholder;
+    export let help = '';
+    export let placeholder = '';
     export let required = false;
     export let errorMessage = '';
     export let type = 'text';
@@ -37,11 +37,9 @@
         active = "";
     }    
     function act(event) {
+        // transform
         let val = (type=='Upper') ? event.target.value.toUpperCase() : event.target.value;
-        // the store must reflect current state of user input
-        inputStore.input(event.target.id, val);
-        // also publish value changes up to parent
-        dispatch('valueChange', {key: "" + id + "", value: "" + val+ ""});
+        console.log(event.target);
         // validate https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation#the_constraint_validation_api
         if (event.target.validity.valid) {
             valid = true;
@@ -51,6 +49,8 @@
             valid = false;
             fallbackError = event.target.validationMessage;
         }
+        // publish changes up to parent, let it handle state
+        dispatch('valueChange', {key: id, value: val, valid: valid});
     }
     function focus(event) {
         dispatch('focus', id);
@@ -58,7 +58,11 @@
 
 </script>
 
-<div transition:blur class="question {active} {valid?'':'invalid'}" on:mouseenter={enter} on:mouseleave={leave} >
+<div class="question {active} {valid?'':'invalid'}" 
+    transition:blur 
+    on:mouseenter={enter} 
+    on:mouseleave={leave} 
+>
     <slot name="pre"></slot>
     {#if label}
         <label for="{id}">{label}</label>
@@ -89,26 +93,27 @@
     
 
 <style>
-    :global(.question) {
-        background-color: var(--question-colour-bg,white);
-        color: var(--question-colour-text, black);
-        border: 1px var(--border-style, dashed) var(--question-colour-text, black);
-    }
-    :global(.question.active, .question:focus-within) {
-        background-color: var(--question-colour-bg-highlight, yellow);
-        color: var(--question-colour-text-highlight, var(--question-colour-text, black));
-    }
-    /* The rest is not global - the component controls how it is presented, other than skins (colours, borders etc) */
     .question {
         margin: 0.5rem;
         padding: 0.5rem;
+        background-color: var(--input-bg, white);
+        color: var(--input-txt, black);
+        border: var(--input-border, 1px solid black);
+    }
+    .question.active {
+        background-color: var(--input-active-bg, rgb(255, 255, 214));
+        color: var(--input-active-txt, black);
+    }
+    .question.invalid {
+        background-color: var(--input-error-bg, pink);
+        color: var(--input-error-txt, red);
     }
     .required {
-        color: var(--question-colour-text, black);
+        color: var(--input-txt-required, black);
     }
-    .invalid {
-        background-color: var(--question-color-bg-error, palevioletred);
-        color: var(--question-color-text-error, black);
+    .error {
+        background-color: var(--input-error-msg-bg, red);
+        color: var(--input-error-msg-txt, pink);
     }
     .upper {
         text-transform: uppercase;

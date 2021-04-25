@@ -3,27 +3,23 @@
     export let logo;
 </script>
     
+
 <section>
     <header>
-        <img src={logo} alt="logo">
+        <img src={logo} alt="{title} section logo">
         <h3>{title}</h3>
     </header>
     <slot></slot>
 </section>
 
+
 <style>
     section {
-        border: 1px solid black;
-        margin: 1rem;
-        padding: 0.5rem;
+        border: var(--section-border,1px solid black);
     }
     header {
         display: flex;
         flex-direction: row;
-    }
-    img {
-        height: 50px;
-        width: 100px;
     }
     h3 {
         height: 50px;

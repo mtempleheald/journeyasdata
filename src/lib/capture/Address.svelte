@@ -73,7 +73,6 @@
         property = '';
         address = null;
         validpostcode = true;
-        postcodeInput.focus();
     }
     
 </script>
@@ -93,7 +92,7 @@
     ></Textbox>
     <Dropdown 
         id="property"
-        value="property"
+        value="{property}"
         label="Property"
         placeholder="{propertyPlaceholder}"
         values={propertyLov??[]}

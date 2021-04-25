@@ -18,7 +18,9 @@ export type Section = {
     }
     components: Component[];
 }
-export type Component = {
+export type Component = BaseComponent | AddressComponent | VehicleComponent;
+
+export type BaseComponent = {
     type: "Address" 
         | "ButtonSelect"
         | "Colour" 
@@ -46,8 +48,10 @@ export type Component = {
     errorMessage?: string;
     help?: string;
     pre?: string;
+    content?: string;
     post?: string;
     values?: Value[];
+    refdata?: string;
     dependsupon?: {
         id: string;
         value: string;
@@ -56,4 +60,15 @@ export type Component = {
 export type Value = {
     key: string;
     value: string;
+}
+export type AddressComponent = BaseComponent & {
+    postcodePlaceholder: string;
+    postcodeLabel: string;
+    buttonLabel: string;
+    houseLabel: string;
+}
+export type VehicleComponent = BaseComponent & {
+    regnumPlaceholder: string;
+    regnumLabel: string;
+    buttonLabel: string;
 }

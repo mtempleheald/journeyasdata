@@ -2,54 +2,49 @@
 	/**
 	 * @type {import('@sveltejs/kit').Load}
 	 */
-	export async function load({ page, fetch, session, context }) {
+	export async function load({ page, fetch, session, context }) {        
         // console.log('Loading questionset'); // proves that this isn't loaded on each subsequent page request
-        const url = '/questionsets/technicaldemo.json'; // change this to try out different questionsets
+
+        const brand = 'technicaldemo'; // TODO: move this to config file if possible
+        const qsurl = '/questionsets/'+brand+'.json'; // questionset name and css filename must match brand
         let qs;
-        await fetch(url)
+        await fetch(qsurl)
                 .then(resp => resp.json())
                 .then(data => qs = data);
-        questionSet.set(qs);
         
-		return {};
+		return {
+            props: {
+                qs: qs,
+                brand: brand
+            }
+        };
 	}
 </script>
 
-<script>
-    import Wizard from '$lib/navigation/Wizard.svelte';
-    import { questionSet } from '$lib/stores/questionset';
+<script lang="ts">
+    import { setContext } from 'svelte';
+    import type { QuestionSet } from '$lib/types/QuestionSet';
+    
+    export let brand: string;
+    export let qs: QuestionSet;    
+    setContext("questionset", qs); // load questionset once, referenced throughout user journey
 </script>
 
+
 <svelte:head>
-	<title>{$questionSet.questionset.title}</title>
+    <title>{qs.questionset.title}</title>
+    <link rel='stylesheet' href="/themes/{brand}.css">
 </svelte:head>
 
-
 <header>
-    <img src="https://fakeimg.pl/250x100/?text=Brand%20Logo" alt="logo">
-    <h1>{$questionSet.questionset.title}</h1>    
+    <img src="https://fakeimg.pl/250x100/?text={brand}" alt="logo">
+    <h1>{qs.questionset.title}</h1>
 </header>
-<Wizard/>
 
 <slot></slot>
 
 
 <style>
-    /* alternative approach at https://github.com/josefaidt/svelte-themer */
-    :root {
-        --question-colour-bg: lightblue;
-        --question-colour-bg-highlight: khaki;
-        --question-colour-text: black;
-        --question-colour-text-highlight: black;
-        --border-style: solid;
-        --address-colour-bg: lightblue;
-        --address-colour-bg-highlight: lightblue;
-        --address-colour-text: black;
-        --address-colour-text-highlight: black;
-    }
-    :global(body) {
-        margin: 0;
-    }
     header {
         border-bottom: 1px solid black;
         display: flex;

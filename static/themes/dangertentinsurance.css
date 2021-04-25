@@ -1,0 +1,77 @@
+:root {
+    /* complete colour pallete */
+    --sg-brightpink: #f5389d;
+    --sg-darkgreen:  #7da031;
+    --sg-darkgrey:   #212529;
+    --sg-lightgreen: #f4f7e3;
+    --sg-lightgrey:  #ebeceb;
+    --sg-pink:       #f8dfe3;
+    --sg-red:        #ce1d41;
+    --sg-white:      #fff;
+    --regnum:        #fd0;
+
+    /* font family */
+    --sg-font:       "ITC Avant Garde Gothic W01","Avant Garde",Avantgarde,"Century Gothic",CenturyGothic,AppleGothic,Helvetica,Arial,sans-serif;
+
+
+
+    
+
+    /* exposed properties (don't cross-reference, inherit or pull from above) */             
+    --cookie-bg:                 var(--sg-lightgreen);
+    --cookie-txt:                var(--sg-darkgrey);
+    --cookie-link:               var(--sg-darkgreen);
+    --cookie-button-bg:          var(--sg-darkgreen);
+    --cookie-button-txt:         var(--sg-white);
+    --header-bg:                 var(--sg-white);
+    --header-txt:                var(--sg-lightgreen);
+    --header-link:               var(--sg-darkgreen);
+    --nav-bg:                    var(--sg-lightgrey);
+    --nav-border:                1px solid var(--sg-darkgrey);
+    --nav-txt:                   var(--sg-darkgrey);
+    --nav-highlight-bg:          var(--sg-darkgreen);
+    --nav-highlight-txt:         var(--sg-white);
+    --footer-bg:                 var(--sg-lightgreen);
+    --footer-txt:                var(--sg-darkgrey);
+    --footer-link:               var(--sg-darkgreen);
+    --section-bg:                var(--sg-white);
+    --section-txt:               var(--sg-darkgreen);
+    --section-border:            none;
+    --section-link:              inherit;
+    --section-header-bg:         var(--sg-darkgrey);
+    --section-header-txt:        var(--sg-lightgreen);
+    --section-navbtn-bg:         var(--sg-darkgreen);
+    --section-navbtn-txt:        var(--sg-white);
+    --input-bg:                  var(--sg-white);
+    --input-txt:                 var(--sg-darkgrey);
+    --input-active-txt:          var(--sg-darkgrey);
+    --input-active-bg:           var(--sg-white);
+    --input-actionbtn-bg:        var(--sg-lightgreen);
+    --input-actionbtn-txt:       var(--sg-darkgreen);
+    --input-btn-bg:              var(--sg-lightgreen);
+    --input-btn-txt:             var(--sg-darkgrey);
+    --input-error-bg:            var(--sg-pink);
+    --input-error-txt:           var(--sg-darkgrey);
+    --input-error-msg-bg:        var(--sg-pink);
+    --input-error-msg-txt:       var(--sg-red);
+    --help-btn-bg:               var(--sg-darkgreen);
+    --help-btn-txt:              var(--sg-white);
+    --help-btn-active-bg:        var(--sg-pink);
+    --help-btn-active-txt:       var(--sg-white);
+    --help-bg:                   var(--sg-white);
+    --help-txt:                  var(--sg-darkgrey);
+    --help-border:               1px solid var(--sg-white);
+}
+
+/* global settings */
+body {
+    background-color: var(--sg-lightgrey);
+    font-family: var(--sg-font);
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+section {
+    max-width: 1000px;
+    margin: 0.5rem auto;
+}
