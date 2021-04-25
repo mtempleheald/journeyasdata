@@ -17,18 +17,19 @@
   
 
 <style>
-    :global(.question) {
-        background-color: var(--question-colour-bg,white);
-        color: var(--question-colour-text, black);
-        border: 1px var(--border-style, dashed) var(--question-colour-text, black);
-    }
-    :global(.question.active, .question:focus-within) {
-        background-color: var(--question-colour-bg-highlight, lightyellow);
-        color: var(--question-colour-text-highlight, var(--question-colour-text, black));
-    }
-    /* The rest is not global - the component controls how it is presented, other than skins (colours, borders etc) */
     .question {
         margin: 0.5rem;
         padding: 0.5rem;
+        background-color: var(--input-bg, white);
+        color: var(--input-txt, black);
+        border: var(--input-border, 1px solid black);
+    }
+    .question.active {
+        background-color: var(--input-active-bg, rgb(255, 255, 214));
+        color: var(--input-active-txt, black);
+    }
+    .question.invalid {
+        background-color: var(--input-error-bg, pink);
+        color: var(--input-error-txt, red);
     }
 </style>
