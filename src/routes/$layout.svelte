@@ -5,7 +5,8 @@
 	export async function load({ page, fetch, session, context }) {        
         // console.log('Loading questionset'); // proves that this isn't loaded on each subsequent page request
 
-        const qsurl = '/questionsets/'+import.meta.env.VITE_BRAND+'.json';
+        let brand = 'technicaldemo'// ximport.meta.env.VITE_BRAND;
+        const qsurl = `/questionsets/${brand}.json`;
         let qs;
         await fetch(qsurl)
                 .then(resp => resp.json())
@@ -13,7 +14,8 @@
         
 		return {
             props: {
-                qs: qs
+                qs: qs,
+                brand: brand
             }
         };
 	}
@@ -23,6 +25,7 @@
     import { setContext } from 'svelte';
     import type { QuestionSet } from '$lib/types/QuestionSet';
     
+    export let brand: string;
     export let qs: QuestionSet;    
     setContext("questionset", qs); // load questionset once, referenced throughout user journey
 </script>
@@ -30,11 +33,11 @@
 
 <svelte:head>
     <title>{qs.questionset.title}</title>
-    <link rel='stylesheet' href="/themes/{import.meta.env.VITE_BRAND}.css">
+    <link rel='stylesheet' href="/themes/{brand}.css">
 </svelte:head>
 
 <header>
-    <img src="https://fakeimg.pl/250x100/?text={import.meta.env.VITE_BRAND}" alt="logo">
+    <img src="https://fakeimg.pl/250x100/?text={brand}" alt="logo">
     <h1>{qs.questionset.title}</h1>
 </header>
 
