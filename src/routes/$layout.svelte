@@ -2,33 +2,43 @@
 	/**
 	 * @type {import('@sveltejs/kit').Load}
 	 */
-	export async function load({ page, fetch, session, context }) {
+	export async function load({ page, fetch, session, context }) {        
         // console.log('Loading questionset'); // proves that this isn't loaded on each subsequent page request
-        const url = '/questionsets/technicaldemo.json'; // change this to try out different questionsets
+
+        const brand = 'technicaldemo'; // TODO: move this to config file if possible
+        const qsurl = '/questionsets/'+brand+'.json'; // questionset name and css filename must match brand
         let qs;
-        await fetch(url)
+        await fetch(qsurl)
                 .then(resp => resp.json())
                 .then(data => qs = data);
-        questionSet.set(qs);
         
-		return {};
+		return {
+            props: {
+                qs: qs,
+                brand: brand
+            }
+        };
 	}
 </script>
 
-<script>
-    import { questionSet } from '$lib/stores/questionset';
+<script lang="ts">
+    import { setContext } from 'svelte';
+    import type { QuestionSet } from '$lib/types/QuestionSet';
+    
+    export let brand: string;
+    export let qs: QuestionSet;    
+    setContext("questionset", qs); // load questionset once, referenced throughout user journey
 </script>
 
 
 <svelte:head>
-	<title>{$questionSet.questionset.title}</title>
-    <!-- <link rel='stylesheet' href='/themes/dangertent.css'> -->
-    <link rel='stylesheet' href='/themes/narolecash.css'>
+    <title>{qs.questionset.title}</title>
+    <link rel='stylesheet' href="/themes/{brand}.css">
 </svelte:head>
 
 <header>
-    <img src="https://fakeimg.pl/250x100/?text=Brand%20Logo" alt="logo">
-    <h1>{$questionSet.questionset.title}</h1>    
+    <img src="https://fakeimg.pl/250x100/?text={brand}" alt="logo">
+    <h1>{qs.questionset.title}</h1>
 </header>
 
 <slot></slot>

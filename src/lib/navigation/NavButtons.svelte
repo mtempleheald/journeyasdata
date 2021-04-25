@@ -1,15 +1,16 @@
-<script lang="typescript">
-    import { questionSet } from '$lib/stores/questionset';
+<script lang="ts">
+    import { goto } from '$app/navigation';
+    import type { QuestionSet } from '$lib/types/QuestionSet';
     import { inputStore } from '$lib/stores/inputstore'
     import { validationStore } from '$lib/stores/validationstore';
     import { pageValidator } from '$lib/validators/pagevalidator';
-    import { goto } from '$app/navigation';
 
-    export let backText : string = 'Back';
-    export let nextText : string = 'Next';
-    export let pageurl : string;
+    export let questionset: QuestionSet;
+    export let pageurl: string;
+    export let backText: string = 'Back';
+    export let nextText: string = 'Next';    
 
-    let pageUrls: string[] = $questionSet.pages.map(p => p.page.url);
+    let pageUrls: string[] = questionset.pages.map(p => p.page.url);
     function nextPage() {
         return (pageUrls.indexOf(pageurl) < pageUrls.length - 1) 
             ? pageUrls[pageUrls.indexOf(pageurl) + 1] 
@@ -26,7 +27,7 @@
         goto(prevPage())
     }
     function next(event) {
-        if (pageValidator.valid($questionSet, pageurl, $inputStore, $validationStore)) {
+        if (pageValidator.valid(questionset, pageurl, $inputStore, $validationStore)) {
             console.log ("Page valid, redirecting to " + nextPage());
             goto(nextPage());
         }

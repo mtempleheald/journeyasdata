@@ -12,19 +12,23 @@
 </script>
 
 <script>
+    import { getContext } from 'svelte';
     import Wizard from '$lib/navigation/Wizard.svelte';
     import NavButtons from '$lib/navigation/NavButtons.svelte';
     import Section from '$lib/display/Section.svelte';
-    import { questionSet } from '$lib/stores/questionset';
     import ComponentBuilder from '$lib/ComponentBuilder.svelte';
+
     export let pageurl;
+    const qs = getContext("questionset");
 
 </script>
 
 
-<Wizard pageurl={pageurl}/>
+<Wizard 
+  questionset = {qs}
+  pageurl={pageurl}/>
 
-{#each $questionSet.pages as p} 
+{#each qs.pages as p} 
   {#if p.page.url == pageurl}
     <h2>{p.page.title}</h2>
     {#each p.sections as s}
@@ -39,9 +43,10 @@
   {/if}
 {/each}
 <NavButtons 
+      questionset = {qs}
+      pageurl = '{pageurl}'
       nextText = 'Next Page'
       backText = 'Back'
-      pageurl = '{pageurl}'
 >
 </NavButtons>
 

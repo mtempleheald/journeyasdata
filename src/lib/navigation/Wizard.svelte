@@ -1,12 +1,13 @@
-<script>
-    import { questionSet } from '$lib/stores/questionset';
+<script lang='ts'>
+    import type { QuestionSet } from '$lib/types/QuestionSet';
 
     export let pageurl = '';
+    export let questionset: QuestionSet;
 </script>
     
 
 <nav>
-    {#each $questionSet.pages as p}
+    {#each questionset.pages as p}
         <a href="{p.page.url}" class="{pageurl == p.page.url?'active':''}">
             {p.page.title}
         </a>
@@ -24,12 +25,12 @@
         border: var(--nav-border, white);
     }
     nav > * {
-        flex-grow: 1;        
+        flex-grow: 1;
     }
     a {
         display: inline-block;
         text-decoration: none;
-        padding: 1rem 0rem;
+        padding: 1rem 1rem;
         color: var(--nav-txt, black);
     }
     a:hover, a.active {
