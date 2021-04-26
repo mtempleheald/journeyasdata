@@ -38,21 +38,30 @@
 </script>
 
 
-<div class="buttonselect {active} {required && value == null ? 'invalid' : ''}" on:mouseenter={enter} on:mouseleave={leave} >
+<div class="question {active} {required && value == null ? 'invalid' : ''}" 
+    on:mouseenter={enter} 
+    on:mouseleave={leave} >
+
     <slot name="pre"></slot>
-    {#if label}
-        <label for="{id}">{label}</label>
-    {/if}
-    {#if required}
-        <span class="required">*</span>
-    {/if}
-    {#if id}
-        <input type="hidden" 
-            id="{id}"
-            bind:value={value}
-            required="{required}"
-        />
-        <input type="hidden" id="{id}_store" value="{$inputStore[id]}"/>
+
+
+    <input type="hidden" 
+        id="{id}"
+        bind:value={value}
+        required="{required}"
+    />
+    <div class="container">
+        {#if label}
+        <label for="{id}">
+            {label}
+            {#if required}
+            <span class="required">*</span>
+            {/if}
+        </label>
+        {/if}
+
+        {#if id}
+        <span class="buttons">
         {#each values as v}
             <button type="button" value="{v.value}" on:click="{() => updateValue(v.value)}" class="{value == v.value ? 'active' : ''}">
                 {v.image != null ? '' : v.display ?? ''}
@@ -60,43 +69,68 @@
                     <img src="{v.image}" width="{v.imageWidth}" height="{v.imageHeight}" class="{value == v.value ? 'active' : ''}" alt="{v.display}" />
                 {/if}
             </button>
-        {/each}
-    {/if}
-    {#if help}
+        {/each}        
+        </span>
+        {/if}     
+        
+        {#if help}
         <Helptext>{help}</Helptext>
-    {/if}
+        {/if}
+    </div>
+
     {#if required && value == null}
-        <span class="error">{errorMessage}</span>
+    <div class="error">{errorMessage}</div>
     {/if}
+
     <slot name="post"></slot>
 </div>
 
 
 <style>
-    .buttonselect {
-        margin: 0.5rem;
-        padding: 0.5rem;
+    .question {
+        margin: 0.5rem 1rem;
+        padding: 0.5rem 1rem;
         background-color: var(--input-bg, white);
         color: var(--input-txt, black);
         border: var(--input-border, 1px solid black);
     }
-    .buttonselect.active {
+    .question.active {
         background-color: var(--input-active-bg, rgb(255, 255, 214));
         color: var(--input-active-txt, black);
     }
-    .buttonselect.invalid {
+    .question.invalid {
         background-color: var(--input-error-bg, pink);
         color: var(--input-error-txt, red);
     }
     .required {
         color: var(--question-colour-text, black);
     }
-    .error {
-        background-color: var(--input-error-msg-bg, red);
-        color: var(--input-error-msg-txt, pink);
-    }
     button.active {
         background-color: var(--input-active-bg, rgb(255, 255, 214));
         color: var(--input-active-txt, black);
+    }
+    .container {
+        width: 100%;
+    }
+    label {
+        display: inline-block;
+        padding: 0.5rem;
+        width: max(250px, 40%);
+    }
+    input {
+        margin: 0.5rem;
+    }
+    .error {
+        padding: 0.5rem;
+        background-color: var(--input-error-msg-bg, red);
+        color: var(--input-error-msg-txt, pink);
+    }
+    .buttons {
+        display: inline-flex;
+        flex-wrap: wrap;
+        width: max(250px, 50%);/* TODO: calc to ensure a square grid with as few rows as possible in the space */
+    }
+    .buttons > * {
+        flex-basis: 1;/* give all buttons equal space */
     }
 </style>

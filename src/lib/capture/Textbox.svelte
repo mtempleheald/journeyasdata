@@ -64,13 +64,18 @@
     on:mouseleave={leave} 
 >
     <slot name="pre"></slot>
-    {#if label}
-        <label for="{id}">{label}</label>
-    {/if}
-    {#if id}
-        {#if required}
+
+    <div class="container">
+        {#if label}
+        <label for="{id}">
+            {label}
+            {#if required}
             <span class="required">*</span>
+            {/if}            
+        </label>
         {/if}
+
+        {#if id}        
         <input type="{html5type}"
             class="{type=='Upper'?'upper':''}"
             id="{id}" 
@@ -80,22 +85,24 @@
             value="{value}"
             on:blur={act}
             on:focus={focus}/>
-        <input type="hidden" id="{id}_store" value="{$inputStore[id]}"/>
-    {/if}
-    {#if help}
-        <Helptext>{help}</Helptext>
-    {/if}
+        {/if}
+        {#if help}
+            <Helptext>{help}</Helptext>
+        {/if}
+    </div>
+
     {#if !valid}
-        <span class="error">{errorMessage ?? fallbackError}</span>
+    <div class="error">{errorMessage ?? fallbackError}</div>
     {/if}
+
     <slot name="post"></slot>
 </div>
     
 
 <style>
     .question {
-        margin: 0.5rem;
-        padding: 0.5rem;
+        margin: 0.5rem 1rem;
+        padding: 0.5rem 1rem;
         background-color: var(--input-bg, white);
         color: var(--input-txt, black);
         border: var(--input-border, 1px solid black);
@@ -111,11 +118,23 @@
     .required {
         color: var(--input-txt-required, black);
     }
-    .error {
-        background-color: var(--input-error-msg-bg, red);
-        color: var(--input-error-msg-txt, pink);
-    }
     .upper {
         text-transform: uppercase;
+    }
+    .container {
+        width: 100%;
+    }
+    label {
+        display: inline-block;
+        padding: 0.5rem;
+        width: max(250px, 40%);
+    }
+    input {
+        margin: 0.5rem;
+    }
+    .error {
+        padding: 0.5rem;
+        background-color: var(--input-error-msg-bg, red);
+        color: var(--input-error-msg-txt, pink);
     }
 </style>
