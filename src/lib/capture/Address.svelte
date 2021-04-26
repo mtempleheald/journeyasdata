@@ -78,7 +78,9 @@
 </script>
 
 
-<div class="address {active} {validpostcode?'':'invalid'}" on:mouseenter={enter} on:mouseleave={leave}>
+<div class="address {active} {validpostcode?'':'invalid'}" 
+    on:mouseenter={enter} 
+    on:mouseleave={leave}>
 
     <Textbox type="Upper"
         id="postcode"
@@ -125,17 +127,6 @@
 
 
 <style>
-    /* grab global variables for skinning */
-    :global(.address) {
-        background-color: var(--address-colour-bg,white);
-        color: var(--colour-text, black);
-        border: 1px var(--border-style, dashed) var(--address-colour-text, black);
-    }
-    :global(.address.active, .address:focus-within) {
-        background-color: var(--address-colour-bg-highlight, yellow);
-        color: var(--address-colour-text-highlight, var(--address-colour-text, black));
-    }
-    /* The rest is not global - the component controls how it is presented, other than skins (colours, borders etc) */
     .address {
         margin: 0rem;
         padding: 0rem;
@@ -147,8 +138,8 @@
         text-transform: uppercase;
     }
     .invalid {
-        background-color: var(--question-color-bg-error, palevioletred);
-        color: var(--question-color-text-error, black);
+        background-color: var(--input-error-bg, pink);
+        color: var(--input-error-txt, red);
     }
     .hidden {
         display: none;

@@ -46,7 +46,9 @@
 
 <style>
     header {
-        border-bottom: 1px solid black;
+        background-color: var(--header-bg, white);
+        color: var(--header-txt, black);
+        border-bottom: var(--header-border, 1px solid black);
         display: flex;
         flex-direction: row;
     }

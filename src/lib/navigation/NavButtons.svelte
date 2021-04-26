@@ -35,20 +35,34 @@
             console.log("Page invalid, correct before trying again");
         }
     }
-
 </script>
 
 
-<nav class="button-navigation">
+<section class="button-navigation">
     {#if backText}
         <button type="button" class="back" on:click={back}>{backText}</button>
     {/if}
+    <span class="spacer"></span>
     {#if nextText}
         <button type="button" class="next" on:click={next}>{nextText}</button>
     {/if}
-</nav>
+</section>
 
 
 <style>
+
+.button-navigation {
+    width: calc(100vw - 100px);
+    padding: 0 1rem;
+    margin: auto;
+    display: flex;
+    align-content: stretch;
+}
+.spacer {
+    flex-grow: 10;
+}
+button {
+    flex-grow: 1;
+}
 
 </style>
