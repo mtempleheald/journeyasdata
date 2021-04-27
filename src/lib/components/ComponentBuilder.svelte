@@ -8,6 +8,7 @@
     import Vehicle from '$lib/components/Vehicle.svelte';
     import { inputStore } from '$lib/stores/inputstore';
     import { validationStore } from '$lib/stores/validationstore';
+    import { actionStore } from '$lib/stores/actionstore';
     import type { Component, AddressComponent, VehicleComponent } from '$lib/types/QuestionSet';
 
     export let component: Component;
@@ -18,6 +19,9 @@
       inputStore.input(event.detail.key, event.detail.value);
       // update validation store for use by validators
       validationStore.input(event.detail.key, event.detail.valid);
+      // execute action if applicable
+      let f = $actionStore[event.detail.key];
+      if (typeof f === 'function') f();
     }
     function addressUpdated(event) {
       console.log(`dispatched event - ${event.detail.key}`)

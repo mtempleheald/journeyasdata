@@ -24,10 +24,16 @@
 <script lang="ts">
     import { setContext } from 'svelte';
     import type { QuestionSet } from '$lib/types/QuestionSet';
+    import { actionStore } from '$lib/stores/actionstore';
+    import { getActions } from '$lib/actions/actionprovider';
     
     export let brand: string;
     export let qs: QuestionSet;    
-    setContext("questionset", qs); // load questionset once, referenced throughout user journey
+    // load questionset once, reference throughout user journey
+    setContext("questionset", qs); 
+    // load bespoke actions once, call throughout user journey
+    actionStore.load(getActions(brand));
+    console.log(`${Object.keys($actionStore).length} actions loaded for ${brand}`);
 </script>
 
 
