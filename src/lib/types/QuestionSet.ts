@@ -62,13 +62,16 @@ export type Value = {
     value: string;
 }
 export type AddressComponent = BaseComponent & {
-    postcodePlaceholder: string;
-    postcodeLabel: string;
-    buttonLabel: string;
-    houseLabel: string;
+    postcodeLabel?: string;
+    postcodePlaceholder?: string;    
+    propertyLabel?: string;
+    propertyPlaceholder?: string;
+    postcodeHelp?: string;
+    postcodeError?: string;
 }
 export type VehicleComponent = BaseComponent & {
-    regnumPlaceholder: string;
     regnumLabel: string;
+    regnumPlaceholder: string;
     buttonLabel: string;
+    errorMessage: string;
 }

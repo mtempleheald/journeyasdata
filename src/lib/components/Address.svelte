@@ -1,26 +1,23 @@
 <script lang="typescript">
-    import Dropdown from './Dropdown.svelte';
-    import Textbox from './Textbox.svelte';
+    import Dropdown from '$lib/components/Dropdown.svelte';
+    import Textbox from '$lib/components/Textbox.svelte';
     
     // expose component properties
     export let postcodeLabel = "Postcode";
     export let postcodePlaceholder = "MK10 0BZ";
     export let postcodeHelp = "";
     export let postcodeError = "Postcode is required";
-    export let buttonLabel = "Search";
-    export let houseLabel = "Property";
+    export let propertyLabel = "Property";
+    export let propertyPlaceholder = "Select Property";
+
 
     // internal properties to support component logic
-    let postcode : string;
     let property : string = "";
     let propertyLov : any[] = [];
     let active;
     let addresses: any[];
     let address : any;
-    let searching = true;
-    let postcodeInput;
     let validpostcode = true;
-    let propertyPlaceholder = '-- select --';
 
     // component actions
     function enter() {
@@ -31,7 +28,6 @@
     }    
     async function lookupAddresses(postcode) {
         if (validpostcode) {
-        searching = true;
         await fetch (`/api/addresses?postcode=` + postcode)
             .then(resp => resp.json())
             .then(data => {
@@ -66,8 +62,6 @@
         }      
     }
     function reset() {
-        searching = true;
-        postcode = '';
         addresses = null;
         propertyLov = [];
         property = '';
@@ -87,7 +81,7 @@
         label="{postcodeLabel}"
         placeholder="{postcodePlaceholder}"
         help="{postcodeHelp}"
-        required=true
+        required={true}
         errorMessage="{postcodeError}"
         on:valueChange="{postcodeChanged}"
         on:focus="{reset}" 
@@ -95,7 +89,7 @@
     <Dropdown 
         id="property"
         value="{property}"
-        label="Property"
+        label="{propertyLabel}"
         placeholder="{propertyPlaceholder}"
         values={propertyLov??[]}
         on:valueChange="{propertyChanged}"
@@ -130,9 +124,6 @@
     .address {
         margin: 0rem;
         padding: 0rem;
-    }
-    .address-display span {
-        display: block;
     }
     .postcode {
         text-transform: uppercase;

@@ -1,7 +1,7 @@
 <script lang="typescript">
 	import { createEventDispatcher } from 'svelte';
     import { inputStore } from '$lib/stores/inputstore';
-    import Helptext from '$lib/display/Helptext.svelte';
+    import Helptext from '$lib/components/Helptext.svelte';
 
     // expose component properties
     export let id;

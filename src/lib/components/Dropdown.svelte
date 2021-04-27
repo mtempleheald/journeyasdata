@@ -1,7 +1,7 @@
 <script lang="typescript">
 	import { createEventDispatcher, onMount } from 'svelte';    
     import { inputStore } from '$lib/stores/inputstore';
-    import Helptext from '$lib/display/Helptext.svelte';
+    import Helptext from '$lib/components/Helptext.svelte';
 
     // load refdata on component creation
     onMount(async () => {
