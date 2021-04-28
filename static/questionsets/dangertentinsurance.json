@@ -35,19 +35,23 @@
               "values": [
                 {
                   "key": "single",
-                  "value": "Single"
+                  "value": "Single",
+                  "image": "https://fakeimg.pl/100x50/?text=VehicleImage"
                 },
                 {
                   "key": "double",
-                  "value": "Double"
+                  "value": "Double",
+                  "image": "https://fakeimg.pl/100x50/?text=VehicleImage"
                 },
                 {
                   "key": "family",
-                  "value": "Family size"
+                  "value": "Family size",
+                  "image": "https://fakeimg.pl/100x50/?text=VehicleImage"
                 },
                 {
                   "key": "marquee",
-                  "value": "Marquee"
+                  "value": "Marquee",
+                  "image": "https://fakeimg.pl/100x50/?text=VehicleImage"
                 }
               ]
             },
@@ -203,11 +207,13 @@
               "values": [
                 {
                   "key": "left",
-                  "value": "Left Hand Drive"
+                  "value": "Left Hand Drive",
+                  "image": "https://fakeimg.pl/100x50/?text=Left%20Hand%20Drive"
                 },
                 {
                   "key": "right",
-                  "value": "Right Hand Drive"
+                  "value": "Right Hand Drive",
+                  "image": "https://fakeimg.pl/100x50/?text=Right%20Hand%20Drive"
                 }
               ]
             },
@@ -253,15 +259,18 @@
               "values": [
                 {
                   "key": "uk",
-                  "value": "UK"
+                  "value": "UK",
+                  "image": "https://fakeimg.pl/100x50/?text=UK"
                 },
                 {
                   "key": "usa",
-                  "value": "USA"
+                  "value": "USA",
+                  "image": "https://fakeimg.pl/100x50/?text=USA"
                 },
                 {
                   "key": "other",
-                  "value": "Other"
+                  "value": "Other",
+                  "image": "https://fakeimg.pl/100x50/?text=Other"
                 }
               ]
             },
@@ -399,15 +408,18 @@
               "values": [
                 {
                   "key": "annual",
-                  "value": "Annual"
+                  "value": "Annual",
+                  "image": "https://fakeimg.pl/100x50/?text=Annual"
                 },
                 {
                   "key": "monthly",
-                  "value": "Monthly"
+                  "value": "Monthly",
+                  "image": "https://fakeimg.pl/100x50/?text=Monthly"
                 },
                 {
                   "key": "none",
-                  "value": "Not had insurance before"
+                  "value": "Not had insurance before",
+                  "image": "https://fakeimg.pl/100x50/?text=N/A"
                 }
               ]
             }

@@ -1,5 +1,5 @@
 <script lang="typescript">
-    import Textbox from '$lib/capture/Textbox.svelte';
+    import Textbox from '$lib/components/Textbox.svelte';
     
     // expose component properties    
     export let regnumLabel : string = 'Registration number';
@@ -43,7 +43,7 @@
         label="{regnumLabel}"
         placeholder="{regnumPlaceholder}"
         help="help us to help you"
-        required=true
+        required={true}
         errorMessage="{errorMessage}"
         on:valueChange="{regUpdated}"
     ></Textbox>
@@ -58,17 +58,6 @@
 
 
 <style>
-    /* grab global variables for skinning */
-    :global(.address) {
-        background-color: var(--address-colour-bg,white);
-        color: var(--colour-text, black);
-        border: 1px var(--border-style, dashed) var(--address-colour-text, black);
-    }
-    :global(.address.active, .address:focus-within) {
-        background-color: var(--address-colour-bg-highlight, yellow);
-        color: var(--address-colour-text-highlight, var(--address-colour-text, black));
-    }
-    /* The rest is not global - the component controls how it is presented, other than skins (colours, borders etc) */
     .vehicle {
         margin: 0rem;
         padding: 0rem;

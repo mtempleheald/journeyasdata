@@ -22,7 +22,7 @@ import { writable } from 'svelte/store';
     Example https://github.com/bradphelan/immer.loves.svelte
 */
 
-function setValue(inputs, key, value) {
+function setValue(inputs, key: string, value: string) {
     // create new entry or overwrite regardless of what was set
     inputs[key] = value;
     return inputs;
@@ -33,7 +33,7 @@ function store() {
 
     return {
         subscribe,
-        input: (key, value) => update(store => setValue(store, key, value)),
+        input: (key: string, value: string) => update(store => setValue(store, key, value)),
         reset: () => set({})
     };
 }

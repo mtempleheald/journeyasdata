@@ -1,26 +1,23 @@
 <script lang="typescript">
-    import Dropdown from './Dropdown.svelte';
-    import Textbox from './Textbox.svelte';
+    import Dropdown from '$lib/components/Dropdown.svelte';
+    import Textbox from '$lib/components/Textbox.svelte';
     
     // expose component properties
     export let postcodeLabel = "Postcode";
     export let postcodePlaceholder = "MK10 0BZ";
     export let postcodeHelp = "";
     export let postcodeError = "Postcode is required";
-    export let buttonLabel = "Search";
-    export let houseLabel = "Property";
+    export let propertyLabel = "Property";
+    export let propertyPlaceholder = "Select Property";
+
 
     // internal properties to support component logic
-    let postcode : string;
     let property : string = "";
     let propertyLov : any[] = [];
     let active;
     let addresses: any[];
     let address : any;
-    let searching = true;
-    let postcodeInput;
     let validpostcode = true;
-    let propertyPlaceholder = '-- select --';
 
     // component actions
     function enter() {
@@ -31,7 +28,6 @@
     }    
     async function lookupAddresses(postcode) {
         if (validpostcode) {
-        searching = true;
         await fetch (`/api/addresses?postcode=` + postcode)
             .then(resp => resp.json())
             .then(data => {
@@ -66,8 +62,6 @@
         }      
     }
     function reset() {
-        searching = true;
-        postcode = '';
         addresses = null;
         propertyLov = [];
         property = '';
@@ -78,14 +72,16 @@
 </script>
 
 
-<div class="address {active} {validpostcode?'':'invalid'}" on:mouseenter={enter} on:mouseleave={leave}>
+<div class="address {active} {validpostcode?'':'invalid'}" 
+    on:mouseenter={enter} 
+    on:mouseleave={leave}>
 
     <Textbox type="Upper"
         id="postcode"
         label="{postcodeLabel}"
         placeholder="{postcodePlaceholder}"
         help="{postcodeHelp}"
-        required=true
+        required={true}
         errorMessage="{postcodeError}"
         on:valueChange="{postcodeChanged}"
         on:focus="{reset}" 
@@ -93,7 +89,7 @@
     <Dropdown 
         id="property"
         value="{property}"
-        label="Property"
+        label="{propertyLabel}"
         placeholder="{propertyPlaceholder}"
         values={propertyLov??[]}
         on:valueChange="{propertyChanged}"
@@ -125,30 +121,16 @@
 
 
 <style>
-    /* grab global variables for skinning */
-    :global(.address) {
-        background-color: var(--address-colour-bg,white);
-        color: var(--colour-text, black);
-        border: 1px var(--border-style, dashed) var(--address-colour-text, black);
-    }
-    :global(.address.active, .address:focus-within) {
-        background-color: var(--address-colour-bg-highlight, yellow);
-        color: var(--address-colour-text-highlight, var(--address-colour-text, black));
-    }
-    /* The rest is not global - the component controls how it is presented, other than skins (colours, borders etc) */
     .address {
-        margin: 0.5rem;
-        padding: 0.5rem;
-    }
-    .address-display span {
-        display: block;
+        margin: 0rem;
+        padding: 0rem;
     }
     .postcode {
         text-transform: uppercase;
     }
     .invalid {
-        background-color: var(--question-color-bg-error, palevioletred);
-        color: var(--question-color-text-error, black);
+        background-color: var(--input-error-bg, pink);
+        color: var(--input-error-txt, red);
     }
     .hidden {
         display: none;

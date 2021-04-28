@@ -26,6 +26,7 @@
     --header-bg:                 var(--lightgrey);
     --header-txt:                inherit;
     --header-link:               inherit;
+    --header-border:             none;
     --nav-bg:                    var(--white);
     --nav-border:                1px dashed var(--darkgrey);
     --nav-txt:                   var(--darkgrey);

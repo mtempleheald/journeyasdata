@@ -34,6 +34,7 @@
     background-color: var(--help-bg, inherit);
     color: var(--help-txt, inherit);
     border: var(--help-border, 1px dashed black);
+    padding: 0.5rem;
 }
 .help.hidden {
     display: none;

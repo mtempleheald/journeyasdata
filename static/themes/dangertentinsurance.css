@@ -26,6 +26,7 @@
     --header-bg:                 var(--sg-white);
     --header-txt:                var(--sg-lightgreen);
     --header-link:               var(--sg-darkgreen);
+    --header-border:             none;
     --nav-bg:                    var(--sg-lightgrey);
     --nav-border:                1px solid var(--sg-darkgrey);
     --nav-txt:                   var(--sg-darkgrey);

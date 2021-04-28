@@ -13,10 +13,10 @@
 
 <script>
     import { getContext } from 'svelte';
-    import Wizard from '$lib/navigation/Wizard.svelte';
-    import NavButtons from '$lib/navigation/NavButtons.svelte';
-    import Section from '$lib/display/Section.svelte';
-    import ComponentBuilder from '$lib/ComponentBuilder.svelte';
+    import Wizard from '$lib/components/Wizard.svelte';
+    import NavButtons from '$lib/components/NavButtons.svelte';
+    import Section from '$lib/components/Section.svelte';
+    import ComponentBuilder from '$lib/components/ComponentBuilder.svelte';
 
     export let pageurl;
     const qs = getContext("questionset");

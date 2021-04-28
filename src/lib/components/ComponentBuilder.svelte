@@ -1,14 +1,15 @@
 <script lang="ts">
     import snarkdown from 'snarkdown';// https://github.com/developit/snarkdown/blob/master/test/index.js
-    import Address from '$lib/capture/Address.svelte';
-    import ButtonSelect from '$lib/capture/ButtonSelect.svelte';
-    import Dropdown from '$lib/capture/Dropdown.svelte';
-    import Displayblock from '$lib/display/Displayblock.svelte';
-    import Textbox from '$lib/capture/Textbox.svelte';
-    import Vehicle from '$lib/capture/Vehicle.svelte';
+    import Address from '$lib/components/Address.svelte';
+    import ButtonSelect from '$lib/components/ButtonSelect.svelte';
+    import Dropdown from '$lib/components/Dropdown.svelte';
+    import Displayblock from '$lib/components/Displayblock.svelte';
+    import Textbox from '$lib/components/Textbox.svelte';
+    import Vehicle from '$lib/components/Vehicle.svelte';
     import { inputStore } from '$lib/stores/inputstore';
     import { validationStore } from '$lib/stores/validationstore';
-    import type { Component } from '$lib/types/QuestionSet';
+    import { actionStore } from '$lib/stores/actionstore';
+    import type { Component, AddressComponent, VehicleComponent } from '$lib/types/QuestionSet';
 
     export let component: Component;
 
@@ -18,6 +19,9 @@
       inputStore.input(event.detail.key, event.detail.value);
       // update validation store for use by validators
       validationStore.input(event.detail.key, event.detail.valid);
+      // execute action if applicable
+      let f = $actionStore[event.detail.key];
+      if (typeof f === 'function') f();
     }
     function addressUpdated(event) {
       console.log(`dispatched event - ${event.detail.key}`)
@@ -131,17 +135,22 @@
     </div>
   </Displayblock>
 {:else if component.type == "Address"}
+<!-- TODO: cast to AddressComponent/VehicleComponent to remove warnings -->
   <Address 
     on:addressChange="{addressUpdated}"
+    postcodeLabel={component.postcodeLabel}
     postcodePlaceholder={component.postcodePlaceholder} 
-    postcodeLabel={component.postcodeLabel} 
-    buttonLabel={component.buttonLabel}
-    houseLabel={component.houseLabel}/>
+    propertyLabel={component.propertyLabel}
+    propertyPlaceholder={component.propertyPlaceholder}
+    postcodeHelp={component.postcodeHelp}
+    postcodeError={component.postcodeError}
+  />
 {:else if component.type == "Vehicle"}
   <Vehicle 
     regnumPlaceholder={component.regnumPlaceholder} 
     regnumLabel={component.regnumLabel} 
     buttonLabel={component.buttonLabel}
-    errorMessage={component.errorMessage}/>
+    errorMessage={component.errorMessage}
+  />
 {/if}
 {/if}
