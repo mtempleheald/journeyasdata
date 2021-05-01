@@ -39,19 +39,26 @@
 
 <div class="vehicle">
     <Textbox type="Upper"
-        id="regnum"
-        label="{regnumLabel}"
-        placeholder="{regnumPlaceholder}"
-        help="help us to help you"
-        required={true}
-        errorMessage="{errorMessage}"
+        component={{
+            type: "Upper",
+            id: "regnum",
+            value: '',
+            label: regnumLabel,
+            placeholder: regnumPlaceholder,
+            help: "help us to help you",
+            required: true,
+            errorMessage: errorMessage
+        }}        
         on:valueChange="{regUpdated}"
     ></Textbox>
     <button type="button">{buttonLabel}</button>
     <Textbox
-        id="make"
-        label="make"
-        value="{vehicle?.make ?? ''}"
+        component={{
+            type: "Text",
+            id: "make",
+            label: "make",
+            value: vehicle?.make ?? ''
+        }}
     ></Textbox>
 
 </div>

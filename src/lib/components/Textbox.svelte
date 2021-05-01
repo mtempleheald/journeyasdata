@@ -1,17 +1,13 @@
-<script>
+<script lang="ts">
 	import { createEventDispatcher } from 'svelte';
     import { blur } from 'svelte/transition';
     import Helptext from '$lib/components/Helptext.svelte';
+    import type { ComponentType } from '$lib/types/questionset';
 
     // expose component properties
-    export let id = '';
-    export let value = '';
-    export let label = '';
-    export let help = '';
-    export let placeholder = '';
-    export let required = false;
-    export let errorMessage = '';
-    export let type = 'text';    
+    export let type = 'text';
+    export let component: ComponentType;
+
 
     // internal properties to support component logic
     const dispatch = createEventDispatcher();
@@ -48,10 +44,10 @@
             fallbackError = event.target.validationMessage;
         }
         // publish changes up to parent, let it handle state
-        dispatch('valueChange', {key: id, value: val, valid: valid});
+        dispatch('valueChange', {key: component.id, value: val, valid: valid});
     }
     function focus(event) {
-        dispatch('focus', id);
+        dispatch('focus', component.id);
     }
 
 </script>
@@ -64,33 +60,33 @@
     <slot name="pre"></slot>
 
     <div class="container">
-        {#if label}
-        <label for="{id}">
-            {label}
-            {#if required}
+        {#if component.label}
+        <label for="{component.id}">
+            {component.label}
+            {#if component.required}
             <span class="required">*</span>
             {/if}            
         </label>
         {/if}
 
-        {#if id}        
+        {#if component.id}        
         <input type="{html5type}"
             class="{type=='Upper'?'upper':''}"
-            id="{id}" 
-            name="{id}" 
-            placeholder="{placeholder}" 
-            required="{required}"
-            value="{value}"
+            id="{component.id}" 
+            name="{component.id}" 
+            placeholder="{component.placeholder}" 
+            required="{component.required}"
+            value="{component.value}"
             on:blur={act}
             on:focus={focus}/>
         {/if}
-        {#if help}
-            <Helptext>{help}</Helptext>
+        {#if component.help}
+            <Helptext>{component.help}</Helptext>
         {/if}
     </div>
 
     {#if !valid}
-    <div class="error">{errorMessage ?? fallbackError}</div>
+    <div class="error">{component.errorMessage ?? fallbackError}</div>
     {/if}
 
     <slot name="post"></slot>
