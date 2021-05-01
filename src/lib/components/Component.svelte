@@ -14,7 +14,7 @@
     export let component: ComponentType;
 
     function componentUpdated(event) {
-      console.log(`Component updated - {key: ${event.detail.key}, value: ${event.detail.value}, valid: ${event.detail.valid}}`)
+      console.log(`Component updated - {key: "${event.detail.key}", value: "${event.detail.value}", valid: "${event.detail.valid}}"`)
       // update input store with latest value, regardless of validity
       inputStore.input(event.detail.key, event.detail.value);
       // update validation store for use by validators
@@ -22,9 +22,6 @@
       // execute action if applicable
       let f = $actionStore[event.detail.key];
       if (typeof f === 'function') f();
-    }
-    function addressUpdated(event) {
-      console.log(`dispatched event - ${event.detail.key}`)
     }
 </script>
 
@@ -41,8 +38,7 @@
   placeholder="{component.placeholder ?? ''}"
   help="{component.help ?? ''}"
   required="{component.required ?? false}"
-  errorMessage="{component.errorMessage ?? ''}"
->
+  errorMessage="{component.errorMessage ?? ''}">
   <div slot="pre">
     {#if component.pre}
       {@html snarkdown(component.pre)}
@@ -141,7 +137,7 @@
 {:else if component.type == "Address"}
 <!-- TODO: cast to AddressComponent/VehicleComponent to remove warnings -->
   <Address 
-    on:addressChange="{addressUpdated}"
+    on:addressChange="{componentUpdated}"
     postcodeLabel={component.postcodeLabel}
     postcodePlaceholder={component.postcodePlaceholder} 
     propertyLabel={component.propertyLabel}

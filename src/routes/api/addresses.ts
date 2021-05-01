@@ -13,7 +13,7 @@ export async function get({ query }) {
         body: [
             {
                 postcode: "MK10 0BZ",
-                house: "123",
+                property: "123",
                 addressline1: 'Fake Street',
                 addressline2: 'Springfield',
                 addressline3: '',
@@ -21,7 +21,7 @@ export async function get({ query }) {
             },
             {
                 postcode: "MK10 0BZ",
-                house: "456",
+                property: "456",
                 addressline1: 'Fake Street',
                 addressline2: 'Springfield',
                 addressline3: '',
@@ -29,7 +29,7 @@ export async function get({ query }) {
             },
             {
                 postcode: "MK10 0BZ",
-                house: "789",
+                property: "789",
                 addressline1: 'Fake Street',
                 addressline2: 'Springfield',
                 addressline3: '',
@@ -37,7 +37,7 @@ export async function get({ query }) {
             },
             {
                 postcode: "MK10 0BZ",
-                house: "The pig sty",
+                property: "The pig sty",
                 addressline1: 'Fake Street',
                 addressline2: 'Springfield',
                 addressline3: '',

@@ -11,7 +11,7 @@ export async function get({ query }) {
     return {
         body: {
             postcode: "MK10 0BZ",
-            house: "123",
+            property: "123",
             addressline1: 'Fake Street',
             addressline2: 'Springfield',
             addressline3: '',

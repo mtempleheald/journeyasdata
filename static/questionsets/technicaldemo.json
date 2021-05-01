@@ -345,11 +345,13 @@
           "logo": "https://fakeimg.pl/100x50/?text=Address%20Logo",
           "components": [
             {
+              "id": "address",
               "type": "Address",
               "postcodeLabel": "Postcode",
               "postcodePlaceholder": "MK10 0BZ",
               "buttonLabel": "Search",
-              "houseLabel": "Property"
+              "houseLabel": "Property",
+              "required": true
             }
           ]
         },
