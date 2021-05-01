@@ -328,6 +328,71 @@
               "errorMessage": "Failed to find vehicle"
             }
           ]
+        },
+        {
+          "title": "Vehicle lookup without vehicle component",
+          "logo": "https://fakeimg.pl/100x50/?text=Vehicle%20Logo",
+          "components": [
+            {
+              "id": "regnumber",
+              "type": "Upper",
+              "label": "Registration number",
+              "placeholder": "YOUR REG",
+              "required": true,
+              "errorMessage": "Please enter a valid registration number",
+              "post": "This version of vehicle lookup uses textbox component + custom functions to avoid bespoke vehicle component"
+            },
+            {
+              "id": "vehiclemake",
+              "type": "Text",
+              "label": "Make"
+            },
+            {
+              "id": "vehiclemodel",
+              "type": "Text",
+              "label": "Model"
+            },
+            {
+              "id": "vehiclebody",
+              "type": "Text",
+              "label": "Body"
+            },
+            {
+              "id": "vehicletransmission",
+              "type": "Text",
+              "label": "Transmission"
+            },
+            {
+              "id": "vehicleengine",
+              "type": "Text",
+              "label": "Engine"
+            },
+            {
+              "id": "vehicleenginecc",
+              "type": "Text",
+              "label": "Engine CC"
+            },
+            {
+              "id": "vehicleenginebhp",
+              "type": "Text",
+              "label": "Engine BHP"
+            },
+            {
+              "id": "vehiclecolour",
+              "type": "Text",
+              "label": "Colour"
+            },
+            {
+              "id": "vehicleabicode",
+              "type": "Text",
+              "label": "ABI Code"
+            },
+            {
+              "id": "vehicledoors",
+              "type": "Text",
+              "label": "Doors"
+            }
+          ]
         }
       ]
     }
