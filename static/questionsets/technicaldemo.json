@@ -7,6 +7,7 @@
       "title": "Text Input variations",
       "sections": [
         {
+          "id": "text",
           "title": "Textbox parameters",
           "logo": "https://fakeimg.pl/100x50/?text=Section%20Logo",
           "components": [
@@ -33,6 +34,7 @@
               "pre": "4 This isn't a label, but _pre-text_"
             },
             {
+              "id": "four",
               "type": "Text",
               "pre": "Perhaps we don't want a question, just some _italic_ text",
               "post": "And some more __bold__ text"
@@ -129,6 +131,41 @@
               "type": "Week",
               "placeholder": "3",
               "required": true
+            }
+          ]
+        },
+        {
+          "id": "text-inputs-navigation",
+          "type": "Navigation",
+          "title": "Navigation Section",
+          "components": [
+            {
+              "type": "Displayblock",
+              "content": "- Move navigation from Page-included bespoke component to Section component?  \r\n- TODO: create standalone button component  \r\n- Would allow bespoke actions not just validate and move pages  \r\n- introduces more opportunity to make mistakes  \r\n- Requires button component either way which triggers event we can tap into"
+            },
+            {
+              "id": "back",
+              "type": "ButtonSelect",
+              "value": "Back",
+              "values": [
+                {
+                  "key": "back",
+                  "value": "back",
+                  "display": "Back"
+                }
+              ]
+            },
+            {
+              "id": "forward",
+              "type": "ButtonSelect",
+              "value": "Next",
+              "values": [
+                {
+                  "key": "next",
+                  "value": "next",
+                  "display": "Next"
+                }
+              ]
             }
           ]
         }
@@ -334,13 +371,16 @@
           "logo": "https://fakeimg.pl/100x50/?text=Vehicle%20Logo",
           "components": [
             {
+              "type": "Displayblock",
+              "content": "Uses a bespoke function and unconnected Text components instead of a bespoke Vehicle component"
+            },
+            {
               "id": "regnumber",
               "type": "Upper",
               "label": "Registration number",
               "placeholder": "YOUR REG",
               "required": true,
-              "errorMessage": "Please enter a valid registration number",
-              "help": "Uses a bespoke function and unconnected Text components instead of a bespoke Vehicle component"
+              "errorMessage": "Please enter a valid registration number"
             },
             {
               "id": "vehiclemake",

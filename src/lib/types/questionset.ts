@@ -8,8 +8,11 @@ export type PageType = {
     sections: SectionType[];
 }
 export type SectionType = {
+    id?: string;
+    type?: string;
     title?: string;
     logo?: string;
+    maxrepeats?: number;
     components: ComponentType[];
 }
 export type ComponentType = BaseComponentType | AddressComponentType | VehicleComponentType;
