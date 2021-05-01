@@ -14,7 +14,7 @@
         
 		return {
             props: {
-                qs: qs,
+                questionset: qs,
                 brand: brand
             }
         };
@@ -23,14 +23,14 @@
 
 <script lang="ts">
     import { setContext } from 'svelte';
-    import type { QuestionSet } from '$lib/types/QuestionSet';
+    import type { QuestionSetType } from '$lib/types/questionset';
     import { actionStore } from '$lib/stores/actionstore';
     import { getActions } from '$lib/actions/actionprovider';
     
     export let brand: string;
-    export let qs: QuestionSet;    
+    export let questionset: QuestionSetType;    
     // load questionset once, reference throughout user journey
-    setContext("questionset", qs); 
+    setContext("questionset", questionset); 
     // load bespoke actions once, call throughout user journey
     actionStore.load(getActions(brand));
     console.log(`${Object.keys($actionStore).length} actions loaded for ${brand}`);
@@ -38,13 +38,13 @@
 
 
 <svelte:head>
-    <title>{qs.questionset.title}</title>
+    <title>{questionset.title}</title>
     <link rel='stylesheet' href="/themes/{brand}.css">
 </svelte:head>
 
 <header>
     <img src="https://fakeimg.pl/250x100/?text={brand}" alt="logo">
-    <h1>{qs.questionset.title}</h1>
+    <h1>{questionset.title}</h1>
 </header>
 
 <slot></slot>

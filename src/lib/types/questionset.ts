@@ -1,26 +1,20 @@
-export type QuestionSet = {
-    questionset: {
-        title: string;
-    }
-    pages: Page[];
+export type QuestionSetType = {
+    title: string;
+    pages: PageType[];
 }
-export type Page = {
-    page: {
-        url: string;
-        title: string;
-    }
-    sections: Section[];
+export type PageType = {
+    url: string;
+    title: string;
+    sections: SectionType[];
 }
-export type Section = {
-    section: {
-        title?: string;
-        logo?: string;
-    }
-    components: Component[];
+export type SectionType = {
+    title?: string;
+    logo?: string;
+    components: ComponentType[];
 }
-export type Component = BaseComponent | AddressComponent | VehicleComponent;
+export type ComponentType = BaseComponentType | AddressComponentType | VehicleComponentType;
 
-export type BaseComponent = {
+export type BaseComponentType = {
     type: "Address" 
         | "ButtonSelect"
         | "Colour" 
@@ -50,18 +44,18 @@ export type BaseComponent = {
     pre?: string;
     content?: string;
     post?: string;
-    values?: Value[];
+    values?: ValueType[];
     refdata?: string;
     dependsupon?: {
         id: string;
         value: string;
     }
 }
-export type Value = {
+export type ValueType = {
     key: string;
     value: string;
 }
-export type AddressComponent = BaseComponent & {
+export type AddressComponentType = BaseComponentType & {
     postcodeLabel?: string;
     postcodePlaceholder?: string;    
     propertyLabel?: string;
@@ -69,7 +63,7 @@ export type AddressComponent = BaseComponent & {
     postcodeHelp?: string;
     postcodeError?: string;
 }
-export type VehicleComponent = BaseComponent & {
+export type VehicleComponentType = BaseComponentType & {
     regnumLabel: string;
     regnumPlaceholder: string;
     buttonLabel: string;

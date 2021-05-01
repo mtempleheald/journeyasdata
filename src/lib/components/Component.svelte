@@ -9,9 +9,9 @@
     import { inputStore } from '$lib/stores/inputstore';
     import { validationStore } from '$lib/stores/validationstore';
     import { actionStore } from '$lib/stores/actionstore';
-    import type { Component, AddressComponent, VehicleComponent } from '$lib/types/QuestionSet';
+    import type { ComponentType } from '$lib/types/questionset';
 
-    export let component: Component;
+    export let component: ComponentType;
 
     function componentUpdated(event) {
       console.log(`dispatched event - {key: ${event.detail.key}, value: ${event.detail.value}, valid: ${event.detail.valid}}`)

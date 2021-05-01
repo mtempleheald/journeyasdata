@@ -1,20 +1,14 @@
 {
-  "questionset": {
-    "show-wizard": true,
-    "title": "DangerTent Insurance"
-  },
+  "show-wizard": true,
+  "title": "DangerTent Insurance",
   "pages": [
     {
-      "page": {
-        "url": "your-vehicle",
-        "title": "Your Vehicle"
-      },
+      "url": "your-vehicle",
+      "title": "Your Vehicle",
       "sections": [
         {
-          "section": {
-            "title": "Your Vehicle",
-            "logo": "https://fakeimg.pl/100x50/?text=Vehicle%20Logo"
-          },
+          "title": "Your Vehicle",
+          "logo": "https://fakeimg.pl/100x50/?text=Vehicle%20Logo",
           "components": [
             {
               "id": "vehicleregnum",
@@ -179,10 +173,8 @@
           ]
         },
         {
-          "section": {
-            "title": "Vehicle Details",
-            "logo": "https://fakeimg.pl/100x50/?text=Vehicle%20Logo"
-          },
+          "title": "Vehicle Details",
+          "logo": "https://fakeimg.pl/100x50/?text=Vehicle%20Logo",
           "components": [
             {
               "id": "vehiclehasalarm",
@@ -244,10 +236,8 @@
           ]
         },
         {
-          "section": {
-            "title": "Manufacturing & Accessories",
-            "logo": "https://fakeimg.pl/100x50/?text=Garage%20Logo"
-          },
+          "title": "Manufacturing & Accessories",
+          "logo": "https://fakeimg.pl/100x50/?text=Garage%20Logo",
           "components": [
             {
               "id": "vehiclemanufacturelocation",
@@ -292,10 +282,8 @@
           ]
         },
         {
-          "section": {
-            "title": "Use of the Vehicle",
-            "logo": "https://fakeimg.pl/100x50/?text=Vehicle%20Logo"
-          },
+          "title": "Use of the Vehicle",
+          "logo": "https://fakeimg.pl/100x50/?text=Vehicle%20Logo",
           "components": [
             {
               "id": "vehicleowner",
@@ -428,16 +416,12 @@
       ]
     },
     {
-      "page": {
-        "url": "driver",
-        "title": "You"
-      },
+      "url": "driver",
+      "title": "You",
       "sections": [
         {
-          "section": {
-            "title": "Personal details",
-            "logo": "https://fakeimg.pl/100x50/?text=Person%20Logo"
-          },
+          "title": "Personal details",
+          "logo": "https://fakeimg.pl/100x50/?text=Person%20Logo",
           "components": [
             {
               "id": "title",
@@ -471,10 +455,8 @@
           ]
         },
         {
-          "section": {
-            "title": "Contact details",
-            "logo": "https://fakeimg.pl/100x50/?text=Contact%20Logo"
-          },
+          "title": "Contact details",
+          "logo": "https://fakeimg.pl/100x50/?text=Contact%20Logo",
           "components": [
             {
               "id": "",
@@ -507,31 +489,23 @@
           ]
         },
         {
-          "section": {
-            "title": "Employment details",
-            "logo": "https://fakeimg.pl/100x50/?text=Employment%20Logo"
-          },
+          "title": "Employment details",
+          "logo": "https://fakeimg.pl/100x50/?text=Employment%20Logo",
           "components": []
         },
         {
-          "section": {
-            "title": "Experience details",
-            "logo": "https://fakeimg.pl/100x50/?text=Experience%20Logo"
-          },
+          "title": "Experience details",
+          "logo": "https://fakeimg.pl/100x50/?text=Experience%20Logo",
           "components": []
         }
       ]
     },
     {
-      "page": {
-        "url": "other-people",
-        "title": "Friends & Family"
-      },
+      "url": "other-people",
+      "title": "Friends & Family",
       "sections": [
         {
-          "section": {
-            "title": "Summary of others"
-          },
+          "title": "Summary of others",
           "components": [
             {
               "type": "Text",
@@ -540,12 +514,10 @@
           ]
         },
         {
-          "section": {
-            "sectionid": "other",
-            "title": "Add other",
-            "minRepeats": "0",
-            "maxRepeats": "5"
-          },
+          "sectionid": "other",
+          "title": "Add other",
+          "minRepeats": "0",
+          "maxRepeats": "5",
           "components": [
             {
               "id": "{sectionid}-{repeat}-title",
@@ -580,16 +552,12 @@
       ]
     },
     {
-      "page": {
-        "url": "legal",
-        "title": "Legal stuff"
-      },
+      "url": "legal",
+      "title": "Legal stuff",
       "sections": [
         {
-          "section": {
-            "title": "Convictions",
-            "logo": "https://fakeimg.pl/100x50/?text=Convictions%20Logo"
-          },
+          "title": "Convictions",
+          "logo": "https://fakeimg.pl/100x50/?text=Convictions%20Logo",
           "components": [
             {
               "id": "has_convictions",
@@ -604,10 +572,8 @@
       ]
     },
     {
-      "page": {
-        "url": "contractual",
-        "title": "Contract stuff"
-      },
+      "url": "contractual",
+      "title": "Contract stuff",
       "sections": []
     }
   ]

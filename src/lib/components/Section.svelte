@@ -1,16 +1,21 @@
-<script>
-    export let title;
-    export let logo;
+<script lang="ts">
+    import Component from '$lib/components/Component.svelte';
+    import type { SectionType } from '$lib/types/questionset';
+
+    export let section: SectionType;
 </script>
-    
+
 
 <section>
     <header>
-        <img src={logo} alt="{title} section logo">
-        <h3>{title}</h3>
+        <img src={section.logo} alt="{section.title} section logo">
+        <h3>{section.title}</h3>
     </header>
-    <slot></slot>
+    {#each section.components as component}
+  <Component component={component}/>
+{/each}
 </section>
+
 
 
 <style>

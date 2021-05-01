@@ -1,16 +1,16 @@
 <script lang="ts">
     import { goto } from '$app/navigation';
-    import type { QuestionSet } from '$lib/types/QuestionSet';
+    import type { QuestionSetType } from '$lib/types/questionset';
     import { inputStore } from '$lib/stores/inputstore'
     import { validationStore } from '$lib/stores/validationstore';
     import { pageValidator } from '$lib/validators/pagevalidator';
 
-    export let questionset: QuestionSet;
+    export let questionset: QuestionSetType;
     export let pageurl: string;
     export let backText: string = 'Back';
     export let nextText: string = 'Next';    
 
-    let pageUrls: string[] = questionset.pages.map(p => p.page.url);
+    let pageUrls: string[] = questionset.pages.map(p => p.url);
     function nextPage() {
         return (pageUrls.indexOf(pageurl) < pageUrls.length - 1) 
             ? pageUrls[pageUrls.indexOf(pageurl) + 1] 

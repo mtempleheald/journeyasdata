@@ -1,10 +1,10 @@
-import type { QuestionSet, Section } from '$lib/types/QuestionSet';
+import type { QuestionSetType, SectionType } from '$lib/types/questionset';
 
 // Each component should do its own validation, this simply checks that they have confirmed valid
 // Complex components should perform similar logic to here, reporting up the chain that based on what they know, all is valid
 
 function SectionValid (
-    section : Section,
+    section : SectionType,
     inputs: object,
     validations: object
 ){
@@ -20,12 +20,12 @@ function SectionValid (
 }
 
 function PageValid (
-    questionSet: QuestionSet, 
+    questionSet: QuestionSetType, 
     pageUrl: string,
     inputs: object,
     validations: object
 ) {
-    const sections = questionSet.pages.filter(p => p.page.url == pageUrl).pop().sections;
+    const sections = questionSet.pages.filter(p => p.url == pageUrl).pop().sections;
     let valid = 
     sections.every(s => {
         return SectionValid(s, inputs, validations)

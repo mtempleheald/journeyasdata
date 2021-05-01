@@ -1,20 +1,14 @@
 {
-  "questionset": {
-    "show-wizard": true,
-    "title": "Questionset Demo"
-  },
+  "show-wizard": true,
+  "title": "Questionset Demo",
   "pages": [
     {
-      "page": {
-        "url": "text-inputs",
-        "title": "Text Input variations"
-      },
+      "url": "text-inputs",
+      "title": "Text Input variations",
       "sections": [
         {
-          "section": {
-            "title": "Textbox parameters",
-            "logo": "https://fakeimg.pl/100x50/?text=Section%20Logo"
-          },
+          "title": "Textbox parameters",
+          "logo": "https://fakeimg.pl/100x50/?text=Section%20Logo",
           "components": [
             {
               "id": 1,
@@ -46,10 +40,8 @@
           ]
         },
         {
-          "section": {
-            "title": "Textbox variants",
-            "logo": "https://fakeimg.pl/100x50/?text=Text%20Logo"
-          },
+          "title": "Textbox variants",
+          "logo": "https://fakeimg.pl/100x50/?text=Text%20Logo",
           "components": [
             {
               "id": "Text",
@@ -143,16 +135,12 @@
       ]
     },
     {
-      "page": {
-        "url": "dropdowns",
-        "title": "Dropdown selection"
-      },
+      "url": "dropdowns",
+      "title": "Dropdown selection",
       "sections": [
         {
-          "section": {
-            "title": "Dropdown Section",
-            "logo": "https://fakeimg.pl/100x50/?text=Section%20Logo"
-          },
+          "title": "Dropdown Section",
+          "logo": "https://fakeimg.pl/100x50/?text=Section%20Logo",
           "components": [
             {
               "id": "dropdownfull",
@@ -192,16 +180,12 @@
       ]
     },
     {
-      "page": {
-        "url": "buttons",
-        "title": "Select buttons"
-      },
+      "url": "buttons",
+      "title": "Select buttons",
       "sections": [
         {
-          "section": {
-            "title": "Button Select Section",
-            "logo": "https://fakeimg.pl/100x50/?text=Section%20Logo"
-          },
+          "title": "Button Select Section",
+          "logo": "https://fakeimg.pl/100x50/?text=Section%20Logo",
           "components": [
             {
               "id": "simpletextbutton",
@@ -253,9 +237,6 @@
                 }
               ]
             },
-
-
-            
             {
               "id": "buttonselect",
               "label": "It is a simple Yes/No question",
@@ -286,16 +267,12 @@
       ]
     },
     {
-      "page": {
-        "url": "displayonly",
-        "title": "Display only components"
-      },
+      "url": "displayonly",
+      "title": "Display only components",
       "sections": [
         {
-          "section": {
-            "title": "Displayblock Section",
-            "logo": "https://fakeimg.pl/100x50/?text=Section%20Logo"
-          },
+          "title": "Displayblock Section",
+          "logo": "https://fakeimg.pl/100x50/?text=Section%20Logo",
           "components": [
             {
               "type": "Displayblock",
@@ -323,16 +300,12 @@
       ]
     },
     {
-      "page": {
-        "url": "complex-components",
-        "title": "Complex components"
-      },
+      "url": "complex-components",
+      "title": "Complex components",
       "sections": [
         {
-          "section": {
-            "title": "Address Section",
-            "logo": "https://fakeimg.pl/100x50/?text=Address%20Logo"
-          },
+          "title": "Address Section",
+          "logo": "https://fakeimg.pl/100x50/?text=Address%20Logo",
           "components": [
             {
               "type": "Address",
@@ -344,10 +317,8 @@
           ]
         },
         {
-          "section": {
-            "title": "Vehicle Section",
-            "logo": "https://fakeimg.pl/100x50/?text=Vehicle%20Logo"
-          },
+          "title": "Vehicle Section",
+          "logo": "https://fakeimg.pl/100x50/?text=Vehicle%20Logo",
           "components": [
             {
               "type": "Vehicle",
