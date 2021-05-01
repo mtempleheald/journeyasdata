@@ -39,7 +39,6 @@
     function act(event) {
         // transform
         let val = (type=='Upper') ? event.target.value.toUpperCase() : event.target.value;
-        console.log(event.target);
         // validate https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation#the_constraint_validation_api
         if (event.target.validity.valid) {
             valid = true;

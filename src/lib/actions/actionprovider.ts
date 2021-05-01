@@ -5,5 +5,6 @@ export const getActions = function(brand: string) {
     switch (brand) {
         case "technicaldemo": return technicaldemo;
         case "dangertentinsurance": return dangertentinsurance;
+        default: return {}
     }
 }
