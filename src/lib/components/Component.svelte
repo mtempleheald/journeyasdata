@@ -14,7 +14,7 @@
     export let component: ComponentType;
 
     function componentUpdated(event) {
-      console.log(`dispatched event - {key: ${event.detail.key}, value: ${event.detail.value}, valid: ${event.detail.valid}}`)
+      console.log(`Component updated - {key: ${event.detail.key}, value: ${event.detail.value}, valid: ${event.detail.valid}}`)
       // update input store with latest value, regardless of validity
       inputStore.input(event.detail.key, event.detail.value);
       // update validation store for use by validators

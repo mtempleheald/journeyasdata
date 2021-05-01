@@ -340,7 +340,7 @@
               "placeholder": "YOUR REG",
               "required": true,
               "errorMessage": "Please enter a valid registration number",
-              "post": "This version of vehicle lookup uses textbox component + custom functions to avoid bespoke vehicle component"
+              "help": "Uses a bespoke function and unconnected Text components instead of a bespoke Vehicle component"
             },
             {
               "id": "vehiclemake",

@@ -10,29 +10,42 @@ export let actions = {
 }
 
 async function lookupVehicle () {
-    console.log("__lookupVehicle__");
+    console.log("lookupVehicle()");
     let inputs;
+    let vehicle: VehicleType;
+
     const inputUnsubscriber = inputStore.subscribe(value => inputs = value);
     
-    const regnum = inputs["regnumber"];
-    let vehicle: VehicleType;
-    console.log(`Registration number: ${regnum}`);
-
-    await fetch (`/api/vehicle/` + regnum)
-                .then(resp => resp.json())
-                .then(data => vehicle = data);
-    
-    inputStore.input("vehiclemake", vehicle.make);
-    inputStore.input("vehiclemodel", vehicle.model);
-    inputStore.input("vehiclebody", vehicle.body);
-    inputStore.input("vehicletransmission", vehicle.transmission);
-    inputStore.input("vehicleengine", vehicle.engine);
-    inputStore.input("vehicleenginecc", vehicle.enginecc);
-    inputStore.input("vehicleenginebhp", vehicle.enginebhp);
-    inputStore.input("vehiclecolour", vehicle.colour);
-    inputStore.input("vehicleabicode", vehicle.abicode);
-    inputStore.input("vehicledoors", vehicle.doors);
-
+    if (!inputs["regnumber"]) {
+        console.log("reset vehicle fields");
+        inputStore.input("vehiclemake", '');
+        inputStore.input("vehiclemodel", '');
+        inputStore.input("vehiclebody", '');
+        inputStore.input("vehicletransmission", '');
+        inputStore.input("vehicleengine", '');
+        inputStore.input("vehicleenginecc", '');
+        inputStore.input("vehicleenginebhp", '');
+        inputStore.input("vehiclecolour", '');
+        inputStore.input("vehicleabicode", '');
+        inputStore.input("vehicledoors", '');
+    }
+    else {
+        console.log("searching for vehicle...");
+        await fetch (`/api/vehicle/` + inputs["regnumber"])
+                    .then(resp => resp.json())
+                    .then(data => vehicle = data);
+        
+        inputStore.input("vehiclemake", vehicle.make);
+        inputStore.input("vehiclemodel", vehicle.model);
+        inputStore.input("vehiclebody", vehicle.body);
+        inputStore.input("vehicletransmission", vehicle.transmission);
+        inputStore.input("vehicleengine", vehicle.engine);
+        inputStore.input("vehicleenginecc", vehicle.enginecc);
+        inputStore.input("vehicleenginebhp", vehicle.enginebhp);
+        inputStore.input("vehiclecolour", vehicle.colour);
+        inputStore.input("vehicleabicode", vehicle.abicode);
+        inputStore.input("vehicledoors", vehicle.doors);
+    }
     // avoid memory leaks
     inputUnsubscriber();
 }
