@@ -11,7 +11,7 @@
     export let placeholder = '';
     export let required = false;
     export let errorMessage = '';
-    export let type = 'text';
+    export let type = 'text';    
 
     // internal properties to support component logic
     const dispatch = createEventDispatcher();

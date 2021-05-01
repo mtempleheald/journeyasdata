@@ -15,6 +15,9 @@
   questionset = {qs}
   pageurl={pageurl}/>
 
+<!-- require a form element for accessibility -->
+<form on:submit|preventDefault={() => {}}>
+
 {#each qs.pages as p} 
   {#if p.url == pageurl}
     <h2>{p.title}</h2>
@@ -30,6 +33,7 @@
       nextText = 'Next Page'
       backText = 'Back'
 />
+</form>
 
 
 <style>
