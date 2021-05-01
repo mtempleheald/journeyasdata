@@ -10,6 +10,7 @@
           "id": "text",
           "title": "Textbox parameters",
           "logo": "https://fakeimg.pl/100x50/?text=Section%20Logo",
+          "maxrepeats": 2,
           "components": [
             {
               "id": 1,
