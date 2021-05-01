@@ -1,6 +1,5 @@
-<script lang="typescript">
-	import { createEventDispatcher, onMount } from 'svelte';    
-    import { inputStore } from '$lib/stores/inputstore';
+<script lang="ts">
+	import { createEventDispatcher, onMount } from 'svelte';
     import Helptext from '$lib/components/Helptext.svelte';
 
     // load refdata on component creation
@@ -10,12 +9,11 @@
             values = await res.json();
         }
     });
-
     
     // expose component properties
-    export let id;
-    export let value = $inputStore[id] ?? '';
-    export let label;
+    export let id = '';
+    export let value = '';
+    export let label = '';
     export let help = '';
     export let placeholder = '';
     export let required = false;

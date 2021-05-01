@@ -1,13 +1,12 @@
 <script>
 	import { createEventDispatcher } from 'svelte';
     import { blur } from 'svelte/transition';
-    import { inputStore } from '$lib/stores/inputstore';
     import Helptext from '$lib/components/Helptext.svelte';
 
     // expose component properties
     export let id = '';
-    export let value = $inputStore[id] ?? '';
-    export let label;
+    export let value = '';
+    export let label = '';
     export let help = '';
     export let placeholder = '';
     export let required = false;

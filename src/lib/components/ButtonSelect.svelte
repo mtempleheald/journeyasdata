@@ -1,12 +1,11 @@
 <script lang="typescript">
 	import { createEventDispatcher } from 'svelte';
-    import { inputStore } from '$lib/stores/inputstore';
     import Helptext from '$lib/components/Helptext.svelte';
 
     // expose component properties
-    export let id;
-    export let value = $inputStore[id] ?? '';
-    export let label;
+    export let id = '';
+    export let value = '';
+    export let label = '';
     export let help = '';
     export let required = false;
     export let errorMessage = 'Please select an option';

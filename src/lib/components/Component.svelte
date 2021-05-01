@@ -36,6 +36,7 @@
   type="{component.type ?? 'text'}"
   on:valueChange="{componentUpdated}"
   id="{component.id}"
+  value={$inputStore[component.id] ?? ''}
   label="{component.label}"
   placeholder="{component.placeholder ?? ''}"
   help="{component.help ?? ''}"
@@ -57,6 +58,7 @@
   <ButtonSelect
     on:valueChange="{componentUpdated}"
     id="{component.id}"
+    value={$inputStore[component.id] ?? ''}
     label="{component.label}"
     help="{component.help ?? ''}"
     required="{component.required ?? false}"
@@ -78,6 +80,7 @@
   <ButtonSelect
     on:valueChange="{componentUpdated}"
     id="{component.id}"
+    value={$inputStore[component.id] ?? ''}
     label="{component.label}"
     help="{component.help ?? ''}"
     required="{component.required ?? false}"
@@ -99,6 +102,7 @@
   <Dropdown
     on:valueChange="{componentUpdated}"
     id="{component.id}"
+    value={$inputStore[component.id] ?? ''}
     label="{component.label}"
     refdata="{component.refdata}"
     placeholder="{component.placeholder ?? ''}"
