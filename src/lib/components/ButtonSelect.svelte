@@ -130,4 +130,8 @@
     .buttons > * {
         flex-basis: 1;/* give all buttons equal space */
     }
+    button {
+        background-color: var(--input-btn-bg, white);
+        color: var(--input-btn-txt, black);
+    }
 </style>

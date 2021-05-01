@@ -63,6 +63,8 @@
 }
 button {
     flex-grow: 1;
+    color: var(--section-navbtn-txt, black);
+    background-color: var(--section-navbtn-bg, white);
 }
 
 </style>

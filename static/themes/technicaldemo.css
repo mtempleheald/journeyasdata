@@ -30,7 +30,7 @@
     --nav-bg:                    var(--white);
     --nav-border:                1px dashed var(--darkgrey);
     --nav-txt:                   var(--darkgrey);
-    --nav-highlight-bg:          var(--green);
+    --nav-highlight-bg:          var(--lightgrey);
     --nav-highlight-txt:         inherit;
     --footer-bg:                 var(--lightgrey);
     --footer-txt:                var(--darkgrey );
@@ -41,7 +41,7 @@
     --section-link:              var(--darkgrey);
     --section-header-bg:         var(--blue);
     --section-header-txt:        var(--white);
-    --section-navbtn-bg:         var(--green);
+    --section-navbtn-bg:         var(--darkgrey);
     --section-navbtn-txt:        var(--white);
     --input-bg:                  var(--white);
     --input-txt:                 var(--darkgrey);
