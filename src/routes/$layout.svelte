@@ -1,12 +1,12 @@
 <script context="module">
-	/**
+    import { BRAND } from '$lib/env/Env.svelte'
+    /**
 	 * @type {import('@sveltejs/kit').Load}
 	 */
 	export async function load({ page, fetch, session, context }) {        
         // console.log('Loading questionset'); // proves that this isn't loaded on each subsequent page request
 
-        let brand = 'technicaldemo'// ximport.meta.env.VITE_BRAND;
-        const qsurl = `/questionsets/${brand}.json`;
+        const qsurl = `/questionsets/${BRAND}.json`;
         let qs;
         await fetch(qsurl)
                 .then(resp => resp.json())
@@ -15,7 +15,7 @@
 		return {
             props: {
                 questionset: qs,
-                brand: brand
+                brand: BRAND
             }
         };
 	}
@@ -23,17 +23,21 @@
 
 <script lang="ts">
     import { setContext } from 'svelte';
+    import { browser } from '$app/env';
     import type { QuestionSetType } from '$lib/types/questionset';
     import { actionStore } from '$lib/stores/actionstore';
     import { getActions } from '$lib/actions/actionprovider';
     
     export let brand: string;
-    export let questionset: QuestionSetType;    
+    export let questionset: QuestionSetType;
+
     // load questionset once, reference throughout user journey
     setContext("questionset", questionset); 
     // load bespoke actions once, call throughout user journey
-    actionStore.load(getActions(brand));
-    console.log(`${Object.keys($actionStore).length} actions loaded for ${brand}`);
+    if (browser) {
+        actionStore.load(getActions(brand));
+        console.log(`${Object.keys($actionStore).length} actions loaded for ${brand}`);
+    }
 </script>
 
 
