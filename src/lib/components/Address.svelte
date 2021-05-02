@@ -106,8 +106,7 @@
         }}
         on:valueChange="{postcodeTouched}"
     />
-    {#key propertyLov}
-    <!-- need to redraw the LOV anytime the data changes because we are passing new object to (sub)components, not binding -->
+    {#key propertyLov}<!-- redraw the LOV anytime the data changes because we are passing new object to (sub)components, not binding -->    
     {#if propertyLov.length > 0 || !$inputStore["property"]}
     <Dropdown 
         component={{

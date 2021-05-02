@@ -110,17 +110,14 @@
   </svelte:fragment>
 </Displayblock>
 {:else if component.type == "Address"}
-<!-- TODO: cast to AddressComponent/VehicleComponent to remove warnings -->
   <Address 
     component={component}
     on:addressChange="{componentUpdated}"
   />
 {:else if component.type == "Vehicle"}
   <Vehicle 
-    regnumPlaceholder={component.regnumPlaceholder} 
-    regnumLabel={component.regnumLabel} 
-    buttonLabel={component.buttonLabel}
-    errorMessage={component.errorMessage}
+    component={component}
+    on:vehicleChange="{componentUpdated}"
   />
 {/if}
 {/if}

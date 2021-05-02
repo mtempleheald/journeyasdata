@@ -69,8 +69,7 @@ export type AddressComponentType = BaseComponentType & {
     postcodeError?: string;
 }
 export type VehicleComponentType = BaseComponentType & {
-    regnumLabel: string;
-    regnumPlaceholder: string;
-    buttonLabel: string;
-    errorMessage: string;
+    regnumLabel?: string;
+    regnumPlaceholder?: string;
+    buttonLabel?: string;
 }
