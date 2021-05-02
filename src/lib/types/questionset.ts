@@ -18,7 +18,7 @@ export type SectionType = {
 export type ComponentType = BaseComponentType | AddressComponentType | VehicleComponentType;
 
 export type BaseComponentType = {
-    type: "Address" 
+    type?: "Address" 
         | "ButtonSelect"
         | "Colour" 
         | "Date" 
@@ -33,6 +33,7 @@ export type BaseComponentType = {
         | "Telephone"
         | "Text" 
         | "Time"
+        | "Upper"
         | "Url"
         | "Vehicle" 
         | "Week"
@@ -47,6 +48,7 @@ export type BaseComponentType = {
     pre?: string;
     content?: string;
     post?: string;
+    value?: string;
     values?: ValueType[];
     refdata?: string;
     dependsupon?: {
@@ -55,8 +57,8 @@ export type BaseComponentType = {
     }
 }
 export type ValueType = {
-    key: string;
     value: string;
+    display: string;
 }
 export type AddressComponentType = BaseComponentType & {
     postcodeLabel?: string;

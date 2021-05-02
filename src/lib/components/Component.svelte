@@ -14,7 +14,7 @@
     export let component: ComponentType;
 
     function componentUpdated(event) {
-      console.log(`Component updated - {key: "${event.detail.key}", value: "${event.detail.value}", valid: "${event.detail.valid}}"`)
+      console.log(`{key: "${event.detail.key}", value: "${event.detail.value}", valid: "${event.detail.valid}}"`)
       // update input store with latest value, regardless of validity
       inputStore.input(event.detail.key, event.detail.value);
       // update validation store for use by validators
@@ -28,18 +28,9 @@
 
 {#if !component.dependsupon || ($inputStore[component.dependsupon.id] == component.dependsupon.value)}
 {#if ["Colour","Date","Datetime","Email","Month","Number","Search","Slider","Text","Telephone","Time","Upper","Url","Week"].includes(component.type)}
-<svelte:component 
-  this={Textbox} 
-  type="{component.type ?? 'text'}"
-  on:valueChange="{componentUpdated}"
-  id="{component.id}"
-  value={$inputStore[component.id] ?? ''}
-  label="{component.label}"
-  placeholder="{component.placeholder ?? ''}"
-  help="{component.help ?? ''}"
-  required="{component.required ?? false}"
-  errorMessage="{component.errorMessage ?? ''}"
->
+<svelte:component this={Textbox} 
+  component={{...component, value:$inputStore[component.id] ?? ''}}
+  on:valueChange="{componentUpdated}">
     <svelte:fragment slot="pre">
       {#if component.pre}    
         {@html snarkdown(component.pre)}    
@@ -52,16 +43,11 @@
     </svelte:fragment>  
 </svelte:component>
 {:else if component.type == "YesNo"}
-  <ButtonSelect
-    on:valueChange="{componentUpdated}"
-    id="{component.id}"
-    value={$inputStore[component.id] ?? ''}
-    label="{component.label}"
-    help="{component.help ?? ''}"
-    required="{component.required ?? false}"
-    errorMessage="{component.errorMessage ?? ''}"
-    values={[{value:"Y",display:"Yes"},{value:"N",display:"No"}]}
-  >
+<ButtonSelect   
+  component={{...component, 
+    value:$inputStore[component.id] ?? '', 
+    values:[{value:"Y",display:"Yes"},{value:"N",display:"No"}]}}
+  on:valueChange="{componentUpdated}">
   <svelte:fragment slot="pre">
     {#if component.pre}    
       {@html snarkdown(component.pre)}    
@@ -74,61 +60,13 @@
   </svelte:fragment>
   </ButtonSelect>
 {:else if component.type == "ButtonSelect"}
-  <ButtonSelect
-    on:valueChange="{componentUpdated}"
-    id="{component.id}"
-    value={$inputStore[component.id] ?? ''}
-    label="{component.label}"
-    help="{component.help ?? ''}"
-    required="{component.required ?? false}"
-    errorMessage="{component.errorMessage ?? ''}"
-    values={component.values}
-  >
-  <svelte:fragment slot="pre">
-    {#if component.pre}    
-      {@html snarkdown(component.pre)}    
-    {/if}
-  </svelte:fragment>
-  <svelte:fragment slot="post">
-    {#if component.post}
-      {@html snarkdown(component.post)}
-    {/if}
-  </svelte:fragment>
-    </ButtonSelect>
-{:else if component.type == "Dropdown"}
-  <Dropdown
-    on:valueChange="{componentUpdated}"
-    id="{component.id}"
-    value={$inputStore[component.id] ?? ''}
-    label="{component.label}"
-    refdata="{component.refdata}"
-    placeholder="{component.placeholder ?? ''}"
-    help="{component.help ?? ''}"
-    required="{component.required ?? false}"
-    errorMessage="{component.errorMessage ?? ''}"
-    values={component.values ?? []}
-  >
-  <svelte:fragment slot="pre">
-    {#if component.pre}    
-      {@html snarkdown(component.pre)}    
-    {/if}
-  </svelte:fragment>
-  <svelte:fragment slot="post">
-    {#if component.post}
-      {@html snarkdown(component.post)}
-    {/if}
-  </svelte:fragment>
-  </Dropdown>
-{:else if component.type == "Displayblock"}
-  <Displayblock>
+<ButtonSelect
+  component={{...component, 
+    value:$inputStore[component.id] ?? ''}}
+  on:valueChange="{componentUpdated}">
     <svelte:fragment slot="pre">
       {#if component.pre}    
         {@html snarkdown(component.pre)}    
-      {/if}
-    </svelte:fragment>
-    <svelte:fragment slot="main">
-      {#if component.content}    
-        {@html snarkdown(component.content)}    
       {/if}
     </svelte:fragment>
     <svelte:fragment slot="post">
@@ -136,17 +74,46 @@
         {@html snarkdown(component.post)}
       {/if}
     </svelte:fragment>
-  </Displayblock>
+</ButtonSelect>
+{:else if component.type == "Dropdown"}
+<Dropdown
+  component={{...component, 
+    value:$inputStore[component.id] ?? ''}}
+  on:valueChange="{componentUpdated}">
+    <svelte:fragment slot="pre">
+      {#if component.pre}    
+        {@html snarkdown(component.pre)}    
+      {/if}
+    </svelte:fragment>
+    <svelte:fragment slot="post">
+      {#if component.post}
+        {@html snarkdown(component.post)}
+      {/if}
+    </svelte:fragment>
+</Dropdown>
+{:else if component.type == "Displayblock"}
+<Displayblock>
+  <svelte:fragment slot="pre">
+    {#if component.pre}    
+      {@html snarkdown(component.pre)}    
+    {/if}
+  </svelte:fragment>
+  <svelte:fragment slot="main">
+    {#if component.content}    
+      {@html snarkdown(component.content)}    
+    {/if}
+  </svelte:fragment>
+  <svelte:fragment slot="post">
+    {#if component.post}
+      {@html snarkdown(component.post)}
+    {/if}
+  </svelte:fragment>
+</Displayblock>
 {:else if component.type == "Address"}
 <!-- TODO: cast to AddressComponent/VehicleComponent to remove warnings -->
   <Address 
+    component={component}
     on:addressChange="{componentUpdated}"
-    postcodeLabel={component.postcodeLabel}
-    postcodePlaceholder={component.postcodePlaceholder} 
-    propertyLabel={component.propertyLabel}
-    propertyPlaceholder={component.propertyPlaceholder}
-    postcodeHelp={component.postcodeHelp}
-    postcodeError={component.postcodeError}
   />
 {:else if component.type == "Vehicle"}
   <Vehicle 

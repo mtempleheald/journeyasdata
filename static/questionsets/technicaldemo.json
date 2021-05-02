@@ -186,7 +186,7 @@
               "type": "Dropdown",
               "placeholder": "Placeholder...",
               "required": true,
-              "refdata": "context.list",
+              "refdata": "context1.list1",
               "errorMessage": "Please select an option",
               "help": "Help text",
               "pre": "# Markdown before question 1",
@@ -196,7 +196,7 @@
               "id": "dropdown_refdata",
               "type": "Dropdown",
               "label": "Data passed in by reference",
-              "refdata": "context.list"
+              "refdata": "context1.list2"
             },
             {
               "id": "dropdown_datalist",
@@ -204,12 +204,12 @@
               "label": "Data passed in via QS",
               "values": [
                 {
-                  "key": "example1",
-                  "value": "Example 1"
+                  "value": "example1",
+                  "display": "Example 1"
                 },
                 {
-                  "key": "example2",
-                  "value": "Example 2"
+                  "value": "example2",
+                  "display": "Example 2"
                 }
               ]
             }
@@ -235,7 +235,6 @@
               "help": "Surely you can figure this out",
               "values": [
                 {
-                  "key": "simpletextbutton",
                   "value": "simpletextbutton",
                   "display": "Click me?"
                 }
@@ -250,28 +249,25 @@
               "help": "Surely you can figure this out",
               "values": [
                 {
-                  "key": "simplecarbutton",
                   "value": "car",
+                  "display": "Car",
                   "image": "https://image.flaticon.com/icons/svg/58/58463.svg",
                   "imageWidth": "128",
-                  "imageHeight": "128",
-                  "display": "Car"
+                  "imageHeight": "128"
                 },
                 {
-                  "key": "simplebikebutton",
                   "value": "bike",
+                  "display": "Bike",
                   "image": "https://image.flaticon.com/icons/png/128/130/130278.png",
                   "imageWidth": "128",
-                  "imageHeight": "128",
-                  "display": "Bike"
+                  "imageHeight": "128"
                 },
                 {
-                  "key": "simplebusbutton",
                   "value": "bus",
+                  "display": "Bus",
                   "image": "https://image.freepik.com/free-icon/bus_318-142528.jpg",
                   "imageWidth": "128",
-                  "imageHeight": "128",
-                  "display": "Bus"
+                  "imageHeight": "128"
                 }
               ]
             },
@@ -293,12 +289,6 @@
                 "id": "buttonselect",
                 "value": "Y"
               }
-            },
-            {
-              "id": 2,
-              "type": "Dropdown",
-              "label": "Label & question only",
-              "refdata": "context.list"
             }
           ]
         }
@@ -351,7 +341,7 @@
               "postcodeLabel": "Postcode",
               "postcodePlaceholder": "MK10 0BZ",
               "buttonLabel": "Search",
-              "houseLabel": "Property",
+              "propertyLabel": "Property",
               "required": true
             }
           ]

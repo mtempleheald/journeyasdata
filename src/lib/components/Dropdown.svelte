@@ -1,43 +1,41 @@
 <script lang="ts">
 	import { createEventDispatcher, onMount } from 'svelte';
     import Helptext from '$lib/components/Helptext.svelte';
+    import type { ComponentType, ValueType } from '$lib/types/questionset';
 
     // load refdata on component creation
     onMount(async () => {
-        if (refdata) {
-            const res = await fetch ('/api/refdata/' + refdata);
-            values = await res.json();
+        effectiveValues = component.values;
+        if (component.refdata) {
+            await fetch ('/api/refdata/' + component.refdata)
+            .then(resp => resp.json())
+            .then(data => effectiveValues = data);
         }
     });
     
+
     // expose component properties
-    export let id = '';
-    export let value = '';
-    export let label = '';
-    export let help = '';
-    export let placeholder = '';
-    export let required = false;
-    export let errorMessage = '';
-    export let refdata = ''; // pass data in by refdata lookup
-    export let values : any[] = []; // pass data in directly, overwritten by refdata
+    export let component: ComponentType;
 
     // internal properties to support component logic
     const dispatch = createEventDispatcher();
     let fallbackError;
     let invalid = false;
     let active;
+    let effectiveValues: ValueType[]; // overwriting component.values directly triggers an onMount loop
     
-    // component actions
+    
+    // component actions    
     function enter() {
         active = "active";
     }
     function leave() {
         active = "";
-    }
+    }    
     function act(event) {
         // publish value changes up to parent too
-        dispatch('valueChange', {key: id, value: event.target.value, valid: (!required || !!event.target.value)});
-        invalid = (required && !event.target.value);
+        dispatch('valueChange', {key: component.id, value: event.target.value, valid: (!component.required || !!event.target.value)});
+        invalid = (component.required && !event.target.value);
     }
 </script>
 
@@ -49,36 +47,39 @@
     <slot name="pre"></slot>
 
     <div class="container">
-        {#if label}
-        <label for="{id}">
-            {label}
-            {#if required}
+        {#if component.label}
+        <label for="{component.id}">
+            {component.label}
+            {#if component.required}
                 <span class="required">*</span>
             {/if}
         </label>
         {/if}
-        {#if id}        
+        {#if component.id}
         <select
-            id="{id}" 
-            name="{id}" 
-            value="{value}"
-            data-reference="{refdata}"
-            required="{required}"
+            id="{component.id}" 
+            name="{component.id}" 
+            value="{component.value}"
+            data-reference="{component.refdata}"
+            required="{component.required}"
             on:blur={act}
             >
-            <option value="">{!placeholder ? '-- select --' : placeholder}</option>
-            {#each values as val}
-                <option value="{val.key}" selected={value==val.value}>{val.value}</option>
+            <option value="">{!component.placeholder ? '-- select --' : component.placeholder}</option>
+
+            {#if effectiveValues}
+            {#each effectiveValues as val}
+                <option value="{val.value}" selected={component.value==val.value}>{val.display}</option>
             {/each}
+            {/if}
         </select>
         {/if}
-        {#if help}
-        <Helptext>{help}</Helptext>
+        {#if component.help}
+        <Helptext>{component.help}</Helptext>
         {/if}
     </div>
 
     {#if invalid}
-        <span class="error">{errorMessage ?? fallbackError}</span>
+    <span class="error">{component.errorMessage ?? fallbackError}</span>
     {/if}
 
     <slot name="post"></slot>
