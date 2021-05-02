@@ -27,7 +27,9 @@
 
 <style>
 .helpicon {
-    border: 1px solid black;
+    background-color: var(--help-bg, white);
+    color: var(--help-txt, darkgrey);
+    border: var(--help-border,1px solid black);
     padding: 0.5rem;
 }
 .help {

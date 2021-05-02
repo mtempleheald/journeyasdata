@@ -1,27 +1,24 @@
-export type QuestionSet = {
-    questionset: {
-        title: string;
-    }
-    pages: Page[];
+export type QuestionSetType = {
+    title: string;
+    pages: PageType[];
 }
-export type Page = {
-    page: {
-        url: string;
-        title: string;
-    }
-    sections: Section[];
+export type PageType = {
+    url: string;
+    title: string;
+    sections: SectionType[];
 }
-export type Section = {
-    section: {
-        title?: string;
-        logo?: string;
-    }
-    components: Component[];
+export type SectionType = {
+    id?: string;
+    type?: string;
+    title?: string;
+    logo?: string;
+    maxrepeats?: number;
+    components: ComponentType[];
 }
-export type Component = BaseComponent | AddressComponent | VehicleComponent;
+export type ComponentType = BaseComponentType | AddressComponentType | VehicleComponentType;
 
-export type BaseComponent = {
-    type: "Address" 
+export type BaseComponentType = {
+    type?: "Address" 
         | "ButtonSelect"
         | "Colour" 
         | "Date" 
@@ -36,6 +33,7 @@ export type BaseComponent = {
         | "Telephone"
         | "Text" 
         | "Time"
+        | "Upper"
         | "Url"
         | "Vehicle" 
         | "Week"
@@ -50,18 +48,19 @@ export type BaseComponent = {
     pre?: string;
     content?: string;
     post?: string;
-    values?: Value[];
+    value?: string;
+    values?: ValueType[];
     refdata?: string;
     dependsupon?: {
         id: string;
         value: string;
     }
 }
-export type Value = {
-    key: string;
+export type ValueType = {
     value: string;
+    display: string;
 }
-export type AddressComponent = BaseComponent & {
+export type AddressComponentType = BaseComponentType & {
     postcodeLabel?: string;
     postcodePlaceholder?: string;    
     propertyLabel?: string;
@@ -69,9 +68,8 @@ export type AddressComponent = BaseComponent & {
     postcodeHelp?: string;
     postcodeError?: string;
 }
-export type VehicleComponent = BaseComponent & {
-    regnumLabel: string;
-    regnumPlaceholder: string;
-    buttonLabel: string;
-    errorMessage: string;
+export type VehicleComponentType = BaseComponentType & {
+    regnumLabel?: string;
+    regnumPlaceholder?: string;
+    buttonLabel?: string;
 }

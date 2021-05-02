@@ -18,8 +18,8 @@
 
 <style>
     .question {
-        margin: 0.5rem;
-        padding: 0.5rem;
+        margin: 0.5rem 1rem;
+        padding: 0.5rem 1rem;
         background-color: var(--input-bg, white);
         color: var(--input-txt, black);
         border: var(--input-border, 1px solid black);

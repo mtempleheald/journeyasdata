@@ -1,20 +1,14 @@
 {
-  "questionset": {
-    "show-wizard": true,
-    "title": "DangerTent Insurance"
-  },
+  "show-wizard": true,
+  "title": "DangerTent Insurance",
   "pages": [
     {
-      "page": {
-        "url": "your-vehicle",
-        "title": "Your Vehicle"
-      },
+      "url": "your-vehicle",
+      "title": "Your Vehicle",
       "sections": [
         {
-          "section": {
-            "title": "Your Vehicle",
-            "logo": "https://fakeimg.pl/100x50/?text=Vehicle%20Logo"
-          },
+          "title": "Your Vehicle",
+          "logo": "https://fakeimg.pl/100x50/?text=Vehicle%20Logo",
           "components": [
             {
               "id": "vehicleregnum",
@@ -34,23 +28,23 @@
               "post": "__TODO:__ replace with Iconbutton",
               "values": [
                 {
-                  "key": "single",
-                  "value": "Single",
+                  "value": "single",
+                  "display": "Single",
                   "image": "https://fakeimg.pl/100x50/?text=VehicleImage"
                 },
                 {
-                  "key": "double",
-                  "value": "Double",
+                  "value": "double",
+                  "display": "Double",
                   "image": "https://fakeimg.pl/100x50/?text=VehicleImage"
                 },
                 {
-                  "key": "family",
-                  "value": "Family size",
+                  "value": "family",
+                  "display": "Family size",
                   "image": "https://fakeimg.pl/100x50/?text=VehicleImage"
                 },
                 {
-                  "key": "marquee",
-                  "value": "Marquee",
+                  "value": "marquee",
+                  "display": "Marquee",
                   "image": "https://fakeimg.pl/100x50/?text=VehicleImage"
                 }
               ]
@@ -63,12 +57,12 @@
               "errorMessage": "Please select an option to continue.",
               "values": [
                 {
-                  "key": "ground",
-                  "value": "Ground"
+                  "value": "ground",
+                  "display": "Ground"
                 },
                 {
-                  "key": "mat",
-                  "value": "mat"
+                  "value": "mat",
+                  "display": "mat"
                 }
               ]
             },
@@ -80,16 +74,16 @@
               "errorMessage": "Please select an option to continue.",
               "values": [
                 {
-                  "key": "gooutdoors",
-                  "value": "Go Outdoors"
+                  "value": "gooutdoors",
+                  "display": "Go Outdoors"
                 },
                 {
-                  "key": "decathlon",
-                  "value": "Decathlon"
+                  "value": "decathlon",
+                  "display": "Decathlon"
                 },
                 {
-                  "key": "cotswold",
-                  "value": "Cotswold Company"
+                  "value": "cotswold",
+                  "display": "Cotswold Company"
                 }
               ]
             },
@@ -101,16 +95,16 @@
               "errorMessage": "Please select an option to continue.",
               "values": [
                 {
-                  "key": "red",
-                  "value": "Red"
+                  "value": "red",
+                  "display": "Red"
                 },
                 {
-                  "key": "green",
-                  "value": "Green"
+                  "value": "green",
+                  "display": "Green"
                 },
                 {
-                  "key": "blue",
-                  "value": "Blue"
+                  "value": "blue",
+                  "display": "Blue"
                 }
               ]
             },
@@ -138,16 +132,16 @@
               "errorMessage": "Please select an answer from the list.",
               "values": [
                 {
-                  "key": "electric",
-                  "value": "Electric"
+                  "value": "electric",
+                  "display": "Electric"
                 },
                 {
-                  "key": "petrol",
-                  "value": "Petrol"
+                  "value": "petrol",
+                  "display": "Petrol"
                 },
                 {
-                  "key": "diesel",
-                  "value": "Diesel"
+                  "value": "diesel",
+                  "display": "Diesel"
                 }
               ]
             },
@@ -159,12 +153,12 @@
               "errorMessage": "Please select an answer from the list.",
               "values": [
                 {
-                  "key": "manual",
-                  "value": "Manual"
+                  "value": "manual",
+                  "display": "Manual"
                 },
                 {
-                  "key": "automatic",
-                  "value": "Automatic"
+                  "value": "automatic",
+                  "display": "Automatic"
                 }
               ]
             },
@@ -179,10 +173,8 @@
           ]
         },
         {
-          "section": {
-            "title": "Vehicle Details",
-            "logo": "https://fakeimg.pl/100x50/?text=Vehicle%20Logo"
-          },
+          "title": "Vehicle Details",
+          "logo": "https://fakeimg.pl/100x50/?text=Vehicle%20Logo",
           "components": [
             {
               "id": "vehiclehasalarm",
@@ -206,13 +198,13 @@
               "post": "__TODO:__ replace with Iconbutton",
               "values": [
                 {
-                  "key": "left",
-                  "value": "Left Hand Drive",
+                  "value": "left",
+                  "display": "Left Hand Drive",
                   "image": "https://fakeimg.pl/100x50/?text=Left%20Hand%20Drive"
                 },
                 {
-                  "key": "right",
-                  "value": "Right Hand Drive",
+                  "value": "right",
+                  "display": "Right Hand Drive",
                   "image": "https://fakeimg.pl/100x50/?text=Right%20Hand%20Drive"
                 }
               ]
@@ -244,10 +236,8 @@
           ]
         },
         {
-          "section": {
-            "title": "Manufacturing & Accessories",
-            "logo": "https://fakeimg.pl/100x50/?text=Garage%20Logo"
-          },
+          "title": "Manufacturing & Accessories",
+          "logo": "https://fakeimg.pl/100x50/?text=Garage%20Logo",
           "components": [
             {
               "id": "vehiclemanufacturelocation",
@@ -258,18 +248,18 @@
               "post": "__TODO:__ replace with Iconbutton",
               "values": [
                 {
-                  "key": "uk",
-                  "value": "UK",
+                  "value": "uk",
+                  "display": "UK",
                   "image": "https://fakeimg.pl/100x50/?text=UK"
                 },
                 {
-                  "key": "usa",
-                  "value": "USA",
+                  "value": "usa",
+                  "display": "USA",
                   "image": "https://fakeimg.pl/100x50/?text=USA"
                 },
                 {
-                  "key": "other",
-                  "value": "Other",
+                  "value": "other",
+                  "display": "Other",
                   "image": "https://fakeimg.pl/100x50/?text=Other"
                 }
               ]
@@ -292,10 +282,8 @@
           ]
         },
         {
-          "section": {
-            "title": "Use of the Vehicle",
-            "logo": "https://fakeimg.pl/100x50/?text=Vehicle%20Logo"
-          },
+          "title": "Use of the Vehicle",
+          "logo": "https://fakeimg.pl/100x50/?text=Vehicle%20Logo",
           "components": [
             {
               "id": "vehicleowner",
@@ -307,16 +295,16 @@
               "help": "The legal owner is the person or company who purchased the vehicle e.g. finance, hire purchase or leasing companies or the person purchasing the vehicle for spouse or child.",
               "values": [
                 {
-                  "key": "proposer",
-                  "value": "Proposer"
+                  "value": "proposer",
+                  "display": "Proposer"
                 },
                 {
-                  "key": "spouse",
-                  "value": "Spouse"
+                  "value": "spouse",
+                  "display": "Spouse"
                 },
                 {
-                  "key": "company",
-                  "value": "Company"
+                  "value": "company",
+                  "display": "Company"
                 }
               ]
             },
@@ -338,16 +326,16 @@
               "help": "Please note that any off-road parking other than your driveway or a locked garage should be entered as On the Road. For storage at a storage location, please enter driveway.",
               "values": [
                 {
-                  "key": "driveway",
-                  "value": "On a driveway"
+                  "value": "driveway",
+                  "display": "On a driveway"
                 },
                 {
-                  "key": "garage",
-                  "value": "In a locked garage"
+                  "value": "garage",
+                  "display": "In a locked garage"
                 },
                 {
-                  "key": "road",
-                  "value": "On the road"
+                  "value": "road",
+                  "display": "On the road"
                 }
               ]
             },
@@ -367,16 +355,16 @@
               "help": "Social Domestic and Pleasure Only - covers normal leisure use (such as camping, visiting friends and family, shopping) but not driving to and from work.  Social Domestic and Pleasure including commuting - covers leisure use plus commuting to a single, permanent place of work.  Business use - includes leisure use and also covers the designated drivers in connection with their jobs (for things like driving to different sites or offices and meetings away from the normal workplace).  Business Use including Commercial Travelling - Covers leisure use and also using the vehicle for commercial travel, for example delivering goods or door-to-door sales.",
               "values": [
                 {
-                  "key": "socialdomestic",
-                  "value": "Social, Domestic and Pleasure Only"
+                  "value": "socialdomestic",
+                  "display": "Social, Domestic and Pleasure Only"
                 },
                 {
-                  "key": "businesssolo",
-                  "value": "Business Use by you only"
+                  "value": "businesssolo",
+                  "display": "Business Use by you only"
                 },
                 {
-                  "key": "businessany",
-                  "value": "Business Use by any driver"
+                  "value": "businessany",
+                  "display": "Business Use by any driver"
                 }
               ]
             },
@@ -407,18 +395,18 @@
               "errorMessage": "Please complete this question to continue.",
               "values": [
                 {
-                  "key": "annual",
-                  "value": "Annual",
+                  "value": "annual",
+                  "display": "Annual",
                   "image": "https://fakeimg.pl/100x50/?text=Annual"
                 },
                 {
-                  "key": "monthly",
-                  "value": "Monthly",
+                  "value": "monthly",
+                  "display": "Monthly",
                   "image": "https://fakeimg.pl/100x50/?text=Monthly"
                 },
                 {
-                  "key": "none",
-                  "value": "Not had insurance before",
+                  "value": "none",
+                  "display": "Not had insurance before",
                   "image": "https://fakeimg.pl/100x50/?text=N/A"
                 }
               ]
@@ -428,16 +416,12 @@
       ]
     },
     {
-      "page": {
-        "url": "driver",
-        "title": "You"
-      },
+      "url": "driver",
+      "title": "You",
       "sections": [
         {
-          "section": {
-            "title": "Personal details",
-            "logo": "https://fakeimg.pl/100x50/?text=Person%20Logo"
-          },
+          "title": "Personal details",
+          "logo": "https://fakeimg.pl/100x50/?text=Person%20Logo",
           "components": [
             {
               "id": "title",
@@ -471,10 +455,8 @@
           ]
         },
         {
-          "section": {
-            "title": "Contact details",
-            "logo": "https://fakeimg.pl/100x50/?text=Contact%20Logo"
-          },
+          "title": "Contact details",
+          "logo": "https://fakeimg.pl/100x50/?text=Contact%20Logo",
           "components": [
             {
               "id": "",
@@ -507,31 +489,23 @@
           ]
         },
         {
-          "section": {
-            "title": "Employment details",
-            "logo": "https://fakeimg.pl/100x50/?text=Employment%20Logo"
-          },
+          "title": "Employment details",
+          "logo": "https://fakeimg.pl/100x50/?text=Employment%20Logo",
           "components": []
         },
         {
-          "section": {
-            "title": "Experience details",
-            "logo": "https://fakeimg.pl/100x50/?text=Experience%20Logo"
-          },
+          "title": "Experience details",
+          "logo": "https://fakeimg.pl/100x50/?text=Experience%20Logo",
           "components": []
         }
       ]
     },
     {
-      "page": {
-        "url": "other-people",
-        "title": "Friends & Family"
-      },
+      "url": "other-people",
+      "title": "Friends & Family",
       "sections": [
         {
-          "section": {
-            "title": "Summary of others"
-          },
+          "title": "Summary of others",
           "components": [
             {
               "type": "Text",
@@ -540,12 +514,10 @@
           ]
         },
         {
-          "section": {
-            "sectionid": "other",
-            "title": "Add other",
-            "minRepeats": "0",
-            "maxRepeats": "5"
-          },
+          "sectionid": "other",
+          "title": "Add other",
+          "minRepeats": "0",
+          "maxRepeats": "5",
           "components": [
             {
               "id": "{sectionid}-{repeat}-title",
@@ -580,16 +552,12 @@
       ]
     },
     {
-      "page": {
-        "url": "legal",
-        "title": "Legal stuff"
-      },
+      "url": "legal",
+      "title": "Legal stuff",
       "sections": [
         {
-          "section": {
-            "title": "Convictions",
-            "logo": "https://fakeimg.pl/100x50/?text=Convictions%20Logo"
-          },
+          "title": "Convictions",
+          "logo": "https://fakeimg.pl/100x50/?text=Convictions%20Logo",
           "components": [
             {
               "id": "has_convictions",
@@ -604,10 +572,8 @@
       ]
     },
     {
-      "page": {
-        "url": "contractual",
-        "title": "Contract stuff"
-      },
+      "url": "contractual",
+      "title": "Contract stuff",
       "sections": []
     }
   ]

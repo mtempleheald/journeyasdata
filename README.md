@@ -11,56 +11,93 @@ The aim of this project is to prove that option 2 can be delivered in 3 distinct
 - themes as css variables - distinct stylesheet for different brands.  Components handle the general styling.
 - code - pull together the theme and journey data to generate a functioning journey.
 
-Deployment process:
-[![](https://mermaid.ink/img/eyJjb2RlIjoiZ3JhcGggVERcblxuICBjb2RlW0NvZGVdIC0tPiBjaVtDSV1cbiAgY2kgLS0-IGNkW0NEXVxuICBjZCAtLT4gZW52W0Vudmlyb25tZW50XVxuICBjZCAtLXVwZGF0ZS0tPiBwXG5cbiAgcXNbUXVlc3Rpb25TZXRdIC0tcHVibGlzaC0tPiBwW1B1Ymxpc2hlcl1cbiAgdGhlbWVbVGhlbWVdIC0tcHVibGlzaC0tPiBwW1B1Ymxpc2hlcl1cblxuICBwIC0tPiB2e3ZhbGlkP31cbiAgdiAtLT58eWVzfCBlbnZcbiAgdiAtLT58bm98IE5vdGlmeSIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In0sInVwZGF0ZUVkaXRvciI6ZmFsc2V9)](https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiZ3JhcGggVERcblxuICBjb2RlW0NvZGVdIC0tPiBjaVtDSV1cbiAgY2kgLS0-IGNkW0NEXVxuICBjZCAtLT4gZW52W0Vudmlyb25tZW50XVxuICBjZCAtLXVwZGF0ZS0tPiBwXG5cbiAgcXNbUXVlc3Rpb25TZXRdIC0tcHVibGlzaC0tPiBwW1B1Ymxpc2hlcl1cbiAgdGhlbWVbVGhlbWVdIC0tcHVibGlzaC0tPiBwW1B1Ymxpc2hlcl1cblxuICBwIC0tPiB2e3ZhbGlkP31cbiAgdiAtLT58eWVzfCBlbnZcbiAgdiAtLT58bm98IE5vdGlmeSIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In0sInVwZGF0ZUVkaXRvciI6ZmFsc2V9)
+
+## Data Structure
+
+The basic data structure which drives the entire solution:
+
+- journey (identified by brand/product + version)
+  - page (url-aligned)
+    - section (block of content, may have logo or other presentational elements)
+      - display (paragraphs, images...)
+      - question (input element with optional additional presentational elements)
+      - composite (multiple fields combined into a single component, e.g. address lookup)
+        - display
+        - question 
+
+
+## Key Features
+
+- URL based routing (not hash-based, ideal for SEO) 
+  - handled by [SvelteKit](https://kit.svelte.dev) filesystem based routing out of the box
+- Custom components, all inputs optional, designed to be ultra flexible and responsive across browsers/devices
+- Data-driven basic validation using HTML5 standard elements and [ValidationAPI](https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation#the_constraint_validation_api)
+- Configurable questionset - content editors manage content (labels, helptext...), developers manage code, see `/lib/types/questionset.ts`
+- Configurable themes - components manage layout, responsible for responsive design, exposing key CSS variables for theming, see `/static/questionsets/`
+- Session data management
+  - The `inputStore` is a key-value store holding the component id against its value, see `/lib/stores/inputstore.ts`
+  - This is updated whenever a user action triggers a change, this could be direct or via a custom function.
+- Injectable functionality
+  - The entire journey is dynamic, with the majority of validation and display logic being data-driven.
+  - In order to perform bespoke functions we need a trigger mechanism.  
+  - This trigger mechanism is a component dispatching an event when a value changes.
+  - The convention is to name the triggered function (action) to match the component id.
+  - All defined actions are loaded when the site is first loaded, into the actionStore, which is distinct to a brand (global actions may come later).  See `/lib/actions/actionprovider.ts`
+- Repeating sections
+  - Each element requires a unique identifier for use in stores, yet sometimes we require multiple inputs, e.g. drivers on a car insurance policy
+  - To manage this we prefix the component id with a section id and index `${sectionid}.${sectionindex}.${componentid}`
+  - The downside of this (for now) is that bespoke functionality need to know about these nuances
+- 
 
 
 # Extra features
 
-- URL based routing (not hash-based) - handled by [SvelteKit](https://kit.svelte.dev)
-- Data security - No PII data left on the local machine - data is held in memory only by default in [Svelte stores](https://svelte.dev/docs#svelte_store)
+
+- Data security - No PII data left on the local machine - data is held in memory only by default in [Svelte stores](https://svelte.dev/docs#svelte_store).
+  If you even refresh the page you lose all data, so we may need sessionStorage store capabilities too.
 - API security - [SvelteKit will server-render pages on demand](https://kit.svelte.dev/docs#ssr-and-javascript) and [endpoints only run on the server](https://kit.svelte.dev/docs#routing-endpoints)
-- A/B testing - does NOT cover code, but does cover data
-- Source/Affinity based branding - If redirected from google or some other aggregator we want to style certain aspects differently, e.g. logos
+- A/B testing - does NOT cover code, but does cover data - the current plan is to handle this by deployment, hosting multiple versions simultaneously.
+- Source/Affinity based branding - If redirected from google or some other aggregator we may want to style certain aspects differently, e.g. logos
 
 
 # Getting started
 
-See `docs/Themes.md` for details about styling.
-See `docs/Structure.md` for details about data structures.
 See [Svelte](https://svelte.dev) to learn about Svelte.
 See [SvelteKit](https://kit.svelte.dev) to learn about SvelteKit.
+See [Vite](https://vitejs.dev/) to learn about Vite, the modern bundler+ that SvelteKit uses
+See [TypeScript](https://www.typescriptlang.org/) to learn about TypeScript.  This is key to ensuring that this solution stays maintainable and helps reduce runtime errors (don't ignore TS warnings!).
 
 To run the application locally:
 
 `npm install` to import dependencies  
 `npm run dev` to launch locally with live reload  
 `npm run build` to build for production
+`npm run preview` to check the production build
 
 
 # Contribution guide
 
-Follow [Git Flow](https://guides.github.com/introduction/flow/) branching strategy - name branch according to intent, keep it small and focused, don't break anything.  Commits to be made on feature branches off develop, PR made to merge changes back into develop.  
+Follow [Git Flow](https://guides.github.com/introduction/flow/) branching strategy 
+  - Create feature branch off develop  
+  - name branch according to intent, keep it small and focused, try not to break anything.  
+  - Create PR to merge changes back into develop.  
+  - This PR should trigger CI processes (TODO)
 
-Any PR should trigger CI (TODO), a PR which fails any step will not be merged until the issue is corrected.
+Continuous Deployment to our Azure demo environment is triggered from a PR to main.  
+All PRs to main should come from develop, at a time we know develop to be stable with a tested production build.
 
 Advised to use VS Code editor with default formatting settings for consistency and to avoid whitespace merge issues.
 
-see [TODO](https://github.com/mtempleheald/journeyasdata/blob/develop/docs/TODO.md) for inspiration.
+
+## Intended deployment process
+
+[![](https://mermaid.ink/img/eyJjb2RlIjoiZ3JhcGggVERcblxuICBjb2RlW0NvZGVdIC0tPiBjaVtDSV1cbiAgY2kgLS0-IGNkW0NEXVxuICBjZCAtLT4gZW52W0Vudmlyb25tZW50XVxuICBjZCAtLXVwZGF0ZS0tPiBwXG5cbiAgcXNbUXVlc3Rpb25TZXRdIC0tcHVibGlzaC0tPiBwW1B1Ymxpc2hlcl1cbiAgdGhlbWVbVGhlbWVdIC0tcHVibGlzaC0tPiBwW1B1Ymxpc2hlcl1cblxuICBwIC0tPiB2e3ZhbGlkP31cbiAgdiAtLT58eWVzfCBlbnZcbiAgdiAtLT58bm98IE5vdGlmeSIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In0sInVwZGF0ZUVkaXRvciI6ZmFsc2V9)](https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiZ3JhcGggVERcblxuICBjb2RlW0NvZGVdIC0tPiBjaVtDSV1cbiAgY2kgLS0-IGNkW0NEXVxuICBjZCAtLT4gZW52W0Vudmlyb25tZW50XVxuICBjZCAtLXVwZGF0ZS0tPiBwXG5cbiAgcXNbUXVlc3Rpb25TZXRdIC0tcHVibGlzaC0tPiBwW1B1Ymxpc2hlcl1cbiAgdGhlbWVbVGhlbWVdIC0tcHVibGlzaC0tPiBwW1B1Ymxpc2hlcl1cblxuICBwIC0tPiB2e3ZhbGlkP31cbiAgdiAtLT58eWVzfCBlbnZcbiAgdiAtLT58bm98IE5vdGlmeSIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In0sInVwZGF0ZUVkaXRvciI6ZmFsc2V9)
 
 
-# Journey / QuestionSet
 
-- journey (identified by product + version)
-  - page (url-aligned)
-    - section (block of content, may have logo or other presentational elements)
-      - display (paragraphs, images...)
-      - question (input element with wrapping presentational elements)
-      - composite (multiple fields combined into a single component, e.g. address lookup)
-        - display
-        - question 
-
-more detail can be found in `docs/Structure.md`
+---
+---
+To be tidied up below here
 
 
 # Components
@@ -109,7 +146,6 @@ MTH - [Svelte Themer](https://svelte-themer.now.sh/) could be an option if we ne
 
 MTH - API security - is CORS sufficient?
 
-MTH - A bit early right now but we need to consider Azure hosting - see [SvelteKit Adapters](https://kit.svelte.dev/docs#adapters) -- Too late, we have 12 months of it now :D
 
 
 RL - Idea!

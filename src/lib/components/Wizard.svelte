@@ -1,15 +1,15 @@
 <script lang='ts'>
-    import type { QuestionSet } from '$lib/types/QuestionSet';
+    import type { QuestionSetType } from '$lib/types/questionset';
 
     export let pageurl = '';
-    export let questionset: QuestionSet;
+    export let questionset: QuestionSetType;
 </script>
     
 
 <nav>
     {#each questionset.pages as p}
-        <a href="{p.page.url}" class="{pageurl == p.page.url?'active':''}">
-            {p.page.title}
+        <a href="{p.url}" class="{pageurl == p.url?'active':''}">
+            {p.title}
         </a>
     {/each}
 </nav>

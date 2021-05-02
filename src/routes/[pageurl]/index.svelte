@@ -1,4 +1,5 @@
 <script context="module">
+
 	/**
 	 * @type {import('@sveltejs/kit').Load}
 	 */
@@ -12,50 +13,9 @@
 </script>
 
 <script>
-    import { getContext } from 'svelte';
-    import Wizard from '$lib/components/Wizard.svelte';
-    import NavButtons from '$lib/components/NavButtons.svelte';
-    import Section from '$lib/components/Section.svelte';
-    import ComponentBuilder from '$lib/components/ComponentBuilder.svelte';
-
-    export let pageurl;
-    const qs = getContext("questionset");
-
+  import Page from '$lib/components/Page.svelte';
+  export let pageurl;
 </script>
 
 
-<Wizard 
-  questionset = {qs}
-  pageurl={pageurl}/>
-
-{#each qs.pages as p} 
-  {#if p.page.url == pageurl}
-    <h2>{p.page.title}</h2>
-    {#each p.sections as s}
-      <Section
-        title={s.section.title}
-        logo={s.section.logo}>
-      {#each s.components as component}
-        <ComponentBuilder component={component}/>
-      {/each}
-      </Section>
-    {/each}
-  {/if}
-{/each}
-<NavButtons 
-      questionset = {qs}
-      pageurl = '{pageurl}'
-      nextText = 'Next Page'
-      backText = 'Back'
->
-</NavButtons>
-
-
-<style>
-  h2 {
-    margin: 0;
-    padding: 1rem;
-    height: 1rem;
-    line-height: 1rem;
-  }
-</style>
+<Page pageurl={pageurl}/>

@@ -1,16 +1,15 @@
-<script lang="typescript">
+<script lang="ts">
     import Textbox from '$lib/components/Textbox.svelte';
+    import type { VehicleComponentType } from '$lib/types/questionset';
+    import type { VehicleType } from '$lib/types/vehicle';
     
-    // expose component properties    
-    export let regnumLabel : string = 'Registration number';
-    export let regnumPlaceholder : string = 'YOUR REG';
-    export let buttonLabel : string = 'Search';
-    export let errorMessage : string = 'Failed to find vehicle';
+    // expose component properties
+    export let component: VehicleComponentType;
 
     // internal properties to support component logic
-    let regnum : string = '';
-    let vehicle : any;
-    let active;
+    let regnum: string = '';
+    let vehicle: VehicleType | null;
+    let active: string;
 
     // component actions
     function enter() {
@@ -31,7 +30,7 @@
     }          
     function reset(event) {
         regnum = '';
-        vehicle = [];
+        vehicle = null;
     }
 
 </script>
@@ -39,19 +38,26 @@
 
 <div class="vehicle">
     <Textbox type="Upper"
-        id="regnum"
-        label="{regnumLabel}"
-        placeholder="{regnumPlaceholder}"
-        help="help us to help you"
-        required={true}
-        errorMessage="{errorMessage}"
+        component={{
+            type: "Upper",
+            id: "regnum",
+            value: '',
+            label: component.regnumLabel,
+            placeholder: component.regnumPlaceholder,
+            help: "help us to help you",
+            required: true,
+            errorMessage: component.errorMessage
+        }}        
         on:valueChange="{regUpdated}"
     ></Textbox>
-    <button type="button">{buttonLabel}</button>
+    <button type="button">{component.buttonLabel}</button>
     <Textbox
-        id="make"
-        label="make"
-        value="{vehicle?.make ?? ''}"
+        component={{
+            type: "Text",
+            id: "make",
+            label: "make",
+            value: vehicle?.make ?? ''
+        }}
     ></Textbox>
 
 </div>

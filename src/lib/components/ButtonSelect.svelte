@@ -1,16 +1,10 @@
-<script lang="typescript">
+<script lang="ts">
 	import { createEventDispatcher } from 'svelte';
-    import { inputStore } from '$lib/stores/inputstore';
     import Helptext from '$lib/components/Helptext.svelte';
+    import type { ComponentType } from '$lib/types/questionset';
 
     // expose component properties
-    export let id;
-    export let value = $inputStore[id] ?? '';
-    export let label;
-    export let help = '';
-    export let required = false;
-    export let errorMessage = 'Please select an option';
-    export let values : any[] = [];
+    export let component: ComponentType;    
 
     // internal properties to support component logic
     const dispatch = createEventDispatcher();
@@ -24,19 +18,19 @@
         active = "";
     } 
     function updateValue(newValue) {
-        if (value == newValue) {
-            value = null; // toggle off
+        if (component.value == newValue) {
+            component.value = null; // toggle off
         }
         else {
-            value = newValue;            
+            component.value = newValue;            
         }
         // publish value changes up to parent, let it handle state
-        dispatch('valueChange', {key: id, value: value, valid: (!required || !!value) });   
+        dispatch('valueChange', {key: component.id, value: component.value, valid: (!component.required || !!component.value) });   
     }
 </script>
 
 
-<div class="question {active} {required && value == null ? 'invalid' : ''}" 
+<div class="question {active} {component.required && component.value == null ? 'invalid' : ''}" 
     on:mouseenter={enter} 
     on:mouseleave={leave} >
 
@@ -44,40 +38,40 @@
 
 
     <input type="hidden" 
-        id="{id}"
-        bind:value={value}
-        required="{required}"
+        id="{component.id}"
+        bind:value={component.value}
+        required="{component.required}"
     />
     <div class="container">
-        {#if label}
-        <label for="{id}">
-            {label}
-            {#if required}
+        {#if component.label}
+        <label for="{component.id}">
+            {component.label}
+            {#if component.required}
             <span class="required">*</span>
             {/if}
         </label>
         {/if}
 
-        {#if id}
+        {#if component.id}
         <span class="buttons">
-        {#each values as v}
-            <button type="button" value="{v.value}" on:click="{() => updateValue(v.value)}" class="{value == v.value ? 'active' : ''}">
+        {#each component.values as v}
+            <button type="button" value="{v.value}" on:click="{() => updateValue(v.value)}" class="{component.value == v.value ? 'active' : ''}">
                 {v.image != null ? '' : v.display ?? ''}
                 {#if v.image != null}
-                    <img src="{v.image}" width="{v.imageWidth}" height="{v.imageHeight}" class="{value == v.value ? 'active' : ''}" alt="{v.display}" />
+                    <img src="{v.image}" width="{v.imageWidth}" height="{v.imageHeight}" class="{component.value == v.value ? 'active' : ''}" alt="{v.display}" />
                 {/if}
             </button>
         {/each}        
         </span>
         {/if}     
         
-        {#if help}
-        <Helptext>{help}</Helptext>
+        {#if component.help}
+        <Helptext>{component.help}</Helptext>
         {/if}
     </div>
 
-    {#if required && value == null}
-    <div class="error">{errorMessage}</div>
+    {#if component.required && component.value == null}
+    <div class="error">{component.errorMessage}</div>
     {/if}
 
     <slot name="post"></slot>
@@ -130,5 +124,9 @@
     }
     .buttons > * {
         flex-basis: 1;/* give all buttons equal space */
+    }
+    button {
+        background-color: var(--input-btn-bg, white);
+        color: var(--input-btn-txt, black);
     }
 </style>
