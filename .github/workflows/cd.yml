@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy Node.js app to Azure Web App - journeyasdata
+name: Build and deploy
 
 on:
   push:
@@ -53,6 +53,6 @@ jobs:
       id: deploy-to-webapp
       uses: azure/webapps-deploy@v2
       with:
-        app-name: 'journeyasdata'
+        app-name: ${{ secrets.APPSERVICE_NAME }}
         publish-profile: ${{ secrets.APPSERVICE_PUBLISHPROFILE }}
         package: ./build
