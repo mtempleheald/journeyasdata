@@ -6,7 +6,7 @@ export type PageType = {
     url: string;
     title: string;
     displaytitle?: boolean;
-    displaynavbar?: boolean;
+    displayprogress?: boolean;
     sections: SectionType[];
 }
 export type SectionType = {

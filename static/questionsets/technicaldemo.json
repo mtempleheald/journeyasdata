@@ -5,7 +5,7 @@
     {
       "url": "introduction",
       "title": "Introduction page",
-      "displaynavbar": false,
+      "displayprogress": false,
       "displaytitle": false,
       "sections": [
         {
@@ -33,7 +33,7 @@
     {
       "url": "text-inputs",
       "title": "Text Input variations",
-      "displaynavbar": true,
+      "displayprogress": true,
       "sections": [
         {
           "id": "text",
@@ -204,7 +204,7 @@
     {
       "url": "dropdowns",
       "title": "Dropdown selection",
-      "displaynavbar": true,
+      "displayprogress": true,
       "sections": [
         {
           "title": "Dropdown Section",
@@ -250,7 +250,7 @@
     {
       "url": "buttons",
       "title": "Select buttons",
-      "displaynavbar": true,
+      "displayprogress": true,
       "sections": [
         {
           "title": "Button Select Section",
@@ -327,7 +327,7 @@
     {
       "url": "displayonly",
       "title": "Display only components",
-      "displaynavbar": true,
+      "displayprogress": true,
       "sections": [
         {
           "title": "Displayblock Section",
@@ -361,7 +361,7 @@
     {
       "url": "complex-components",
       "title": "Complex components",
-      "displaynavbar": true,
+      "displayprogress": true,
       "sections": [
         {
           "title": "Address Section",
@@ -464,7 +464,7 @@
     {
       "url": "outcome",
       "title": "Outcome",
-      "displaynavbar": false,
+      "displayprogress": false,
       "sections": [
         {
           "title": "Outcome section",

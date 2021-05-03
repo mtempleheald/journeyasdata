@@ -1,7 +1,7 @@
 <script lang="ts">
     import { getContext } from 'svelte';
     import { BRAND } from '$lib/env/Env.svelte'
-    import Wizard from '$lib/components/Wizard.svelte';
+    import ProgressBar from '$lib/components/ProgressBar.svelte';
     import NavButtons from '$lib/components/NavButtons.svelte';
     import Section from './Section.svelte';
     import type { PageType, QuestionSetType } from '$lib/types/questionset';
@@ -20,8 +20,8 @@
 </header>
 
 
-{#if page.displaynavbar ?? true}
-<Wizard 
+{#if page.displayprogress ?? true}
+<ProgressBar
   questionset = {questionset}
   pageurl={page.url}/>
 {/if}

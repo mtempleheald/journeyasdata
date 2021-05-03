@@ -8,7 +8,7 @@
 
 <nav>
 {#each questionset.pages as p}
-    {#if p.displaynavbar ?? true}
+    {#if p.displayprogress ?? true}
     <a href="{p.url}" class="{pageurl == p.url?'active':''}">
         {p.title}
     </a>
