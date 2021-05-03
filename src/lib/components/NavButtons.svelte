@@ -3,33 +3,22 @@
     import type { QuestionSetType } from '$lib/types/questionset';
     import { inputStore } from '$lib/stores/inputstore'
     import { validationStore } from '$lib/stores/validationstore';
-    import { pageValidator } from '$lib/validators/pagevalidator';
+    import { pageValidator } from '$lib/helpers/validators';
+    import { nextPageUrl, prevPageUrl } from '$lib/helpers/navigation';
 
     export let questionset: QuestionSetType;
     export let pageurl: string;
     export let backText: string = 'Back';
     export let nextText: string = 'Next';    
 
-    let pageUrls: string[] = questionset.pages.map(p => p.url);
-    function nextPage() {
-        return (pageUrls.indexOf(pageurl) < pageUrls.length - 1) 
-            ? pageUrls[pageUrls.indexOf(pageurl) + 1] 
-            : pageurl
-    };
-    function prevPage() {
-        return (pageUrls.indexOf(pageurl) > 0) 
-            ? pageUrls[pageUrls.indexOf(pageurl) - 1] 
-            : pageurl
-    };
-
     function back(event) {
-        console.log ("Navigating back to " + prevPage());
-        goto(prevPage())
+        console.log ("Navigating to previous page");
+        goto(prevPageUrl(questionset, pageurl))
     }
     function next(event) {
         if (pageValidator.valid(questionset, pageurl, $inputStore, $validationStore)) {
-            console.log ("Page valid, redirecting to " + nextPage());
-            goto(nextPage());
+            console.log ("Page valid, redirecting to next page");
+            goto(nextPageUrl(questionset, pageurl));
         }
         else {
             console.log("Page invalid, correct before trying again");

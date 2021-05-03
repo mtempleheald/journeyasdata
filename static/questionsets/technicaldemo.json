@@ -80,87 +80,87 @@
               "label": "Text",
               "type": "Text",
               "placeholder": "Text",
-              "required": true
+              "required": false
             },
             {
               "id": "colour",
               "label": "Colour",
               "type": "Colour",
-              "required": true
+              "required": false
             },
             {
               "id": "email",
               "label": "Email",
               "type": "Email",
               "placeholder": "email@domain.com",
-              "required": true
+              "required": false
             },
             {
               "id": "range",
               "label": "Range",
               "type": "Slider",
               "placeholder": "?",
-              "required": true
+              "required": false
             },
             {
               "id": "time",
               "label": "Time",
               "type": "Time",
-              "required": true
+              "required": false
             },
             {
               "id": "date",
               "label": "Date",
               "type": "Date",
-              "required": true
+              "required": false
             },
             {
               "id": "month",
               "label": "Month",
               "type": "Month",
-              "required": true
+              "required": false
             },
             {
               "id": "search",
               "label": "Search",
               "type": "Search",
               "placeholder": "Search me",
-              "required": true
+              "required": false
             },
             {
               "id": "url",
               "label": "Url",
               "type": "Url",
               "placeholder": "www.google.com",
-              "required": true
+              "required": false
             },
             {
               "id": "datetimelocal",
               "label": "DateTime Local",
               "type": "Datetime",
               "placeholder": "??",
-              "required": true
+              "required": false
             },
             {
               "id": "number",
               "label": "Number",
               "type": "Number",
               "placeholder": "99",
-              "required": true
+              "required": false
             },
             {
               "id": "tel",
               "label": "Tel",
               "type": "Telephone",
               "placeholder": "07777777777",
-              "required": true
+              "required": false
             },
             {
               "id": "week",
               "label": "Week",
               "type": "Week",
               "placeholder": "3",
-              "required": true
+              "required": false
             }
           ]
         },
