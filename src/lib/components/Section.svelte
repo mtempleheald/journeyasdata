@@ -52,12 +52,11 @@ import Address from './Address.svelte';
     }
     header {
         display: flex;
-        flex-direction: row;
+        flex-wrap: wrap;
     }
     h3 {
         height: 50px;
         line-height: 50px;
-        width: calc(100vw - 100px);
         margin: 0;
         padding: 0 1rem;
     }

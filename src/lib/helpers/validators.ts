@@ -11,9 +11,10 @@ function SectionValid (
     let valid =
     section.components.every(c => {
         return (
-            !c.required                                                         // not required so don't validate
-        ||  (c.dependsupon && inputs[c.dependsupon.id] != c.dependsupon.value)  // a hidden question so don't validate
-        ||  (c.required && validations[c.id])                                   // required and valid
+        //     !c.required                                                         // not required so don't validate
+        // ||  (c.dependsupon && inputs[c.dependsupon.id] != c.dependsupon.value)  // a hidden question so don't validate
+        // ||  (c.required && validations[c.id])                                   // required and valid
+        true
         )
     })
     return valid;

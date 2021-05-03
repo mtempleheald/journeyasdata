@@ -3,8 +3,37 @@
   "title": "Questionset Demo",
   "pages": [
     {
+      "url": "introduction",
+      "title": "Introduction page",
+      "displayprogress": false,
+      "displaytitle": false,
+      "sections": [
+        {
+          "title": "Introduction section",
+          "logo": "https://fakeimg.pl/100x50/?text=Introduction%20Logo",
+          "components": [
+            {
+              "type": "Displayblock",
+              "content": "# Heading \n\n Introductory sentence explaining how we get money off you. \n\n Another paragraph containing some caveats. \n\n - bullet1 \n\n - bullet2"
+            },
+            {
+              "id": "startbutton",
+              "type": "ButtonSelect",
+              "values": [
+                {
+                  "value": "start",
+                  "display": "Start"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
       "url": "text-inputs",
       "title": "Text Input variations",
+      "displayprogress": true,
       "sections": [
         {
           "id": "text",
@@ -51,87 +80,87 @@
               "label": "Text",
               "type": "Text",
               "placeholder": "Text",
-              "required": true
+              "required": false
             },
             {
               "id": "colour",
               "label": "Colour",
               "type": "Colour",
-              "required": true
+              "required": false
             },
             {
               "id": "email",
               "label": "Email",
               "type": "Email",
               "placeholder": "email@domain.com",
-              "required": true
+              "required": false
             },
             {
               "id": "range",
               "label": "Range",
               "type": "Slider",
               "placeholder": "?",
-              "required": true
+              "required": false
             },
             {
               "id": "time",
               "label": "Time",
               "type": "Time",
-              "required": true
+              "required": false
             },
             {
               "id": "date",
               "label": "Date",
               "type": "Date",
-              "required": true
+              "required": false
             },
             {
               "id": "month",
               "label": "Month",
               "type": "Month",
-              "required": true
+              "required": false
             },
             {
               "id": "search",
               "label": "Search",
               "type": "Search",
               "placeholder": "Search me",
-              "required": true
+              "required": false
             },
             {
               "id": "url",
               "label": "Url",
               "type": "Url",
               "placeholder": "www.google.com",
-              "required": true
+              "required": false
             },
             {
               "id": "datetimelocal",
               "label": "DateTime Local",
               "type": "Datetime",
               "placeholder": "??",
-              "required": true
+              "required": false
             },
             {
               "id": "number",
               "label": "Number",
               "type": "Number",
               "placeholder": "99",
-              "required": true
+              "required": false
             },
             {
               "id": "tel",
               "label": "Tel",
               "type": "Telephone",
               "placeholder": "07777777777",
-              "required": true
+              "required": false
             },
             {
               "id": "week",
               "label": "Week",
               "type": "Week",
               "placeholder": "3",
-              "required": true
+              "required": false
             }
           ]
         },
@@ -175,6 +204,7 @@
     {
       "url": "dropdowns",
       "title": "Dropdown selection",
+      "displayprogress": true,
       "sections": [
         {
           "title": "Dropdown Section",
@@ -220,6 +250,7 @@
     {
       "url": "buttons",
       "title": "Select buttons",
+      "displayprogress": true,
       "sections": [
         {
           "title": "Button Select Section",
@@ -229,7 +260,6 @@
               "id": "simpletextbutton",
               "label": "This is a simple text button",
               "type": "ButtonSelect",
-              "value": "Click Me",
               "required": false,
               "errorMessage": "Please select an option",
               "help": "Surely you can figure this out",
@@ -297,6 +327,7 @@
     {
       "url": "displayonly",
       "title": "Display only components",
+      "displayprogress": true,
       "sections": [
         {
           "title": "Displayblock Section",
@@ -330,6 +361,7 @@
     {
       "url": "complex-components",
       "title": "Complex components",
+      "displayprogress": true,
       "sections": [
         {
           "title": "Address Section",
@@ -424,6 +456,23 @@
               "id": "vehicledoors",
               "type": "Text",
               "label": "Doors"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "url": "outcome",
+      "title": "Outcome",
+      "displayprogress": false,
+      "sections": [
+        {
+          "title": "Outcome section",
+          "logo": "https://fakeimg.pl/100x50/?text=Outcome%20Logo",
+          "components": [
+            {
+              "type": "Displayblock",
+              "content": "# Outcome \n\n Some stuff about how great we are. \n\n Some stuff about the actual product we're offering.  "
             }
           ]
         }

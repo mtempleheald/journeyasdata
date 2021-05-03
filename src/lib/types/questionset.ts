@@ -5,6 +5,8 @@ export type QuestionSetType = {
 export type PageType = {
     url: string;
     title: string;
+    displaytitle?: boolean;
+    displayprogress?: boolean;
     sections: SectionType[];
 }
 export type SectionType = {

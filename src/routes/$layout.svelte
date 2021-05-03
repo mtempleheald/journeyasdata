@@ -4,7 +4,7 @@
 	 * @type {import('@sveltejs/kit').Load}
 	 */
 	export async function load({ page, fetch, session, context }) {        
-        // console.log('Loading questionset'); // proves that this isn't loaded on each subsequent page request
+        // fetch questionset from file on first page hit
 
         const qsurl = `/questionsets/${BRAND}.json`;
         let qs;
@@ -46,31 +46,4 @@
     <link rel='stylesheet' href="/themes/{brand}.css">
 </svelte:head>
 
-<header>
-    <img src="https://fakeimg.pl/250x100/?text={brand}" alt="logo">
-    <h1>{questionset.title}</h1>
-</header>
-
 <slot></slot>
-
-
-<style>
-    header {
-        background-color: var(--header-bg, white);
-        color: var(--header-txt, black);
-        border-bottom: var(--header-border, 1px solid black);
-        display: flex;
-        flex-direction: row;
-    }
-    img {
-        height: 100px;
-        width: 250px;
-    }
-    h1 {
-        height: 100px;
-        line-height: 100px;
-        padding: 0 1rem;
-        margin: 0;
-        width: calc(100vw - 250px);
-    }
-</style>
