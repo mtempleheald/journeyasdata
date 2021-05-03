@@ -5,6 +5,8 @@
     {
       "url": "introduction",
       "title": "Introduction page",
+      "displaynavbar": false,
+      "displaytitle": false,
       "sections": [
         {
           "title": "Introduction section",
@@ -31,6 +33,7 @@
     {
       "url": "text-inputs",
       "title": "Text Input variations",
+      "displaynavbar": true,
       "sections": [
         {
           "id": "text",
@@ -201,6 +204,7 @@
     {
       "url": "dropdowns",
       "title": "Dropdown selection",
+      "displaynavbar": true,
       "sections": [
         {
           "title": "Dropdown Section",
@@ -246,6 +250,7 @@
     {
       "url": "buttons",
       "title": "Select buttons",
+      "displaynavbar": true,
       "sections": [
         {
           "title": "Button Select Section",
@@ -322,6 +327,7 @@
     {
       "url": "displayonly",
       "title": "Display only components",
+      "displaynavbar": true,
       "sections": [
         {
           "title": "Displayblock Section",
@@ -355,6 +361,7 @@
     {
       "url": "complex-components",
       "title": "Complex components",
+      "displaynavbar": true,
       "sections": [
         {
           "title": "Address Section",
@@ -449,6 +456,23 @@
               "id": "vehicledoors",
               "type": "Text",
               "label": "Doors"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "url": "outcome",
+      "title": "Outcome",
+      "displaynavbar": false,
+      "sections": [
+        {
+          "title": "Outcome section",
+          "logo": "https://fakeimg.pl/100x50/?text=Outcome%20Logo",
+          "components": [
+            {
+              "type": "Displayblock",
+              "content": "# Outcome \n\n Some stuff about how great we are. \n\n Some stuff about the actual product we're offering.  "
             }
           ]
         }

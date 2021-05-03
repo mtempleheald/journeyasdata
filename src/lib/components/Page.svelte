@@ -13,25 +13,31 @@
 </script>
 
 
+
 <header>
   <img src="https://fakeimg.pl/250x100/?text={BRAND}" alt="logo">
   <h1>{questionset.title}</h1>
 </header>
 
+
+{#if page.displaynavbar ?? true}
 <Wizard 
   questionset = {questionset}
   pageurl={page.url}/>
+{/if}
 
 <!-- require a form element for accessibility -->
 <form on:submit|preventDefault={() => {}}>
 
 
-  {#if page.url == page.url}
-    <h2>{page.title}</h2>
-    {#each page.sections as s}
-        <Section section={s}/>
-    {/each}
-  {/if}
+{#if page.displaytitle ?? true}
+<h2>{page.title}</h2>
+{/if}
+
+{#each page.sections as s}
+<Section section={s}/>
+{/each}
+
 
 <NavButtons 
       questionset = {questionset}
@@ -39,6 +45,7 @@
       nextText = 'Next Page'
       backText = 'Back'
 />
+
 </form>
 
 
