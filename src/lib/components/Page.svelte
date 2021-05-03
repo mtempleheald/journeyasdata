@@ -55,7 +55,7 @@ header {
     color: var(--header-txt, black);
     border-bottom: var(--header-border, 1px solid black);
     display: flex;
-    flex-direction: row;
+    flex-wrap: wrap;
 }
 img {
     height: 100px;
@@ -66,7 +66,6 @@ h1 {
     line-height: 100px;
     padding: 0 1rem;
     margin: 0;
-    width: calc(100vw - 250px);
 }
 h2 {
   margin: 0;
