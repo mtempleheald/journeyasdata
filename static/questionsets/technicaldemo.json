@@ -3,6 +3,32 @@
   "title": "Questionset Demo",
   "pages": [
     {
+      "url": "introduction",
+      "title": "Introduction page",
+      "sections": [
+        {
+          "title": "Introduction section",
+          "logo": "https://fakeimg.pl/100x50/?text=Introduction%20Logo",
+          "components": [
+            {
+              "type": "Displayblock",
+              "content": "# Heading \n\n Introductory sentence explaining how we get money off you. \n\n Another paragraph containing some caveats. \n\n - bullet1 \n\n - bullet2"
+            },
+            {
+              "id": "startbutton",
+              "type": "ButtonSelect",
+              "values": [
+                {
+                  "value": "start",
+                  "display": "Start"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
       "url": "text-inputs",
       "title": "Text Input variations",
       "sections": [
@@ -229,7 +255,6 @@
               "id": "simpletextbutton",
               "label": "This is a simple text button",
               "type": "ButtonSelect",
-              "value": "Click Me",
               "required": false,
               "errorMessage": "Please select an option",
               "help": "Surely you can figure this out",

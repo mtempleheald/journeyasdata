@@ -1,13 +1,14 @@
-<script>
-	
+<script lang="ts">
+    import { getContext } from 'svelte';
+	import Page from '$lib/components/Page.svelte';
+	import type { QuestionSetType } from '$lib/types/questionset';
+
+	const questionset: QuestionSetType = getContext("questionset");
 </script>
     
 
-<p>Some introductory stuff goes here</p>
-<p>Possibly marketing nonsense</p>
-<p>Possibly compliance stuff about how we'll handle customer data</p>
+<Page page={questionset.pages[0]}/>
 
-<a href="/broken-page">Get Started</a>
 
 <style>
 
