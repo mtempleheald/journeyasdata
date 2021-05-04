@@ -1,6 +1,8 @@
 {
   "show-wizard": true,
-  "title": "Questionset Demo",
+  "title": "Narole Cash Motorised Velocipede Indemnification",
+  "logo": "/images/narolecash/NaroleCashLogo.png",
+  "logoalt": "Narole Cash Motorised Velocipede Indemnification",
   "pages": [
     {
       "url": "introduction",
