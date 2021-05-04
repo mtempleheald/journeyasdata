@@ -16,11 +16,14 @@
           },
           "components": [
             {
+              "type": "Displayblock",
+              "content": "What kind of motorcycle insurance are you looking for today?"
+            },
+            {
               "id": "assumptionsbikeselect",
               "type": "ButtonSelect",
               "required": true,
               "errorMessage": "Please select an option",
-              "help": "If you have a single bike, Select Single, else select Multi.",
               "values": [
                 {
                   "key": "policytype",
@@ -37,6 +40,24 @@
                   "imageWidth": "128",
                   "imageHeight": "128",
                   "display": "multibike"
+                }
+              ]
+            },
+            {
+              "type": "Displayblock",
+              "content": "To save you time we've made some assumptions"
+            },
+            {
+              "type": "Displayblock",
+              "content": "View full list of assumptions before you begin"
+            },
+            {
+              "id": "startbutton",
+              "type": "ButtonSelect",
+              "values": [
+                {
+                  "value": "start",
+                  "display": "Continue"
                 }
               ]
             }
