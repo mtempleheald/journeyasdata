@@ -5,26 +5,38 @@
   "logoalt": "Narole Cash Motorised Velocipede Indemnification",
   "pages": [
     {
-      "url": "introduction",
-      "title": "Introduction page",
+      "url": "assumptions",
+      "title": "Assumption",
       "displayprogress": false,
       "displaytitle": false,
       "sections": [
         {
-          "title": "Introduction section",
-          "logo": "https://fakeimg.pl/100x50/?text=Introduction%20Logo",
+          "section": {
+            "title": "Welcome to Narole Cash"
+          },
           "components": [
             {
-              "type": "Displayblock",
-              "content": "# Heading \n\n Introductory sentence explaining how we get money off you. \n\n Another paragraph containing some caveats. \n\n - bullet1 \n\n - bullet2"
-            },
-            {
-              "id": "startbutton",
+              "id": "assumptionsbikeselect",
               "type": "ButtonSelect",
+              "required": true,
+              "errorMessage": "Please select an option",
+              "help": "If you have a single bike, Select Single, else select Multi.",
               "values": [
                 {
-                  "value": "start",
-                  "display": "Start"
+                  "key": "policytype",
+                  "value": "single",
+                  "image": "/images/narolecash/assumptions/singlebike.png",
+                  "imageWidth": "128",
+                  "imageHeight": "128",
+                  "display": "Single Bike"
+                },
+                {
+                  "key": "policytype",
+                  "value": "multibike",
+                  "image": "/images/narolecash/assumptions/multibike.png",
+                  "imageWidth": "128",
+                  "imageHeight": "128",
+                  "display": "multibike"
                 }
               ]
             }
