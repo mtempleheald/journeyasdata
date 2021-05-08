@@ -15,7 +15,7 @@ import { generateToken, credentialsValid } from '$lib/helpers/auth'
         return {
             status: 200,
             headers: {
-                'Set-Cookie': [`authToken=${generateToken(request.body.user)}; MaxAge=1800; Secure; HttpOnly;`, `user=${request.body.user}`]
+                'Set-Cookie': [`authToken=${generateToken(request.body.user)}; MaxAge=18000; Secure; HttpOnly;`, `user=${request.body.user}; MaxAge=1800; Secure; HttpOnly;`]
             },
             body: {result:'success'}
         }
@@ -24,7 +24,7 @@ import { generateToken, credentialsValid } from '$lib/helpers/auth'
     return {        
         status: 200,
         headers: {
-            'Set-Cookie': [`authToken=; expires=Thu, Jan 01 1970 00:00:00 UTC; Secure; HttpOnly;`, `user=; expires=Thu, Jan 01 1970 00:00:00 UTC;`]
+            'Set-Cookie': [`authToken=; expires=Thu, Jan 01 1970 00:00:00 UTC; Secure; HttpOnly;`, `user=; Secure; HttpOnly; expires=Thu, Jan 01 1970 00:00:00 UTC;`]
         },
         body: {result:'error'}
     }

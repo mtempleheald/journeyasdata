@@ -1,7 +1,13 @@
 <script lang="ts">
+import { goto } from "$app/navigation";
+
+
     let processing: Promise<any>
     let user: string
     let pass: string
+    let label: string = 'Login'
+    let disabled: boolean = false
+    let authenticated: boolean
 
     function login() {
         processing = fetch('/api/auth/login', {
@@ -9,8 +15,16 @@
             body: JSON.stringify({ user: user, pass: pass }),
             headers: { 'content-type': 'application/json' },
         })
-        .then((resp) => resp.json())
-        .finally(() => setTimeout(() => (processing = null), 5000))
+        .then(resp => resp.json())
+        .then(data => {
+            authenticated = (data.result == 'success')
+            label = authenticated ? 'Logged in, redirecting...' : 'Login failed, try again in 5 seconds'
+            if (authenticated) goto('/admin')
+        })
+        .finally(() => setTimeout(() => {
+            processing = null
+            label = 'Login'            
+        }, 5000))
     }
 
 </script>
@@ -32,14 +46,10 @@
         {#await processing}
             <button type="submit" disabled>Authenticating...</button>
         {:then resp}
-            {#if resp.result == "success"}
-                <button type="submit" class="success" disabled>Logged in successfully</button>
-            {:else}
-                <button type="submit" class="fail">Try logging in again</button>
-            {/if}
+            <button type="submit" {disabled}>{label}</button>
         {/await}
     {:else}
-        <button type="submit">Login</button>
+            <button type="submit" {disabled}>{label}</button>
     {/if}
     </div>
 </form>
@@ -66,12 +76,5 @@
     button {
         width: 65%;
         margin: auto;
-    }
-    button.fail {
-        background-color: salmon;
-    }
-    button.success {
-        background-color: palegreen;
-
     }
 </style>

@@ -1,16 +1,8 @@
-<script lang="ts">
-    let authenticated: boolean = true;
-    
-</script>
-
-
 <header>
     <h1>Questionset Administration</h1>
 </header>
 
-{#if authenticated}
-    <slot></slot>
-{/if}
+<slot></slot>
 
 
 <style>

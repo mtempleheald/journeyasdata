@@ -5,9 +5,9 @@
 	 */
 	export async function load({ page, fetch, session, context }) {
 		return {
-      props: {
-        pageurl: await `${page.params.pageurl}`
-      }
+			props: {
+				pageurl: await `${page.params.pageurl}`
+			}
 		};
 	}
 </script>
