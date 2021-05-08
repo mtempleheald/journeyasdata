@@ -1,6 +1,5 @@
 <script lang="ts">
-    import type { LoginResponseType } from '$lib/types/auth'
-    let processing: Promise<LoginResponseType>
+    let processing: Promise<any>
     let user: string
     let pass: string
 

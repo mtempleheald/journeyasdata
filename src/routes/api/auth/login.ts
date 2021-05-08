@@ -30,6 +30,9 @@ import jwt from 'jsonwebtoken';
     }
     return {
         status: 200,
+        headers: {
+            'Set-Cookie': [`authToken=; expires=Thu, Jan 01 1970 00:00:00 UTC; Secure; HttpOnly;`, `user=; expires=Thu, Jan 01 1970 00:00:00 UTC;`]
+        },
         body: {result:'error'}
     }
 }
