@@ -60,6 +60,7 @@ The basic data structure which drives the entire solution:
 - Source/Affinity based branding - If redirected from google or some other aggregator we may want to style certain aspects differently, e.g. logos
 - Admin backend for questionset generation
   - [JWT authentication](https://www.npmjs.com/package/jsonwebtoken) [using server side endpoints](https://stackoverflow.com/questions/67255874/where-should-i-refresh-my-jwt-in-sveltekit)
+  - [Client side (stateless) JWT auth pattern](https://www.caktusgroup.com/blog/2020/10/20/jwt-authentication-rethinking-pattern/)
 
 
 # Getting started
