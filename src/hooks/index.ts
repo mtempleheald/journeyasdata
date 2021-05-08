@@ -1,4 +1,4 @@
-import jwt from 'jsonwebtoken';
+import { extractAuthToken, verifyToken } from '$lib/helpers/auth'
 
 /** @type {import('@sveltejs/kit').Handle} */
 export async function handle({ request, render }) {
@@ -12,16 +12,17 @@ export async function handle({ request, render }) {
 
 	const authToken = extractAuthToken(request.headers.cookie)
 	// Validate cookie, cross-referenced to session user, update session accordingly
-	//request.locals.authenticated = verify('mth', authToken)
-	//request.locals.session = {user: 'mth'};	
+	const authenticated = verifyToken('mth', authToken)
+	if (authenticated)
+		request.locals.session = {authenticatedUser: 'mth'}
 
-	const response = await render(request);
+	const response = await render(request)
 
 	return {
 		...response,
 		headers: {
 			...response.headers,
-			//...session,
+			...request.locals.session,
 		}
 	};
 }
@@ -34,26 +35,5 @@ export function getSession(request) {
 
 	console.log ('getSession() request', request)
 
-	//return request.locals.session.data;
-}
-
-
-
-/***************/
-/** Utilities **/
-/***************/
-
-async function verifyToken(user: string, token: string) {
-	
-	// TODO: move this secret to environment variable and strengthen
-    const decoded = jwt.verify(token, 'secretTODO:inject');
-    if (decoded == user)
-        return true
-	
-	return false
-}
-
-function extractAuthToken(cookies){
-	// TODO: implement this properly
-	return 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoibXRoIiwiaWF0IjoxNjIwNDgyMjUyLCJleHAiOjE2MjA0ODIyNTN9.PDMd39pgayvLvIA58Z6v0WhZBX_-WXZ7ItOhkEJ5zFM'
+	return request.locals.session?.data;
 }

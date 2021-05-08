@@ -1,5 +1,5 @@
 // POST: /api/auth/login { "user": "someone", "pass": "somepassword"}
-import jwt from 'jsonwebtoken';
+import { generateToken, credentialsValid } from '$lib/helpers/auth'
 
 /**
  * @type {import('@sveltejs/kit').RequestHandler}
@@ -8,27 +8,20 @@ import jwt from 'jsonwebtoken';
     
     console.log(`login attempt by ${request.body.user}...`)
 
-    let valid: boolean = false;
-    // TODO: Replace with real authentication store
-    if (request.body.user == 'mth' && request.body.pass == 'letmein') {
-        
-        valid = true
-        // generate JWT
-        const token = jwt.sign(
-            { data: request.body.user }, 
-            'secretTODO:inject', 
-            { expiresIn: '1800'} // kill session after 30 minutes (rolling 30 mins from last update, refreshed after valid use elsewhere)
-        )
+    
+    if (credentialsValid(request.body.user, request.body.pass)) {
+        console.log(`login successful`)
         // set the token into a cookie which can't be accessed via JS (httpOnly)
         return {
             status: 200,
             headers: {
-                'Set-Cookie': [`authToken=${token}; MaxAge=1800; Secure; HttpOnly;`, `user=${request.body.user}`]
+                'Set-Cookie': [`authToken=${generateToken(request.body.user)}; MaxAge=1800; Secure; HttpOnly;`, `user=${request.body.user}`]
             },
             body: {result:'success'}
         }
     }
-    return {
+    console.log(`login failed`)
+    return {        
         status: 200,
         headers: {
             'Set-Cookie': [`authToken=; expires=Thu, Jan 01 1970 00:00:00 UTC; Secure; HttpOnly;`, `user=; expires=Thu, Jan 01 1970 00:00:00 UTC;`]
