@@ -22,7 +22,7 @@
 </header>
 {:else}
 <header>
-    <h1>Unauthorised access</h1>
+    <h1>Unauthorised</h1>
 </header>
 <a href="/admin/login">Log in here</a>
 {/if}

@@ -1,11 +1,10 @@
 <script lang="ts">
-import { goto } from "$app/navigation";
+import { goto, invalidate } from "$app/navigation";
 
 
     let processing: Promise<any>
     let user: string
     let pass: string
-    let label: string = 'Login'
     let disabled: boolean = false
     let authenticated: boolean
 
@@ -18,12 +17,12 @@ import { goto } from "$app/navigation";
         .then(resp => resp.json())
         .then(data => {
             authenticated = (data.result == 'success')
-            label = authenticated ? 'Logged in, redirecting...' : 'Login failed, try again in 5 seconds'
-            if (authenticated) goto('/admin')
+            if (authenticated) {
+                goto('/admin',{replaceState: true})
+            }
         })
         .finally(() => setTimeout(() => {
             processing = null
-            label = 'Login'            
         }, 5000))
     }
 
@@ -46,10 +45,14 @@ import { goto } from "$app/navigation";
         {#await processing}
             <button type="submit" disabled>Authenticating...</button>
         {:then resp}
-            <button type="submit" {disabled}>{label}</button>
+            {#if authenticated}
+                <button type="submit" disabled>Login successful, click to continue</button>
+            {:else}
+                <button type="submit" disabled>Login failed, try again in 5 seconds</button>
+            {/if}
         {/await}
     {:else}
-            <button type="submit" {disabled}>{label}</button>
+            <button type="submit" {disabled}>Login</button>
     {/if}
     </div>
 </form>

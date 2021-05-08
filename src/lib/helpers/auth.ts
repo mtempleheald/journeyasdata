@@ -13,10 +13,10 @@ export function credentialsValid(user: string, password: string) {
 
 
 // Given a ; separated string of cookies, grab the authToken cookie and extract the value
-export function extractAuthToken(cookies: string){
+export function extractCookieValue(cookies: string, name: string){
 	if (!cookies)
         return null
-    let re = /authToken=(.*);/
+    let re = new RegExp(`${name}=(.*);`);
     let match = cookies.match(re);
     if (match.length > 1)
         return match[1] //[0] is the full match, [1] just the dynamic bit I'm interested in

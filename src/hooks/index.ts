@@ -1,4 +1,4 @@
-import { extractAuthToken, verifyToken } from '$lib/helpers/auth'
+import { extractCookieValue, verifyToken } from '$lib/helpers/auth'
 
 /** @type {import('@sveltejs/kit').Handle} */
 export async function handle({ request, render }) {
@@ -11,19 +11,25 @@ export async function handle({ request, render }) {
 		// Any API calls/submissions must also validate the JWT cookie to verify authentication in case of dodgy behaviour.
 
 		console.log('handle() request', request)
+		console.log('handle() request.headers.cookie', request.headers.cookie)
 
-		const authToken = extractAuthToken(request.headers.cookie)
+		const authToken = extractCookieValue(request.headers.cookie, 'authToken')
+		const user = extractCookieValue(request.headers.cookie, 'user')
 		// Validate cookie, cross-referenced to session user, update session accordingly
-		const authenticated = verifyToken('mth', authToken)
-		if (authenticated)
-			request.locals.session = {authenticatedUser: 'mth'}
-		else
+		const authenticated = verifyToken(user, authToken)
+		if (authenticated) {
+			console.log('handle() - authentication success')
+			request.locals.session = {authenticatedUser: user}
+		} else {
+			console.log('handle() - authentication failure')
 			request.locals.session = null
-			request.path = '/admin/login' // redirect to login page whenever authentication fails
+			// redirect to login page
+			request.path = '/admin/login'
+		}
 	}
 	const response = await render(request)
 	
-	console.log ('handle() response', response)
+	//console.log ('handle() response', response)
 
 	return {
 		...response,
@@ -40,7 +46,7 @@ export async function handle({ request, render }) {
 /** @type {import('@sveltejs/kit').GetSession} */
 export function getSession(request) {
 
-	console.log ('getSession() request', request)
+	//console.log ('getSession() request', request)
 
 	return request.locals.session?.data;
 }
