@@ -39,6 +39,14 @@ Accept: application/json
 #     "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MTY4NTE4LCJ1c2VybmFtZSI6Im10aDEyMyIsImV4cCI6MTYyNTcyOTQwOH0.tG97Dt9RjoCr0fe-qm4DTJmd6Ji1wUnTrGbmKBHtQB4"
 #   }
 # }
+# OR
+# {
+#   "errors": {
+#     "email or password": [
+#       "is invalid"
+#     ]
+#   }
+# }
 
 ###
 

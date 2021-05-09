@@ -2,27 +2,26 @@
 	/**
 	 * @type {import('@sveltejs/kit').Load}
 	 */
-	export async function load({ page, fetch, session, context }) {
-        console.log ('load()', session);
+	export async function load({ session }) {
+		const { user } = session;
+
+		if (!user) {
+			return {
+				status: 302,
+				redirect: '/admin/login'
+			};
+		}
+
 		return {
-			props: {
-				authenticated: !!session?.authenticatedUser
-			}
+			props: { user }
 		};
 	}
 </script>
-
-<script lang="ts">    
-    let authenticated: boolean;
+<script>
+	export let user;
 </script>
 
-{#if authenticated}
-<header>
-    <h1>Congratulations on your privileged access</h1>
-</header>
-{:else}
-<header>
-    <h1>Unauthorised</h1>
-</header>
-<a href="/admin/login">Log in here</a>
-{/if}
+
+<p>
+	Congratulations on your privileged access {user?.username}
+</p>

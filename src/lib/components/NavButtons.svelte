@@ -3,8 +3,8 @@
     import type { QuestionSetType } from '$lib/types/questionset';
     import { inputStore } from '$lib/stores/inputstore'
     import { validationStore } from '$lib/stores/validationstore';
-    import { pageValidator } from '$lib/helpers/validators';
-    import { nextPageUrl, prevPageUrl } from '$lib/helpers/navigation';
+    import { pageValidator } from '$lib/utils/validators';
+    import { nextPageUrl, prevPageUrl } from '$lib/utils/navigation';
 
     export let questionset: QuestionSetType;
     export let pageurl: string;
