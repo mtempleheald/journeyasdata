@@ -62,6 +62,7 @@ The basic data structure which drives the entire solution:
   - [JWT authentication](https://www.npmjs.com/package/jsonwebtoken) [using server side endpoints](https://stackoverflow.com/questions/67255874/where-should-i-refresh-my-jwt-in-sveltekit)
   - [Client side (stateless) JWT auth pattern](https://www.caktusgroup.com/blog/2020/10/20/jwt-authentication-rethinking-pattern/)
   - [Alternative to hand writing](https://www.npmjs.com/package/svelte-kit-cookie-session)
+  - [Working example provided by SvelteKit team](https://github.com/sveltejs/realworld)
 
 
 # Getting started
