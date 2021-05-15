@@ -102,8 +102,20 @@ Advised to use VS Code editor with default formatting settings for consistency a
 
 ## Intended deployment process
 
-[![](https://mermaid.ink/img/eyJjb2RlIjoiZ3JhcGggVERcblxuICBjb2RlW0NvZGVdIC0tPiBjaVtDSV1cbiAgY2kgLS0-IGNkW0NEXVxuICBjZCAtLT4gZW52W0Vudmlyb25tZW50XVxuICBjZCAtLXVwZGF0ZS0tPiBwXG5cbiAgcXNbUXVlc3Rpb25TZXRdIC0tcHVibGlzaC0tPiBwW1B1Ymxpc2hlcl1cbiAgdGhlbWVbVGhlbWVdIC0tcHVibGlzaC0tPiBwW1B1Ymxpc2hlcl1cblxuICBwIC0tPiB2e3ZhbGlkP31cbiAgdiAtLT58eWVzfCBlbnZcbiAgdiAtLT58bm98IE5vdGlmeSIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In0sInVwZGF0ZUVkaXRvciI6ZmFsc2V9)](https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiZ3JhcGggVERcblxuICBjb2RlW0NvZGVdIC0tPiBjaVtDSV1cbiAgY2kgLS0-IGNkW0NEXVxuICBjZCAtLT4gZW52W0Vudmlyb25tZW50XVxuICBjZCAtLXVwZGF0ZS0tPiBwXG5cbiAgcXNbUXVlc3Rpb25TZXRdIC0tcHVibGlzaC0tPiBwW1B1Ymxpc2hlcl1cbiAgdGhlbWVbVGhlbWVdIC0tcHVibGlzaC0tPiBwW1B1Ymxpc2hlcl1cblxuICBwIC0tPiB2e3ZhbGlkP31cbiAgdiAtLT58eWVzfCBlbnZcbiAgdiAtLT58bm98IE5vdGlmeSIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In0sInVwZGF0ZUVkaXRvciI6ZmFsc2V9)
+[![](https://mermaid.ink/img/eyJjb2RlIjoiZ3JhcGggVERcbnBhZ2UoUGFnZSkgLS0-IHNlY3Rpb25zW1tTZWN0aW9uIHdvcmtmbG93XV1cbnNlY3Rpb25zICAgLS0-IG5hdmlnYXRle05hdmlnYXRlfVxubmF2aWdhdGUgICAtLT4gYmFjayhQcmV2aW91cyBQYWdlKVxuYmFjayAgICAgICAtLT4gcGFnZXByZXZbW0dvIHRvIHByZXZpb3VzIHBhZ2VdXVxubmF2aWdhdGUgICAtLT4gbmV4dChOZXh0IHBhZ2UpXG5uZXh0ICAgICAgIC0tPiB2YWxpZHtpcyBwYWdlPGJyLz4gdmFsaWQ_fVxudmFsaWQgICAgICAtLT58Tm98IHBhZ2VcbnZhbGlkICAgICAgLS0-fFllc3wgYWN0aW9ucyhFeGVjdXRlIHBhZ2UgYWN0aW9ucylcbmFjdGlvbnMgICAgLS0-IHBhZ2VuZXh0W1tHbyB0byBuZXh0IHBhZ2VdXVxuIiwibWVybWFpZCI6eyJ0aGVtZSI6ImRlZmF1bHQifSwidXBkYXRlRWRpdG9yIjpmYWxzZX0)](https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiZ3JhcGggVERcbnBhZ2UoUGFnZSkgLS0-IHNlY3Rpb25zW1tTZWN0aW9uIHdvcmtmbG93XV1cbnNlY3Rpb25zICAgLS0-IG5hdmlnYXRle05hdmlnYXRlfVxubmF2aWdhdGUgICAtLT4gYmFjayhQcmV2aW91cyBQYWdlKVxuYmFjayAgICAgICAtLT4gcGFnZXByZXZbW0dvIHRvIHByZXZpb3VzIHBhZ2VdXVxubmF2aWdhdGUgICAtLT4gbmV4dChOZXh0IHBhZ2UpXG5uZXh0ICAgICAgIC0tPiB2YWxpZHtpcyBwYWdlPGJyLz4gdmFsaWQ_fVxudmFsaWQgICAgICAtLT58Tm98IHBhZ2VcbnZhbGlkICAgICAgLS0-fFllc3wgYWN0aW9ucyhFeGVjdXRlIHBhZ2UgYWN0aW9ucylcbmFjdGlvbnMgICAgLS0-IHBhZ2VuZXh0W1tHbyB0byBuZXh0IHBhZ2VdXVxuIiwibWVybWFpZCI6eyJ0aGVtZSI6ImRlZmF1bHQifSwidXBkYXRlRWRpdG9yIjpmYWxzZX0)
 
+```
+graph TD
+page(Page) --> sections[[Section workflow]]
+sections   --> navigate{Navigate}
+navigate   --> back(Previous Page)
+back       --> pageprev[[Go to previous page]]
+navigate   --> next(Next page)
+next       --> valid{is page<br/> valid?}
+valid      -->|No| page
+valid      -->|Yes| actions(Execute page actions)
+actions    --> pagenext[[Go to next page]]
+```
 
 
 ---
