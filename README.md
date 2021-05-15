@@ -28,8 +28,34 @@ The basic data structure which drives the entire solution:
 
 ## Workflow
 
+### Journey workflow
+
+[![](https://mermaid.ink/img/eyJjb2RlIjoiZ3JhcGggVERcbiAganN0YXJ0KFN0YXJ0IEpvdXJuZXkpXG4gIGpzdGFydCAtLT4gcXMoTG9hZCBRdWVzdGlvbnNldClcbiAgcXMgICAgIC0tPiBjc3MoTG9hZCBzdHlsZXNoZWV0KVxuICBjc3MgICAgLS0-IGFjdGlvbihMb2FkIGFjdGlvbnMpXG4gIGFjdGlvbiAtLT4gcGFnZXNbW1BhZ2Ugd29ya2Zsb3ddXVxuICBwYWdlcyAgLS0-IGplbmQoRW5kIEpvdXJuZXkpIiwibWVybWFpZCI6eyJ0aGVtZSI6ImRlZmF1bHQifSwidXBkYXRlRWRpdG9yIjpmYWxzZX0)](https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiZ3JhcGggVERcbiAganN0YXJ0KFN0YXJ0IEpvdXJuZXkpXG4gIGpzdGFydCAtLT4gcXMoTG9hZCBRdWVzdGlvbnNldClcbiAgcXMgICAgIC0tPiBjc3MoTG9hZCBzdHlsZXNoZWV0KVxuICBjc3MgICAgLS0-IGFjdGlvbihMb2FkIGFjdGlvbnMpXG4gIGFjdGlvbiAtLT4gcGFnZXNbW1BhZ2Ugd29ya2Zsb3ddXVxuICBwYWdlcyAgLS0-IGplbmQoRW5kIEpvdXJuZXkpIiwibWVybWFpZCI6eyJ0aGVtZSI6ImRlZmF1bHQifSwidXBkYXRlRWRpdG9yIjpmYWxzZX0)
+```
+graph TD
+  jstart(Start Journey)
+  jstart --> qs(Load Questionset)
+  qs     --> css(Load stylesheet)
+  css    --> action(Load actions)
+  action --> pages[[Page workflow]]
+  pages  --> jend(End Journey)
+```
+
 ### Page workflow
-[![](https://mermaid.ink/img/eyJjb2RlIjoiZ3JhcGggVERcbnBhZ2UoUGFnZSkgLS0-IHNlY3Rpb25zW1tTZWN0aW9uIHdvcmtmbG93XV1cbnNlY3Rpb25zIC0tPiBuYXZpZ2F0ZXtOYXZpZ2F0ZX1cbm5hdmlnYXRlIC0tPiBiYWNrKFByZXZpb3VzIFBhZ2UpXG5iYWNrIC0tPiBwYWdlcHJldltbR28gdG8gcHJldmlvdXMgcGFnZV1dXG5uYXZpZ2F0ZSAtLT4gbmV4dChOZXh0IHBhZ2UpXG5uZXh0IC0tPiB2YWxpZHtpcyBwYWdlPGJyLz4gdmFsaWQ_fVxudmFsaWQgLS0-fE5vfCBwYWdlXG52YWxpZCAtLT58WWVzfCBwYWdlbmV4dFtbR28gdG8gbmV4dCBwYWdlXV1cbiIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In0sInVwZGF0ZUVkaXRvciI6ZmFsc2V9)](https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiZ3JhcGggVERcbnBhZ2UoUGFnZSkgLS0-IHNlY3Rpb25zW1tTZWN0aW9uIHdvcmtmbG93XV1cbnNlY3Rpb25zIC0tPiBuYXZpZ2F0ZXtOYXZpZ2F0ZX1cbm5hdmlnYXRlIC0tPiBiYWNrKFByZXZpb3VzIFBhZ2UpXG5iYWNrIC0tPiBwYWdlcHJldltbR28gdG8gcHJldmlvdXMgcGFnZV1dXG5uYXZpZ2F0ZSAtLT4gbmV4dChOZXh0IHBhZ2UpXG5uZXh0IC0tPiB2YWxpZHtpcyBwYWdlPGJyLz4gdmFsaWQ_fVxudmFsaWQgLS0-fE5vfCBwYWdlXG52YWxpZCAtLT58WWVzfCBwYWdlbmV4dFtbR28gdG8gbmV4dCBwYWdlXV1cbiIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In0sInVwZGF0ZUVkaXRvciI6ZmFsc2V9)
+[![](https://mermaid.ink/img/eyJjb2RlIjoiZ3JhcGggVERcbnBhZ2UoUGFnZSkgLS0-IHNlY3Rpb25zW1tTZWN0aW9uIHdvcmtmbG93XV1cbnNlY3Rpb25zIC0tPiBuYXZpZ2F0ZXtOYXZpZ2F0ZX1cbm5hdmlnYXRlIC0tPiBiYWNrKFByZXZpb3VzIFBhZ2UpXG5iYWNrIC0tPiBwYWdlcHJldltbR28gdG8gcHJldmlvdXMgcGFnZV1dXG5uYXZpZ2F0ZSAtLT4gbmV4dChOZXh0IHBhZ2UpXG5uZXh0IC0tPiB2YWxpZHtpcyBwYWdlPGJyLz4gdmFsaWQ_fVxudmFsaWQgLS0-fE5vfCBwYWdlXG52YWxpZCAgICAgIC0tPnxZZXN8IGFjdGlvbnMoRXhlY3V0ZSBwYWdlIGFjdGlvbnMpXG5hY3Rpb25zICAgIC0tPiBwYWdlbmV4dFtbR28gdG8gbmV4dCBwYWdlXV1cbiIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In0sInVwZGF0ZUVkaXRvciI6ZmFsc2V9)](https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiZ3JhcGggVERcbnBhZ2UoUGFnZSkgLS0-IHNlY3Rpb25zW1tTZWN0aW9uIHdvcmtmbG93XV1cbnNlY3Rpb25zIC0tPiBuYXZpZ2F0ZXtOYXZpZ2F0ZX1cbm5hdmlnYXRlIC0tPiBiYWNrKFByZXZpb3VzIFBhZ2UpXG5iYWNrIC0tPiBwYWdlcHJldltbR28gdG8gcHJldmlvdXMgcGFnZV1dXG5uYXZpZ2F0ZSAtLT4gbmV4dChOZXh0IHBhZ2UpXG5uZXh0IC0tPiB2YWxpZHtpcyBwYWdlPGJyLz4gdmFsaWQ_fVxudmFsaWQgLS0-fE5vfCBwYWdlXG52YWxpZCAgICAgIC0tPnxZZXN8IGFjdGlvbnMoRXhlY3V0ZSBwYWdlIGFjdGlvbnMpXG5hY3Rpb25zICAgIC0tPiBwYWdlbmV4dFtbR28gdG8gbmV4dCBwYWdlXV1cbiIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In0sInVwZGF0ZUVkaXRvciI6ZmFsc2V9)
+
+```
+graph TD
+page(Page) --> sections[[Section workflow]]
+sections   --> navigate{Navigate}
+navigate   --> back(Previous Page)
+back       --> pageprev[[Go to previous page]]
+navigate   --> next(Next page)
+next       --> valid{is page<br/> valid?}
+valid      -->|No| page
+valid      -->|Yes| actions(Execute page actions)
+actions    --> pagenext[[Go to next page]]
+```
 
 
 ## Key Features
@@ -102,21 +128,23 @@ Advised to use VS Code editor with default formatting settings for consistency a
 
 ## Intended deployment process
 
-[![](https://mermaid.ink/img/eyJjb2RlIjoiZ3JhcGggVERcbnBhZ2UoUGFnZSkgLS0-IHNlY3Rpb25zW1tTZWN0aW9uIHdvcmtmbG93XV1cbnNlY3Rpb25zICAgLS0-IG5hdmlnYXRle05hdmlnYXRlfVxubmF2aWdhdGUgICAtLT4gYmFjayhQcmV2aW91cyBQYWdlKVxuYmFjayAgICAgICAtLT4gcGFnZXByZXZbW0dvIHRvIHByZXZpb3VzIHBhZ2VdXVxubmF2aWdhdGUgICAtLT4gbmV4dChOZXh0IHBhZ2UpXG5uZXh0ICAgICAgIC0tPiB2YWxpZHtpcyBwYWdlPGJyLz4gdmFsaWQ_fVxudmFsaWQgICAgICAtLT58Tm98IHBhZ2VcbnZhbGlkICAgICAgLS0-fFllc3wgYWN0aW9ucyhFeGVjdXRlIHBhZ2UgYWN0aW9ucylcbmFjdGlvbnMgICAgLS0-IHBhZ2VuZXh0W1tHbyB0byBuZXh0IHBhZ2VdXVxuIiwibWVybWFpZCI6eyJ0aGVtZSI6ImRlZmF1bHQifSwidXBkYXRlRWRpdG9yIjpmYWxzZX0)](https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiZ3JhcGggVERcbnBhZ2UoUGFnZSkgLS0-IHNlY3Rpb25zW1tTZWN0aW9uIHdvcmtmbG93XV1cbnNlY3Rpb25zICAgLS0-IG5hdmlnYXRle05hdmlnYXRlfVxubmF2aWdhdGUgICAtLT4gYmFjayhQcmV2aW91cyBQYWdlKVxuYmFjayAgICAgICAtLT4gcGFnZXByZXZbW0dvIHRvIHByZXZpb3VzIHBhZ2VdXVxubmF2aWdhdGUgICAtLT4gbmV4dChOZXh0IHBhZ2UpXG5uZXh0ICAgICAgIC0tPiB2YWxpZHtpcyBwYWdlPGJyLz4gdmFsaWQ_fVxudmFsaWQgICAgICAtLT58Tm98IHBhZ2VcbnZhbGlkICAgICAgLS0-fFllc3wgYWN0aW9ucyhFeGVjdXRlIHBhZ2UgYWN0aW9ucylcbmFjdGlvbnMgICAgLS0-IHBhZ2VuZXh0W1tHbyB0byBuZXh0IHBhZ2VdXVxuIiwibWVybWFpZCI6eyJ0aGVtZSI6ImRlZmF1bHQifSwidXBkYXRlRWRpdG9yIjpmYWxzZX0)
 
+[![](https://mermaid.ink/img/eyJjb2RlIjoiZ3JhcGggVERcblxuICBjb2RlW0NvZGVdIC0tPiBjaVtDSV1cbiAgY2kgLS0-IGNkW0NEXVxuICBjZCAtLT4gZW52W0Vudmlyb25tZW50XVxuICBjZCAtLXVwZGF0ZS0tPiBwXG5cbiAgcXNbUXVlc3Rpb25TZXRdIC0tcHVibGlzaC0tPiBwW1B1Ymxpc2hlcl1cbiAgdGhlbWVbVGhlbWVdIC0tcHVibGlzaC0tPiBwW1B1Ymxpc2hlcl1cblxuICBwIC0tPiB2e3ZhbGlkP31cbiAgdiAtLT58eWVzfCBlbnZcbiAgdiAtLT58bm98IE5vdGlmeSIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In0sInVwZGF0ZUVkaXRvciI6ZmFsc2V9)](https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiZ3JhcGggVERcblxuICBjb2RlW0NvZGVdIC0tPiBjaVtDSV1cbiAgY2kgLS0-IGNkW0NEXVxuICBjZCAtLT4gZW52W0Vudmlyb25tZW50XVxuICBjZCAtLXVwZGF0ZS0tPiBwXG5cbiAgcXNbUXVlc3Rpb25TZXRdIC0tcHVibGlzaC0tPiBwW1B1Ymxpc2hlcl1cbiAgdGhlbWVbVGhlbWVdIC0tcHVibGlzaC0tPiBwW1B1Ymxpc2hlcl1cblxuICBwIC0tPiB2e3ZhbGlkP31cbiAgdiAtLT58eWVzfCBlbnZcbiAgdiAtLT58bm98IE5vdGlmeSIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In0sInVwZGF0ZUVkaXRvciI6ZmFsc2V9)
 ```
 graph TD
-page(Page) --> sections[[Section workflow]]
-sections   --> navigate{Navigate}
-navigate   --> back(Previous Page)
-back       --> pageprev[[Go to previous page]]
-navigate   --> next(Next page)
-next       --> valid{is page<br/> valid?}
-valid      -->|No| page
-valid      -->|Yes| actions(Execute page actions)
-actions    --> pagenext[[Go to next page]]
-```
 
+  code[Code] --> ci[CI]
+  ci --> cd[CD]
+  cd --> env[Environment]
+  cd --update--> p
+
+  qs[QuestionSet] --publish--> p[Publisher]
+  theme[Theme] --publish--> p[Publisher]
+
+  p --> v{valid?}
+  v -->|yes| env
+  v -->|no| Notify
+```
 
 ---
 ---
