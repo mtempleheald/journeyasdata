@@ -1,6 +1,6 @@
 <script lang='ts'>
     import type { QuestionSetType } from '$lib/types/questionset';
-    import { targetPageEarlier } from '$lib/helpers/navigation';
+    import { targetPageEarlier } from '$lib/utils/navigation';
 
     export let pageurl = '';
     export let questionset: QuestionSetType;

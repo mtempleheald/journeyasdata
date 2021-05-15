@@ -58,6 +58,11 @@ The basic data structure which drives the entire solution:
 - API security - [SvelteKit will server-render pages on demand](https://kit.svelte.dev/docs#ssr-and-javascript) and [endpoints only run on the server](https://kit.svelte.dev/docs#routing-endpoints)
 - A/B testing - does NOT cover code, but does cover data - the current plan is to handle this by deployment, hosting multiple versions simultaneously.
 - Source/Affinity based branding - If redirected from google or some other aggregator we may want to style certain aspects differently, e.g. logos
+- Admin backend for questionset generation
+  - [JWT authentication](https://www.npmjs.com/package/jsonwebtoken) [using server side endpoints](https://stackoverflow.com/questions/67255874/where-should-i-refresh-my-jwt-in-sveltekit)
+  - [Client side (stateless) JWT auth pattern](https://www.caktusgroup.com/blog/2020/10/20/jwt-authentication-rethinking-pattern/)
+  - [Alternative to hand writing](https://www.npmjs.com/package/svelte-kit-cookie-session)
+  - [Working example provided by SvelteKit team](https://github.com/sveltejs/realworld)
 
 
 # Getting started
@@ -100,7 +105,7 @@ Advised to use VS Code editor with default formatting settings for consistency a
 To be tidied up below here
 
 
-# Components
+# Components - review and raise anything not already implemented as an issue
 
 The Journey is comprised of one or more "Components" which, when put together, can be used to gain information along the journey.
 
@@ -128,19 +133,22 @@ A Question Component has the following distinct features
 This will allow us to compose any type of question
 
 
-# Thoughts and Ideas?
+# Thoughts and Ideas? - Move these to Issues so we can discuss properly
 
 RL - Just wondering if we need to allow A component within a Question to allow us to do the type of question  "When did you buy your caravan [DD]/[MM]/[YYYY]  [X] I have not bought the caravan yet" option.
 MTH - Perhaps this fits in with the composite component in the hierarchy above.  I would hope we don't need composite composite components, but worth considering.
+MTH update - We have dependent questions now, would recommend reordering as "Have you bought the caravan?"..."When did you buy it?"  This is more intuitive and easier to implement dynamically.
 
 RL - Do we want a Component to allow us to link JS?
     e.g. a Javascript snippet could be a Component?
 MTH - Needs to be as simple as possible.  Simple validation should be exclusively data-driven - annotations + generic JS, from questionset data.
 Each question could have a single additional action (blur,leave... depending on type) - trigger complex validations or other action - this would be based on id, injected by code, brand-specific and not subject to A/B testing.
+MTH update - We have an actionStore now, a way to inject custom functions that take no parameters and interact only with the stores.  I haven't thought of any examples that this wouldn't cover, yet.
 
 RL - I know this is going further, but a our site needs a "default" brand.  When linking to us from a 3rd party site via URL, we may need to reload their data and rebrand accordingly.
 
 RL - We also need to consider a mechanism whereby answering a question in a particular way prevents them from continuing the journey - e.g.  Do you wish to answer these questions? [Y]/[N].  Answering N would prevent them from contuing so we display a nice message saying "well thanks for wasting your own time" and prevent them form clicking the NEXT button.
+MTH - We can easily enough redirect a page using goto() on user action (blur,click etc).  This needs to be dynamic so possibly need a kill-conditions property on the component type.
 
 MTH - [Svelte Themer](https://svelte-themer.now.sh/) could be an option if we need dynamic theming.
 
