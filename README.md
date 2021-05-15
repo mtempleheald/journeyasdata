@@ -57,6 +57,23 @@ valid      -->|Yes| actions(Execute page actions)
 actions    --> pagenext[[Go to next page]]
 ```
 
+### Section workflow
+[![](https://mermaid.ink/img/eyJjb2RlIjoiZ3JhcGggVERcbnNlY3Rpb24oU2VjdGlvbilcbnNlY3Rpb24gICAgLS0-IGNvbXBvbmVudHNbW0NvbXBvbmVudCB3b3JrZmxvd11dXG5jb21wb25lbnRzIC0tPiByZXBlYXRpbmd7UmVwZWF0aW5nIDxici8-c2VjdGlvbj99XG5yZXBlYXRpbmcgIC0tPnxOb3wgbmV4dChOZXh0IFNlY3Rpb24pXG5yZXBlYXRpbmcgIC0tPnxZZXN8IHJlcGVhdHtBZGQgbmV3IDxici8-aW5zdGFuY2U_fVxucmVwZWF0ICAgICAtLT58Tm98IG5leHQoTmV4dCBTZWN0aW9uKVxucmVwZWF0ICAgICAtLT4gc3dpdGNoKE5ldyBpbnN0YW5jZSlcbnN3aXRjaCAgICAgLS0-IHNlY3Rpb24iLCJtZXJtYWlkIjp7InRoZW1lIjoiZGVmYXVsdCJ9LCJ1cGRhdGVFZGl0b3IiOmZhbHNlfQ)](https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiZ3JhcGggVERcbnNlY3Rpb24oU2VjdGlvbilcbnNlY3Rpb24gICAgLS0-IGNvbXBvbmVudHNbW0NvbXBvbmVudCB3b3JrZmxvd11dXG5jb21wb25lbnRzIC0tPiByZXBlYXRpbmd7UmVwZWF0aW5nIDxici8-c2VjdGlvbj99XG5yZXBlYXRpbmcgIC0tPnxOb3wgbmV4dChOZXh0IFNlY3Rpb24pXG5yZXBlYXRpbmcgIC0tPnxZZXN8IHJlcGVhdHtBZGQgbmV3IDxici8-aW5zdGFuY2U_fVxucmVwZWF0ICAgICAtLT58Tm98IG5leHQoTmV4dCBTZWN0aW9uKVxucmVwZWF0ICAgICAtLT4gc3dpdGNoKE5ldyBpbnN0YW5jZSlcbnN3aXRjaCAgICAgLS0-IHNlY3Rpb24iLCJtZXJtYWlkIjp7InRoZW1lIjoiZGVmYXVsdCJ9LCJ1cGRhdGVFZGl0b3IiOmZhbHNlfQ)
+
+```
+graph TD
+section(Section)
+section    --> components[[Component workflow]]
+components --> repeating{Repeating <br/>section?}
+repeating  -->|No| next(Next Section)
+repeating  -->|Yes| repeat{Add new <br/>instance?}
+repeat     -->|No| next(Next Section)
+repeat     --> switch(New instance)
+switch     --> section
+```
+
+### Component workflow
+
 
 ## Key Features
 
