@@ -6,6 +6,7 @@
     import Displayblock from '$lib/components/Displayblock.svelte';
     import Textbox from '$lib/components/Textbox.svelte';
     import Vehicle from '$lib/components/Vehicle.svelte';
+    import TriBoxDate from '$lib/components/TriBoxDate.svelte';
     import { inputStore } from '$lib/stores/inputstore';
     import { validationStore } from '$lib/stores/validationstore';
     import { actionStore } from '$lib/stores/actionstore';
@@ -113,6 +114,11 @@
   <Address 
     component={component}
     on:addressChange="{componentUpdated}"
+  />
+{:else if component.type == "TriBoxDate"}
+  <TriBoxDate 
+    component={component}
+    on:dateChange="{componentUpdated}"
   />
 {:else if component.type == "Vehicle"}
   <Vehicle 
