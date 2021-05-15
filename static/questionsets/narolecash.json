@@ -66,10 +66,82 @@
       ]
     },
     {
-      "url": "text-inputs",
-      "title": "Text Input variations",
+      "url": "your-motorcycle",
+      "title": "Your Motorcycles",
       "displayprogress": true,
       "sections": [
+        {
+          "title": "Details",
+          "components": [
+            {
+              "type": "Vehicle",
+              "regnumLabel": "Registration number",
+              "regnumPlaceholder": "YOUR REG",
+              "buttonLabel": "Find Motorcycle",
+              "errorMessage": "Failed to find vehicle"
+            }
+          ]
+        },
+        {
+          "title": "Select your motorcycle",
+          "components": [
+            {
+              "type": "Displayblock",
+              "content": "Uses a bespoke function and unconnected Text components instead of a bespoke Vehicle component"
+            },
+            {
+              "id": "vehiclemake",
+              "type": "Text",
+              "label": "Make"
+            },
+            {
+              "id": "vehiclemodel",
+              "type": "Text",
+              "label": "Model"
+            },
+            {
+              "id": "vehiclebody",
+              "type": "Text",
+              "label": "Body"
+            },
+            {
+              "id": "vehicletransmission",
+              "type": "Text",
+              "label": "Transmission"
+            },
+            {
+              "id": "vehicleengine",
+              "type": "Text",
+              "label": "Engine"
+            },
+            {
+              "id": "vehicleenginecc",
+              "type": "Text",
+              "label": "Engine CC"
+            },
+            {
+              "id": "vehicleenginebhp",
+              "type": "Text",
+              "label": "Engine BHP"
+            },
+            {
+              "id": "vehiclecolour",
+              "type": "Text",
+              "label": "Colour"
+            },
+            {
+              "id": "vehicleabicode",
+              "type": "Text",
+              "label": "ABI Code"
+            },
+            {
+              "id": "vehicledoors",
+              "type": "Text",
+              "label": "Doors"
+            }
+          ]
+        },
+
         {
           "id": "text",
           "title": "Textbox parameters",
@@ -394,8 +466,8 @@
       ]
     },
     {
-      "url": "complex-components",
-      "title": "Complex components",
+      "url": "xx",
+      "title": "xx",
       "displayprogress": true,
       "sections": [
         {
@@ -412,88 +484,8 @@
               "required": true
             }
           ]
-        },
-        {
-          "title": "Vehicle Section",
-          "logo": "https://fakeimg.pl/100x50/?text=Vehicle%20Logo",
-          "components": [
-            {
-              "type": "Vehicle",
-              "regnumLabel": "Registration number",
-              "regnumPlaceholder": "YOUR REG",
-              "buttonLabel": "Search",
-              "errorMessage": "Failed to find vehicle"
-            }
-          ]
-        },
-        {
-          "title": "Vehicle lookup without vehicle component",
-          "logo": "https://fakeimg.pl/100x50/?text=Vehicle%20Logo",
-          "components": [
-            {
-              "type": "Displayblock",
-              "content": "Uses a bespoke function and unconnected Text components instead of a bespoke Vehicle component"
-            },
-            {
-              "id": "regnumber",
-              "type": "Upper",
-              "label": "Registration number",
-              "placeholder": "YOUR REG",
-              "required": true,
-              "errorMessage": "Please enter a valid registration number"
-            },
-            {
-              "id": "vehiclemake",
-              "type": "Text",
-              "label": "Make"
-            },
-            {
-              "id": "vehiclemodel",
-              "type": "Text",
-              "label": "Model"
-            },
-            {
-              "id": "vehiclebody",
-              "type": "Text",
-              "label": "Body"
-            },
-            {
-              "id": "vehicletransmission",
-              "type": "Text",
-              "label": "Transmission"
-            },
-            {
-              "id": "vehicleengine",
-              "type": "Text",
-              "label": "Engine"
-            },
-            {
-              "id": "vehicleenginecc",
-              "type": "Text",
-              "label": "Engine CC"
-            },
-            {
-              "id": "vehicleenginebhp",
-              "type": "Text",
-              "label": "Engine BHP"
-            },
-            {
-              "id": "vehiclecolour",
-              "type": "Text",
-              "label": "Colour"
-            },
-            {
-              "id": "vehicleabicode",
-              "type": "Text",
-              "label": "ABI Code"
-            },
-            {
-              "id": "vehicledoors",
-              "type": "Text",
-              "label": "Doors"
-            }
-          ]
         }
+        
       ]
     },
     {
