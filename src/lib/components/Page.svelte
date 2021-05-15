@@ -15,7 +15,11 @@
 
 
 <header>
-  <img src="https://fakeimg.pl/250x100/?text={BRAND}" alt="logo">
+  {#if questionset.logo}
+    <img src="{questionset.logo}" alt="{questionset.logoalt}">
+  {:else}
+    <img src="https://fakeimg.pl/250x100/?text={BRAND}" alt="logo">
+  {/if}
   <h1>{questionset.title}</h1>
 </header>
 

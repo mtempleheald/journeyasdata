@@ -1,7 +1,10 @@
 <script lang="ts">
+    import snarkdown from 'snarkdown';// https://github.com/developit/snarkdown/blob/master/test/index.js
     import Textbox from '$lib/components/Textbox.svelte';
     import type { VehicleComponentType } from '$lib/types/questionset';
     import type { VehicleType } from '$lib/types/vehicle';
+    import Dropdown from '$lib/components/Dropdown.svelte';
+    import { inputStore } from '$lib/stores/inputstore';
     
     // expose component properties
     export let component: VehicleComponentType;
@@ -51,15 +54,64 @@
         on:valueChange="{regUpdated}"
     ></Textbox>
     <button type="button">{component.buttonLabel}</button>
+    
+    TODO: Year Of Manufacture - Drop down in Vehicle.svelte
+    <Dropdown
+        component={{...component, 
+            value:$inputStore[component.id] ?? ''}}>
+        <svelte:fragment slot="pre">
+        {#if component.pre}    
+            {@html snarkdown(component.pre)}    
+        {/if}
+        </svelte:fragment>
+        <svelte:fragment slot="post">
+        {#if component.post}
+            {@html snarkdown(component.post)}
+        {/if}
+        </svelte:fragment>
+    </Dropdown>
+
+    
     <Textbox
         component={{
             type: "Text",
             id: "make",
-            label: "make",
+            label: "Make",
             value: vehicle?.make ?? ''
         }}
     ></Textbox>
+    <Textbox
+    component={{
+        type: "Text",
+        id: "enginecc",
+        label: "Engine Size",
+        value: vehicle?.enginecc ?? ''
+    }}
+    ></Textbox>
+    <Textbox
+    component={{
+        type: "Text",
+        id: "model",
+        label: "Model",
+        value: vehicle?.model ?? ''
+    }}
+    ></Textbox>
 
+    TODO: Select Bike - Drop down component in Vehicle.svelte
+    <Dropdown
+        component={{...component, 
+            value:$inputStore[component.id] ?? ''}}>
+        <svelte:fragment slot="pre">
+        {#if component.pre}    
+            {@html snarkdown(component.pre)}    
+        {/if}
+        </svelte:fragment>
+        <svelte:fragment slot="post">
+        {#if component.post}
+            {@html snarkdown(component.post)}
+        {/if}
+        </svelte:fragment>
+    </Dropdown>
 </div>
 
 
