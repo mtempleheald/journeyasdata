@@ -83,7 +83,7 @@ export type TriBoxDateValidRange = {
 
 export type TriBoxDateComponentType = BaseComponentType & {
     fields: TriBoxDateFieldsType;
-    validRange: TriBoxDateValidRange;
+    validRange?: TriBoxDateValidRange;
 }
 
 export type AddressComponentType = BaseComponentType & {

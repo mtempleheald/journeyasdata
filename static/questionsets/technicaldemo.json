@@ -16,33 +16,23 @@
   "type": "TriBoxDate",
   "id": "purchaseDate",
   "label": "Enter the date of purchase",
-  "fields": [
-    {
-      "type":"Text",
-      "seperator":"/",
-      "day": [
-        {
-          "placeholder": "DD"
-        }
-      ],
-      "month": [
-        {
-          "placeholder": "MM"
-        }
-      ],
-      "year": [
-        {
-          "placeholder": "YYYY"
-        }
-      ]
+  "fields": {
+    "type":"Text",
+    "seperator":"/",
+    "day": {
+      "placeholder": "DD"
+    },
+    "month": {
+      "placeholder": "MM"
+    },
+    "year": {
+      "placeholder": "YYYY"
     }
-  ],
-  "validRange": [
-    {
-      "from": "01/01/1970",
-      "to": "Today"
-    }
-  ],
+  },
+  "validRange": {
+    "from": "01/01/1970",
+    "to": "Today"
+  },
   "required": true,
   "errorMessage": "Please enter valid data",
   "help": "Help text",

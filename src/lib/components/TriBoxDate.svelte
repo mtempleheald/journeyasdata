@@ -7,7 +7,6 @@
     // expose component properties
     export let component: TriBoxDateComponentType;
 
-
     // internal properties to support component logic
     const dispatch = createEventDispatcher();
     let fallbackError;
@@ -63,7 +62,7 @@
         <input type="{component.fields.type ?? 'Text'}"
             id="{component.id}-day" 
             name="{component.id}-day" 
-            placeholder="{component.id ?? ''}" 
+            placeholder="{component.fields.day.placeholder ?? ''}" 
             required="{component.required}"
             value="{component.value}"
             on:blur={act}
@@ -72,13 +71,13 @@
           <input type="{component.fields.type ?? 'Text'}"
             id="{component.id}-month" 
             name="{component.id}-month" 
-            placeholder="{component.id ?? ''}" 
+            placeholder="{component.fields.month.placeholder ?? ''}" 
             required="{component.required}"
             value="{component.value}"
             on:blur={act}
             on:focus={focus}/>
             {component.fields.seperator ?? ""}
-          <input type="{component.fields.type ?? 'Text'}"
+          <input type="{component.fields.year.placeholder ?? 'Text'}"
             id="{component.id}-year" 
             name="{component.id}-year" 
             placeholder="{component.id ?? ''}" 
