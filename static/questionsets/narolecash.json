@@ -98,6 +98,14 @@
               "id": "modified",
               "type": "YesNo",
               "label": "Has this motorcycle been modified?"
+            },
+            {
+              "type": "Displayblock",
+              "content": "Please enter your modifications here",
+              "dependsupon": {
+                "id": "modified",
+                "value": "Y"
+              }
             }
           ]
         },
