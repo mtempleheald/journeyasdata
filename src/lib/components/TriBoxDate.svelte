@@ -22,7 +22,7 @@
     }    
     function act(event) {
         // transform
-        let val = event.target.value;
+        let val = event.target.value;        
         // validate
         if (event.target.validity.valid) {
             valid = true;
@@ -38,7 +38,6 @@
     function focus(event) {
         dispatch('focus', component.id);
     }
-
 </script>
 
 <div class="question {active} {valid?'':'invalid'}" 
@@ -92,6 +91,14 @@
             maxlength="4"
             on:blur={act}
             on:focus={focus}/>
+            {#if component.fields.unknownOptionLabel}
+            <input type="checkbox" id="{component.id}-unknown"
+              name="{component.id}-unknown"
+              on:click={act}
+              on:focus={focus}
+              value="{component.value}" />
+                {component.fields.unknownOptionLabel}
+            {/if}
         {/if}
         {#if component.help}
             <Helptext>{component.help}</Helptext>

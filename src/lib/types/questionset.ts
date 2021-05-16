@@ -70,6 +70,7 @@ export type TriBoxDateFieldsType = {
     dayPlaceholder: string;
     monthPlaceholder: string;
     yearPlaceholder: string;
+    unknownOptionLabel: string;
 }
 
 export type TriBoxDateValidRange = {

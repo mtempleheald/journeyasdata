@@ -19,15 +19,10 @@
   "fields": {
     "type":"Text",
     "seperator":"/",
-    "day": {
-      "placeholder": "DD"
-    },
-    "month": {
-      "placeholder": "MM"
-    },
-    "year": {
-      "placeholder": "YYYY"
-    }
+    "dayPlaceholder": "DD",
+    "monthPlaceholder": "MM",
+    "yearPlaceholder": "YYYY",
+    "unknownOptionLabel": "I have not purchsed it yet" 
   },
   "validRange": {
     "from": "01/01/1970",
