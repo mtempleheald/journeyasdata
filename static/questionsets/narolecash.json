@@ -278,44 +278,365 @@
       ]
     },
     {
-      "url": "dropdowns",
-      "title": "Dropdown selection",
+      "url": "about-you",
+      "title": "About You",
       "displayprogress": true,
       "sections": [
         {
-          "title": "Dropdown Section",
-          "logo": "https://fakeimg.pl/100x50/?text=Section%20Logo",
+          "title": "Your Details",
           "components": [
             {
-              "id": "dropdownfull",
-              "label": "Required question label",
-              "type": "Dropdown",
-              "placeholder": "Placeholder...",
-              "required": true,
-              "refdata": "context1.list1",
-              "errorMessage": "Please select an option",
-              "help": "Help text",
-              "pre": "# Markdown before question 1",
-              "post": "__Markdown after question 1__"
-            },
-            {
-              "id": "dropdown_refdata",
-              "type": "Dropdown",
-              "label": "Data passed in by reference",
-              "refdata": "context1.list2"
-            },
-            {
-              "id": "dropdown_datalist",
-              "type": "Dropdown",
-              "label": "Data passed in via QS",
+              "id": "title",
+              "label": "Title",
+              "type": "ButtonSelect",
               "values": [
                 {
-                  "value": "example1",
-                  "display": "Example 1"
+                  "value": "mr",
+                  "display": "Mr"
                 },
                 {
-                  "value": "example2",
-                  "display": "Example 2"
+                  "value": "mrs",
+                  "display": "Mrs"
+                },
+                {
+                  "value": "miss",
+                  "display": "Miss"
+                },
+                {
+                  "value": "ms",
+                  "display": "Ms"
+                }
+              ]
+            },
+            {
+              "id": "firtstname",
+              "type": "Text",
+              "label": "First Name(s)"
+            },
+            {
+              "id": "surname",
+              "type": "Text",
+              "label": "Surname"
+            },
+            {
+              "type": "Displayblock",
+              "content": "Date of birth [ DD ] [ MM ] [ YYYY ]"
+            },
+            {
+              "id": "residentsincebirth",
+              "type": "YesNo",
+              "label": "Have you been a permanent resident of the UK since birth?"
+            },
+            {
+              "type": "Displayblock",
+              "content": "When did you become a permanent resident of the UK?  [  MONTH ] [ YYYY]",
+              "dependsupon": {
+                "id": "residentsincebirth",
+                "value": "Y"
+              }
+            },
+            {
+              "id": "maritalstatus",
+              "type": "Dropdown",
+              "label": "Your marital status",
+              "values": [
+                {
+                  "value": "married",
+                  "display": "Married"
+                },
+                {
+                  "value": "single",
+                  "display": "Single"
+                },
+                {
+                  "value": "civilpartner",
+                  "display": "Civil Partnered"
+                },
+                {
+                  "value": "widowed",
+                  "display": "Widowed"
+                },
+                {
+                  "value": "divorced",
+                  "display": "Divorced"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Your Address",
+          "components": [
+            {
+              "id": "address",
+              "type": "Address",
+              "postcodeLabel": "Postcode",
+              "postcodePlaceholder": "ST6 2BA",
+              "buttonLabel": "Find Address",
+              "propertyLabel": "Please select your address",
+              "required": true
+            },
+            {
+              "id": "homeowner",
+              "type": "YesNo",
+              "label": "Are you a homeowner?"
+            },
+            {
+              "id": "emailaddress",
+              "type": "Text",
+              "label": "Your email address"    
+            },
+            {
+              "id": "phone",
+              "type": "Text",
+              "label": "Your main contact telephone number"    
+            }
+          ]
+        },
+        {
+          "title": "Employment",
+          "components": [
+            {
+              "id": "mainemploymentstatus",
+              "type": "Dropdown",
+              "label": "What is your employment status?",
+              "values": [
+                {
+                  "value": "fulltime",
+                  "display": "Full Time Employment"
+                },
+                {
+                  "value": "retired",
+                  "display": "Retired"
+                },
+                {
+                  "value": "selfemployed",
+                  "display": "Self Employed"
+                },
+                {
+                  "value": "unemployed",
+                  "display": "Unemployed"
+                },
+                {
+                  "value": "education",
+                  "display": "In full time education"
+                },
+                {
+                  "value": "government",
+                  "display": "Government / Civil Servant"
+                },
+                {
+                  "value": "houseperson",
+                  "display": "Houseperson"
+                },
+                {
+                  "value": "director",
+                  "display": "Company Director"
+                },
+                {
+                  "value": "other",
+                  "display": "Other"
+                }
+              ]
+            },
+            {
+              "id": "mainjob",
+              "type": "Text",
+              "label": "What is your main job?",
+              "dependsupon": {
+                "id": "mainemploymentstatus",
+                "value": "fulltime"
+              }
+            },
+            {
+              "id": "industry",
+              "type": "Text",
+              "label": "What type of business or industry is this job in?",
+              "dependsupon": {
+                "id": "mainemploymentstatus",
+                "value": "fulltime"
+              }
+            },
+            {
+              "id": "doyouhaveparttimejob",
+              "type": "YesNo",
+              "label": "Do you have an additional part-time job?"
+            },
+            {
+              "id": "parttimeemploymentstatus",
+              "type": "Dropdown",
+              "label": "What is your part-time employment status?",
+              "values": [
+                {
+                  "value": "fulltime",
+                  "display": "Full Time Employment"
+                },
+                {
+                  "value": "retired",
+                  "display": "Retired"
+                },
+                {
+                  "value": "selfemployed",
+                  "display": "Self Employed"
+                },
+                {
+                  "value": "unemployed",
+                  "display": "Unemployed"
+                },
+                {
+                  "value": "education",
+                  "display": "In full time education"
+                },
+                {
+                  "value": "government",
+                  "display": "Government / Civil Servant"
+                },
+                {
+                  "value": "houseperson",
+                  "display": "Houseperson"
+                },
+                {
+                  "value": "director",
+                  "display": "Company Director"
+                },
+                {
+                  "value": "other",
+                  "display": "Other"
+                }
+              ],
+              "dependsupon": {
+                "id": "doyouhaveparttimejob",
+                "value": "Y"
+              }
+            },
+            {
+              "id": "parttimejob",
+              "type": "Text",
+              "label": "What is your part-time job?",
+              "dependsupon": {
+                "id": "parttimeemploymentstatus",
+                "value": "fulltime"
+              }
+            },
+            {
+              "id": "industry",
+              "type": "Text",
+              "label": "What type of business or industry is this part-time job in?",
+              "dependsupon": {
+                "id": "parttimeemploymentstatus",
+                "value": "fulltime"
+              }
+            }
+          ]
+        },
+        {
+          "title": "About your riding",
+          "components": [
+            {
+              "id": "parttimeemploymentstatus",
+              "type": "Dropdown",
+              "label": "What type of licence do you have?",
+              "values": [
+                {
+                  "value": "fulluk",
+                  "display": "Full UK license"
+                },
+                {
+                  "value": "provisional",
+                  "display": "Provisional UK license"
+                },
+                {
+                  "value": "eu",
+                  "display": "Full EU/EEA"
+                },
+                {
+                  "value": "international",
+                  "display": "International Driving permit"
+                },
+                {
+                  "value": "noneu",
+                  "display": "Full European (non EU)"
+                }
+              ]
+            },
+            {
+              "id": "licenseheld",
+              "label": "How long have you had your licence?",
+              "type": "Dropdown",
+              "values": [
+                {
+                  "value": "0-11",
+                  "display": "Less than 1 year"
+                },
+                {
+                  "value": "1",
+                  "display": "1 Year"
+                },
+                {
+                  "value": "2",
+                  "display": "2 year"
+                },
+                {
+                  "value": "3",
+                  "display": "3 year"
+                },
+                {
+                  "value": "4",
+                  "display": "4 year"
+                },
+                {
+                  "value": "5",
+                  "display": "5 year"
+                },
+                {
+                  "value": "6",
+                  "display": "6 year"
+                },
+                {
+                  "value": "7",
+                  "display": "7 year"
+                },
+                {
+                  "value": "8",
+                  "display": "8 year"
+                },
+                {
+                  "value": "9",
+                  "display": "9 year"
+                },
+                {
+                  "value": "10",
+                  "display": "10 years or more"
+                }
+              ]
+            },
+            {
+              "id": "motoringorganisation",
+              "type": "Dropdown",
+              "label": "Are you a member of a motoring organisation or club?",
+              "values": [
+                {
+                  "value": "no",
+                  "display": "No"
+                },
+                {
+                  "value": "AA",
+                  "display": "The AA"
+                }
+              ]
+            },
+            {
+              "id": "advancerider",
+              "type": "Dropdown",
+              "label": "Do you have any advanced rider qualifications?",
+              "values": [
+                {
+                  "value": "no",
+                  "display": "No"
+                },
+                {
+                  "value": "police",
+                  "display": "Advanced police rider"
                 }
               ]
             }
