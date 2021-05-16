@@ -73,7 +73,22 @@ switch     --> section
 ```
 
 ### Component workflow
+[![](https://mermaid.ink/img/eyJjb2RlIjoiZ3JhcGggVERcbmNvbXBvbmVudChDb21wb25lbnQpXG5jb21wb25lbnQgIC0tPiByZWZkYXRhe1JlZmVyZW5jZSBEYXRhIDxici8-cmVxdWlyZWQ_fVxucmVmZGF0YSAgICAtLT58Tm98IHJlbmRlcihSZW5kZXIgY29tcG9uZW50KVxucmVmZGF0YSAgICAtLT58WWVzfCBsb2FkKExvYWQgcmVmZXJlbmNlIGRhdGEpXG5sb2FkICAgICAgIC0tPiByZW5kZXJcbnJlbmRlciAgICAgLS0-IHVzZXIoVXNlciBpbnRlcmFjdGlvbilcbnVzZXIgICAgICAgLS0-IHZhbGlkYXRlKFVwZGF0ZSB2YWxpZGF0aW9uIFN0b3JlKVxudXNlciAgICAgICAtLT4gcHVibGlzaChVcGRhdGUgdmFsdWUgU3RvcmUpXG52YWxpZGF0ZSAgIC0tPiBhY3QoRXhlY3V0ZSBjb21wb25lbnQgYWN0aW9ucylcbnB1Ymxpc2ggICAgLS0-IGFjdFxuYWN0ICAgLS0-IG5leHRbW05leHQgY29tcG9uZW50XV1cbiIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In0sInVwZGF0ZUVkaXRvciI6ZmFsc2V9)](https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiZ3JhcGggVERcbmNvbXBvbmVudChDb21wb25lbnQpXG5jb21wb25lbnQgIC0tPiByZWZkYXRhe1JlZmVyZW5jZSBEYXRhIDxici8-cmVxdWlyZWQ_fVxucmVmZGF0YSAgICAtLT58Tm98IHJlbmRlcihSZW5kZXIgY29tcG9uZW50KVxucmVmZGF0YSAgICAtLT58WWVzfCBsb2FkKExvYWQgcmVmZXJlbmNlIGRhdGEpXG5sb2FkICAgICAgIC0tPiByZW5kZXJcbnJlbmRlciAgICAgLS0-IHVzZXIoVXNlciBpbnRlcmFjdGlvbilcbnVzZXIgICAgICAgLS0-IHZhbGlkYXRlKFVwZGF0ZSB2YWxpZGF0aW9uIFN0b3JlKVxudXNlciAgICAgICAtLT4gcHVibGlzaChVcGRhdGUgdmFsdWUgU3RvcmUpXG52YWxpZGF0ZSAgIC0tPiBhY3QoRXhlY3V0ZSBjb21wb25lbnQgYWN0aW9ucylcbnB1Ymxpc2ggICAgLS0-IGFjdFxuYWN0ICAgLS0-IG5leHRbW05leHQgY29tcG9uZW50XV1cbiIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In0sInVwZGF0ZUVkaXRvciI6ZmFsc2V9)
 
+```
+graph TD
+component(Component)
+component  --> refdata{Reference Data <br/>required?}
+refdata    -->|No| render(Render component)
+refdata    -->|Yes| load(Load reference data)
+load       --> render
+render     --> user(User interaction)
+user       --> validate(Update validation Store)
+user       --> publish(Update value Store)
+validate   --> act(Execute component actions)
+publish    --> act
+act   --> next[[Next component]]
+```
 
 ## Key Features
 
