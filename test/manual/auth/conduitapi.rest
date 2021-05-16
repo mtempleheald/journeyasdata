@@ -1,0 +1,57 @@
+# https://thinkster.io/tutorials/testing-backend-apis-with-postman/customizing-requests-in-postman
+
+### 
+
+POST https://conduit.productionready.io/api/users HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+
+{
+    "user":{
+        "email":"fakefakefakefake@email.com",
+        "password":"letmeinletmeinletmein",
+        "username": "mth123"
+    }
+}
+
+###
+
+POST https://conduit.productionready.io/api/users/login HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+
+{
+    "user":{
+        "email":"fakefakefakefake@email.com",
+        "password": "letmeinletmeinletmein"
+    }
+}
+
+# {
+#   "user": {
+#     "id": 168518,
+#     "email": "fakefakefakefake@email.com",
+#     "createdAt": "2021-05-09T07:30:08.612Z",
+#     "updatedAt": "2021-05-09T07:30:08.618Z",
+#     "username": "mth123",
+#     "bio": null,
+#     "image": null,
+#     "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MTY4NTE4LCJ1c2VybmFtZSI6Im10aDEyMyIsImV4cCI6MTYyNTcyOTQwOH0.tG97Dt9RjoCr0fe-qm4DTJmd6Ji1wUnTrGbmKBHtQB4"
+#   }
+# }
+# OR
+# {
+#   "errors": {
+#     "email or password": [
+#       "is invalid"
+#     ]
+#   }
+# }
+
+###
+
+GET https://conduit.productionready.io/api/user HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+Authorization: Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MTY4NTE4LCJ1c2VybmFtZSI6Im10aDEyMyIsImV4cCI6MTYyNTcyOTQwOH0.tG97Dt9RjoCr0fe-qm4DTJmd6Ji1wUnTrGbmKBHtQB4
+

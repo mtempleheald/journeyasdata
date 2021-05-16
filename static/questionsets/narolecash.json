@@ -1,44 +1,55 @@
 {
   "show-wizard": true,
-  "title": "Questionset Demo",
+  "title": "Narole Cash Motorised Velocipede Indemnification",
+  "logo": "/images/narolecash/NaroleCashLogo.png",
+  "logoalt": "Narole Cash Motorised Velocipede Indemnification",
   "pages": [
     {
-      "url": "introduction",
-      "title": "Introduction page",
+      "url": "assumptions",
+      "title": "Assumption",
       "displayprogress": false,
       "displaytitle": false,
       "sections": [
         {
-          "title": "Introduction section",
-          "logo": "https://fakeimg.pl/100x50/?text=Introduction%20Logo",
+          "section": {
+            "title": "Welcome to Narole Cash"
+          },
           "components": [
-{
-  "type": "TriBoxDate",
-  "id": "purchaseDate",
-  "label": "Enter the date of purchase",
-  "fields": {
-    "type":"Text",
-    "seperator":"/",
-    "dayPlaceholder": "DD",
-    "monthPlaceholder": "MM",
-    "yearPlaceholder": "YYYY",
-    "unknownOptionLabel": "I have not purchsed it yet" 
-  },
-  "validRange": {
-    "from": "01/01/1970",
-    "to": "Today"
-  },
-  "required": true,
-  "errorMessage": "Please enter valid data",
-  "help": "Help text",
-  "pre": "# Markdown before question 1",
-  "post": "__Markdown after question 1__"
-},
-
-
             {
               "type": "Displayblock",
-              "content": "# Heading \n\n Introductory sentence explaining how we get money off you. \n\n Another paragraph containing some caveats. \n\n - bullet1 \n\n - bullet2"
+              "content": "What kind of motorcycle insurance are you looking for today?"
+            },
+            {
+              "id": "assumptionsbikeselect",
+              "type": "ButtonSelect",
+              "required": true,
+              "errorMessage": "Please select an option",
+              "values": [
+                {
+                  "key": "policytype",
+                  "value": "single",
+                  "image": "/images/narolecash/assumptions/singlebike.png",
+                  "imageWidth": "128",
+                  "imageHeight": "128",
+                  "display": "Single Bike"
+                },
+                {
+                  "key": "policytype",
+                  "value": "multibike",
+                  "image": "/images/narolecash/assumptions/multibike.png",
+                  "imageWidth": "128",
+                  "imageHeight": "128",
+                  "display": "multibike"
+                }
+              ]
+            },
+            {
+              "type": "Displayblock",
+              "content": "To save you time we've made some assumptions"
+            },
+            {
+              "type": "Displayblock",
+              "content": "View full list of assumptions before you begin"
             },
             {
               "id": "startbutton",
@@ -46,7 +57,7 @@
               "values": [
                 {
                   "value": "start",
-                  "display": "Start"
+                  "display": "Continue"
                 }
               ]
             }
@@ -55,10 +66,82 @@
       ]
     },
     {
-      "url": "text-inputs",
-      "title": "Text Input variations",
+      "url": "your-motorcycle",
+      "title": "Your Motorcycles",
       "displayprogress": true,
       "sections": [
+        {
+          "title": "Details",
+          "components": [
+            {
+              "type": "Vehicle",
+              "regnumLabel": "Registration number",
+              "regnumPlaceholder": "YOUR REG",
+              "buttonLabel": "Find Motorcycle",
+              "errorMessage": "Failed to find vehicle"
+            }
+          ]
+        },
+        {
+          "title": "Select your motorcycle",
+          "components": [
+            {
+              "type": "Displayblock",
+              "content": "Uses a bespoke function and unconnected Text components instead of a bespoke Vehicle component"
+            },
+            {
+              "id": "vehiclemake",
+              "type": "Text",
+              "label": "Make"
+            },
+            {
+              "id": "vehiclemodel",
+              "type": "Text",
+              "label": "Model"
+            },
+            {
+              "id": "vehiclebody",
+              "type": "Text",
+              "label": "Body"
+            },
+            {
+              "id": "vehicletransmission",
+              "type": "Text",
+              "label": "Transmission"
+            },
+            {
+              "id": "vehicleengine",
+              "type": "Text",
+              "label": "Engine"
+            },
+            {
+              "id": "vehicleenginecc",
+              "type": "Text",
+              "label": "Engine CC"
+            },
+            {
+              "id": "vehicleenginebhp",
+              "type": "Text",
+              "label": "Engine BHP"
+            },
+            {
+              "id": "vehiclecolour",
+              "type": "Text",
+              "label": "Colour"
+            },
+            {
+              "id": "vehicleabicode",
+              "type": "Text",
+              "label": "ABI Code"
+            },
+            {
+              "id": "vehicledoors",
+              "type": "Text",
+              "label": "Doors"
+            }
+          ]
+        },
+
         {
           "id": "text",
           "title": "Textbox parameters",
@@ -383,8 +466,8 @@
       ]
     },
     {
-      "url": "complex-components",
-      "title": "Complex components",
+      "url": "xx",
+      "title": "xx",
       "displayprogress": true,
       "sections": [
         {
@@ -401,88 +484,8 @@
               "required": true
             }
           ]
-        },
-        {
-          "title": "Vehicle Section",
-          "logo": "https://fakeimg.pl/100x50/?text=Vehicle%20Logo",
-          "components": [
-            {
-              "type": "Vehicle",
-              "regnumLabel": "Registration number",
-              "regnumPlaceholder": "YOUR REG",
-              "buttonLabel": "Search",
-              "errorMessage": "Failed to find vehicle"
-            }
-          ]
-        },
-        {
-          "title": "Vehicle lookup without vehicle component",
-          "logo": "https://fakeimg.pl/100x50/?text=Vehicle%20Logo",
-          "components": [
-            {
-              "type": "Displayblock",
-              "content": "Uses a bespoke function and unconnected Text components instead of a bespoke Vehicle component"
-            },
-            {
-              "id": "regnumber",
-              "type": "Upper",
-              "label": "Registration number",
-              "placeholder": "YOUR REG",
-              "required": true,
-              "errorMessage": "Please enter a valid registration number"
-            },
-            {
-              "id": "vehiclemake",
-              "type": "Text",
-              "label": "Make"
-            },
-            {
-              "id": "vehiclemodel",
-              "type": "Text",
-              "label": "Model"
-            },
-            {
-              "id": "vehiclebody",
-              "type": "Text",
-              "label": "Body"
-            },
-            {
-              "id": "vehicletransmission",
-              "type": "Text",
-              "label": "Transmission"
-            },
-            {
-              "id": "vehicleengine",
-              "type": "Text",
-              "label": "Engine"
-            },
-            {
-              "id": "vehicleenginecc",
-              "type": "Text",
-              "label": "Engine CC"
-            },
-            {
-              "id": "vehicleenginebhp",
-              "type": "Text",
-              "label": "Engine BHP"
-            },
-            {
-              "id": "vehiclecolour",
-              "type": "Text",
-              "label": "Colour"
-            },
-            {
-              "id": "vehicleabicode",
-              "type": "Text",
-              "label": "ABI Code"
-            },
-            {
-              "id": "vehicledoors",
-              "type": "Text",
-              "label": "Doors"
-            }
-          ]
         }
+        
       ]
     },
     {
