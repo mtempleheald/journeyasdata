@@ -85,8 +85,9 @@
               "content": "When did you buy the motorcycle?  [ DD ] [ MM ] [ YYYY ] I have not bought the motorcycle yet"
             },
             {
-              "type": "Displayblock",
-              "content": "What's the estimated motorcycle value? [ £            ]"
+              "id": "estimatedvalue",
+              "type": "Text",
+              "label": "What's the estimated motorcycle value?"
             }
           ]
         },
@@ -94,8 +95,9 @@
           "title": "Modifications",
           "components": [
             {
-              "type": "Displayblock",
-              "content": "Has this motorcycle been modified?  [  Yes  ] [  No  ]"
+              "id": "modified",
+              "type": "YesNo",
+              "label": "Has this motorcycle been modified?"
             }
           ]
         },
@@ -103,20 +105,85 @@
           "title": "Security",
           "components": [
             {
-              "type": "Displayblock",
-              "content": "Is this motorcycle fitted with an electronic immobiliser or alarm?  [ Please Select ]"
+              "id": "immobiliserfitted",
+              "type": "Dropdown",
+              "label": "Is this motorcycle fitted with an electronic immobiliser or alarm?",
+              "placeholder": "Please Select",
+              "values": [
+                {
+                  "value": "None",
+                  "display": "No Immobiliser"
+                },
+                {
+                  "value": "Fact",
+                  "display": "Factory Fitted"
+                },
+                {
+                  "value": "Other",
+                  "display": "After Market"
+                }
+              ]
             },
             {
-              "type": "Displayblock",
-              "content": "Is this motorcycle fitted with a tracking device? [  Yes ] [ No ]"
+              "id": "immobilisertype",
+              "type": "Dropdown",
+              "label": "What type of immobiliser or alarm is the motorcycle fitted with?",
+              "placeholder": "Please Select",
+              "values": [
+                {
+                  "value": "Type1",
+                  "display": "Type 1"
+                },
+                {
+                  "value": "Type2",
+                  "display": "Type 2"
+                },
+                {
+                  "value": "Type3",
+                  "display": "Type 3"
+                }
+              ],
+              "dependsupon": {
+                "id": "immobiliserfitted",
+                "value": "Other"
+              }
             },
             {
-              "type": "Displayblock",
-              "content": "Is this motorcycle fitted with any security tags such as SmartWater, Datatag or Alphadot? [  Plese Select ]"
+              "id": "trackingdevice", 
+              "type": "YesNo",
+              "label": "Is this motorcycle fitted with a tracking device?"
             },
             {
-              "type": "Displayblock",
-              "content": "Does this motorcycle have any other physical security devices? [ Yes ] [ No ]"
+              "id": "othersecurity",
+              "type": "Dropdown",
+              "label": "Is this motorcycle fitted with any security tags such as SmartWater, Datatag or Alphadot?",
+              "values": [
+                {
+                  "value": "None",
+                  "display": "No Alarm"
+                },
+                {
+                  "value": "Prof",
+                  "display": "Professionaly fitted"
+                },
+                {
+                  "value": "alpha",
+                  "display": "Alphadot"
+                },
+                {
+                  "value": "data",
+                  "display": "Data tag"
+                },
+                {
+                  "value": "smart",
+                  "display": "Smart water"
+                }
+              ]
+            },
+            {
+              "id": "othersecurity",
+              "type": "YesNo",
+              "label": "Does this motorcycle have any other physical security devices?"
             }
           ]
         },
@@ -124,20 +191,48 @@
           "title": "Motorcycle use",
           "components": [
             {
-              "type": "Displayblock",
-              "content": "What is the estimated annual mileage on this motorcycle? [  Mile ridden ]"
+              "id": "milesridden",
+              "type": "Text",
+              "label": "What is the estimated annual mileage on this motorcycle?",
+              "placeholder": "Miles ridden"
             },
             {
-              "type": "Displayblock",
-              "content": "Will it be used to carry pillion passengers? [  Yes ] [ No ]"
+              "id": "pillionuse",
+              "type": "YesNo",
+              "label": "Will it be used to carry pillion passengers?"
             },
             {
-              "type": "Displayblock",
-              "content": "Where is this motorcycle normally parked overnight? [  Plese Select ]"
+              "id": "storedovernight",
+              "type": "Dropdown",
+              "label": "Where is this motorcycle normally parked overnight?",
+              "values": [
+                {
+                  "value": "drive",
+                  "display": "Driveway"
+                },
+                {
+                  "value": "garage",
+                  "display": "Locked Garage"
+                },
+                {
+                  "value": "road",
+                  "display": "On the Road"
+                }
+              ]
             },
             {
-              "type": "Displayblock",
-              "content": "Is this motorcycle parked overnight at your home address? [ Yes ] [ No ]"
+              "id": "keptathome",
+              "type": "YesNo",
+              "label": "Is this motorcycle parked overnight at your home address?"
+            },
+            {
+              "id": "postcodekept",
+              "type": "Text",
+              "label": "Please enter the postcode where this motorcycle is parked overnight",
+              "dependsupon": {
+                "id": "keptathome",
+                "value": "Y"
+              }
             }
           ]
         }
