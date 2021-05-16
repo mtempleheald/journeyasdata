@@ -67,13 +67,9 @@ export type ValueType = {
 export type TriBoxDateFieldsType = {
     type: string;
     seperator: string;
-    day: TriBoxDateFieldType;
-    month: TriBoxDateFieldType;
-    year: TriBoxDateFieldType;
-}
-
-export type TriBoxDateFieldType = {
-    placeholder: string;
+    dayPlaceholder: string;
+    monthPlaceholder: string;
+    yearPlaceholder: string;
 }
 
 export type TriBoxDateValidRange = {

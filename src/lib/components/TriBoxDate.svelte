@@ -62,27 +62,34 @@
         <input type="{component.fields.type ?? 'Text'}"
             id="{component.id}-day" 
             name="{component.id}-day" 
-            placeholder="{component.fields.day.placeholder ?? ''}" 
+            placeholder="{component.fields.dayPlaceholder ?? ''}" 
             required="{component.required}"
             value="{component.value}"
+            maxlength="2"
+            min="1"
+            max="31"
             on:blur={act}
             on:focus={focus}/>
             {component.fields.seperator ?? ""}
           <input type="{component.fields.type ?? 'Text'}"
             id="{component.id}-month" 
             name="{component.id}-month" 
-            placeholder="{component.fields.month.placeholder ?? ''}" 
+            placeholder="{component.fields.monthPlaceholder ?? ''}" 
             required="{component.required}"
             value="{component.value}"
+            maxlength="2"
+            min="1"
+            max="12"
             on:blur={act}
             on:focus={focus}/>
             {component.fields.seperator ?? ""}
-          <input type="{component.fields.year.placeholder ?? 'Text'}"
+            <input type="{component.fields.type ?? 'Text'}"
             id="{component.id}-year" 
             name="{component.id}-year" 
-            placeholder="{component.id ?? ''}" 
+            placeholder="{component.fields.yearPlaceholder ?? ''}" 
             required="{component.required}"
             value="{component.value}"
+            maxlength="4"
             on:blur={act}
             on:focus={focus}/>
         {/if}
