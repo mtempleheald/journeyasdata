@@ -154,6 +154,37 @@
               "label": "Is this motorcycle fitted with a tracking device?"
             },
             {
+              "id": "trackingdevicetype",
+              "type": "Dropdown",
+              "label": "What type of tracking device is the motorcycle fitted with?",
+              "dependsupon": {
+                "id": "trackingdevice",
+                "value": "Y"
+              },
+              "values": [
+                {
+                  "value": "A",
+                  "display": "A Device"
+                },
+                {
+                  "value": "B",
+                  "display": "B Device"
+                },
+                {
+                  "value": "alpha",
+                  "display": "Alphadot"
+                },
+                {
+                  "value": "C",
+                  "display": "C Device"
+                },
+                {
+                  "value": "D",
+                  "display": "D Device"
+                }
+              ]
+            },
+            {
               "id": "othersecurity",
               "type": "Dropdown",
               "label": "Is this motorcycle fitted with any security tags such as SmartWater, Datatag or Alphadot?",
