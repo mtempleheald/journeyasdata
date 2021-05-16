@@ -17,7 +17,7 @@ export type SectionType = {
     maxrepeats?: number;
     components: ComponentType[];
 }
-export type ComponentType = BaseComponentType | AddressComponentType | VehicleComponentType;
+export type ComponentType = BaseComponentType | AddressComponentType | VehicleComponentType | TriBoxDateComponentType;
 
 export type BaseComponentType = {
     type?: "Address" 
@@ -35,6 +35,7 @@ export type BaseComponentType = {
         | "Telephone"
         | "Text" 
         | "Time"
+        | "TriBoxDate"
         | "Upper"
         | "Url"
         | "Vehicle" 
@@ -62,6 +63,26 @@ export type ValueType = {
     value: string;
     display: string;
 }
+
+export type TriBoxDateFieldsType = {
+    type: string;
+    seperator: string;
+    dayPlaceholder: string;
+    monthPlaceholder: string;
+    yearPlaceholder: string;
+    unknownOptionLabel: string;
+}
+
+export type TriBoxDateValidRange = {
+    from: string;
+    to: string;
+}
+
+export type TriBoxDateComponentType = BaseComponentType & {
+    fields: TriBoxDateFieldsType;
+    validRange?: TriBoxDateValidRange;
+}
+
 export type AddressComponentType = BaseComponentType & {
     postcodeLabel?: string;
     postcodePlaceholder?: string;    
