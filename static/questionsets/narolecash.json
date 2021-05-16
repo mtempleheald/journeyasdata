@@ -79,230 +79,65 @@
               "regnumPlaceholder": "YOUR REG",
               "buttonLabel": "Find Motorcycle",
               "errorMessage": "Failed to find vehicle"
+            },
+            {
+              "type": "Displayblock",
+              "content": "When did you buy the motorcycle?  [ DD ] [ MM ] [ YYYY ] I have not bought the motorcycle yet"
+            },
+            {
+              "type": "Displayblock",
+              "content": "What's the estimated motorcycle value? [ £            ]"
             }
           ]
         },
         {
-          "title": "Select your motorcycle",
+          "title": "Modifications",
           "components": [
             {
               "type": "Displayblock",
-              "content": "Uses a bespoke function and unconnected Text components instead of a bespoke Vehicle component"
-            },
-            {
-              "id": "vehiclemake",
-              "type": "Text",
-              "label": "Make"
-            },
-            {
-              "id": "vehiclemodel",
-              "type": "Text",
-              "label": "Model"
-            },
-            {
-              "id": "vehiclebody",
-              "type": "Text",
-              "label": "Body"
-            },
-            {
-              "id": "vehicletransmission",
-              "type": "Text",
-              "label": "Transmission"
-            },
-            {
-              "id": "vehicleengine",
-              "type": "Text",
-              "label": "Engine"
-            },
-            {
-              "id": "vehicleenginecc",
-              "type": "Text",
-              "label": "Engine CC"
-            },
-            {
-              "id": "vehicleenginebhp",
-              "type": "Text",
-              "label": "Engine BHP"
-            },
-            {
-              "id": "vehiclecolour",
-              "type": "Text",
-              "label": "Colour"
-            },
-            {
-              "id": "vehicleabicode",
-              "type": "Text",
-              "label": "ABI Code"
-            },
-            {
-              "id": "vehicledoors",
-              "type": "Text",
-              "label": "Doors"
-            }
-          ]
-        },
-
-        {
-          "id": "text",
-          "title": "Textbox parameters",
-          "logo": "https://fakeimg.pl/100x50/?text=Section%20Logo",
-          "maxrepeats": 2,
-          "components": [
-            {
-              "id": 1,
-              "label": "1 Required question label",
-              "type": "Text",
-              "placeholder": "Placeholder...",
-              "required": true,
-              "errorMessage": "Please enter valid data",
-              "help": "Help text",
-              "pre": "# Markdown before question 1",
-              "post": "__Markdown after question 1__"
-            },
-            {
-              "id": 2,
-              "label": "2 Label& question only",
-              "type": "Text"
-            },
-            {
-              "id": 4,
-              "type": "Text",
-              "placeholder": "label replacement?",
-              "pre": "4 This isn't a label, but _pre-text_"
-            },
-            {
-              "id": "four",
-              "type": "Text",
-              "pre": "Perhaps we don't want a question, just some _italic_ text",
-              "post": "And some more __bold__ text"
+              "content": "Has this motorcycle been modified?  [  Yes  ] [  No  ]"
             }
           ]
         },
         {
-          "title": "Textbox variants",
-          "logo": "https://fakeimg.pl/100x50/?text=Text%20Logo",
-          "components": [
-            {
-              "id": "Text",
-              "label": "Text",
-              "type": "Text",
-              "placeholder": "Text",
-              "required": false
-            },
-            {
-              "id": "colour",
-              "label": "Colour",
-              "type": "Colour",
-              "required": false
-            },
-            {
-              "id": "email",
-              "label": "Email",
-              "type": "Email",
-              "placeholder": "email@domain.com",
-              "required": false
-            },
-            {
-              "id": "range",
-              "label": "Range",
-              "type": "Slider",
-              "placeholder": "?",
-              "required": false
-            },
-            {
-              "id": "time",
-              "label": "Time",
-              "type": "Time",
-              "required": false
-            },
-            {
-              "id": "date",
-              "label": "Date",
-              "type": "Date",
-              "required": false
-            },
-            {
-              "id": "month",
-              "label": "Month",
-              "type": "Month",
-              "required": false
-            },
-            {
-              "id": "search",
-              "label": "Search",
-              "type": "Search",
-              "placeholder": "Search me",
-              "required": false
-            },
-            {
-              "id": "url",
-              "label": "Url",
-              "type": "Url",
-              "placeholder": "www.google.com",
-              "required": false
-            },
-            {
-              "id": "datetimelocal",
-              "label": "DateTime Local",
-              "type": "Datetime",
-              "placeholder": "??",
-              "required": false
-            },
-            {
-              "id": "number",
-              "label": "Number",
-              "type": "Number",
-              "placeholder": "99",
-              "required": false
-            },
-            {
-              "id": "tel",
-              "label": "Tel",
-              "type": "Telephone",
-              "placeholder": "07777777777",
-              "required": false
-            },
-            {
-              "id": "week",
-              "label": "Week",
-              "type": "Week",
-              "placeholder": "3",
-              "required": false
-            }
-          ]
-        },
-        {
-          "id": "text-inputs-navigation",
-          "type": "Navigation",
-          "title": "Navigation Section",
+          "title": "Security",
           "components": [
             {
               "type": "Displayblock",
-              "content": "- Move navigation from Page-included bespoke component to Section component?  \r\n- TODO: create standalone button component  \r\n- Would allow bespoke actions not just validate and move pages  \r\n- introduces more opportunity to make mistakes  \r\n- Requires button component either way which triggers event we can tap into"
+              "content": "Is this motorcycle fitted with an electronic immobiliser or alarm?  [ Please Select ]"
             },
             {
-              "id": "back",
-              "type": "ButtonSelect",
-              "value": "Back",
-              "values": [
-                {
-                  "key": "back",
-                  "value": "back",
-                  "display": "Back"
-                }
-              ]
+              "type": "Displayblock",
+              "content": "Is this motorcycle fitted with a tracking device? [  Yes ] [ No ]"
             },
             {
-              "id": "forward",
-              "type": "ButtonSelect",
-              "value": "Next",
-              "values": [
-                {
-                  "key": "next",
-                  "value": "next",
-                  "display": "Next"
-                }
-              ]
+              "type": "Displayblock",
+              "content": "Is this motorcycle fitted with any security tags such as SmartWater, Datatag or Alphadot? [  Plese Select ]"
+            },
+            {
+              "type": "Displayblock",
+              "content": "Does this motorcycle have any other physical security devices? [ Yes ] [ No ]"
+            }
+          ]
+        },
+        {
+          "title": "Motorcycle use",
+          "components": [
+            {
+              "type": "Displayblock",
+              "content": "What is the estimated annual mileage on this motorcycle? [  Mile ridden ]"
+            },
+            {
+              "type": "Displayblock",
+              "content": "Will it be used to carry pillion passengers? [  Yes ] [ No ]"
+            },
+            {
+              "type": "Displayblock",
+              "content": "Where is this motorcycle normally parked overnight? [  Plese Select ]"
+            },
+            {
+              "type": "Displayblock",
+              "content": "Is this motorcycle parked overnight at your home address? [ Yes ] [ No ]"
             }
           ]
         }
