@@ -26,6 +26,70 @@ The basic data structure which drives the entire solution:
         - question 
 
 
+## Workflow
+
+### Journey workflow
+
+[![](https://mermaid.ink/img/eyJjb2RlIjoiZ3JhcGggVERcbiAganN0YXJ0KFN0YXJ0IEpvdXJuZXkpXG4gIGpzdGFydCAtLT4gcXMoTG9hZCBRdWVzdGlvbnNldClcbiAgcXMgICAgIC0tPiBjc3MoTG9hZCBzdHlsZXNoZWV0KVxuICBjc3MgICAgLS0-IGFjdGlvbihMb2FkIGFjdGlvbnMpXG4gIGFjdGlvbiAtLT4gcGFnZXNbW1BhZ2Ugd29ya2Zsb3ddXVxuICBwYWdlcyAgLS0-IGplbmQoRW5kIEpvdXJuZXkpIiwibWVybWFpZCI6eyJ0aGVtZSI6ImRlZmF1bHQifSwidXBkYXRlRWRpdG9yIjpmYWxzZX0)](https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiZ3JhcGggVERcbiAganN0YXJ0KFN0YXJ0IEpvdXJuZXkpXG4gIGpzdGFydCAtLT4gcXMoTG9hZCBRdWVzdGlvbnNldClcbiAgcXMgICAgIC0tPiBjc3MoTG9hZCBzdHlsZXNoZWV0KVxuICBjc3MgICAgLS0-IGFjdGlvbihMb2FkIGFjdGlvbnMpXG4gIGFjdGlvbiAtLT4gcGFnZXNbW1BhZ2Ugd29ya2Zsb3ddXVxuICBwYWdlcyAgLS0-IGplbmQoRW5kIEpvdXJuZXkpIiwibWVybWFpZCI6eyJ0aGVtZSI6ImRlZmF1bHQifSwidXBkYXRlRWRpdG9yIjpmYWxzZX0)
+```
+graph TD
+  jstart(Start Journey)
+  jstart --> qs(Load Questionset)
+  qs     --> css(Load stylesheet)
+  css    --> action(Load actions)
+  action --> pages[[Page workflow]]
+  pages  --> jend(End Journey)
+```
+
+### Page workflow
+[![](https://mermaid.ink/img/eyJjb2RlIjoiZ3JhcGggVERcbnBhZ2UoUGFnZSkgLS0-IHNlY3Rpb25zW1tTZWN0aW9uIHdvcmtmbG93XV1cbnNlY3Rpb25zIC0tPiBuYXZpZ2F0ZXtOYXZpZ2F0ZX1cbm5hdmlnYXRlIC0tPiBiYWNrKFByZXZpb3VzIFBhZ2UpXG5iYWNrIC0tPiBwYWdlcHJldltbR28gdG8gcHJldmlvdXMgcGFnZV1dXG5uYXZpZ2F0ZSAtLT4gbmV4dChOZXh0IHBhZ2UpXG5uZXh0IC0tPiB2YWxpZHtpcyBwYWdlPGJyLz4gdmFsaWQ_fVxudmFsaWQgLS0-fE5vfCBwYWdlXG52YWxpZCAgICAgIC0tPnxZZXN8IGFjdGlvbnMoRXhlY3V0ZSBwYWdlIGFjdGlvbnMpXG5hY3Rpb25zICAgIC0tPiBwYWdlbmV4dFtbR28gdG8gbmV4dCBwYWdlXV1cbiIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In0sInVwZGF0ZUVkaXRvciI6ZmFsc2V9)](https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiZ3JhcGggVERcbnBhZ2UoUGFnZSkgLS0-IHNlY3Rpb25zW1tTZWN0aW9uIHdvcmtmbG93XV1cbnNlY3Rpb25zIC0tPiBuYXZpZ2F0ZXtOYXZpZ2F0ZX1cbm5hdmlnYXRlIC0tPiBiYWNrKFByZXZpb3VzIFBhZ2UpXG5iYWNrIC0tPiBwYWdlcHJldltbR28gdG8gcHJldmlvdXMgcGFnZV1dXG5uYXZpZ2F0ZSAtLT4gbmV4dChOZXh0IHBhZ2UpXG5uZXh0IC0tPiB2YWxpZHtpcyBwYWdlPGJyLz4gdmFsaWQ_fVxudmFsaWQgLS0-fE5vfCBwYWdlXG52YWxpZCAgICAgIC0tPnxZZXN8IGFjdGlvbnMoRXhlY3V0ZSBwYWdlIGFjdGlvbnMpXG5hY3Rpb25zICAgIC0tPiBwYWdlbmV4dFtbR28gdG8gbmV4dCBwYWdlXV1cbiIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In0sInVwZGF0ZUVkaXRvciI6ZmFsc2V9)
+
+```
+graph TD
+page(Page) --> sections[[Section workflow]]
+sections   --> navigate{Navigate}
+navigate   --> back(Previous Page)
+back       --> pageprev[[Go to previous page]]
+navigate   --> next(Next page)
+next       --> valid{is page<br/> valid?}
+valid      -->|No| page
+valid      -->|Yes| actions(Execute page actions)
+actions    --> pagenext[[Go to next page]]
+```
+
+### Section workflow
+[![](https://mermaid.ink/img/eyJjb2RlIjoiZ3JhcGggVERcbnNlY3Rpb24oU2VjdGlvbilcbnNlY3Rpb24gICAgLS0-IGNvbXBvbmVudHNbW0NvbXBvbmVudCB3b3JrZmxvd11dXG5jb21wb25lbnRzIC0tPiByZXBlYXRpbmd7UmVwZWF0aW5nIDxici8-c2VjdGlvbj99XG5yZXBlYXRpbmcgIC0tPnxOb3wgbmV4dChOZXh0IFNlY3Rpb24pXG5yZXBlYXRpbmcgIC0tPnxZZXN8IHJlcGVhdHtBZGQgbmV3IDxici8-aW5zdGFuY2U_fVxucmVwZWF0ICAgICAtLT58Tm98IG5leHQoTmV4dCBTZWN0aW9uKVxucmVwZWF0ICAgICAtLT4gc3dpdGNoKE5ldyBpbnN0YW5jZSlcbnN3aXRjaCAgICAgLS0-IHNlY3Rpb24iLCJtZXJtYWlkIjp7InRoZW1lIjoiZGVmYXVsdCJ9LCJ1cGRhdGVFZGl0b3IiOmZhbHNlfQ)](https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiZ3JhcGggVERcbnNlY3Rpb24oU2VjdGlvbilcbnNlY3Rpb24gICAgLS0-IGNvbXBvbmVudHNbW0NvbXBvbmVudCB3b3JrZmxvd11dXG5jb21wb25lbnRzIC0tPiByZXBlYXRpbmd7UmVwZWF0aW5nIDxici8-c2VjdGlvbj99XG5yZXBlYXRpbmcgIC0tPnxOb3wgbmV4dChOZXh0IFNlY3Rpb24pXG5yZXBlYXRpbmcgIC0tPnxZZXN8IHJlcGVhdHtBZGQgbmV3IDxici8-aW5zdGFuY2U_fVxucmVwZWF0ICAgICAtLT58Tm98IG5leHQoTmV4dCBTZWN0aW9uKVxucmVwZWF0ICAgICAtLT4gc3dpdGNoKE5ldyBpbnN0YW5jZSlcbnN3aXRjaCAgICAgLS0-IHNlY3Rpb24iLCJtZXJtYWlkIjp7InRoZW1lIjoiZGVmYXVsdCJ9LCJ1cGRhdGVFZGl0b3IiOmZhbHNlfQ)
+
+```
+graph TD
+section(Section)
+section    --> components[[Component workflow]]
+components --> repeating{Repeating <br/>section?}
+repeating  -->|No| next(Next Section)
+repeating  -->|Yes| repeat{Add new <br/>instance?}
+repeat     -->|No| next(Next Section)
+repeat     --> switch(New instance)
+switch     --> section
+```
+
+### Component workflow
+[![](https://mermaid.ink/img/eyJjb2RlIjoiZ3JhcGggVERcbmNvbXBvbmVudChDb21wb25lbnQpXG5jb21wb25lbnQgIC0tPiByZWZkYXRhe1JlZmVyZW5jZSBEYXRhIDxici8-cmVxdWlyZWQ_fVxucmVmZGF0YSAgICAtLT58Tm98IHJlbmRlcihSZW5kZXIgY29tcG9uZW50KVxucmVmZGF0YSAgICAtLT58WWVzfCBsb2FkKExvYWQgcmVmZXJlbmNlIGRhdGEpXG5sb2FkICAgICAgIC0tPiByZW5kZXJcbnJlbmRlciAgICAgLS0-IHVzZXIoVXNlciBpbnRlcmFjdGlvbilcbnVzZXIgICAgICAgLS0-IHZhbGlkYXRlKFVwZGF0ZSB2YWxpZGF0aW9uIFN0b3JlKVxudXNlciAgICAgICAtLT4gcHVibGlzaChVcGRhdGUgdmFsdWUgU3RvcmUpXG52YWxpZGF0ZSAgIC0tPiBhY3QoRXhlY3V0ZSBjb21wb25lbnQgYWN0aW9ucylcbnB1Ymxpc2ggICAgLS0-IGFjdFxuYWN0ICAgLS0-IG5leHRbW05leHQgY29tcG9uZW50XV1cbiIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In0sInVwZGF0ZUVkaXRvciI6ZmFsc2V9)](https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiZ3JhcGggVERcbmNvbXBvbmVudChDb21wb25lbnQpXG5jb21wb25lbnQgIC0tPiByZWZkYXRhe1JlZmVyZW5jZSBEYXRhIDxici8-cmVxdWlyZWQ_fVxucmVmZGF0YSAgICAtLT58Tm98IHJlbmRlcihSZW5kZXIgY29tcG9uZW50KVxucmVmZGF0YSAgICAtLT58WWVzfCBsb2FkKExvYWQgcmVmZXJlbmNlIGRhdGEpXG5sb2FkICAgICAgIC0tPiByZW5kZXJcbnJlbmRlciAgICAgLS0-IHVzZXIoVXNlciBpbnRlcmFjdGlvbilcbnVzZXIgICAgICAgLS0-IHZhbGlkYXRlKFVwZGF0ZSB2YWxpZGF0aW9uIFN0b3JlKVxudXNlciAgICAgICAtLT4gcHVibGlzaChVcGRhdGUgdmFsdWUgU3RvcmUpXG52YWxpZGF0ZSAgIC0tPiBhY3QoRXhlY3V0ZSBjb21wb25lbnQgYWN0aW9ucylcbnB1Ymxpc2ggICAgLS0-IGFjdFxuYWN0ICAgLS0-IG5leHRbW05leHQgY29tcG9uZW50XV1cbiIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In0sInVwZGF0ZUVkaXRvciI6ZmFsc2V9)
+
+```
+graph TD
+component(Component)
+component  --> refdata{Reference Data <br/>required?}
+refdata    -->|No| render(Render component)
+refdata    -->|Yes| load(Load reference data)
+load       --> render
+render     --> user(User interaction)
+user       --> validate(Update validation Store)
+user       --> publish(Update value Store)
+validate   --> act(Execute component actions)
+publish    --> act
+act   --> next[[Next component]]
+```
+
 ## Key Features
 
 - URL based routing (not hash-based, ideal for SEO) 
@@ -96,9 +160,23 @@ Advised to use VS Code editor with default formatting settings for consistency a
 
 ## Intended deployment process
 
+
 [![](https://mermaid.ink/img/eyJjb2RlIjoiZ3JhcGggVERcblxuICBjb2RlW0NvZGVdIC0tPiBjaVtDSV1cbiAgY2kgLS0-IGNkW0NEXVxuICBjZCAtLT4gZW52W0Vudmlyb25tZW50XVxuICBjZCAtLXVwZGF0ZS0tPiBwXG5cbiAgcXNbUXVlc3Rpb25TZXRdIC0tcHVibGlzaC0tPiBwW1B1Ymxpc2hlcl1cbiAgdGhlbWVbVGhlbWVdIC0tcHVibGlzaC0tPiBwW1B1Ymxpc2hlcl1cblxuICBwIC0tPiB2e3ZhbGlkP31cbiAgdiAtLT58eWVzfCBlbnZcbiAgdiAtLT58bm98IE5vdGlmeSIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In0sInVwZGF0ZUVkaXRvciI6ZmFsc2V9)](https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiZ3JhcGggVERcblxuICBjb2RlW0NvZGVdIC0tPiBjaVtDSV1cbiAgY2kgLS0-IGNkW0NEXVxuICBjZCAtLT4gZW52W0Vudmlyb25tZW50XVxuICBjZCAtLXVwZGF0ZS0tPiBwXG5cbiAgcXNbUXVlc3Rpb25TZXRdIC0tcHVibGlzaC0tPiBwW1B1Ymxpc2hlcl1cbiAgdGhlbWVbVGhlbWVdIC0tcHVibGlzaC0tPiBwW1B1Ymxpc2hlcl1cblxuICBwIC0tPiB2e3ZhbGlkP31cbiAgdiAtLT58eWVzfCBlbnZcbiAgdiAtLT58bm98IE5vdGlmeSIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In0sInVwZGF0ZUVkaXRvciI6ZmFsc2V9)
+```
+graph TD
 
+  code[Code] --> ci[CI]
+  ci --> cd[CD]
+  cd --> env[Environment]
+  cd --update--> p
 
+  qs[QuestionSet] --publish--> p[Publisher]
+  theme[Theme] --publish--> p[Publisher]
+
+  p --> v{valid?}
+  v -->|yes| env
+  v -->|no| Notify
+```
 
 ---
 ---

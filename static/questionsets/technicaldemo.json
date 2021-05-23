@@ -12,6 +12,30 @@
           "title": "Introduction section",
           "logo": "https://fakeimg.pl/100x50/?text=Introduction%20Logo",
           "components": [
+{
+  "type": "TriBoxDate",
+  "id": "purchaseDate",
+  "label": "Enter the date of purchase",
+  "fields": {
+    "type":"Text",
+    "seperator":"/",
+    "dayPlaceholder": "DD",
+    "monthPlaceholder": "MM",
+    "yearPlaceholder": "YYYY",
+    "unknownOptionLabel": "I have not purchsed it yet" 
+  },
+  "validRange": {
+    "from": "01/01/1970",
+    "to": "Today"
+  },
+  "required": true,
+  "errorMessage": "Please enter valid data",
+  "help": "Help text",
+  "pre": "# Markdown before question 1",
+  "post": "__Markdown after question 1__"
+},
+
+
             {
               "type": "Displayblock",
               "content": "# Heading \n\n Introductory sentence explaining how we get money off you. \n\n Another paragraph containing some caveats. \n\n - bullet1 \n\n - bullet2"
