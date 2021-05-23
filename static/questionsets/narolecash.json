@@ -320,17 +320,23 @@
             },
             {
               "type": "TriBoxDate",
-              "id": "purchaseDate",
-              "label": "Date of birth",
+              "id": "dateofbirth",
+              "label": "Date Of Birth",
               "fields": {
                 "type":"Text",
                 "seperator":"/",
-                "dayPlaceholder": "DD",
-                "monthPlaceholder": "MM",
-                "yearPlaceholder": "YYYY"
+                "day": {
+                  "placeholder": "DD"
+                },
+                "month": {
+                  "placeholder": "MM"
+                },
+                "year" : {
+                  "placeholder": "YYYY"
+                }
               },
               "validRange": {
-                "from": "01/01/1900",
+                "from": "01/01/1970",
                 "to": "Today"
               },
               "required": true,
@@ -343,8 +349,100 @@
               "label": "Have you been a permanent resident of the UK since birth?"
             },
             {
-              "type": "Displayblock",
-              "content": "When did you become a permanent resident of the UK?  [  MONTH ] [ YYYY]",
+              "type": "TriBoxDate",
+              "id": "residentsince",
+              "label": "When did you become a permanent resident of the UK?",
+              "fields": {
+                "type":"Dropdown",
+                "day": {
+                  "display": false
+                },
+                "month": {
+                  "placeholder": "Month",
+                  "values" :[
+                    {
+                      "value": "1",
+                      "display": "January"
+                    },                   
+                    {
+                      "value": "2",
+                      "display": "February"
+                    }, 
+                    {
+                      "value": "3",
+                      "display": "March"
+                    },
+                    {
+                      "value": "4",
+                      "display": "April"
+                    },
+                    {
+                      "value": "5",
+                      "display": "May"
+                    },
+                    {
+                      "value": "6",
+                      "display": "June"
+                    },
+                    {
+                      "value": "7",
+                      "display": "July"
+                    },
+                    {
+                      "value": "8",
+                      "display": "August"
+                    },
+                    {
+                      "value": "9",
+                      "display": "September"
+                    },
+                    {
+                      "value": "10",
+                      "display": "October"
+                    },
+                    {
+                      "value": "11",
+                      "display": "November"
+                    },
+                    {
+                      "value": "12",
+                      "display": "December"
+                    }
+                  ]
+                },
+                "year" : {
+                  "placeholder": "Year",
+                  "values" :[
+                    {
+                      "value": "2004",
+                      "display": "2004"
+                    },                   
+                    {
+                      "value": "2003",
+                      "display": "2003"
+                    }, 
+                    {
+                      "value": "2002",
+                      "display": "2002"
+                    },
+                    {
+                      "value": "2001",
+                      "display": "2001"
+                    },
+                    {
+                      "value": "2000",
+                      "display": "2000"
+                    }
+                  ]
+                }
+              },
+              "validRange": {
+                "from": "01/01/1970",
+                "to": "Today"
+              },
+              "required": true,
+              "errorMessage": "Please enter valid data",
+              "help": "Help text",
               "dependsupon": {
                 "id": "residentsincebirth",
                 "value": "N"

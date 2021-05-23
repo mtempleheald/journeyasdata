@@ -7,6 +7,8 @@
     // expose component properties
     export let component: TriBoxDateComponentType;
 
+
+
     // internal properties to support component logic
     const dispatch = createEventDispatcher();
     let fallbackError;
@@ -58,45 +60,119 @@
         {/if}
 
         {#if component.id} 
-        <input type="{component.fields.type ?? 'Text'}"
-            id="{component.id}-day" 
-            name="{component.id}-day" 
-            placeholder="{component.fields.dayPlaceholder ?? ''}" 
-            required="{component.required}"
-            value="{component.value}"
-            maxlength="2"
-            min="1"
-            max="31"
-            on:blur={act}
-            on:focus={focus}/>
-            {component.fields.seperator ?? ""}
-          <input type="{component.fields.type ?? 'Text'}"
-            id="{component.id}-month" 
-            name="{component.id}-month" 
-            placeholder="{component.fields.monthPlaceholder ?? ''}" 
-            required="{component.required}"
-            value="{component.value}"
-            maxlength="2"
-            min="1"
-            max="12"
-            on:blur={act}
-            on:focus={focus}/>
-            {component.fields.seperator ?? ""}
-            <input type="{component.fields.type ?? 'Text'}"
-            id="{component.id}-year" 
-            name="{component.id}-year" 
-            placeholder="{component.fields.yearPlaceholder ?? ''}" 
-            required="{component.required}"
-            value="{component.value}"
-            maxlength="4"
-            on:blur={act}
-            on:focus={focus}/>
+            {#if component.fields.day?.display ?? true}
+                {#if component.fields.type == 'Dropdown'}
+                    <select 
+                        id="{component.id}-day" 
+                        name="{component.id}-day" 
+                        value="{component.value}"
+                        data-reference="{component.refdata}"
+                        required="{component.required}"
+                        on:blur={act} >
+                        <option value="">{!component.fields.day?.placeholder ? '-- select --' : component.fields.day?.placeholder}</option>
+                    {#if component.fields.day?.values}
+                        {#each component.fields.day?.values as val}
+                            <option value="{val.value}" selected={component.value==val.value}>{val.display}</option>
+                        {/each}
+                    {/if}
+                    </select>
+                {:else}
+                    <input type="{component.fields.type ?? 'Text'}"
+                        id="{component.id}-day" 
+                        name="{component.id}-day" 
+                        placeholder="{component.fields.day?.placeholder ?? ''}" 
+                        required="{component.required}"
+                        value="{component.value}"
+                        maxlength="2"
+                        min="1"
+                        max="31"
+                        on:blur={act}
+                        on:focus={focus}/>
+                {/if}
+                {component.fields.seperator ?? ""}
+            {:else}
+                <input type="hidden"
+                    id="{component.id}-day" 
+                    name="{component.id}-day" 
+                    value="1"/>
+            {/if}
+
+            {#if component.fields.month?.display ?? true}
+                {#if component.fields.type == 'Dropdown'}
+                    <select 
+                        id="{component.id}-month" 
+                        name="{component.id}-month" 
+                        value="{component.value}"
+                        data-reference="{component.refdata}"
+                        required="{component.required}"
+                        on:blur={act} >
+                        <option value="">{!component.fields.month?.placeholder ? '-- select --' : component.fields.month?.placeholder}</option>
+                    {#if component.fields.month?.values}
+                        {#each component.fields.month?.values as val}
+                            <option value="{val.value}" selected={component.value==val.value}>{val.display}</option>
+                        {/each}
+                    {/if}
+                    </select>
+                {:else}
+                    <input type="{component.fields.type ?? 'Text'}"
+                        id="{component.id}-month" 
+                        name="{component.id}-month" 
+                        placeholder="{component.fields.month?.placeholder ?? ''}" 
+                        required="{component.required}"
+                        value="{component.value}"
+                        maxlength="2"
+                        min="1"
+                        max="12"
+                        on:blur={act}
+                        on:focus={focus}/>
+                {/if}
+                {component.fields.seperator ?? ""}
+            {:else}
+                <input type="hidden"
+                    id="{component.id}-month" 
+                    name="{component.id}-month" 
+                    value="1"/>
+            {/if}
+
+            {#if component.fields.year?.display ?? true}
+                {#if component.fields.type == 'Dropdown'}
+                    <select
+                        id="{component.id}-year" 
+                        name="{component.id}-year" 
+                        value="{component.value}"
+                        data-reference="{component.refdata}"
+                        required="{component.required}"
+                        on:blur={act} >
+                        <option value="">{!component.fields.year?.placeholder ? '-- select --' : component.fields.year?.placeholder}</option>
+                        {#if component.fields.year?.values}
+                            {#each component.fields.year?.values as val}
+                                <option value="{val.value}" selected={component.value==val.value}>{val.display}</option>
+                            {/each}
+                        {/if}
+                    </select>
+                {:else}
+                    <input type="{component.fields.type ?? 'Text'}"
+                        id="{component.id}-year" 
+                        name="{component.id}-year" 
+                        placeholder="{component.fields.year?.placeholder ?? ''}" 
+                        required="{component.required}"
+                        value="{component.value}"
+                        maxlength="4"
+                        on:blur={act}
+                        on:focus={focus}/>
+                {/if}
+            {:else}
+                <input type="hidden"
+                    id="{component.id}-year" 
+                    name="{component.id}-year" 
+                    value="1970"/>
+            {/if}
             {#if component.fields.unknownOptionLabel}
-            <input type="checkbox" id="{component.id}-unknown"
-              name="{component.id}-unknown"
-              on:click={act}
-              on:focus={focus}
-              value="{component.value}" />
+                <input type="checkbox" id="{component.id}-unknown"
+                    name="{component.id}-unknown"
+                    on:click={act}
+                    on:focus={focus}
+                    value="{component.value}" />
                 {component.fields.unknownOptionLabel}
             {/if}
         {/if}
