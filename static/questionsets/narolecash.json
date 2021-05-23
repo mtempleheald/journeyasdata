@@ -319,8 +319,23 @@
               "label": "Surname"
             },
             {
-              "type": "Displayblock",
-              "content": "Date of birth [ DD ] [ MM ] [ YYYY ]"
+              "type": "TriBoxDate",
+              "id": "purchaseDate",
+              "label": "Date of birth",
+              "fields": {
+                "type":"Text",
+                "seperator":"/",
+                "dayPlaceholder": "DD",
+                "monthPlaceholder": "MM",
+                "yearPlaceholder": "YYYY"
+              },
+              "validRange": {
+                "from": "01/01/1900",
+                "to": "Today"
+              },
+              "required": true,
+              "errorMessage": "Please enter valid data",
+              "help": "Help text"
             },
             {
               "id": "residentsincebirth",
@@ -332,7 +347,7 @@
               "content": "When did you become a permanent resident of the UK?  [  MONTH ] [ YYYY]",
               "dependsupon": {
                 "id": "residentsincebirth",
-                "value": "Y"
+                "value": "N"
               }
             },
             {
