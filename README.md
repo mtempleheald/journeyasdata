@@ -146,16 +146,18 @@ To run the application locally:
 
 # Contribution guide
 
-Follow [Git Flow](https://guides.github.com/introduction/flow/) branching strategy 
+Currently following the [Git Flow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow) branching strategy 
   - Create feature branch off develop  
   - name branch according to intent, keep it small and focused, try not to break anything.  
   - Create PR to merge changes back into develop.  
   - This PR should trigger CI processes (TODO)
+  - Continuous Deployment to our Azure demo environment is triggered from a PR to main.  
+  - All PRs to main should come from develop, at a time we know develop to be stable with a tested production build.
 
-Continuous Deployment to our Azure demo environment is triggered from a PR to main.  
-All PRs to main should come from develop, at a time we know develop to be stable with a tested production build.
+Aiming to move to [GitHub flow](https://guides.github.com/introduction/flow/) model for simplicity.  
+This would cause issues right now, since the underlying framework is still in beta under heavy development, which means we can break the production environment through no fault of our own just by upgrading.
 
-Advised to use VS Code editor with default formatting settings for consistency and to avoid whitespace merge issues.
+Advise using VS Code with default configuration and extension 'Svelte for VS Code'
 
 
 ## Intended deployment process
