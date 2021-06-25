@@ -146,16 +146,18 @@ To run the application locally:
 
 # Contribution guide
 
-Follow [Git Flow](https://guides.github.com/introduction/flow/) branching strategy 
+Currently following the [Git Flow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow) branching strategy 
   - Create feature branch off develop  
   - name branch according to intent, keep it small and focused, try not to break anything.  
   - Create PR to merge changes back into develop.  
   - This PR should trigger CI processes (TODO)
+  - Continuous Deployment to our Azure demo environment is triggered from a PR to main.  
+  - All PRs to main should come from develop, at a time we know develop to be stable with a tested production build.
 
-Continuous Deployment to our Azure demo environment is triggered from a PR to main.  
-All PRs to main should come from develop, at a time we know develop to be stable with a tested production build.
+Aiming to move to [GitHub flow](https://guides.github.com/introduction/flow/) model for simplicity.  
+This would cause issues right now, since the underlying framework is still in beta under heavy development, which means we can break the production environment through no fault of our own just by upgrading.
 
-Advised to use VS Code editor with default formatting settings for consistency and to avoid whitespace merge issues.
+Advise using VS Code with default configuration and extension 'Svelte for VS Code'
 
 
 ## Intended deployment process
@@ -177,84 +179,3 @@ graph TD
   v -->|yes| env
   v -->|no| Notify
 ```
-
----
----
-To be tidied up below here
-
-
-# Components - review and raise anything not already implemented as an issue
-
-The Journey is comprised of one or more "Components" which, when put together, can be used to gain information along the journey.
-
-At some point in the journey, a special component will push all the collected data up to a specific location to be stashed for later use.
-
-Components can be made up of other components.
-
-A component can be made up of a Question.
-
-A Question Component has the following distinct features
-
-1. Id
-1. Question Text
-1. Help Icon
-1. Help Text Header
-1. Help Text Body
-1. Answer Type
-1. Answer Data Set
-1. Default Answer
-1. Answer Format
-1. Css Class
-1. Validation[]
-1. Validation Messages[]
-
-This will allow us to compose any type of question
-
-
-# Thoughts and Ideas? - Move these to Issues so we can discuss properly
-
-RL - Just wondering if we need to allow A component within a Question to allow us to do the type of question  "When did you buy your caravan [DD]/[MM]/[YYYY]  [X] I have not bought the caravan yet" option.
-MTH - Perhaps this fits in with the composite component in the hierarchy above.  I would hope we don't need composite composite components, but worth considering.
-MTH update - We have dependent questions now, would recommend reordering as "Have you bought the caravan?"..."When did you buy it?"  This is more intuitive and easier to implement dynamically.
-
-RL - Do we want a Component to allow us to link JS?
-    e.g. a Javascript snippet could be a Component?
-MTH - Needs to be as simple as possible.  Simple validation should be exclusively data-driven - annotations + generic JS, from questionset data.
-Each question could have a single additional action (blur,leave... depending on type) - trigger complex validations or other action - this would be based on id, injected by code, brand-specific and not subject to A/B testing.
-MTH update - We have an actionStore now, a way to inject custom functions that take no parameters and interact only with the stores.  I haven't thought of any examples that this wouldn't cover, yet.
-
-RL - I know this is going further, but a our site needs a "default" brand.  When linking to us from a 3rd party site via URL, we may need to reload their data and rebrand accordingly.
-
-RL - We also need to consider a mechanism whereby answering a question in a particular way prevents them from continuing the journey - e.g.  Do you wish to answer these questions? [Y]/[N].  Answering N would prevent them from contuing so we display a nice message saying "well thanks for wasting your own time" and prevent them form clicking the NEXT button.
-MTH - We can easily enough redirect a page using goto() on user action (blur,click etc).  This needs to be dynamic so possibly need a kill-conditions property on the component type.
-
-MTH - [Svelte Themer](https://svelte-themer.now.sh/) could be an option if we need dynamic theming.
-
-MTH - API security - is CORS sufficient?
-
-
-
-RL - Idea!
-
-QUESTION PAGES
-==============
-Question = id, Text, Type, ValidationCollection, Helptext {Header, Body}, PlaceholderText, DefaultAnswer + other items
-
-Component = Question(s) + Component(s)
-
-Section = Component(s)
-
-VirtualPage = Section(s) + Component(s)
-
-Journey = VirtualPage(s)
-
-PRESENTATION PAGES
-==================
-Presentation Item = ????  to be defined ???
-
-Presentation Panel = Presentation Item(s)
-
-Presentation Page = Presentation Items + Component(s)
-
-
-

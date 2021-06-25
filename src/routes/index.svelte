@@ -9,7 +9,3 @@
 
 <Page page={questionset.pages[0]}/>
 
-
-<style>
-
-</style>
