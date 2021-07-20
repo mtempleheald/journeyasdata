@@ -1,7 +1,7 @@
 <script lang="ts">
     import { goto } from '$app/navigation';
     import type { QuestionSetType } from '$lib/types/questionset';
-    import { inputStore } from '$lib/stores/inputstore'
+    import { valueStore } from '$lib/stores/valuestore'
     import { validationStore } from '$lib/stores/validationstore';
     import { pageValidator } from '$lib/utils/validators';
     import { nextPageUrl, prevPageUrl } from '$lib/utils/navigation';
@@ -16,7 +16,7 @@
         goto(prevPageUrl(questionset, pageurl))
     }
     function next(event) {
-        if (pageValidator.valid(questionset, pageurl, $inputStore, $validationStore)) {
+        if (pageValidator.valid(questionset, pageurl, $valueStore, $validationStore)) {
             console.log ("Page valid, redirecting to next page");
             goto(nextPageUrl(questionset, pageurl));
         }

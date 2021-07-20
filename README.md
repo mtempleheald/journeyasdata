@@ -99,7 +99,7 @@ act   --> next[[Next component]]
 - Configurable questionset - content editors manage content (labels, helptext...), developers manage code, see `/lib/types/questionset.ts`
 - Configurable themes - components manage layout, responsible for responsive design, exposing key CSS variables for theming, see `/static/questionsets/`
 - Session data management
-  - The `inputStore` is a key-value store holding the component id against its value, see `/lib/stores/inputstore.ts`
+  - The `valueStore` is a key-value store holding the component id against its value, see `/lib/stores/valueStore.ts`
   - This is updated whenever a user action triggers a change, this could be direct or via a custom function.
 - Injectable functionality
   - The entire journey is dynamic, with the majority of validation and display logic being data-driven.

@@ -4,7 +4,7 @@
     import type { VehicleComponentType } from '$lib/types/questionset';
     import type { VehicleType } from '$lib/types/vehicle';
     import Dropdown from '$lib/components/Dropdown.svelte';
-    import { inputStore } from '$lib/stores/inputstore';
+    import { valueStore } from '$lib/stores/valuestore';
     
     // expose component properties
     export let component: VehicleComponentType;
@@ -58,7 +58,7 @@
     TODO: Year Of Manufacture - Drop down in Vehicle.svelte
     <Dropdown
         component={{...component, 
-            value:$inputStore[component.id] ?? ''}}>
+            value:$valueStore[component.id] ?? ''}}>
         <svelte:fragment slot="pre">
         {#if component.pre}    
             {@html snarkdown(component.pre)}    
@@ -100,7 +100,7 @@
     TODO: Select Bike - Drop down component in Vehicle.svelte
     <Dropdown
         component={{...component, 
-            value:$inputStore[component.id] ?? ''}}>
+            value:$valueStore[component.id] ?? ''}}>
         <svelte:fragment slot="pre">
         {#if component.pre}    
             {@html snarkdown(component.pre)}    

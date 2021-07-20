@@ -7,7 +7,7 @@
     import Textbox from '$lib/components/Textbox.svelte';
     import Vehicle from '$lib/components/Vehicle.svelte';
     import TriBoxDate from '$lib/components/TriBoxDate.svelte';
-    import { inputStore } from '$lib/stores/inputstore';
+    import { valueStore } from '$lib/stores/valuestore';
     import { validationStore } from '$lib/stores/validationstore';
     import { actionStore } from '$lib/stores/actionstore';
     import type { ComponentType } from '$lib/types/questionset';
@@ -17,9 +17,9 @@
     function componentUpdated(event) {
       console.log(`{key: "${event.detail.key}", value: "${event.detail.value}", valid: "${event.detail.valid}}"`)
       // update input store with latest value, regardless of validity
-      inputStore.input(event.detail.key, event.detail.value);
+      valueStore.set(event.detail.key, event.detail.value);
       // update validation store for use by validators
-      validationStore.input(event.detail.key, event.detail.valid);
+      validationStore.set(event.detail.key, event.detail.valid);
       // execute action if applicable
       let f = $actionStore[event.detail.key];
       if (typeof f === 'function') f();
@@ -27,10 +27,10 @@
 </script>
 
 
-{#if !component.dependsupon || ($inputStore[component.dependsupon.id] == component.dependsupon.value)}
+{#if !component.dependsupon || ($valueStore[component.dependsupon.id] == component.dependsupon.value)}
 {#if ["Colour","Date","Datetime","Email","Month","Number","Search","Slider","Text","Telephone","Time","Upper","Url","Week"].includes(component.type)}
 <svelte:component this={Textbox} 
-  component={{...component, value:$inputStore[component.id] ?? ''}}
+  component={{...component, value:$valueStore[component.id] ?? ''}}
   on:valueChange="{componentUpdated}">
     <svelte:fragment slot="pre">
       {#if component.pre}    
@@ -46,7 +46,7 @@
 {:else if component.type == "YesNo"}
 <ButtonSelect   
   component={{...component, 
-    value:$inputStore[component.id] ?? '', 
+    value:$valueStore[component.id] ?? '', 
     values:[{value:"Y",display:"Yes"},{value:"N",display:"No"}]}}
   on:valueChange="{componentUpdated}">
   <svelte:fragment slot="pre">
@@ -63,7 +63,7 @@
 {:else if component.type == "ButtonSelect"}
 <ButtonSelect
   component={{...component, 
-    value:$inputStore[component.id] ?? ''}}
+    value:$valueStore[component.id] ?? ''}}
   on:valueChange="{componentUpdated}">
     <svelte:fragment slot="pre">
       {#if component.pre}    
@@ -79,7 +79,7 @@
 {:else if component.type == "Dropdown"}
 <Dropdown
   component={{...component, 
-    value:$inputStore[component.id] ?? ''}}
+    value:$valueStore[component.id] ?? ''}}
   on:valueChange="{componentUpdated}">
     <svelte:fragment slot="pre">
       {#if component.pre}    
