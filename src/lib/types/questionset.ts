@@ -28,6 +28,7 @@ export type BaseComponentType = {
         | "Date" 
         | "Datetime"
         | "Displayblock"
+        | "Displaymodal"
         | "Dropdown" 
         | "Email"
         | "Month" 

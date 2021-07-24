@@ -4,6 +4,7 @@
     import ButtonSelect from '$lib/components/ButtonSelect.svelte';
     import Dropdown from '$lib/components/Dropdown.svelte';
     import Displayblock from '$lib/components/Displayblock.svelte';
+    import Displaymodal from '$lib/components/Displaymodal.svelte';
     import Textbox from '$lib/components/Textbox.svelte';
     import Vehicle from '$lib/components/Vehicle.svelte';
     import TriBoxDate from '$lib/components/TriBoxDate.svelte';
@@ -110,6 +111,24 @@
     {/if}
   </svelte:fragment>
 </Displayblock>
+{:else if component.type == "Displaymodal"}
+<Displaymodal>
+  <svelte:fragment slot="pre">
+    {#if component.pre}    
+      {@html snarkdown(component.pre)}    
+    {/if}
+  </svelte:fragment>
+  <svelte:fragment slot="main">
+    {#if component.content}    
+      {@html snarkdown(component.content)}    
+    {/if}
+  </svelte:fragment>
+  <svelte:fragment slot="post">
+    {#if component.post}
+      {@html snarkdown(component.post)}
+    {/if}
+  </svelte:fragment>
+</Displaymodal>
 {:else if component.type == "Address"}
   <Address 
     component={component}

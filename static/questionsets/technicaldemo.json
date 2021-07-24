@@ -375,6 +375,29 @@
               "type": "Displayblock",
               "content": "__markdown__ content",
               "pre": "__markdown__ before content"
+            }            
+          ]
+        },
+        {
+          "title": "Modal section",
+          "components": [
+            {
+              "id": "triggermodal",
+              "label": "It is a simple Yes/No question",
+              "type": "YesNo",
+              "required": true,
+              "errorMessage": "Please select an option"
+            },
+            {
+              "id": "modalpopup",
+              "type": "Displaymodal",
+              "content": "__markdown__ content",
+              "pre": "__markdown__ before content",
+              "post": "__markdown__ after content",
+              "dependsupon": {
+                "id": "triggermodal",
+                "value": "Y"
+              }
             }
           ]
         }
