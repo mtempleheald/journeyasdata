@@ -383,7 +383,7 @@
           "components": [
             {
               "id": "triggermodal",
-              "label": "It is a simple Yes/No question",
+              "label": "Select yes to trigger modal",
               "type": "YesNo",
               "required": true,
               "errorMessage": "Please select an option"
