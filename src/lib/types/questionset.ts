@@ -1,6 +1,8 @@
 export type QuestionSetType = {
     title: string;
     pages: PageType[];
+    logo: string;
+    logoalt: string;
 }
 export type PageType = {
     url: string;
@@ -66,7 +68,7 @@ export type ValueType = {
 
 export type TriBoxDateFieldsType = {
     type: string;
-    seperator: string;
+    separator: string;
     dayPlaceholder: string;
     monthPlaceholder: string;
     yearPlaceholder: string;
@@ -79,7 +81,7 @@ export type TriBoxDateValidRange = {
 }
 
 export type TriBoxDateComponentType = BaseComponentType & {
-    fields: TriBoxDateFieldsType;
+    fields?: TriBoxDateFieldsType;
     validRange?: TriBoxDateValidRange;
 }
 
