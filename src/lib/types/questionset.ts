@@ -65,6 +65,9 @@ export type BaseComponentType = {
 export type ValueType = {
     value: string;
     display: string;
+    image?: string;
+    imageWidth?: number;
+    imageHeight?: number;
 }
 
 export type TriBoxDateFieldsType = {
