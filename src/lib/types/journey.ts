@@ -1,4 +1,4 @@
-export type QuestionSetType = {
+export type JourneyType = {
     title: string;
     pages: PageType[];
     logo: string;

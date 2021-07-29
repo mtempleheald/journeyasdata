@@ -15,13 +15,13 @@
 <script lang="ts">
     import { getContext } from 'svelte';
 	import Page from '$lib/components/Page.svelte';
-	import type { QuestionSetType } from '$lib/types/questionset';
+	import type { JourneyType } from '$lib/types/journey';
 
 	export let pageurl: string;
-	const questionset: QuestionSetType = getContext("questionset");
+	const journey: JourneyType = getContext("journey");
 </script>
 
-{#each questionset.pages as p}
+{#each journey.pages as p}
 	{#if p.url == pageurl}
 		<Page page={p}/>
 	{/if}

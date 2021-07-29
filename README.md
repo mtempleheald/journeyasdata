@@ -96,8 +96,8 @@ act   --> next[[Next component]]
   - handled by [SvelteKit](https://kit.svelte.dev) filesystem based routing out of the box
 - Custom components, all inputs optional, designed to be ultra flexible and responsive across browsers/devices
 - Data-driven basic validation using HTML5 standard elements and [ValidationAPI](https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation#the_constraint_validation_api)
-- Configurable questionset - content editors manage content (labels, helptext...), developers manage code, see `/lib/types/questionset.ts`
-- Configurable themes - components manage layout, responsible for responsive design, exposing key CSS variables for theming, see `/static/questionsets/`
+- Configurable journey - content editors manage content (labels, helptext...), developers manage code, see `/lib/types/journey.ts`
+- Configurable themes - components manage layout, responsible for responsive design, exposing key CSS variables for theming, see `/static/journeys/`
 - Session data management
   - The `valueStore` is a key-value store holding the component id against its value, see `/lib/stores/valueStore.ts`
   - This is updated whenever a user action triggers a change, this could be direct or via a custom function.
@@ -122,7 +122,7 @@ act   --> next[[Next component]]
 - API security - [SvelteKit will server-render pages on demand](https://kit.svelte.dev/docs#ssr-and-javascript) and [endpoints only run on the server](https://kit.svelte.dev/docs#routing-endpoints)
 - A/B testing - does NOT cover code, but does cover data - the current plan is to handle this by deployment, hosting multiple versions simultaneously.
 - Source/Affinity based branding - If redirected from google or some other aggregator we may want to style certain aspects differently, e.g. logos
-- Admin backend for questionset generation
+- Admin backend for journey generation
   - [JWT authentication](https://www.npmjs.com/package/jsonwebtoken) [using server side endpoints](https://stackoverflow.com/questions/67255874/where-should-i-refresh-my-jwt-in-sveltekit)
   - [Client side (stateless) JWT auth pattern](https://www.caktusgroup.com/blog/2020/10/20/jwt-authentication-rethinking-pattern/)
   - [Alternative to hand writing](https://www.npmjs.com/package/svelte-kit-cookie-session)

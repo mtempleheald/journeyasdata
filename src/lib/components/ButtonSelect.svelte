@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
     import Helptext from '$lib/components/Helptext.svelte';
-    import type { ComponentType } from '$lib/types/questionset';
+    import type { ComponentType } from '$lib/types/journey';
 
     // expose component properties
     export let component: ComponentType;    

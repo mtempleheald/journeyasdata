@@ -3,7 +3,7 @@
     import { valueStore } from '$lib/stores/valuestore';
     import { validationStore } from '$lib/stores/validationstore';
     import type { AddressType } from '$lib/types/address';
-    import type { AddressComponentType } from '$lib/types/questionset';
+    import type { AddressComponentType } from '$lib/types/journey';
     import Dropdown from '$lib/components/Dropdown.svelte';
     import Textbox from '$lib/components/Textbox.svelte';
     

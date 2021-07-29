@@ -11,7 +11,7 @@
     import { valueStore } from '$lib/stores/valuestore';
     import { validationStore } from '$lib/stores/validationstore';
     import { actionStore } from '$lib/stores/actionstore';
-    import type { ComponentType } from '$lib/types/questionset';
+    import type { ComponentType } from '$lib/types/journey';
 
     export let component: ComponentType;
 

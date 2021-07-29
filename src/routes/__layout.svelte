@@ -9,7 +9,7 @@
         }
 		return {
             props: {
-                questionset: await loadContent(),
+                journey: await loadContent(),
                 brand: BRAND.toString()
             }
         };
@@ -19,15 +19,15 @@
 <script lang="ts">
     import { setContext } from 'svelte';
     import { browser } from '$app/env';
-    import type { QuestionSetType } from '$lib/types/questionset';
+    import type { JourneyType } from '$lib/types/journey';
     import { actionStore } from '$lib/stores/actionstore';
     import { getActions } from '$lib/actions/actionprovider';
     
     export let brand: string;
-    export let questionset: QuestionSetType;
+    export let journey: JourneyType;
 
-    // load questionset once, reference throughout user journey
-    setContext("questionset", questionset); 
+    // load journey once, reference throughout user journey
+    setContext("journey", journey); 
     // load bespoke actions once, call throughout user journey
     if (browser) {
         actionStore.load(getActions(brand));
@@ -37,7 +37,7 @@
 
 
 <svelte:head>
-    <title>{questionset.title}</title>
+    <title>{journey.title}</title>
     <link rel='stylesheet' href="/{brand}/theme.css">
 </svelte:head>
 

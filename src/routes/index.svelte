@@ -1,11 +1,11 @@
 <script lang="ts">
     import { getContext } from 'svelte';
 	import Page from '$lib/components/Page.svelte';
-	import type { QuestionSetType } from '$lib/types/questionset';
+	import type { JourneyType } from '$lib/types/journey';
 
-	const questionset: QuestionSetType = getContext("questionset");
+	const journey: JourneyType = getContext("journey");
 </script>
     
 
-<Page page={questionset.pages[0]}/>
+<Page page={journey.pages[0]}/>
 

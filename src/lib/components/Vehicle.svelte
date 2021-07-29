@@ -1,7 +1,7 @@
 <script lang="ts">
     import snarkdown from 'snarkdown';// https://github.com/developit/snarkdown/blob/master/test/index.js
     import Textbox from '$lib/components/Textbox.svelte';
-    import type { VehicleComponentType } from '$lib/types/questionset';
+    import type { VehicleComponentType } from '$lib/types/journey';
     import type { VehicleType } from '$lib/types/vehicle';
     import Dropdown from '$lib/components/Dropdown.svelte';
     import { valueStore } from '$lib/stores/valuestore';

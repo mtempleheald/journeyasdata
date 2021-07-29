@@ -1,4 +1,4 @@
-import type { ComponentType, QuestionSetType, SectionType } from '$lib/types/questionset';
+import type { ComponentType, JourneyType, SectionType } from '$lib/types/journey'
 
 // Each component is responsible for its own (simple) validation, here we trust that this is the case.
 // Component validation logic:
@@ -16,7 +16,7 @@ import type { ComponentType, QuestionSetType, SectionType } from '$lib/types/que
 // return false if any sections are invalid
 
 // Additional information
-// Questionset structure = questionset.page.section.component - sections can be repeated
+// Questionset structure = journey.page.section.component - sections can be repeated
 // Value store uses identifier {section id}.{section index}.{component id} which can be unflattened to a similar struture
 // For non-repeating sections this value store identifier is simply {component id}
 
@@ -39,13 +39,13 @@ function SectionValid (
 }
 
 function PageValid (
-    questionSet: QuestionSetType, 
+    journey: JourneyType, 
     pageUrl: string,
     inputs: object,
     validations: object
 ) {
     // TODO: update to handle repeated sections (pass index down to section validator)
-    const sections = questionSet.pages.filter(p => p.url == pageUrl).pop().sections;
+    const sections = journey.pages.filter(p => p.url == pageUrl).pop().sections;
     let valid = 
     sections.every(s => {
         return SectionValid(s, inputs, validations)
@@ -62,7 +62,7 @@ function validator() {
 export const pageValidator = validator();
 
 // called externally using:
-// import { questionSet } from '$lib/stores/questionset';
+// import { questionSet } from '$lib/stores/journey';
 // import { validationStore } from '$lib/stores/validationstore';
 // import { pageValidator } from '$lib/validators/pageValidator';
 // if (pageValidator.valid($questionSet, "page-url", $validationStore)) ...

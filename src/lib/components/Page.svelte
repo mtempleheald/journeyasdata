@@ -4,29 +4,29 @@
     import ProgressBar from '$lib/components/ProgressBar.svelte';
     import NavButtons from '$lib/components/NavButtons.svelte';
     import Section from './Section.svelte';
-    import type { PageType, QuestionSetType } from '$lib/types/questionset';
+    import type { PageType, JourneyType } from '$lib/types/journey';
 
     export let page: PageType;
 
-    const questionset: QuestionSetType = getContext("questionset");
+    const journey: JourneyType = getContext("journey");
 
 </script>
 
 
 
 <header>
-  {#if questionset.logo}
-    <img src="{questionset.logo}" alt="{questionset.logoalt}">
+  {#if journey.logo}
+    <img src="{journey.logo}" alt="{journey.logoalt}">
   {:else}
     <img src="https://fakeimg.pl/250x100/?text={BRAND}" alt="logo">
   {/if}
-  <h1>{questionset.title}</h1>
+  <h1>{journey.title}</h1>
 </header>
 
 
 {#if page.displayprogress ?? true}
 <ProgressBar
-  questionset = {questionset}
+  journey = {journey}
   pageurl={page.url}/>
 {/if}
 
@@ -44,10 +44,10 @@
 
 
 <NavButtons 
-      questionset = {questionset}
-      pageurl = '{page.url}'
-      nextText = 'Next Page'
-      backText = 'Back'
+  journey = {journey}
+  pageurl = '{page.url}'
+  nextText = 'Next Page'
+  backText = 'Back'
 />
 
 </form>

@@ -2,7 +2,7 @@ import { writable } from 'svelte/store';
 
 /*
     The input store is a Dictionary of key-value pairs (JavaScript object, dict["key"] = "value")
-    - key is a string defined by questionset
+    - key is a string defined by journey
     - value is a string provided by the user
     Pure JS example https://www.poftut.com/how-create-and-use-dictionary-in-javascript-tutorial-with-examples/
     The difficulty comes with having both the key and the value dynamic, data driven
@@ -17,7 +17,7 @@ import { writable } from 'svelte/store';
     Example without encryption https://dev.to/danawoodman/svelte-quick-tip-connect-a-store-to-local-storage-4idi
     This is a possible future extension, not for right now
 
-    If we need more complex store structures mirroring the questionset json...
+    If we need more complex store structures mirroring the journey json...
     Nested stores https://github.com/sveltejs/svelte/issues/1435
     Example https://github.com/bradphelan/immer.loves.svelte
 */
