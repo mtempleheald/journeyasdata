@@ -1,5 +1,5 @@
 // GET: /api/refdata/context/list?filter=[filter]
-import type { ValueType } from '$lib/types/journey
+import type { ValueType } from '$lib/types/journey'
 
 /**
  * @type {import('@sveltejs/kit').RequestHandler}

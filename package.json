@@ -13,10 +13,10 @@
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-node": "^1.0.0-next.35",
-		"@sveltejs/kit": "^1.0.0-next.132",
+		"@sveltejs/kit": "^1.0.0-next.138",
 		"@types/cookie": "^0.4.1",
-		"@typescript-eslint/eslint-plugin": "^4.28.4",
-		"@typescript-eslint/parser": "^4.28.4",
+		"@typescript-eslint/eslint-plugin": "^4.28.5",
+		"@typescript-eslint/parser": "^4.28.5",
 		"cookie": "^0.4.1",
 		"eslint": "^7.31.0",
 		"eslint-config-prettier": "^8.3.0",
@@ -24,7 +24,7 @@
 		"prettier": "~2.2.1",
 		"prettier-plugin-svelte": "^2.3.1",
 		"snarkdown": "^2.0.0",
-		"svelte": "^3.38.3",
+		"svelte": "^3.41.0",
 		"svelte-preprocess": "^4.7.4",
 		"tslib": "^2.3.0",
 		"typescript": "^4.3.5"

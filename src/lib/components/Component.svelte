@@ -1,5 +1,6 @@
 <script lang="ts">
-    import snarkdown from 'snarkdown';// https://github.com/developit/snarkdown/blob/master/test/index.js
+    //import snarkdown from 'snarkdown';// https://github.com/developit/snarkdown/blob/master/test/index.js
+    import Markdown from '$lib/components/Markdown.svelte';
     import Address from '$lib/components/Address.svelte';
     import ButtonSelect from '$lib/components/ButtonSelect.svelte';
     import Dropdown from '$lib/components/Dropdown.svelte';
@@ -34,14 +35,10 @@
   component={{...component, value:$valueStore[component.id] ?? ''}}
   on:valueChange="{componentUpdated}">
     <svelte:fragment slot="pre">
-      {#if component.pre}    
-        {@html snarkdown(component.pre)}    
-      {/if}
+      <Markdown source={component.pre}/>
     </svelte:fragment>
     <svelte:fragment slot="post">
-      {#if component.post}
-        {@html snarkdown(component.post)}
-      {/if}
+      <Markdown source={component.post}/>
     </svelte:fragment>  
 </svelte:component>
 {:else if component.type == "YesNo"}
@@ -49,16 +46,12 @@
   component={{...component, 
     value:$valueStore[component.id] ?? '', 
     values:[{value:"Y",display:"Yes"},{value:"N",display:"No"}]}}
-  on:valueChange="{componentUpdated}">
-  <svelte:fragment slot="pre">
-    {#if component.pre}    
-      {@html snarkdown(component.pre)}    
-    {/if}
-  </svelte:fragment>
-  <svelte:fragment slot="post">
-    {#if component.post}
-      {@html snarkdown(component.post)}
-    {/if}
+    on:valueChange="{componentUpdated}">
+    <svelte:fragment slot="pre">
+      <Markdown source={component.pre}/>
+    </svelte:fragment>
+    <svelte:fragment slot="post">
+      <Markdown source={component.post}/>
   </svelte:fragment>
   </ButtonSelect>
 {:else if component.type == "ButtonSelect"}
@@ -67,14 +60,10 @@
     value:$valueStore[component.id] ?? ''}}
   on:valueChange="{componentUpdated}">
     <svelte:fragment slot="pre">
-      {#if component.pre}    
-        {@html snarkdown(component.pre)}    
-      {/if}
+      <Markdown source={component.pre}/>
     </svelte:fragment>
     <svelte:fragment slot="post">
-      {#if component.post}
-        {@html snarkdown(component.post)}
-      {/if}
+      <Markdown source={component.post}/>
     </svelte:fragment>
 </ButtonSelect>
 {:else if component.type == "Dropdown"}
@@ -83,50 +72,34 @@
     value:$valueStore[component.id] ?? ''}}
   on:valueChange="{componentUpdated}">
     <svelte:fragment slot="pre">
-      {#if component.pre}    
-        {@html snarkdown(component.pre)}    
-      {/if}
+      <Markdown source={component.pre}/>
     </svelte:fragment>
     <svelte:fragment slot="post">
-      {#if component.post}
-        {@html snarkdown(component.post)}
-      {/if}
+      <Markdown source={component.post}/>
     </svelte:fragment>
 </Dropdown>
 {:else if component.type == "Displayblock"}
 <Displayblock>
   <svelte:fragment slot="pre">
-    {#if component.pre}    
-      {@html snarkdown(component.pre)}    
-    {/if}
+      <Markdown source={component.pre}/>
   </svelte:fragment>
-  <svelte:fragment slot="main">
-    {#if component.content}    
-      {@html snarkdown(component.content)}    
-    {/if}
+  <svelte:fragment slot="main"> 
+    <Markdown source={component.content}/>
   </svelte:fragment>
   <svelte:fragment slot="post">
-    {#if component.post}
-      {@html snarkdown(component.post)}
-    {/if}
+    <Markdown source={component.post}/>
   </svelte:fragment>
 </Displayblock>
 {:else if component.type == "Displaymodal"}
 <Displaymodal>
   <svelte:fragment slot="pre">
-    {#if component.pre}    
-      {@html snarkdown(component.pre)}    
-    {/if}
+    <Markdown source={component.pre}/>
   </svelte:fragment>
   <svelte:fragment slot="main">
-    {#if component.content}    
-      {@html snarkdown(component.content)}    
-    {/if}
+    <Markdown source={component.content}/>
   </svelte:fragment>
   <svelte:fragment slot="post">
-    {#if component.post}
-      {@html snarkdown(component.post)}
-    {/if}
+    <Markdown source={component.post}/>
   </svelte:fragment>
 </Displaymodal>
 {:else if component.type == "Address"}
