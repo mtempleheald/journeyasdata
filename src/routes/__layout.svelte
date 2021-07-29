@@ -4,7 +4,7 @@
 	export async function load({ page, fetch, session, context }) {        
         // dynamically load content, making use of HMR for quick feedback
         async function loadContent() {
-            let content = await import(`./../../static/questionsets/${BRAND}.json`);
+            let content = await import(`./../../static/${BRAND}/journey.json`);
             return content
         }
 		return {
@@ -38,7 +38,7 @@
 
 <svelte:head>
     <title>{questionset.title}</title>
-    <link rel='stylesheet' href="/themes/{brand}.css">
+    <link rel='stylesheet' href="/{brand}/theme.css">
 </svelte:head>
 
 <slot></slot>

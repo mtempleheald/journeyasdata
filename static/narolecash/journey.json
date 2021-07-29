@@ -1,7 +1,7 @@
 {
   "show-wizard": true,
   "title": "Narole Cash Motorised Velocipede Indemnification",
-  "logo": "/images/narolecash/NaroleCashLogo.png",
+  "logo": "/narolecash/images/NaroleCashLogo.png",
   "logoalt": "Narole Cash Motorised Velocipede Indemnification",
   "pages": [
     {
@@ -28,7 +28,7 @@
                 {
                   "key": "policytype",
                   "value": "single",
-                  "image": "/images/narolecash/assumptions/singlebike.png",
+                  "image": "/narolecash/images/assumptions/singlebike.png",
                   "imageWidth": "128",
                   "imageHeight": "128",
                   "display": "Single Bike"
@@ -36,7 +36,7 @@
                 {
                   "key": "policytype",
                   "value": "multibike",
-                  "image": "/images/narolecash/assumptions/multibike.png",
+                  "image": "/narolecash/images/assumptions/multibike.png",
                   "imageWidth": "128",
                   "imageHeight": "128",
                   "display": "multibike"
