@@ -1,21 +1,16 @@
 <script context="module">
     import { BRAND } from '$lib/env/Env.svelte'
-    /**
-	 * @type {import('@sveltejs/kit').Load}
-	 */
+    /** @type {import('@sveltejs/kit').Load} */
 	export async function load({ page, fetch, session, context }) {        
-        // fetch questionset from file on first page hit
-
-        const qsurl = `/questionsets/${BRAND}.json`;
-        let qs;
-        await fetch(qsurl)
-                .then(resp => resp.json())
-                .then(data => qs = data);
-        
+        // dynamically load content, making use of HMR for quick feedback
+        async function loadContent() {
+            let content = await import(`./../../static/questionsets/${BRAND}.json`);
+            return content
+        }
 		return {
             props: {
-                questionset: qs,
-                brand: BRAND
+                questionset: await loadContent(),
+                brand: BRAND.toString()
             }
         };
 	}
