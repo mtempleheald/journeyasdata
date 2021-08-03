@@ -1,24 +1,24 @@
 <script lang="ts">
     import { goto } from '$app/navigation';
-    import type { QuestionSetType } from '$lib/types/questionset';
-    import { inputStore } from '$lib/stores/inputstore'
+    import type { JourneyType } from '$lib/types/journey';
+    import { valueStore } from '$lib/stores/valuestore'
     import { validationStore } from '$lib/stores/validationstore';
     import { pageValidator } from '$lib/utils/validators';
     import { nextPageUrl, prevPageUrl } from '$lib/utils/navigation';
 
-    export let questionset: QuestionSetType;
+    export let journey: JourneyType;
     export let pageurl: string;
     export let backText: string = 'Back';
     export let nextText: string = 'Next';    
 
     function back(event) {
         console.log ("Navigating to previous page");
-        goto(prevPageUrl(questionset, pageurl))
+        goto(prevPageUrl(journey, pageurl))
     }
     function next(event) {
-        if (pageValidator.valid(questionset, pageurl, $inputStore, $validationStore)) {
+        if (pageValidator.valid(journey, pageurl, $valueStore, $validationStore)) {
             console.log ("Page valid, redirecting to next page");
-            goto(nextPageUrl(questionset, pageurl));
+            goto(nextPageUrl(journey, pageurl));
         }
         else {
             console.log("Page invalid, correct before trying again");

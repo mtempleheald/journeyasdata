@@ -1,4 +1,4 @@
-import { inputStore } from '$lib/stores/inputstore';
+import { valueStore } from '$lib/stores/valuestore';
 import { validationStore } from '$lib/stores/validationstore';
 
 export let actions = {

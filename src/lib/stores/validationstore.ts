@@ -2,7 +2,7 @@ import { writable } from 'svelte/store';
 
 /*
     The validation store is a key-value store
-    - key is a string defined by questionset, matching a unique id for an input
+    - key is a string defined by journey, matching a unique id for an input
     - value is a boolean, true if the input is valid, false otherwise.  Missing should be assumed invalid.
 */
 
@@ -17,7 +17,7 @@ function store() {
 
     return {
         subscribe,
-        input: (key: string, value: boolean) => update(store => setValue(store, key, value)),
+        set: (key: string, value: boolean) => update(store => setValue(store, key, value)),
         reset: () => set({})
     };
 }

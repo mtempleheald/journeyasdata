@@ -1,16 +1,16 @@
 <script lang='ts'>
-    import type { QuestionSetType } from '$lib/types/questionset';
+    import type { JourneyType } from '$lib/types/journey';
     import { targetPageEarlier } from '$lib/utils/navigation';
 
     export let pageurl = '';
-    export let questionset: QuestionSetType;
+    export let journey: JourneyType;
 </script>
     
 
 <nav>
-{#each questionset.pages as p}
+{#each journey.pages as p}
 {#if p.displayprogress ?? true}
-    {#if targetPageEarlier(questionset, pageurl, p.url)}
+    {#if targetPageEarlier(journey, pageurl, p.url)}
     <a href="{p.url}" class="{pageurl == p.url?'active':''}">
         {p.title}
     </a>

@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
-    import { inputStore } from '$lib/stores/inputstore';
+    import { valueStore } from '$lib/stores/valuestore';
     import { validationStore } from '$lib/stores/validationstore';
     import type { AddressType } from '$lib/types/address';
-    import type { AddressComponentType } from '$lib/types/questionset';
+    import type { AddressComponentType } from '$lib/types/journey';
     import Dropdown from '$lib/components/Dropdown.svelte';
     import Textbox from '$lib/components/Textbox.svelte';
     
@@ -41,30 +41,30 @@
         console.log(`{key: "${event.detail.key}", value: "${event.detail.value}", valid: "${event.detail.valid}}"`)
         // Address is a composite component meaning it is responsible for handling the store for its (sub)components
         // Textbox blur event.detail={key: "postcode", value: "<postcode>", valid: "<valid?>"}
-        if (event.detail.value != $inputStore["postcode"]) {
+        if (event.detail.value != $valueStore["postcode"]) {
 
             // value has changed, reset previous details
-            inputStore.input("postcode", event.detail.value);
-            inputStore.input("property", '');
-            inputStore.input("addressline1", '');
-            inputStore.input("addressline2", '');
-            inputStore.input("addressline3", '');
-            inputStore.input("addressline4", '');
+            valueStore.set("postcode", event.detail.value);
+            valueStore.set("property", '');
+            valueStore.set("addressline1", '');
+            valueStore.set("addressline2", '');
+            valueStore.set("addressline3", '');
+            valueStore.set("addressline4", '');
             addresses = [];
             propertyLov = [];
             address = null;
 
             // check validity
-            validationStore.input("postcode", event.detail.valid);        
+            validationStore.set("postcode", event.detail.valid);        
             if (!$validationStore["postcode"]) {
                 // postcode is invalid, update validationStore
-                validationStore.input("address", false);
+                validationStore.set("address", false);
                 // also communicate to parent
                 dispatch('addressChange', {key: "address", value: "", valid: false});
             }
             else {
                 // if the postcode is valid, proceed to call the API
-                await lookupAddresses($inputStore["postcode"]);
+                await lookupAddresses($valueStore["postcode"]);
                 console.log("propertyLov", propertyLov);
             }
         }
@@ -73,17 +73,17 @@
         console.log(`{key: "${event.detail.key}", value: "${event.detail.value}", valid: "${event.detail.valid}}"`)
         if (event.detail.value) {
             address = addresses.filter(a => a.property == event.detail.value.toString())[0];
-            inputStore.input("property",     address.property);
-            inputStore.input("addressline1", address.addressline1);
-            inputStore.input("addressline2", address.addressline2);
-            inputStore.input("addressline3", address.addressline3);
-            inputStore.input("addressline4", address.addressline4);
+            valueStore.set("property",     address.property);
+            valueStore.set("addressline1", address.addressline1);
+            valueStore.set("addressline2", address.addressline2);
+            valueStore.set("addressline3", address.addressline3);
+            valueStore.set("addressline4", address.addressline4);
             
-            validationStore.input("address", true);
+            validationStore.set("address", true);
             dispatch('addressChange', {key: "address", value: "", valid: true});
         }
         else {
-            validationStore.input("address", false);
+            validationStore.set("address", false);
             dispatch('addressChange', {key: "address", value: "", valid: false});
         }
     }
@@ -98,7 +98,7 @@
         component={{
             id: "postcode",
             label: component.postcodeLabel,
-            value: $inputStore["postcode"] ?? '',
+            value: $valueStore["postcode"] ?? '',
             placeholder: component.postcodePlaceholder,
             help: component.postcodeHelp,
             required: true,
@@ -107,11 +107,11 @@
         on:valueChange="{postcodeTouched}"
     />
     {#key propertyLov}<!-- redraw the LOV anytime the data changes because we are passing new object to (sub)components, not binding -->    
-    {#if propertyLov.length > 0 || !$inputStore["property"]}
+    {#if propertyLov.length > 0 || !$valueStore["property"]}
     <Dropdown 
         component={{
             id: "property",
-            value: $inputStore["property"] ?? '',
+            value: $valueStore["property"] ?? '',
             label: component.propertyLabel,
             placeholder: component.propertyPlaceholder,
             values: propertyLov ?? []
@@ -122,44 +122,44 @@
     <Textbox 
         component={{
             id: "property",
-            value: $inputStore["property"] ?? '',
+            value: $valueStore["property"] ?? '',
             label: component.propertyLabel,
         }}
     />
     {/if}
     {/key}
-    {#if $inputStore["property"]}
+    {#if $valueStore["property"]}
     <Textbox
         component={{
             id: "addressline1",
-            value: $inputStore["addressline1"],
+            value: $valueStore["addressline1"],
             label: "Address Line 1"
         }}        
-        on:valueChange={(e) => {inputStore.input("addressline1", e.detail.value)}}
+        on:valueChange={(e) => {valueStore.set("addressline1", e.detail.value)}}
     />
     <Textbox
         component={{
             id: "addressline2",
-            value: $inputStore["addressline2"],
+            value: $valueStore["addressline2"],
             label: "Address Line 2"
         }}
-        on:valueChange={(e) => {inputStore.input("addressline2", e.detail.value)}}
+        on:valueChange={(e) => {valueStore.set("addressline2", e.detail.value)}}
     />
     <Textbox
         component={{
             id: "addressline3",
-            value: $inputStore["addressline3"],
+            value: $valueStore["addressline3"],
             label: "Address Line 3"
         }}
-        on:valueChange={(e) => {inputStore.input("addressline3", e.detail.value)}}
+        on:valueChange={(e) => {valueStore.set("addressline3", e.detail.value)}}
     />
     <Textbox
         component={{
             id: "addressline4",
-            value: $inputStore["addressline4"],
+            value: $valueStore["addressline4"],
             label: "Address Line 4"
         }}
-        on:valueChange={(e) => {inputStore.input("addressline4", e.detail.value)}}
+        on:valueChange={(e) => {valueStore.set("addressline4", e.detail.value)}}
     />
     {/if}
 </div>

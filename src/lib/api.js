@@ -24,11 +24,11 @@ async function send({ method, path, data, token }) {
 }
 
 export function get(path, token) {
-	return send({ method: 'GET', path, token });
+	return send({ method: 'GET', path, data: null, token });
 }
 
 export function del(path, token) {
-	return send({ method: 'DELETE', path, token });
+	return send({ method: 'DELETE', path, data: null, token });
 }
 
 export function post(path, data, token) {

@@ -2,41 +2,57 @@
 	import { createEventDispatcher } from 'svelte';
     import { blur } from 'svelte/transition';
     import Helptext from '$lib/components/Helptext.svelte';
-    import type { TriBoxDateComponentType } from '$lib/types/questionset';
+    import type { TriBoxDateComponentType } from '$lib/types/journey';
 
     // expose component properties
     export let component: TriBoxDateComponentType;
 
     // internal properties to support component logic
     const dispatch = createEventDispatcher();
-    let fallbackError;
-    let valid = true;
-    let active;
-    
+    let fallbackError
+    let valid = true
+    let active
+    let year : string = component.value?.substring(1, 4) ?? ''
+    let month : string = component.value?.substring(6, 8) ?? ''
+    let day : string = component.value?.substring(10, 11) ?? ''
+
     // component actions
     function enter() {
         active = "active";
     }
     function leave() {
         active = "";
-    }    
+    }
     function act(event) {
-        // transform
-        let val = event.target.value;        
-        // validate
-        if (event.target.validity.valid) {
-            valid = true;
-            fallbackError = '';            
+        if (event.target.id == `${component.id}-day`) {
+            day = event.target.value            
+        }
+        else if (event.target.id == `${component.id}-month`) {
+            month = event.target.value
+        }
+        else if (event.target.id == `${component.id}-year`) {
+            year = event.target.value
+        }
+        else if (event.target.id == `${component.id}-unknown`) {
+            year = ''
+            month = ''
+            day = ''
+        }
+        
+        component.value = `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`
+        console.log (component.value)
+        // validate date format YYYY-MM-DD
+        if (Date.parse(component.value) > 0) {
+            valid = true;            
         }
         else {
             valid = false;
-            fallbackError = event.target.validationMessage;
         }
         // publish changes up to parent, let it handle state
-        dispatch('valueChange', {key: component.id, value: val, valid: valid});
+        dispatch('dateChange', {key: component.id, value: component.value, valid: valid});
     }
     function focus(event) {
-        dispatch('focus', component.id);
+        dispatch('focus', event.target.id);
     }
 </script>
 
@@ -58,55 +74,68 @@
         {/if}
 
         {#if component.id} 
+        <input type="hidden" 
+            id="{component.id}"
+            bind:value={component.value}
+            required="{component.required}"
+        />
+
         <input type="{component.fields.type ?? 'Text'}"
             id="{component.id}-day" 
             name="{component.id}-day" 
             placeholder="{component.fields.dayPlaceholder ?? ''}" 
             required="{component.required}"
-            value="{component.value}"
+            value="{day}"
             maxlength="2"
             min="1"
             max="31"
             on:blur={act}
-            on:focus={focus}/>
-            {component.fields.seperator ?? ""}
-          <input type="{component.fields.type ?? 'Text'}"
+            on:focus={focus}
+        />
+        {component.fields.separator ?? ""}
+        <input type="{component.fields.type ?? 'Text'}"
             id="{component.id}-month" 
             name="{component.id}-month" 
             placeholder="{component.fields.monthPlaceholder ?? ''}" 
             required="{component.required}"
-            value="{component.value}"
+            value="{month}"
             maxlength="2"
             min="1"
             max="12"
             on:blur={act}
-            on:focus={focus}/>
-            {component.fields.seperator ?? ""}
-            <input type="{component.fields.type ?? 'Text'}"
+            on:focus={focus}
+        />
+        {component.fields.separator ?? ""}
+        <input type="{component.fields.type ?? 'Text'}"
             id="{component.id}-year" 
             name="{component.id}-year" 
             placeholder="{component.fields.yearPlaceholder ?? ''}" 
             required="{component.required}"
-            value="{component.value}"
+            value="{year}"
             maxlength="4"
             on:blur={act}
-            on:focus={focus}/>
-            {#if component.fields.unknownOptionLabel}
-            <input type="checkbox" id="{component.id}-unknown"
-              name="{component.id}-unknown"
-              on:click={act}
-              on:focus={focus}
-              value="{component.value}" />
-                {component.fields.unknownOptionLabel}
-            {/if}
+            on:focus={focus}
+        />
+            
         {/if}
         {#if component.help}
             <Helptext>{component.help}</Helptext>
         {/if}
+        {#if component.fields.unknownOptionLabel}
+        <br/>
+        <input type="checkbox" 
+            id="{component.id}-unknown"
+            name="{component.id}-unknown"
+            on:click={act}
+            on:focus={focus}
+            value="{component.value}" 
+        />
+        {component.fields.unknownOptionLabel}
+        {/if}
     </div>
 
     {#if !valid}
-    <div class="error">{component.errorMessage ?? fallbackError}</div>
+        <div class="error">{component.errorMessage ?? fallbackError}</div>
     {/if}
 
     <slot name="post"></slot>
@@ -141,6 +170,7 @@
     }
     input {
         margin: 0.5rem;
+        width: 30px;
     }
     .error {
         padding: 0.5rem;

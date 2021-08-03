@@ -1,6 +1,6 @@
 <script lang="ts">
     import Component from '$lib/components/Component.svelte';
-    import type { SectionType } from '$lib/types/questionset';
+    import type { SectionType } from '$lib/types/journey';
 
     export let section: SectionType;
     let currentSection: number = 0;
@@ -37,7 +37,7 @@
     {/each}
     {/key}
 {:else}
-<!-- Standard undefined section with no repeats, use component as defined in questionset -->
+<!-- Standard undefined section with no repeats, use component as defined in journey -->
 <section>
     <header>
         {#if section.logo}

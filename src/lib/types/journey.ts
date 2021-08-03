@@ -1,6 +1,8 @@
-export type QuestionSetType = {
+export type JourneyType = {
     title: string;
     pages: PageType[];
+    logo: string;
+    logoalt: string;
 }
 export type PageType = {
     url: string;
@@ -26,6 +28,7 @@ export type BaseComponentType = {
         | "Date" 
         | "Datetime"
         | "Displayblock"
+        | "Displaymodal"
         | "Dropdown" 
         | "Email"
         | "Month" 
@@ -62,11 +65,14 @@ export type BaseComponentType = {
 export type ValueType = {
     value: string;
     display: string;
+    image?: string;
+    imageWidth?: number;
+    imageHeight?: number;
 }
 
 export type TriBoxDateFieldsType = {
     type: string;
-    seperator: string;
+    separator: string;
     dayPlaceholder: string;
     monthPlaceholder: string;
     yearPlaceholder: string;
@@ -79,7 +85,7 @@ export type TriBoxDateValidRange = {
 }
 
 export type TriBoxDateComponentType = BaseComponentType & {
-    fields: TriBoxDateFieldsType;
+    fields?: TriBoxDateFieldsType;
     validRange?: TriBoxDateValidRange;
 }
 

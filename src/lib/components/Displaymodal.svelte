@@ -1,4 +1,5 @@
 <script>
+    let dismissed;
     let active;
     function enter() {
         active = "active";
@@ -6,15 +7,19 @@
     function leave() {
         active = "";
     }
+    function dismiss() {
+        dismissed = "dismissed"
+    }
 </script>
 
-
-<div class="question {active}" on:mouseenter={enter} on:mouseleave={leave} >
-    <p><slot name="pre"></slot></p>
-    <p><slot name="main"></slot></p>
-    <p><slot name="post"></slot></p>
+<div class="modal-overlay {dismissed}">
+    <div class="question {active}" on:mouseenter={enter} on:mouseleave={leave} >
+        <p><slot name="pre"></slot></p>
+        <p><slot name="main"></slot></p>
+        <p><slot name="post"></slot></p>
+    </div>
+    <button type="button" on:click={dismiss}>dismiss</button>
 </div>
-  
 
 <style>
     .question {
@@ -31,5 +36,16 @@
     .question.invalid {
         background-color: var(--input-error-bg, pink);
         color: var(--input-error-txt, red);
+    }
+    .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 100;
+    }
+    .dismissed {
+        display: none;
     }
 </style>
