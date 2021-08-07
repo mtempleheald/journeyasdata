@@ -6,5 +6,5 @@
 {#if source}
   <!-- TODO: reinstate markdown using a compatible library (snarkdown is not) -->
   <!-- {@html snarkdown(source)} -->
-  {@html source}
+  {source}
 {/if}

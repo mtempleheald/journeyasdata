@@ -2,7 +2,6 @@
 	import { createEventDispatcher } from 'svelte';
     import Helptext from '$lib/components/Helptext.svelte';
     import type { ComponentType } from '$lib/types/journey';
-    import { text } from 'svelte/internal';
 
     // expose component properties
     export let component: ComponentType;    
