@@ -76,17 +76,3 @@ section {
     max-width: 1000px;
     margin: 0.5rem auto;
 }
-
-/* Testing purposes only to prove ButtonSelect text can be styled */
-.buttonTextPurple {
-    color:darkmagenta;
-}
-.buttonTextOrange {
-    color: darkorange;
-}
-.buttonTextBlue {
-    color:deepskyblue;
-}
-.buttonTextGreen {
-    color:darkgreen;
-}
