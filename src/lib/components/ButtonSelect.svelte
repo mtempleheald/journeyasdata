@@ -2,6 +2,7 @@
 	import { createEventDispatcher } from 'svelte';
     import Helptext from '$lib/components/Helptext.svelte';
     import type { ComponentType } from '$lib/types/journey';
+    import { text } from 'svelte/internal';
 
     // expose component properties
     export let component: ComponentType;    
@@ -53,16 +54,36 @@
         {/if}
 
         {#if component.id}
-        <span class="buttons">
-        {#each component.values as v}
-            <button type="button" value="{v.value}" on:click="{() => updateValue(v.value)}" class="{component.value == v.value ? 'active' : ''}">
-                {v.image != null ? '' : v.display ?? ''}
-                {#if v.image != null}
-                    <img src="{v.image}" width="{v.imageWidth}" height="{v.imageHeight}" class="{component.value == v.value ? 'active' : ''}" alt="{v.display}" />
-                {/if}
-            </button>
-        {/each}        
-        </span>
+            <span class="buttons">
+                {#each component.values as v}
+                    <button type="button" value="{v.value}" on:click="{() => updateValue(v.value)}" class="{component.value == v.value ? 'active' : ''}">
+                        {#if v.textLocation == "top" && v.text != null}
+                            <div class="{v.textClass}">{v.text}</div>
+                        {/if}
+
+                        <div style="display:flex;justify-content:center;align-items:center;">
+                            {#if v.textLocation == "left" && v.text != null}
+                                <span class="{v.textClass}" style="float:left;">{v.text}</span>
+                            {/if}
+                            
+                            <span style="float:{v.textLocation == "right" ? 'left' : v.textLocation == "left" ? 'right' : 'none' };">
+                                {v.image != null ? '' : v.display ?? ''}
+                                {#if v.image != null}
+                                    <img src="{v.image}" width="{v.imageWidth}" height="{v.imageHeight}" class="{component.value == v.value ? 'active' : ''}" alt="{v.display}" />
+                                {/if}
+                            </span>
+
+                            {#if v.textLocation == "right" && v.text != null}
+                                <div class="{v.textClass}" style="float:right;">{v.text}</div>
+                            {/if}
+                        </div>
+
+                        {#if v.textLocation == "bottom" && v.text != null}
+                            <div class="{v.textClass}">{v.text}</div>
+                        {/if}
+                    </button>
+                {/each}
+            </span>
         {/if}     
         
         {#if component.help}

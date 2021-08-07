@@ -68,6 +68,9 @@ export type ValueType = {
     image?: string;
     imageWidth?: number;
     imageHeight?: number;
+    text?: string;
+    textClass?: string;
+    textLocation?: string;
 }
 
 export type TriBoxDateFieldsType = {
