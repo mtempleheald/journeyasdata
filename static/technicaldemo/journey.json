@@ -306,7 +306,7 @@
                   "image": "https://image.flaticon.com/icons/svg/58/58463.svg",
                   "imageWidth": "128",
                   "imageHeight": "128",
-                  "text": "Car",
+                  "text": "Top Car",
                   "textLocation": "top",
                   "textClass": "buttonTextPurple"
                 },
@@ -316,7 +316,7 @@
                   "image": "https://image.flaticon.com/icons/png/128/130/130278.png",
                   "imageWidth": "128",
                   "imageHeight": "128",
-                  "text": "bike",
+                  "text": "Left Bike",
                   "textLocation": "left",
                   "textClass": "buttonTextOrange"  
                 },
@@ -326,9 +326,19 @@
                   "image": "https://image.freepik.com/free-icon/bus_318-142528.jpg",
                   "imageWidth": "128",
                   "imageHeight": "128",
-                  "text": "Bus",
+                  "text": "Bottom Bus",
                   "textLocation": "bottom",
                   "textClass": "buttonTextBlue"
+                },
+                {
+                  "value": "train",
+                  "display": "Train",
+                  "image": "https://image.flaticon.com/icons/png/512/1249/1249786.png",
+                  "imageWidth": "128",
+                  "imageHeight": "128",
+                  "text": "Right Train",
+                  "textLocation": "right",
+                  "textClass": "buttonTextGreen"
                 }
               ]
             },
