@@ -2,6 +2,7 @@
 	import { createEventDispatcher } from 'svelte';
     import Helptext from '$lib/components/Helptext.svelte';
     import type { ComponentType } from '$lib/types/journey';
+    import { text } from 'svelte/internal';
 
     // expose component properties
     export let component: ComponentType;    
@@ -53,16 +54,36 @@
         {/if}
 
         {#if component.id}
-        <span class="buttons">
-        {#each component.values as v}
-            <button type="button" value="{v.value}" on:click="{() => updateValue(v.value)}" class="{component.value == v.value ? 'active' : ''}">
-                {v.image != null ? '' : v.display ?? ''}
-                {#if v.image != null}
-                    <img src="{v.image}" width="{v.imageWidth}" height="{v.imageHeight}" class="{component.value == v.value ? 'active' : ''}" alt="{v.display}" />
-                {/if}
-            </button>
-        {/each}        
-        </span>
+            <span class="buttons">
+                {#each component.values as v}
+                    <button type="button" value="{v.value}" on:click="{() => updateValue(v.value)}" class="{component.value == v.value ? 'active' : ''}">
+                        <div>
+                            {#if v.textLocation == "top" && v.text != null}
+                                <span class="{v.textClass}">{v.text}</span>
+                            {/if}
+                        </div>
+                        <div>
+                            {#if v.textLocation == "left" && v.text != null}
+                                <span class="{v.textClass}" style="float:left; display:inline-block; vertical-align:middle;">{v.text}</span>
+                            {/if}
+
+                            {v.image != null ? '' : v.display ?? ''}
+                            {#if v.image != null}
+                                <img src="{v.image}" width="{v.imageWidth}" height="{v.imageHeight}" class="{component.value == v.value ? 'active' : ''}" alt="{v.display}" />
+                            {/if}
+
+                            {#if v.textLocation == "right" && v.text != null}
+                                <span class="{v.textClass}" style="vertical-align:middle">{v.text}</span>
+                            {/if}
+                        </div>
+                        <div>
+                            {#if v.textLocation == "bottom" && v.text != null}
+                                <span class="{v.textClass}">{v.text}</span>
+                            {/if}
+                        </div>
+                    </button>
+                {/each}
+            </span>
         {/if}     
         
         {#if component.help}
