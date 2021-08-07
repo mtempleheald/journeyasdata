@@ -63,7 +63,7 @@
                             <div class="top">{v.display}</div>
                         {/if}
 
-                        <div class="container">
+                        <div class="image-container">
                             {#if v.textLocation == "left" && v.display != null}
                                 <span class="left">{v.display}</span>
                             {/if}
@@ -156,7 +156,7 @@
         background-color: var(--input-btn-bg, white);
         color: var(--input-btn-txt, black);
     }
-    .container {
+    .image-container {
         display: flex;
         justify-content: center;
         align-items: center;
