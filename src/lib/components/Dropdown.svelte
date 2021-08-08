@@ -1,7 +1,7 @@
 <script lang="ts">
+    import type { ComponentType, ValueType } from '$lib/types/journey';
 	import { createEventDispatcher, onMount } from 'svelte';
     import Helptext from '$lib/components/Helptext.svelte';
-    import type { ComponentType, ValueType } from '$lib/types/journey';
 
     // load refdata on component creation
     onMount(async () => {

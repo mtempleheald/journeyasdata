@@ -1,8 +1,9 @@
 export type JourneyType = {
     title: string;
     pages: PageType[];
-    logo: string;
-    logoalt: string;
+    logo?: string;
+    logoalt?: string;
+    cookiepreferences?: CookiePreferenceType;
 }
 export type PageType = {
     url: string;
@@ -68,6 +69,7 @@ export type ValueType = {
     image?: string;
     imageWidth?: number;
     imageHeight?: number;
+    textLocation?: string;
 }
 
 export type TriBoxDateFieldsType = {
@@ -101,4 +103,9 @@ export type VehicleComponentType = BaseComponentType & {
     regnumLabel?: string;
     regnumPlaceholder?: string;
     buttonLabel?: string;
+}
+export type CookiePreferenceType = {
+    pre?: string;
+    post?: string;
+    values?: ValueType[];
 }

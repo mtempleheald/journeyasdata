@@ -1,4 +1,5 @@
 <script context="module">
+	/** @type {import('@sveltejs/kit').Load} */
 	export async function load({ session }) {
         // An authorised user will have a user record in session
         // Redirect them to the admin home page
@@ -13,9 +14,9 @@
 </script>
 
 <script lang="ts">
-	import { session } from '$app/stores'
     import { goto } from '$app/navigation'
     import { post } from '$lib/utils/api'
+	import { session } from '$app/stores'
 
     let user: string
     let pass: string
@@ -38,6 +39,7 @@
     }
 
 </script>
+
 
 <header>
     <h1>Login</h1>

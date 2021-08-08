@@ -253,7 +253,7 @@
                 "dayPlaceholder": "DD",
                 "monthPlaceholder": "MM",
                 "yearPlaceholder": "YYYY",
-                "unknownOptionLabel": "I have not purchsed it yet" 
+                "unknownOptionLabel": "I have not purchased it yet" 
               },
               "validRange": {
                 "from": "01/01/1970",
@@ -302,24 +302,35 @@
               "values": [
                 {
                   "value": "car",
-                  "display": "Car",
+                  "display": "Top Car",
                   "image": "https://image.flaticon.com/icons/svg/58/58463.svg",
                   "imageWidth": "128",
-                  "imageHeight": "128"
+                  "imageHeight": "128",
+                  "textLocation": "top"
                 },
                 {
                   "value": "bike",
-                  "display": "Bike",
+                  "display": "Left Bike",
                   "image": "https://image.flaticon.com/icons/png/128/130/130278.png",
                   "imageWidth": "128",
-                  "imageHeight": "128"
+                  "imageHeight": "128",
+                  "textLocation": "left"
                 },
                 {
                   "value": "bus",
-                  "display": "Bus",
+                  "display": "Bottom Bus",
                   "image": "https://image.freepik.com/free-icon/bus_318-142528.jpg",
                   "imageWidth": "128",
-                  "imageHeight": "128"
+                  "imageHeight": "128",
+                  "textLocation": "bottom"
+                },
+                {
+                  "value": "train",
+                  "display": "Right Train",
+                  "image": "https://image.flaticon.com/icons/png/512/1249/1249786.png",
+                  "imageWidth": "128",
+                  "imageHeight": "128",
+                  "textLocation": "right"
                 }
               ]
             },
@@ -523,5 +534,19 @@
         }
       ]
     }
-  ]
+  ],
+  "cookiepreferences": {
+    "pre": "# Cookie preferences \n\n This website may require cookies to function. \n\n We would also appreciate your concept to use additional cookies for analytics purposes, please select an option.",
+    "post": "",
+    "values": [
+      {
+        "value": "essential",
+        "display": "Essential cookies only"
+      },
+      {
+        "value": "all",
+        "display": "Accept all cookies"
+      }
+    ]
+  }
 }

@@ -1,7 +1,7 @@
 <script lang="ts">
+    import type { ComponentType } from '$lib/types/journey';
 	import { createEventDispatcher } from 'svelte';
     import Helptext from '$lib/components/Helptext.svelte';
-    import type { ComponentType } from '$lib/types/journey';
 
     // expose component properties
     export let component: ComponentType;    
@@ -53,16 +53,43 @@
         {/if}
 
         {#if component.id}
-        <span class="buttons">
-        {#each component.values as v}
-            <button type="button" value="{v.value}" on:click="{() => updateValue(v.value)}" class="{component.value == v.value ? 'active' : ''}">
-                {v.image != null ? '' : v.display ?? ''}
-                {#if v.image != null}
-                    <img src="{v.image}" width="{v.imageWidth}" height="{v.imageHeight}" class="{component.value == v.value ? 'active' : ''}" alt="{v.display}" />
-                {/if}
-            </button>
-        {/each}        
-        </span>
+            <span class="buttons">
+                {#each component.values as v}
+                    <button type="button" value="{v.value}" 
+                        on:click="{() => updateValue(v.value)}" 
+                        class="{component.value == v.value ? 'active' : ''}">
+                        
+                        {#if v.textLocation == "top" && v.display != null}
+                            <div class="top">{v.display}</div>
+                        {/if}
+
+                        <div class="image-container">
+                            {#if v.textLocation == "left" && v.display != null}
+                                <span class="left">{v.display}</span>
+                            {/if}
+                            
+                            <span class="{v.textLocation == "right" ? 'left' : v.textLocation == "left" ? 'right' : '' };">
+                                {v.image != null ? '' : v.display ?? ''}
+                                {#if v.image != null}
+                                    <img src="{v.image}" 
+                                        width="{v.imageWidth}" 
+                                        height="{v.imageHeight}" 
+                                        class="{component.value == v.value ? 'active' : ''}" 
+                                        alt="{v.display}" />
+                                {/if}
+                            </span>
+
+                            {#if v.textLocation == "right" && v.display != null}
+                                <div class="right">{v.display}</div>
+                            {/if}
+                        </div>
+
+                        {#if v.textLocation == "bottom" && v.display != null}
+                            <div class="bottom">{v.display}</div>
+                        {/if}
+                    </button>
+                {/each}
+            </span>
         {/if}     
         
         {#if component.help}
@@ -128,5 +155,16 @@
     button {
         background-color: var(--input-btn-bg, white);
         color: var(--input-btn-txt, black);
+    }
+    .image-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .right {
+        float: right;
+    }
+    .left {
+        float: left;
     }
 </style>

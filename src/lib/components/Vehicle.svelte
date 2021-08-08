@@ -1,10 +1,10 @@
 <script lang="ts">
-    import Textbox from '$lib/components/Textbox.svelte';
     import type { VehicleComponentType } from '$lib/types/journey';
     import type { VehicleType } from '$lib/types/vehicle';
-    import Dropdown from '$lib/components/Dropdown.svelte';
     import { valueStore } from '$lib/stores/valuestore';
+    import Dropdown from '$lib/components/Dropdown.svelte';
     import Markdown from '$lib/components/Markdown.svelte';
+    import Textbox from '$lib/components/Textbox.svelte';
 
     // expose component properties
     export let component: VehicleComponentType;

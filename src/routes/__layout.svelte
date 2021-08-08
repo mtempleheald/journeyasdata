@@ -1,7 +1,7 @@
 <script context="module">
     import { BRAND } from '$lib/env/Env.svelte'
     /** @type {import('@sveltejs/kit').Load} */
-	export async function load({ page, fetch, session, context }) {        
+	export async function load() {        
         // dynamically load content, making use of HMR for quick feedback
         async function loadContent() {
             let content = await import(`./../../static/${BRAND}/journey.json`);
@@ -17,11 +17,11 @@
 </script>
 
 <script lang="ts">
-    import { setContext } from 'svelte';
-    import { browser } from '$app/env';
     import type { JourneyType } from '$lib/types/journey';
     import { actionStore } from '$lib/stores/actionstore';
+    import { browser } from '$app/env';
     import { getActions } from '$lib/actions/actionprovider';
+    import { setContext } from 'svelte';
     
     export let brand: string;
     export let journey: JourneyType;

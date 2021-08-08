@@ -1,6 +1,6 @@
 <script lang="ts">
-    import Component from '$lib/components/Component.svelte';
     import type { SectionType } from '$lib/types/journey';
+    import Component from '$lib/components/Component.svelte';
 
     export let section: SectionType;
     let currentSection: number = 0;

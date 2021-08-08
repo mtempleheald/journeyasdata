@@ -1,9 +1,6 @@
 <script context="module">
-
-	/**
-	 * @type {import('@sveltejs/kit').Load}
-	 */
-	export async function load({ page, fetch, session, context }) {
+	/** @type {import('@sveltejs/kit').Load} */
+	export async function load({ page }) {
 		return {
 			props: {
 				pageurl: await `${page.params.pageurl}`
@@ -20,6 +17,7 @@
 	export let pageurl: string;
 	const journey: JourneyType = getContext("journey");
 </script>
+
 
 {#each journey.pages as p}
 	{#if p.url == pageurl}

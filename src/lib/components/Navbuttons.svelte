@@ -1,10 +1,10 @@
 <script lang="ts">
-    import { goto } from '$app/navigation';
     import type { JourneyType } from '$lib/types/journey';
-    import { valueStore } from '$lib/stores/valuestore'
-    import { validationStore } from '$lib/stores/validationstore';
-    import { pageValidator } from '$lib/utils/validators';
+    import { goto } from '$app/navigation';
     import { nextPageUrl, prevPageUrl } from '$lib/utils/navigation';
+    import { pageValidator } from '$lib/utils/validators';
+    import { validationStore } from '$lib/stores/validationstore';
+    import { valueStore } from '$lib/stores/valuestore'
 
     export let journey: JourneyType;
     export let pageurl: string;
