@@ -5,6 +5,7 @@
     import { valueStore } from '$lib/stores/valuestore';
     import Address from '$lib/components/Address.svelte';
     import Buttonselect from '$lib/components/Buttonselect.svelte';
+    import Checkbox from '$lib/components/Checkbox.svelte';
     import Displayblock from '$lib/components/Displayblock.svelte';
     import Displaymodal from '$lib/components/Displaymodal.svelte';
     import Dropdown from '$lib/components/Dropdown.svelte';
@@ -53,6 +54,23 @@
       <Markdown source={component.post}/>
     </svelte:fragment>
   </Buttonselect>
+{:else if component.type == "Acknowledgement"}
+  <Checkbox
+    component={{...component, 
+    value:$valueStore[component.id] ?? ''}}
+    on:valueChange="{componentUpdated}">
+  <svelte:fragment slot="pre">
+    <Markdown source={component.pre}/>
+  </svelte:fragment>
+  <svelte:fragment slot="post">
+    <Markdown source={component.post}/>
+  </svelte:fragment>
+  </Checkbox>
+{:else if component.type == "Address"}
+  <Address 
+    component={component}
+    on:addressChange="{componentUpdated}"
+  />
 {:else if component.type == "ButtonSelect"}
   <Buttonselect
     component={{...component, 
@@ -65,18 +83,18 @@
       <Markdown source={component.post}/>
     </svelte:fragment>
   </Buttonselect>
-{:else if component.type == "Dropdown"}
-  <Dropdown
+{:else if component.type == "Checkbox"}
+  <Checkbox
     component={{...component, 
-      value:$valueStore[component.id] ?? ''}}
+    value:$valueStore[component.id] ?? ''}}
     on:valueChange="{componentUpdated}">
-      <svelte:fragment slot="pre">
-        <Markdown source={component.pre}/>
-      </svelte:fragment>
-      <svelte:fragment slot="post">
-        <Markdown source={component.post}/>
-      </svelte:fragment>
-  </Dropdown>
+    <svelte:fragment slot="pre">
+      <Markdown source={component.pre}/>
+    </svelte:fragment>
+    <svelte:fragment slot="post">
+      <Markdown source={component.post}/>
+    </svelte:fragment>
+  </Checkbox>
 {:else if component.type == "Displayblock"}
   <Displayblock>
     <svelte:fragment slot="pre">
@@ -101,11 +119,18 @@
       <Markdown source={component.post}/>
     </svelte:fragment>
   </Displaymodal>
-{:else if component.type == "Address"}
-  <Address 
-    component={component}
-    on:addressChange="{componentUpdated}"
-  />
+{:else if component.type == "Dropdown"}
+  <Dropdown
+    component={{...component, 
+      value:$valueStore[component.id] ?? ''}}
+    on:valueChange="{componentUpdated}">
+      <svelte:fragment slot="pre">
+        <Markdown source={component.pre}/>
+      </svelte:fragment>
+      <svelte:fragment slot="post">
+        <Markdown source={component.post}/>
+      </svelte:fragment>
+  </Dropdown>
 {:else if component.type == "TriBoxDate"}
   <Triboxdate 
     component={component}

@@ -17,6 +17,37 @@
               "content": "# Heading \n\n Introductory sentence explaining how we get money off you. \n\n Another paragraph containing some caveats. \n\n - bullet1 \n\n - bullet2"
             },
             {
+              "type": "Acknowledgement",
+              "id": "ackme",
+              "label": "Acknowledge my existence",
+              "values": [
+                {
+                  "value": "i_exist",
+                  "display": "Yes - I exist"
+                },
+                {
+                  "value": "no",
+                  "display": "No I dont exist"
+                }
+              ]
+            },
+            {
+              "type": "Checkbox",
+              "id": "tickme",
+              "label": "Hello",
+              "required": true,
+              "values": [
+                {
+                  "value": "example1",
+                  "display": "Example 1"
+                },
+                {
+                  "value": "example2",
+                  "display": "Example 2"
+                }
+              ]
+            },
+            {
               "id": "startbutton",
               "type": "ButtonSelect",
               "values": [

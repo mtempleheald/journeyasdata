@@ -23,8 +23,10 @@ export type SectionType = {
 export type ComponentType = BaseComponentType | AddressComponentType | VehicleComponentType | TriBoxDateComponentType;
 
 export type BaseComponentType = {
-    type?: "Address" 
+    type?: "Acknowledgement"
+        | "Address" 
         | "ButtonSelect"
+        | "Checkbox"
         | "Colour" 
         | "Date" 
         | "Datetime"
