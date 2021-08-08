@@ -30,22 +30,22 @@
 
 {#if !component.dependsupon || ($valueStore[component.dependsupon.id] == component.dependsupon.value)}
 {#if ["Colour","Date","Datetime","Email","Month","Number","Search","Slider","Text","Telephone","Time","Upper","Url","Week"].includes(component.type)}
-<svelte:component this={Textbox} 
-  component={{...component, value:$valueStore[component.id] ?? ''}}
-  on:valueChange="{componentUpdated}">
-    <svelte:fragment slot="pre">
-      <Markdown source={component.pre}/>
-    </svelte:fragment>
-    <svelte:fragment slot="post">
-      <Markdown source={component.post}/>
-    </svelte:fragment>  
-</svelte:component>
-{:else if component.type == "YesNo"}
-<Buttonselect   
-  component={{...component, 
-    value:$valueStore[component.id] ?? '', 
-    values:[{value:"Y",display:"Yes"},{value:"N",display:"No"}]}}
+  <svelte:component this={Textbox} 
+    component={{...component, value:$valueStore[component.id] ?? ''}}
     on:valueChange="{componentUpdated}">
+      <svelte:fragment slot="pre">
+        <Markdown source={component.pre}/>
+      </svelte:fragment>
+      <svelte:fragment slot="post">
+        <Markdown source={component.post}/>
+      </svelte:fragment>  
+  </svelte:component>
+{:else if component.type == "YesNo"}
+  <Buttonselect   
+    component={{...component, 
+      value:$valueStore[component.id] ?? '', 
+      values:[{value:"Y",display:"Yes"},{value:"N",display:"No"}]}}
+      on:valueChange="{componentUpdated}">
     <svelte:fragment slot="pre">
       <Markdown source={component.pre}/>
     </svelte:fragment>
@@ -54,53 +54,53 @@
     </svelte:fragment>
   </Buttonselect>
 {:else if component.type == "ButtonSelect"}
-<Buttonselect
-  component={{...component, 
-    value:$valueStore[component.id] ?? ''}}
-  on:valueChange="{componentUpdated}">
+  <Buttonselect
+    component={{...component, 
+      value:$valueStore[component.id] ?? ''}}
+      on:valueChange="{componentUpdated}">
     <svelte:fragment slot="pre">
       <Markdown source={component.pre}/>
     </svelte:fragment>
     <svelte:fragment slot="post">
       <Markdown source={component.post}/>
     </svelte:fragment>
-</Buttonselect>
+  </Buttonselect>
 {:else if component.type == "Dropdown"}
-<Dropdown
-  component={{...component, 
-    value:$valueStore[component.id] ?? ''}}
-  on:valueChange="{componentUpdated}">
+  <Dropdown
+    component={{...component, 
+      value:$valueStore[component.id] ?? ''}}
+    on:valueChange="{componentUpdated}">
+      <svelte:fragment slot="pre">
+        <Markdown source={component.pre}/>
+      </svelte:fragment>
+      <svelte:fragment slot="post">
+        <Markdown source={component.post}/>
+      </svelte:fragment>
+  </Dropdown>
+{:else if component.type == "Displayblock"}
+  <Displayblock>
     <svelte:fragment slot="pre">
-      <Markdown source={component.pre}/>
+        <Markdown source={component.pre}/>
+    </svelte:fragment>
+    <svelte:fragment slot="main"> 
+      <Markdown source={component.content}/>
     </svelte:fragment>
     <svelte:fragment slot="post">
       <Markdown source={component.post}/>
     </svelte:fragment>
-</Dropdown>
-{:else if component.type == "Displayblock"}
-<Displayblock>
-  <svelte:fragment slot="pre">
-      <Markdown source={component.pre}/>
-  </svelte:fragment>
-  <svelte:fragment slot="main"> 
-    <Markdown source={component.content}/>
-  </svelte:fragment>
-  <svelte:fragment slot="post">
-    <Markdown source={component.post}/>
-  </svelte:fragment>
-</Displayblock>
+  </Displayblock>
 {:else if component.type == "Displaymodal"}
-<Displaymodal>
-  <svelte:fragment slot="pre">
-    <Markdown source={component.pre}/>
-  </svelte:fragment>
-  <svelte:fragment slot="main">
-    <Markdown source={component.content}/>
-  </svelte:fragment>
-  <svelte:fragment slot="post">
-    <Markdown source={component.post}/>
-  </svelte:fragment>
-</Displaymodal>
+  <Displaymodal>
+    <svelte:fragment slot="pre">
+      <Markdown source={component.pre}/>
+    </svelte:fragment>
+    <svelte:fragment slot="main">
+      <Markdown source={component.content}/>
+    </svelte:fragment>
+    <svelte:fragment slot="post">
+      <Markdown source={component.post}/>
+    </svelte:fragment>
+  </Displaymodal>
 {:else if component.type == "Address"}
   <Address 
     component={component}
