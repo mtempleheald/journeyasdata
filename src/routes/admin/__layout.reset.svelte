@@ -1,6 +1,6 @@
 <script>
-	import { session } from '$app/stores'
     import { post } from '$lib/utils/api'
+	import { session } from '$app/stores'
 
     async function logout() {
 		await post(`api/auth/logout`);
@@ -10,6 +10,7 @@
 		$session.user = null;
 	}
 </script>
+
 
 <header>
     <h1>Questionset Administration</h1>

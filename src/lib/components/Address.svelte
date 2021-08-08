@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { createEventDispatcher } from 'svelte';
-    import { valueStore } from '$lib/stores/valuestore';
-    import { validationStore } from '$lib/stores/validationstore';
-    import type { AddressType } from '$lib/types/address';
     import type { AddressComponentType } from '$lib/types/journey';
+    import type { AddressType } from '$lib/types/address';
+	import { createEventDispatcher } from 'svelte';
+    import { validationStore } from '$lib/stores/validationstore';
+    import { valueStore } from '$lib/stores/valuestore';
     import Dropdown from '$lib/components/Dropdown.svelte';
     import Textbox from '$lib/components/Textbox.svelte';
     

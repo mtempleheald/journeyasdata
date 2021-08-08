@@ -1,3 +1,7 @@
+/*
+  This library is designed to provide a wrapper for multiple APIs that removes the authentication cross-cutting concern
+  TODO: Consolidate with /utils/api.ts
+*/
 import BASEURL from '$lib/env/Env.svelte'
 
 async function send({ method, path, data, token }) {

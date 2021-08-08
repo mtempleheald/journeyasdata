@@ -1,10 +1,10 @@
 <script lang="ts">
+    import type { CookiePreferenceType } from '$lib/types/journey';
     import { actionStore } from '$lib/stores/actionstore';
     import { validationStore } from '$lib/stores/validationstore';
     import { valueStore } from '$lib/stores/valuestore';
-    import ButtonSelect from '$lib/components/ButtonSelect.svelte';
+    import Buttonselect from '$lib/components/Buttonselect.svelte';
     import Markdown from '$lib/components/Markdown.svelte';
-    import type { CookiePreferenceType } from '$lib/types/journey';
 
     export let cookiepreferences: CookiePreferenceType;
 
@@ -33,7 +33,7 @@
 <section class="{active} {selected}" 
     on:mouseenter={enter} on:mouseleave={leave} >
 
-<ButtonSelect
+<Buttonselect
     component={{
         id: "cookiestatus",
         value: $valueStore["cookiestatus"] ?? '',
@@ -46,7 +46,7 @@
     <svelte:fragment slot="post">
       <Markdown source={cookiepreferences.post}/>
     </svelte:fragment>
-  </ButtonSelect>
+  </Buttonselect>
 
 </section>
 

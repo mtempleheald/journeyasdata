@@ -1,17 +1,17 @@
 <script lang="ts">
+    import type { ComponentType } from '$lib/types/journey';
     import { actionStore } from '$lib/stores/actionstore';
     import { validationStore } from '$lib/stores/validationstore';
     import { valueStore } from '$lib/stores/valuestore';
     import Address from '$lib/components/Address.svelte';
-    import ButtonSelect from '$lib/components/ButtonSelect.svelte';
+    import Buttonselect from '$lib/components/Buttonselect.svelte';
     import Displayblock from '$lib/components/Displayblock.svelte';
     import Displaymodal from '$lib/components/Displaymodal.svelte';
     import Dropdown from '$lib/components/Dropdown.svelte';
     import Markdown from '$lib/components/Markdown.svelte';
     import Textbox from '$lib/components/Textbox.svelte';
-    import TriBoxDate from '$lib/components/TriBoxDate.svelte';
+    import Triboxdate from '$lib/components/Triboxdate.svelte';
     import Vehicle from '$lib/components/Vehicle.svelte';
-    import type { ComponentType } from '$lib/types/journey';
 
     export let component: ComponentType;
 
@@ -41,7 +41,7 @@
     </svelte:fragment>  
 </svelte:component>
 {:else if component.type == "YesNo"}
-<ButtonSelect   
+<Buttonselect   
   component={{...component, 
     value:$valueStore[component.id] ?? '', 
     values:[{value:"Y",display:"Yes"},{value:"N",display:"No"}]}}
@@ -52,9 +52,9 @@
     <svelte:fragment slot="post">
       <Markdown source={component.post}/>
     </svelte:fragment>
-  </ButtonSelect>
+  </Buttonselect>
 {:else if component.type == "ButtonSelect"}
-<ButtonSelect
+<Buttonselect
   component={{...component, 
     value:$valueStore[component.id] ?? ''}}
   on:valueChange="{componentUpdated}">
@@ -64,7 +64,7 @@
     <svelte:fragment slot="post">
       <Markdown source={component.post}/>
     </svelte:fragment>
-</ButtonSelect>
+</Buttonselect>
 {:else if component.type == "Dropdown"}
 <Dropdown
   component={{...component, 
@@ -107,7 +107,7 @@
     on:addressChange="{componentUpdated}"
   />
 {:else if component.type == "TriBoxDate"}
-  <TriBoxDate 
+  <Triboxdate 
     component={component}
     on:dateChange="{componentUpdated}"
   />
