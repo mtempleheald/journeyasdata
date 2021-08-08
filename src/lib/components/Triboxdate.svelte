@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { createEventDispatcher } from 'svelte';
-    import { blur } from 'svelte/transition';
-    import Helptext from '$lib/components/Helptext.svelte';
     import type { TriBoxDateComponentType } from '$lib/types/journey';
+    import { blur } from 'svelte/transition';
+	import { createEventDispatcher } from 'svelte';
+    import Helptext from '$lib/components/Helptext.svelte';
 
     // expose component properties
     export let component: TriBoxDateComponentType;

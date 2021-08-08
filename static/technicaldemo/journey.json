@@ -253,7 +253,7 @@
                 "dayPlaceholder": "DD",
                 "monthPlaceholder": "MM",
                 "yearPlaceholder": "YYYY",
-                "unknownOptionLabel": "I have not purchsed it yet" 
+                "unknownOptionLabel": "I have not purchased it yet" 
               },
               "validRange": {
                 "from": "01/01/1970",

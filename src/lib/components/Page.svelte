@@ -1,11 +1,11 @@
 <script lang="ts">
+    import type { PageType, JourneyType } from '$lib/types/journey';
     import { BRAND } from '$lib/env/Env.svelte'
     import { getContext } from 'svelte';
     import Cookiepreference from '$lib/components/Cookiepreference.svelte';
-    import NavButtons from '$lib/components/NavButtons.svelte';
-    import ProgressBar from '$lib/components/ProgressBar.svelte';
+    import Navbuttons from '$lib/components/Navbuttons.svelte';
+    import Progressbar from '$lib/components/Progressbar.svelte';
     import Section from './Section.svelte';
-    import type { PageType, JourneyType } from '$lib/types/journey';
 
     export let page: PageType;
 
@@ -26,7 +26,7 @@
 
 
 {#if page.displayprogress ?? true}
-<ProgressBar
+<Progressbar
   journey = {journey}
   pageurl={page.url}/>
 {/if}
@@ -44,7 +44,7 @@
 {/each}
 
 
-<NavButtons 
+<Navbuttons 
   journey = {journey}
   pageurl = '{page.url}'
   nextText = 'Next Page'

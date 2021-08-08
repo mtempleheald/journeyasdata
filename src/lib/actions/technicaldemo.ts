@@ -1,22 +1,25 @@
-import { valueStore } from '$lib/stores/valuestore';
-import { validationStore } from '$lib/stores/validationstore';
 import type { VehicleType } from '$lib/types/vehicle';
+import { validationStore } from '$lib/stores/validationstore';
+import { valueStore } from '$lib/stores/valuestore';
 
 export let actions = {
     "simpleimagebutton": function () {
-        console.log('Simple Image Button action was triggered');
+        let values;
+        const valueUnsubscriber = valueStore.subscribe(x => values = x);
+        console.log(`Simple Image Button action was triggered with value ${values["simpleimagebutton"]}`);
+        valueUnsubscriber();
     },
     "regnumber": lookupVehicle
 }
 
 async function lookupVehicle () {
     console.log("lookupVehicle()");
-    let inputs;
+    let values;
     let vehicle: VehicleType;
 
-    const inputUnsubscriber = valueStore.subscribe(value => inputs = value);
+    const valueUnsubscriber = valueStore.subscribe(x => values = x);
     
-    if (!inputs["regnumber"]) {
+    if (!values["regnumber"]) {
         console.log("reset vehicle fields");
         valueStore.set("vehiclemake", '');
         valueStore.set("vehiclemodel", '');
@@ -31,7 +34,7 @@ async function lookupVehicle () {
     }
     else {
         console.log("searching for vehicle...");
-        await fetch (`/api/vehicle/` + inputs["regnumber"])
+        await fetch (`/api/vehicle/` + values["regnumber"])
                     .then(resp => resp.json())
                     .then(data => vehicle = data);
         
@@ -47,5 +50,5 @@ async function lookupVehicle () {
         valueStore.set("vehicledoors", vehicle.doors);
     }
     // avoid memory leaks
-    inputUnsubscriber();
+    valueUnsubscriber();
 }

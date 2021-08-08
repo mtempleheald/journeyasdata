@@ -26,6 +26,70 @@ The basic data structure which drives the entire solution:
         - question 
 
 
+## Key Features
+
+- URL based routing (not hash-based, better for SEO) 
+  - handled by [SvelteKit](https://kit.svelte.dev) filesystem based routing out of the box
+- Custom components, all inputs optional, designed to be ultra flexible and responsive across browsers/devices
+- Data-driven basic validation using HTML5 standard elements and [ValidationAPI](https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation#the_constraint_validation_api)
+- Configurable journey - content editors manage content (labels, helptext...), developers manage code.
+- Configurable themes - components  functional layout, responsible for responsive design, exposing key CSS variables for theming.  Themes managed separately, decoupling services from brand elements such as colour palettes.
+- Session data management
+  - The `valueStore` is a key-value store holding the component id against its value, see `/lib/stores/valueStore.ts`
+  - This is updated whenever a user action triggers a change, this could be direct or via a custom action.
+- Injectable functionality
+  - The entire journey is dynamic, with the majority of validation and display logic being data-driven.
+  - In order to perform bespoke actions we need a trigger mechanism.  
+  - This trigger mechanism is a component dispatching an event when a value changes, linked to the action by naming convention.
+  - All defined actions are loaded when the site is first loaded, into the actionStore, which is distinct to a brand (global actions may come later).  See `/lib/actions/actionprovider.ts`
+- Repeating sections
+  - Each element requires a unique identifier for use in stores, yet sometimes we require multiple inputs, e.g. drivers on a car insurance policy
+  - To manage this we prefix the component id with a section id and index `${sectionid}.${sectionindex}.${componentid}`
+  - The downside of this (for now) is that bespoke functionality needs to know about these nuances
+
+
+# Extra features
+
+- Data security - No PII data left on the local machine - data is held in memory only by default in [Svelte stores](https://svelte.dev/docs#svelte_store).
+  If you refresh the page you lose all data, so we may need sessionStorage store capabilities too, especially when dealing with payment gateways.
+- API security - [SvelteKit will server-render pages on demand](https://kit.svelte.dev/docs#ssr-and-javascript) and [endpoints only run on the server](https://kit.svelte.dev/docs#routing-endpoints)
+- A/B testing - does NOT cover code, but does cover data - the current plan is to handle this by deployment, hosting multiple versions simultaneously.
+- Source/Affinity based branding - If redirected from google or some other aggregator we may want to style certain aspects differently, e.g. logos
+- Admin backend for journey generation
+  - [JWT authentication](https://www.npmjs.com/package/jsonwebtoken) [using server side endpoints](https://stackoverflow.com/questions/67255874/where-should-i-refresh-my-jwt-in-sveltekit)
+  - [Client side (stateless) JWT auth pattern](https://www.caktusgroup.com/blog/2020/10/20/jwt-authentication-rethinking-pattern/)
+  - [Alternative to hand writing](https://www.npmjs.com/package/svelte-kit-cookie-session)
+  - [Working example provided by SvelteKit team](https://github.com/sveltejs/realworld)
+
+
+# Getting started
+
+See [Svelte](https://svelte.dev) to learn about Svelte.  
+See [SvelteKit](https://kit.svelte.dev) to learn about SvelteKit.  
+See [Vite](https://vitejs.dev/) to learn about Vite, the modern bundler+ that SvelteKit uses.  
+See [TypeScript](https://www.typescriptlang.org/) to learn about TypeScript.  This is key to ensuring that this solution stays maintainable and helps reduce runtime errors (don't ignore TS warnings!).  
+
+To run the application locally:
+
+`npm install` to import dependencies  
+`npm run dev` to launch locally with live reload  
+`npm run build` to build for production  
+`npm run preview` to check the production build  
+
+SvelteKit depends on node v14 which is the latest LTS version.
+`nvm ls` to list node versions
+`nvm install --lts` to install latest LTS version of node
+`nvm use --lts` to use the LTS version
+
+# Contribution guide
+
+I advise using VS Code with default configuration and using the extension 'Svelte for VS Code'.  
+TypeScript warnings must be addressed for a PR to be accepted.  
+
+To toggle between websites for development add a new `.env.development` file as a copy of `.env`.  
+This file is listed in `.gitignore` to facilitate different developers working with shared components and separate websites.  
+
+
 ## Workflow
 
 ### Journey workflow
@@ -88,67 +152,6 @@ validate   --> act(Execute component actions)
 publish    --> act
 act   --> next[[Next component]]
 ```
-
-## Key Features
-
-- URL based routing (not hash-based, better for SEO) 
-  - handled by [SvelteKit](https://kit.svelte.dev) filesystem based routing out of the box
-- Custom components, all inputs optional, designed to be ultra flexible and responsive across browsers/devices
-- Data-driven basic validation using HTML5 standard elements and [ValidationAPI](https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation#the_constraint_validation_api)
-- Configurable journey - content editors manage content (labels, helptext...), developers manage code.
-- Configurable themes - components  functional layout, responsible for responsive design, exposing key CSS variables for theming.  Themes managed separately, decoupling services from brand elements such as colour palettes.
-- Session data management
-  - The `valueStore` is a key-value store holding the component id against its value, see `/lib/stores/valueStore.ts`
-  - This is updated whenever a user action triggers a change, this could be direct or via a custom action.
-- Injectable functionality
-  - The entire journey is dynamic, with the majority of validation and display logic being data-driven.
-  - In order to perform bespoke actions we need a trigger mechanism.  
-  - This trigger mechanism is a component dispatching an event when a value changes, linked to the action by naming convention.
-  - All defined actions are loaded when the site is first loaded, into the actionStore, which is distinct to a brand (global actions may come later).  See `/lib/actions/actionprovider.ts`
-- Repeating sections
-  - Each element requires a unique identifier for use in stores, yet sometimes we require multiple inputs, e.g. drivers on a car insurance policy
-  - To manage this we prefix the component id with a section id and index `${sectionid}.${sectionindex}.${componentid}`
-  - The downside of this (for now) is that bespoke functionality needs to know about these nuances
-
-
-# Extra features
-
-- Data security - No PII data left on the local machine - data is held in memory only by default in [Svelte stores](https://svelte.dev/docs#svelte_store).
-  If you refresh the page you lose all data, so we may need sessionStorage store capabilities too, especially when dealing with payment gateways.
-- API security - [SvelteKit will server-render pages on demand](https://kit.svelte.dev/docs#ssr-and-javascript) and [endpoints only run on the server](https://kit.svelte.dev/docs#routing-endpoints)
-- A/B testing - does NOT cover code, but does cover data - the current plan is to handle this by deployment, hosting multiple versions simultaneously.
-- Source/Affinity based branding - If redirected from google or some other aggregator we may want to style certain aspects differently, e.g. logos
-- Admin backend for journey generation
-  - [JWT authentication](https://www.npmjs.com/package/jsonwebtoken) [using server side endpoints](https://stackoverflow.com/questions/67255874/where-should-i-refresh-my-jwt-in-sveltekit)
-  - [Client side (stateless) JWT auth pattern](https://www.caktusgroup.com/blog/2020/10/20/jwt-authentication-rethinking-pattern/)
-  - [Alternative to hand writing](https://www.npmjs.com/package/svelte-kit-cookie-session)
-  - [Working example provided by SvelteKit team](https://github.com/sveltejs/realworld)
-
-
-# Getting started
-
-See [Svelte](https://svelte.dev) to learn about Svelte.  
-See [SvelteKit](https://kit.svelte.dev) to learn about SvelteKit.  
-See [Vite](https://vitejs.dev/) to learn about Vite, the modern bundler+ that SvelteKit uses.  
-See [TypeScript](https://www.typescriptlang.org/) to learn about TypeScript.  This is key to ensuring that this solution stays maintainable and helps reduce runtime errors (don't ignore TS warnings!).  
-
-To run the application locally:
-
-`npm install` to import dependencies  
-`npm run dev` to launch locally with live reload  
-`npm run build` to build for production  
-`npm run preview` to check the production build  
-
-
-# Contribution guide
-
-Contributions are welcome, PRs should target develop.  
-The develop branch represents the latest code, deployment to the demo environment is performed off main.  
-This ensures that the demo site is stable even though breaking changes could be made to sveltekit whilst it is in beta.  
-
-I advise using VS Code with default configuration and using the extension 'Svelte for VS Code'.  
-TypeScript warnings must be addressed for a PR to be accepted.  
-
 
 ## Intended deployment process
 
