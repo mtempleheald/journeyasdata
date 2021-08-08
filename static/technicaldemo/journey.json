@@ -534,5 +534,19 @@
         }
       ]
     }
-  ]
+  ],
+  "cookiepreferences": {
+    "pre": "# Cookie preferences \n\n This website may require cookies to function. \n\n We would also appreciate your concept to use additional cookies for analytics purposes, please select an option.",
+    "post": "",
+    "values": [
+      {
+        "value": "essential",
+        "display": "Essential cookies only"
+      },
+      {
+        "value": "all",
+        "display": "Accept all cookies"
+      }
+    ]
+  }
 }

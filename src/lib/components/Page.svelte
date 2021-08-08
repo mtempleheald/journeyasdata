@@ -1,8 +1,9 @@
 <script lang="ts">
-    import { getContext } from 'svelte';
     import { BRAND } from '$lib/env/Env.svelte'
-    import ProgressBar from '$lib/components/ProgressBar.svelte';
+    import { getContext } from 'svelte';
+    import Cookiepreference from '$lib/components/Cookiepreference.svelte';
     import NavButtons from '$lib/components/NavButtons.svelte';
+    import ProgressBar from '$lib/components/ProgressBar.svelte';
     import Section from './Section.svelte';
     import type { PageType, JourneyType } from '$lib/types/journey';
 
@@ -13,14 +14,14 @@
 </script>
 
 
-
 <header>
+  <Cookiepreference cookiepreferences={journey.cookiepreferences}/>
   {#if journey.logo}
     <img src="{journey.logo}" alt="{journey.logoalt}">
   {:else}
     <img src="https://fakeimg.pl/250x100/?text={BRAND}" alt="logo">
   {/if}
-  <h1>{journey.title}</h1>
+  <h1>{journey.title}</h1>  
 </header>
 
 

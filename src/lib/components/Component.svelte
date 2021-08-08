@@ -1,17 +1,16 @@
 <script lang="ts">
-    //import snarkdown from 'snarkdown';// https://github.com/developit/snarkdown/blob/master/test/index.js
-    import Markdown from '$lib/components/Markdown.svelte';
+    import { actionStore } from '$lib/stores/actionstore';
+    import { validationStore } from '$lib/stores/validationstore';
+    import { valueStore } from '$lib/stores/valuestore';
     import Address from '$lib/components/Address.svelte';
     import ButtonSelect from '$lib/components/ButtonSelect.svelte';
-    import Dropdown from '$lib/components/Dropdown.svelte';
     import Displayblock from '$lib/components/Displayblock.svelte';
     import Displaymodal from '$lib/components/Displaymodal.svelte';
+    import Dropdown from '$lib/components/Dropdown.svelte';
+    import Markdown from '$lib/components/Markdown.svelte';
     import Textbox from '$lib/components/Textbox.svelte';
-    import Vehicle from '$lib/components/Vehicle.svelte';
     import TriBoxDate from '$lib/components/TriBoxDate.svelte';
-    import { valueStore } from '$lib/stores/valuestore';
-    import { validationStore } from '$lib/stores/validationstore';
-    import { actionStore } from '$lib/stores/actionstore';
+    import Vehicle from '$lib/components/Vehicle.svelte';
     import type { ComponentType } from '$lib/types/journey';
 
     export let component: ComponentType;
@@ -52,7 +51,7 @@
     </svelte:fragment>
     <svelte:fragment slot="post">
       <Markdown source={component.post}/>
-  </svelte:fragment>
+    </svelte:fragment>
   </ButtonSelect>
 {:else if component.type == "ButtonSelect"}
 <ButtonSelect
