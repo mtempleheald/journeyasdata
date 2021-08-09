@@ -155,6 +155,7 @@
     button {
         background-color: var(--input-btn-bg, white);
         color: var(--input-btn-txt, black);
+        border: var(--input-btn-border, 1px solid black);
     }
     .image-container {
         display: flex;
