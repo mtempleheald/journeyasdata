@@ -19,7 +19,7 @@
         <section>
             <header>
                 {#if section.logo}
-                <img src={section.logo} alt="{section.title} section logo">
+                <img src={section.logo} alt="{section.title} section logo" width="{section.logowidth}" height="{section.logoheight}" >
                 {/if}
                 {#if section.title}
                 <h3>{section.title}[{idx}]</h3>
@@ -41,7 +41,7 @@
 <section>
     <header>
         {#if section.logo}
-        <img src={section.logo} alt="{section.title} section logo">
+        <img src={section.logo} alt="{section.title} section logo" width="{section.logowidth}" height="{section.logoheight}" >
         {/if}
         {#if section.title}
         <h3>{section.title}</h3>

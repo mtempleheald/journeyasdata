@@ -9,6 +9,8 @@
         {
           "title": "Your Vehicle",
           "logo": "https://fakeimg.pl/100x50/?text=Vehicle%20Logo",
+          "logowidth": "150px",
+          "logoheight": "75px",
           "components": [
             {
               "id": "vehicleregnum",

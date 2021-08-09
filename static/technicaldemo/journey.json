@@ -10,7 +10,9 @@
       "sections": [
         {
           "title": "Introduction section",
-          "logo": "https://fakeimg.pl/100x50/?text=Introduction%20Logo",
+          "logo": "https://fakeimg.pl/100x50/?text=Intro%20Logo%20Stretched",
+          "logowidth": "250px",
+          "logoheight": "50px",
           "components": [
             {
               "type": "Displayblock",

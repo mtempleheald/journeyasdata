@@ -17,6 +17,8 @@ export type SectionType = {
     type?: string;
     title?: string;
     logo?: string;
+    logowidth?: string;
+    logoheight?: string;
     maxrepeats?: number;
     components: ComponentType[];
 }

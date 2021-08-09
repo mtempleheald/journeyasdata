@@ -51,6 +51,7 @@
     --input-actionbtn-txt:       var(--green);
     --input-btn-bg:              var(--white);
     --input-btn-txt:             var(--darkgrey);
+    --input-btn-border:          1px solid var(--darkgrey);
     --input-error-bg:            var(--white);
     --input-error-txt:           var(--red);
     --input-error-msg-bg:        var(--pink);
