@@ -1,9 +1,8 @@
 :root {
-    /* complete colour pallete */
-    --blue:       #1c1c74;
-    --darkgrey:   #707070;
-    --green:      #6fb916;
-    --lightgrey:  #f7f7fa;
+    /* complete colour palette */
+    --black:       #111;
+    --darkgrey:   #333;
+    --lightgrey:  #fff;
     --pink:       rgba(214,1,18,.2);
     --red:        #d60112;
     --white:      #fff;
@@ -12,13 +11,35 @@
     --font:      "Arial";
 
 
+    /* Brand-Component mappings */
+    --page-hdr-bg:               var(--white);
+    --page-hdr-txt:              var(--black);
+    --page-hdr-border:           none;
+    --page-hdr-width:            1000px;
+    --page-hdr-head-height:      50px;
+    --page-hdr-head-pad:         0 1rem;
+    --page-logo-height:          50px;
 
+    --page-width:                1000px;
+    --page-head-height:          50px;
+    --page-head-pad:             0 1rem;
+
+    --page-ftr-bg:               var(--darkgrey);
+    --page-ftr-txt:              var(--white);
+    --page-ftr-width:            1000px;
+
+    --section-hdr-height:        75px;
+    --section-logo-height:       75px;
+    --section-txt:               var(--black);
+    --section-bg:                var(--white);
+    --section-margin:            2rem;
+    --section-hdr-border:        1px solid var(--black);
 
 
 
 
     /* exposed properties (don't cross-reference, inherit or pull from above) */
-    --cookie-bg:                 var(--white);
+    /* --cookie-bg:                 var(--white);
     --cookie-txt:                var(--darkgrey);
     --cookie-link:               var(--darkgrey);
     --cookie-button-bg:          var(--darkgrey);
@@ -63,6 +84,8 @@
     --help-bg:                   var(--white);
     --help-txt:                  var(--darkgrey);
     --help-border:               1px dashed var(--lightgrey);
+     */
+
 }
 
 /* global settings */

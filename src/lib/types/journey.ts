@@ -90,7 +90,7 @@ export type TriBoxDateComponentType = InputComponentType & {
     //from: string; // TODO: implement date range validation on the component
     //to: string; // TODO: implement date range validation on the component
 }
-export type AddressComponentType = BaseComponentType & {
+export type AddressComponentType = InputComponentType & {
     postcodeLabel?: string;
     postcodePlaceholder?: string;    
     propertyLabel?: string;
@@ -98,7 +98,7 @@ export type AddressComponentType = BaseComponentType & {
     postcodeHelp?: string;
     postcodeError?: string;
 }
-export type VehicleComponentType = BaseComponentType & {
+export type VehicleComponentType = InputComponentType & {
     regnumLabel?: string;
     regnumPlaceholder?: string;
     buttonLabel?: string;
