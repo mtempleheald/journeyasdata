@@ -1,6 +1,5 @@
 <script lang="ts">
     import type { PageType, JourneyType } from '$lib/types/journey';
-    import { BRAND } from '$lib/env/Env.svelte'
     import { getContext } from 'svelte';
     import Cookiepreference from '$lib/components/Cookiepreference.svelte';
     import Navbuttons from '$lib/components/Navbuttons.svelte';
@@ -13,34 +12,40 @@
 
 </script>
 
-
-<header>
+<div class="cookie">
   <Cookiepreference cookiepreferences={journey.cookiepreferences}/>
+</div>
+
+<header>  
   {#if journey.logo}
-    <img src="{journey.logo}" alt="{journey.logoalt}">
-  {:else}
-    <img src="https://fakeimg.pl/250x100/?text={BRAND}" alt="logo">
+    <img class="logo" src="{journey.logo.url}" alt="{journey.logo.alt}" width="{journey.logo.width}" height="{journey.logo.height}" >
   {/if}
-  <h1>{journey.title}</h1>  
+  {#if journey.title}
+    <h1>{journey.title}</h1>
+  {/if}  
 </header>
 
+<nav>
+  {#if page.displayprogress ?? true}
+  <Progressbar
+    journey = {journey}
+    pageurl={page.url}/>
+  {/if}
+</nav>
 
-{#if page.displayprogress ?? true}
-<Progressbar
-  journey = {journey}
-  pageurl={page.url}/>
-{/if}
-
+<main>
 <!-- require a form element for accessibility -->
 <form on:submit|preventDefault={() => {}}>
 
 
-{#if page.displaytitle ?? true}
-<h2>{page.title}</h2>
+{#if (page.displaytitle ?? false) && !!page.title}
+<header>
+  <h1>{page.title}</h1>
+</header>
 {/if}
 
 {#each page.sections as s}
-<Section section={s}/>
+  <Section section={s}/>
 {/each}
 
 
@@ -52,30 +57,58 @@
 />
 
 </form>
+</main>
+
+<footer>
+  <p>
+  TODO: Add footer content from journey.footer.  
+  </p>
+  <p>This might be hard to do in pure markdown due to 2 column layouts</p>
+</footer>
 
 
-<style>  
-header {
-    background-color: var(--header-bg, white);
-    color: var(--header-txt, black);
-    border-bottom: var(--header-border, 1px solid black);
+<style>
+  .cookie {
+    margin: auto; /* centre content on larger screens */
+    width: var(--page-hdr-width);
+  }
+  header {  
+    margin: auto; /* centre content on larger screens */
+    max-width: var(--page-hdr-width);
+    background-color: var(--page-hdr-bg);
+    color: var(--page-hdr-txt);
+    border: var(--page-hdr-border);
     display: flex;
     flex-wrap: wrap;
-}
-img {
-    height: 100px;
-    width: 250px;
-}
-h1 {
-    height: 100px;
-    line-height: 100px;
-    padding: 0 1rem;
+  }
+  nav {
+    margin: auto; /* centre content on larger screens */
+    max-width: var(--page-width, 100%);
+  }
+  main {
+    margin: auto; /* centre content on larger screens */
+    max-width: var(--page-width, 100%);
+  }
+  footer {
+    margin: auto; /* centre content on larger screens */
+    background-color: var(--page-ftr-bg);
+    color: var(--page-ftr-txt);
+    max-width: var(--page-ftr-width);
+  }
+  header h1 {
     margin: 0;
-}
-h2 {
-  margin: 0;
-  padding: 1rem;
-  height: 1rem;
-  line-height: 1rem;
-}
+    height: var(--page-hdr-head-height);
+    line-height: var(--page-hdr-head-height);
+    padding: var(--page-hdr-head-pad);
+  }
+  main header h1 {
+    margin: 0;
+    height: var(--page-head-height);
+    line-height: var(--page-head-height);
+    padding: var(--page-head-pad);  
+  }
+  img.logo {
+    height: var(--page-logo-height);
+    width: var(--page-logo-width);
+  }
 </style>

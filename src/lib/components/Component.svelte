@@ -69,18 +69,18 @@
 <Dropdown
   component={{...component, 
     value:$valueStore[component.id] ?? ''}}
-  on:valueChange="{componentUpdated}">
-    <svelte:fragment slot="pre">
-      <Markdown source={component.pre}/>
-    </svelte:fragment>
-    <svelte:fragment slot="post">
-      <Markdown source={component.post}/>
-    </svelte:fragment>
+    on:valueChange="{componentUpdated}">
+  <svelte:fragment slot="pre">
+    <Markdown source={component.pre}/>
+  </svelte:fragment>
+  <svelte:fragment slot="post">
+    <Markdown source={component.post}/>
+  </svelte:fragment>
 </Dropdown>
 {:else if component.type == "Displayblock"}
 <Displayblock>
   <svelte:fragment slot="pre">
-      <Markdown source={component.pre}/>
+    <Markdown source={component.pre}/>
   </svelte:fragment>
   <svelte:fragment slot="main"> 
     <Markdown source={component.content}/>

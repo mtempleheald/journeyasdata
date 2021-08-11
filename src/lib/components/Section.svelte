@@ -19,7 +19,7 @@
         <section>
             <header>
                 {#if section.logo}
-                <img src={section.logo} alt="{section.title} section logo" width="{section.logowidth}" height="{section.logoheight}" >
+                <img src={section.logo.url} alt="{section.logo.alt} section logo" width="{section.logo.width}" height="{section.logo.height}" >
                 {/if}
                 {#if section.title}
                 <h3>{section.title}[{idx}]</h3>
@@ -39,32 +39,43 @@
 {:else}
 <!-- Standard undefined section with no repeats, use component as defined in journey -->
 <section>
+    {#if section.logo || section.title}
     <header>
         {#if section.logo}
-        <img src={section.logo} alt="{section.title} section logo" width="{section.logowidth}" height="{section.logoheight}" >
+        <img src={section.logo.url} alt="{section.logo.alt} section logo" width="{section.logo.width}" height="{section.logo.height}" >
         {/if}
         {#if section.title}
-        <h3>{section.title}</h3>
+        <h1>{section.title}</h1>
         {/if}
-    </header>    
+    </header>
+    {/if}
+
     {#each section.components as component}    
     <Component component={component}/>
-    {/each}    
+    {/each}
+
 </section>
 {/if}
 
 
 <style>
     section {
-        border: var(--section-border,1px solid black);
+        margin-top: var(--section-margin);
+        border: var(--section-border);
     }
     header {
         display: flex;
         flex-wrap: wrap;
+        color: var(--section-txt);
+        background-color: var(--section-bg);
+        border-bottom: var(--section-hdr-border);
     }
-    h3 {
-        height: 50px;
-        line-height: 50px;
+    header img {
+        height: var(--section-logo-height);
+    }
+    header h1 {
+        height: var(--section-hdr-height);
+        line-height: var(--section-hdr-height);
         margin: 0;
         padding: 0 1rem;
     }

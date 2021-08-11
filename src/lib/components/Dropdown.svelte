@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type { ComponentType, ValueType } from '$lib/types/journey';
+    import type { ListComponentType, ValueType } from '$lib/types/journey';
 	import { createEventDispatcher, onMount } from 'svelte';
     import Helptext from '$lib/components/Helptext.svelte';
 
@@ -15,7 +15,7 @@
     
 
     // expose component properties
-    export let component: ComponentType;
+    export let component: ListComponentType;
 
     // internal properties to support component logic
     const dispatch = createEventDispatcher();
@@ -88,7 +88,7 @@
 
 <style>
     .question {
-        margin: 0.5rem 1rem;
+        margin: 0;
         padding: 0.5rem 1rem;
         background-color: var(--input-bg, white);
         color: var(--input-txt, black);

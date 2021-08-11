@@ -6,8 +6,7 @@
     export let journey: JourneyType;
 </script>
     
-
-<nav>
+<div class="progress">
 {#each journey.pages as p}
 {#if p.displayprogress ?? true}
     {#if targetPageEarlier(journey, pageurl, p.url)}
@@ -21,11 +20,11 @@
     {/if}
 {/if}
 {/each}
-</nav>
+</div>
 
 
 <style>
-    nav {
+    .progress {
         display: flex;
         justify-content: center;
         flex-wrap: wrap;
@@ -33,7 +32,7 @@
         background-color: var(--nav-bg, white);
         border: var(--nav-border, white);
     }
-    nav > * {
+    .progress > * {
         flex-grow: 1;
     }
     a, span {

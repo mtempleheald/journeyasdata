@@ -23,7 +23,7 @@
 
 <style>
     .question {
-        margin: 0.5rem 1rem;
+        margin: 0;
         padding: 0.5rem 1rem;
         background-color: var(--input-bg, white);
         color: var(--input-txt, black);

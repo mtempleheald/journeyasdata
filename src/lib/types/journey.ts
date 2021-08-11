@@ -1,8 +1,7 @@
 export type JourneyType = {
     title: string;
     pages: PageType[];
-    logo?: string;
-    logoalt?: string;
+    logo?: ImageType;
     cookiepreferences?: CookiePreferenceType;
 }
 export type PageType = {
@@ -16,16 +15,20 @@ export type SectionType = {
     id?: string;
     type?: string;
     title?: string;
-    logo?: string;
-    logowidth?: string;
-    logoheight?: string;
+    logo?: ImageType;
     maxrepeats?: number;
     components: ComponentType[];
 }
-export type ComponentType = BaseComponentType | AddressComponentType | VehicleComponentType | TriBoxDateComponentType;
+export type ComponentType = BaseComponentType
+    | AddressComponentType 
+    | DisplayComponentType 
+    | InputComponentType 
+    | ListComponentType 
+    | TriBoxDateComponentType
+    | VehicleComponentType;
 
 export type BaseComponentType = {
-    type?: "Address" 
+    type: "Address" 
         | "ButtonSelect"
         | "Colour" 
         | "Date" 
@@ -49,50 +52,44 @@ export type BaseComponentType = {
         | "Year"
         | "YesNo";
     id?: string;
-    label?: string;
-    placeholder?: string;
-    required?: boolean;
-    errorMessage?: string;
-    help?: string;
     pre?: string;
-    content?: string;
     post?: string;
-    value?: string;
-    values?: ValueType[];
-    refdata?: string;
     dependsupon?: {
         id: string;
         value: string;
     }
 }
+export type InputComponentType = BaseComponentType & {    
+    label?: string;
+    required?: boolean;
+    placeholder?: string;
+    value?: string;
+    errorMessage?: string;
+    help?: string;
+}
+// TODO: review name of ListComponentType
+export type ListComponentType = InputComponentType & {
+    values?: ValueType[];
+    refdata?: string;
+}
+export type DisplayComponentType = BaseComponentType & {
+    content?: string;
+}
 export type ValueType = {
     value: string;
     display: string;
-    image?: string;
-    imageWidth?: number;
-    imageHeight?: number;
+    image?: ImageType;
     textLocation?: string;
 }
-
-export type TriBoxDateFieldsType = {
-    type: string;
-    separator: string;
+export type TriBoxDateComponentType = InputComponentType & {
+    separator?: string;
     dayPlaceholder: string;
     monthPlaceholder: string;
     yearPlaceholder: string;
     unknownOptionLabel: string;
+    //from: string; // TODO: implement date range validation on the component
+    //to: string; // TODO: implement date range validation on the component
 }
-
-export type TriBoxDateValidRange = {
-    from: string;
-    to: string;
-}
-
-export type TriBoxDateComponentType = BaseComponentType & {
-    fields?: TriBoxDateFieldsType;
-    validRange?: TriBoxDateValidRange;
-}
-
 export type AddressComponentType = BaseComponentType & {
     postcodeLabel?: string;
     postcodePlaceholder?: string;    
@@ -110,4 +107,10 @@ export type CookiePreferenceType = {
     pre?: string;
     post?: string;
     values?: ValueType[];
+}
+type ImageType = {
+    url: string;
+    alt?: string;
+    width?: string; // TODO: move to CSS variables - which image/ alt text is content, size is styling
+    height?: string; // TODO: move to CSS variables - which image/ alt text is content, size is styling
 }

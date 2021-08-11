@@ -10,9 +10,11 @@
       "sections": [
         {
           "title": "Introduction section",
-          "logo": "https://fakeimg.pl/100x50/?text=Intro%20Logo%20Stretched",
-          "logowidth": "250px",
-          "logoheight": "50px",
+          "logo": {
+            "url": "https://fakeimg.pl/100x50/?text=Introduction%20Logo%20Stretched",
+            "width": "250px",
+            "height": "50px"
+          },
           "components": [
             {
               "type": "Displayblock",
@@ -40,7 +42,9 @@
         {
           "id": "text",
           "title": "Textbox parameters",
-          "logo": "https://fakeimg.pl/100x50/?text=Section%20Logo",
+          "logo": {
+            "url": "https://fakeimg.pl/100x50/?text=Text%20Logo"
+          },
           "maxrepeats": 2,
           "components": [
             {
@@ -75,7 +79,9 @@
         },
         {
           "title": "Textbox variants",
-          "logo": "https://fakeimg.pl/100x50/?text=Text%20Logo",
+          "logo": {
+            "url": "https://fakeimg.pl/100x50/?text=Text%20Logo"
+          },
           "components": [
             {
               "id": "Text",
@@ -210,7 +216,9 @@
       "sections": [
         {
           "title": "Dropdown Section",
-          "logo": "https://fakeimg.pl/100x50/?text=Section%20Logo",
+          "logo": {
+            "url": "https://fakeimg.pl/100x50/?text=Section%20Logo"
+          },
           "components": [
             {
               "id": "dropdownfull",
@@ -249,18 +257,14 @@
               "type": "TriBoxDate",
               "id": "purchaseDate",
               "label": "Enter the date of purchase",
-              "fields": {
-                "type":"Text",
-                "separator":"/",
-                "dayPlaceholder": "DD",
-                "monthPlaceholder": "MM",
-                "yearPlaceholder": "YYYY",
-                "unknownOptionLabel": "I have not purchased it yet" 
-              },
-              "validRange": {
-                "from": "01/01/1970",
-                "to": "Today"
-              },
+              "separator": "/",
+              "dayPlaceholder": "DD",
+              "monthPlaceholder": "MM",
+              "yearPlaceholder": "YYYY",
+              "unknownOptionLabel": "I have not purchased it yet",
+              "from": "01/01/1970",
+              "to": "Today"
+              ,
               "required": true,
               "errorMessage": "Please enter valid data",
               "help": "Help text",
@@ -278,7 +282,9 @@
       "sections": [
         {
           "title": "Button Select Section",
-          "logo": "https://fakeimg.pl/100x50/?text=Section%20Logo",
+          "logo": {
+            "url": "https://fakeimg.pl/100x50/?text=Section%20Logo"
+          },
           "components": [
             {
               "id": "simpletextbutton",
@@ -304,34 +310,42 @@
               "values": [
                 {
                   "value": "car",
-                  "display": "Top Car",
-                  "image": "https://image.flaticon.com/icons/svg/58/58463.svg",
-                  "imageWidth": "128",
-                  "imageHeight": "128",
+                  "display": "Car (top)",
+                  "image": {
+                    "url": "https://image.flaticon.com/icons/svg/58/58463.svg",
+                    "width": "128",
+                    "height": "128"
+                  },
                   "textLocation": "top"
                 },
                 {
                   "value": "bike",
-                  "display": "Left Bike",
-                  "image": "https://image.flaticon.com/icons/png/128/130/130278.png",
-                  "imageWidth": "128",
-                  "imageHeight": "128",
+                  "display": "Bike (left)",
+                  "image": {
+                    "url": "https://image.flaticon.com/icons/png/128/130/130278.png",
+                    "width": "128",
+                    "height": "128"
+                  },
                   "textLocation": "left"
                 },
                 {
                   "value": "bus",
-                  "display": "Bottom Bus",
-                  "image": "https://image.freepik.com/free-icon/bus_318-142528.jpg",
-                  "imageWidth": "128",
-                  "imageHeight": "128",
+                  "display": "Bus (bottom)",
+                  "image": {
+                    "url": "https://image.freepik.com/free-icon/bus_318-142528.jpg",
+                    "width": "128",
+                    "height": "128"
+                  },
                   "textLocation": "bottom"
                 },
                 {
                   "value": "train",
-                  "display": "Right Train",
-                  "image": "https://image.flaticon.com/icons/png/512/1249/1249786.png",
-                  "imageWidth": "128",
-                  "imageHeight": "128",
+                  "display": "Train (right)",
+                  "image": {
+                    "url": "https://image.flaticon.com/icons/png/512/1249/1249786.png",
+                    "width": "128",
+                    "height": "128"
+                  },
                   "textLocation": "right"
                 }
               ]
@@ -366,7 +380,9 @@
       "sections": [
         {
           "title": "Displayblock Section",
-          "logo": "https://fakeimg.pl/100x50/?text=Section%20Logo",
+          "logo": {
+            "url": "https://fakeimg.pl/100x50/?text=Section%20Logo"
+          },
           "components": [
             {
               "type": "Displayblock",
@@ -423,7 +439,9 @@
       "sections": [
         {
           "title": "Address Section",
-          "logo": "https://fakeimg.pl/100x50/?text=Address%20Logo",
+          "logo": {
+            "url": "https://fakeimg.pl/100x50/?text=Address%20Logo"
+          },
           "components": [
             {
               "id": "address",
@@ -438,7 +456,9 @@
         },
         {
           "title": "Vehicle Section",
-          "logo": "https://fakeimg.pl/100x50/?text=Vehicle%20Logo",
+          "logo": {
+            "url": "https://fakeimg.pl/100x50/?text=Vehicle%20Logo"
+          },
           "components": [
             {
               "type": "Vehicle",
@@ -451,7 +471,9 @@
         },
         {
           "title": "Vehicle lookup without vehicle component",
-          "logo": "https://fakeimg.pl/100x50/?text=Vehicle%20Logo",
+          "logo": {
+            "url": "https://fakeimg.pl/100x50/?text=Vehicle%20Logo"
+          },
           "components": [
             {
               "type": "Displayblock",
@@ -526,7 +548,9 @@
       "sections": [
         {
           "title": "Outcome section",
-          "logo": "https://fakeimg.pl/100x50/?text=Outcome%20Logo",
+          "logo": {
+            "url": "https://fakeimg.pl/100x50/?text=Outcome%20Logo"
+          },
           "components": [
             {
               "type": "Displayblock",

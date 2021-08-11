@@ -42,6 +42,7 @@
         component.value = `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`
         console.log (component.value)
         // validate date format YYYY-MM-DD
+        // TODO: extend validation to use date range parameters
         if (Date.parse(component.value) > 0) {
             valid = true;            
         }
@@ -64,6 +65,13 @@
     <slot name="pre"></slot>
 
     <div class="container">
+
+        <input type="hidden" 
+            id="{component.id}"
+            bind:value={component.value}
+            required="{component.required}"
+        />
+
         {#if component.label}
         <label for="{component.id}-day">
             {component.label}
@@ -73,17 +81,10 @@
         </label>
         {/if}
 
-        {#if component.id} 
-        <input type="hidden" 
-            id="{component.id}"
-            bind:value={component.value}
-            required="{component.required}"
-        />
-
-        <input type="{component.fields.type ?? 'Text'}"
+        <input type="Text"
             id="{component.id}-day" 
             name="{component.id}-day" 
-            placeholder="{component.fields.dayPlaceholder ?? ''}" 
+            placeholder="{component.dayPlaceholder ?? ''}" 
             required="{component.required}"
             value="{day}"
             maxlength="2"
@@ -92,11 +93,11 @@
             on:blur={act}
             on:focus={focus}
         />
-        {component.fields.separator ?? ""}
-        <input type="{component.fields.type ?? 'Text'}"
+        {component.separator ?? ""}
+        <input type="Text"
             id="{component.id}-month" 
             name="{component.id}-month" 
-            placeholder="{component.fields.monthPlaceholder ?? ''}" 
+            placeholder="{component.monthPlaceholder ?? ''}" 
             required="{component.required}"
             value="{month}"
             maxlength="2"
@@ -105,11 +106,11 @@
             on:blur={act}
             on:focus={focus}
         />
-        {component.fields.separator ?? ""}
-        <input type="{component.fields.type ?? 'Text'}"
+        {component.separator ?? ""}
+        <input type="Text"
             id="{component.id}-year" 
             name="{component.id}-year" 
-            placeholder="{component.fields.yearPlaceholder ?? ''}" 
+            placeholder="{component.yearPlaceholder ?? ''}" 
             required="{component.required}"
             value="{year}"
             maxlength="4"
@@ -117,11 +118,14 @@
             on:focus={focus}
         />
             
-        {/if}
         {#if component.help}
             <Helptext>{component.help}</Helptext>
         {/if}
-        {#if component.fields.unknownOptionLabel}
+
+        <!-- TODO: Consider separating these out as independent components, this feels too specific.
+            Naturally this would be 2 questions - "have you done/got/bought?" followed by "when?"
+        -->
+        {#if component.unknownOptionLabel}
         <br/>
         <input type="checkbox" 
             id="{component.id}-unknown"
@@ -130,8 +134,9 @@
             on:focus={focus}
             value="{component.value}" 
         />
-        {component.fields.unknownOptionLabel}
+        {component.unknownOptionLabel}
         {/if}
+
     </div>
 
     {#if !valid}
@@ -140,10 +145,12 @@
 
     <slot name="post"></slot>
 </div>
+
+
 <style>
     .question {
-        margin: 0.5rem 1rem;
-        padding: 0.5rem 1rem;
+        margin: 0;
+        padding: 1rem;
         background-color: var(--input-bg, white);
         color: var(--input-txt, black);
         border: var(--input-border, 1px solid black);

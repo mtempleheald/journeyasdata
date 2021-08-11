@@ -1,10 +1,10 @@
 <script lang="ts">
-    import type { ComponentType } from '$lib/types/journey';
+    import type { ListComponentType } from '$lib/types/journey';
 	import { createEventDispatcher } from 'svelte';
     import Helptext from '$lib/components/Helptext.svelte';
 
     // expose component properties
-    export let component: ComponentType;    
+    export let component: ListComponentType;    
 
     // internal properties to support component logic
     const dispatch = createEventDispatcher();
@@ -71,9 +71,9 @@
                             <span class="{v.textLocation == "right" ? 'left' : v.textLocation == "left" ? 'right' : '' };">
                                 {v.image != null ? '' : v.display ?? ''}
                                 {#if v.image != null}
-                                    <img src="{v.image}" 
-                                        width="{v.imageWidth}" 
-                                        height="{v.imageHeight}" 
+                                    <img src="{v.image.url}" 
+                                        width="{v.image.width}" 
+                                        height="{v.image.height}" 
                                         class="{component.value == v.value ? 'active' : ''}" 
                                         alt="{v.display}" />
                                 {/if}
@@ -107,7 +107,7 @@
 
 <style>
     .question {
-        margin: 0.5rem 1rem;
+        margin: 0;
         padding: 0.5rem 1rem;
         background-color: var(--input-bg, white);
         color: var(--input-txt, black);

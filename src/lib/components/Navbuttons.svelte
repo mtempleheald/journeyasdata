@@ -41,8 +41,8 @@
 <style>
 
 .button-navigation {
-    width: calc(100vw - 100px);
-    padding: 0 1rem;
+    width: 100%;
+    padding: 0;
     margin: auto;
     display: flex;
     align-content: stretch;
@@ -52,8 +52,8 @@
 }
 button {
     flex-grow: 1;
-    color: var(--section-navbtn-txt, black);
-    background-color: var(--section-navbtn-bg, white);
+    color: var(--section-navbtn-txt);
+    background-color: var(--section-navbtn-bg);
 }
 
 </style>

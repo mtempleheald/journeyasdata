@@ -30,29 +30,34 @@
 </script>
 
 
+{#if cookiepreferences}
 <section class="{active} {selected}" 
     on:mouseenter={enter} on:mouseleave={leave} >
 
-<Buttonselect
-    component={{
-        id: "cookiestatus",
-        value: $valueStore["cookiestatus"] ?? '',
-        values: cookiepreferences.values
-    }}
-    on:valueChange="{componentUpdated}">
-    <svelte:fragment slot="pre">
-      <Markdown source={cookiepreferences.pre}/>
-    </svelte:fragment>
-    <svelte:fragment slot="post">
-      <Markdown source={cookiepreferences.post}/>
-    </svelte:fragment>
-  </Buttonselect>
+    {#if cookiepreferences.values}
+    <Buttonselect
+        component={{
+            id: "cookiestatus",
+            value: $valueStore["cookiestatus"] ?? '',
+            values: cookiepreferences.values
+        }}
+        on:valueChange="{componentUpdated}">
+        <svelte:fragment slot="pre">
+        <Markdown source={cookiepreferences.pre}/>
+        </svelte:fragment>
+        <svelte:fragment slot="post">
+        <Markdown source={cookiepreferences.post}/>
+        </svelte:fragment>
+    </Buttonselect>
+    {/if}
 
 </section>
+{/if}
 
 
 <style>
     section {
+        margin: 0;
         width: 100%;        
     }
     .selected {
