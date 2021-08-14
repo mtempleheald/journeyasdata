@@ -94,8 +94,9 @@
     on:mouseenter={enter} 
     on:mouseleave={leave}
 >
-    <Textbox type="Upper"
+    <Textbox
         component={{
+            type: "Upper",
             id: "postcode",
             label: component.postcodeLabel,
             value: $valueStore["postcode"] ?? '',

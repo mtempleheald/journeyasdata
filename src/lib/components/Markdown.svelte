@@ -1,10 +1,22 @@
 <script lang="ts">
-    export let source : string
     import snarkdown from 'snarkdown';
+
+    export let source: string
+
+    async function html(md) {
+      // TODO: consider switching to remark
+      return snarkdown(md)
+    }
+    
 </script>
 
+
 {#if source}
-  <!-- TODO: reinstate markdown using a compatible library (snarkdown is not) -->
-  <!-- {@html snarkdown(source)} -->
-  {source}
+  {#await html(source)}
+    loading...
+  {:then content}
+    {@html content}
+  {:catch error}
+    unable to parse markdown
+  {/await}
 {/if}

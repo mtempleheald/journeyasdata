@@ -16,7 +16,7 @@
         case 'Range' : html5type = 'range'; break;
         case 'Telephone' : html5type = 'tel'; break;
         case 'Upper' : html5type = 'text'; break;
-        default: html5type = component.type.toLowerCase();
+        default: html5type = component.type?.toLowerCase() ?? 'text';
     }
     let fallbackError: string;
     let valid: boolean = true;
@@ -69,7 +69,7 @@
 
         {#if component.id}        
         <input type="{html5type}"
-            class="{component.type.toLowerCase()}"
+            class="{component.type?.toLowerCase()}"
             id="{component.id}" 
             name="{component.id}" 
             placeholder="{component.placeholder}" 

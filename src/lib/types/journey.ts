@@ -28,7 +28,7 @@ export type ComponentType = BaseComponentType
     | VehicleComponentType;
 
 export type BaseComponentType = {
-    type: "Address" 
+    type?: "Address" 
         | "ButtonSelect"
         | "Colour" 
         | "Date" 
