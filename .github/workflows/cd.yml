@@ -32,6 +32,7 @@ jobs:
       
     - name: Include files not included in sveltekit build
       run: |
+        mkdir ./build/snarkdown
         cp ./node_modules/snarkdown/* ./build/snarkdown
     
   #   - name: Upload artifact for deployment job
