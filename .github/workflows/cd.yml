@@ -34,6 +34,7 @@ jobs:
       run: |
         mkdir -p ./build/node_modules/snarkdown
         cp -r ./node_modules/snarkdown/* ./build/node_modules/snarkdown/
+        cp -r ./node_modules/cookie/* ./build/node_modules/cookie/
     
   #   - name: Upload artifact for deployment job
   #     uses: actions/upload-artifact@v2
