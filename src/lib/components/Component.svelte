@@ -29,7 +29,7 @@
 
 
 {#if !component.dependsupon || ($valueStore[component.dependsupon.id] == component.dependsupon.value)}
-{#if ["Colour","Date","Datetime","Email","Month","Number","Search","Slider","Text","Telephone","Time","Upper","Url","Week"].includes(component.type)}
+{#if ["Colour","Date","Datetime","Email","Month","Number","Range","Search","Text","Telephone","Time","Upper","Url","Week"].includes(component.type)}
 <svelte:component this={Textbox} 
   component={{...component, value:$valueStore[component.id] ?? ''}}
   on:valueChange="{componentUpdated}">

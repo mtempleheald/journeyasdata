@@ -2,7 +2,8 @@
     import type { InputComponentType } from '$lib/types/journey';
     import { blur } from 'svelte/transition';
 	import { createEventDispatcher } from 'svelte';
-    import Helptext from '$lib/components/Helptext.svelte';
+    import { validationStore } from '$lib/stores/validationstore';
+    import Helptext from '$lib/components/Helptext.svelte';    
 
     // expose component properties
     export let component: InputComponentType;
@@ -19,7 +20,7 @@
         default: html5type = component.type?.toLowerCase() ?? 'text';
     }
     let fallbackError: string;
-    let valid: boolean = true;
+    let valid: boolean = $validationStore[component.id] ?? true;
     let active: string;
     
     // component actions
@@ -73,7 +74,7 @@
             id="{component.id}" 
             name="{component.id}" 
             placeholder="{component.placeholder}" 
-            required="{component.required}"
+            required="{component.required ?? false}"
             value="{component.value}"
             on:blur={act}
             on:focus={focus}/>

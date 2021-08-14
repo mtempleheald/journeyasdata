@@ -106,7 +106,7 @@
             {
               "id": "range",
               "label": "Range",
-              "type": "Slider",
+              "type": "Range",
               "placeholder": "?",
               "required": false
             },
