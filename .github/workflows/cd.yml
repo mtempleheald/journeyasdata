@@ -29,7 +29,11 @@ jobs:
     
     - name: npm build
       run: npm run build --if-present
-
+      
+    - name: Include files not included in sveltekit build
+      run: |
+        cp ./node_modules/snarkdown/* ./build/snarkdown
+    
   #   - name: Upload artifact for deployment job
   #     uses: actions/upload-artifact@v2
   #     with:
