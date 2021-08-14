@@ -5,24 +5,22 @@
     import Helptext from '$lib/components/Helptext.svelte';
 
     // expose component properties
-    export let type = 'text';
     export let component: InputComponentType;
-
 
     // internal properties to support component logic
     const dispatch = createEventDispatcher();
-    let html5type;
-    switch (type) {
+    let html5type: string;
+    switch (component.type) {
         case 'Colour' : html5type = 'color'; break;
         case 'Datetime' : html5type = 'datetime-local'; break;
-        case 'Slider' : html5type = 'range'; break;
+        case 'Range' : html5type = 'range'; break;
         case 'Telephone' : html5type = 'tel'; break;
         case 'Upper' : html5type = 'text'; break;
-        default: html5type = type.toLowerCase();
+        default: html5type = component.type.toLowerCase();
     }
-    let fallbackError;
-    let valid = true;
-    let active;
+    let fallbackError: string;
+    let valid: boolean = true;
+    let active: string;
     
     // component actions
     function enter() {
@@ -33,7 +31,7 @@
     }    
     function act(event) {
         // transform
-        let val = (type=='Upper') ? event.target.value.toUpperCase() : event.target.value;
+        let val = (component.type=='Upper') ? event.target.value.toUpperCase() : event.target.value;
         // validate
         if (event.target.validity.valid) {
             valid = true;
@@ -71,7 +69,7 @@
 
         {#if component.id}        
         <input type="{html5type}"
-            class="{type=='Upper'?'upper':''}"
+            class="{component.type.toLowerCase()}"
             id="{component.id}" 
             name="{component.id}" 
             placeholder="{component.placeholder}" 
@@ -80,6 +78,7 @@
             on:blur={act}
             on:focus={focus}/>
         {/if}
+
         {#if component.help}
             <Helptext>{component.help}</Helptext>
         {/if}

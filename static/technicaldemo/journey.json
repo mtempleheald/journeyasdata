@@ -84,10 +84,10 @@
           },
           "components": [
             {
-              "id": "Text",
-              "label": "Text",
-              "type": "Text",
-              "placeholder": "Text",
+              "id": "Upper",
+              "label": "Upper",
+              "type": "Upper",
+              "placeholder": "Upper",
               "required": false
             },
             {
