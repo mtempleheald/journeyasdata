@@ -16,7 +16,7 @@ const config = {
 		target: '#svelte',
 		vite: () => ({
 			optimizeDeps: {
-				include: ['cookie']
+				exclude: ['cookie']
 			}
 		})	
 	}
