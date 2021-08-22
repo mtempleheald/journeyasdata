@@ -3,6 +3,7 @@
     import { actionStore } from '$lib/stores/actionstore';
     import { validationStore } from '$lib/stores/validationstore';
     import { valueStore } from '$lib/stores/valuestore';
+    
     import Address from '$lib/components/Address.svelte';
     import Buttonselect from '$lib/components/Buttonselect.svelte';
     import Checkbox from '$lib/components/Checkbox.svelte';
@@ -58,14 +59,7 @@
   <Checkbox
     component={{...component, 
     value:$valueStore[component.id] ?? ''}}
-    on:valueChange="{componentUpdated}">
-  <svelte:fragment slot="pre">
-    <Markdown source={component.pre}/>
-  </svelte:fragment>
-  <svelte:fragment slot="post">
-    <Markdown source={component.post}/>
-  </svelte:fragment>
-  </Checkbox>
+    on:valueChange="{componentUpdated}" />
 {:else if component.type == "Address"}
   <Address 
     component={component}

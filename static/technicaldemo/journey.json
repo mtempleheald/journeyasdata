@@ -17,17 +17,26 @@
               "content": "# Heading \n\n Introductory sentence explaining how we get money off you. \n\n Another paragraph containing some caveats. \n\n - bullet1 \n\n - bullet2"
             },
             {
+              "id": 1,
+              "label": "1 Required question label",
+              "type": "Text",
+              "placeholder": "Placeholder...",
+              "required": true,
+              "errorMessage": "Please enter valid data",
+              "help": "Help text",
+              "pre": "# Markdown before question 1",
+              "post": "__Markdown after question 1__"
+            },
+            {
               "type": "Acknowledgement",
               "id": "ackme",
-              "label": "Acknowledge my existence",
+              "label": "Acknowledge my existence - please",
+              "errorMessage": "For the love of God, acknowledge me",
+              "required": false,
               "values": [
                 {
                   "value": "i_exist",
                   "display": "Yes - I exist"
-                },
-                {
-                  "value": "no",
-                  "display": "No I dont exist"
                 }
               ]
             },

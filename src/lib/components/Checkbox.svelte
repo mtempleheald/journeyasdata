@@ -17,19 +17,23 @@
   // expose component properties
   export let component: ComponentType;
 
-  if (component.type == "Acknowledgement") {
-    component.required = true;
-    let valuesCounter = 1;
-  }
-
   // internal properties to support component logic
   const dispatch = createEventDispatcher();
   let fallbackError;
   let invalid = false;
   let active;
+  let ackValue;
   let effectiveValues: ValueType[]; // overwriting component.values directly triggers an onMount loop
   
-  
+  // Override for Acknowledgement type component 
+  if (component.type == "Acknowledgement") {
+    component.required = true;
+    if (component.errorMessage == null) {
+      component.errorMessage = "Please acknowledge this to continue."
+    }
+    ackValue = component.values[0];
+  }
+ 
   // component actions    
   function enter() {
       active = "active";
@@ -62,14 +66,14 @@
       {/if}
       {#if component.id}
         {#if effectiveValues}
-          {#if component.type == "Acknowledgement"}
+          {#if component.type == "Acknowledgement" && ackValue != null}
             <input type="checkbox"
-            id="{component.id}-{effectiveValues[0].value}" 
-            name="{component.id}" 
-            value="{effectiveValues[0].value}"
-            required="{component.required}"
-            on:blur={act}
-            />{effectiveValues[0].display}
+              id="{component.id}" 
+              name="{component.id}" 
+              value="{ackValue.value}"
+              required="{component.required}"
+              on:blur={act}
+            />{ackValue.display}
           {:else}
             {#each effectiveValues as val}
               <input type="checkbox"
@@ -90,7 +94,7 @@
   </div>
 
   {#if invalid}
-  <span class="error">{component.errorMessage ?? fallbackError}</span>
+    <span class="error">{component.errorMessage ?? fallbackError}</span>
   {/if}
 
   <slot name="post"></slot>
