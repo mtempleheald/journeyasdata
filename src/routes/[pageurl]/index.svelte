@@ -3,7 +3,7 @@
 	export async function load({ page }) {
 		return {
 			props: {
-				pageurl: await `${page.params.pageurl}`
+				pageurl: `${page.params.pageurl}`
 			}
 		};
 	}
