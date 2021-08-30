@@ -1,15 +1,13 @@
 <script context="module">
     import { BRAND } from '$lib/env/Env.svelte'
     /** @type {import('@sveltejs/kit').Load} */
-	export async function load() {        
-        // dynamically load content, making use of HMR for quick feedback
-        async function loadContent() {
-            let content = await import(`./../../static/${BRAND}/journey.json`);
-            return content
-        }
+	export async function load({ fetch }) {
 		return {
             props: {
-                journey: await loadContent(),
+                // dynamically load content, making use of HMR for quick feedback
+                // journey: await import(`./../../static/${BRAND}/journey.json`).then(module => module.default),
+                // use the fetch API to import the journey
+                journey: await fetch(`/api/journey/${BRAND}`).then(j => j.json()),
                 brand: BRAND.toString()
             }
         };
