@@ -17,7 +17,7 @@
     function leave() {
         active = "";
     } 
-    function updateValue(newValue) {
+    function updateValue(newValue, newDisplay) {
         if (component.value == newValue) {
             component.value = null; // toggle off
         }
@@ -25,7 +25,12 @@
             component.value = newValue;            
         }
         // publish value changes up to parent, let it handle state
-        dispatch('valueChange', {key: component.id, value: component.value, valid: (!component.required || !!component.value) });   
+        dispatch('valueChange', {
+            key: component.id, 
+            value: component.value, 
+            display: component.value ? newDisplay : "",
+            valid: (!component.required || !!component.value) 
+        });   
     }
 </script>
 
@@ -56,7 +61,7 @@
             <span class="buttons">
                 {#each component.values as v}
                     <button type="button" value="{v.value}" 
-                        on:click="{() => updateValue(v.value)}" 
+                        on:click="{() => updateValue(v.value, v.display)}" 
                         class="{component.value == v.value ? 'active' : ''}">
                         
                         {#if v.textLocation == "top" && v.display != null}

@@ -480,7 +480,7 @@
               "content": "Uses a bespoke function and unconnected Text components instead of a bespoke Vehicle component"
             },
             {
-              "id": "regnumber",
+              "id": "vehicleregnum",
               "type": "Upper",
               "label": "Registration number",
               "placeholder": "YOUR REG",
@@ -493,49 +493,34 @@
               "label": "Make"
             },
             {
-              "id": "vehiclemodel",
+              "id": "vehiclemanufactureyear",
               "type": "Text",
-              "label": "Model"
+              "label": "Year of manufacture"
             },
             {
-              "id": "vehiclebody",
+              "id": "vehicleenginesize",
               "type": "Text",
-              "label": "Body"
+              "label": "Engine size (cc)"
+            },
+            {
+              "id": "vehiclefuel",
+              "type": "Text",
+              "label": "Fuel type"
             },
             {
               "id": "vehicletransmission",
               "type": "Text",
-              "label": "Transmission"
+              "label": "Transmission type"
             },
             {
-              "id": "vehicleengine",
+              "id": "vehicledoorcount",
               "type": "Text",
-              "label": "Engine"
+              "label": "Number of doors"
             },
             {
-              "id": "vehicleenginecc",
+              "id": "vehicleseatbeltcount",
               "type": "Text",
-              "label": "Engine CC"
-            },
-            {
-              "id": "vehicleenginebhp",
-              "type": "Text",
-              "label": "Engine BHP"
-            },
-            {
-              "id": "vehiclecolour",
-              "type": "Text",
-              "label": "Colour"
-            },
-            {
-              "id": "vehicleabicode",
-              "type": "Text",
-              "label": "ABI Code"
-            },
-            {
-              "id": "vehicledoors",
-              "type": "Text",
-              "label": "Doors"
+              "label": "Number of seats"
             }
           ]
         }

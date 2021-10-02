@@ -3,7 +3,16 @@
     import Component from '$lib/components/Component.svelte';
 
     export let section: SectionType;
+
     let currentSection: number = 0;
+    let hidden: boolean = false;
+    
+    function collapse() {
+        if (section.collapsible)
+        {
+            hidden = !hidden;
+        }
+    }
 </script>
 
 
@@ -24,10 +33,12 @@
                 {#if section.title}
                 <h3>{section.title}[{idx}]</h3>
                 {/if}
-            </header>        
-            {#each section.components as component}   
-            <Component component={{...component, id: `${section.id}.${idx}.${component.id}`}}/>            
-            {/each}        
+            </header>
+            <div class="{hidden ? 'hidden' : ''}">
+                {#each section.components as component}   
+                <Component component={{...component, id: `${section.id}.${idx}.${component.id}`}}/>            
+                {/each}
+            </div>
         </section>
     {:else}
         <section>
@@ -50,9 +61,11 @@
     </header>
     {/if}
 
-    {#each section.components as component}    
-    <Component component={component}/>
-    {/each}
+    <div class="{hidden ? 'hidden' : ''}">
+        {#each section.components as component}    
+            <Component component={component}/>
+        {/each}
+    </div>
 
 </section>
 {/if}
@@ -78,5 +91,8 @@
         line-height: var(--section-hdr-height);
         margin: 0;
         padding: 0 1rem;
+    }
+    .hidden {
+        display: none;
     }
 </style>

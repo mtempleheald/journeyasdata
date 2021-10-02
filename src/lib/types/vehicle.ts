@@ -1,13 +1,12 @@
 export type VehicleType = {
-    "registration": string;
-    "make": string;
-    "model": string;
-    "body": string;
-    "doors": string;
-    "engine": string;
-    "colour": string;
-    "transmission": string;
-    "enginecc": string;
-    "enginebhp": string;
-    "abicode": string;
+    "abicode"?: string;
+    "doors"?: number | null;
+    "enginecc"?: string;
+    "fueltype"?: string;
+    "make"?: string;
+    "model"?: string;
+    "registration"?: string;
+    "seatbelts"?: number | null;
+    "transmission"?: string;
+    "year"?: number | null;
 }

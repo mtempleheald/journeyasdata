@@ -1,6 +1,8 @@
 <script lang="ts">
-    import type { ComponentType } from '$lib/types/journey';
+    import type { ComponentType, DisplayComponentType, ListComponentType } from '$lib/types/journey';
     import { actionStore } from '$lib/stores/actionstore';
+    import { browser } from '$app/env';
+    import { displayValueStore } from '$lib/stores/displayvaluestore';
     import { validationStore } from '$lib/stores/validationstore';
     import { valueStore } from '$lib/stores/valuestore';
     import Address from '$lib/components/Address.svelte';
@@ -13,108 +15,115 @@
     import Triboxdate from '$lib/components/Triboxdate.svelte';
     import Vehicle from '$lib/components/Vehicle.svelte';
 
+
     export let component: ComponentType;
 
     function componentUpdated(event) {
-      console.log(`{key: "${event.detail.key}", value: "${event.detail.value}", valid: "${event.detail.valid}}"`)
-      // update input store with latest value, regardless of validity
-      valueStore.set(event.detail.key, event.detail.value);
+      console.log(event.detail)
+      // update value store with latest value, regardless of validity
+      valueStore.set(event.detail.key, event.detail.value)
+      // update display value in line with value store
+      displayValueStore.set(event.detail.key, event.detail.display ?? event.detail.value)
       // update validation store for use by validators
-      validationStore.set(event.detail.key, event.detail.valid);
+      validationStore.set(event.detail.key, event.detail.valid)
       // execute action if applicable
-      let f = $actionStore[event.detail.key];
-      if (typeof f === 'function') f();
+      let f = $actionStore[event.detail.key]
+      if (typeof f === 'function') f()
+    }
+
+    async function toListComponent(component: ComponentType): Promise<ListComponentType> {
+      if (component.type == "YesNo") {
+        return {...component, 
+          value:$valueStore[component.id] ?? '',
+          values: [{value:"Y",display:"Yes"},{value:"N",display:"No"}]
+        }
+      }
+      else {
+        const listComponent: ListComponentType = component as ListComponentType;
+        let effectiveValues = listComponent.values;
+        if (listComponent.refdata && browser) {
+            const res = await fetch (`/api/refdata/${listComponent.refdata}?parent=${listComponent.refdataparent}`);
+            effectiveValues = await res.json() ?? [];
+        }
+        return {...listComponent, 
+          value:$valueStore[listComponent.id] ?? '', // TODO: Verify that this is a valid value in the list of values
+          values: effectiveValues,
+          refdataparent: $valueStore[listComponent.refdataparent] ?? ''
+        }
+      }
+    }
+
+    async function toDisplayComponent(component: ComponentType): Promise<DisplayComponentType> {
+      return component as DisplayComponentType;
     }
 </script>
 
 
 {#if !component.dependsupon || ($valueStore[component.dependsupon.id] == component.dependsupon.value)}
+
 {#if ["Colour","Date","Datetime","Email","Month","Number","Range","Search","Text","Telephone","Time","Upper","Url","Week"].includes(component.type)}
-<svelte:component this={Textbox} 
-  component={{...component, value:$valueStore[component.id] ?? ''}}
-  on:valueChange="{componentUpdated}">
-    <svelte:fragment slot="pre">
-      <Markdown source={component.pre}/>
-    </svelte:fragment>
-    <svelte:fragment slot="post">
-      <Markdown source={component.post}/>
-    </svelte:fragment>  
-</svelte:component>
-{:else if component.type == "YesNo"}
-<Buttonselect   
-  component={{...component, 
-    value:$valueStore[component.id] ?? '', 
-    values:[{value:"Y",display:"Yes"},{value:"N",display:"No"}]}}
+  <svelte:component this={Textbox} 
+    component={{...component, value:$valueStore[component.id] ?? ''}}
+    on:valueChange="{componentUpdated}">
+      <svelte:fragment slot="pre">
+        <Markdown source={component.pre}/>
+      </svelte:fragment>
+      <svelte:fragment slot="post">
+        <Markdown source={component.post}/>
+      </svelte:fragment>  
+  </svelte:component>
+
+{:else if ["ButtonSelect","Dropdown","YesNo"].includes(component.type)}
+  {#await toListComponent(component)}
+  <!-- looking up refdata (maybe) -->
+  {:then comp}
+  <svelte:component this={({"ButtonSelect":Buttonselect, "Dropdown":Dropdown, "YesNo":Buttonselect})[component.type]} 
+    component={comp}
     on:valueChange="{componentUpdated}">
     <svelte:fragment slot="pre">
-      <Markdown source={component.pre}/>
+      <Markdown source={comp.pre}/>
     </svelte:fragment>
     <svelte:fragment slot="post">
-      <Markdown source={component.post}/>
+      <Markdown source={comp.post}/>
     </svelte:fragment>
-  </Buttonselect>
-{:else if component.type == "ButtonSelect"}
-<Buttonselect
-  component={{...component, 
-    value:$valueStore[component.id] ?? ''}}
-  on:valueChange="{componentUpdated}">
-    <svelte:fragment slot="pre">
-      <Markdown source={component.pre}/>
-    </svelte:fragment>
-    <svelte:fragment slot="post">
-      <Markdown source={component.post}/>
-    </svelte:fragment>
-</Buttonselect>
-{:else if component.type == "Dropdown"}
-<Dropdown
-  component={{...component, 
-    value:$valueStore[component.id] ?? ''}}
-    on:valueChange="{componentUpdated}">
+  </svelte:component>
+  {/await}
+
+{:else if ["Displayblock","Displaymodal"].includes(component.type)}
+  {#await toDisplayComponent(component)}
+  <!-- cast in function to avoid TS warnings, not really awaiting anything -->
+  {:then comp}
+  <svelte:component this={({"Displayblock":Displayblock, "Displaymodal":Displaymodal})[component.type]} 
+    component={comp}>
   <svelte:fragment slot="pre">
-    <Markdown source={component.pre}/>
-  </svelte:fragment>
-  <svelte:fragment slot="post">
-    <Markdown source={component.post}/>
-  </svelte:fragment>
-</Dropdown>
-{:else if component.type == "Displayblock"}
-<Displayblock>
-  <svelte:fragment slot="pre">
-    <Markdown source={component.pre}/>
+    <Markdown source={comp.pre}/>
   </svelte:fragment>
   <svelte:fragment slot="main"> 
-    <Markdown source={component.content}/>
+    <Markdown source={comp.content}/>
   </svelte:fragment>
   <svelte:fragment slot="post">
-    <Markdown source={component.post}/>
+    <Markdown source={comp.post}/>
   </svelte:fragment>
-</Displayblock>
-{:else if component.type == "Displaymodal"}
-<Displaymodal>
-  <svelte:fragment slot="pre">
-    <Markdown source={component.pre}/>
-  </svelte:fragment>
-  <svelte:fragment slot="main">
-    <Markdown source={component.content}/>
-  </svelte:fragment>
-  <svelte:fragment slot="post">
-    <Markdown source={component.post}/>
-  </svelte:fragment>
-</Displaymodal>
+  </svelte:component>
+  {/await}
+
 {:else if component.type == "Address"}
   <Address 
     component={component}
     on:addressChange="{componentUpdated}"
   />
+
 {:else if component.type == "TriBoxDate"}
   <Triboxdate 
     component={component}
     on:dateChange="{componentUpdated}"
   />
+
 {:else if component.type == "Vehicle"}
   <Vehicle 
     component={component}
     on:vehicleChange="{componentUpdated}"
   />
+
 {/if}
 {/if}

@@ -34,7 +34,12 @@
     }    
     function act(event) {
         // publish value changes up to parent too
-        dispatch('valueChange', {key: component.id, value: event.target.value, valid: (!component.required || !!event.target.value)});
+        dispatch('valueChange', {
+            key: component.id, 
+            value: event.target.value, 
+            display: event.target.value ? component.values.find(v => v.value === event.target.value).display : "",
+            valid: (!component.required || !!event.target.value)
+        });
         invalid = (component.required && !event.target.value);
     }
 </script>

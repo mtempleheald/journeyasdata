@@ -1,3 +1,8 @@
+<!-- TODO: Consider rewriting this based on InputComponentType
+    - remove checkbox, act just as a Date Input replacement
+    - limited options in favour of consistency
+    - work with ISO date format only 
+-->
 <script lang="ts">
     import type { TriBoxDateComponentType } from '$lib/types/journey';
     import { blur } from 'svelte/transition';

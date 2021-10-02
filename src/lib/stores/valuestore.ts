@@ -1,7 +1,7 @@
 import { writable } from 'svelte/store';
 
 /*
-    The input store is a Dictionary of key-value pairs (JavaScript object, dict["key"] = "value")
+    The value store is a Dictionary of key-value pairs (JavaScript object, dict["key"] = "value")
     - key is a string defined by journey
     - value is a string provided by the user
     Pure JS example https://www.poftut.com/how-create-and-use-dictionary-in-javascript-tutorial-with-examples/

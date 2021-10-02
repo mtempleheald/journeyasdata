@@ -17,6 +17,7 @@ export type SectionType = {
     title?: string;
     logo?: ImageType;
     maxrepeats?: number;
+    collapsible?: boolean;
     components: ComponentType[];
 }
 export type ComponentType = BaseComponentType
@@ -67,13 +68,14 @@ export type InputComponentType = BaseComponentType & {
     errorMessage?: string;
     help?: string;
 }
-// TODO: review name of ListComponentType
 export type ListComponentType = InputComponentType & {
     values?: ValueType[];
     refdata?: string;
+    refdataparent?: string;
 }
 export type DisplayComponentType = BaseComponentType & {
     content?: string;
+    collapsible?: boolean;
 }
 export type ValueType = {
     value: string;
@@ -81,16 +83,7 @@ export type ValueType = {
     image?: ImageType;
     textLocation?: string;
 }
-export type TriBoxDateComponentType = InputComponentType & {
-    separator?: string;
-    dayPlaceholder: string;
-    monthPlaceholder: string;
-    yearPlaceholder: string;
-    unknownOptionLabel: string;
-    //from: string; // TODO: implement date range validation on the component
-    //to: string; // TODO: implement date range validation on the component
-}
-export type AddressComponentType = InputComponentType & {
+export type AddressComponentType = BaseComponentType & {
     postcodeLabel?: string;
     postcodePlaceholder?: string;    
     propertyLabel?: string;
@@ -98,7 +91,7 @@ export type AddressComponentType = InputComponentType & {
     postcodeHelp?: string;
     postcodeError?: string;
 }
-export type VehicleComponentType = InputComponentType & {
+export type VehicleComponentType = BaseComponentType & {
     regnumLabel?: string;
     regnumPlaceholder?: string;
     buttonLabel?: string;
@@ -108,9 +101,20 @@ export type CookiePreferenceType = {
     post?: string;
     values?: ValueType[];
 }
+// TODO: Consider icons/fonts vs images - images are content, but icons are styling and don't belong in journey
 type ImageType = {
     url: string;
     alt?: string;
     width?: string; // TODO: move to CSS variables - which image/ alt text is content, size is styling
     height?: string; // TODO: move to CSS variables - which image/ alt text is content, size is styling
+}
+// TODO: Consider removing this with Triboxdate refactor
+export type TriBoxDateComponentType = InputComponentType & {
+    separator?: string;
+    dayPlaceholder: string;
+    monthPlaceholder: string;
+    yearPlaceholder: string;
+    unknownOptionLabel: string;
+    //from: string; // TODO: implement date range validation on the component
+    //to: string; // TODO: implement date range validation on the component
 }
