@@ -89,6 +89,37 @@ TypeScript warnings must be addressed for a PR to be accepted.
 To toggle between websites for development add a new `.env.development` file as a copy of `.env`.  
 This file is listed in `.gitignore` to facilitate different developers working with shared components and separate websites.  
 
+# Testing approach
+
+I am keen to include useful testing in this framework, but not go overboard.
+Tests should provide developer confidence, improve technical design by considering edge cases.
+Rely on type safety throughout and don't ignore warnings, to limit the need for some tests.
+
+Utility functions
+- should be built to be testable, framework-agnostic e.g. accept a JS object rather than the svelte store that holds it, expect the caller to pass this.
+- should have tests to prove edge cases, particularly around null/undefined values, since developers don't control the content.
+
+Svelte components
+- should be tested such that they don't crash if they receive a valid object 
+  - a display component does not require an id
+  - an input component may not require a label
+  - a list component should handle 0 options gracefully
+- should not be tested for presentation (yet)
+  - consider a snapshot library for this later on
+
+# Test setup
+
+I like to keep dependencies to an absolute minimum and all of them as devDependencies:  
+- jest - test framework
+- ts-jest - allows jest to test TypeScript components
+- @types/jest - provides access to useful Jest types
+- svelte-jester - handles precompilation, required for testing svelte components
+- svelte-testing-library (not yet in use) - svelte-specific testing library
+- @testing-library/jest-dom (not yet in use) - provides DOM element matchers, convenience methods
+
+[Official Svelte Testing Library documentation](https://testing-library.com/docs/svelte-testing-library/setup)  
+[Introductory blog to configuring SvelteKit with Jest](https://koenvg.medium.com/setting-up-jest-with-sveltekit-4f0a0e379668)  
+[Svelte-jester documentation](https://github.com/mihar-22/svelte-jester#typescript)  
 
 ## Workflow
 
