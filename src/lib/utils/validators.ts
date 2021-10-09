@@ -1,68 +1,84 @@
-import type { ComponentType, JourneyType, SectionType } from '$lib/types/journey'
+import type { InputComponentType, JourneyType, PageType, SectionType } from '$lib/types/journey'
 
-// Each component is responsible for its own (simple) validation, here we trust that this is the case.
-// Component validation logic:
-// (failed)  - validation entry is false - return false
-// (passed)  - validation record is true - return true
-// (missing) - question required (including dependsUpon condition), validation record missing - return false
-// (skipped) - question not required - return true
-//
-// Section validation logic:
-// For each instance of each component defer to the component validator
-// return false if any components are invalid
-// 
-// Page validation logic:
-// For each section on the page defer to the section validator
-// return false if any sections are invalid
+/**
+ * Establish the validity for a component, trusting the component's judgement if provided
+ * @param component         Component metadata from journey.json used to establish validation criteria
+ * @param valueStore        $valueStore from the SvelteKit runtime, or an object consisting of simple string key value pairs
+ * @param validationStore   $validationStore from the SvelteKit runtime, or an object consisting of simple string key value pairs
+ * @returns                 boolean
+ */
+export function componentValid (
+    component: InputComponentType, 
+    valueStore: object, 
+    validationStore: object
+): boolean {
+
+    // (ineligible) - component has no identifier, it must be a display component only, we have no reason to validate
+    if (!component.id) return true 
+
+    // (passed|failed) - input component has been attempted and has a status in the validationStore, trust this value
+    if (validationStore[component.id] != null) return validationStore[component.id]
+
+    // (skipped) - component is optional and has been skipped, don't need to validate
+    if (!component.required??false) return true
+
+    // (hidden) - component is hidden due to dependency on another component, don't fail validation
+    if (component.dependsupon && valueStore[component.dependsupon.id] != component.dependsupon.value) return true
+
+    // (missing) - component has not been answered, yet is required and not hidden, so it must be invalid
+    console.log(component)
+    console.log(valueStore)
+    console.log(validationStore)
+    return false
+}
+
+/**
+ * Establish section validity by checking each component within it, if any component is invalid, so is the section
+ * @param section           Section metadata from journey.json used to establish validation criteria
+ * @param valueStore        $valueStore from the SvelteKit runtime, or an object consisting of simple string key value pairs
+ * @param validationStore   $validationStore from the SvelteKit runtime, or an object consisting of simple string key value pairs
+ * @returns                 boolean
+ */
+export function sectionValid (
+    section: SectionType,
+    valueStore: object,
+    validationStore: object
+): boolean {
+    return section.components.every(c => componentValid(c as InputComponentType, valueStore, validationStore))
+}
+
+/**
+ * Establish page validity by checking each section within it, if any section is invalid, so is the page
+ * @param page              Page metadata from journey.json used to establish validation criteria
+ * @param valueStore        $valueStore from the SvelteKit runtime, or an object consisting of simple string key value pairs
+ * @param validationStore   $validationStore from the SvelteKit runtime, or an object consisting of simple string key value pairs
+ * @returns                 boolean
+ */
+ export function pageValid (
+    page: PageType,
+    valueStore: object,
+    validationStore: object
+): boolean {
+    return page.sections.every(s => sectionValid(s, valueStore, validationStore))
+}
+
+/**
+ * Establish journey validity by checking each page within it, if any page is invalid, so is the journey
+ * @param journey           Journey metadata from journey.json used to establish validation criteria
+ * @param valueStore        $valueStore from the SvelteKit runtime, or an object consisting of simple string key value pairs
+ * @param validationStore   $validationStore from the SvelteKit runtime, or an object consisting of simple string key value pairs
+ * @returns                 boolean
+ */
+ export function journeyValid (
+    journey: JourneyType,
+    valueStore: object,
+    validationStore: object
+): boolean {
+    return journey.pages.every(p=> pageValid(p, valueStore, validationStore))
+}
 
 // Additional information
 // Questionset structure = journey.page.section.component - sections can be repeated
 // Value store uses identifier {section id}.{section index}.{component id} which can be unflattened to a similar struture
 // For non-repeating sections this value store identifier is simply {component id}
 
-function SectionValid (
-    section : SectionType,
-    inputs: object,
-    validations: object
-){
-    // TODO: update to calculate correct identifier for component based on repeated section index before validating component
-    let valid =
-    section.components.every(c => {
-        return (
-        //     !c.required                                                         // not required so don't validate
-        // ||  (c.dependsupon && inputs[c.dependsupon.id] != c.dependsupon.value)  // a hidden question so don't validate
-        // ||  (c.required && validations[c.id])                                   // required and valid
-        true
-        )
-    })
-    return valid;
-}
-
-function PageValid (
-    journey: JourneyType, 
-    pageUrl: string,
-    inputs: object,
-    validations: object
-) {
-    // TODO: update to handle repeated sections (pass index down to section validator)
-    const sections = journey.pages.filter(p => p.url == pageUrl).pop().sections;
-    let valid = 
-    sections.every(s => {
-        return SectionValid(s, inputs, validations)
-    })
-    return valid;
-}
-
-function validator() {
-    return {
-        valid: (qs, url, inputs, validations) => PageValid(qs, url, inputs, validations)
-    }
-}
-
-export const pageValidator = validator();
-
-// called externally using:
-// import { questionSet } from '$lib/stores/journey';
-// import { validationStore } from '$lib/stores/validationstore';
-// import { pageValidator } from '$lib/validators/pageValidator';
-// if (pageValidator.valid($questionSet, "page-url", $validationStore)) ...

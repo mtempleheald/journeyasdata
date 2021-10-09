@@ -2,7 +2,7 @@
     import type { JourneyType } from '$lib/types/journey';
     import { goto } from '$app/navigation';
     import { nextPageUrl, prevPageUrl } from '$lib/utils/navigation';
-    import { pageValidator } from '$lib/utils/validators';
+    import { pageValid } from '$lib/utils/validators';
     import { validationStore } from '$lib/stores/validationstore';
     import { valueStore } from '$lib/stores/valuestore'
 
@@ -16,7 +16,9 @@
         goto(prevPageUrl(journey, pageurl))
     }
     function next(event) {
-        if (pageValidator.valid(journey, pageurl, $valueStore, $validationStore)) {
+        //if(true){
+        // TODO: Fix validators for repeating sections following implementation of repeating sections
+        if (pageValid(journey.pages.find(p => p.url == pageurl), $valueStore, $validationStore)) {
             console.log ("Page valid, redirecting to next page");
             goto(nextPageUrl(journey, pageurl));
         }
