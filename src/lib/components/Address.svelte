@@ -1,3 +1,4 @@
+<!-- DEPRECATED - see action providers for alternative implementation -->
 <script lang="ts">
     import type { AddressComponentType } from '$lib/types/journey';
     import type { AddressType } from '$lib/types/address';
@@ -111,6 +112,7 @@
     {#if propertyLov.length > 0 || !$valueStore["property"]}
     <Dropdown 
         component={{
+            type: "Dropdown",
             id: "property",
             value: $valueStore["property"] ?? '',
             label: component.propertyLabel,
@@ -122,6 +124,7 @@
     {:else}
     <Textbox 
         component={{
+            type: "Text",
             id: "property",
             value: $valueStore["property"] ?? '',
             label: component.propertyLabel,
@@ -132,6 +135,7 @@
     {#if $valueStore["property"]}
     <Textbox
         component={{
+            type: "Text",
             id: "addressline1",
             value: $valueStore["addressline1"],
             label: "Address Line 1"
@@ -140,6 +144,7 @@
     />
     <Textbox
         component={{
+            type: "Text",
             id: "addressline2",
             value: $valueStore["addressline2"],
             label: "Address Line 2"
@@ -148,6 +153,7 @@
     />
     <Textbox
         component={{
+            type: "Text",
             id: "addressline3",
             value: $valueStore["addressline3"],
             label: "Address Line 3"
@@ -156,6 +162,7 @@
     />
     <Textbox
         component={{
+            type: "Text",
             id: "addressline4",
             value: $valueStore["addressline4"],
             label: "Address Line 4"

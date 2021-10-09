@@ -1,42 +1,57 @@
 export type JourneyType = {
-    title: string;
-    pages: PageType[];
-    logo?: ImageType;
-    cookiepreferences?: CookiePreferenceType;
+    title: string
+    pages: PageType[]
+    logo?: ImageType
+    cookiepreferences?: CookiePreferenceType
 }
 export type PageType = {
-    url: string;
-    title: string;
-    displaytitle?: boolean;
-    displayprogress?: boolean;
-    sections: SectionType[];
+    url: string
+    title: string
+    displaytitle?: boolean
+    displayprogress?: boolean
+    sections: SectionType[]
 }
 export type SectionType = {
-    id?: string;
-    type?: string;
-    title?: string;
-    logo?: ImageType;
-    maxrepeats?: number;
-    collapsible?: boolean;
-    components: ComponentType[];
+    id?: string
+    type?: string
+    title?: string
+    logo?: ImageType
+    maxrepeats?: number
+    collapsible?: boolean
+    components: ComponentType[]
 }
-export type ComponentType = BaseComponentType
-    | AddressComponentType 
+export type ComponentType = 
+      AddressComponentType 
     | DisplayComponentType 
     | InputComponentType 
     | ListComponentType 
     | TriBoxDateComponentType
-    | VehicleComponentType;
+    | VehicleComponentType
 
-export type BaseComponentType = {
-    type?: "Address" 
-        | "ButtonSelect"
-        | "Colour" 
+// Every component must have a type or we have no way to render it
+interface BaseComponent {
+    type: string
+    pre?: string
+    post?: string
+    dependsupon?: {
+        id: string
+        value: string
+    }
+}
+// Input components must have an identity for their value to be useful
+interface InputComponent {    
+    id: string
+    label?: string
+    required?: boolean
+    placeholder?: string
+    value?: string
+    errorMessage?: string
+    help?: string
+}
+export type InputComponentType = BaseComponent & InputComponent & {
+    type: "Colour" 
         | "Date" 
         | "Datetime"
-        | "Displayblock"
-        | "Displaymodal"
-        | "Dropdown" 
         | "Email"
         | "Month" 
         | "Number"
@@ -45,76 +60,74 @@ export type BaseComponentType = {
         | "Telephone"
         | "Text" 
         | "Time"
-        | "TriBoxDate"
         | "Upper"
         | "Url"
-        | "Vehicle" 
         | "Week"
         | "Year"
-        | "YesNo";
-    id?: string;
-    pre?: string;
-    post?: string;
-    dependsupon?: {
-        id: string;
-        value: string;
-    }
 }
-export type InputComponentType = BaseComponentType & {    
-    label?: string;
-    required?: boolean;
-    placeholder?: string;
-    value?: string;
-    errorMessage?: string;
-    help?: string;
-}
-export type ListComponentType = InputComponentType & {
-    values?: ValueType[];
-    refdata?: string;
-    refdataparent?: string;
-}
-export type DisplayComponentType = BaseComponentType & {
-    content?: string;
-    collapsible?: boolean;
+
+// List components require a source list to render, which may cascade hierarchically
+export type ListComponentType = InputComponent & BaseComponent & {
+    type: "ButtonSelect"
+        | "Dropdown"
+        | "YesNo"
+    values?: ValueType[]
+    refdata?: string
+    refdataparent?: string
 }
 export type ValueType = {
-    value: string;
-    display: string;
-    image?: ImageType;
-    textLocation?: string;
+    value: string
+    display: string
+    image?: ImageType     // TODO: Consider replacing this with an identifier for an image rather than a url - let styling handle how this is included (e.g. font icons)
+    textLocation?: string // TODO: Consider removing this, it is not intuitive and belongs in styling
 }
-export type AddressComponentType = BaseComponentType & {
-    postcodeLabel?: string;
-    postcodePlaceholder?: string;    
-    propertyLabel?: string;
-    propertyPlaceholder?: string;
-    postcodeHelp?: string;
-    postcodeError?: string;
+
+// Display components' main purpose is content display, this field is mandatory
+export type DisplayComponentType = BaseComponent & {
+    type: "Displayblock"
+        | "Displaymodal"
+    id?: string
+    content: string
+    collapsible?: boolean
 }
-export type VehicleComponentType = BaseComponentType & {
-    regnumLabel?: string;
-    regnumPlaceholder?: string;
-    buttonLabel?: string;
+
+// TODO: Consider removing Address composite component in favour of action provider solution
+export type AddressComponentType = BaseComponent & InputComponent & {
+    type: "Address"
+    postcodeLabel?: string
+    postcodePlaceholder?: string  
+    propertyLabel?: string
+    propertyPlaceholder?: string
+    postcodeHelp?: string
+    postcodeError?: string
+}
+// TODO: Consider removing Vehicle composite component in favour of action provider solution
+export type VehicleComponentType = BaseComponent & InputComponent & {
+    type: "Vehicle"
+    regnumLabel?: string
+    regnumPlaceholder?: string
+    buttonLabel?: string
 }
 export type CookiePreferenceType = {
-    pre?: string;
-    post?: string;
-    values?: ValueType[];
+    pre?: string
+    post?: string
+    values?: ValueType[]
 }
 // TODO: Consider icons/fonts vs images - images are content, but icons are styling and don't belong in journey
 type ImageType = {
-    url: string;
-    alt?: string;
-    width?: string; // TODO: move to CSS variables - which image/ alt text is content, size is styling
-    height?: string; // TODO: move to CSS variables - which image/ alt text is content, size is styling
+    url: string
+    alt?: string
+    width?: string // TODO: move to CSS variables - which image/ alt text is content, size is styling
+    height?: string // TODO: move to CSS variables - which image/ alt text is content, size is styling
 }
-// TODO: Consider removing this with Triboxdate refactor
-export type TriBoxDateComponentType = InputComponentType & {
-    separator?: string;
-    dayPlaceholder: string;
-    monthPlaceholder: string;
-    yearPlaceholder: string;
-    unknownOptionLabel: string;
-    //from: string; // TODO: implement date range validation on the component
-    //to: string; // TODO: implement date range validation on the component
+// TODO: Consider removing this with Triboxdate refactor, do we really need this level of flexibility?
+export type TriBoxDateComponentType = BaseComponent & InputComponent & {
+    type: "TriBoxDate"
+    separator?: string
+    dayPlaceholder: string
+    monthPlaceholder: string
+    yearPlaceholder: string
+    unknownOptionLabel: string
+    //from: string // TODO: implement date range validation on the component
+    //to: string // TODO: implement date range validation on the component
 }

@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type { ComponentType, DisplayComponentType, ListComponentType } from '$lib/types/journey';
+    import type { ComponentType, DisplayComponentType, InputComponentType, ListComponentType } from '$lib/types/journey';
     import { actionStore } from '$lib/stores/actionstore';
     import { browser } from '$app/env';
     import { displayValueStore } from '$lib/stores/displayvaluestore';
@@ -54,14 +54,17 @@
     }
 
     async function toDisplayComponent(component: ComponentType): Promise<DisplayComponentType> {
-      return component as DisplayComponentType;
+      return component as DisplayComponentType
+    }
+    async function toInputComponent(component: ComponentType): Promise<InputComponentType> {
+      return component as InputComponentType
     }
 </script>
 
 
 {#if !component.dependsupon || ($valueStore[component.dependsupon.id] == component.dependsupon.value)}
 
-{#if ["Colour","Date","Datetime","Email","Month","Number","Range","Search","Text","Telephone","Time","Upper","Url","Week"].includes(component.type)}
+{#if ["Colour","Date","Datetime","Email","Month","Number","Range","Search","Telephone","Text","Time","Upper","Url","Week","Year"].includes(component.type)}
   <svelte:component this={Textbox} 
     component={{...component, value:$valueStore[component.id] ?? ''}}
     on:valueChange="{componentUpdated}">

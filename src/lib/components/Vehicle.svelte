@@ -1,3 +1,4 @@
+<!-- DEPRECATED - See action providers for alternative approach -->
 <script lang="ts">
     import type { VehicleComponentType } from '$lib/types/journey';
     import type { VehicleType } from '$lib/types/vehicle';
@@ -40,7 +41,7 @@
     
 
 <div class="vehicle">
-    <Textbox type="Upper"
+    <Textbox
         component={{
             type: "Upper",
             id: "regnum",
