@@ -86,6 +86,23 @@ test('display component', () => {
     // @ts-ignore
     expect(componentValid(comp, {}, {})).toBe(true)
 })
+test('repeating group component', () => {
+    let comp: InputComponentType = {
+        "id": "componentid.0",
+        "type": "Text",
+    }
+    let value = {
+        "componentid.0": "test"
+    }
+    let validity = {
+        "componentid.0": true
+    }
+    expect(componentValid(comp, value, validity)).toBe(true)
+})
+
+// TODO: Add section/page validation tests to cover repeating groups in particular
+
+
 
 
 // TODO: this is more of a component test than a validator test, move it out of here...

@@ -4,6 +4,7 @@
     import Cookiepreference from '$lib/components/Cookiepreference.svelte';
     import Navbuttons from '$lib/components/Navbuttons.svelte';
     import Progressbar from '$lib/components/Progressbar.svelte';
+    import Repeatinggroup from './Repeatinggroup.svelte';
     import Section from './Section.svelte';
 
     export let page: PageType;
@@ -45,7 +46,11 @@
 {/if}
 
 {#each page.sections as s}
-  <Section section={s}/>
+  {#if s.type == "repeatinggroup"}
+    <Repeatinggroup repeatinggroup={s}/>
+  {:else}
+    <Section section={s}/>
+  {/if}
 {/each}
 
 

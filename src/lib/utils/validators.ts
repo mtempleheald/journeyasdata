@@ -1,4 +1,4 @@
-import type { InputComponentType, JourneyType, PageType, SectionType } from '$lib/types/journey'
+import type { ComponentType, InputComponentType, JourneyType, PageType, RepeatingGroupType, SectionType } from '$lib/types/journey'
 
 /**
  * Establish the validity for a component, trusting the component's judgement if provided
@@ -37,11 +37,27 @@ export function componentValid (
  * @returns                 boolean
  */
 export function sectionValid (
-    section: SectionType,
+    section: SectionType|RepeatingGroupType,
     valueStore: object,
     validationStore: object
 ): boolean {
-    return section.components.every(c => componentValid(c as InputComponentType, valueStore, validationStore))
+    // function duplicated from Repeatinggroup.svelte
+    function updateSection(section: SectionType, index: number) {
+        let newComponents: ComponentType[] = section.components.map(comp => {
+            return {
+                ...comp, 
+                id: `${comp.id}.${index}`
+            }
+        })
+        return {...section, iteration: index, components: newComponents}
+    }
+    switch (section.type) {
+        case "repeatinggroup":
+            return section.sections.every((s, i) => sectionValid(updateSection(s, i), valueStore, validationStore));
+        default:
+            return section.components.every(c => componentValid(c as InputComponentType, valueStore, validationStore))
+    }
+    
 }
 
 /**

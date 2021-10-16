@@ -4,7 +4,6 @@
 
     export let section: SectionType;
 
-    let currentSection: number = 0;
     let hidden: boolean = false;
     
     function collapse() {
@@ -16,39 +15,6 @@
 </script>
 
 
-{#if section.id}
-<!-- 
-    Prefix all component ids with the section ID and the repeat index.
-    This ensures that all components have a unique id in the flattened store.
-    Custom functions must be aware of this where this flat structure can be unflattened
--->
-    {#key currentSection}
-    {#each Array(section.maxrepeats ?? 1) as _,idx}
-    {#if idx == currentSection}
-        <section>
-            <header>
-                {#if section.logo}
-                <img src={section.logo.url} alt="{section.logo.alt} section logo" width="{section.logo.width}" height="{section.logo.height}" >
-                {/if}
-                {#if section.title}
-                <h3>{section.title}[{idx}]</h3>
-                {/if}
-            </header>
-            <div class="{hidden ? 'hidden' : ''}">
-                {#each section.components as component}   
-                <Component component={{...component, id: `${section.id}.${idx}.${component.id}`}}/>            
-                {/each}
-            </div>
-        </section>
-    {:else}
-        <section>
-            <button type="button" on:click={() => currentSection = idx}>Edit section</button>
-        </section>
-    {/if}
-    {/each}
-    {/key}
-{:else}
-<!-- Standard undefined section with no repeats, use component as defined in journey -->
 <section>
     {#if section.logo || section.title}
     <header>
@@ -58,6 +24,7 @@
         {#if section.title}
         <h1>{section.title}</h1>
         {/if}
+        <input type="hidden" id="iteration" value="{section.iteration}"/>
     </header>
     {/if}
 
@@ -68,7 +35,6 @@
     </div>
 
 </section>
-{/if}
 
 
 <style>

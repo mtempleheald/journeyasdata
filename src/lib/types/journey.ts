@@ -9,11 +9,19 @@ export type PageType = {
     title: string
     displaytitle?: boolean
     displayprogress?: boolean
+    sections: (SectionType|RepeatingGroupType)[]
+}
+// A repeating group has no presentation elements of its own, it simply wraps one or more sections
+export type RepeatingGroupType = {
+    type: "repeatinggroup"
+    minrepeats?: number
+    maxrepeats?: number
     sections: SectionType[]
 }
 export type SectionType = {
     id?: string
-    type?: string
+    iteration?: number // used only when section is contained within a repeating group
+    type: "section"|null
     title?: string
     logo?: ImageType
     maxrepeats?: number
@@ -40,7 +48,7 @@ interface BaseComponent {
 }
 // Input components must have an identity for their value to be useful
 interface InputComponent {    
-    id: string
+    id: string // id must not contain a . (full stop) - this is reserved for components within repeating groups
     label?: string
     required?: boolean
     placeholder?: string
