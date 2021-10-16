@@ -3,9 +3,9 @@
     import type { VehicleComponentType } from '$lib/types/journey';
     import type { VehicleType } from '$lib/types/vehicle';
     import { valueStore } from '$lib/stores/valuestore';
-    import Dropdown from '$lib/components/Dropdown.svelte';
+    import InputTextbox from '$lib/components/InputTextbox.svelte';
+    import ListDropdown from '$lib/components/ListDropdown.svelte';
     import Markdown from '$lib/components/Markdown.svelte';
-    import Textbox from '$lib/components/Textbox.svelte';
 
     // expose component properties
     export let component: VehicleComponentType;
@@ -41,7 +41,7 @@
     
 
 <div class="vehicle">
-    <Textbox
+    <InputTextbox
         component={{
             type: "Upper",
             id: "regnum",
@@ -53,11 +53,11 @@
             errorMessage: component.errorMessage
         }}        
         on:valueChange="{regUpdated}"
-    ></Textbox>
+    />
     <button type="button">{component.buttonLabel}</button>
     
     TODO: Year Of Manufacture - Drop down in Vehicle.svelte
-    <Dropdown
+    <ListDropdown
         component={{...component, 
             value:$valueStore[component.id] ?? ''}}>
         <svelte:fragment slot="pre">
@@ -66,36 +66,36 @@
         <svelte:fragment slot="post">
             <Markdown source={component.post}/>
         </svelte:fragment>
-    </Dropdown>
+    </ListDropdown>
 
     
-    <Textbox
+    <InputTextbox
         component={{
             type: "Text",
             id: "make",
             label: "Make",
             value: vehicle?.make ?? ''
         }}
-    ></Textbox>
-    <Textbox
+    />
+    <InputTextbox
     component={{
         type: "Text",
         id: "enginecc",
         label: "Engine Size",
         value: vehicle?.enginecc ?? ''
     }}
-    ></Textbox>
-    <Textbox
+    />
+    <InputTextbox
     component={{
         type: "Text",
         id: "model",
         label: "Model",
         value: vehicle?.model ?? ''
     }}
-    ></Textbox>
+    />
 
     TODO: Select Bike - Drop down component in Vehicle.svelte
-    <Dropdown
+    <ListDropdown
         component={{...component, 
             value:$valueStore[component.id] ?? ''}}>
         <svelte:fragment slot="pre">
@@ -104,7 +104,7 @@
         <svelte:fragment slot="post">
             <Markdown source={component.post}/>
         </svelte:fragment>
-    </Dropdown>
+    </ListDropdown>
 </div>
 
 

@@ -5,15 +5,15 @@
     import { displayValueStore } from '$lib/stores/displayvaluestore';
     import { validationStore } from '$lib/stores/validationstore';
     import { valueStore } from '$lib/stores/valuestore';
-    import Address from '$lib/components/Address.svelte';
-    import Buttonselect from '$lib/components/Buttonselect.svelte';
-    import Displayblock from '$lib/components/Displayblock.svelte';
-    import Displaymodal from '$lib/components/Displaymodal.svelte';
-    import Displayselections from './Displayselections.svelte';
-    import Dropdown from '$lib/components/Dropdown.svelte';
-    import Markdown from '$lib/components/Markdown.svelte';
-    import Textbox from '$lib/components/Textbox.svelte';
-    import Triboxdate from '$lib/components/Triboxdate.svelte';
+    import Address from '$lib/components/Address.svelte';    
+    import Displayblock from '$lib/components/DisplayBlock.svelte';
+    import Displaymodal from '$lib/components/DisplayModal.svelte';
+    import Displayselections from './DisplaySelections.svelte';
+    import InputTextbox from '$lib/components/InputTextbox.svelte';
+    import ListButtonselect from '$lib/components/ListButtonselect.svelte';
+    import ListDropdown from '$lib/components/ListDropdown.svelte';
+    import Markdown from '$lib/components/Markdown.svelte';    
+    import Triboxdate from '$lib/components/InputTriboxdate.svelte';
     import Vehicle from '$lib/components/Vehicle.svelte';
 
     export let component: ComponentType;
@@ -65,7 +65,7 @@
 {#if !component.dependsupon || ($valueStore[component.dependsupon.id] == component.dependsupon.value)}
 
 {#if ["Colour","Date","Datetime","Email","Month","Number","Range","Search","Telephone","Text","Time","Upper","Url","Week","Year"].includes(component.type)}
-  <svelte:component this={Textbox} 
+  <svelte:component this={InputTextbox} 
     component={{...component, value:$valueStore[component.id] ?? ''}}
     on:valueChange="{componentUpdated}">
       <svelte:fragment slot="pre">
@@ -80,7 +80,11 @@
   {#await toListComponent(component)}
   <!-- looking up refdata (maybe) -->
   {:then comp}
-  <svelte:component this={({"ButtonSelect":Buttonselect, "Dropdown":Dropdown, "YesNo":Buttonselect})[component.type]} 
+  <svelte:component this={({
+      "ButtonSelect":ListButtonselect, 
+      "Dropdown":ListDropdown, 
+      "YesNo":ListButtonselect
+    })[component.type]} 
     component={comp}
     on:valueChange="{componentUpdated}">
     <svelte:fragment slot="pre">
@@ -96,7 +100,11 @@
   {#await toDisplayComponent(component)}
   <!-- cast in function to avoid TS warnings, not really awaiting anything -->
   {:then comp}
-  <svelte:component this={({"Displayblock":Displayblock, "Displaymodal":Displaymodal, "Displayselections":Displayselections})[component.type]} 
+  <svelte:component this={({
+      "Displayblock":Displayblock, 
+      "Displaymodal":Displaymodal, 
+      "Displayselections":Displayselections
+    })[component.type]} 
     component={comp}>
   <svelte:fragment slot="pre">
     <Markdown source={comp.pre}/>

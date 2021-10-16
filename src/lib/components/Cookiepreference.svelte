@@ -3,7 +3,7 @@
     import { actionStore } from '$lib/stores/actionstore';
     import { validationStore } from '$lib/stores/validationstore';
     import { valueStore } from '$lib/stores/valuestore';
-    import Buttonselect from '$lib/components/Buttonselect.svelte';
+    import ListButtonselect from '$lib/components/ListButtonselect.svelte';
     import Markdown from '$lib/components/Markdown.svelte';
 
     export let cookiepreferences: CookiePreferenceType;
@@ -35,7 +35,7 @@
     on:mouseenter={enter} on:mouseleave={leave} >
 
     {#if cookiepreferences.values}
-    <Buttonselect
+    <ListButtonselect
         component={{
             id: "cookiestatus",
             value: $valueStore["cookiestatus"] ?? '',
@@ -48,7 +48,7 @@
         <svelte:fragment slot="post">
         <Markdown source={cookiepreferences.post}/>
         </svelte:fragment>
-    </Buttonselect>
+    </ListButtonselect>
     {/if}
 
 </section>

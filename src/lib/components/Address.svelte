@@ -5,8 +5,8 @@
 	import { createEventDispatcher } from 'svelte';
     import { validationStore } from '$lib/stores/validationstore';
     import { valueStore } from '$lib/stores/valuestore';
-    import Dropdown from '$lib/components/Dropdown.svelte';
-    import Textbox from '$lib/components/Textbox.svelte';
+    import InputTextbox from '$lib/components/InputTextbox.svelte';
+    import ListDropdown from '$lib/components/ListDropdown.svelte';
     
     // expose component properties
     export let component: AddressComponentType;
@@ -95,7 +95,7 @@
     on:mouseenter={enter} 
     on:mouseleave={leave}
 >
-    <Textbox
+    <InputTextbox
         component={{
             type: "Upper",
             id: "postcode",
@@ -110,7 +110,7 @@
     />
     {#key propertyLov}<!-- redraw the LOV anytime the data changes because we are passing new object to (sub)components, not binding -->    
     {#if propertyLov.length > 0 || !$valueStore["property"]}
-    <Dropdown 
+    <ListDropdown 
         component={{
             type: "Dropdown",
             id: "property",
@@ -122,7 +122,7 @@
         on:valueChange="{propertyTouched}"
     />
     {:else}
-    <Textbox 
+    <InputTextbox 
         component={{
             type: "Text",
             id: "property",
@@ -133,7 +133,7 @@
     {/if}
     {/key}
     {#if $valueStore["property"]}
-    <Textbox
+    <InputTextbox
         component={{
             type: "Text",
             id: "addressline1",
@@ -142,7 +142,7 @@
         }}        
         on:valueChange={(e) => {valueStore.set("addressline1", e.detail.value)}}
     />
-    <Textbox
+    <InputTextbox
         component={{
             type: "Text",
             id: "addressline2",
@@ -151,7 +151,7 @@
         }}
         on:valueChange={(e) => {valueStore.set("addressline2", e.detail.value)}}
     />
-    <Textbox
+    <InputTextbox
         component={{
             type: "Text",
             id: "addressline3",
@@ -160,7 +160,7 @@
         }}
         on:valueChange={(e) => {valueStore.set("addressline3", e.detail.value)}}
     />
-    <Textbox
+    <InputTextbox
         component={{
             type: "Text",
             id: "addressline4",
