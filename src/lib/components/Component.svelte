@@ -3,6 +3,7 @@
     import { actionStore } from '$lib/stores/actionstore';
     import { browser } from '$app/env';
     import { displayValueStore } from '$lib/stores/displayvaluestore';
+    import { parseMarkdown } from '$lib/utils/markdown';
     import { replaceTokens } from '$lib/utils/replacetokens';
     import { validationStore } from '$lib/stores/validationstore';
     import { valueStore } from '$lib/stores/valuestore';
@@ -13,7 +14,6 @@
     import InputTextbox from '$lib/components/InputTextbox.svelte';
     import ListButtonselect from '$lib/components/ListButtonselect.svelte';
     import ListDropdown from '$lib/components/ListDropdown.svelte';
-    import Markdown from '$lib/components/Markdown.svelte';    
     import Triboxdate from '$lib/components/InputTriboxdate.svelte';
     import Vehicle from '$lib/components/Vehicle.svelte';
 
@@ -72,10 +72,10 @@
     component={{...component, value:$valueStore[component.id] ?? ''}}
     on:valueChange="{componentUpdated}">
       <svelte:fragment slot="pre">
-        <Markdown source={component.pre}/>
+        {@html parseMarkdown(replaceTokens(component.pre, $displayValueStore))}
       </svelte:fragment>
       <svelte:fragment slot="post">
-        <Markdown source={component.post}/>
+        {@html parseMarkdown(replaceTokens(component.post, $displayValueStore))}
       </svelte:fragment>  
   </svelte:component>
 
@@ -91,10 +91,10 @@
     component={comp}
     on:valueChange="{componentUpdated}">
     <svelte:fragment slot="pre">
-      <Markdown source={comp.pre}/>
+      {@html parseMarkdown(replaceTokens(comp.pre, $displayValueStore))}
     </svelte:fragment>
     <svelte:fragment slot="post">
-      <Markdown source={comp.post}/>
+      {@html parseMarkdown(replaceTokens(comp.post, $displayValueStore))}
     </svelte:fragment>
   </svelte:component>
   {/await}
@@ -110,13 +110,13 @@
     })[component.type]} 
     component={comp}>
   <svelte:fragment slot="pre">
-    <Markdown source={comp.pre}/>
+    {@html parseMarkdown(replaceTokens(comp.pre, $displayValueStore))}
   </svelte:fragment>
-  <svelte:fragment slot="main"> 
-    <Markdown source={replaceTokens(comp.content, $displayValueStore)}/>
+  <svelte:fragment slot="main">
+    {@html parseMarkdown(replaceTokens(comp.content, $displayValueStore))}
   </svelte:fragment>
   <svelte:fragment slot="post">
-    <Markdown source={comp.post}/>
+    {@html parseMarkdown(replaceTokens(comp.post, $displayValueStore))}
   </svelte:fragment>
   </svelte:component>
   {/await}

@@ -55,3 +55,7 @@ test('identifier not in store should replace with empty string', () => {
     let expected = "string containing "
     expect(replaceTokens(identifier, displayValueStore)).toEqual(expected)
 })
+
+test('null input', () => {
+    expect(replaceTokens(null, {})).toEqual("")
+})

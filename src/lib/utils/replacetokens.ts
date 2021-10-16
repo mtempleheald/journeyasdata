@@ -5,6 +5,8 @@
 
 export const replaceTokens = function(input: string, values: {}) {
 
+    if (!input) return ""
+    
     let output: string = input;
 
     // a valid key can only consist of alphanumeric characters or . (full stop) which is only allowed within repeating groups

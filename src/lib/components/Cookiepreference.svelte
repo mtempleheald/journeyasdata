@@ -1,10 +1,12 @@
 <script lang="ts">
     import type { CookiePreferenceType } from '$lib/types/journey';
     import { actionStore } from '$lib/stores/actionstore';
+    import { displayValueStore } from '$lib/stores/displayvaluestore';
+    import { parseMarkdown } from '$lib/utils/markdown';
+    import { replaceTokens } from '$lib/utils/replacetokens';
     import { validationStore } from '$lib/stores/validationstore';
     import { valueStore } from '$lib/stores/valuestore';
-    import ListButtonselect from '$lib/components/ListButtonselect.svelte';
-    import Markdown from '$lib/components/Markdown.svelte';
+    import ListButtonselect from '$lib/components/ListButtonselect.svelte';    
 
     export let cookiepreferences: CookiePreferenceType;
 
@@ -44,10 +46,10 @@
         }}
         on:valueChange="{componentUpdated}">
         <svelte:fragment slot="pre">
-        <Markdown source={cookiepreferences.pre}/>
+            {@html parseMarkdown(replaceTokens(cookiepreferences.pre, $displayValueStore))}
         </svelte:fragment>
         <svelte:fragment slot="post">
-        <Markdown source={cookiepreferences.post}/>
+            {@html parseMarkdown(replaceTokens(cookiepreferences.post, $displayValueStore))}
         </svelte:fragment>
     </ListButtonselect>
     {/if}
