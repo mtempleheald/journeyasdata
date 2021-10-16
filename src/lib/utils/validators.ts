@@ -26,9 +26,6 @@ export function componentValid (
     if (component.dependsupon && valueStore[component.dependsupon.id] != component.dependsupon.value) return true
 
     // (missing) - component has not been answered, yet is required and not hidden, so it must be invalid
-    console.log(component)
-    console.log(valueStore)
-    console.log(validationStore)
     return false
 }
 

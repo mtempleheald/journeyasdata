@@ -1,5 +1,6 @@
 <script lang="ts">
     import type { JourneyType } from '$lib/types/journey';
+    import { ENV } from '$lib/env';
     import { goto } from '$app/navigation';
     import { nextPageUrl, prevPageUrl } from '$lib/utils/navigation';
     import { pageValid } from '$lib/utils/validators';
@@ -16,9 +17,11 @@
         goto(prevPageUrl(journey, pageurl))
     }
     function next(event) {
-        //if(true){
-        // TODO: Fix validators for repeating sections following implementation of repeating sections
-        if (pageValid(journey.pages.find(p => p.url == pageurl), $valueStore, $validationStore)) {
+        if (ENV.DISABLEVALIDATION == 'Y') {
+            console.log('Validation disabled, redirecting to next page')
+            goto(nextPageUrl(journey, pageurl));
+        }
+        else if (pageValid(journey.pages.find(p => p.url == pageurl), $valueStore, $validationStore)) {
             console.log ("Page valid, redirecting to next page");
             goto(nextPageUrl(journey, pageurl));
         }
