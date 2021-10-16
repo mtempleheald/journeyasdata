@@ -9,38 +9,28 @@
       "displaytitle": false,
       "sections": [
         {
-          "title": "Introduction section",
+          "title": "Journey as data technical demo ",
           "logo": {
-            "url": "https://fakeimg.pl/100x50/?text=Introduction%20Logo%20Stretched",
+            "url": "https://fakeimg.pl/100x50/?text=Introduction",
             "width": "250px",
             "height": "50px"
           },
           "components": [
             {
               "type": "Displayblock",
-              "content": "# Heading \n\n Introductory sentence explaining how we get money off you. \n\n Another paragraph containing some caveats. \n\n - bullet1 \n\n - bullet2"
-            },
-            {
-              "id": "startbutton",
-              "type": "ButtonSelect",
-              "values": [
-                {
-                  "value": "start",
-                  "display": "Start"
-                }
-              ]
+              "content": "This technical demo shows which components are available and the different ways in which they can be used."
             }
           ]
         }
       ]
     },
     {
-      "url": "text-inputs",
-      "title": "Text Input variations",
+      "url": "inputs",
+      "title": "Basic input",
       "displayprogress": true,
       "sections": [
         {
-          "title": "Textbox parameters",
+          "title": "Textbox journey parameters",
           "logo": {
             "url": "https://fakeimg.pl/100x50/?text=Text%20Logo"
           },
@@ -171,6 +161,29 @@
           ]
         },
         {
+          "title": "Alternative date components",
+          "components": [        
+            {
+              "type": "TriBoxDate",
+              "id": "purchaseDate",
+              "label": "Enter the date of purchase",
+              "separator": "/",
+              "dayPlaceholder": "DD",
+              "monthPlaceholder": "MM",
+              "yearPlaceholder": "YYYY",
+              "unknownOptionLabel": "I have not purchased it yet",
+              "from": "01/01/1970",
+              "to": "Today"
+              ,
+              "required": true,
+              "errorMessage": "Please enter valid data",
+              "help": "Help text",
+              "pre": "# Markdown before question 1",
+              "post": "__Markdown after question 1__"
+            }
+          ]
+        },
+        {
           "type": "Navigation",
           "title": "Navigation Section",
           "components": [
@@ -207,8 +220,8 @@
       ]
     },
     {
-      "url": "dropdowns",
-      "title": "Dropdown selection",
+      "url": "list-inputs",
+      "title": "List input",
       "displayprogress": true,
       "sections": [
         {
@@ -249,34 +262,9 @@
                   "display": "Example 2"
                 }
               ]
-            },
-            {
-              "type": "TriBoxDate",
-              "id": "purchaseDate",
-              "label": "Enter the date of purchase",
-              "separator": "/",
-              "dayPlaceholder": "DD",
-              "monthPlaceholder": "MM",
-              "yearPlaceholder": "YYYY",
-              "unknownOptionLabel": "I have not purchased it yet",
-              "from": "01/01/1970",
-              "to": "Today"
-              ,
-              "required": true,
-              "errorMessage": "Please enter valid data",
-              "help": "Help text",
-              "pre": "# Markdown before question 1",
-              "post": "__Markdown after question 1__"
-            }            
+            }         
           ]
-        }
-      ]
-    },
-    {
-      "url": "buttons",
-      "title": "Select buttons",
-      "displayprogress": true,
-      "sections": [
+        },      
         {
           "title": "Button Select Section",
           "logo": {
@@ -371,12 +359,12 @@
       ]
     },
     {
-      "url": "displayonly",
-      "title": "Display only components",
+      "url": "display",
+      "title": "Display",
       "displayprogress": true,
       "sections": [
         {
-          "title": "Displayblock Section",
+          "title": "Block display",
           "logo": {
             "url": "https://fakeimg.pl/100x50/?text=Section%20Logo"
           },
@@ -401,11 +389,15 @@
               "type": "Displayblock",
               "content": "__markdown__ content",
               "pre": "__markdown__ before content"
-            }            
+            },
+            {
+              "type": "Displayblock",
+              "content": "We can also retrieve values from questions answered elsewhere, e.g. you selected this vehicle on the last page: {{simpleimagebutton}}"
+            }      
           ]
         },
         {
-          "title": "Modal section",
+          "title": "Modal display",
           "components": [
             {
               "id": "triggermodal",
@@ -428,7 +420,7 @@
           ]
         },
         {
-          "title": "Selections",
+          "title": "Selections list",
           "components": [
             {
               "type": "Displayselections",
@@ -458,10 +450,61 @@
           ]
         }
       ]
+    },{
+      "url": "repeating",
+      "title": "Repeating",
+      "displayprogress": true,
+      "displaytitle": false,
+      "sections": [
+        {
+          "title": "Summary block",
+          "components": [
+            {
+              "type": "Displayblock",
+              "content": "Some stuff from an earlier page, e.g. First textbox = {{1}}"
+            },
+            {
+              "type": "Displayblock",
+              "content": "Some stuff from this page - iteration 1, e.g. Component 1 = {{component1.0}}, Component 2 = {{component2.0}}"
+            },
+            {
+              "type": "Displayblock",
+              "content": "Some stuff from this page - iteration 2, e.g. Component 1 = {{ component1.1 }}, Component 2 = {{component2.1}}"
+            }
+          ]
+        },
+        {
+          "type": "repeatinggroup",
+          "minrepeats": 0,
+          "maxrepeats": 2,
+          "sections": [        
+            {
+              "title": "Iteration 1",
+              "components": [
+                {
+                  "id": "component1",
+                  "type": "Text",
+                  "label": "Component 1:"
+                }
+              ]
+            },
+            {
+              "title": "Iteration 2",
+              "components": [
+                {
+                  "id": "component2",
+                  "type": "Text",
+                  "label": "Component 2:"
+                }
+              ]
+            }
+          ]
+        }
+      ]
     },
     {
-      "url": "complex-components",
-      "title": "Complex components",
+      "url": "complex",
+      "title": "Complex",
       "displayprogress": true,
       "sections": [
         {
@@ -552,66 +595,14 @@
           ]
         }
       ]
-    },
-    {
-      "url": "repeating",
-      "title": "Repeating",
-      "displayprogress": true,
-      "displaytitle": false,
-      "sections": [
-        {
-          "title": "Summary block",
-          "components": [
-            {
-              "type": "Displayblock",
-              "content": "Some stuff from an earlier page"
-            },
-            {
-              "type": "Displayblock",
-              "content": "Some stuff from this page - iteration 1"
-            },
-            {
-              "type": "Displayblock",
-              "content": "Some stuff from this page - iteration 2"
-            }
-          ]
-        },
-        {
-          "type": "repeatinggroup",
-          "minrepeats": 0,
-          "maxrepeats": 2,
-          "sections": [        
-            {
-              "title": "Iteration 1",
-              "components": [
-                {
-                  "id": "component1",
-                  "type": "Text",
-                  "label": "Component 1:"
-                }
-              ]
-            },
-            {
-              "title": "Iteration 2",
-              "components": [
-                {
-                  "id": "component2",
-                  "type": "Text",
-                  "label": "Component 2:"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
+    },    
     {
       "url": "outcome",
       "title": "Outcome",
       "displayprogress": false,
       "sections": [
         {
-          "title": "Outcome section",
+          "title": "Outcome",
           "logo": {
             "url": "https://fakeimg.pl/100x50/?text=Outcome%20Logo"
           },

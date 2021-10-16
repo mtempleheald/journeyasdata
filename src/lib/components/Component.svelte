@@ -3,6 +3,7 @@
     import { actionStore } from '$lib/stores/actionstore';
     import { browser } from '$app/env';
     import { displayValueStore } from '$lib/stores/displayvaluestore';
+    import { replaceTokens } from '$lib/utils/replacetokens';
     import { validationStore } from '$lib/stores/validationstore';
     import { valueStore } from '$lib/stores/valuestore';
     import Address from '$lib/components/Address.svelte';    
@@ -16,12 +17,14 @@
     import Triboxdate from '$lib/components/InputTriboxdate.svelte';
     import Vehicle from '$lib/components/Vehicle.svelte';
 
+
     export let component: ComponentType;
 
     function componentUpdated(event) {
       console.log(event.detail)
       // update value store with latest value, regardless of validity
-      valueStore.set(event.detail.key, event.detail.value)
+      // ensure that the key is a string, even if the id entered as numeric, required for retrieval
+      valueStore.set(event.detail.key.toString(), event.detail.value)
       // update display value in line with value store
       displayValueStore.set(event.detail.key, event.detail.display ?? event.detail.value)
       // update validation store for use by validators
@@ -110,7 +113,7 @@
     <Markdown source={comp.pre}/>
   </svelte:fragment>
   <svelte:fragment slot="main"> 
-    <Markdown source={comp.content}/>
+    <Markdown source={replaceTokens(comp.content, $displayValueStore)}/>
   </svelte:fragment>
   <svelte:fragment slot="post">
     <Markdown source={comp.post}/>

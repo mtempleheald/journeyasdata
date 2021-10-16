@@ -37,6 +37,7 @@
     {#if cookiepreferences.values}
     <ListButtonselect
         component={{
+            type: "ButtonSelect",
             id: "cookiestatus",
             value: $valueStore["cookiestatus"] ?? '',
             values: cookiepreferences.values
