@@ -9,12 +9,12 @@
     import Buttonselect from '$lib/components/Buttonselect.svelte';
     import Displayblock from '$lib/components/Displayblock.svelte';
     import Displaymodal from '$lib/components/Displaymodal.svelte';
+    import Displayselections from './Displayselections.svelte';
     import Dropdown from '$lib/components/Dropdown.svelte';
     import Markdown from '$lib/components/Markdown.svelte';
     import Textbox from '$lib/components/Textbox.svelte';
     import Triboxdate from '$lib/components/Triboxdate.svelte';
     import Vehicle from '$lib/components/Vehicle.svelte';
-
 
     export let component: ComponentType;
 
@@ -92,11 +92,11 @@
   </svelte:component>
   {/await}
 
-{:else if ["Displayblock","Displaymodal"].includes(component.type)}
+{:else if ["Displayblock","Displaymodal","Displayselections"].includes(component.type)}
   {#await toDisplayComponent(component)}
   <!-- cast in function to avoid TS warnings, not really awaiting anything -->
   {:then comp}
-  <svelte:component this={({"Displayblock":Displayblock, "Displaymodal":Displaymodal})[component.type]} 
+  <svelte:component this={({"Displayblock":Displayblock, "Displaymodal":Displaymodal, "Displayselections":Displayselections})[component.type]} 
     component={comp}>
   <svelte:fragment slot="pre">
     <Markdown source={comp.pre}/>

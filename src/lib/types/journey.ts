@@ -98,6 +98,15 @@ export type DisplayComponentType = BaseComponent & {
     content: string
     collapsible?: boolean
 }
+export type DisplaySelectionsType = DisplayComponentType & {
+    selectedtitle?:string;
+    unselectedtitle?:string;
+    items: {
+        title: string;
+        selected: boolean;
+        detail?: string;
+    }[]
+}
 
 // TODO: Consider removing Address composite component in favour of action provider solution
 export type AddressComponentType = BaseComponent & InputComponent & {

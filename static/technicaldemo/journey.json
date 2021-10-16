@@ -426,6 +426,36 @@
               }
             }
           ]
+        },
+        {
+          "title": "Selections",
+          "components": [
+            {
+              "type": "Displayselections",
+              "content": "These are selections that either we provide with our offering, or that you have previously entered on this journey",
+              "selectedtitle": "Selected stuff goes here",
+              "unselectedtitle": "Unselected stuff goes here",
+              "items": [
+                {
+                  "title": "Selected item 1",
+                  "selected": true
+                },
+                {
+                  "title": "Selected item 2",
+                  "selected": true
+                },
+                {
+                  "title": "Unselected item 1",
+                  "selected": false,
+                  "detail": "Some markdown stuff can go here"
+                },
+                {
+                  "title": "Unselected item 2",
+                  "selected": false
+                }
+              ]
+            }
+          ]
         }
       ]
     },
