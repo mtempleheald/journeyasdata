@@ -524,54 +524,6 @@
       ]
     },
     {
-      "url": "repeating-old",
-      "title": "Repeating initial approach",
-      "displayprogress": false,
-      "displaytitle": false,
-      "maxrepeats": 2,
-      "sections": [
-        {
-          "title": "Summary block",
-          "components": [
-            {
-              "type": "Displayblock",
-              "content": "Some stuff from an earlier page"
-            },
-            {
-              "type": "Displayblock",
-              "content": "Some stuff from this page - iteration 1"
-            },
-            {
-              "type": "Displayblock",
-              "content": "Some stuff from this page - iteration 2"
-            }
-          ]
-        },
-        {
-          "id": "repeatingsection1",
-          "title": "Section 1",
-          "components": [
-            {
-              "id": "repeatingcomponent1",
-              "type": "Text",
-              "label": "Component 1:"
-            }
-          ]
-        },
-        {
-          "id": "repeatingsection1",
-          "title": "Section 1",
-          "components": [
-            {
-              "id": "repeatingcomponent1",
-              "type": "Text",
-              "label": "Component 1:"
-            }
-          ]
-        }
-      ]
-    },
-    {
       "url": "repeating",
       "title": "Repeating",
       "displayprogress": true,
