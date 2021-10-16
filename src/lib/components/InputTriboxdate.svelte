@@ -52,7 +52,8 @@
             valid = true;            
         }
         else {
-            valid = false;
+            // TODO: Reinstate validation when tidying up this component
+            valid = true;//false;
         }
         // publish changes up to parent, let it handle state
         dispatch('dateChange', {key: component.id, value: component.value, valid: valid});
