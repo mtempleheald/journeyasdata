@@ -44,43 +44,35 @@
     }
     
     // Hide/show functionality
-    let currentIinstance: number = 0;
+    let currentInstance: number = 0;
     let totalInstances: number = 0;
     // add is simple - just grab the next id if we've not reached max instances
     function add() {
-        if (currentIinstance < repeatinggroup.maxrepeats) {
-            currentIinstance++
-            totalInstances = currentIinstance
+        if (currentInstance < repeatinggroup.maxrepeats) {
+            totalInstances++
+            currentInstance = totalInstances
         }
     }
     // edit is simple - just toggle the selected instance into view
     function edit(instance: number) {
-        if (instance <= repeatinggroup.maxrepeats) currentIinstance = instance
+        if (instance <= repeatinggroup.maxrepeats) currentInstance = instance
     }
     // remove is more complicated
     // if latest instance, just delete from value/displayValue/validation store and return to summary view
     // if not, we need to rejig all the store values to avoid sparse population, 2 becomes 1, 3 becomes 2 etc
     function remove(instanceid: number) {
-        
-        // TODO: Extend store with delete?  Or just stick with null checks later on?
-        sections.filter(s => s.instanceid == instanceid)
-                .forEach(s => s.components.forEach(c => {
-                    valueStore.set(c.id, null)
-                    displayValueStore.set(c.id, null)
-                    validationStore.set(c.id, null)
-                })
-        )
-        // TODO: Rejig higher indexed values to use lower indexes
-        for (var i = instanceid + 1; i <= repeatinggroup.maxrepeats; i++) {
-
-        }
-        
-        currentIinstance = 0
+        for (var i = instanceid; i <= repeatinggroup.maxrepeats; i++) {
+            repeatinggroup.sections.forEach(s => s.components.forEach(c => {
+                valueStore.set(       `${c.id}.${i}`, $valueStore[`${c.id}.${i+1}`])
+                displayValueStore.set(`${c.id}.${i}`, $valueStore[`${c.id}.${i+1}`])
+                validationStore.set(  `${c.id}.${i}`, $valueStore[`${c.id}.${i+1}`])
+            }))}
+        currentInstance = 0 // jump back to summary view
         totalInstances = totalInstances - 1
     }
 </script>
 
-
+{#if currentInstance == 0}
 {#each Array(totalInstances) as _, idx}
     <DisplayBlock>
         <svelte:fragment slot="main">
@@ -92,14 +84,16 @@
         </svelte:fragment>
     </DisplayBlock>
 {/each}
-
-{#if currentIinstance < repeatinggroup.maxrepeats}
-    <button type="button" on:click="{add}">{repeatinggroup.labeladd}</button>
+    {#if currentInstance < repeatinggroup.maxrepeats}
+        <button type="button" on:click="{add}">{repeatinggroup.labeladd}</button>
+    {/if}
 {/if}
 
+
 {#each sections as s}
-    {#if s.instanceid == currentIinstance }
+    {#if s.instanceid == currentInstance }
         <Section section={s}/>
     {/if}
 {/each}
-
+<!-- TODO: save might need to be part of section, the key thing is setting current back to 0 for display -->
+<button type="button" on:click="{() => currentInstance = 0}">Save</button>
