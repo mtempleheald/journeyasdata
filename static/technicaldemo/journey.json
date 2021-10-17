@@ -479,6 +479,7 @@
           "minrepeats": 0,
           "maxrepeats": 2,
           "labeladd": "Add new",
+          "labeledit": "Edit",
           "labelremove": "Remove",
           "summarycontent": "Value from this instance of this section, Component1 = {{component1}}, Component2 = __{{ component2 }}__",
           "sections": [        

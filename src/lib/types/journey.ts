@@ -19,6 +19,7 @@ export type RepeatingGroupType = {
     minrepeats?: number
     maxrepeats?: number
     labeladd?: string
+    labeledit?: string
     labelremove?: string    
 }
 export type SectionType = {

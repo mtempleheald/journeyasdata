@@ -3,8 +3,11 @@
     import { displayValueStore } from '$lib/stores/displayvaluestore';
     import { parseMarkdown } from '$lib/utils/markdown';
     import { replaceTokens } from '$lib/utils/replacetokens';
+    import { validationStore } from '$lib/stores/validationstore';
+    import { valueStore } from '$lib/stores/valuestore';
     import DisplayBlock from './DisplayBlock.svelte';
     import Section from '$lib/components/Section.svelte'
+
 
     export let repeatinggroup: RepeatingGroupType;
     
@@ -58,7 +61,22 @@
     // if latest instance, just delete from value/displayValue/validation store and return to summary view
     // if not, we need to rejig all the store values to avoid sparse population, 2 becomes 1, 3 becomes 2 etc
     function remove(instanceid: number) {
-        console.log(`TODO: remove ${instanceid}`)
+        
+        // TODO: Extend store with delete?  Or just stick with null checks later on?
+        sections.filter(s => s.instanceid == instanceid)
+                .forEach(s => s.components.forEach(c => {
+                    valueStore.set(c.id, null)
+                    displayValueStore.set(c.id, null)
+                    validationStore.set(c.id, null)
+                })
+        )
+        // TODO: Rejig higher indexed values to use lower indexes
+        for (var i = instanceid + 1; i <= repeatinggroup.maxrepeats; i++) {
+
+        }
+        
+        currentIinstance = 0
+        totalInstances = totalInstances - 1
     }
 </script>
 
@@ -69,6 +87,7 @@
             {@html parseMarkdown(replaceTokens(updateSummaryInstance(repeatinggroup.summarycontent, idx + 1), $displayValueStore))}
         </svelte:fragment>
         <svelte:fragment slot="post">
+            <button type="button" on:click="{() => edit(idx+1)}">{repeatinggroup.labeledit}</button>
             <button type="button" on:click="{() => remove(idx+1)}">{repeatinggroup.labelremove}</button>
         </svelte:fragment>
     </DisplayBlock>
