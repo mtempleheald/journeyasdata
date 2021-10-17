@@ -14,13 +14,16 @@ export type PageType = {
 // A repeating group has no presentation elements of its own, it simply wraps one or more sections
 export type RepeatingGroupType = {
     type: "repeatinggroup"
+    sections: SectionType[]
+    summarycontent: string
     minrepeats?: number
     maxrepeats?: number
-    sections: SectionType[]
+    labeladd?: string
+    labelremove?: string    
 }
 export type SectionType = {
     id?: string
-    iteration?: number // used only when section is contained within a repeating group
+    instanceid?: number // used only when section is contained within a repeating group
     type: "section"|null
     title?: string
     logo?: ImageType

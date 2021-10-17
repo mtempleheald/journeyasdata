@@ -465,21 +465,25 @@
             },
             {
               "type": "Displayblock",
-              "content": "Some stuff from this page - iteration 1, e.g. Component 1 = {{component1.0}}, Component 2 = {{component2.0}}"
+              "content": "Some hand-indexed stuff from this page - iteration 1, e.g. Component 1 = {{component1.0}}, Component 2 = {{component2.0}}"
             },
             {
               "type": "Displayblock",
-              "content": "Some stuff from this page - iteration 2, e.g. Component 1 = {{ component1.1 }}, Component 2 = {{component2.1}}"
+              "content": "Some hand-indexed stuff from this page - iteration 2, e.g. Component 1 = {{ component1.1 }}, Component 2 = {{component2.1}}"
             }
           ]
         },
         {
           "type": "repeatinggroup",
+          "id": "repeatinggroupdemo",
           "minrepeats": 0,
           "maxrepeats": 2,
+          "labeladd": "Add new",
+          "labelremove": "Remove",
+          "summarycontent": "Value from this instance of this section, Component1 = {{component1}}, Component2 = __{{ component2 }}__",
           "sections": [        
             {
-              "title": "Iteration 1",
+              "title": "Section 1",
               "components": [
                 {
                   "id": "component1",
@@ -489,7 +493,7 @@
               ]
             },
             {
-              "title": "Iteration 2",
+              "title": "Section 2",
               "components": [
                 {
                   "id": "component2",
