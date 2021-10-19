@@ -17,13 +17,17 @@
         <p><slot name="pre"></slot></p>
         <p><slot name="main"></slot></p>
         <p><slot name="post"></slot></p>
-    </div>
-    <button type="button" on:click={dismiss}>dismiss</button>
+        <button type="button" on:click={dismiss}>dismiss</button>
+    </div>    
 </div>
 
 <style>
     .display {
-        margin: 0;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: min(calc(var(--page-width)*2/3), 100vw);/* fill smaller screens, 2/3 of desktop preferred size */
         padding: 0.5rem 1rem;
         background-color: var(--input-bg, white);
         color: var(--input-txt, black);
@@ -44,6 +48,7 @@
         width: 100%;
         height: 100%;
         z-index: 100;
+        background-color: rgba(0,0,0,0.5);/* opacity screws things up, should we always use RGBA?  Need consistency in theme */
     }
     .dismissed {
         display: none;

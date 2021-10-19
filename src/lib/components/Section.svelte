@@ -35,6 +35,8 @@
             <Component component={component}/>
         {/each}
     </div>
+    
+    <slot></slot>
 
 </section>
 

@@ -64,9 +64,12 @@
     }
     .container {
         display: flex;
+        flex-flow: wrap;
     }
     .container > * {
-        width: 100%;
+        flex-shrink: 1;
+        flex-grow: 1;
+        flex-basis: calc(var(--page-width)/4);
     }
     ul {
         list-style-type: none;

@@ -72,23 +72,27 @@
     }
 </script>
 
+<section class="repeat-summary">
 {#if currentInstance == 0}
-{#each Array(totalInstances) as _, idx}
-    <DisplayBlock>
-        <svelte:fragment slot="main">
-            {@html parseMarkdown(replaceTokens(updateSummaryInstance(repeatinggroup.summarycontent, idx + 1), $displayValueStore))}
-        </svelte:fragment>
-        <svelte:fragment slot="post">
-            <button type="button" on:click="{() => edit(idx+1)}">{repeatinggroup.labeledit}</button>
-            <button type="button" on:click="{() => remove(idx+1)}">{repeatinggroup.labelremove}</button>
-        </svelte:fragment>
-    </DisplayBlock>
-{/each}
+    {#each Array(totalInstances) as _, idx}
+
+        <DisplayBlock>
+            <svelte:fragment slot="main">
+                {@html parseMarkdown(replaceTokens(updateSummaryInstance(repeatinggroup.summarycontent, idx + 1), $displayValueStore))}
+            </svelte:fragment>
+            <svelte:fragment slot="post">
+                <button type="button" on:click="{() => edit(idx+1)}">{repeatinggroup.labeledit}</button>
+                <button type="button" on:click="{() => remove(idx+1)}">{repeatinggroup.labelremove}</button>
+            </svelte:fragment>
+        </DisplayBlock>
+
+    {/each}
+
     {#if currentInstance < repeatinggroup.maxrepeats}
         <button type="button" on:click="{add}">{repeatinggroup.labeladd}</button>
     {/if}
 {/if}
-
+</section>
 
 {#each sections as s}
     {#if s.instanceid == currentInstance }
@@ -97,3 +101,12 @@
 {/each}
 <!-- TODO: save might need to be part of section, the key thing is setting current back to 0 for display -->
 <button type="button" on:click="{() => currentInstance = 0}">Save</button>
+
+
+<!-- Keep styles aligned to Section component -->
+<style>
+    section {
+        margin-top: var(--section-margin);
+        border: var(--section-border);
+    }
+</style>
