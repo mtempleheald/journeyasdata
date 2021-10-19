@@ -2,12 +2,12 @@
 // To avoid heavily coupling the generic UI implementation to 1 version of the API
 
 import type { ValueType } from '$lib/types/journey';
-import { ENV } from '$lib/env'
+import { APIHOSTNAME } from '$lib/env'
 import { getToken } from '../_token'
 
 export async function getMetadata(context, list) {
 
-    const url = `${ENV.APIHOSTNAME}/api/reference-data/metadata`
+    const url = `${APIHOSTNAME}/api/reference-data/metadata`
     console.log(`calling url ${url} ...`)
 
     let token = await getToken();

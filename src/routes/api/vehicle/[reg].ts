@@ -1,6 +1,6 @@
 // GET: /api/vehicle/[reg]
 import type { VehicleType } from '$lib/types/vehicle'
-import { ENV } from '$lib/env';
+import { STUBAPIS } from '$lib/env';
 import { lookup } from './_lookup.v1';
 import { stubVehicleData } from './_stub';
 
@@ -10,7 +10,7 @@ import { stubVehicleData } from './_stub';
     const reg = params.reg;
     let result: VehicleType;
 
-    if (ENV.STUBAPIS === "Y") {
+    if (STUBAPIS === "Y") {
         result = await stubVehicleData()
     }
     else {

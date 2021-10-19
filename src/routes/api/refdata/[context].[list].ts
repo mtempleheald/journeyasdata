@@ -2,7 +2,7 @@
 import type { ValueType } from '$lib/types/journey'
 import { getMetadata } from './_metadata.v0'
 import { stubRefdata } from './_stub'
-import { ENV } from '$lib/env'
+import { STUBAPIS } from '$lib/env'
 
 /**
  * @type {import('@sveltejs/kit').RequestHandler}
@@ -17,7 +17,7 @@ import { ENV } from '$lib/env'
     let result: ValueType[]
 
 
-    if (ENV.STUBAPIS === "Y") {
+    if (STUBAPIS === "Y") {
         result = await stubRefdata(context, list)
     }
     else {

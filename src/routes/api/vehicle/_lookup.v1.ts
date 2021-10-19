@@ -1,10 +1,10 @@
 import type { VehicleType } from '$lib/types/vehicle'
-import { ENV } from '$lib/env'
+import { APIHOSTNAME } from '$lib/env'
 import { getToken } from '../_token'
 
 export async function lookup(regnum) {
 
-    const url = `${ENV.APIHOSTNAME}/api/V1/vehicle/lookup?RegistrationNumber=${regnum}`
+    const url = `${APIHOSTNAME}/api/V1/vehicle/lookup?RegistrationNumber=${regnum}`
     console.log(`calling url ${url} ...`)
 
     let token = await getToken();
