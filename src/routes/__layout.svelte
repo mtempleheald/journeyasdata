@@ -1,5 +1,5 @@
 <script context="module">
-    import { ENV } from '$lib/env'
+    import { BRAND } from '$lib/env'
     /** @type {import('@sveltejs/kit').Load} */
 	export async function load({ fetch }) {
 		return {
@@ -7,8 +7,8 @@
                 // dynamically load content, making use of HMR for quick feedback
                 // journey: await import(`./../../static/${BRAND}/journey.json`).then(module => module.default),
                 // use the fetch API to import the journey
-                journey: await fetch(`/api/journey/${ENV.BRAND}`).then(j => j.json()),
-                brand: ENV.BRAND.toString()
+                journey: await fetch(`/api/journey/${BRAND}`).then(j => j.json()),
+                brand: BRAND.toString()
             }
         };
 	}

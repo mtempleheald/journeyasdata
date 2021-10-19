@@ -24,7 +24,9 @@
         {#if section.title}
         <h1>{section.title}</h1>
         {/if}
-        <input type="hidden" id="iteration" value="{section.iteration}"/>
+        {#if section.instanceid}
+        <input type="hidden" id="instanceid" value="{section.instanceid}"/>
+        {/if}
     </header>
     {/if}
 

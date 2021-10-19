@@ -1,6 +1,6 @@
 <script lang="ts">
     import type { JourneyType } from '$lib/types/journey';
-    import { ENV } from '$lib/env';
+    import { DISABLEVALIDATION } from '$lib/env';
     import { goto } from '$app/navigation';
     import { nextPageUrl, prevPageUrl } from '$lib/utils/navigation';
     import { pageValid } from '$lib/utils/validators';
@@ -17,7 +17,7 @@
         goto(prevPageUrl(journey, pageurl))
     }
     function next(event) {
-        if (ENV.DISABLEVALIDATION == 'Y') {
+        if (DISABLEVALIDATION == 'Y') {
             console.log('Validation disabled, redirecting to next page')
             goto(nextPageUrl(journey, pageurl));
         }
