@@ -392,6 +392,39 @@
             },
             {
               "type": "Displayblock",
+              "content": [
+                "# Column 1\nSome _markdown_",
+                "# Column 2\nSome more _markdown_"
+              ]
+            },
+            {
+              "type": "Displayblock",
+              "content": [
+                "# Column 1\nSome _markdown_",
+                "# Column 2\nSome more _markdown_",
+                "# Column 3\nYet more _markdown_"
+              ]
+            },
+            {
+              "type": "Displayblock",
+              "content": [
+                "# Column 1\nSome _markdown_",
+                "# Column 2\nSome more _markdown_",
+                "# Column 3\nYet more _markdown_",
+                "# Column 4\nAnd even more _markdown_"
+              ]
+            },
+            {
+              "type": "Displayblock",
+              "content": [
+                "# Column 1\nSome _markdown_",
+                "# Column 2\nSome more _markdown_",
+                "# Column 3\nYet more _markdown_",
+                "# Column 4\nAnd even more _markdown_ this one longer than the others for a wider content"
+              ]
+            },
+            {
+              "type": "Displayblock",
               "content": "We can also retrieve values from questions answered elsewhere, e.g. you selected this vehicle on the last page: {{simpleimagebutton}}"
             }      
           ]
@@ -414,6 +447,27 @@
               "post": "__markdown__ after content",
               "dependsupon": {
                 "id": "triggermodal",
+                "value": "Y"
+              }
+            },
+            {
+              "id": "trigger2columnmodal",
+              "label": "Select yes to trigger 2-column modal",
+              "type": "YesNo",
+              "required": true,
+              "errorMessage": "Please select an option"
+            },
+            {
+              "id": "modalpopup",
+              "type": "Displaymodal",
+              "content": [
+                "# Column 1\nSome _markdown_",
+                "# Column 2\nSome more _markdown_"
+              ],
+              "pre": "__markdown__ before content",
+              "post": "__markdown__ after content",
+              "dependsupon": {
+                "id": "trigger2columnmodal",
                 "value": "Y"
               }
             }

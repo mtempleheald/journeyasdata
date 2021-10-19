@@ -108,13 +108,18 @@
       "Displaymodal":Displaymodal, 
       "Displayselections":Displayselections
     })[component.type]} 
-    component={comp}>
+    component={{
+      ...comp, 
+      content: Array.isArray(comp.content) 
+        ? comp.content.map(c => (parseMarkdown(replaceTokens(c, $displayValueStore)))) 
+        : parseMarkdown(replaceTokens(comp.content, $displayValueStore))
+    }}>
   <svelte:fragment slot="pre">
     {@html parseMarkdown(replaceTokens(comp.pre, $displayValueStore))}
   </svelte:fragment>
-  <svelte:fragment slot="main">
+  <!-- <svelte:fragment slot="main">
     {@html parseMarkdown(replaceTokens(comp.content, $displayValueStore))}
-  </svelte:fragment>
+  </svelte:fragment> -->
   <svelte:fragment slot="post">
     {@html parseMarkdown(replaceTokens(comp.post, $displayValueStore))}
   </svelte:fragment>

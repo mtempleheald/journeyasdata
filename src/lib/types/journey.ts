@@ -99,7 +99,7 @@ export type DisplayComponentType = BaseComponent & {
     type: "Displayblock"
         | "Displaymodal"
     id?: string
-    content: string
+    content: string | string[] // allow multiple columns by passing multiple content blocks
     collapsible?: boolean
 }
 export type DisplaySelectionsType = DisplayComponentType & {
