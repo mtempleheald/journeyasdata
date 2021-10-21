@@ -125,6 +125,7 @@
     }
     input {
         margin: 0.5rem;
+        padding: var(--input-padding);
     }
     .error {
         padding: 0.5rem;
