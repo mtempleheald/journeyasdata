@@ -11,8 +11,6 @@
 
     // expose component properties
     export let component: TriBoxDateComponentType;
-
-    const dispatch = createEventDispatcher();
     
     // internal properties to support component logic
     let fallbackError
@@ -22,57 +20,16 @@
     let yearElem : HTMLInputElement
     let monthElem : HTMLInputElement
     let dayElem : HTMLInputElement
-    // let year : number = parseInt(extractYear())
-    // let month : number = parseInt(extractMonth())
-    // let day : number = parseInt(extractDay())
     let yearAttempted : boolean = false
     let monthAttempted : boolean = false
     let dayAttempted : boolean = false
-
-    function extractYear() : string|null {
-        if (component.value?.length != 10) return ''
-        return component.value?.substring(0, 4)
-    }
-    function extractMonth() : string|null {
-        if (component.value?.length != 10) return ''
-        return component.value?.substring(5, 7)
-    }
-    function extractDay() : string|null {
-        if (component.value?.length != 10) return ''
-        return component.value?.substring(8, 10)
-    }
-    function setDay() {
-        if (!dayElem.validity.valid) {
-            valid = false;
-        }
-        else {
-            component.value = `${extractYear().padStart(4,'0')}-${extractMonth().padStart(2, '0')}-${dayElem.value.padStart(2, '0')}`
-        }
-    }
-    function setMonth() {
-        if (!monthElem.validity.valid) {
-            valid = false;
-        }
-        else {
-            component.value = `${extractYear().padStart(4,'0')}-${monthElem.value.padStart(2, '0')}-${extractDay().padStart(2, '0')}`
-        }
-    }
-    function setYear() {
-        if (!yearElem.validity.valid) {
-            valid = false;
-        }
-        else {
-            component.value = `${yearElem.value.padStart(4,'0')}-${extractMonth().padStart(2, '0')}-${extractDay().padStart(2, '0')}`
-        }
-    }
+    let display : string;
+    
     function validateDate() {
         // Don't show as error until the user has finished with all boxes
         if (!yearAttempted || !monthAttempted || !dayAttempted) { valid = true; return }
         if (isNaN(Date.parse(component.value))) { valid = false; return }
         valid = true
-    }
-    function getDisplayValue() {
-        return `${extractDay()}/${extractMonth()}/${extractYear()}`
     }
     function reset() {
         yearElem.value = null
@@ -93,18 +50,20 @@
         active = "";
     }
     function update() {
-        console.log(dayElem, monthElem, yearElem)
         const y = yearElem.validity.valid  ? yearElem.value  : '0000'
         const m = monthElem.validity.valid ? monthElem.value : '00'
         const d = dayElem.validity.valid   ? dayElem.value   : '00'
         component.value = `${y.padStart(4,'0')}-${m.padStart(2,'0')}-${d.padStart(2,'0')}`
+        display = `${d.padStart(2,'0')}/${m.padStart(2,'0')}/${y.padStart(4,'0')}`
         
         validateDate()
         
         // publish changes up to parent, let it handle state
-        dispatch('dateChange', {key: component.id, value: component.value, displayValue: getDisplayValue(), valid: valid});
+        dispatch('dateChange', {key: component.id, value: component.value, displayValue: display, valid: valid});
     }
+    const dispatch = createEventDispatcher();
 </script>
+
 
 <div class="question {active} {valid?'':'invalid'}" 
     transition:blur 
