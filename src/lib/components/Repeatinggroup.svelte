@@ -5,9 +5,8 @@
     import { replaceTokens } from '$lib/utils/replacetokens';
     import { validationStore } from '$lib/stores/validationstore';
     import { valueStore } from '$lib/stores/valuestore';
-    import DisplayBlock from './DisplayBlock.svelte';
+    import DisplayBlock from '$lib/components/DisplayBlock.svelte';
     import Section from '$lib/components/Section.svelte'
-
 
     export let repeatinggroup: RepeatingGroupType;
     
@@ -22,14 +21,14 @@
 
         for (var i = 1; i <= repeatinggroup.maxrepeats; i++) {
             sections.forEach(s => {
-            let newComponents: ComponentType[] = s.components.map(comp => {
-                return {
-                    ...comp, 
-                    id: `${comp.id}.${i}`
-                }
+                let newComponents: ComponentType[] = s.components.map(comp => {
+                    return {
+                        ...comp, 
+                        id: `${comp.id}.${i}`
+                    }
+                })
+                newSections.push({...s, instanceid: i, components: newComponents})
             })
-            newSections.push({...s, instanceid: i, components: newComponents})
-        })
         }
         return newSections
     }
@@ -76,10 +75,14 @@
 {#if currentInstance == 0}
     {#each Array(totalInstances) as _, idx}
 
-        <DisplayBlock>
-            <svelte:fragment slot="main">
-                {@html parseMarkdown(replaceTokens(updateSummaryInstance(repeatinggroup.summarycontent, idx + 1), $displayValueStore))}
-            </svelte:fragment>
+        <DisplayBlock   
+            component={{
+                ...repeatinggroup, 
+                type: "Displayblock",
+                content: Array.isArray(repeatinggroup.summarycontent) 
+                    ? repeatinggroup.summarycontent.map(c => parseMarkdown(replaceTokens(updateSummaryInstance(c, idx+1), $displayValueStore)))
+                    : parseMarkdown(replaceTokens(updateSummaryInstance(repeatinggroup.summarycontent, idx+1), $displayValueStore))
+            }}>
             <svelte:fragment slot="post">
                 <button type="button" on:click="{() => edit(idx+1)}">{repeatinggroup.labeledit}</button>
                 <button type="button" on:click="{() => remove(idx+1)}">{repeatinggroup.labelremove}</button>
@@ -88,7 +91,7 @@
 
     {/each}
 
-    {#if currentInstance < repeatinggroup.maxrepeats}
+    {#if totalInstances < repeatinggroup.maxrepeats}
         <button type="button" on:click="{add}">{repeatinggroup.labeladd}</button>
     {/if}
 {/if}
@@ -100,8 +103,9 @@
     {/if}
 {/each}
 <!-- TODO: save might need to be part of section, the key thing is setting current back to 0 for display -->
-<button type="button" on:click="{() => currentInstance = 0}">Save</button>
-
+{#if currentInstance > 0 }
+    <button type="button" on:click="{() => currentInstance = 0}">Save</button>
+{/if}
 
 <!-- Keep styles aligned to Section component -->
 <style>

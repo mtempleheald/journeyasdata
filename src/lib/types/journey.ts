@@ -15,7 +15,7 @@ export type PageType = {
 export type RepeatingGroupType = {
     type: "repeatinggroup"
     sections: SectionType[]
-    summarycontent: string
+    summarycontent: string|string[]
     minrepeats?: number
     maxrepeats?: number
     labeladd?: string
@@ -99,10 +99,11 @@ export type DisplayComponentType = BaseComponent & {
     type: "Displayblock"
         | "Displaymodal"
     id?: string
-    content: string | string[] // allow multiple columns by passing multiple content blocks
+    content?: string | string[] // allow multiple columns by passing multiple content blocks
     collapsible?: boolean
 }
-export type DisplaySelectionsType = DisplayComponentType & {
+export type DisplaySelectionsType = BaseComponent & {
+    type: "Displayselections"
     selectedtitle?:string;
     unselectedtitle?:string;
     items: {

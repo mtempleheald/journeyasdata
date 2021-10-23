@@ -87,7 +87,7 @@
       "ButtonSelect":ListButtonselect, 
       "Dropdown":ListDropdown, 
       "YesNo":ListButtonselect
-    })[component.type]} 
+  })[component.type]} 
     component={comp}
     on:valueChange="{componentUpdated}">
     <svelte:fragment slot="pre">
@@ -107,7 +107,7 @@
       "Displayblock":Displayblock, 
       "Displaymodal":Displaymodal, 
       "Displayselections":Displayselections
-    })[component.type]} 
+  })[component.type]} 
     component={{
       ...comp, 
       content: Array.isArray(comp.content) 

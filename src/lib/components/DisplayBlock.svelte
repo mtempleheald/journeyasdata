@@ -15,15 +15,17 @@
 
 <div class="display {active}" on:mouseenter={enter} on:mouseleave={leave} >
     <p><slot name="pre"></slot></p>
-    <div class="content">
-        {#if Array.isArray(component.content)}
-            {#each component.content as content}
-            <p>{@html content}</p>
-            {/each}
-        {:else}
-            <p>{@html component.content}</p>
-        {/if}
-    </div>
+    {#if component.content}
+        <div class="content">
+            {#if Array.isArray(component.content)}
+                {#each component.content as content}
+                <p>{@html content}</p>
+                {/each}
+            {:else}
+                <p>{@html component.content}</p>
+            {/if}
+        </div>
+    {/if}
     <p><slot name="main"></slot></p>
     <p><slot name="post"></slot></p>
 </div>
