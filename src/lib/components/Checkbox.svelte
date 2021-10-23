@@ -32,6 +32,8 @@
       component.errorMessage = "Please acknowledge this to continue."
     }
     ackValue = component.values[0];
+
+    console.info(component.required);
   }
  
   // component actions    
@@ -71,7 +73,7 @@
               id="{component.id}" 
               name="{component.id}" 
               value="{ackValue.value}"
-              required="{component.required}"
+              required
               on:blur={act}
             />{ackValue.display}
           {:else}
@@ -80,7 +82,7 @@
                 id="{component.id}-{val.value}" 
                 name="{component.id}" 
                 value="{val.value}"
-                required="{component.required}"
+                required
                 on:blur={act}
                 />{val.display}
             {/each}
