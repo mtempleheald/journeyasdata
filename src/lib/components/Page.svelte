@@ -46,6 +46,14 @@
 </header>
 {/if}
 
+{#if page.showtopnav}
+<Navbuttons 
+  nav = {page.navigation}
+  pageurl = {page.url}
+  sectionid = ''
+/>
+{/if}
+
 {#each page.sections as s}
   {#if s.type == "repeatinggroup"}
     <Repeatinggroup repeatinggroup={s}/>
@@ -56,14 +64,14 @@
 
 
 <Navbuttons 
-  journey = {journey}
-  pageurl = '{page.url}'
-  nextText = 'Next Page'
-  backText = 'Back'
+  nav = {page.navigation}
+  pageurl = {page.url}
+  sectionid = ''
 />
 
 </form>
 </main>
+
 
 <footer>
 	<DisplayBlock

@@ -8,9 +8,9 @@ export type JourneyType = {
 export type NavigationOptionsType = {
     includeinjourney?: boolean // default true, disable if needed e.g. remove error pages from main journey flow
     showback?: boolean // default true
-    backLabel?: string // default "Back"
+    backlabel?: string // default "Back"
     shownext?: boolean // default true
-    nextLabel?: string // default "Next"
+    nextlabel?: string // default "Next"
 }
 export type PageType = {
     url: string
@@ -19,6 +19,7 @@ export type PageType = {
     displayprogress?: boolean
     sections: (SectionType|RepeatingGroupType)[]
     navigation?: NavigationOptionsType
+    showtopnav?: boolean // default false, also show nav buttons at the top
 }
 // A repeating group has no presentation elements of its own, it simply wraps one or more sections
 export type RepeatingGroupType = {
@@ -40,7 +41,7 @@ export type SectionType = {
     maxrepeats?: number
     collapsible?: boolean
     components: ComponentType[]
-    navigation: NavigationOptionsType
+    navigation?: NavigationOptionsType
 }
 export type ComponentType = 
       AddressComponentType 

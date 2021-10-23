@@ -22,7 +22,12 @@
             }
           ]
         }
-      ]
+      ],
+      "navigation": {
+        "showback": false,
+        "nextlabel": "Start"
+      },
+      "showtopnav": true
     },
     {
       "url": "inputs",
@@ -275,7 +280,10 @@
                 }
               ]
             }         
-          ]
+          ],
+          "navigation": { 
+            "nextlabel": "Go to button select section"
+          }
         },      
         {
           "title": "Button Select Section",
@@ -366,7 +374,10 @@
                 "value": "Y"
               }
             }
-          ]
+          ],
+          "navigation": { 
+            "backlabel": "Go back to dropdown section"
+          }
         }
       ]
     },
@@ -684,7 +695,11 @@
             }
           ]
         }
-      ]
+      ],
+      "navigation": {
+        "shownext": false,
+        "backlabel": "Go back to fix something"
+      }
     }
   ],
   "cookiepreferences": {

@@ -1,22 +1,24 @@
 <script lang="ts">
-    import type { JourneyType } from '$lib/types/journey';
-    import { DISABLEVALIDATION } from '$lib/env';
-    import { goto } from '$app/navigation';
-    import { nextPageUrl, prevPageUrl } from '$lib/utils/navigation';
-    import { pageValid } from '$lib/utils/validators';
-    import { validationStore } from '$lib/stores/validationstore';
+    import type { JourneyType, NavigationOptionsType, SectionType } from '$lib/types/journey'
+    import { DISABLEVALIDATION } from '$lib/env'
+    import { getContext } from 'svelte';
+    import { goto } from '$app/navigation'
+    import { nextPageUrl, prevPageUrl } from '$lib/utils/navigation'
+    import { pageValid } from '$lib/utils/validators'
+    import { validationStore } from '$lib/stores/validationstore'
     import { valueStore } from '$lib/stores/valuestore'
 
-    export let journey: JourneyType;
-    export let pageurl: string;
-    export let backText: string = 'Back';
-    export let nextText: string = 'Next';    
+    export let nav: NavigationOptionsType
+    export let pageurl: string
+    export let sectionid: string
 
-    function back(event) {
+    const journey: JourneyType = getContext("journey");
+
+    function backPage(event) {
         console.log ("Navigating to previous page");
         goto(prevPageUrl(journey, pageurl))
     }
-    function next(event) {
+    function nextPage(event) {
         if (DISABLEVALIDATION == 'Y') {
             console.log('Validation disabled, redirecting to next page')
             goto(nextPageUrl(journey, pageurl));
@@ -33,12 +35,20 @@
 
 
 <section class="button-navigation">
-    {#if backText}
-        <button type="button" class="back" on:click={back}>{backText}</button>
+    {#if nav?.showback ?? true}
+        {#if !!pageurl}
+            <button type="button" class="back" on:click={backPage}>{nav?.backlabel ?? 'Back'}</button>
+        {:else if !!sectionid}
+            <button type="button" class="back" on:click={() => {console.log("not yet implemented section navigation")}}>{nav?.backlabel ?? 'Back'}</button>
+        {/if}
     {/if}
     <span class="spacer"></span>
-    {#if nextText}
-        <button type="button" class="next" on:click={next}>{nextText}</button>
+    {#if nav?.shownext ?? true}
+        {#if !!pageurl}
+            <button type="button" class="next" on:click={nextPage}>{nav?.nextlabel ?? 'Next'}</button>
+        {:else if !!sectionid}
+            <button type="button" class="next" on:click={() => {console.log("not yet implemented section navigation")}}>{nav?.nextlabel ?? 'Next'}</button>
+        {/if}
     {/if}
 </section>
 
