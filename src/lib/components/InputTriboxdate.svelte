@@ -82,7 +82,6 @@
         
         const date = new Date(component.value)
 
-
         return new Intl.DateTimeFormat([], { dateStyle: component.displayFormat ?? "short"}).format(date)
     }
 

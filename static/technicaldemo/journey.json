@@ -167,19 +167,13 @@
               "type": "TriBoxDate",
               "id": "purchaseDate",
               "label": "Enter the date of purchase",
-              "separator": "/",
-              "dayPlaceholder": "DD",
-              "monthPlaceholder": "MM",
-              "yearPlaceholder": "YYYY",
-              "unknownOptionLabel": "I have not purchased it yet",
-              "from": "01/01/1970",
-              "to": "Today"
-              ,
               "required": true,
-              "errorMessage": "Please enter valid data",
-              "help": "Help text",
-              "pre": "# Markdown before question 1",
-              "post": "__Markdown after question 1__"
+              "dateFormat": "long",
+              "separator": "/",
+              "restLabel": "Skip",
+              "min": "01/01/1970",
+              "errorMessage": "Please enter a valid date",
+              "help": "Help text"
             }
           ]
         },
