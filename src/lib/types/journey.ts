@@ -3,6 +3,7 @@ export type JourneyType = {
     pages: PageType[]
     logo?: ImageType
     cookiepreferences?: CookiePreferenceType
+    footercontent: string|string[]
 }
 export type PageType = {
     url: string

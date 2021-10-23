@@ -2,6 +2,7 @@
     import type { PageType, JourneyType } from '$lib/types/journey';
     import { getContext } from 'svelte';
     import Cookiepreference from '$lib/components/Cookiepreference.svelte';
+    import DisplayBlock from './DisplayBlock.svelte';
     import Navbuttons from '$lib/components/Navbuttons.svelte';
     import Progressbar from '$lib/components/Progressbar.svelte';
     import Repeatinggroup from './Repeatinggroup.svelte';
@@ -65,10 +66,12 @@
 </main>
 
 <footer>
-  <p>
-  TODO: Add footer content from journey.footer.  
-  </p>
-  <p>This might be hard to do in pure markdown due to 2 column layouts</p>
+	<DisplayBlock
+	  component={{
+		type: "Displayblock",
+		content: journey.footercontent
+	  }}
+	></DisplayBlock>
 </footer>
 
 

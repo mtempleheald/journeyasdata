@@ -516,7 +516,8 @@
           ]
         }
       ]
-    },{
+    },
+    {
       "url": "repeating",
       "title": "Repeating",
       "displayprogress": true,
@@ -699,5 +700,9 @@
         "display": "Accept all cookies"
       }
     ]
-  }
+  },
+  "footercontent": [
+    "Legal disclaimer could perhaps go here",
+    "And some useful links over here"
+  ]
 }
