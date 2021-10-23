@@ -5,12 +5,20 @@ export type JourneyType = {
     cookiepreferences?: CookiePreferenceType
     footercontent: string|string[]
 }
+export type NavigationOptionsType = {
+    includeinjourney?: boolean // default true, disable if needed e.g. remove error pages from main journey flow
+    showback?: boolean // default true
+    backLabel?: string // default "Back"
+    shownext?: boolean // default true
+    nextLabel?: string // default "Next"
+}
 export type PageType = {
     url: string
     title: string
     displaytitle?: boolean
     displayprogress?: boolean
     sections: (SectionType|RepeatingGroupType)[]
+    navigation?: NavigationOptionsType
 }
 // A repeating group has no presentation elements of its own, it simply wraps one or more sections
 export type RepeatingGroupType = {
@@ -32,6 +40,7 @@ export type SectionType = {
     maxrepeats?: number
     collapsible?: boolean
     components: ComponentType[]
+    navigation: NavigationOptionsType
 }
 export type ComponentType = 
       AddressComponentType 
@@ -100,18 +109,48 @@ export type DisplayComponentType = BaseComponent & {
     type: "Displayblock"
         | "Displaymodal"
     id?: string
-    content?: string | string[] // allow multiple columns by passing multiple content blocks
+    content: string | string[] // allow multiple columns by passing multiple content blocks
     collapsible?: boolean
 }
 export type DisplaySelectionsType = BaseComponent & {
     type: "Displayselections"
     selectedtitle?:string;
     unselectedtitle?:string;
+    content?: string
     items: {
         title: string;
         selected: boolean;
         detail?: string;
     }[]
+}
+
+export type TriBoxDateComponentType = BaseComponent & InputComponent & {
+    type: "TriBoxDate"
+    separator?: string
+    resetLabel: string
+    displayFormat: "full"|"long"|"medium"|"short"
+    validation?: {
+        min?: string // YYYY-MM-DD
+        max?: string // YYYY-MM-DD
+        minyearsago?: number
+        maxyearsago?: number
+        minyearsahead?: number
+        maxyearsahead?: number
+    }
+}
+export type CookiePreferenceType = {
+    pre?: string
+    post?: string
+    values?: ValueType[]
+}
+
+
+// TODO: Consider icons/fonts vs images - images are content, but icons are styling and don't belong in journey
+type ImageType = {
+    url: string
+    alt?: string
+    width?: string // TODO: move to CSS variables - which image/ alt text is content, size is styling
+    height?: string // TODO: move to CSS variables - which image/ alt text is content, size is styling
 }
 
 // TODO: Consider removing Address composite component in favour of action provider solution
@@ -130,31 +169,4 @@ export type VehicleComponentType = BaseComponent & InputComponent & {
     regnumLabel?: string
     regnumPlaceholder?: string
     buttonLabel?: string
-}
-export type CookiePreferenceType = {
-    pre?: string
-    post?: string
-    values?: ValueType[]
-}
-// TODO: Consider icons/fonts vs images - images are content, but icons are styling and don't belong in journey
-type ImageType = {
-    url: string
-    alt?: string
-    width?: string // TODO: move to CSS variables - which image/ alt text is content, size is styling
-    height?: string // TODO: move to CSS variables - which image/ alt text is content, size is styling
-}
-// TODO: Consider removing this with Triboxdate refactor, do we really need this level of flexibility?
-export type TriBoxDateComponentType = BaseComponent & InputComponent & {
-    type: "TriBoxDate"
-    separator?: string
-    resetLabel: string
-    displayFormat: "full"|"long"|"medium"|"short"
-    validation?: {
-        min?: string // YYYY-MM-DD
-        max?: string // YYYY-MM-DD
-        minyearsago?: number
-        maxyearsago?: number
-        minyearsahead?: number
-        maxyearsahead?: number
-    }
 }
