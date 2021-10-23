@@ -18,7 +18,20 @@
           "components": [
             {
               "type": "Displayblock",
+
               "content": "This technical demo shows which components are available and the different ways in which they can be used."
+            },
+            {
+              "type": "Acknowledgement",
+              "id": "ackme",
+              "label": "Acknowledge my existence - please",
+              "errorMessage": "For the love of God, acknowledge me",
+              "values": [
+                {
+                  "value": "i_exist",
+                  "display": "Yes - I exist"
+                }
+              ]
             }
           ]
         }

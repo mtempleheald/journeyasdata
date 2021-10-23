@@ -14,9 +14,7 @@
     import InputTextbox from '$lib/components/InputTextbox.svelte';
     import ListButtonselect from '$lib/components/ListButtonselect.svelte';
     import ListDropdown from '$lib/components/ListDropdown.svelte';
-    import InputTriboxdate from '$lib/components/InputTriboxdate.svelte';
     import Vehicle from '$lib/components/Vehicle.svelte';
-
 
     export let component: ComponentType;
 
@@ -131,7 +129,6 @@
     component={component}
     on:addressChange="{componentUpdated}"
   />
-
 {:else if component.type == "TriBoxDate"}
   <InputTriboxdate 
     component={{...component, value:$valueStore[component.id] ?? ''}}
