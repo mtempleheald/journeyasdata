@@ -24,12 +24,42 @@
     let monthAttempted : boolean = false
     let dayAttempted : boolean = false
     let display : string;
-    
-    function validateDate() {
-        // Don't show as error until the user has finished with all boxes
-        if (!yearAttempted || !monthAttempted || !dayAttempted) { valid = true; return }
-        if (isNaN(Date.parse(component.value))) { valid = false; return }
-        valid = true
+
+    function updateDay(event) {
+        // skip update if reset is clicked
+        if(event.explicitOriginalTarget.parentNode.name != "reset") {
+            dayAttempted = true
+            update()
+            if (!dayElem.validity.valid) {
+                setTimeout(function() {
+                    dayElem.focus()
+                },0)
+            }
+        }
+    }
+    function updateMonth(event) {
+        // skip update if reset is clicked or we are going back to day because it is invalid
+        if ((event.explicitOriginalTarget.parentNode.name == "reset") || (event.relatedTarget == dayElem)) return
+
+        monthAttempted = true
+        update()
+        if (!monthElem.validity.valid) {
+            setTimeout(function() {
+                monthElem.focus()
+            },0)
+        }        
+    }
+    function updateYear(event) {
+        // skip update if reset is clicked or we are going back to month because it is invalid
+        if ((event.explicitOriginalTarget.parentNode.name == "reset") || (event.relatedTarget == monthElem)) return
+        
+        yearAttempted = true
+        update()
+        if (!yearElem.validity.valid) {
+            setTimeout(function() {
+                yearElem.focus()
+            },0)
+        }        
     }
     function reset() {
         yearElem.value = null
@@ -50,13 +80,34 @@
         active = "";
     }
     function update() {
+        // ensure that the date format is always respected, even if it isn't a valid date
         const y = yearElem.validity.valid  ? yearElem.value  : '0000'
         const m = monthElem.validity.valid ? monthElem.value : '00'
         const d = dayElem.validity.valid   ? dayElem.value   : '00'
         component.value = `${y.padStart(4,'0')}-${m.padStart(2,'0')}-${d.padStart(2,'0')}`
         display = `${d.padStart(2,'0')}/${m.padStart(2,'0')}/${y.padStart(4,'0')}`
         
-        validateDate()
+        const parsedDate = Date.parse(component.value)
+        const parsedMin = Date.parse(component.min)
+        const parsedMax = Date.parse(component.max)
+
+        if (!yearAttempted || !monthAttempted || !dayAttempted) {
+            // don't show as error until the user has finished with all boxes
+            valid = true 
+        }
+        else if (isNaN(parsedDate)) { 
+            // each field may be valid, but a valid date it is not
+            valid = false
+        }
+        else if ((( !isNaN(parsedMin) && parsedDate < parsedMin )) 
+             ||  (( !isNaN(parsedMax) && parsedDate > parsedMax ))) {
+            // date is outside allowed range
+            console.log(parsedDate, parsedMin, parsedMax, valid)
+            valid = false
+        }
+        else {
+            valid = true
+        }
         
         // publish changes up to parent, let it handle state
         dispatch('dateChange', {key: component.id, value: component.value, displayValue: display, valid: valid});
@@ -101,9 +152,9 @@
                 title="day"                
                 min="1"
                 max="31"
-                on:blur={() => {update(); dayAttempted = true}}
+                on:blur={updateDay}
             />
-            <span>/</span>
+            <span>{component.separator ?? ""}</span>
             <input bind:this="{monthElem}"
                 id="{component.id}-month"
                 type="number"
@@ -113,9 +164,9 @@
                 title="month"
                 min="1"
                 max="12"
-                on:blur={() => {update(); monthAttempted = true}}
+                on:blur={updateMonth}
             />
-            <span>/</span>
+            <span>{component.separator ?? ""}</span>
             <input bind:this="{yearElem}"
                 id="{component.id}-year"
                 type="number"
@@ -125,11 +176,11 @@
                 title="year"
                 min="0"
                 max="9999"
-                on:blur={() => {update(); yearAttempted = true}}
+                on:blur={updateYear}
             />
         {/if}
 
-        <button type="button" on:click="{reset}">Reset</button>
+        <button type="button" name="reset" on:click="{reset}">{component.resetLabel ?? 'Reset'}</button>
 
         {#if component.help}
             <Helptext>{component.help}</Helptext>
