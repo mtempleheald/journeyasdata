@@ -1,12 +1,7 @@
-<!-- TODO: Consider rewriting this based on InputComponentType
-    - remove checkbox, act just as a Date Input replacement
-    - limited options in favour of consistency
-    - work with ISO date format only 
--->
 <script lang="ts">
     import type { TriBoxDateComponentType } from '$lib/types/journey';
     import { blur } from 'svelte/transition';
-	import { createEventDispatcher } from 'svelte';
+	import { createEventDispatcher, onMount } from 'svelte';
     import Helptext from '$lib/components/Helptext.svelte';
 
     // expose component properties
@@ -24,6 +19,17 @@
     let monthAttempted : boolean = false
     let dayAttempted : boolean = false
     let display : string;
+
+    onMount(async () => {
+        if (component.value) {
+            dayElem.value = component.value.substring(8,10)
+            monthElem.value = component.value.substring(5,7)
+            yearElem.value = component.value.substring(0,4)
+            dayAttempted = true
+            monthAttempted = true
+            yearAttempted = true
+        }
+    })
 
     function updateDay(event) {
         // skip update if reset is clicked
@@ -71,6 +77,14 @@
         valid = true
         update()
     }
+    function formatDate() {
+        if (!valid || !yearAttempted) return ""
+        
+        const date = new Date(component.value)
+
+
+        return new Intl.DateTimeFormat([], { dateStyle: component.displayFormat ?? "short"}).format(date)
+    }
 
     // component actions
     function enter() {
@@ -84,8 +98,7 @@
         const y = yearElem.validity.valid  ? yearElem.value  : '0000'
         const m = monthElem.validity.valid ? monthElem.value : '00'
         const d = dayElem.validity.valid   ? dayElem.value   : '00'
-        component.value = `${y.padStart(4,'0')}-${m.padStart(2,'0')}-${d.padStart(2,'0')}`
-        display = `${d.padStart(2,'0')}/${m.padStart(2,'0')}/${y.padStart(4,'0')}`
+        component.value = `${y.padStart(4,'0')}-${m.padStart(2,'0')}-${d.padStart(2,'0')}`        
         
         const parsedDate = Date.parse(component.value)
         const parsedMin = Date.parse(component.min)
@@ -108,6 +121,7 @@
         else {
             valid = true
         }
+        display = formatDate()
         
         // publish changes up to parent, let it handle state
         dispatch('dateChange', {key: component.id, value: component.value, displayValue: display, valid: valid});
