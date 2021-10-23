@@ -147,6 +147,12 @@ export type TriBoxDateComponentType = BaseComponent & InputComponent & {
     separator?: string
     resetLabel: string
     displayFormat: "full"|"long"|"medium"|"short"
-    min?: string // YYYY-MM-DD
-    max?: string // YYYY-MM-DD
+    validation?: {
+        min?: string // YYYY-MM-DD
+        max?: string // YYYY-MM-DD
+        minyearsago?: number
+        maxyearsago?: number
+        minyearsahead?: number
+        maxyearsahead?: number
+    }
 }
