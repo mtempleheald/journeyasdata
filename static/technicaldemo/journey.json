@@ -166,20 +166,32 @@
             {
               "type": "TriBoxDate",
               "id": "purchaseDate",
-              "label": "Enter the date of purchase",
-              "separator": "/",
-              "dayPlaceholder": "DD",
-              "monthPlaceholder": "MM",
-              "yearPlaceholder": "YYYY",
-              "unknownOptionLabel": "I have not purchased it yet",
-              "from": "01/01/1970",
-              "to": "Today"
-              ,
+              "label": "Enter date",
               "required": true,
-              "errorMessage": "Please enter valid data",
-              "help": "Help text",
-              "pre": "# Markdown before question 1",
-              "post": "__Markdown after question 1__"
+              "dateFormat": "long",
+              "separator": "/",
+              "restLabel": "Skip",
+              "errorMessage": "Please enter a valid date",
+              "help": "This example can't be more than 4 years ahead or before 1/1/1970",
+              "validation": {
+                "min": "01/01/1970",
+                "maxyearsahead": 4
+              }
+            },
+            {
+              "type": "TriBoxDate",
+              "id": "purchaseDate",
+              "label": "Enter future date",
+              "required": true,
+              "dateFormat": "long",
+              "separator": "/",
+              "restLabel": "Skip",
+              "errorMessage": "Please enter a valid date",
+              "help": "This example can't be in the past, and must be within 7 years from now",
+              "validation": {
+                "maxyearsago": 0,
+                "maxyearsahead": 7
+              }
             }
           ]
         },

@@ -145,10 +145,14 @@ type ImageType = {
 export type TriBoxDateComponentType = BaseComponent & InputComponent & {
     type: "TriBoxDate"
     separator?: string
-    dayPlaceholder: string
-    monthPlaceholder: string
-    yearPlaceholder: string
-    unknownOptionLabel: string
-    //from: string // TODO: implement date range validation on the component
-    //to: string // TODO: implement date range validation on the component
+    resetLabel: string
+    displayFormat: "full"|"long"|"medium"|"short"
+    validation?: {
+        min?: string // YYYY-MM-DD
+        max?: string // YYYY-MM-DD
+        minyearsago?: number
+        maxyearsago?: number
+        minyearsahead?: number
+        maxyearsahead?: number
+    }
 }
