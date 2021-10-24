@@ -29,7 +29,7 @@
             key: component.id, 
             value: component.value, 
             display: component.value ? newDisplay : "",
-            valid: (!component.required || !!component.value) 
+            valid: (component.required || !!component.value) 
         });   
     }
 </script>
