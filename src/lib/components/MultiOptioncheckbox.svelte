@@ -18,6 +18,14 @@
         active = "";
     } 
     function updateValue(newValue, newDisplay) {
+        
+
+        var chkBox = <HTMLInputElement>document.getElementById(component.id + "-" + newValue);
+        if (chkBox != null)
+        {
+            chkBox.checked = !chkBox.checked;
+        }
+
         if (component.value == newValue) {
             component.value = null; // toggle off
         }
@@ -60,28 +68,31 @@
         {#if component.id}
             <span class="buttons">
                 {#each component.values as v}
+                    <input class="" id="{component.id}-{v.value}" type="checkbox">
                     <button type="button" value="{v.value}" 
                         on:click="{() => updateValue(v.value, v.display)}" 
                         class="{component.value == v.value ? 'active' : ''}">
                         
                         {#if v.display != null}
-                            {#if v.textLocation == "top"}
-                                <div class="{v.textLocation}">{v.display}</div>
-                                <div class="bottom">[  ]</div>
-                            
-                            {:else if v.textLocation == "bottom"}
-                                <div class="top">[  ]</div>
-                                <div class="{v.textLocation}">{v.display}</div>
+                            <div>
+                                {#if v.textLocation == "top"}
+                                    <span class="{v.textLocation}">{v.display}</span> 
+                                    <span class="bottom"> [  ] </span>
+                                
+                                {:else if v.textLocation == "bottom"}
+                                    <span class="top"> [  ] </span> 
+                                    <span class="{v.textLocation}">{v.display}</span>
 
-                            {:else if v.textLocation == "left"}
-                                <div class="right">[  ]</div>
-                                <div class="{v.textLocation}">{v.display}</div>
+                                {:else if v.textLocation == "left"}
+                                    <span class="right"> [  ] </span> 
+                                    <span class="{v.textLocation}">{v.display}</span>
 
-                            {:else if v.textLocation == "right"}
-                                <div class="left">[  ]</div>
-                                <div class="{v.textLocation}">{v.display}</div>
+                                {:else if v.textLocation == "right"}
+                                    <span class="left"> [  ] </span> 
+                                    <span class="{v.textLocation}">{v.display}</span>
 
-                            {/if}
+                                {/if}
+                            </div>
                         {/if}
 
                         {#if v.image != null} 
