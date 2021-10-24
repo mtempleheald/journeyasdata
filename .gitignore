@@ -4,4 +4,3 @@ node_modules
 /build
 /package
 .env.development
-package-lock.json

@@ -2,12 +2,14 @@
     import { BRAND } from '$lib/env'
     /** @type {import('@sveltejs/kit').Load} */
 	export async function load({ fetch }) {
+        console.debug("Loading journey (should appear in browser dev tools only once)")
 		return {
             props: {
+                // TODO: resolve root path load error/ pick best approach for loading journey.json
                 // dynamically load content, making use of HMR for quick feedback
-                // journey: await import(`./../../static/${BRAND}/journey.json`).then(module => module.default),
-                // use the fetch API to import the journey
-                journey: await fetch(`/api/journey/${BRAND}`).then(j => j.json()),
+                journey: await import(`./../../static/${BRAND}/journey.json`).then(module => module.default),
+                // or use the fetch API to import the journey
+                //journey: await fetch(`/api/journey/${BRAND}`).then(j => j.json()),
                 brand: BRAND.toString()
             }
         };
