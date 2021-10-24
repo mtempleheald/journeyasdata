@@ -6,7 +6,7 @@
     import { replaceTokens } from '$lib/utils/replacetokens';
     import { validationStore } from '$lib/stores/validationstore';
     import { valueStore } from '$lib/stores/valuestore';
-    import ListButtonselect from '$lib/components/ListButtonselect.svelte';    
+    import OptionButtons from '$lib/components/OptionButtons.svelte';    
 
     export let cookiepreferences: CookiePreferenceType;
 
@@ -37,7 +37,7 @@
     on:mouseenter={enter} on:mouseleave={leave} >
 
     {#if cookiepreferences.values}
-    <ListButtonselect
+    <OptionButtons
         component={{
             type: "ButtonSelect",
             id: "cookiestatus",
@@ -51,7 +51,7 @@
         <svelte:fragment slot="post">
             {@html parseMarkdown(replaceTokens(cookiepreferences.post, $displayValueStore))}
         </svelte:fragment>
-    </ListButtonselect>
+    </OptionButtons>
     {/if}
 
 </section>

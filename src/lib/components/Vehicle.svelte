@@ -7,7 +7,7 @@
     import { replaceTokens } from '$lib/utils/replacetokens';
     import { valueStore } from '$lib/stores/valuestore';
     import InputTextbox from '$lib/components/InputTextbox.svelte';
-    import ListDropdown from '$lib/components/ListDropdown.svelte';
+    import OptionDropdown from '$lib/components/OptionDropdown.svelte';
 
     // expose component properties
     export let component: VehicleComponentType;
@@ -59,7 +59,7 @@
     <button type="button">{component.buttonLabel}</button>
     
     TODO: Year Of Manufacture - Drop down in Vehicle.svelte
-    <ListDropdown
+    <OptionDropdown
         component={{...component, 
             type:"Dropdown",
             value:$valueStore[component.id] ?? ''}}>
@@ -69,7 +69,7 @@
         <svelte:fragment slot="post">
             {@html parseMarkdown(replaceTokens(component.post, $displayValueStore))}
         </svelte:fragment>
-    </ListDropdown>
+    </OptionDropdown>
 
     
     <InputTextbox
@@ -98,7 +98,7 @@
     />
 
     TODO: Select Bike - Drop down component in Vehicle.svelte
-    <ListDropdown
+    <OptionDropdown
         component={{...component, 
             type: "Dropdown",
             value:$valueStore[component.id] ?? ''}}>
@@ -108,7 +108,7 @@
         <svelte:fragment slot="post">
             {@html parseMarkdown(replaceTokens(component.post, $displayValueStore))}
         </svelte:fragment>
-    </ListDropdown>
+    </OptionDropdown>
 </div>
 
 

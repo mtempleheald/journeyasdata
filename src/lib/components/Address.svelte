@@ -9,7 +9,7 @@
     import { validationStore } from '$lib/stores/validationstore';
     import { valueStore } from '$lib/stores/valuestore';
     import InputTextbox from '$lib/components/InputTextbox.svelte';
-    import ListDropdown from '$lib/components/ListDropdown.svelte';
+    import OptionDropdown from '$lib/components/OptionDropdown.svelte';
     
     // expose component properties
     export let component: AddressComponentType;
@@ -113,7 +113,7 @@
     />
     {#key propertyLov}<!-- redraw the LOV anytime the data changes because we are passing new object to (sub)components, not binding -->    
     {#if propertyLov.length > 0 || !$valueStore["property"]}
-    <ListDropdown 
+    <OptionDropdown 
         component={{
             type: "Dropdown",
             id: "property",

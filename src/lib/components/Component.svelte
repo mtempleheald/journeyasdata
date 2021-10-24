@@ -12,8 +12,8 @@
     import Displaymodal from '$lib/components/DisplayModal.svelte';
     import Displayselections from './DisplaySelections.svelte';
     import InputTextbox from '$lib/components/InputTextbox.svelte';
-    import ListButtonselect from '$lib/components/ListButtonselect.svelte';
-    import ListDropdown from '$lib/components/ListDropdown.svelte';
+    import OptionButtons from '$lib/components/OptionButtons.svelte';
+    import OptionDropdown from '$lib/components/OptionDropdown.svelte';
     import InputTriboxdate from '$lib/components/InputTriboxdate.svelte';
     import Vehicle from '$lib/components/Vehicle.svelte';
 
@@ -84,9 +84,9 @@
   <!-- looking up refdata (maybe) -->
   {:then comp}
   <svelte:component this={({
-      "ButtonSelect":ListButtonselect, 
-      "Dropdown":ListDropdown, 
-      "YesNo":ListButtonselect
+      "ButtonSelect":OptionButtons, 
+      "Dropdown":OptionDropdown, 
+      "YesNo":OptionButtons
   })[component.type]} 
     component={comp}
     on:valueChange="{componentUpdated}">
