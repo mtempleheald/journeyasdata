@@ -64,36 +64,39 @@
                         on:click="{() => updateValue(v.value, v.display)}" 
                         class="{component.value == v.value ? 'active' : ''}">
                         
-                        {#if v.textLocation == "top" && v.display != null}
-                            <div class="top">[ ] {v.display}</div>
+                        {#if v.display != null}
+                            {#if v.textLocation == "top"}
+                                <div class="{v.textLocation}">{v.display}</div>
+                                <div class="bottom">[  ]</div>
+                            
+                            {:else if v.textLocation == "bottom"}
+                                <div class="top">[  ]</div>
+                                <div class="{v.textLocation}">{v.display}</div>
+
+                            {:else if v.textLocation == "left"}
+                                <div class="right">[  ]</div>
+                                <div class="{v.textLocation}">{v.display}</div>
+
+                            {:else if v.textLocation == "right"}
+                                <div class="left">[  ]</div>
+                                <div class="{v.textLocation}">{v.display}</div>
+
+                            {/if}
                         {/if}
 
-                        <div class="image-container">
-                            {#if v.textLocation == "left" && v.display != null}
-                                <span class="left">[ ] {v.display}</span>
-                            {/if}
-                            
-                            
-                            {#if v.image != null}
+                        {#if v.image != null} 
+                            <div class="image-container">
                                 <span class="{v.textLocation == "right" ? 'left' : v.textLocation == "left" ? 'right' : '' };">
                                     {v.image != null ? '' : v.display ?? ''}
-                                    [  ]
                                     <img src="{v.image.url}" 
                                         width="{v.image.width}" 
                                         height="{v.image.height}" 
                                         class="{component.value == v.value ? 'active' : ''}" 
                                         alt="{v.display}" />
                                 </span>
-                            {/if}
-                            
-                            {#if v.textLocation == "right" && v.display != null}
-                                <div class="right">[ ] {v.display}</div>
-                            {/if}
-                        </div>
-
-                        {#if v.textLocation == "bottom" && v.display != null}
-                            <div class="bottom">[ ] {v.display}</div>
+                            </div>
                         {/if}
+
                     </button>
                 {/each}
             </span>

@@ -52,7 +52,7 @@
                   "key": "ack-key",
                   "value": "ack-value",
                   "display": "I acknowledge you",
-                  "textLocation": "left"
+                  "textLocation": "top"
                 }
               ]
             },
