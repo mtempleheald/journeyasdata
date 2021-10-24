@@ -15,8 +15,8 @@
     import OptionButtons from '$lib/components/OptionButtons.svelte';
     import OptionDropdown from '$lib/components/OptionDropdown.svelte';
     import InputTriboxdate from '$lib/components/InputTriboxdate.svelte';
+    import MultiOptioncheckbox from '$lib/components/MultiOptioncheckbox.svelte';
     import Vehicle from '$lib/components/Vehicle.svelte';
-
 
     export let component: ComponentType;
 
@@ -66,83 +66,83 @@
 
 
 {#if !component.dependsupon || ($valueStore[component.dependsupon.id] == component.dependsupon.value)}
+  {#if ["Colour","Date","Datetime","Email","Month","Number","Range","Search","Telephone","Text","Time","Upper","Url","Week","Year"].includes(component.type)}
+    <svelte:component this={InputTextbox} 
+      component={{...component, value:$valueStore[component.id] ?? ''}}
+      on:valueChange="{componentUpdated}">
+        <svelte:fragment slot="pre">
+          {@html parseMarkdown(replaceTokens(component.pre, $displayValueStore))}
+        </svelte:fragment>
+        <svelte:fragment slot="post">
+          {@html parseMarkdown(replaceTokens(component.post, $displayValueStore))}
+        </svelte:fragment>  
+    </svelte:component>
 
-{#if ["Colour","Date","Datetime","Email","Month","Number","Range","Search","Telephone","Text","Time","Upper","Url","Week","Year"].includes(component.type)}
-  <svelte:component this={InputTextbox} 
-    component={{...component, value:$valueStore[component.id] ?? ''}}
-    on:valueChange="{componentUpdated}">
+  {:else if ["ButtonSelect","Dropdown","YesNo","MultiOptionCheckbox"].includes(component.type)}
+    {#await toListComponent(component)}
+    <!-- looking up refdata (maybe) -->
+    {:then comp}
+    <svelte:component this={({
+        "ButtonSelect":OptionButtons, 
+        "Dropdown":OptionDropdown, 
+        "YesNo":OptionButtons,
+        "MultiOptionCheckbox":MultiOptioncheckbox
+    })[component.type]} 
+      component={comp}
+      on:valueChange="{componentUpdated}">
       <svelte:fragment slot="pre">
-        {@html parseMarkdown(replaceTokens(component.pre, $displayValueStore))}
+        {@html parseMarkdown(replaceTokens(comp.pre, $displayValueStore))}
       </svelte:fragment>
       <svelte:fragment slot="post">
-        {@html parseMarkdown(replaceTokens(component.post, $displayValueStore))}
-      </svelte:fragment>  
-  </svelte:component>
+        {@html parseMarkdown(replaceTokens(comp.post, $displayValueStore))}
+      </svelte:fragment>
+    </svelte:component>
+    {/await}
 
-{:else if ["ButtonSelect","Dropdown","YesNo"].includes(component.type)}
-  {#await toListComponent(component)}
-  <!-- looking up refdata (maybe) -->
-  {:then comp}
-  <svelte:component this={({
-      "ButtonSelect":OptionButtons, 
-      "Dropdown":OptionDropdown, 
-      "YesNo":OptionButtons
-  })[component.type]} 
-    component={comp}
-    on:valueChange="{componentUpdated}">
+  {:else if ["Displayblock","Displaymodal","Displayselections"].includes(component.type)}
+    {#await toDisplayComponent(component)}
+    <!-- cast in function to avoid TS warnings, not really awaiting anything -->
+    {:then comp}
+    <svelte:component this={({
+        "Displayblock":Displayblock, 
+        "Displaymodal":Displaymodal, 
+        "Displayselections":Displayselections
+    })[component.type]} 
+      component={{
+        ...comp, 
+        content: Array.isArray(comp.content) 
+          ? comp.content.map(c => (parseMarkdown(replaceTokens(c, $displayValueStore)))) 
+          : parseMarkdown(replaceTokens(comp.content, $displayValueStore))
+      }}>
     <svelte:fragment slot="pre">
       {@html parseMarkdown(replaceTokens(comp.pre, $displayValueStore))}
     </svelte:fragment>
+    <!-- <svelte:fragment slot="main">
+      {@html parseMarkdown(replaceTokens(comp.content, $displayValueStore))}
+    </svelte:fragment> -->
     <svelte:fragment slot="post">
       {@html parseMarkdown(replaceTokens(comp.post, $displayValueStore))}
     </svelte:fragment>
-  </svelte:component>
-  {/await}
+    </svelte:component>
+    {/await}
 
-{:else if ["Displayblock","Displaymodal","Displayselections"].includes(component.type)}
-  {#await toDisplayComponent(component)}
-  <!-- cast in function to avoid TS warnings, not really awaiting anything -->
-  {:then comp}
-  <svelte:component this={({
-      "Displayblock":Displayblock, 
-      "Displaymodal":Displaymodal, 
-      "Displayselections":Displayselections
-  })[component.type]} 
-    component={{
-      ...comp, 
-      content: Array.isArray(comp.content) 
-        ? comp.content.map(c => (parseMarkdown(replaceTokens(c, $displayValueStore)))) 
-        : parseMarkdown(replaceTokens(comp.content, $displayValueStore))
-    }}>
-  <svelte:fragment slot="pre">
-    {@html parseMarkdown(replaceTokens(comp.pre, $displayValueStore))}
-  </svelte:fragment>
-  <!-- <svelte:fragment slot="main">
-    {@html parseMarkdown(replaceTokens(comp.content, $displayValueStore))}
-  </svelte:fragment> -->
-  <svelte:fragment slot="post">
-    {@html parseMarkdown(replaceTokens(comp.post, $displayValueStore))}
-  </svelte:fragment>
-  </svelte:component>
-  {/await}
+  {:else if component.type == "Address"}
+    <Address 
+      component={component}
+      on:addressChange="{componentUpdated}"
+    />
 
-{:else if component.type == "Address"}
-  <Address 
-    component={component}
-    on:addressChange="{componentUpdated}"
-  />
+  {:else if component.type == "TriBoxDate"}
+    <InputTriboxdate 
+      component={{...component, value:$valueStore[component.id] ?? ''}}
+      on:dateChange="{componentUpdated}"
+    />
 
-{:else if component.type == "TriBoxDate"}
-  <InputTriboxdate 
-    component={{...component, value:$valueStore[component.id] ?? ''}}
-    on:dateChange="{componentUpdated}"
-  />
+  {:else if component.type == "Vehicle"}
+    <Vehicle 
+      component={component}
+      on:vehicleChange="{componentUpdated}"
+    />
 
-{:else if component.type == "Vehicle"}
-  <Vehicle 
-    component={component}
-    on:vehicleChange="{componentUpdated}"
-  />
-
-{/if}
+  {/if}
 {/if}

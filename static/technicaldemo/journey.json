@@ -41,6 +41,22 @@
           },
           "components": [
             {
+              "id": "acknowledgement",
+              "label": "Please acknowledge me",
+              "type": "MultiOptionCheckbox",
+              "help": "Please acknowledge me",
+              "required": true,
+              "errorMessage": "You must acknowledge me",
+              "values": [
+                {
+                  "key": "ack-key",
+                  "value": "ack-value",
+                  "display": "I acknowledge you",
+                  "textLocation": "left"
+                }
+              ]
+            },
+            {
               "id": 1,
               "label": "1 Required question label",
               "type": "Text",
@@ -48,7 +64,7 @@
               "required": true,
               "errorMessage": "Please enter valid data",
               "help": "Help text",
-              "pre": "# Markdown before question 1",
+              "pre": "# La la la before question 1",
               "post": "__Markdown after question 1__"
             },
             {
