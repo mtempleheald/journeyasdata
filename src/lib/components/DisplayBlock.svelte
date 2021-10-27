@@ -34,18 +34,14 @@
 <style>
     .display {
         margin: 0;
-        padding: 0.5rem 1rem;
-        background-color: var(--input-bg, white);
-        color: var(--input-txt, black);
-        border: var(--input-border, 1px solid black);        
+        padding: var(--display-padding, 0);
+        background-color: var(--display-bg);
+        color: var(--display-txt, black);
+        border: var(--display-border, 1px solid black);
     }
     .display.active {
-        background-color: var(--input-active-bg, rgb(255, 255, 214));
-        color: var(--input-active-txt, black);
-    }
-    .display.invalid {
-        background-color: var(--input-error-bg, pink);
-        color: var(--input-error-txt, red);
+        background-color: var(--display-active-bg);
+        color: var(--display-active-txt);
     }
     .content {
         display: flex;

@@ -165,7 +165,7 @@
 </script>
 
 
-<div class="question {active} {valid?'':'invalid'}" 
+<div class="component {active} {valid?'':'invalid'}" 
     transition:blur 
     on:mouseenter={enter} 
     on:mouseleave={leave} 
@@ -246,24 +246,47 @@
 
 
 <style>
-    .question {
+    .component {
         margin: 0;
-        padding: 1rem;
-        background-color: var(--input-bg, white);
-        color: var(--input-txt, black);
-        border: var(--input-border, 1px solid black);
+        padding: var(--component-padding, 0);
+        background-color: var(--component-bg);
+        color: var(--component-txt, black);
+        border: var(--component-border, 1px solid black);
     }
-    .question.active {
-        background-color: var(--input-active-bg, rgb(255, 255, 214));
-        color: var(--input-active-txt, black);
+    .component.active {
+        background-color: var(--component-active-bg);
+        color: var(--component-active-txt);
     }
-    .question.invalid {
-        background-color: var(--input-error-bg, pink);
-        color: var(--input-error-txt, red);
+    .component.invalid {
+        background-color: var(--component-error-bg);
+        color: var(--component-error-txt);
     }
+
+    label {
+        padding: var(--input-padding);
+        color: var(--input-txt);
+        background-color: var(--input-bg);
+        display: inline-block;
+        width: max(250px, 40%);
+    }
+    .component.active label {
+        color: var(--input-active-txt);
+        background-color: var(--input-active-bg);
+    }
+    .component.invalid label {
+        color: var(--input-error-txt);
+        background-color: var(--input-error-bg);
+    }
+
     .required {
         color: var(--input-txt-required, black);
     }
+
+    .error {
+        background-color: var(--input-error-msg-bg);
+        color: var(--input-error-msg-txt);
+    }
+
     .hidden {
         display: none;
     }
@@ -271,19 +294,25 @@
     .container {
         width: 100%;
     }
-    label {
-        display: inline-block;
-        padding: 0.5rem;
-        width: max(250px, 40%);
-    }
     input {
-        margin: 0.5rem;
         width: 30px;
         padding: var(--input-padding);
+        color: var(--input-txt);
+        background-color: var(--input-bg);
     }
-    .container input:invalid {
-        background-color: var(--input-error-bg, pink);
-        border: solid 1px var(--input-error-txt, red);
+    .component.invalid input {
+        background-color: var(--input-error-bg);
+        color: var(--input-error-txt);
+        border: var(--input-error-border);
+    }
+    input:active {
+        background-color: var(--input-active-bg);
+        color: var(--input-active-txt);
+    }
+    input:invalid {
+        background-color: var(--input-error-bg);
+        color: var(--input-error-txt);
+        border: var(--input-error-border);
     }
     /* don't want arrows on date input */
     input[type=number]{
@@ -292,10 +321,5 @@
     input[type=number]::-webkit-inner-spin-button,
     input[type=number]::-webkit-outer-spin-button {        
         appearance: none;
-    }
-    .error {
-        padding: 0.5rem;
-        background-color: var(--input-error-msg-bg, red);
-        color: var(--input-error-msg-txt, pink);
     }
 </style>

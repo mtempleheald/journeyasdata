@@ -35,7 +35,7 @@
 </script>
 
 
-<div class="question {active} {component.required && component.value == null ? 'invalid' : ''}" 
+<div class="component {active} {component.required && component.value == null ? 'invalid' : ''}" 
     on:mouseenter={enter} 
     on:mouseleave={leave} >
 
@@ -111,43 +111,65 @@
 
 
 <style>
-    .question {
+    .component {
         margin: 0;
-        padding: 0.5rem 1rem;
-        background-color: var(--input-bg, white);
-        color: var(--input-txt, black);
-        border: var(--input-border, 1px solid black);
+        padding: var(--component-padding, 0);
+        background-color: var(--component-bg);
+        color: var(--component-txt, black);
+        border: var(--component-border, 1px solid black);
     }
-    .question.active {
-        background-color: var(--input-active-bg, rgb(255, 255, 214));
-        color: var(--input-active-txt, black);
+    .component.active {
+        background-color: var(--component-active-bg);
+        color: var(--component-active-txt);
     }
-    .question.invalid {
-        background-color: var(--input-error-bg, pink);
-        color: var(--input-error-txt, red);
+    .component.invalid {
+        background-color: var(--component-error-bg);
+        color: var(--component-error-txt);
     }
-    .required {
-        color: var(--question-colour-text, black);
-    }
-    button.active {
-        background-color: var(--input-active-bg, rgb(255, 255, 214));
-        color: var(--input-active-txt, black);
-    }
-    .container {
-        width: 100%;
-    }
+
     label {
-        display: inline-block;
-        padding: 0.5rem;
+        padding: var(--input-padding);
+        color: var(--input-txt);
+        background-color: var(--input-bg);
+        display: inline-block;        
         width: max(250px, 40%);
     }
-    input {
-        margin: 0.5rem;
+    .component.active label {
+        color: var(--input-active-txt);
+        background-color: var(--input-active-bg);
     }
+    .component.invalid label {
+        color: var(--input-error-txt);
+        background-color: var(--input-error-bg);
+    }
+
+    .required {
+        color: var(--input-txt);
+    }
+
     .error {
-        padding: 0.5rem;
-        background-color: var(--input-error-msg-bg, red);
-        color: var(--input-error-msg-txt, pink);
+        background-color: var(--input-error-msg-bg);
+        color: var(--input-error-msg-txt);
+    }
+
+    button {
+        background-color: var(--input-btn-bg);
+        color: var(--input-btn-txt);
+        border: var(--input-btn-border, 1px solid black);
+        padding: var(--input-btn-padding);
+    }
+    button:hover {
+        color: var(--input-btn-hover-txt);
+        background-color: var(--input-btn-hover-bg);
+    }
+    button.active {
+        background-color: var(--input-btn-active-bg);
+        color: var(--input-btn-active-txt);
+    }
+
+    /* Layout only */
+    .container {
+        width: 100%;
     }
     .buttons {
         display: inline-flex;
@@ -156,11 +178,6 @@
     }
     .buttons > * {
         flex-basis: 1;/* give all buttons equal space */
-    }
-    button {
-        background-color: var(--input-btn-bg, white);
-        color: var(--input-btn-txt, black);
-        border: var(--input-btn-border, 1px solid black);
     }
     .image-container {
         display: flex;
