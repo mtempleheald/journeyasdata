@@ -199,41 +199,7 @@
               }
             }
           ]
-        },
-        {
-          "type": "Navigation",
-          "title": "Navigation Section",
-          "components": [
-            {
-              "type": "Displayblock",
-              "content": "- Move navigation from Page-included bespoke component to Section component?  \r\n- TODO: create standalone button component  \r\n- Would allow bespoke actions not just validate and move pages  \r\n- introduces more opportunity to make mistakes  \r\n- Requires button component either way which triggers event we can tap into"
-            },
-            {
-              "id": "back",
-              "type": "ButtonSelect",
-              "value": "Back",
-              "values": [
-                {
-                  "key": "back",
-                  "value": "back",
-                  "display": "Back"
-                }
-              ]
-            },
-            {
-              "id": "forward",
-              "type": "ButtonSelect",
-              "value": "Next",
-              "values": [
-                {
-                  "key": "next",
-                  "value": "next",
-                  "display": "Next"
-                }
-              ]
-            }
-          ]
-        }
+        }       
       ]
     },
     {

@@ -36,8 +36,8 @@
         margin: 0;
         padding: var(--display-padding, 0);
         background-color: var(--display-bg);
-        color: var(--display-txt, black);
-        border: var(--display-border, 1px solid black);
+        color: var(--display-txt);
+        border: var(--display-border);
     }
     .display.active {
         background-color: var(--display-active-bg);

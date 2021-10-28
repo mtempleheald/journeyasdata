@@ -5,32 +5,39 @@
     export let pageurl = '';
     export let journey: JourneyType;
 </script>
-    
-<div class="progress">
-{#each journey.pages as p}
-{#if p.displayprogress ?? true}
-    {#if targetPageEarlier(journey, pageurl, p.url)}
-    <a href="{p.url}" class="{pageurl == p.url?'active':''}">
-        {p.title}
-    </a>
-    {:else}
-    <span class="{pageurl == p.url?'active':''}">
-        {p.title}
-    </span>
+
+
+<nav>
+    <div class="progress">
+    {#each journey.pages as p}
+    {#if p.displayprogress ?? true}
+        {#if targetPageEarlier(journey, pageurl, p.url)}
+        <a href="{p.url}" class="{pageurl == p.url?'active':''}">
+            {p.title}
+        </a>
+        {:else}
+        <span class="{pageurl == p.url?'active':''}">
+            {p.title}
+        </span>
+        {/if}
     {/if}
-{/if}
-{/each}
-</div>
+    {/each}
+    </div>
+</nav>
 
 
 <style>
+    nav {
+        margin: auto; /* centre content on larger screens */
+        max-width: var(--page-width);
+    }
     .progress {
         display: flex;
         justify-content: center;
         flex-wrap: wrap;
         margin: 0;
-        background-color: var(--nav-bg, white);
-        border: var(--nav-border, white);
+        background-color: var(--nav-bg);
+        border: var(--nav-border);
     }
     .progress > * {
         flex-grow: 1;
@@ -39,11 +46,11 @@
         display: inline-block;
         text-decoration: none;
         padding: 1rem 1rem;
-        color: var(--nav-txt, black);
+        color: var(--nav-txt);
     }
     a:hover, a.active, span.active {
         /* text-decoration: underline; */
-        background-color: var(--nav-highlight-bg, inherit);
-        color: var(--nav-hightlight-txt, inherit);
+        background-color: var(--nav-highlight-bg);
+        color: var(--nav-hightlight-txt);
     }
 </style>

@@ -69,16 +69,16 @@ button {
     flex-grow: 1;
 }
 button.page {
-    padding: var(--page-btn-padding, 0.5rem);
-    color: var(--page-btn-txt, black);
-    background-color: var(--page-btn-bg, white);
-    font-weight: var(--page-btn-font-weight, inherit);
+    padding: var(--page-btn-padding);
+    color: var(--page-btn-txt);
+    background-color: var(--page-btn-bg);
+    font-weight: var(--page-btn-font-weight);
 }
 button.section {
-    padding: var(--section-btn-padding, 0.5rem);
-    color: var(--section-btn-txt, black);
-    background-color: var(--section-btn-bg, white);
-    font-weight: var(--section-btn-font-weight, inherit);
+    padding: var(--section-btn-padding);
+    color: var(--section-btn-txt);
+    background-color: var(--section-btn-bg);
+    font-weight: var(--section-btn-font-weight);
 }
 
 </style>

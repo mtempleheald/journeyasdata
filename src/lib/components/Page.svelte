@@ -14,9 +14,8 @@
 
 </script>
 
-<div class="cookie">
-  <Cookiepreference cookiepreferences={journey.cookiepreferences}/>
-</div>
+
+<Cookiepreference cookiepreferences={journey.cookiepreferences}/>
 
 <header>  
   {#if journey.logo}
@@ -27,13 +26,11 @@
   {/if}  
 </header>
 
-<nav>
-  {#if page.displayprogress ?? true}
+{#if page.displayprogress ?? true}
   <Progressbar
     journey = {journey}
     pageurl={page.url}/>
   {/if}
-</nav>
 
 <main>
 <!-- require a form element for accessibility -->
@@ -72,7 +69,6 @@
 </form>
 </main>
 
-
 <footer>
 	<DisplayBlock
 	  component={{
@@ -83,48 +79,46 @@
 </footer>
 
 
-<style>
-  .cookie {
-    margin: auto; /* centre content on larger screens */
-    width: var(--page-hdr-width);
-  }
-  header {  
+<style>  
+  header {
     margin: auto; /* centre content on larger screens */
     max-width: var(--page-hdr-width);
-    background-color: var(--page-hdr-bg);
-    color: var(--page-hdr-txt);
-    border: var(--page-hdr-border);
+    background-color: var(--title-bg);
+    color: var(--title-txt);
+    border: var(--title-border);
     display: flex;
     flex-wrap: wrap;
   }
-  nav {
-    margin: auto; /* centre content on larger screens */
-    max-width: var(--page-width, 100%);
+  header .logo {
+    height: var(--page-logo-height);
+    width: var(--page-logo-width);
+  }
+  header h1 {
+    margin: 0;
+    padding: var(--page-hdr-padding);
+    line-height: var(--title-height);
+    font-size: calc(var(--title-height) / 2); /* Some healthy padding, could vary if really needed */
   }
   main {
     margin: auto; /* centre content on larger screens */
-    max-width: var(--page-width, 100%);
+    max-width: var(--page-width);
+  }
+  main header {
+    background-color: var(--page-hdr-bg);
+    color: var(--page-hdr-txt);
+    border: var(--page-hdr-border);
+  }
+  main header h1 {
+    margin: 0;
+    line-height: var(--page-hdr-height);
+    font-size: calc(var(--page-hdr-height) / 2); /* Some healthy padding, could vary if really needed */
   }
   footer {
     margin: auto; /* centre content on larger screens */
     background-color: var(--page-ftr-bg);
     color: var(--page-ftr-txt);
     max-width: var(--page-ftr-width);
-  }
-  header h1 {
-    margin: 0;
-    height: var(--page-hdr-head-height);
-    line-height: var(--page-hdr-head-height);
-    padding: var(--page-hdr-head-pad);
-  }
-  main header h1 {
-    margin: 0;
-    height: var(--page-head-height);
-    line-height: var(--page-head-height);
-    padding: var(--page-head-pad);  
-  }
-  img.logo {
-    height: var(--page-logo-height);
-    width: var(--page-logo-width);
+    padding: var(--page-ftr-padding);
+    border: var(--page-ftr-border);
   }
 </style>

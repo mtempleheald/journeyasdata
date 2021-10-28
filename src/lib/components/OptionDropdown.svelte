@@ -94,10 +94,10 @@
 <style>
     .component {
         margin: 0;
-        padding: var(--component-padding, 0);
+        padding: var(--component-padding);
         background-color: var(--component-bg);
-        color: var(--component-txt, black);
-        border: var(--component-border, 1px solid black);
+        color: var(--component-txt);
+        border: var(--component-border);
     }
     .component.active {
         background-color: var(--component-active-bg);

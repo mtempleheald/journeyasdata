@@ -11,35 +11,42 @@
     /* font family */
     --font:      "Arial";
 
-
     /* Brand-Component mappings */
-    --page-hdr-bg:               var(--white);
-    --page-hdr-txt:              var(--black);
-    --page-hdr-border:           none;
-    --page-hdr-width:            1000px;
-    --page-hdr-head-height:      50px;
-    --page-hdr-head-pad:         0 1rem;
-    --page-logo-height:          50px;
-
     --page-width:                1000px;
-    --page-head-height:          50px;
-    --page-head-pad:             0 1rem;
+    --title-bg:                  var(--darkgrey);
+    --title-txt:                 var(--white);
+    --title-padding:             2rem;
+    --title-border:              0;
+    --title-height:              5rem;
+
+    --page-hdr-bg:               var(--darkgrey);
+    --page-hdr-txt:              var(--white);
+    --page-hdr-border:           none;
+    --page-hdr-padding:          1rem 2rem;
+    --page-hdr-width:            1000px;
+    --page-hdr-height:           3rem;
 
     --page-ftr-bg:               var(--darkgrey);
     --page-ftr-txt:              var(--white);
+    --page-ftr-border:           none;
+    --page-ftr-padding:          0;
     --page-ftr-width:            1000px;
 
     --page-btn-padding:          0.75rem;
     --page-btn-bg:               var(--darkgrey);
     --page-btn-txt:              var(--white);
     --page-btn-font-weight:      bold;
+    
+    --section-hdr-bg:            var(--lightgrey);
+    --section-hdr-txt:           var(--darkgrey);
+    --section-hdr-border:        1px solid var(--black);
+    --section-hdr-padding:       0 1rem;
+    --section-hdr-height:        3rem;
 
-    --section-hdr-height:        75px;
-    --section-logo-height:       75px;
     --section-txt:               var(--black);
     --section-bg:                var(--white);
-    --section-margin:            2rem;
-    --section-hdr-border:        1px solid var(--black);
+    --section-padding:           2rem 1rem;
+    --section-border:            none;
 
     --section-btn-padding:       1rem;
     --section-btn-bg:            var(--lightgrey);
@@ -49,6 +56,7 @@
     --component-padding:         1rem;
     --component-bg:              var(--white);
     --component-txt:             var(--darkgrey);
+    --component-border:          1px solid var(--darkgrey);
     --component-active-bg:       var(--highlight);
     --component-active-txt:      inherit;
     --component-error-bg:        var(--pink);
@@ -58,8 +66,8 @@
     --display-txt:               var(--darkgrey);
     --display-border:            1px solid var(--darkgrey);
     --display-padding:           1.5rem;
-    --display-active-bg:         inherit;
-    --display-active-txt:        inherit;
+    --display-active-bg:         var(--white);
+    --display-active-txt:        var(--darkgrey);
 
     --input-padding:             0.25rem;
     --input-txt:                 var(--darkgrey);
@@ -73,50 +81,25 @@
     --input-btn-txt:             var(--darkgrey);
     --input-btn-bg:              var(--white);
     --input-btn-padding:         0.5rem;
+    --input-btn-border:          1px solid var(--darkgrey);
     --input-btn-active-bg:       var(--darkgrey);
     --input-btn-active-txt:      var(--white);
     --input-btn-hover-bg:        var(--lightgrey);
     --input-btn-hover-txt:       var(--darkgrey);
 
-    /* exposed properties (don't cross-reference, inherit or pull from above) */
+    /* TODO */
     /* --cookie-bg:                 var(--white);
     --cookie-txt:                var(--darkgrey);
     --cookie-link:               var(--darkgrey);
     --cookie-button-bg:          var(--darkgrey);
     --cookie-button-txt:         var(--white);
-    --header-bg:                 var(--lightgrey);
-    --header-txt:                inherit;
-    --header-link:               inherit;
-    --header-border:             none;
     --nav-bg:                    var(--white);
     --nav-border:                1px dashed var(--darkgrey);
     --nav-txt:                   var(--darkgrey);
     --nav-highlight-bg:          var(--lightgrey);
     --nav-highlight-txt:         inherit;
-    --footer-bg:                 var(--lightgrey);
-    --footer-txt:                var(--darkgrey );
     --footer-link:               inherit;
-    --section-bg:                var(--white);
-    --section-txt:               var(--darkgrey);
-    --section-border:            1px dashed var(--darkgrey);
     --section-link:              var(--darkgrey);
-    --section-header-bg:         var(--blue);
-    --section-header-txt:        var(--white);
-    --section-navbtn-bg:         var(--darkgrey);
-    --section-navbtn-txt:        var(--white);
-    --input-bg:                  var(--white);
-    --input-txt:                 var(--darkgrey);
-    --input-active-txt:          var(--darkgrey);
-    --input-active-bg:           var(--lightgrey);
-    --input-actionbtn-bg:        var(--white);
-    --input-actionbtn-txt:       var(--green);
-    --input-btn-bg:              var(--white);
-    --input-btn-txt:             var(--darkgrey);
-    --input-btn-border:          1px solid var(--darkgrey);
-    --input-error-bg:            var(--white);
-    --input-error-txt:           var(--red);
-    --input-error-msg-bg:        var(--pink);
-    --input-error-msg-txt:       var(--darkgrey);
     --help-btn-bg:               var(--white);
     --help-btn-txt:              var(--blue);
     --help-btn-active-bg:        var(--blue);

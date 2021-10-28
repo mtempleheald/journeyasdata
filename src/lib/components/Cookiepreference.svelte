@@ -60,8 +60,8 @@
 
 <style>
     section {
-        margin: 0;
-        width: 100%;        
+        margin: auto; /* centre content on larger screens */
+        width: var(--page-hdr-width);    
     }
     .selected {
         display: none;

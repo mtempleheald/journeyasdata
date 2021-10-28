@@ -52,24 +52,24 @@
 
 <style>
     section {
-        margin-top: var(--section-margin);
+        padding: var(--section-padding);
         border: var(--section-border);
     }
     header {
         display: flex;
         flex-wrap: wrap;
-        color: var(--section-txt);
-        background-color: var(--section-bg);
+        color: var(--section-hdr-txt);
+        background-color: var(--section-hdr-bg);
         border-bottom: var(--section-hdr-border);
-    }
-    header img {
-        height: var(--section-logo-height);
+        max-height: var(--section-hdr-height);
     }
     header h1 {
+        margin: 0;
+        padding: var(--section-hdr-padding);
         height: var(--section-hdr-height);
         line-height: var(--section-hdr-height);
-        margin: 0;
-        padding: 0 1rem;
+        font-size: calc(var(--section-hdr-height) / 2); /* Some healthy padding, could vary if really needed */
+        vertical-align: middle;
     }
     .hidden {
         display: none;
