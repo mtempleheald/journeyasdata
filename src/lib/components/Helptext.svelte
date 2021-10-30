@@ -26,17 +26,10 @@
 
 
 <style>
-.helpicon {
-    background-color: var(--help-bg, white);
-    color: var(--help-txt, darkgrey);
-    border: var(--help-border,1px solid black);
-    padding: 0.5rem;
-}
 .help {
-    background-color: var(--help-bg, inherit);
-    color: var(--help-txt, inherit);
-    border: var(--help-border, 1px dashed black);
-    padding: 0.5rem;
+    background-color: var(--help-bg);
+    color: var(--help-txt);
+    border: var(--help-border);
 }
 .help.hidden {
     display: none;

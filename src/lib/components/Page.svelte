@@ -102,6 +102,8 @@
   main {
     margin: auto; /* centre content on larger screens */
     max-width: var(--page-width);
+    background-color: var(--page-bg);
+    padding: var(--page-padding);
   }
   main header {
     background-color: var(--page-hdr-bg);

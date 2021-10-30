@@ -36,8 +36,6 @@
         justify-content: center;
         flex-wrap: wrap;
         margin: 0;
-        background-color: var(--nav-bg);
-        border: var(--nav-border);
     }
     .progress > * {
         flex-grow: 1;
@@ -46,11 +44,13 @@
         display: inline-block;
         text-decoration: none;
         padding: 1rem 1rem;
-        color: var(--nav-txt);
+        background-color: var(--progress-bg);
+        color: var(--progress-txt);
+        border: var(--progress-border);
     }
     a:hover, a.active, span.active {
         /* text-decoration: underline; */
-        background-color: var(--nav-highlight-bg);
-        color: var(--nav-hightlight-txt);
+        background-color: var(--progress-active-bg, var(--progress-bg));
+        color: var(--progress-active-txt, var(--progress-txt));
     }
 </style>

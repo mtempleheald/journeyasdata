@@ -13,6 +13,9 @@
 
     /* Brand-Component mappings */
     --page-width:                1000px;
+    --page-bg:                   var(--white);
+    --page-padding:              0;
+
     --title-bg:                  var(--darkgrey);
     --title-txt:                 var(--white);
     --title-padding:             2rem;
@@ -87,39 +90,32 @@
     --input-btn-hover-bg:        var(--lightgrey);
     --input-btn-hover-txt:       var(--darkgrey);
 
-    /* TODO */
-    /* --cookie-bg:                 var(--white);
-    --cookie-txt:                var(--darkgrey);
-    --cookie-link:               var(--darkgrey);
-    --cookie-button-bg:          var(--darkgrey);
-    --cookie-button-txt:         var(--white);
-    --nav-bg:                    var(--white);
-    --nav-border:                1px dashed var(--darkgrey);
-    --nav-txt:                   var(--darkgrey);
-    --nav-highlight-bg:          var(--lightgrey);
-    --nav-highlight-txt:         inherit;
-    --footer-link:               inherit;
-    --section-link:              var(--darkgrey);
-    --help-btn-bg:               var(--white);
-    --help-btn-txt:              var(--blue);
-    --help-btn-active-bg:        var(--blue);
-    --help-btn-active-txt:       var(--white);
-    --help-bg:                   var(--white);
+    --help-bg:                   inherit;
     --help-txt:                  var(--darkgrey);
     --help-border:               1px dashed var(--lightgrey);
-     */
 
+    --progress-bg:               var(--white);
+    --progress-txt:              var(--darkgrey);
+    --progress-padding:          0;
+    --progress-border:           1px solid var(--darkgrey);
+    --progress-active-bg:        var(--lightgrey);
 }
 
 /* global settings */
 body {
-    background-color: var(--white);
+    background-color: var(--lightgrey);
     font-family: var(--font);
     margin: 0;
     padding: 0;
     border: 0;
 }
-section {
-    max-width: 1000px;
-    margin: 0.5rem auto;
+a {
+    text-decoration: none;
+    color: inherit;
+    font-style: italic;
+    font-weight: 550;
+}
+a:hover {
+    text-decoration: underline;
+    cursor: pointer;
 }
