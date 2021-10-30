@@ -79,7 +79,10 @@
         </select>
         {/if}
         {#if component.help}
-        <Helptext>{component.help}</Helptext>
+        <Helptext>
+            <svelte:fragment slot="button">Help</svelte:fragment>
+            {component.help}
+        </Helptext>
         {/if}
     </div>
 
