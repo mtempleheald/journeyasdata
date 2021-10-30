@@ -63,8 +63,8 @@
         <label for="{component.id}">
             {component.label}
             {#if component.required}
-            <span class="required">*</span>
-            {/if}            
+                <span class="required">*</span>
+            {/if}
         </label>
         {/if}
 
@@ -74,7 +74,7 @@
             id="{component.id}" 
             name="{component.id}" 
             placeholder="{component.placeholder}" 
-            required="{component.required ?? false}"
+            required={component.required ?? false}
             value="{component.value}"
             on:blur={act}
             on:focus={focus}/>
