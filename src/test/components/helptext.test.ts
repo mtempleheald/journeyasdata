@@ -6,7 +6,6 @@ import Helptext from '$lib/components/Helptext.svelte'
 
 test('Helptext renders default "help" label and no text', () => {
     const { queryByRole } = render(Helptext)
-    console.log(queryByRole('button'))
     expect(queryByRole('button')).toHaveTextContent('help')
 })
 
