@@ -39,7 +39,7 @@
     {#if cookiepreferences.values}
     <OptionButtons
         component={{
-            type: "ButtonSelect",
+            type: "OptionButtons",
             id: "cookiestatus",
             value: $valueStore["cookiestatus"] ?? '',
             values: cookiepreferences.values

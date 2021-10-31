@@ -1,6 +1,6 @@
 <script lang="ts">
-    import type { DisplaySelectionsType } from '$lib/types/journey';
-    export let component: DisplaySelectionsType;
+    import type { DisplaySelections } from '$lib/types/journey';
+    export let component: DisplaySelections;
 
     let active;
     function enter() {

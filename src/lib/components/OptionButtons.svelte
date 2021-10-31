@@ -1,10 +1,10 @@
 <script lang="ts">
-    import type { ListComponentType } from '$lib/types/journey';
+    import type { OptionComponent } from '$lib/types/journey';
 	import { createEventDispatcher } from 'svelte';
     import Helptext from '$lib/components/Helptext.svelte';
 
     // expose component properties
-    export let component: ListComponentType;    
+    export let component: OptionComponent;    
 
     // internal properties to support component logic
     const dispatch = createEventDispatcher();

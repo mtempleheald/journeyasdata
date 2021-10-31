@@ -1,6 +1,6 @@
 <!-- DEPRECATED - See action providers for alternative approach -->
 <script lang="ts">
-    import type { VehicleComponentType } from '$lib/types/journey';
+    import type { VehicleComponent } from '$lib/types/journey';
     import type { VehicleType } from '$lib/types/vehicle';
     import { displayValueStore } from '$lib/stores/displayvaluestore';
     import { parseMarkdown } from '$lib/utils/markdown';
@@ -10,7 +10,7 @@
     import OptionDropdown from '$lib/components/OptionDropdown.svelte';
 
     // expose component properties
-    export let component: VehicleComponentType;
+    export let component: VehicleComponent;
 
     // internal properties to support component logic
     let regnum: string = '';
@@ -61,7 +61,7 @@
     TODO: Year Of Manufacture - Drop down in Vehicle.svelte
     <OptionDropdown
         component={{...component, 
-            type:"Dropdown",
+            type:"OptionDropdown",
             value:$valueStore[component.id] ?? ''}}>
         <svelte:fragment slot="pre">
             {@html parseMarkdown(replaceTokens(component.pre, $displayValueStore))}
@@ -100,7 +100,7 @@
     TODO: Select Bike - Drop down component in Vehicle.svelte
     <OptionDropdown
         component={{...component, 
-            type: "Dropdown",
+            type: "OptionDropdown",
             value:$valueStore[component.id] ?? ''}}>
         <svelte:fragment slot="pre">
             {@html parseMarkdown(replaceTokens(component.pre, $displayValueStore))}

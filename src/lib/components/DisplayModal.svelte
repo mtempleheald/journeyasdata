@@ -1,7 +1,7 @@
 <script lang="ts">
-    import type { DisplayComponentType } from '$lib/types/journey'
+    import type { DisplayComponent } from '$lib/types/journey'
 
-    export let component: DisplayComponentType
+    export let component: DisplayComponent
 
     let dismissed;
     let active;

@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type { ListComponentType, ValueType } from '$lib/types/journey';
+    import type { OptionComponent, ValueType } from '$lib/types/journey';
 	import { createEventDispatcher, onMount } from 'svelte';
     import Helptext from '$lib/components/Helptext.svelte';
 
@@ -15,7 +15,7 @@
     
 
     // expose component properties
-    export let component: ListComponentType;
+    export let component: OptionComponent;
 
     // internal properties to support component logic
     const dispatch = createEventDispatcher();

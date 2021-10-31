@@ -1,11 +1,11 @@
 <script lang="ts">
-    import type { TriBoxDateComponentType } from '$lib/types/journey';
+    import type { TriBoxDateComponent } from '$lib/types/journey';
     import { blur } from 'svelte/transition';
 	import { createEventDispatcher, onMount } from 'svelte';
     import Helptext from '$lib/components/Helptext.svelte';
 
     // expose component properties
-    export let component: TriBoxDateComponentType;
+    export let component: TriBoxDateComponent;
     
     // internal properties to support component logic
     let fallbackError

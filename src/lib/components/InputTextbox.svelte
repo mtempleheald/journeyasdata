@@ -1,12 +1,12 @@
 <script lang="ts">
-    import type { InputComponentType } from '$lib/types/journey';
+    import type { InputComponent } from '$lib/types/journey';
     import { blur } from 'svelte/transition';
 	import { createEventDispatcher } from 'svelte';
     import { validationStore } from '$lib/stores/validationstore';
     import Helptext from '$lib/components/Helptext.svelte';    
 
     // expose component properties
-    export let component: InputComponentType;
+    export let component: InputComponent;
 
     // internal properties to support component logic
     const dispatch = createEventDispatcher();

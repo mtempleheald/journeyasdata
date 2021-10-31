@@ -1,21 +1,21 @@
 <script lang="ts">
-    import type { ComponentType, DisplayComponentType, InputComponentType, ListComponentType } from '$lib/types/journey';
-    import { actionStore } from '$lib/stores/actionstore';
-    import { browser } from '$app/env';
-    import { displayValueStore } from '$lib/stores/displayvaluestore';
-    import { parseMarkdown } from '$lib/utils/markdown';
-    import { replaceTokens } from '$lib/utils/replacetokens';
-    import { validationStore } from '$lib/stores/validationstore';
-    import { valueStore } from '$lib/stores/valuestore';
-    import Address from '$lib/components/Address.svelte';    
-    import Displayblock from '$lib/components/DisplayBlock.svelte';
-    import Displaymodal from '$lib/components/DisplayModal.svelte';
-    import Displayselections from './DisplaySelections.svelte';
-    import InputTextbox from '$lib/components/InputTextbox.svelte';
-    import OptionButtons from '$lib/components/OptionButtons.svelte';
-    import OptionDropdown from '$lib/components/OptionDropdown.svelte';
-    import InputTriboxdate from '$lib/components/InputTriboxdate.svelte';
-    import Vehicle from '$lib/components/Vehicle.svelte';
+    import type { ComponentType, OptionComponent } from '$lib/types/journey'
+    import { actionStore } from '$lib/stores/actionstore'
+    import { browser } from '$app/env'
+    import { displayValueStore } from '$lib/stores/displayvaluestore'
+    import { parseMarkdown } from '$lib/utils/markdown'
+    import { replaceTokens } from '$lib/utils/replacetokens'
+    import { validationStore } from '$lib/stores/validationstore'
+    import { valueStore } from '$lib/stores/valuestore'
+    import Address from '$lib/components/Address.svelte'
+    import DisplayBlock from '$lib/components/DisplayBlock.svelte'
+    import DisplayModal from '$lib/components/DisplayModal.svelte'
+    import DisplaySelections from '$lib/components/DisplaySelections.svelte'
+    import InputTextbox from '$lib/components/InputTextbox.svelte'
+    import OptionButtons from '$lib/components/OptionButtons.svelte'
+    import OptionDropdown from '$lib/components/OptionDropdown.svelte'
+    import InputTriboxdate from '$lib/components/InputTriboxdate.svelte'
+    import Vehicle from '$lib/components/Vehicle.svelte'
 
 
     export let component: ComponentType;
@@ -34,7 +34,7 @@
       if (typeof f === 'function') f()
     }
 
-    async function toListComponent(component: ComponentType): Promise<ListComponentType> {
+    async function toListComponent(component: ComponentType): Promise<OptionComponent> {
       if (component.type == "YesNo") {
         return {...component, 
           value:$valueStore[component.id] ?? '',
@@ -42,7 +42,7 @@
         }
       }
       else {
-        const listComponent: ListComponentType = component as ListComponentType;
+        const listComponent: OptionComponent = component as OptionComponent;
         let effectiveValues = listComponent.values;
         if (listComponent.refdata && browser) {
             const res = await fetch (`/api/refdata/${listComponent.refdata}?parent=${listComponent.refdataparent}`);
@@ -54,13 +54,6 @@
           refdataparent: $valueStore[listComponent.refdataparent] ?? ''
         }
       }
-    }
-
-    async function toDisplayComponent(component: ComponentType): Promise<DisplayComponentType> {
-      return component as DisplayComponentType
-    }
-    async function toInputComponent(component: ComponentType): Promise<InputComponentType> {
-      return component as InputComponentType
     }
 </script>
 
@@ -99,32 +92,43 @@
   </svelte:component>
   {/await}
 
-{:else if ["Displayblock","Displaymodal","Displayselections"].includes(component.type)}
-  {#await toDisplayComponent(component)}
-  <!-- cast in function to avoid TS warnings, not really awaiting anything -->
-  {:then comp}
+{:else if component.type == "Displayblock"
+       || component.type == "Displaymodal"}
   <svelte:component this={({
-      "Displayblock":Displayblock, 
-      "Displaymodal":Displaymodal, 
-      "Displayselections":Displayselections
+      "Displayblock":DisplayBlock, 
+      "Displaymodal":DisplayModal
   })[component.type]} 
     component={{
-      ...comp, 
-      content: Array.isArray(comp.content) 
-        ? comp.content.map(c => (parseMarkdown(replaceTokens(c, $displayValueStore)))) 
-        : parseMarkdown(replaceTokens(comp.content, $displayValueStore))
+      ...component, 
+      content: Array.isArray(component.content) 
+        ? component.content.map(c => (parseMarkdown(replaceTokens(c, $displayValueStore)))) 
+        : parseMarkdown(replaceTokens(component.content, $displayValueStore))
     }}>
   <svelte:fragment slot="pre">
-    {@html parseMarkdown(replaceTokens(comp.pre, $displayValueStore))}
+    {@html parseMarkdown(replaceTokens(component.pre, $displayValueStore))}
   </svelte:fragment>
   <!-- <svelte:fragment slot="main">
     {@html parseMarkdown(replaceTokens(comp.content, $displayValueStore))}
   </svelte:fragment> -->
   <svelte:fragment slot="post">
-    {@html parseMarkdown(replaceTokens(comp.post, $displayValueStore))}
+    {@html parseMarkdown(replaceTokens(component.post, $displayValueStore))}
   </svelte:fragment>
   </svelte:component>
-  {/await}
+
+{:else if component.type == "Displayselections"}
+  <DisplaySelections 
+    component={component}
+  >
+  <svelte:fragment slot="pre">
+    {@html parseMarkdown(replaceTokens(component.pre, $displayValueStore))}
+  </svelte:fragment>
+  <svelte:fragment slot="main">
+    {@html parseMarkdown(replaceTokens(component.content, $displayValueStore))}
+  </svelte:fragment>
+  <svelte:fragment slot="post">
+    {@html parseMarkdown(replaceTokens(component.post, $displayValueStore))}
+  </svelte:fragment>
+  </DisplaySelections>
 
 {:else if component.type == "Address"}
   <Address 

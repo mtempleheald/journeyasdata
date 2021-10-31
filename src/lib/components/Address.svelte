@@ -1,6 +1,6 @@
 <!-- DEPRECATED - see action providers for alternative implementation -->
 <script lang="ts">
-    import type { AddressComponentType } from '$lib/types/journey';
+    import type { AddressComponent } from '$lib/types/journey';
     import type { AddressType } from '$lib/types/address';
 	import { createEventDispatcher } from 'svelte';
     import { displayValueStore } from '$lib/stores/displayvaluestore';
@@ -12,7 +12,7 @@
     import OptionDropdown from '$lib/components/OptionDropdown.svelte';
     
     // expose component properties
-    export let component: AddressComponentType;
+    export let component: AddressComponent;
 
     // internal properties to support component logic
     let active: string;
@@ -115,7 +115,7 @@
     {#if propertyLov.length > 0 || !$valueStore["property"]}
     <OptionDropdown 
         component={{
-            type: "Dropdown",
+            type: "OptionDropdown",
             id: "property",
             value: $valueStore["property"] ?? '',
             label: component.propertyLabel,

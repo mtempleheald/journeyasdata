@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type { JourneyType, NavigationOptionsType, SectionType } from '$lib/types/journey'
+    import type { JourneyType, NavigationOptionsType } from '$lib/types/journey'
     import { DISABLEVALIDATION } from '$lib/env'
     import { getContext } from 'svelte';
     import { goto } from '$app/navigation'
@@ -14,11 +14,11 @@
 
     const journey: JourneyType = getContext("journey");
 
-    function backPage(event) {
+    function backPage() {
         console.log ("Navigating to previous page");
         goto(prevPageUrl(journey, pageurl))
     }
-    function nextPage(event) {
+    function nextPage() {
         if (DISABLEVALIDATION == 'Y') {
             console.log('Validation disabled, redirecting to next page')
             goto(nextPageUrl(journey, pageurl));

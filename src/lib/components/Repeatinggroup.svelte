@@ -24,7 +24,7 @@
                 let newComponents: ComponentType[] = s.components.map(comp => {
                     return {
                         ...comp, 
-                        id: `${comp.id}.${i}`
+                        id: comp.id ? `${comp.id}.${i}` : undefined
                     }
                 })
                 newSections.push({...s, instanceid: i, components: newComponents})
@@ -35,7 +35,8 @@
 
     function updateSummaryInstance(summary: string, instanceid: number) {
         const re = new RegExp(/\{\{\s*(\w|\.)*\s*\}\}/gi)
-        function replacer(match, p1, p2, p3, offset, string) {
+        // @ts-ignore
+        function replacer(match, _p1, _p2, _p3, _offset, _string) {
             const result = `{{${match.substring(2,match.length-2).trim()}.${instanceid}}}`
             return result
         }
@@ -61,7 +62,10 @@
     // if not, we need to rejig all the store values to avoid sparse population, 2 becomes 1, 3 becomes 2 etc
     function remove(instanceid: number) {
         for (var i = instanceid; i <= repeatinggroup.maxrepeats; i++) {
-            repeatinggroup.sections.forEach(s => s.components.forEach(c => {
+            repeatinggroup.sections
+                .forEach(s => s.components
+                    .filter(c => !!c.id)
+                    .forEach(c => {
                 valueStore.set(       `${c.id}.${i}`, $valueStore[`${c.id}.${i+1}`])
                 displayValueStore.set(`${c.id}.${i}`, $valueStore[`${c.id}.${i+1}`])
                 validationStore.set(  `${c.id}.${i}`, $valueStore[`${c.id}.${i+1}`])
