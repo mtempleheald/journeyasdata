@@ -49,10 +49,48 @@
               "errorMessage": "You must acknowledge me",
               "values": [
                 {
-                  "key": "ack-key",
-                  "value": "ack-value",
-                  "display": "I acknowledge you",
-                  "textLocation": "left"
+                  "key": "top",
+                  "value": "top",
+                  "display": "Text Top",
+                  "textLocation": "top",
+                  "image": {
+                    "url": "https://fakeimg.pl/50x50/",
+                    "width": "50",
+                    "height": "50"
+                  }
+                },
+                {
+                  "key": "bottom",
+                  "value": "bottom",
+                  "display": "Text Bottom",
+                  "textLocation": "bottom",
+                  "image": {
+                    "url": "https://fakeimg.pl/50x50/",
+                    "width": "50",
+                    "height": "50"
+                  }
+                },
+                {
+                  "key": "left",
+                  "value": "left",
+                  "display": "Text Left",
+                  "textLocation": "left",
+                  "image": {
+                    "url": "https://fakeimg.pl/50x50/",
+                    "width": "50",
+                    "height": "50"
+                  }
+                },
+                {
+                  "key": "right",
+                  "value": "right",
+                  "display": "Text Right",
+                  "textLocation": "right",
+                  "image": {
+                    "url": "https://fakeimg.pl/50x50/",
+                    "width": "50",
+                    "height": "50"
+                  }
                 }
               ]
             },

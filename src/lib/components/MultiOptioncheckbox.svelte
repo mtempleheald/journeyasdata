@@ -1,7 +1,15 @@
 <script lang="ts">
     import type { ListComponentType } from '$lib/types/journey';
 	import { createEventDispatcher } from 'svelte';
+    
+    import Button from '@smui/button';
+    import Checkbox from '@smui/checkbox';
+    import FormField from '@smui/form-field';
     import Helptext from '$lib/components/Helptext.svelte';
+ 
+    let checked: boolean | null = null;
+ 
+    let checkedValues = new Map<string, boolean>();   //  TODO: Make this store the values of the checkboxes
 
     // expose component properties
     export let component: ListComponentType;    
@@ -19,7 +27,6 @@
     } 
     function updateValue(newValue, newDisplay) {
         
-
         var chkBox = <HTMLInputElement>document.getElementById(component.id + "-" + newValue);
         if (chkBox != null)
         {
@@ -68,47 +75,76 @@
         {#if component.id}
             <span class="buttons">
                 {#each component.values as v}
-                    <input class="" id="{component.id}-{v.value}" type="checkbox">
-                    <button type="button" value="{v.value}" 
-                        on:click="{() => updateValue(v.value, v.display)}" 
-                        class="{component.value == v.value ? 'active' : ''}">
-                        
-                        {#if v.display != null}
-                            <div>
-                                {#if v.textLocation == "top"}
-                                    <span class="{v.textLocation}">{v.display}</span> 
-                                    <span class="bottom"> [  ] </span>
-                                
-                                {:else if v.textLocation == "bottom"}
-                                    <span class="top"> [  ] </span> 
-                                    <span class="{v.textLocation}">{v.display}</span>
-
-                                {:else if v.textLocation == "left"}
-                                    <span class="right"> [  ] </span> 
-                                    <span class="{v.textLocation}">{v.display}</span>
-
-                                {:else if v.textLocation == "right"}
-                                    <span class="left"> [  ] </span> 
-                                    <span class="{v.textLocation}">{v.display}</span>
-
-                                {/if}
-                            </div>
-                        {/if}
-
-                        {#if v.image != null} 
-                            <div class="image-container">
-                                <span class="{v.textLocation == "right" ? 'left' : v.textLocation == "left" ? 'right' : '' };">
-                                    {v.image != null ? '' : v.display ?? ''}
-                                    <img src="{v.image.url}" 
-                                        width="{v.image.width}" 
-                                        height="{v.image.height}" 
-                                        class="{component.value == v.value ? 'active' : ''}" 
-                                        alt="{v.display}" />
+                    {#if v.display != null}
+                        {#if v.textLocation == "top"}
+                            <FormField>
+                                <span class="top" slot="label">{v.display}</span>
+                                <span class="bottom"> 
+                                    <Checkbox id="{component.id}-{v.value}" bind:checked indeterminate={checked === null} input$required />
                                 </span>
-                            </div>
-                        {/if}
+                            </FormField>
 
-                    </button>
+                        {:else if v.textLocation == "right"}
+                            <FormField>
+                                <span class="left"> 
+                                    <Checkbox id="{component.id}-{v.value}" bind:checked indeterminate={checked === null} input$required />
+                                </span>
+                                <span class="right" slot="label">{v.display}</span>
+                            </FormField>
+
+                        {:else if v.textLocation == "bottom"}
+                            <FormField>
+                                <span class="top">
+                                    <Checkbox id="{component.id}-{v.value}" bind:checked indeterminate={checked === null} input$required />
+                                </span>
+                                <span class="bottom" slot="label">{v.display}</span>
+                            </FormField>
+                            
+                        {:else}
+                            <FormField>
+                                <span class="left" slot="label">{v.display}</span>
+                                <span class="right"> 
+                                    <Checkbox id="{component.id}-{v.value}" bind:checked indeterminate={checked === null} input$required />
+                                </span>
+                            </FormField>
+                        {/if}
+                    {/if}
+
+
+                    <!-- TODO: Do we want to remove Images? -->
+                    <!-- {#if v.image != null}  -->
+
+                    <!-- {#if v.image != null}
+                    <span class="image-container" slot="label">
+                        <img src="{v.image.url}" 
+                            width="{v.image.width}" 
+                            height="{v.image.height}" 
+                            class="{component.value == v.value ? 'active' : ''}" 
+                            alt="{v.display}" />
+                    </span>
+                {:else} -->
+
+                        <!-- <div class="image-container">
+                            <span class="{v.textLocation == "right" ? 'left' : v.textLocation == "left" ? 'right' : '' };">
+                                {v.image != null ? '' : v.display ?? ''}
+                                <img src="{v.image.url}" 
+                                    width="{v.image.width}" 
+                                    height="{v.image.height}" 
+                                    class="{component.value == v.value ? 'active' : ''}" 
+                                    alt="{v.display}" />
+                            </span>
+                        </div> -->
+                    <!-- {/if} -->
+                    
+                        <!-- <button type="button" value="{v.value}" 
+                            on:click="{() => updateValue(v.value, v.display)}" 
+                            class="{component.value == v.value ? 'active' : ''}">
+                            
+                            
+
+                        </button>
+                    </FormField> -->
+                    <hr/>
                 {/each}
             </span>
         {/if}     
@@ -183,10 +219,20 @@
         justify-content: center;
         align-items: center;
     }
+
+    /* TODO: Need to sort these out - I'm not expert at CSS */
     .right {
         float: right;
     }
     .left {
         float: left;
+    }
+    .top {
+        display: inline-block;
+        vertical-align: top;
+    }
+    .bottom {
+        display: inline-block;
+        vertical-align: bottom;
     }
 </style>
