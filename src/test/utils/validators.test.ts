@@ -1,8 +1,8 @@
-import type { DisplayComponentType, InputComponentType} from '$lib/types/journey'
+import type { DisplayComponent, InputComponent} from '$lib/types/journey'
 import { componentValid } from '$lib/utils/validators'
 
 test('input provided, valid', () => {
-    let comp: InputComponentType = {
+    let comp: InputComponent = {
         "id": "1",
         "type": "Text",
     }
@@ -15,7 +15,7 @@ test('input provided, valid', () => {
     expect(componentValid(comp, value, validity)).toBe(true)
 })
 test('input provided, invalid', () => {
-    let comp: InputComponentType = {
+    let comp: InputComponent = {
         "id": "1",
         "type": "Text",
     }
@@ -28,14 +28,14 @@ test('input provided, invalid', () => {
     expect(componentValid(comp, value, validity)).toBe(false)
 })
 test('input optional, skipped', () => {
-    let comp: InputComponentType = {
+    let comp: InputComponent = {
         "id": "1",
         "type": "Text",
     }
     expect(componentValid(comp, {}, {})).toBe(true)
 })
 test('input required, skipped', () => {
-    let comp: InputComponentType = {
+    let comp: InputComponent = {
         "id": "1",
         "type": "Text",
         "required": true
@@ -43,7 +43,7 @@ test('input required, skipped', () => {
     expect(componentValid(comp, {}, {})).toBe(false)
 })
 test('input required, skipped, hidden', () => {
-    let comp: InputComponentType = {
+    let comp: InputComponent = {
         "id": "2",
         "type": "Text",
         "required": true,
@@ -61,7 +61,7 @@ test('input required, skipped, hidden', () => {
     expect(componentValid(comp, value, validity)).toBe(true)
 })
 test('input required, skipped, not hidden', () => {
-    let comp: InputComponentType = {
+    let comp: InputComponent = {
         "id": "2",
         "type": "Text",
         "required": true,
@@ -87,7 +87,7 @@ test('display component', () => {
     expect(componentValid(comp, {}, {})).toBe(true)
 })
 test('repeating group component', () => {
-    let comp: InputComponentType = {
+    let comp: InputComponent = {
         "id": "componentid.0",
         "type": "Text",
     }
@@ -107,7 +107,7 @@ test('repeating group component', () => {
 
 // TODO: this is more of a component test than a validator test, move it out of here...
 test.skip('input (required, all fields) valid', () => {
-    let comp: InputComponentType = {
+    let comp: InputComponent = {
         "id": "1",
         "type": "Text",
         "label": "Label",

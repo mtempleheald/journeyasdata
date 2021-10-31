@@ -1,4 +1,4 @@
-import type { ComponentType, InputComponentType, JourneyType, PageType, RepeatingGroupType, SectionType } from '$lib/types/journey'
+import type { ComponentType, InputComponent, JourneyType, PageType, RepeatingGroupType, SectionType } from '$lib/types/journey'
 
 /**
  * Establish the validity for a component, trusting the component's judgement if provided
@@ -8,7 +8,7 @@ import type { ComponentType, InputComponentType, JourneyType, PageType, Repeatin
  * @returns                 boolean
  */
 export function componentValid (
-    component: InputComponentType, 
+    component: InputComponent, 
     valueStore: object, 
     validationStore: object
 ): boolean {
@@ -46,7 +46,7 @@ export function sectionValid (
         let newComponents: ComponentType[] = section.components.map(comp => {
             return {
                 ...comp, 
-                id: `${comp.id}.${index}`
+                id: comp.id ? `${comp.id}.${index}` : undefined
             }
         })
         return {...section, iteration: index, components: newComponents}
@@ -55,7 +55,7 @@ export function sectionValid (
         case "repeatinggroup":
             return section.sections.every((s, i) => sectionValid(updateSection(s, i), valueStore, validationStore));
         default:
-            return section.components.every(c => componentValid(c as InputComponentType, valueStore, validationStore))
+            return section.components.every(c => componentValid(c as InputComponent, valueStore, validationStore))
     }
     
 }

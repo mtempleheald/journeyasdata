@@ -2,12 +2,12 @@
  * @jest-environment jsdom
  */
 import { render } from '@testing-library/svelte'
-import type { InputComponentType } from '$lib/types/journey'
+import type { InputComponent } from '$lib/types/journey'
 import InputTextbox from '$lib/components/InputTextbox.svelte'
 
 // An input component with neither a label nor pre-text isn't much use, but it still shouldn't crash the application
 test('Textbox renders with only required properties', () => {
-    const component : InputComponentType = {
+    const component : InputComponent = {
         type: "Text",
         id: "uniqueidentifier"
     }
@@ -16,7 +16,7 @@ test('Textbox renders with only required properties', () => {
 })
 
 test('Textbox renders label correctly', () => {
-    const component : InputComponentType = {
+    const component : InputComponent = {
         type: "Text",
         id: "uniqueidentifier",
         label: "My label"
@@ -26,7 +26,7 @@ test('Textbox renders label correctly', () => {
 })
 
 test('Textbox renders placeholder correctly', () => {
-    const component : InputComponentType = {
+    const component : InputComponent = {
         type: "Text",
         id: "uniqueidentifier",
         placeholder: "My placeholder"
@@ -36,7 +36,7 @@ test('Textbox renders placeholder correctly', () => {
 })
 
 test('Textbox renders required if required', () => {
-    const component : InputComponentType = {
+    const component : InputComponent = {
         type: "Text",
         id: "uniqueidentifier",
         label: "My label",
@@ -47,7 +47,7 @@ test('Textbox renders required if required', () => {
 })
 
 test('Textbox does not render required if not required', () => {
-    const component : InputComponentType = {
+    const component : InputComponent = {
         type: "Text",
         id: "uniqueidentifier",
         label: "My label"
@@ -57,7 +57,7 @@ test('Textbox does not render required if not required', () => {
 })
 
 test('Textbox renders without value if not specified', () => {
-    const component : InputComponentType = {
+    const component : InputComponent = {
         type: "Text",
         id: "uniqueidentifier",
         label: "My label"
@@ -67,7 +67,7 @@ test('Textbox renders without value if not specified', () => {
 })
 
 test('Textbox renders with default value if specified', () => {
-    const component : InputComponentType = {
+    const component : InputComponent = {
         type: "Text",
         id: "uniqueidentifier",
         label: "My label",
@@ -79,7 +79,7 @@ test('Textbox renders with default value if specified', () => {
 
 // TODO: test pre/post slots when this becomes possible (pending PRs)
 test.skip('Textbox renders pre-text correctly', () => {
-    const component : InputComponentType = {
+    const component : InputComponent = {
         type: "Text",
         id: "uniqueidentifier"
     }
