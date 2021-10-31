@@ -215,41 +215,7 @@
               }
             }
           ]
-        },
-        {
-          "type": "Navigation",
-          "title": "Navigation Section",
-          "components": [
-            {
-              "type": "Displayblock",
-              "content": "- Move navigation from Page-included bespoke component to Section component?  \r\n- TODO: create standalone button component  \r\n- Would allow bespoke actions not just validate and move pages  \r\n- introduces more opportunity to make mistakes  \r\n- Requires button component either way which triggers event we can tap into"
-            },
-            {
-              "id": "back",
-              "type": "ButtonSelect",
-              "value": "Back",
-              "values": [
-                {
-                  "key": "back",
-                  "value": "back",
-                  "display": "Back"
-                }
-              ]
-            },
-            {
-              "id": "forward",
-              "type": "ButtonSelect",
-              "value": "Next",
-              "values": [
-                {
-                  "key": "next",
-                  "value": "next",
-                  "display": "Next"
-                }
-              ]
-            }
-          ]
-        }
+        }       
       ]
     },
     {
@@ -410,12 +376,12 @@
           "components": [
             {
               "type": "Displayblock",
-              "content": "Just content, no markdown"
+              "content": "Just content, no markdown."
             },
             {
               "id": 1,
               "type": "Displayblock",
-              "content": "__markdown__ content",
+              "content": "__markdown__ content\n\n here's a [link to the BBC](https://bbc.co.uk)\n\n and <a target='blank' href='https://bbc.co.uk'>one that opens in a new tab</a>",
               "pre": "__markdown__ before content",
               "post": "__markdown__ after content"
             },

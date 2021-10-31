@@ -51,7 +51,7 @@
 
 </script>
 
-<div class="question {active} {valid?'':'invalid'}" 
+<div class="component {active} {valid?'':'invalid'}" 
     transition:blur 
     on:mouseenter={enter} 
     on:mouseleave={leave} 
@@ -63,8 +63,8 @@
         <label for="{component.id}">
             {component.label}
             {#if component.required}
-            <span class="required">*</span>
-            {/if}            
+                <span class="required">*</span>
+            {/if}
         </label>
         {/if}
 
@@ -74,14 +74,17 @@
             id="{component.id}" 
             name="{component.id}" 
             placeholder="{component.placeholder}" 
-            required="{component.required ?? false}"
+            required={component.required ?? false}
             value="{component.value}"
             on:blur={act}
             on:focus={focus}/>
         {/if}
 
         {#if component.help}
-            <Helptext>{component.help}</Helptext>
+        <Helptext>
+            <svelte:fragment slot="button">Help</svelte:fragment>
+            {component.help}
+        </Helptext>
         {/if}
     </div>
 
@@ -93,43 +96,68 @@
 </div>
     
 
-<style>
-    .question {
+<style>    
+    .component {
         margin: 0;
-        padding: 0.5rem 1rem;
-        background-color: var(--input-bg, white);
-        color: var(--input-txt, black);
-        border: var(--input-border, 1px solid black);
+        padding: var(--component-padding);
+        background-color: var(--component-bg);
+        color: var(--component-txt);
+        border: var(--component-border);
     }
-    .question.active {
-        background-color: var(--input-active-bg, rgb(255, 255, 214));
-        color: var(--input-active-txt, black);
+    .component.active {
+        background-color: var(--component-active-bg);
+        color: var(--component-active-txt);
     }
-    .question.invalid {
-        background-color: var(--input-error-bg, pink);
-        color: var(--input-error-txt, red);
+    .component.invalid {
+        background-color: var(--component-error-bg);
+        color: var(--component-error-txt);
     }
+
+    label {
+        padding: var(--input-padding);
+        color: var(--input-txt);
+        background-color: var(--input-bg);
+        display: inline-block;
+        width: max(250px, 40%);
+    }
+    .component.active label {
+        color: var(--input-active-txt);
+        background-color: var(--input-active-bg);
+    }
+    .component.invalid label {
+        color: var(--input-error-txt);
+        background-color: var(--input-error-bg);
+    }
+
     .required {
-        color: var(--input-txt-required, black);
+        color: var(--input-txt);
     }
+
+    .error {
+        background-color: var(--input-error-msg-bg);
+        color: var(--input-error-msg-txt);
+    }
+
+    input {
+        padding: var(--input-padding);
+        color: var(--input-txt);
+        background-color: var(--input-bg);
+    }
+    .component.invalid input {
+        background-color: var(--input-error-bg);
+        color: var(--input-error-txt);
+        border: var(--input-error-border);
+    }
+    input:active {
+        background-color: var(--input-active-bg);
+        color: var(--input-active-txt);
+    }
+
     .upper {
         text-transform: uppercase;
     }
+
     .container {
         width: 100%;
-    }
-    label {
-        display: inline-block;
-        padding: 0.5rem;
-        width: max(250px, 40%);
-    }
-    input {
-        margin: 0.5rem;
-        padding: var(--input-padding);
-    }
-    .error {
-        padding: 0.5rem;
-        background-color: var(--input-error-msg-bg, red);
-        color: var(--input-error-msg-txt, pink);
-    }
+    }    
 </style>

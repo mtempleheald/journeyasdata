@@ -1,8 +1,4 @@
 <script>
-    export let title = '';
-    export let content = '';
-    export let iconimg = '';
-    export let icontext = 'need help?';
     let hidden = true;
 
     function toggle(event) {
@@ -11,32 +7,19 @@
 </script>
 
 
-<button type="button" class="helpicon" on:click="{toggle}">
-    {#if !!iconimg}
-        <img src="iconimg" alt="help text icon">
-    {:else if !!icontext}
-        {icontext}
-    {/if}
+<button type="button" on:click="{toggle}">
+    <slot name="button">help</slot>
 </button>
 <div class="help {hidden?'hidden':''}">
-    <h1>{title}</h1>
-    <div>{content}</div>
     <slot></slot>
 </div>
 
 
 <style>
-.helpicon {
-    background-color: var(--help-bg, white);
-    color: var(--help-txt, darkgrey);
-    border: var(--help-border,1px solid black);
-    padding: 0.5rem;
-}
 .help {
-    background-color: var(--help-bg, inherit);
-    color: var(--help-txt, inherit);
-    border: var(--help-border, 1px dashed black);
-    padding: 0.5rem;
+    background-color: var(--help-bg);
+    color: var(--help-txt);
+    border: var(--help-border);
 }
 .help.hidden {
     display: none;

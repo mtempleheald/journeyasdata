@@ -114,8 +114,8 @@ I like to keep dependencies to an absolute minimum and all of them as devDepende
 - ts-jest - allows jest to test TypeScript components
 - @types/jest - provides access to useful Jest types
 - svelte-jester - handles precompilation, required for testing svelte components
-- svelte-testing-library (not yet in use) - svelte-specific testing library
-- @testing-library/jest-dom (not yet in use) - provides DOM element matchers, convenience methods
+- svelte-testing-library - svelte-specific testing library
+- @testing-library/jest-dom - provides DOM element matchers, convenience methods
 
 [Official Svelte Testing Library documentation](https://testing-library.com/docs/svelte-testing-library/setup)  
 [Introductory blog to configuring SvelteKit with Jest](https://koenvg.medium.com/setting-up-jest-with-sveltekit-4f0a0e379668)  

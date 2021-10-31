@@ -3,7 +3,8 @@ module.exports = {
 		'^.+\\.svelte$': [
 			'svelte-jester',
 			{
-				preprocess: './svelte.config.jest.cjs'
+				preprocess: './svelte.config.jest.js',
+				debug: false
 			}
 		],
 		'^.+\\.ts$': 'ts-jest',
@@ -20,5 +21,7 @@ module.exports = {
 			'<rootDir>/.svelte-kit/dev/runtime/app$1',
 			'<rootDir>/.svelte-kit/build/runtime/app$1'
 		]
-	}
+	},
+	setupFilesAfterEnv: ['<rootDir>/jest-setup.ts'],
+  	collectCoverageFrom: ["src/**/*.{ts,tsx,svelte,js,jsx}"]
 };

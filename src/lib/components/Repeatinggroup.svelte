@@ -110,7 +110,6 @@
 <!-- Keep styles aligned to Section component -->
 <style>
     section {
-        margin-top: var(--section-margin);
         border: var(--section-border);
     }
 </style>
