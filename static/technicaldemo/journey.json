@@ -1,5 +1,4 @@
 {
-  "show-wizard": true,
   "title": "Journey Demo",
   "pages": [
     {
@@ -41,7 +40,7 @@
           },
           "components": [
             {
-              "id": 1,
+              "id": "1",
               "label": "1 Required question label",
               "type": "Text",
               "placeholder": "Placeholder...",
@@ -52,12 +51,12 @@
               "post": "__Markdown after question 1__"
             },
             {
-              "id": 2,
+              "id": "2",
               "label": "2 Label& question only",
               "type": "Text"
             },
             {
-              "id": 4,
+              "id": "4",
               "type": "Text",
               "placeholder": "label replacement?",
               "pre": "4 This isn't a label, but _pre-text_"
@@ -173,9 +172,9 @@
               "id": "purchaseDate",
               "label": "Enter date",
               "required": true,
-              "dateFormat": "long",
+              "displayFormat": "long",
               "separator": "/",
-              "restLabel": "Skip",
+              "resetLabel": "Skip",
               "errorMessage": "Please enter a valid date",
               "help": "This example can't be more than 4 years ahead or before 1/1/1970",
               "validation": {
@@ -188,9 +187,9 @@
               "id": "purchaseDate",
               "label": "Enter future date",
               "required": true,
-              "dateFormat": "long",
+              "displayFormat": "long",
               "separator": "/",
-              "restLabel": "Skip",
+              "resetLabel": "Skip",
               "errorMessage": "Please enter a valid date",
               "help": "This example can't be in the past, and must be within 7 years from now",
               "validation": {
@@ -208,15 +207,15 @@
       "displayprogress": true,
       "sections": [
         {
-          "title": "Dropdown Section",
+          "title": "OptionDropdown Section",
           "logo": {
             "url": "https://fakeimg.pl/100x50/?text=Section%20Logo"
           },
           "components": [
             {
-              "id": "dropdownfull",
+              "id": "optiondropdown_full",
+              "type": "OptionDropdown",
               "label": "Required question label",
-              "type": "Dropdown",
               "placeholder": "Placeholder...",
               "required": true,
               "refdata": "context1.list1",
@@ -226,14 +225,14 @@
               "post": "__Markdown after question 1__"
             },
             {
-              "id": "dropdown_refdata",
-              "type": "Dropdown",
+              "id": "optiondropdown_refdata",
+              "type": "OptionDropdown",
               "label": "Data passed in by reference",
               "refdata": "context1.list2"
             },
             {
-              "id": "dropdown_datalist",
-              "type": "Dropdown",
+              "id": "optiondropdown_datalist",
+              "type": "OptionDropdown",
               "label": "Data passed in via QS",
               "values": [
                 {
@@ -259,8 +258,8 @@
           "components": [
             {
               "id": "simpletextbutton",
+              "type": "OptionButtons",
               "label": "This is a simple text button",
-              "type": "ButtonSelect",
               "required": false,
               "errorMessage": "Please select an option",
               "help": "Surely you can figure this out",
@@ -273,8 +272,8 @@
             },
             {
               "id": "simpleimagebutton",
+              "type": "OptionButtons",
               "label": "This is a simple image  button",
-              "type": "ButtonSelect",
               "required": true,
               "errorMessage": "Please select an option",
               "help": "Surely you can figure this out",
@@ -322,27 +321,27 @@
               ]
             },
             {
-              "id": "buttonselect",
-              "label": "It is a simple Yes/No question",
+              "id": "OptionButtons",
               "type": "YesNo",
+              "label": "It is a simple Yes/No question",
               "required": true,
               "errorMessage": "Please select an option",
               "help": "Surely you can figure this out"
             },
             {
-              "id": "dependentbuttonselect",
+              "id": "dependentOptionButtons",
               "type": "YesNo",
               "label": "Yes/No dependent on Yes/No",
               "required": true,
               "help": "We require you to select this IF you answered Yes to the last question",
               "dependsupon": {
-                "id": "buttonselect",
+                "id": "OptionButtons",
                 "value": "Y"
               }
             }
           ],
           "navigation": { 
-            "backlabel": "Go back to dropdown section"
+            "backlabel": "Go back to OptionDropdown section"
           }
         }
       ]
@@ -363,7 +362,6 @@
               "content": "Just content, no markdown."
             },
             {
-              "id": 1,
               "type": "Displayblock",
               "content": "__markdown__ content\n\n here's a [link to the BBC](https://bbc.co.uk)\n\n and <a target='blank' href='https://bbc.co.uk'>one that opens in a new tab</a>",
               "pre": "__markdown__ before content",
@@ -423,14 +421,14 @@
           "components": [
             {
               "id": "triggermodal",
-              "label": "Select yes to trigger modal",
               "type": "YesNo",
+              "label": "Select yes to trigger modal",
               "required": true,
               "errorMessage": "Please select an option"
             },
             {
-              "id": "modalpopup",
               "type": "Displaymodal",
+              "id": "modalpopup",
               "content": "__markdown__ content",
               "pre": "__markdown__ before content",
               "post": "__markdown__ after content",
@@ -441,14 +439,14 @@
             },
             {
               "id": "trigger2columnmodal",
-              "label": "Select yes to trigger 2-column modal",
               "type": "YesNo",
+              "label": "Select yes to trigger 2-column modal",
               "required": true,
               "errorMessage": "Please select an option"
             },
             {
-              "id": "modalpopup",
               "type": "Displaymodal",
+              "id": "modalpopup",
               "content": [
                 "# Column 1\nSome _markdown_",
                 "# Column 2\nSome more _markdown_"
@@ -566,7 +564,6 @@
               "type": "Address",
               "postcodeLabel": "Postcode",
               "postcodePlaceholder": "MK10 0BZ",
-              "buttonLabel": "Search",
               "propertyLabel": "Property",
               "required": true
             }
@@ -579,10 +576,10 @@
           },
           "components": [
             {
+              "id": "vehiclecomponent",
               "type": "Vehicle",
               "regnumLabel": "Registration number",
               "regnumPlaceholder": "YOUR REG",
-              "buttonLabel": "Search",
               "errorMessage": "Failed to find vehicle"
             }
           ]
@@ -643,7 +640,7 @@
           ]
         }
       ]
-    },    
+    },
     {
       "url": "outcome",
       "title": "Outcome",

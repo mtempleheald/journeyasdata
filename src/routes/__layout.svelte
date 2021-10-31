@@ -1,7 +1,9 @@
 <script context="module">
     import { BRAND } from '$lib/env'
-    /** @type {import('@sveltejs/kit').Load} */
-	export async function load({ fetch }) {
+    /** @type {import('@sveltejs/kit').Load} */	
+    export async function load() {
+    // or use the fetch API to import the journey
+    //export async function load({ fetch }) {
         console.debug("Loading journey (should appear in browser dev tools only once)")
 		return {
             props: {
