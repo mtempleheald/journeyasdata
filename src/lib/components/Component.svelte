@@ -72,13 +72,13 @@
       </svelte:fragment>  
   </svelte:component>
 
-{:else if ["ButtonSelect","Dropdown","YesNo"].includes(component.type)}
+{:else if ["OptionButtons","OptionDropdown","YesNo"].includes(component.type)}
   {#await toListComponent(component)}
   <!-- looking up refdata (maybe) -->
   {:then comp}
   <svelte:component this={({
-      "ButtonSelect":OptionButtons, 
-      "Dropdown":OptionDropdown, 
+      "OptionButtons":OptionButtons, 
+      "OptionDropdown":OptionDropdown, 
       "YesNo":OptionButtons
   })[component.type]} 
     component={comp}
