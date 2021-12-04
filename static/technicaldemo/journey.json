@@ -657,12 +657,37 @@
               "content": "# Outcome \n\n Some stuff about how great we are. \n\n Some stuff about the actual product we're offering.  "
             }
           ]
+        },
+        {
+          "title": "Carry on to payment",
+          "components": [
+            {
+              "type": "Displayblock",
+              "content": "[Payment Gateway](https://kind-grass-07eb6d703.azurestaticapps.net?sessionid=TESTSESSIONID123&returnpath=paymentprocessing)"
+            }
+          ]
         }
       ],
       "navigation": {
         "shownext": false,
         "backlabel": "Go back to fix something"
       }
+    },
+    {
+      "url": "paymentprocessing",
+      "title": "Payment Processing",
+      "displayprogress": false,
+      "sections": [
+        {
+          "title": "Payment processing",
+          "components": [
+            {
+              "type": "Displayblock",
+              "content": "Redirected here from payment gateway"
+            }
+          ]
+        }
+      ]
     }
   ],
   "cookiepreferences": {
