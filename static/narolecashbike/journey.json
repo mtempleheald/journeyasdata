@@ -1,911 +1,910 @@
 {
-  "title": "Narole Cash Motorised Velocipede Indemnification",
-  "logo": "/images/narolecash/NaroleCashLogo.png",
-  "logoalt": "Narole Cash Motorised Velocipede Indemnification",
-  "pages": [
-    {
-      "url": "assumptions",
-      "title": "Assumption",
-      "displayprogress": false,
-      "displaytitle": false,
-      "sections": [
-        {
-          "section": {
-            "title": "Welcome to Narole Cash"
-          },
-          "components": [
-            {
-              "type": "Displayblock",
-              "content": "What kind of motorcycle insurance are you looking for today?"
-            },
-            {
-              "id": "assumptionsbikeselect",
-              "type": "ButtonSelect",
-              "required": true,
-              "errorMessage": "Please select an option",
-              "values": [
-                {
-                  "key": "policytype",
-                  "value": "single",
-                  "image": "/images/narolecash/assumptions/singlebike.png",
-                  "imageWidth": "128",
-                  "imageHeight": "128",
-                  "display": "Single Bike"
-                },
-                {
-                  "key": "policytype",
-                  "value": "multibike",
-                  "image": "/images/narolecash/assumptions/multibike.png",
-                  "imageWidth": "128",
-                  "imageHeight": "128",
-                  "display": "multibike"
-                }
-              ]
-            },
-            {
-              "type": "Displayblock",
-              "content": "To save you time we've made some assumptions"
-            },
-            {
-              "type": "Displayblock",
-              "content": "View full list of assumptions before you begin"
-            },
-            {
-              "id": "startbutton",
-              "type": "ButtonSelect",
-              "values": [
-                {
-                  "value": "start",
-                  "display": "Continue"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "url": "your-motorcycle",
-      "title": "Your Motorcycles",
-      "displayprogress": true,
-      "sections": [
-        {
-          "title": "Details",
-          "components": [
-            {
-              "type": "Vehicle",
-              "regnumLabel": "Registration number",
-              "regnumPlaceholder": "YOUR REG",
-              "buttonLabel": "Find Motorcycle",
-              "errorMessage": "Failed to find vehicle"
-            },
-            {
-              "type": "Displayblock",
-              "content": "When did you buy the motorcycle?  [ DD ] [ MM ] [ YYYY ] I have not bought the motorcycle yet"
-            },
-            {
-              "id": "estimatedvalue",
-              "type": "Text",
-              "label": "What's the estimated motorcycle value?"
-            }
-          ]
-        },
-        {
-          "title": "Modifications",
-          "components": [
-            {
-              "id": "modified",
-              "type": "YesNo",
-              "label": "Has this motorcycle been modified?"
-            },
-            {
-              "type": "Displayblock",
-              "content": "Please enter your modifications here",
-              "dependsupon": {
-                "id": "modified",
-                "value": "Y"
-              }
-            }
-          ]
-        },
-        {
-          "title": "Security",
-          "components": [
-            {
-              "id": "immobiliserfitted",
-              "type": "Dropdown",
-              "label": "Is this motorcycle fitted with an electronic immobiliser or alarm?",
-              "placeholder": "Please Select",
-              "values": [
-                {
-                  "value": "None",
-                  "display": "No Immobiliser"
-                },
-                {
-                  "value": "Fact",
-                  "display": "Factory Fitted"
-                },
-                {
-                  "value": "Other",
-                  "display": "After Market"
-                }
-              ]
-            },
-            {
-              "id": "immobilisertype",
-              "type": "Dropdown",
-              "label": "What type of immobiliser or alarm is the motorcycle fitted with?",
-              "placeholder": "Please Select",
-              "values": [
-                {
-                  "value": "Type1",
-                  "display": "Type 1"
-                },
-                {
-                  "value": "Type2",
-                  "display": "Type 2"
-                },
-                {
-                  "value": "Type3",
-                  "display": "Type 3"
-                }
-              ],
-              "dependsupon": {
-                "id": "immobiliserfitted",
-                "value": "Other"
-              }
-            },
-            {
-              "id": "trackingdevice", 
-              "type": "YesNo",
-              "label": "Is this motorcycle fitted with a tracking device?"
-            },
-            {
-              "id": "trackingdevicetype",
-              "type": "Dropdown",
-              "label": "What type of tracking device is the motorcycle fitted with?",
-              "dependsupon": {
-                "id": "trackingdevice",
-                "value": "Y"
-              },
-              "values": [
-                {
-                  "value": "A",
-                  "display": "A Device"
-                },
-                {
-                  "value": "B",
-                  "display": "B Device"
-                },
-                {
-                  "value": "alpha",
-                  "display": "Alphadot"
-                },
-                {
-                  "value": "C",
-                  "display": "C Device"
-                },
-                {
-                  "value": "D",
-                  "display": "D Device"
-                }
-              ]
-            },
-            {
-              "id": "othersecurity",
-              "type": "Dropdown",
-              "label": "Is this motorcycle fitted with any security tags such as SmartWater, Datatag or Alphadot?",
-              "values": [
-                {
-                  "value": "None",
-                  "display": "No Alarm"
-                },
-                {
-                  "value": "Prof",
-                  "display": "Professionaly fitted"
-                },
-                {
-                  "value": "alpha",
-                  "display": "Alphadot"
-                },
-                {
-                  "value": "data",
-                  "display": "Data tag"
-                },
-                {
-                  "value": "smart",
-                  "display": "Smart water"
-                }
-              ]
-            },
-            {
-              "id": "othersecurity",
-              "type": "YesNo",
-              "label": "Does this motorcycle have any other physical security devices?"
-            }
-          ]
-        },
-        {
-          "title": "Motorcycle use",
-          "components": [
-            {
-              "id": "milesridden",
-              "type": "Text",
-              "label": "What is the estimated annual mileage on this motorcycle?",
-              "placeholder": "Miles ridden"
-            },
-            {
-              "id": "pillionuse",
-              "type": "YesNo",
-              "label": "Will it be used to carry pillion passengers?"
-            },
-            {
-              "id": "storedovernight",
-              "type": "Dropdown",
-              "label": "Where is this motorcycle normally parked overnight?",
-              "values": [
-                {
-                  "value": "drive",
-                  "display": "Driveway"
-                },
-                {
-                  "value": "garage",
-                  "display": "Locked Garage"
-                },
-                {
-                  "value": "road",
-                  "display": "On the Road"
-                }
-              ]
-            },
-            {
-              "id": "keptathome",
-              "type": "YesNo",
-              "label": "Is this motorcycle parked overnight at your home address?"
-            },
-            {
-              "id": "postcodekept",
-              "type": "Text",
-              "label": "Please enter the postcode where this motorcycle is parked overnight",
-              "dependsupon": {
-                "id": "keptathome",
-                "value": "Y"
-              }
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "url": "about-you",
-      "title": "About You",
-      "displayprogress": true,
-      "sections": [
-        {
-          "title": "Your Details",
-          "components": [
-            {
-              "id": "title",
-              "label": "Title",
-              "type": "ButtonSelect",
-              "values": [
-                {
-                  "value": "mr",
-                  "display": "Mr"
-                },
-                {
-                  "value": "mrs",
-                  "display": "Mrs"
-                },
-                {
-                  "value": "miss",
-                  "display": "Miss"
-                },
-                {
-                  "value": "ms",
-                  "display": "Ms"
-                }
-              ]
-            },
-            {
-              "id": "firtstname",
-              "type": "Text",
-              "label": "First Name(s)"
-            },
-            {
-              "id": "surname",
-              "type": "Text",
-              "label": "Surname"
-            },
-            {
-              "type": "TriBoxDate",
-              "id": "dateofbirth",
-              "label": "Date Of Birth",
-              "fields": {
-                "type":"Text",
-                "seperator":"/",
-                "day": {
-                  "placeholder": "DD"
-                },
-                "month": {
-                  "placeholder": "MM"
-                },
-                "year" : {
-                  "placeholder": "YYYY"
-                }
-              },
-              "validRange": {
-                "from": "01/01/1970",
-                "to": "Today"
-              },
-              "required": true,
-              "errorMessage": "Please enter valid data",
-              "help": "Help text"
-            },
-            {
-              "id": "residentsincebirth",
-              "type": "YesNo",
-              "label": "Have you been a permanent resident of the UK since birth?"
-            },
-            {
-              "type": "TriBoxDate",
-              "id": "residentsince",
-              "label": "When did you become a permanent resident of the UK?",
-              "fields": {
-                "type":"Dropdown",
-                "day": {
-                  "display": false
-                },
-                "month": {
-                  "placeholder": "Month",
-                  "values" :[
-                    {
-                      "value": "1",
-                      "display": "January"
-                    },                   
-                    {
-                      "value": "2",
-                      "display": "February"
-                    }, 
-                    {
-                      "value": "3",
-                      "display": "March"
-                    },
-                    {
-                      "value": "4",
-                      "display": "April"
-                    },
-                    {
-                      "value": "5",
-                      "display": "May"
-                    },
-                    {
-                      "value": "6",
-                      "display": "June"
-                    },
-                    {
-                      "value": "7",
-                      "display": "July"
-                    },
-                    {
-                      "value": "8",
-                      "display": "August"
-                    },
-                    {
-                      "value": "9",
-                      "display": "September"
-                    },
-                    {
-                      "value": "10",
-                      "display": "October"
-                    },
-                    {
-                      "value": "11",
-                      "display": "November"
-                    },
-                    {
-                      "value": "12",
-                      "display": "December"
-                    }
-                  ]
-                },
-                "year" : {
-                  "placeholder": "Year",
-                  "values" :[
-                    {
-                      "value": "2004",
-                      "display": "2004"
-                    },                   
-                    {
-                      "value": "2003",
-                      "display": "2003"
-                    }, 
-                    {
-                      "value": "2002",
-                      "display": "2002"
-                    },
-                    {
-                      "value": "2001",
-                      "display": "2001"
-                    },
-                    {
-                      "value": "2000",
-                      "display": "2000"
-                    }
-                  ]
-                }
-              },
-              "validRange": {
-                "from": "01/01/1970",
-                "to": "Today"
-              },
-              "required": true,
-              "errorMessage": "Please enter valid data",
-              "help": "Help text",
-              "dependsupon": {
-                "id": "residentsincebirth",
-                "value": "N"
-              }
-            },
-            {
-              "id": "maritalstatus",
-              "type": "Dropdown",
-              "label": "Your marital status",
-              "values": [
-                {
-                  "value": "married",
-                  "display": "Married"
-                },
-                {
-                  "value": "single",
-                  "display": "Single"
-                },
-                {
-                  "value": "civilpartner",
-                  "display": "Civil Partnered"
-                },
-                {
-                  "value": "widowed",
-                  "display": "Widowed"
-                },
-                {
-                  "value": "divorced",
-                  "display": "Divorced"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "title": "Your Address",
-          "components": [
-            {
-              "id": "address",
-              "type": "Address",
-              "postcodeLabel": "Postcode",
-              "postcodePlaceholder": "ST6 2BA",
-              "buttonLabel": "Find Address",
-              "propertyLabel": "Please select your address",
-              "required": true
-            },
-            {
-              "id": "homeowner",
-              "type": "YesNo",
-              "label": "Are you a homeowner?"
-            },
-            {
-              "id": "emailaddress",
-              "type": "Text",
-              "label": "Your email address"    
-            },
-            {
-              "id": "phone",
-              "type": "Text",
-              "label": "Your main contact telephone number"    
-            }
-          ]
-        },
-        {
-          "title": "Employment",
-          "components": [
-            {
-              "id": "mainemploymentstatus",
-              "type": "Dropdown",
-              "label": "What is your employment status?",
-              "values": [
-                {
-                  "value": "fulltime",
-                  "display": "Full Time Employment"
-                },
-                {
-                  "value": "retired",
-                  "display": "Retired"
-                },
-                {
-                  "value": "selfemployed",
-                  "display": "Self Employed"
-                },
-                {
-                  "value": "unemployed",
-                  "display": "Unemployed"
-                },
-                {
-                  "value": "education",
-                  "display": "In full time education"
-                },
-                {
-                  "value": "government",
-                  "display": "Government / Civil Servant"
-                },
-                {
-                  "value": "houseperson",
-                  "display": "Houseperson"
-                },
-                {
-                  "value": "director",
-                  "display": "Company Director"
-                },
-                {
-                  "value": "other",
-                  "display": "Other"
-                }
-              ]
-            },
-            {
-              "id": "mainjob",
-              "type": "Text",
-              "label": "What is your main job?",
-              "dependsupon": {
-                "id": "mainemploymentstatus",
-                "value": "fulltime"
-              }
-            },
-            {
-              "id": "industry",
-              "type": "Text",
-              "label": "What type of business or industry is this job in?",
-              "dependsupon": {
-                "id": "mainemploymentstatus",
-                "value": "fulltime"
-              }
-            },
-            {
-              "id": "doyouhaveparttimejob",
-              "type": "YesNo",
-              "label": "Do you have an additional part-time job?"
-            },
-            {
-              "id": "parttimeemploymentstatus",
-              "type": "Dropdown",
-              "label": "What is your part-time employment status?",
-              "values": [
-                {
-                  "value": "fulltime",
-                  "display": "Full Time Employment"
-                },
-                {
-                  "value": "retired",
-                  "display": "Retired"
-                },
-                {
-                  "value": "selfemployed",
-                  "display": "Self Employed"
-                },
-                {
-                  "value": "unemployed",
-                  "display": "Unemployed"
-                },
-                {
-                  "value": "education",
-                  "display": "In full time education"
-                },
-                {
-                  "value": "government",
-                  "display": "Government / Civil Servant"
-                },
-                {
-                  "value": "houseperson",
-                  "display": "Houseperson"
-                },
-                {
-                  "value": "director",
-                  "display": "Company Director"
-                },
-                {
-                  "value": "other",
-                  "display": "Other"
-                }
-              ],
-              "dependsupon": {
-                "id": "doyouhaveparttimejob",
-                "value": "Y"
-              }
-            },
-            {
-              "id": "parttimejob",
-              "type": "Text",
-              "label": "What is your part-time job?",
-              "dependsupon": {
-                "id": "parttimeemploymentstatus",
-                "value": "fulltime"
-              }
-            },
-            {
-              "id": "industry",
-              "type": "Text",
-              "label": "What type of business or industry is this part-time job in?",
-              "dependsupon": {
-                "id": "parttimeemploymentstatus",
-                "value": "fulltime"
-              }
-            }
-          ]
-        },
-        {
-          "title": "About your riding",
-          "components": [
-            {
-              "id": "parttimeemploymentstatus",
-              "type": "Dropdown",
-              "label": "What type of licence do you have?",
-              "values": [
-                {
-                  "value": "fulluk",
-                  "display": "Full UK license"
-                },
-                {
-                  "value": "provisional",
-                  "display": "Provisional UK license"
-                },
-                {
-                  "value": "eu",
-                  "display": "Full EU/EEA"
-                },
-                {
-                  "value": "international",
-                  "display": "International Driving permit"
-                },
-                {
-                  "value": "noneu",
-                  "display": "Full European (non EU)"
-                }
-              ]
-            },
-            {
-              "id": "licenseheld",
-              "label": "How long have you had your licence?",
-              "type": "Dropdown",
-              "values": [
-                {
-                  "value": "0-11",
-                  "display": "Less than 1 year"
-                },
-                {
-                  "value": "1",
-                  "display": "1 Year"
-                },
-                {
-                  "value": "2",
-                  "display": "2 year"
-                },
-                {
-                  "value": "3",
-                  "display": "3 year"
-                },
-                {
-                  "value": "4",
-                  "display": "4 year"
-                },
-                {
-                  "value": "5",
-                  "display": "5 year"
-                },
-                {
-                  "value": "6",
-                  "display": "6 year"
-                },
-                {
-                  "value": "7",
-                  "display": "7 year"
-                },
-                {
-                  "value": "8",
-                  "display": "8 year"
-                },
-                {
-                  "value": "9",
-                  "display": "9 year"
-                },
-                {
-                  "value": "10",
-                  "display": "10 years or more"
-                }
-              ]
-            },
-            {
-              "id": "motoringorganisation",
-              "type": "Dropdown",
-              "label": "Are you a member of a motoring organisation or club?",
-              "values": [
-                {
-                  "value": "no",
-                  "display": "No"
-                },
-                {
-                  "value": "AA",
-                  "display": "The AA"
-                }
-              ]
-            },
-            {
-              "id": "advancerider",
-              "type": "Dropdown",
-              "label": "Do you have any advanced rider qualifications?",
-              "values": [
-                {
-                  "value": "no",
-                  "display": "No"
-                },
-                {
-                  "value": "police",
-                  "display": "Advanced police rider"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "url": "buttons",
-      "title": "Select buttons",
-      "displayprogress": true,
-      "sections": [
-        {
-          "title": "Button Select Section",
-          "logo": "https://fakeimg.pl/100x50/?text=Section%20Logo",
-          "components": [
-            {
-              "id": "simpletextbutton",
-              "label": "This is a simple text button",
-              "type": "ButtonSelect",
-              "required": false,
-              "errorMessage": "Please select an option",
-              "help": "Surely you can figure this out",
-              "values": [
-                {
-                  "value": "simpletextbutton",
-                  "display": "Click me?"
-                }
-              ]
-            },
-            {
-              "id": "simpleimagebutton",
-              "label": "This is a simple image  button",
-              "type": "ButtonSelect",
-              "required": true,
-              "errorMessage": "Please select an option",
-              "help": "Surely you can figure this out",
-              "values": [
-                {
-                  "value": "car",
-                  "display": "Car",
-                  "image": "https://image.flaticon.com/icons/svg/58/58463.svg",
-                  "imageWidth": "128",
-                  "imageHeight": "128"
-                },
-                {
-                  "value": "bike",
-                  "display": "Bike",
-                  "image": "https://image.flaticon.com/icons/png/128/130/130278.png",
-                  "imageWidth": "128",
-                  "imageHeight": "128"
-                },
-                {
-                  "value": "bus",
-                  "display": "Bus",
-                  "image": "https://image.freepik.com/free-icon/bus_318-142528.jpg",
-                  "imageWidth": "128",
-                  "imageHeight": "128"
-                }
-              ]
-            },
-            {
-              "id": "buttonselect",
-              "label": "It is a simple Yes/No question",
-              "type": "YesNo",
-              "required": true,
-              "errorMessage": "Please select an option",
-              "help": "Surely you can figure this out"
-            },
-            {
-              "id": "dependentbuttonselect",
-              "type": "YesNo",
-              "label": "Yes/No dependent on Yes/No",
-              "required": true,
-              "help": "We require you to select this IF you answered Yes to the last question",
-              "dependsupon": {
-                "id": "buttonselect",
-                "value": "Y"
-              }
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "url": "displayonly",
-      "title": "Display only components",
-      "displayprogress": true,
-      "sections": [
-        {
-          "title": "Displayblock Section",
-          "logo": "https://fakeimg.pl/100x50/?text=Section%20Logo",
-          "components": [
-            {
-              "type": "Displayblock",
-              "content": "Just content, no markdown"
-            },
-            {
-              "id": 1,
-              "type": "Displayblock",
-              "content": "__markdown__ content",
-              "pre": "__markdown__ before content",
-              "post": "__markdown__ after content"
-            },
-            {
-              "type": "Displayblock",
-              "content": "__markdown__ content",
-              "post": "__markdown__ after content"
-            },
-            {
-              "type": "Displayblock",
-              "content": "__markdown__ content",
-              "pre": "__markdown__ before content"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "url": "xx",
-      "title": "xx",
-      "displayprogress": true,
-      "sections": [
-        {
-          "title": "Address Section",
-          "logo": "https://fakeimg.pl/100x50/?text=Address%20Logo",
-          "components": [
-            {
-              "id": "address",
-              "type": "Address",
-              "postcodeLabel": "Postcode",
-              "postcodePlaceholder": "MK10 0BZ",
-              "buttonLabel": "Search",
-              "propertyLabel": "Property",
-              "required": true
-            }
-          ]
-        }
-        
-      ]
-    },
-    {
-      "url": "outcome",
-      "title": "Outcome",
-      "displayprogress": false,
-      "sections": [
-        {
-          "title": "Outcome section",
-          "logo": "https://fakeimg.pl/100x50/?text=Outcome%20Logo",
-          "components": [
-            {
-              "type": "Displayblock",
-              "content": "# Outcome \n\n Some stuff about how great we are. \n\n Some stuff about the actual product we're offering.  "
-            }
-          ]
-        }
-      ]
-    }
-  ]
+	"title": "Narole Cash Motorised Velocipede Indemnification",
+	"logo": "/images/narolecash/NaroleCashLogo.png",
+	"logoalt": "Narole Cash Motorised Velocipede Indemnification",
+	"pages": [
+		{
+			"url": "assumptions",
+			"title": "Assumption",
+			"displayprogress": false,
+			"displaytitle": false,
+			"sections": [
+				{
+					"section": {
+						"title": "Welcome to Narole Cash"
+					},
+					"components": [
+						{
+							"type": "Displayblock",
+							"content": "What kind of motorcycle insurance are you looking for today?"
+						},
+						{
+							"id": "assumptionsbikeselect",
+							"type": "ButtonSelect",
+							"required": true,
+							"errorMessage": "Please select an option",
+							"values": [
+								{
+									"key": "policytype",
+									"value": "single",
+									"image": "/images/narolecash/assumptions/singlebike.png",
+									"imageWidth": "128",
+									"imageHeight": "128",
+									"display": "Single Bike"
+								},
+								{
+									"key": "policytype",
+									"value": "multibike",
+									"image": "/images/narolecash/assumptions/multibike.png",
+									"imageWidth": "128",
+									"imageHeight": "128",
+									"display": "multibike"
+								}
+							]
+						},
+						{
+							"type": "Displayblock",
+							"content": "To save you time we've made some assumptions"
+						},
+						{
+							"type": "Displayblock",
+							"content": "View full list of assumptions before you begin"
+						},
+						{
+							"id": "startbutton",
+							"type": "ButtonSelect",
+							"values": [
+								{
+									"value": "start",
+									"display": "Continue"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"url": "your-motorcycle",
+			"title": "Your Motorcycles",
+			"displayprogress": true,
+			"sections": [
+				{
+					"title": "Details",
+					"components": [
+						{
+							"type": "Vehicle",
+							"regnumLabel": "Registration number",
+							"regnumPlaceholder": "YOUR REG",
+							"buttonLabel": "Find Motorcycle",
+							"errorMessage": "Failed to find vehicle"
+						},
+						{
+							"type": "Displayblock",
+							"content": "When did you buy the motorcycle?  [ DD ] [ MM ] [ YYYY ] I have not bought the motorcycle yet"
+						},
+						{
+							"id": "estimatedvalue",
+							"type": "Text",
+							"label": "What's the estimated motorcycle value?"
+						}
+					]
+				},
+				{
+					"title": "Modifications",
+					"components": [
+						{
+							"id": "modified",
+							"type": "YesNo",
+							"label": "Has this motorcycle been modified?"
+						},
+						{
+							"type": "Displayblock",
+							"content": "Please enter your modifications here",
+							"dependsupon": {
+								"id": "modified",
+								"value": "Y"
+							}
+						}
+					]
+				},
+				{
+					"title": "Security",
+					"components": [
+						{
+							"id": "immobiliserfitted",
+							"type": "Dropdown",
+							"label": "Is this motorcycle fitted with an electronic immobiliser or alarm?",
+							"placeholder": "Please Select",
+							"values": [
+								{
+									"value": "None",
+									"display": "No Immobiliser"
+								},
+								{
+									"value": "Fact",
+									"display": "Factory Fitted"
+								},
+								{
+									"value": "Other",
+									"display": "After Market"
+								}
+							]
+						},
+						{
+							"id": "immobilisertype",
+							"type": "Dropdown",
+							"label": "What type of immobiliser or alarm is the motorcycle fitted with?",
+							"placeholder": "Please Select",
+							"values": [
+								{
+									"value": "Type1",
+									"display": "Type 1"
+								},
+								{
+									"value": "Type2",
+									"display": "Type 2"
+								},
+								{
+									"value": "Type3",
+									"display": "Type 3"
+								}
+							],
+							"dependsupon": {
+								"id": "immobiliserfitted",
+								"value": "Other"
+							}
+						},
+						{
+							"id": "trackingdevice",
+							"type": "YesNo",
+							"label": "Is this motorcycle fitted with a tracking device?"
+						},
+						{
+							"id": "trackingdevicetype",
+							"type": "Dropdown",
+							"label": "What type of tracking device is the motorcycle fitted with?",
+							"dependsupon": {
+								"id": "trackingdevice",
+								"value": "Y"
+							},
+							"values": [
+								{
+									"value": "A",
+									"display": "A Device"
+								},
+								{
+									"value": "B",
+									"display": "B Device"
+								},
+								{
+									"value": "alpha",
+									"display": "Alphadot"
+								},
+								{
+									"value": "C",
+									"display": "C Device"
+								},
+								{
+									"value": "D",
+									"display": "D Device"
+								}
+							]
+						},
+						{
+							"id": "othersecurity",
+							"type": "Dropdown",
+							"label": "Is this motorcycle fitted with any security tags such as SmartWater, Datatag or Alphadot?",
+							"values": [
+								{
+									"value": "None",
+									"display": "No Alarm"
+								},
+								{
+									"value": "Prof",
+									"display": "Professionaly fitted"
+								},
+								{
+									"value": "alpha",
+									"display": "Alphadot"
+								},
+								{
+									"value": "data",
+									"display": "Data tag"
+								},
+								{
+									"value": "smart",
+									"display": "Smart water"
+								}
+							]
+						},
+						{
+							"id": "othersecurity",
+							"type": "YesNo",
+							"label": "Does this motorcycle have any other physical security devices?"
+						}
+					]
+				},
+				{
+					"title": "Motorcycle use",
+					"components": [
+						{
+							"id": "milesridden",
+							"type": "Text",
+							"label": "What is the estimated annual mileage on this motorcycle?",
+							"placeholder": "Miles ridden"
+						},
+						{
+							"id": "pillionuse",
+							"type": "YesNo",
+							"label": "Will it be used to carry pillion passengers?"
+						},
+						{
+							"id": "storedovernight",
+							"type": "Dropdown",
+							"label": "Where is this motorcycle normally parked overnight?",
+							"values": [
+								{
+									"value": "drive",
+									"display": "Driveway"
+								},
+								{
+									"value": "garage",
+									"display": "Locked Garage"
+								},
+								{
+									"value": "road",
+									"display": "On the Road"
+								}
+							]
+						},
+						{
+							"id": "keptathome",
+							"type": "YesNo",
+							"label": "Is this motorcycle parked overnight at your home address?"
+						},
+						{
+							"id": "postcodekept",
+							"type": "Text",
+							"label": "Please enter the postcode where this motorcycle is parked overnight",
+							"dependsupon": {
+								"id": "keptathome",
+								"value": "Y"
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"url": "about-you",
+			"title": "About You",
+			"displayprogress": true,
+			"sections": [
+				{
+					"title": "Your Details",
+					"components": [
+						{
+							"id": "title",
+							"label": "Title",
+							"type": "ButtonSelect",
+							"values": [
+								{
+									"value": "mr",
+									"display": "Mr"
+								},
+								{
+									"value": "mrs",
+									"display": "Mrs"
+								},
+								{
+									"value": "miss",
+									"display": "Miss"
+								},
+								{
+									"value": "ms",
+									"display": "Ms"
+								}
+							]
+						},
+						{
+							"id": "firtstname",
+							"type": "Text",
+							"label": "First Name(s)"
+						},
+						{
+							"id": "surname",
+							"type": "Text",
+							"label": "Surname"
+						},
+						{
+							"type": "TriBoxDate",
+							"id": "dateofbirth",
+							"label": "Date Of Birth",
+							"fields": {
+								"type": "Text",
+								"seperator": "/",
+								"day": {
+									"placeholder": "DD"
+								},
+								"month": {
+									"placeholder": "MM"
+								},
+								"year": {
+									"placeholder": "YYYY"
+								}
+							},
+							"validRange": {
+								"from": "01/01/1970",
+								"to": "Today"
+							},
+							"required": true,
+							"errorMessage": "Please enter valid data",
+							"help": "Help text"
+						},
+						{
+							"id": "residentsincebirth",
+							"type": "YesNo",
+							"label": "Have you been a permanent resident of the UK since birth?"
+						},
+						{
+							"type": "TriBoxDate",
+							"id": "residentsince",
+							"label": "When did you become a permanent resident of the UK?",
+							"fields": {
+								"type": "Dropdown",
+								"day": {
+									"display": false
+								},
+								"month": {
+									"placeholder": "Month",
+									"values": [
+										{
+											"value": "1",
+											"display": "January"
+										},
+										{
+											"value": "2",
+											"display": "February"
+										},
+										{
+											"value": "3",
+											"display": "March"
+										},
+										{
+											"value": "4",
+											"display": "April"
+										},
+										{
+											"value": "5",
+											"display": "May"
+										},
+										{
+											"value": "6",
+											"display": "June"
+										},
+										{
+											"value": "7",
+											"display": "July"
+										},
+										{
+											"value": "8",
+											"display": "August"
+										},
+										{
+											"value": "9",
+											"display": "September"
+										},
+										{
+											"value": "10",
+											"display": "October"
+										},
+										{
+											"value": "11",
+											"display": "November"
+										},
+										{
+											"value": "12",
+											"display": "December"
+										}
+									]
+								},
+								"year": {
+									"placeholder": "Year",
+									"values": [
+										{
+											"value": "2004",
+											"display": "2004"
+										},
+										{
+											"value": "2003",
+											"display": "2003"
+										},
+										{
+											"value": "2002",
+											"display": "2002"
+										},
+										{
+											"value": "2001",
+											"display": "2001"
+										},
+										{
+											"value": "2000",
+											"display": "2000"
+										}
+									]
+								}
+							},
+							"validRange": {
+								"from": "01/01/1970",
+								"to": "Today"
+							},
+							"required": true,
+							"errorMessage": "Please enter valid data",
+							"help": "Help text",
+							"dependsupon": {
+								"id": "residentsincebirth",
+								"value": "N"
+							}
+						},
+						{
+							"id": "maritalstatus",
+							"type": "Dropdown",
+							"label": "Your marital status",
+							"values": [
+								{
+									"value": "married",
+									"display": "Married"
+								},
+								{
+									"value": "single",
+									"display": "Single"
+								},
+								{
+									"value": "civilpartner",
+									"display": "Civil Partnered"
+								},
+								{
+									"value": "widowed",
+									"display": "Widowed"
+								},
+								{
+									"value": "divorced",
+									"display": "Divorced"
+								}
+							]
+						}
+					]
+				},
+				{
+					"title": "Your Address",
+					"components": [
+						{
+							"id": "address",
+							"type": "Address",
+							"postcodeLabel": "Postcode",
+							"postcodePlaceholder": "ST6 2BA",
+							"buttonLabel": "Find Address",
+							"propertyLabel": "Please select your address",
+							"required": true
+						},
+						{
+							"id": "homeowner",
+							"type": "YesNo",
+							"label": "Are you a homeowner?"
+						},
+						{
+							"id": "emailaddress",
+							"type": "Text",
+							"label": "Your email address"
+						},
+						{
+							"id": "phone",
+							"type": "Text",
+							"label": "Your main contact telephone number"
+						}
+					]
+				},
+				{
+					"title": "Employment",
+					"components": [
+						{
+							"id": "mainemploymentstatus",
+							"type": "Dropdown",
+							"label": "What is your employment status?",
+							"values": [
+								{
+									"value": "fulltime",
+									"display": "Full Time Employment"
+								},
+								{
+									"value": "retired",
+									"display": "Retired"
+								},
+								{
+									"value": "selfemployed",
+									"display": "Self Employed"
+								},
+								{
+									"value": "unemployed",
+									"display": "Unemployed"
+								},
+								{
+									"value": "education",
+									"display": "In full time education"
+								},
+								{
+									"value": "government",
+									"display": "Government / Civil Servant"
+								},
+								{
+									"value": "houseperson",
+									"display": "Houseperson"
+								},
+								{
+									"value": "director",
+									"display": "Company Director"
+								},
+								{
+									"value": "other",
+									"display": "Other"
+								}
+							]
+						},
+						{
+							"id": "mainjob",
+							"type": "Text",
+							"label": "What is your main job?",
+							"dependsupon": {
+								"id": "mainemploymentstatus",
+								"value": "fulltime"
+							}
+						},
+						{
+							"id": "industry",
+							"type": "Text",
+							"label": "What type of business or industry is this job in?",
+							"dependsupon": {
+								"id": "mainemploymentstatus",
+								"value": "fulltime"
+							}
+						},
+						{
+							"id": "doyouhaveparttimejob",
+							"type": "YesNo",
+							"label": "Do you have an additional part-time job?"
+						},
+						{
+							"id": "parttimeemploymentstatus",
+							"type": "Dropdown",
+							"label": "What is your part-time employment status?",
+							"values": [
+								{
+									"value": "fulltime",
+									"display": "Full Time Employment"
+								},
+								{
+									"value": "retired",
+									"display": "Retired"
+								},
+								{
+									"value": "selfemployed",
+									"display": "Self Employed"
+								},
+								{
+									"value": "unemployed",
+									"display": "Unemployed"
+								},
+								{
+									"value": "education",
+									"display": "In full time education"
+								},
+								{
+									"value": "government",
+									"display": "Government / Civil Servant"
+								},
+								{
+									"value": "houseperson",
+									"display": "Houseperson"
+								},
+								{
+									"value": "director",
+									"display": "Company Director"
+								},
+								{
+									"value": "other",
+									"display": "Other"
+								}
+							],
+							"dependsupon": {
+								"id": "doyouhaveparttimejob",
+								"value": "Y"
+							}
+						},
+						{
+							"id": "parttimejob",
+							"type": "Text",
+							"label": "What is your part-time job?",
+							"dependsupon": {
+								"id": "parttimeemploymentstatus",
+								"value": "fulltime"
+							}
+						},
+						{
+							"id": "industry",
+							"type": "Text",
+							"label": "What type of business or industry is this part-time job in?",
+							"dependsupon": {
+								"id": "parttimeemploymentstatus",
+								"value": "fulltime"
+							}
+						}
+					]
+				},
+				{
+					"title": "About your riding",
+					"components": [
+						{
+							"id": "parttimeemploymentstatus",
+							"type": "Dropdown",
+							"label": "What type of licence do you have?",
+							"values": [
+								{
+									"value": "fulluk",
+									"display": "Full UK license"
+								},
+								{
+									"value": "provisional",
+									"display": "Provisional UK license"
+								},
+								{
+									"value": "eu",
+									"display": "Full EU/EEA"
+								},
+								{
+									"value": "international",
+									"display": "International Driving permit"
+								},
+								{
+									"value": "noneu",
+									"display": "Full European (non EU)"
+								}
+							]
+						},
+						{
+							"id": "licenseheld",
+							"label": "How long have you had your licence?",
+							"type": "Dropdown",
+							"values": [
+								{
+									"value": "0-11",
+									"display": "Less than 1 year"
+								},
+								{
+									"value": "1",
+									"display": "1 Year"
+								},
+								{
+									"value": "2",
+									"display": "2 year"
+								},
+								{
+									"value": "3",
+									"display": "3 year"
+								},
+								{
+									"value": "4",
+									"display": "4 year"
+								},
+								{
+									"value": "5",
+									"display": "5 year"
+								},
+								{
+									"value": "6",
+									"display": "6 year"
+								},
+								{
+									"value": "7",
+									"display": "7 year"
+								},
+								{
+									"value": "8",
+									"display": "8 year"
+								},
+								{
+									"value": "9",
+									"display": "9 year"
+								},
+								{
+									"value": "10",
+									"display": "10 years or more"
+								}
+							]
+						},
+						{
+							"id": "motoringorganisation",
+							"type": "Dropdown",
+							"label": "Are you a member of a motoring organisation or club?",
+							"values": [
+								{
+									"value": "no",
+									"display": "No"
+								},
+								{
+									"value": "AA",
+									"display": "The AA"
+								}
+							]
+						},
+						{
+							"id": "advancerider",
+							"type": "Dropdown",
+							"label": "Do you have any advanced rider qualifications?",
+							"values": [
+								{
+									"value": "no",
+									"display": "No"
+								},
+								{
+									"value": "police",
+									"display": "Advanced police rider"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"url": "buttons",
+			"title": "Select buttons",
+			"displayprogress": true,
+			"sections": [
+				{
+					"title": "Button Select Section",
+					"logo": "https://fakeimg.pl/100x50/?text=Section%20Logo",
+					"components": [
+						{
+							"id": "simpletextbutton",
+							"label": "This is a simple text button",
+							"type": "ButtonSelect",
+							"required": false,
+							"errorMessage": "Please select an option",
+							"help": "Surely you can figure this out",
+							"values": [
+								{
+									"value": "simpletextbutton",
+									"display": "Click me?"
+								}
+							]
+						},
+						{
+							"id": "simpleimagebutton",
+							"label": "This is a simple image  button",
+							"type": "ButtonSelect",
+							"required": true,
+							"errorMessage": "Please select an option",
+							"help": "Surely you can figure this out",
+							"values": [
+								{
+									"value": "car",
+									"display": "Car",
+									"image": "https://image.flaticon.com/icons/svg/58/58463.svg",
+									"imageWidth": "128",
+									"imageHeight": "128"
+								},
+								{
+									"value": "bike",
+									"display": "Bike",
+									"image": "https://image.flaticon.com/icons/png/128/130/130278.png",
+									"imageWidth": "128",
+									"imageHeight": "128"
+								},
+								{
+									"value": "bus",
+									"display": "Bus",
+									"image": "https://image.freepik.com/free-icon/bus_318-142528.jpg",
+									"imageWidth": "128",
+									"imageHeight": "128"
+								}
+							]
+						},
+						{
+							"id": "buttonselect",
+							"label": "It is a simple Yes/No question",
+							"type": "YesNo",
+							"required": true,
+							"errorMessage": "Please select an option",
+							"help": "Surely you can figure this out"
+						},
+						{
+							"id": "dependentbuttonselect",
+							"type": "YesNo",
+							"label": "Yes/No dependent on Yes/No",
+							"required": true,
+							"help": "We require you to select this IF you answered Yes to the last question",
+							"dependsupon": {
+								"id": "buttonselect",
+								"value": "Y"
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"url": "displayonly",
+			"title": "Display only components",
+			"displayprogress": true,
+			"sections": [
+				{
+					"title": "Displayblock Section",
+					"logo": "https://fakeimg.pl/100x50/?text=Section%20Logo",
+					"components": [
+						{
+							"type": "Displayblock",
+							"content": "Just content, no markdown"
+						},
+						{
+							"id": 1,
+							"type": "Displayblock",
+							"content": "__markdown__ content",
+							"pre": "__markdown__ before content",
+							"post": "__markdown__ after content"
+						},
+						{
+							"type": "Displayblock",
+							"content": "__markdown__ content",
+							"post": "__markdown__ after content"
+						},
+						{
+							"type": "Displayblock",
+							"content": "__markdown__ content",
+							"pre": "__markdown__ before content"
+						}
+					]
+				}
+			]
+		},
+		{
+			"url": "xx",
+			"title": "xx",
+			"displayprogress": true,
+			"sections": [
+				{
+					"title": "Address Section",
+					"logo": "https://fakeimg.pl/100x50/?text=Address%20Logo",
+					"components": [
+						{
+							"id": "address",
+							"type": "Address",
+							"postcodeLabel": "Postcode",
+							"postcodePlaceholder": "MK10 0BZ",
+							"buttonLabel": "Search",
+							"propertyLabel": "Property",
+							"required": true
+						}
+					]
+				}
+			]
+		},
+		{
+			"url": "outcome",
+			"title": "Outcome",
+			"displayprogress": false,
+			"sections": [
+				{
+					"title": "Outcome section",
+					"logo": "https://fakeimg.pl/100x50/?text=Outcome%20Logo",
+					"components": [
+						{
+							"type": "Displayblock",
+							"content": "# Outcome \n\n Some stuff about how great we are. \n\n Some stuff about the actual product we're offering.  "
+						}
+					]
+				}
+			]
+		}
+	]
 }

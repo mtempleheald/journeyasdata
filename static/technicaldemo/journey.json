@@ -1,711 +1,704 @@
 {
-  "title": "Journey Demo",
-  "pages": [
-    {
-      "url": "introduction",
-      "title": "Introduction page",
-      "displayprogress": false,
-      "displaytitle": false,
-      "sections": [
-        {
-          "title": "Journey as data technical demo ",
-          "logo": {
-            "url": "https://fakeimg.pl/100x50/?text=Introduction",
-            "width": "250px",
-            "height": "50px"
-          },
-          "components": [
-            {
-              "type": "Displayblock",
-              "content": "This technical demo shows which components are available and the different ways in which they can be used."
-            }
-          ]
-        }
-      ],
-      "navigation": {
-        "showback": false,
-        "nextlabel": "Start"
-      },
-      "showtopnav": true
-    },
-    {
-      "url": "inputs",
-      "title": "Basic input",
-      "displayprogress": true,
-      "sections": [
-        {
-          "title": "Textbox journey parameters",
-          "logo": {
-            "url": "https://fakeimg.pl/100x50/?text=Text%20Logo"
-          },
-          "components": [
-            {
-              "id": "1",
-              "label": "1 Required question label",
-              "type": "Text",
-              "placeholder": "Placeholder...",
-              "required": true,
-              "errorMessage": "Please enter valid data",
-              "help": "Help text",
-              "pre": "# Markdown before question 1",
-              "post": "__Markdown after question 1__"
-            },
-            {
-              "id": "2",
-              "label": "2 Label& question only",
-              "type": "Text"
-            },
-            {
-              "id": "4",
-              "type": "Text",
-              "placeholder": "label replacement?",
-              "pre": "4 This isn't a label, but _pre-text_"
-            },
-            {
-              "id": "four",
-              "type": "Text",
-              "pre": "Perhaps we don't want a question, just some _italic_ text",
-              "post": "And some more __bold__ text"
-            }
-          ]
-        },
-        {
-          "title": "Textbox variants",
-          "logo": {
-            "url": "https://fakeimg.pl/100x50/?text=Text%20Logo"
-          },
-          "components": [
-            {
-              "id": "Upper",
-              "label": "Upper",
-              "type": "Upper",
-              "placeholder": "Upper",
-              "required": false
-            },
-            {
-              "id": "colour",
-              "label": "Colour",
-              "type": "Colour",
-              "required": false
-            },
-            {
-              "id": "email",
-              "label": "Email",
-              "type": "Email",
-              "placeholder": "email@domain.com",
-              "required": false
-            },
-            {
-              "id": "range",
-              "label": "Range",
-              "type": "Range",
-              "placeholder": "?",
-              "required": false
-            },
-            {
-              "id": "time",
-              "label": "Time",
-              "type": "Time",
-              "required": false
-            },
-            {
-              "id": "date",
-              "label": "Date",
-              "type": "Date",
-              "required": false
-            },
-            {
-              "id": "month",
-              "label": "Month",
-              "type": "Month",
-              "required": false
-            },
-            {
-              "id": "search",
-              "label": "Search",
-              "type": "Search",
-              "placeholder": "Search me",
-              "required": false
-            },
-            {
-              "id": "url",
-              "label": "Url",
-              "type": "Url",
-              "placeholder": "www.google.com",
-              "required": false
-            },
-            {
-              "id": "datetimelocal",
-              "label": "DateTime Local",
-              "type": "Datetime",
-              "placeholder": "??",
-              "required": false
-            },
-            {
-              "id": "number",
-              "label": "Number",
-              "type": "Number",
-              "placeholder": "99",
-              "required": false
-            },
-            {
-              "id": "tel",
-              "label": "Tel",
-              "type": "Telephone",
-              "placeholder": "07777777777",
-              "required": false
-            },
-            {
-              "id": "week",
-              "label": "Week",
-              "type": "Week",
-              "placeholder": "3",
-              "required": false
-            }
-          ]
-        },
-        {
-          "title": "Alternative date components",
-          "components": [        
-            {
-              "type": "TriBoxDate",
-              "id": "purchaseDate",
-              "label": "Enter date",
-              "required": true,
-              "displayFormat": "long",
-              "separator": "/",
-              "resetLabel": "Skip",
-              "errorMessage": "Please enter a valid date",
-              "help": "This example can't be more than 4 years ahead or before 1/1/1970",
-              "validation": {
-                "min": "01/01/1970",
-                "maxyearsahead": 4
-              }
-            },
-            {
-              "type": "TriBoxDate",
-              "id": "purchaseDate",
-              "label": "Enter future date",
-              "required": true,
-              "displayFormat": "long",
-              "separator": "/",
-              "resetLabel": "Skip",
-              "errorMessage": "Please enter a valid date",
-              "help": "This example can't be in the past, and must be within 7 years from now",
-              "validation": {
-                "maxyearsago": 0,
-                "maxyearsahead": 7
-              }
-            }
-          ]
-        }       
-      ]
-    },
-    {
-      "url": "list-inputs",
-      "title": "List input",
-      "displayprogress": true,
-      "sections": [
-        {
-          "title": "OptionDropdown Section",
-          "logo": {
-            "url": "https://fakeimg.pl/100x50/?text=Section%20Logo"
-          },
-          "components": [
-            {
-              "id": "optiondropdown_full",
-              "type": "OptionDropdown",
-              "label": "Required question label",
-              "placeholder": "Placeholder...",
-              "required": true,
-              "refdata": "context1.list1",
-              "errorMessage": "Please select an option",
-              "help": "Help text",
-              "pre": "# Markdown before question 1",
-              "post": "__Markdown after question 1__"
-            },
-            {
-              "id": "optiondropdown_refdata",
-              "type": "OptionDropdown",
-              "label": "Data passed in by reference",
-              "refdata": "context1.list2"
-            },
-            {
-              "id": "optiondropdown_datalist",
-              "type": "OptionDropdown",
-              "label": "Data passed in via QS",
-              "values": [
-                {
-                  "value": "example1",
-                  "display": "Example 1"
-                },
-                {
-                  "value": "example2",
-                  "display": "Example 2"
-                }
-              ]
-            }         
-          ],
-          "navigation": { 
-            "nextlabel": "Go to button select section"
-          }
-        },      
-        {
-          "title": "Button Select Section",
-          "logo": {
-            "url": "https://fakeimg.pl/100x50/?text=Section%20Logo"
-          },
-          "components": [
-            {
-              "id": "simpletextbutton",
-              "type": "OptionButtons",
-              "label": "This is a simple text button",
-              "required": false,
-              "errorMessage": "Please select an option",
-              "help": "Surely you can figure this out",
-              "values": [
-                {
-                  "value": "simpletextbutton",
-                  "display": "Click me?"
-                }
-              ]
-            },
-            {
-              "id": "simpleimagebutton",
-              "type": "OptionButtons",
-              "label": "This is a simple image  button",
-              "required": true,
-              "errorMessage": "Please select an option",
-              "help": "Surely you can figure this out",
-              "values": [
-                {
-                  "value": "car",
-                  "display": "Car (top)",
-                  "image": {
-                    "url": "https://image.flaticon.com/icons/svg/58/58463.svg",
-                    "width": "128",
-                    "height": "128"
-                  },
-                  "textLocation": "top"
-                },
-                {
-                  "value": "bike",
-                  "display": "Bike (left)",
-                  "image": {
-                    "url": "https://image.flaticon.com/icons/png/128/130/130278.png",
-                    "width": "128",
-                    "height": "128"
-                  },
-                  "textLocation": "left"
-                },
-                {
-                  "value": "bus",
-                  "display": "Bus (bottom)",
-                  "image": {
-                    "url": "https://image.freepik.com/free-icon/bus_318-142528.jpg",
-                    "width": "128",
-                    "height": "128"
-                  },
-                  "textLocation": "bottom"
-                },
-                {
-                  "value": "train",
-                  "display": "Train (right)",
-                  "image": {
-                    "url": "https://image.flaticon.com/icons/png/512/1249/1249786.png",
-                    "width": "128",
-                    "height": "128"
-                  },
-                  "textLocation": "right"
-                }
-              ]
-            },
-            {
-              "id": "OptionButtons",
-              "type": "YesNo",
-              "label": "It is a simple Yes/No question",
-              "required": true,
-              "errorMessage": "Please select an option",
-              "help": "Surely you can figure this out"
-            },
-            {
-              "id": "dependentOptionButtons",
-              "type": "YesNo",
-              "label": "Yes/No dependent on Yes/No",
-              "required": true,
-              "help": "We require you to select this IF you answered Yes to the last question",
-              "dependsupon": {
-                "id": "OptionButtons",
-                "value": "Y"
-              }
-            }
-          ],
-          "navigation": { 
-            "backlabel": "Go back to OptionDropdown section"
-          }
-        }
-      ]
-    },
-    {
-      "url": "display",
-      "title": "Display",
-      "displayprogress": true,
-      "sections": [
-        {
-          "title": "Block display",
-          "logo": {
-            "url": "https://fakeimg.pl/100x50/?text=Section%20Logo"
-          },
-          "components": [
-            {
-              "type": "Displayblock",
-              "content": "Just content, no markdown."
-            },
-            {
-              "type": "Displayblock",
-              "content": "__markdown__ content\n\n here's a [link to the BBC](https://bbc.co.uk)\n\n and <a target='blank' href='https://bbc.co.uk'>one that opens in a new tab</a>",
-              "pre": "__markdown__ before content",
-              "post": "__markdown__ after content"
-            },
-            {
-              "type": "Displayblock",
-              "content": "__markdown__ content",
-              "post": "__markdown__ after content"
-            },
-            {
-              "type": "Displayblock",
-              "content": "__markdown__ content",
-              "pre": "__markdown__ before content"
-            },
-            {
-              "type": "Displayblock",
-              "content": [
-                "# Column 1\nSome _markdown_",
-                "# Column 2\nSome more _markdown_"
-              ]
-            },
-            {
-              "type": "Displayblock",
-              "content": [
-                "# Column 1\nSome _markdown_",
-                "# Column 2\nSome more _markdown_",
-                "# Column 3\nYet more _markdown_"
-              ]
-            },
-            {
-              "type": "Displayblock",
-              "content": [
-                "# Column 1\nSome _markdown_",
-                "# Column 2\nSome more _markdown_",
-                "# Column 3\nYet more _markdown_",
-                "# Column 4\nAnd even more _markdown_"
-              ]
-            },
-            {
-              "type": "Displayblock",
-              "content": [
-                "# Column 1\nSome _markdown_",
-                "# Column 2\nSome more _markdown_",
-                "# Column 3\nYet more _markdown_",
-                "# Column 4\nAnd even more _markdown_ this one longer than the others for a wider content"
-              ]
-            },
-            {
-              "type": "Displayblock",
-              "content": "We can also retrieve values from questions answered elsewhere, e.g. you selected this vehicle on the last page: {{simpleimagebutton}}"
-            }      
-          ]
-        },
-        {
-          "title": "Modal display",
-          "components": [
-            {
-              "id": "triggermodal",
-              "type": "YesNo",
-              "label": "Select yes to trigger modal",
-              "required": true,
-              "errorMessage": "Please select an option"
-            },
-            {
-              "type": "Displaymodal",
-              "id": "modalpopup",
-              "content": "__markdown__ content",
-              "pre": "__markdown__ before content",
-              "post": "__markdown__ after content",
-              "dependsupon": {
-                "id": "triggermodal",
-                "value": "Y"
-              }
-            },
-            {
-              "id": "trigger2columnmodal",
-              "type": "YesNo",
-              "label": "Select yes to trigger 2-column modal",
-              "required": true,
-              "errorMessage": "Please select an option"
-            },
-            {
-              "type": "Displaymodal",
-              "id": "modalpopup",
-              "content": [
-                "# Column 1\nSome _markdown_",
-                "# Column 2\nSome more _markdown_"
-              ],
-              "pre": "__markdown__ before content",
-              "post": "__markdown__ after content",
-              "dependsupon": {
-                "id": "trigger2columnmodal",
-                "value": "Y"
-              }
-            }
-          ]
-        },
-        {
-          "title": "Selections list",
-          "components": [
-            {
-              "type": "Displayselections",
-              "content": "These are selections that either we provide with our offering, or that you have previously entered on this journey",
-              "selectedtitle": "Selected stuff goes here",
-              "unselectedtitle": "Unselected stuff goes here",
-              "items": [
-                {
-                  "title": "Selected item 1",
-                  "selected": true
-                },
-                {
-                  "title": "Selected item 2",
-                  "selected": true
-                },
-                {
-                  "title": "Unselected item 1",
-                  "selected": false,
-                  "detail": "Some markdown stuff can go here"
-                },
-                {
-                  "title": "Unselected item 2",
-                  "selected": false
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "url": "repeating",
-      "title": "Repeating",
-      "displayprogress": true,
-      "displaytitle": false,
-      "sections": [
-        {
-          "title": "Summary block",
-          "components": [
-            {
-              "type": "Displayblock",
-              "content": "Some stuff from an earlier page, e.g. First textbox = {{1}}"
-            },
-            {
-              "type": "Displayblock",
-              "content": "Some hand-indexed stuff from this page, e.g. <br/>Component 1 = \"{{component1.1}}\" Component 2 = \"{{component2.1}}\"<br/>Component 1 = \"{{ component1.2 }}\" Component 2 = \"{{component2.2}}\""
-            }
-          ]
-        },
-        {
-          "type": "repeatinggroup",
-          "id": "repeatinggroupdemo",
-          "minrepeats": 0,
-          "maxrepeats": 2,
-          "labeladd": "Add new",
-          "labeledit": "Edit",
-          "labelremove": "Remove",
-          "summarycontent": [
-            "Component 1: {{component1}}",
-            "Component 2: {{ component2 }}"
-          ],
-          "sections": [        
-            {
-              "title": "Section 1",
-              "components": [
-                {
-                  "id": "component1",
-                  "type": "Text",
-                  "label": "Component 1:"
-                }
-              ]
-            },
-            {
-              "title": "Section 2",
-              "components": [
-                {
-                  "id": "component2",
-                  "type": "Text",
-                  "label": "Component 2:"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "url": "complex",
-      "title": "Complex",
-      "displayprogress": true,
-      "sections": [
-        {
-          "title": "Address Section",
-          "logo": {
-            "url": "https://fakeimg.pl/100x50/?text=Address%20Logo"
-          },
-          "components": [
-            {
-              "id": "address",
-              "type": "Address",
-              "postcodeLabel": "Postcode",
-              "postcodePlaceholder": "MK10 0BZ",
-              "propertyLabel": "Property",
-              "required": true
-            }
-          ]
-        },
-        {
-          "title": "Vehicle Section",
-          "logo": {
-            "url": "https://fakeimg.pl/100x50/?text=Vehicle%20Logo"
-          },
-          "components": [
-            {
-              "id": "vehiclecomponent",
-              "type": "Vehicle",
-              "regnumLabel": "Registration number",
-              "regnumPlaceholder": "YOUR REG",
-              "errorMessage": "Failed to find vehicle"
-            }
-          ]
-        },
-        {
-          "title": "Vehicle lookup without vehicle component",
-          "logo": {
-            "url": "https://fakeimg.pl/100x50/?text=Vehicle%20Logo"
-          },
-          "components": [
-            {
-              "type": "Displayblock",
-              "content": "Uses a bespoke function and unconnected Text components instead of a bespoke Vehicle component"
-            },
-            {
-              "id": "vehicleregnum",
-              "type": "Upper",
-              "label": "Registration number",
-              "placeholder": "YOUR REG",
-              "required": true,
-              "errorMessage": "Please enter a valid registration number"
-            },
-            {
-              "id": "vehiclemake",
-              "type": "Text",
-              "label": "Make"
-            },
-            {
-              "id": "vehiclemanufactureyear",
-              "type": "Text",
-              "label": "Year of manufacture"
-            },
-            {
-              "id": "vehicleenginesize",
-              "type": "Text",
-              "label": "Engine size (cc)"
-            },
-            {
-              "id": "vehiclefuel",
-              "type": "Text",
-              "label": "Fuel type"
-            },
-            {
-              "id": "vehicletransmission",
-              "type": "Text",
-              "label": "Transmission type"
-            },
-            {
-              "id": "vehicledoorcount",
-              "type": "Text",
-              "label": "Number of doors"
-            },
-            {
-              "id": "vehicleseatbeltcount",
-              "type": "Text",
-              "label": "Number of seats"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "url": "outcome",
-      "title": "Outcome",
-      "displayprogress": false,
-      "sections": [
-        {
-          "title": "Outcome",
-          "logo": {
-            "url": "https://fakeimg.pl/100x50/?text=Outcome%20Logo"
-          },
-          "components": [
-            {
-              "type": "Displayblock",
-              "content": "# Outcome \n\n Some stuff about how great we are. \n\n Some stuff about the actual product we're offering.  "
-            }
-          ]
-        },
-        {
-          "title": "Carry on to payment",
-          "components": [
-            {
-              "type": "Displayblock",
-              "content": "[Payment Gateway](https://kind-grass-07eb6d703.azurestaticapps.net?sessionid=TESTSESSIONID123&returnpath=paymentprocessing)"
-            }
-          ]
-        }
-      ],
-      "navigation": {
-        "shownext": false,
-        "backlabel": "Go back to fix something"
-      }
-    },
-    {
-      "url": "paymentprocessing",
-      "title": "Payment Processing",
-      "displayprogress": false,
-      "sections": [
-        {
-          "title": "Payment processing",
-          "components": [
-            {
-              "type": "Displayblock",
-              "content": "Redirected here from payment gateway"
-            }
-          ]
-        }
-      ]
-    }
-  ],
-  "cookiepreferences": {
-    "pre": "# Cookie preferences \n\n This website may require cookies to function. \n\n We would also appreciate your concept to use additional cookies for analytics purposes, please select an option.",
-    "post": "",
-    "values": [
-      {
-        "value": "essential",
-        "display": "Essential cookies only"
-      },
-      {
-        "value": "all",
-        "display": "Accept all cookies"
-      }
-    ]
-  },
-  "footercontent": [
-    "Legal disclaimer could perhaps go here",
-    "And some useful links over here"
-  ]
+	"title": "Journey Demo",
+	"pages": [
+		{
+			"url": "introduction",
+			"title": "Introduction page",
+			"displayprogress": false,
+			"displaytitle": false,
+			"sections": [
+				{
+					"title": "Journey as data technical demo ",
+					"logo": {
+						"url": "https://fakeimg.pl/100x50/?text=Introduction",
+						"width": "250px",
+						"height": "50px"
+					},
+					"components": [
+						{
+							"type": "Displayblock",
+							"content": "This technical demo shows which components are available and the different ways in which they can be used."
+						}
+					]
+				}
+			],
+			"navigation": {
+				"showback": false,
+				"nextlabel": "Start"
+			},
+			"showtopnav": true
+		},
+		{
+			"url": "inputs",
+			"title": "Basic input",
+			"displayprogress": true,
+			"sections": [
+				{
+					"title": "Textbox journey parameters",
+					"logo": {
+						"url": "https://fakeimg.pl/100x50/?text=Text%20Logo"
+					},
+					"components": [
+						{
+							"id": "1",
+							"label": "1 Required question label",
+							"type": "Text",
+							"placeholder": "Placeholder...",
+							"required": true,
+							"errorMessage": "Please enter valid data",
+							"help": "Help text",
+							"pre": "# Markdown before question 1",
+							"post": "__Markdown after question 1__"
+						},
+						{
+							"id": "2",
+							"label": "2 Label& question only",
+							"type": "Text"
+						},
+						{
+							"id": "4",
+							"type": "Text",
+							"placeholder": "label replacement?",
+							"pre": "4 This isn't a label, but _pre-text_"
+						},
+						{
+							"id": "four",
+							"type": "Text",
+							"pre": "Perhaps we don't want a question, just some _italic_ text",
+							"post": "And some more __bold__ text"
+						}
+					]
+				},
+				{
+					"title": "Textbox variants",
+					"logo": {
+						"url": "https://fakeimg.pl/100x50/?text=Text%20Logo"
+					},
+					"components": [
+						{
+							"id": "Upper",
+							"label": "Upper",
+							"type": "Upper",
+							"placeholder": "Upper",
+							"required": false
+						},
+						{
+							"id": "colour",
+							"label": "Colour",
+							"type": "Colour",
+							"required": false
+						},
+						{
+							"id": "email",
+							"label": "Email",
+							"type": "Email",
+							"placeholder": "email@domain.com",
+							"required": false
+						},
+						{
+							"id": "range",
+							"label": "Range",
+							"type": "Range",
+							"placeholder": "?",
+							"required": false
+						},
+						{
+							"id": "time",
+							"label": "Time",
+							"type": "Time",
+							"required": false
+						},
+						{
+							"id": "date",
+							"label": "Date",
+							"type": "Date",
+							"required": false
+						},
+						{
+							"id": "month",
+							"label": "Month",
+							"type": "Month",
+							"required": false
+						},
+						{
+							"id": "search",
+							"label": "Search",
+							"type": "Search",
+							"placeholder": "Search me",
+							"required": false
+						},
+						{
+							"id": "url",
+							"label": "Url",
+							"type": "Url",
+							"placeholder": "www.google.com",
+							"required": false
+						},
+						{
+							"id": "datetimelocal",
+							"label": "DateTime Local",
+							"type": "Datetime",
+							"placeholder": "??",
+							"required": false
+						},
+						{
+							"id": "number",
+							"label": "Number",
+							"type": "Number",
+							"placeholder": "99",
+							"required": false
+						},
+						{
+							"id": "tel",
+							"label": "Tel",
+							"type": "Telephone",
+							"placeholder": "07777777777",
+							"required": false
+						},
+						{
+							"id": "week",
+							"label": "Week",
+							"type": "Week",
+							"placeholder": "3",
+							"required": false
+						}
+					]
+				},
+				{
+					"title": "Alternative date components",
+					"components": [
+						{
+							"type": "TriBoxDate",
+							"id": "purchaseDate",
+							"label": "Enter date",
+							"required": true,
+							"displayFormat": "long",
+							"separator": "/",
+							"resetLabel": "Skip",
+							"errorMessage": "Please enter a valid date",
+							"help": "This example can't be more than 4 years ahead or before 1/1/1970",
+							"validation": {
+								"min": "01/01/1970",
+								"maxyearsahead": 4
+							}
+						},
+						{
+							"type": "TriBoxDate",
+							"id": "purchaseDate",
+							"label": "Enter future date",
+							"required": true,
+							"displayFormat": "long",
+							"separator": "/",
+							"resetLabel": "Skip",
+							"errorMessage": "Please enter a valid date",
+							"help": "This example can't be in the past, and must be within 7 years from now",
+							"validation": {
+								"maxyearsago": 0,
+								"maxyearsahead": 7
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"url": "list-inputs",
+			"title": "List input",
+			"displayprogress": true,
+			"sections": [
+				{
+					"title": "OptionDropdown Section",
+					"logo": {
+						"url": "https://fakeimg.pl/100x50/?text=Section%20Logo"
+					},
+					"components": [
+						{
+							"id": "optiondropdown_full",
+							"type": "OptionDropdown",
+							"label": "Required question label",
+							"placeholder": "Placeholder...",
+							"required": true,
+							"refdata": "context1.list1",
+							"errorMessage": "Please select an option",
+							"help": "Help text",
+							"pre": "# Markdown before question 1",
+							"post": "__Markdown after question 1__"
+						},
+						{
+							"id": "optiondropdown_refdata",
+							"type": "OptionDropdown",
+							"label": "Data passed in by reference",
+							"refdata": "context1.list2"
+						},
+						{
+							"id": "optiondropdown_datalist",
+							"type": "OptionDropdown",
+							"label": "Data passed in via QS",
+							"values": [
+								{
+									"value": "example1",
+									"display": "Example 1"
+								},
+								{
+									"value": "example2",
+									"display": "Example 2"
+								}
+							]
+						}
+					],
+					"navigation": {
+						"nextlabel": "Go to button select section"
+					}
+				},
+				{
+					"title": "Button Select Section",
+					"logo": {
+						"url": "https://fakeimg.pl/100x50/?text=Section%20Logo"
+					},
+					"components": [
+						{
+							"id": "simpletextbutton",
+							"type": "OptionButtons",
+							"label": "This is a simple text button",
+							"required": false,
+							"errorMessage": "Please select an option",
+							"help": "Surely you can figure this out",
+							"values": [
+								{
+									"value": "simpletextbutton",
+									"display": "Click me?"
+								}
+							]
+						},
+						{
+							"id": "simpleimagebutton",
+							"type": "OptionButtons",
+							"label": "This is a simple image  button",
+							"required": true,
+							"errorMessage": "Please select an option",
+							"help": "Surely you can figure this out",
+							"values": [
+								{
+									"value": "car",
+									"display": "Car (top)",
+									"image": {
+										"url": "https://image.flaticon.com/icons/svg/58/58463.svg",
+										"width": "128",
+										"height": "128"
+									},
+									"textLocation": "top"
+								},
+								{
+									"value": "bike",
+									"display": "Bike (left)",
+									"image": {
+										"url": "https://image.flaticon.com/icons/png/128/130/130278.png",
+										"width": "128",
+										"height": "128"
+									},
+									"textLocation": "left"
+								},
+								{
+									"value": "bus",
+									"display": "Bus (bottom)",
+									"image": {
+										"url": "https://image.freepik.com/free-icon/bus_318-142528.jpg",
+										"width": "128",
+										"height": "128"
+									},
+									"textLocation": "bottom"
+								},
+								{
+									"value": "train",
+									"display": "Train (right)",
+									"image": {
+										"url": "https://image.flaticon.com/icons/png/512/1249/1249786.png",
+										"width": "128",
+										"height": "128"
+									},
+									"textLocation": "right"
+								}
+							]
+						},
+						{
+							"id": "OptionButtons",
+							"type": "YesNo",
+							"label": "It is a simple Yes/No question",
+							"required": true,
+							"errorMessage": "Please select an option",
+							"help": "Surely you can figure this out"
+						},
+						{
+							"id": "dependentOptionButtons",
+							"type": "YesNo",
+							"label": "Yes/No dependent on Yes/No",
+							"required": true,
+							"help": "We require you to select this IF you answered Yes to the last question",
+							"dependsupon": {
+								"id": "OptionButtons",
+								"value": "Y"
+							}
+						}
+					],
+					"navigation": {
+						"backlabel": "Go back to OptionDropdown section"
+					}
+				}
+			]
+		},
+		{
+			"url": "display",
+			"title": "Display",
+			"displayprogress": true,
+			"sections": [
+				{
+					"title": "Block display",
+					"logo": {
+						"url": "https://fakeimg.pl/100x50/?text=Section%20Logo"
+					},
+					"components": [
+						{
+							"type": "Displayblock",
+							"content": "Just content, no markdown."
+						},
+						{
+							"type": "Displayblock",
+							"content": "__markdown__ content\n\n here's a [link to the BBC](https://bbc.co.uk)\n\n and <a target='blank' href='https://bbc.co.uk'>one that opens in a new tab</a>",
+							"pre": "__markdown__ before content",
+							"post": "__markdown__ after content"
+						},
+						{
+							"type": "Displayblock",
+							"content": "__markdown__ content",
+							"post": "__markdown__ after content"
+						},
+						{
+							"type": "Displayblock",
+							"content": "__markdown__ content",
+							"pre": "__markdown__ before content"
+						},
+						{
+							"type": "Displayblock",
+							"content": ["# Column 1\nSome _markdown_", "# Column 2\nSome more _markdown_"]
+						},
+						{
+							"type": "Displayblock",
+							"content": [
+								"# Column 1\nSome _markdown_",
+								"# Column 2\nSome more _markdown_",
+								"# Column 3\nYet more _markdown_"
+							]
+						},
+						{
+							"type": "Displayblock",
+							"content": [
+								"# Column 1\nSome _markdown_",
+								"# Column 2\nSome more _markdown_",
+								"# Column 3\nYet more _markdown_",
+								"# Column 4\nAnd even more _markdown_"
+							]
+						},
+						{
+							"type": "Displayblock",
+							"content": [
+								"# Column 1\nSome _markdown_",
+								"# Column 2\nSome more _markdown_",
+								"# Column 3\nYet more _markdown_",
+								"# Column 4\nAnd even more _markdown_ this one longer than the others for a wider content"
+							]
+						},
+						{
+							"type": "Displayblock",
+							"content": "We can also retrieve values from questions answered elsewhere, e.g. you selected this vehicle on the last page: {{simpleimagebutton}}"
+						}
+					]
+				},
+				{
+					"title": "Modal display",
+					"components": [
+						{
+							"id": "triggermodal",
+							"type": "YesNo",
+							"label": "Select yes to trigger modal",
+							"required": true,
+							"errorMessage": "Please select an option"
+						},
+						{
+							"type": "Displaymodal",
+							"id": "modalpopup",
+							"content": "__markdown__ content",
+							"pre": "__markdown__ before content",
+							"post": "__markdown__ after content",
+							"dependsupon": {
+								"id": "triggermodal",
+								"value": "Y"
+							}
+						},
+						{
+							"id": "trigger2columnmodal",
+							"type": "YesNo",
+							"label": "Select yes to trigger 2-column modal",
+							"required": true,
+							"errorMessage": "Please select an option"
+						},
+						{
+							"type": "Displaymodal",
+							"id": "modalpopup",
+							"content": ["# Column 1\nSome _markdown_", "# Column 2\nSome more _markdown_"],
+							"pre": "__markdown__ before content",
+							"post": "__markdown__ after content",
+							"dependsupon": {
+								"id": "trigger2columnmodal",
+								"value": "Y"
+							}
+						}
+					]
+				},
+				{
+					"title": "Selections list",
+					"components": [
+						{
+							"type": "Displayselections",
+							"content": "These are selections that either we provide with our offering, or that you have previously entered on this journey",
+							"selectedtitle": "Selected stuff goes here",
+							"unselectedtitle": "Unselected stuff goes here",
+							"items": [
+								{
+									"title": "Selected item 1",
+									"selected": true
+								},
+								{
+									"title": "Selected item 2",
+									"selected": true
+								},
+								{
+									"title": "Unselected item 1",
+									"selected": false,
+									"detail": "Some markdown stuff can go here"
+								},
+								{
+									"title": "Unselected item 2",
+									"selected": false
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"url": "repeating",
+			"title": "Repeating",
+			"displayprogress": true,
+			"displaytitle": false,
+			"sections": [
+				{
+					"title": "Summary block",
+					"components": [
+						{
+							"type": "Displayblock",
+							"content": "Some stuff from an earlier page, e.g. First textbox = {{1}}"
+						},
+						{
+							"type": "Displayblock",
+							"content": "Some hand-indexed stuff from this page, e.g. <br/>Component 1 = \"{{component1.1}}\" Component 2 = \"{{component2.1}}\"<br/>Component 1 = \"{{ component1.2 }}\" Component 2 = \"{{component2.2}}\""
+						}
+					]
+				},
+				{
+					"type": "repeatinggroup",
+					"id": "repeatinggroupdemo",
+					"minrepeats": 0,
+					"maxrepeats": 2,
+					"labeladd": "Add new",
+					"labeledit": "Edit",
+					"labelremove": "Remove",
+					"summarycontent": ["Component 1: {{component1}}", "Component 2: {{ component2 }}"],
+					"sections": [
+						{
+							"title": "Section 1",
+							"components": [
+								{
+									"id": "component1",
+									"type": "Text",
+									"label": "Component 1:"
+								}
+							]
+						},
+						{
+							"title": "Section 2",
+							"components": [
+								{
+									"id": "component2",
+									"type": "Text",
+									"label": "Component 2:"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"url": "complex",
+			"title": "Complex",
+			"displayprogress": true,
+			"sections": [
+				{
+					"title": "Address Section",
+					"logo": {
+						"url": "https://fakeimg.pl/100x50/?text=Address%20Logo"
+					},
+					"components": [
+						{
+							"id": "address",
+							"type": "Address",
+							"postcodeLabel": "Postcode",
+							"postcodePlaceholder": "MK10 0BZ",
+							"propertyLabel": "Property",
+							"required": true
+						}
+					]
+				},
+				{
+					"title": "Vehicle Section",
+					"logo": {
+						"url": "https://fakeimg.pl/100x50/?text=Vehicle%20Logo"
+					},
+					"components": [
+						{
+							"id": "vehiclecomponent",
+							"type": "Vehicle",
+							"regnumLabel": "Registration number",
+							"regnumPlaceholder": "YOUR REG",
+							"errorMessage": "Failed to find vehicle"
+						}
+					]
+				},
+				{
+					"title": "Vehicle lookup without vehicle component",
+					"logo": {
+						"url": "https://fakeimg.pl/100x50/?text=Vehicle%20Logo"
+					},
+					"components": [
+						{
+							"type": "Displayblock",
+							"content": "Uses a bespoke function and unconnected Text components instead of a bespoke Vehicle component"
+						},
+						{
+							"id": "vehicleregnum",
+							"type": "Upper",
+							"label": "Registration number",
+							"placeholder": "YOUR REG",
+							"required": true,
+							"errorMessage": "Please enter a valid registration number"
+						},
+						{
+							"id": "vehiclemake",
+							"type": "Text",
+							"label": "Make"
+						},
+						{
+							"id": "vehiclemanufactureyear",
+							"type": "Text",
+							"label": "Year of manufacture"
+						},
+						{
+							"id": "vehicleenginesize",
+							"type": "Text",
+							"label": "Engine size (cc)"
+						},
+						{
+							"id": "vehiclefuel",
+							"type": "Text",
+							"label": "Fuel type"
+						},
+						{
+							"id": "vehicletransmission",
+							"type": "Text",
+							"label": "Transmission type"
+						},
+						{
+							"id": "vehicledoorcount",
+							"type": "Text",
+							"label": "Number of doors"
+						},
+						{
+							"id": "vehicleseatbeltcount",
+							"type": "Text",
+							"label": "Number of seats"
+						}
+					]
+				}
+			]
+		},
+		{
+			"url": "outcome",
+			"title": "Outcome",
+			"displayprogress": false,
+			"sections": [
+				{
+					"title": "Outcome",
+					"logo": {
+						"url": "https://fakeimg.pl/100x50/?text=Outcome%20Logo"
+					},
+					"components": [
+						{
+							"type": "Displayblock",
+							"content": "# Outcome \n\n Some stuff about how great we are. \n\n Some stuff about the actual product we're offering.  "
+						}
+					]
+				},
+				{
+					"title": "Carry on to payment",
+					"components": [
+						{
+							"id": "sessionstoretestvalue",
+							"type": "Text",
+							"label": "Pre-payment test value capture"
+						},
+						{
+							"type": "Displayblock",
+							"content": "[Payment Gateway](https://kind-grass-07eb6d703.azurestaticapps.net?sessionid=TESTSESSIONID123&returnpath=paymentprocessing)"
+						}
+					]
+				}
+			],
+			"navigation": {
+				"shownext": false,
+				"backlabel": "Go back to fix something"
+			}
+		},
+		{
+			"url": "paymentprocessing",
+			"title": "Payment Processing",
+			"displayprogress": false,
+			"sections": [
+				{
+					"title": "Payment processing",
+					"components": [
+						{
+							"type": "Displayblock",
+							"content": "Redirected here from payment gateway, you set this pre-payment test value: {{ sessionstoretestvalue }}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"cookiepreferences": {
+		"pre": "# Cookie preferences \n\n This website may require cookies to function. \n\n We would also appreciate your concept to use additional cookies for analytics purposes, please select an option.",
+		"post": "",
+		"values": [
+			{
+				"value": "essential",
+				"display": "Essential cookies only"
+			},
+			{
+				"value": "all",
+				"display": "Accept all cookies"
+			}
+		]
+	},
+	"footercontent": ["Legal disclaimer could perhaps go here", "And some useful links over here"]
 }
