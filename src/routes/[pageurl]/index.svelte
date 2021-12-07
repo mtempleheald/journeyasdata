@@ -10,16 +10,9 @@
 </script>
 
 <script lang="ts">
-	import { getContext } from 'svelte';
-	import Page from '$lib/components/Page.svelte';
-	import type { JourneyType } from '$lib/types/journey';
-
+	import Journey from '$lib/components/Journey.svelte';
 	export let pageurl: string;
-	const journey: JourneyType = getContext('journey');
 </script>
 
-{#each journey.pages as p}
-	{#if p.url == pageurl}
-		<Page page={p} />
-	{/if}
-{/each}
+
+<Journey currentpage={pageurl} />
