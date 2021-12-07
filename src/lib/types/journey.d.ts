@@ -61,6 +61,17 @@ export type ValueType = {
 	textLocation?: string; // TODO: Consider removing this, it is not intuitive and belongs in styling
 };
 
+// Content is stored as a string, parsed as markdown, enriched with dynamic content
+// TODO: Build up fluent API to improve readability by removing nested function calls e.g. markdownContent.injectDynamicContent().toHtml().sanitise() 
+// TypeScript example https://medium.com/@bensammons/building-a-fluent-interface-with-typescript-using-generics-in-typescript-3-4d206f00dba5
+// VanillaJS example https://medium.com/simply-web-development/how-to-create-fluent-interfaces-the-easy-way-with-vanilla-javascript-2a61b6558f01
+class ContentBuilder<
+	RawMarkdown extends string = never, // as stored in journey.json
+	DynamicContent extends string = never, // processed to inject values from session based on token replacement
+	Html extends string = never, // After markdown parsing
+	Sanitised extends string = never // Sanitise the rendered html (not essential given the content is managed internally)
+>{}
+
 // Use "type" property to select from this discriminated union
 export type ComponentType =
 	| AddressComponent
@@ -73,8 +84,8 @@ export type ComponentType =
 
 // Every component must have a type or we have no way to render it
 interface BaseComponent {
-	pre?: Content;
-	post?: Content;
+	pre?: string;
+	post?: string;
 	dependsupon?: {
 		id: string;
 		value: string;
@@ -134,7 +145,7 @@ export interface OptionComponent extends BaseComponent, InputComponent {
 export interface DisplayComponent extends BaseComponent {
 	type: 'Displayblock' | 'Displaymodal';
 	id?: string; // included to remove TS warnings only
-	content: Content | Content[]; // allow multiple columns by passing multiple content blocks
+	content: string | string[]; // allow multiple columns by passing multiple content blocks
 	collapsible?: boolean;
 }
 // selected/unselected items is more important than content for this component
@@ -143,7 +154,7 @@ export interface DisplaySelections extends BaseComponent {
 	id?: string; // included to remove TS warnings only
 	selectedtitle?: string;
 	unselectedtitle?: string;
-	content?: Content;
+	content?: string;
 	items: {
 		title: string;
 		selected: boolean;
