@@ -1,4 +1,11 @@
-import type { ComponentType, InputComponent, JourneyType, PageType, RepeatingGroupType, SectionType } from '$lib/types/journey'
+import type {
+	ComponentType,
+	InputComponent,
+	JourneyType,
+	PageType,
+	RepeatingGroupType,
+	SectionType
+} from '$lib/types/journey';
 
 /**
  * Establish the validity for a component, trusting the component's judgement if provided
@@ -7,26 +14,26 @@ import type { ComponentType, InputComponent, JourneyType, PageType, RepeatingGro
  * @param validationStore   $validationStore from the SvelteKit runtime, or an object consisting of simple string key value pairs
  * @returns                 boolean
  */
-export function componentValid (
-    component: InputComponent, 
-    valueStore: object, 
-    validationStore: object
+export function componentValid(
+	component: InputComponent,
+	valueStore: object,
+	validationStore: object
 ): boolean {
+	// (ineligible) - component has no identifier, it must be a display component only, we have no reason to validate
+	if (!component.id) return true;
 
-    // (ineligible) - component has no identifier, it must be a display component only, we have no reason to validate
-    if (!component.id) return true 
+	// (passed|failed) - input component has been attempted and has a status in the validationStore, trust this value
+	if (validationStore[component.id] != null) return validationStore[component.id];
 
-    // (passed|failed) - input component has been attempted and has a status in the validationStore, trust this value
-    if (validationStore[component.id] != null) return validationStore[component.id]
+	// (skipped) - component is optional and has been skipped, don't need to validate
+	if (!component.required ?? false) return true;
 
-    // (skipped) - component is optional and has been skipped, don't need to validate
-    if (!component.required??false) return true
+	// (hidden) - component is hidden due to dependency on another component, don't fail validation
+	if (component.dependsupon && valueStore[component.dependsupon.id] != component.dependsupon.value)
+		return true;
 
-    // (hidden) - component is hidden due to dependency on another component, don't fail validation
-    if (component.dependsupon && valueStore[component.dependsupon.id] != component.dependsupon.value) return true
-
-    // (missing) - component has not been answered, yet is required and not hidden, so it must be invalid
-    return false
+	// (missing) - component has not been answered, yet is required and not hidden, so it must be invalid
+	return false;
 }
 
 /**
@@ -36,28 +43,31 @@ export function componentValid (
  * @param validationStore   $validationStore from the SvelteKit runtime, or an object consisting of simple string key value pairs
  * @returns                 boolean
  */
-export function sectionValid (
-    section: SectionType|RepeatingGroupType,
-    valueStore: object,
-    validationStore: object
+export function sectionValid(
+	section: SectionType | RepeatingGroupType,
+	valueStore: object,
+	validationStore: object
 ): boolean {
-    // function duplicated from Repeatinggroup.svelte
-    function updateSection(section: SectionType, index: number) {
-        let newComponents: ComponentType[] = section.components.map(comp => {
-            return {
-                ...comp, 
-                id: comp.id ? `${comp.id}.${index}` : undefined
-            }
-        })
-        return {...section, iteration: index, components: newComponents}
-    }
-    switch (section.type) {
-        case "repeatinggroup":
-            return section.sections.every((s, i) => sectionValid(updateSection(s, i), valueStore, validationStore));
-        default:
-            return section.components.every(c => componentValid(c as InputComponent, valueStore, validationStore))
-    }
-    
+	// function duplicated from Repeatinggroup.svelte
+	function updateSection(section: SectionType, index: number) {
+		let newComponents: ComponentType[] = section.components.map((comp) => {
+			return {
+				...comp,
+				id: comp.id ? `${comp.id}.${index}` : undefined
+			};
+		});
+		return { ...section, iteration: index, components: newComponents };
+	}
+	switch (section.type) {
+		case 'repeatinggroup':
+			return section.sections.every((s, i) =>
+				sectionValid(updateSection(s, i), valueStore, validationStore)
+			);
+		default:
+			return section.components.every((c) =>
+				componentValid(c as InputComponent, valueStore, validationStore)
+			);
+	}
 }
 
 /**
@@ -67,12 +77,8 @@ export function sectionValid (
  * @param validationStore   $validationStore from the SvelteKit runtime, or an object consisting of simple string key value pairs
  * @returns                 boolean
  */
- export function pageValid (
-    page: PageType,
-    valueStore: object,
-    validationStore: object
-): boolean {
-    return page.sections.every(s => sectionValid(s, valueStore, validationStore))
+export function pageValid(page: PageType, valueStore: object, validationStore: object): boolean {
+	return page.sections.every((s) => sectionValid(s, valueStore, validationStore));
 }
 
 /**
@@ -82,16 +88,15 @@ export function sectionValid (
  * @param validationStore   $validationStore from the SvelteKit runtime, or an object consisting of simple string key value pairs
  * @returns                 boolean
  */
- export function journeyValid (
-    journey: JourneyType,
-    valueStore: object,
-    validationStore: object
+export function journeyValid(
+	journey: JourneyType,
+	valueStore: object,
+	validationStore: object
 ): boolean {
-    return journey.pages.every(p=> pageValid(p, valueStore, validationStore))
+	return journey.pages.every((p) => pageValid(p, valueStore, validationStore));
 }
 
 // Additional information
 // Questionset structure = journey.page.section.component - sections can be repeated
 // Value store uses identifier {section id}.{section index}.{component id} which can be unflattened to a similar struture
 // For non-repeating sections this value store identifier is simply {component id}
-

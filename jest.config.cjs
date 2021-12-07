@@ -10,11 +10,7 @@ module.exports = {
 		'^.+\\.ts$': 'ts-jest',
 		'^.+\\.js$': 'ts-jest'
 	},
-	moduleFileExtensions: [
-		'js', 
-		'ts', 
-		'svelte'
-	],
+	moduleFileExtensions: ['js', 'ts', 'svelte'],
 	moduleNameMapper: {
 		'^\\$lib(.*)$': '<rootDir>/src/lib$1',
 		'^\\$app(.*)$': [
@@ -23,5 +19,5 @@ module.exports = {
 		]
 	},
 	setupFilesAfterEnv: ['<rootDir>/jest-setup.ts'],
-  	collectCoverageFrom: ["src/**/*.{ts,tsx,svelte,js,jsx}"]
+	collectCoverageFrom: ['src/**/*.{ts,tsx,svelte,js,jsx}']
 };

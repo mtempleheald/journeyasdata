@@ -7,27 +7,26 @@ import * as api from '$lib/api.js';
 import { respond } from './_respond';
 
 export async function post(request) {
+	// TODO: call real API for authentication
+	const body = {
+		user: {
+			username: request.body.username,
+			password: request.body.password
+		}
+	};
+	// const body = {
+	//     errors: {
+	//         "email or password": [
+	//             "is invalid"
+	//         ],
+	//         "password": [
+	//             "must be entered",
+	//             "must be at least 8 characters"
+	//         ]
+	//     }
+	// }
 
-    // TODO: call real API for authentication
-    const body = {
-        user: {
-            username: request.body.username,
-            password: request.body.password
-        }
-    }
-    // const body = {
-    //     errors: {
-    //         "email or password": [
-    //             "is invalid"
-    //         ],
-    //         "password": [
-    //             "must be entered",
-    //             "must be at least 8 characters"
-    //         ]
-    //     }
-    // }
-
-    // This example uses the conduit API (see manual tests)
+	// This example uses the conduit API (see manual tests)
 	// const body = await api.post('users/login', {
 	// 	user: {
 	// 		email: request.body.email,

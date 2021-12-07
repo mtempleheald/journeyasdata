@@ -2,43 +2,44 @@
 // To avoid heavily coupling the generic UI implementation to 1 version of the API
 
 import type { ValueType } from '$lib/types/journey';
-import { APIHOSTNAME } from '$lib/env'
-import { getToken } from '../_token'
+import { APIHOSTNAME } from '$lib/env';
+import { getToken } from '../_token';
 
 export async function getMetadata(context, list) {
+	const url = `${APIHOSTNAME}/api/reference-data/metadata`;
+	console.log(`calling url ${url} ...`);
 
-    const url = `${APIHOSTNAME}/api/reference-data/metadata`
-    console.log(`calling url ${url} ...`)
+	let token = await getToken();
 
-    let token = await getToken();
+	let options = {
+		method: 'POST',
+		headers: new Headers({
+			'Content-Type': 'application/json',
+			Context: context,
+			Authorization: `Bearer ${token}`
+		}),
+		body: JSON.stringify({
+			GetMetadataModel: [
+				{
+					ReferenceType: list
+				}
+			]
+		})
+	};
 
-    let options = {
-        method: 'POST',
-        headers: new Headers({
-            'Content-Type': 'application/json',
-            'Context': context,
-            'Authorization': `Bearer ${token}`
-        }),
-        body: JSON.stringify({
-            "GetMetadataModel": [
-                {
-                    "ReferenceType": list
-                }
-            ]
-        })
-    }
+	var result: ValueType[] = await fetch(url, options)
+		.then((res) => res.json())
+		.then((json) =>
+			json
+				? json.ResultObj[0].Values.map((obj) => {
+						let rObj = {};
+						rObj['value'] = obj.Value;
+						rObj['display'] = obj.Name;
+						return rObj;
+				  })
+				: []
+		)
+		.catch((error) => console.log(error));
 
-    var result: ValueType[] = await fetch(url, options)
-        .then(res => res.json())
-        .then(json => 
-            json ? json.ResultObj[0].Values.map(obj => {
-                let rObj = {}
-                rObj["value"] = obj.Value
-                rObj["display"] = obj.Name
-                return rObj
-                }) : []
-        )
-        .catch(error => console.log(error))
-
-    return result
+	return result;
 }
