@@ -1,119 +1,129 @@
 <script lang="ts">
-    import type { ComponentType, RepeatingGroupType, SectionType } from '$lib/types/journey'
-    import { displayValueStore } from '$lib/stores/displayvaluestore';
-    import { parseMarkdown } from '$lib/utils/markdown';
-    import { replaceTokens } from '$lib/utils/replacetokens';
-    import { validationStore } from '$lib/stores/validationstore';
-    import { valueStore } from '$lib/stores/valuestore';
-    import DisplayBlock from '$lib/components/DisplayBlock.svelte';
-    import Section from '$lib/components/Section.svelte'
+	import type { ComponentType, RepeatingGroupType, SectionType } from '$lib/types/journey';
+	import { displayValueStore } from '$lib/stores/displayvaluestore';
+	import { parseMarkdown } from '$lib/utils/markdown';
+	import { replaceTokens } from '$lib/utils/replacetokens';
+	import { validationStore } from '$lib/stores/validationstore';
+	import { valueStore } from '$lib/stores/valuestore';
+	import DisplayBlock from '$lib/components/DisplayBlock.svelte';
+	import Section from '$lib/components/Section.svelte';
 
-    export let repeatinggroup: RepeatingGroupType;
-    
-    // sections within a repeating group are just instances of the section template
-    // must ensure that section instances are identifiable for hide/show/add/remove functionality
-    // All input components across the entire journey must have unique identifier for integration purposes - componentid.repeatindex
-    // (assume here that components have unique ids except for iterations which we're handling here)
-    let sections: SectionType[] = updateSections(repeatinggroup.sections);
+	export let repeatinggroup: RepeatingGroupType;
 
-    function updateSections(sections: SectionType[]) {
-        let newSections: SectionType[] = []
+	// sections within a repeating group are just instances of the section template
+	// must ensure that section instances are identifiable for hide/show/add/remove functionality
+	// All input components across the entire journey must have unique identifier for integration purposes - componentid.repeatindex
+	// (assume here that components have unique ids except for iterations which we're handling here)
+	let sections: SectionType[] = updateSections(repeatinggroup.sections);
 
-        for (var i = 1; i <= repeatinggroup.maxrepeats; i++) {
-            sections.forEach(s => {
-                let newComponents: ComponentType[] = s.components.map(comp => {
-                    return {
-                        ...comp, 
-                        id: comp.id ? `${comp.id}.${i}` : undefined
-                    }
-                })
-                newSections.push({...s, instanceid: i, components: newComponents})
-            })
-        }
-        return newSections
-    }
+	function updateSections(sections: SectionType[]) {
+		let newSections: SectionType[] = [];
 
-    function updateSummaryInstance(summary: string, instanceid: number) {
-        const re = new RegExp(/\{\{\s*(\w|\.)*\s*\}\}/gi)
-        // @ts-ignore
-        function replacer(match, _p1, _p2, _p3, _offset, _string) {
-            const result = `{{${match.substring(2,match.length-2).trim()}.${instanceid}}}`
-            return result
-        }
-        return summary.replace(re, replacer)
-    }
-    
-    // Hide/show functionality
-    let currentInstance: number = 0;
-    let totalInstances: number = 0;
-    // add is simple - just grab the next id if we've not reached max instances
-    function add() {
-        if (currentInstance < repeatinggroup.maxrepeats) {
-            totalInstances++
-            currentInstance = totalInstances
-        }
-    }
-    // edit is simple - just toggle the selected instance into view
-    function edit(instance: number) {
-        if (instance <= repeatinggroup.maxrepeats) currentInstance = instance
-    }
-    // remove is more complicated
-    // if latest instance, just delete from value/displayValue/validation store and return to summary view
-    // if not, we need to rejig all the store values to avoid sparse population, 2 becomes 1, 3 becomes 2 etc
-    function remove(instanceid: number) {
-        for (var i = instanceid; i <= repeatinggroup.maxrepeats; i++) {
-            repeatinggroup.sections
-                .forEach(s => s.components
-                    .filter(c => !!c.id)
-                    .forEach(c => {
-                valueStore.set(       `${c.id}.${i}`, $valueStore[`${c.id}.${i+1}`])
-                displayValueStore.set(`${c.id}.${i}`, $valueStore[`${c.id}.${i+1}`])
-                validationStore.set(  `${c.id}.${i}`, $valueStore[`${c.id}.${i+1}`])
-            }))}
-        currentInstance = 0 // jump back to summary view
-        totalInstances = totalInstances - 1
-    }
+		for (var i = 1; i <= repeatinggroup.maxrepeats; i++) {
+			sections.forEach((s) => {
+				let newComponents: ComponentType[] = s.components.map((comp) => {
+					return {
+						...comp,
+						id: comp.id ? `${comp.id}.${i}` : undefined
+					};
+				});
+				newSections.push({ ...s, instanceid: i, components: newComponents });
+			});
+		}
+		return newSections;
+	}
+
+	function updateSummaryInstance(summary: string, instanceid: number) {
+		const re = new RegExp(/\{\{\s*(\w|\.)*\s*\}\}/gi);
+		// @ts-ignore
+		function replacer(match, _p1, _p2, _p3, _offset, _string) {
+			const result = `{{${match.substring(2, match.length - 2).trim()}.${instanceid}}}`;
+			return result;
+		}
+		return summary.replace(re, replacer);
+	}
+
+	// Hide/show functionality
+	let currentInstance: number = 0;
+	let totalInstances: number = 0;
+	// add is simple - just grab the next id if we've not reached max instances
+	function add() {
+		if (currentInstance < repeatinggroup.maxrepeats) {
+			totalInstances++;
+			currentInstance = totalInstances;
+		}
+	}
+	// edit is simple - just toggle the selected instance into view
+	function edit(instance: number) {
+		if (instance <= repeatinggroup.maxrepeats) currentInstance = instance;
+	}
+	// remove is more complicated
+	// if latest instance, just delete from value/displayValue/validation store and return to summary view
+	// if not, we need to rejig all the store values to avoid sparse population, 2 becomes 1, 3 becomes 2 etc
+	function remove(instanceid: number) {
+		for (var i = instanceid; i <= repeatinggroup.maxrepeats; i++) {
+			repeatinggroup.sections.forEach((s) =>
+				s.components
+					.filter((c) => !!c.id)
+					.forEach((c) => {
+						valueStore.set(`${c.id}.${i}`, $valueStore[`${c.id}.${i + 1}`]);
+						displayValueStore.set(`${c.id}.${i}`, $valueStore[`${c.id}.${i + 1}`]);
+						validationStore.set(`${c.id}.${i}`, $valueStore[`${c.id}.${i + 1}`]);
+					})
+			);
+		}
+		currentInstance = 0; // jump back to summary view
+		totalInstances = totalInstances - 1;
+	}
 </script>
 
 <section class="repeat-summary">
-{#if currentInstance == 0}
-    {#each Array(totalInstances) as _, idx}
+	{#if currentInstance == 0}
+		{#each Array(totalInstances) as _, idx}
+			<DisplayBlock
+				component={{
+					...repeatinggroup,
+					type: 'Displayblock',
+					content: Array.isArray(repeatinggroup.summarycontent)
+						? repeatinggroup.summarycontent.map((c) =>
+								parseMarkdown(replaceTokens(updateSummaryInstance(c, idx + 1), $displayValueStore))
+						  )
+						: parseMarkdown(
+								replaceTokens(
+									updateSummaryInstance(repeatinggroup.summarycontent, idx + 1),
+									$displayValueStore
+								)
+						  )
+				}}
+			>
+				<svelte:fragment slot="post">
+					<button type="button" on:click={() => edit(idx + 1)}>{repeatinggroup.labeledit}</button>
+					<button type="button" on:click={() => remove(idx + 1)}
+						>{repeatinggroup.labelremove}</button
+					>
+				</svelte:fragment>
+			</DisplayBlock>
+		{/each}
 
-        <DisplayBlock   
-            component={{
-                ...repeatinggroup, 
-                type: "Displayblock",
-                content: Array.isArray(repeatinggroup.summarycontent) 
-                    ? repeatinggroup.summarycontent.map(c => parseMarkdown(replaceTokens(updateSummaryInstance(c, idx+1), $displayValueStore)))
-                    : parseMarkdown(replaceTokens(updateSummaryInstance(repeatinggroup.summarycontent, idx+1), $displayValueStore))
-            }}>
-            <svelte:fragment slot="post">
-                <button type="button" on:click="{() => edit(idx+1)}">{repeatinggroup.labeledit}</button>
-                <button type="button" on:click="{() => remove(idx+1)}">{repeatinggroup.labelremove}</button>
-            </svelte:fragment>
-        </DisplayBlock>
-
-    {/each}
-
-    {#if totalInstances < repeatinggroup.maxrepeats}
-        <button type="button" on:click="{add}">{repeatinggroup.labeladd}</button>
-    {/if}
-{/if}
+		{#if totalInstances < repeatinggroup.maxrepeats}
+			<button type="button" on:click={add}>{repeatinggroup.labeladd}</button>
+		{/if}
+	{/if}
 </section>
 
 {#each sections as s}
-    {#if s.instanceid == currentInstance }
-        <Section section={s}/>
-    {/if}
+	{#if s.instanceid == currentInstance}
+		<Section section={s} />
+	{/if}
 {/each}
 <!-- TODO: save might need to be part of section, the key thing is setting current back to 0 for display -->
-{#if currentInstance > 0 }
-    <button type="button" on:click="{() => currentInstance = 0}">Save</button>
+{#if currentInstance > 0}
+	<button type="button" on:click={() => (currentInstance = 0)}>Save</button>
 {/if}
 
 <!-- Keep styles aligned to Section component -->
 <style>
-    section {
-        border: var(--section-border);
-    }
+	section {
+		border: var(--section-border);
+	}
 </style>

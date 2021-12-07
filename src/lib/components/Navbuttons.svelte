@@ -1,84 +1,98 @@
 <script lang="ts">
-    import type { JourneyType, NavigationOptionsType } from '$lib/types/journey'
-    import { DISABLEVALIDATION } from '$lib/env'
-    import { getContext } from 'svelte';
-    import { goto } from '$app/navigation'
-    import { nextPageUrl, prevPageUrl } from '$lib/utils/navigation'
-    import { pageValid } from '$lib/utils/validators'
-    import { validationStore } from '$lib/stores/validationstore'
-    import { valueStore } from '$lib/stores/valuestore'
+	import type { JourneyType, NavigationOptionsType } from '$lib/types/journey';
+	import { DISABLEVALIDATION } from '$lib/env';
+	import { getContext } from 'svelte';
+	import { goto } from '$app/navigation';
+	import { nextPageUrl, prevPageUrl } from '$lib/utils/navigation';
+	import { pageValid } from '$lib/utils/validators';
+	import { validationStore } from '$lib/stores/validationstore';
+	import { valueStore } from '$lib/stores/valuestore';
 
-    export let nav: NavigationOptionsType
-    export let pageurl: string
-    export let sectionid: string
+	export let nav: NavigationOptionsType;
+	export let pageurl: string;
+	export let sectionid: string;
 
-    const journey: JourneyType = getContext("journey");
+	const journey: JourneyType = getContext('journey');
 
-    function backPage() {
-        console.log ("Navigating to previous page");
-        goto(prevPageUrl(journey, pageurl))
-    }
-    function nextPage() {
-        if (DISABLEVALIDATION == 'Y') {
-            console.log('Validation disabled, redirecting to next page')
-            goto(nextPageUrl(journey, pageurl));
-        }
-        else if (pageValid(journey.pages.find(p => p.url == pageurl), $valueStore, $validationStore)) {
-            console.log ("Page valid, redirecting to next page");
-            goto(nextPageUrl(journey, pageurl));
-        }
-        else {
-            console.log("Page invalid, correct before trying again");
-        }
-    }
+	function backPage() {
+		console.log('Navigating to previous page');
+		goto(prevPageUrl(journey, pageurl));
+	}
+	function nextPage() {
+		if (DISABLEVALIDATION == 'Y') {
+			console.log('Validation disabled, redirecting to next page');
+			goto(nextPageUrl(journey, pageurl));
+		} else if (
+			pageValid(
+				journey.pages.find((p) => p.url == pageurl),
+				$valueStore,
+				$validationStore
+			)
+		) {
+			console.log('Page valid, redirecting to next page');
+			goto(nextPageUrl(journey, pageurl));
+		} else {
+			console.log('Page invalid, correct before trying again');
+		}
+	}
 </script>
 
-
 <nav class="button-navigation">
-    {#if nav?.showback ?? true}
-        {#if !!pageurl}
-            <button type="button" class="page back" on:click={backPage}>{nav?.backlabel ?? 'Back'}</button>
-        {:else if !!sectionid}
-            <button type="button" class="section back" on:click={() => {console.log("not yet implemented section navigation")}}>{nav?.backlabel ?? 'Back'}</button>
-        {/if}
-    {/if}
-    <span class="spacer"></span>
-    {#if nav?.shownext ?? true}
-        {#if !!pageurl}
-            <button type="button" class="page next" on:click={nextPage}>{nav?.nextlabel ?? 'Next'}</button>
-        {:else if !!sectionid}
-            <button type="button" class="section next" on:click={() => {console.log("not yet implemented section navigation")}}>{nav?.nextlabel ?? 'Next'}</button>
-        {/if}
-    {/if}
+	{#if nav?.showback ?? true}
+		{#if !!pageurl}
+			<button type="button" class="page back" on:click={backPage}>{nav?.backlabel ?? 'Back'}</button
+			>
+		{:else if !!sectionid}
+			<button
+				type="button"
+				class="section back"
+				on:click={() => {
+					console.log('not yet implemented section navigation');
+				}}>{nav?.backlabel ?? 'Back'}</button
+			>
+		{/if}
+	{/if}
+	<span class="spacer" />
+	{#if nav?.shownext ?? true}
+		{#if !!pageurl}
+			<button type="button" class="page next" on:click={nextPage}>{nav?.nextlabel ?? 'Next'}</button
+			>
+		{:else if !!sectionid}
+			<button
+				type="button"
+				class="section next"
+				on:click={() => {
+					console.log('not yet implemented section navigation');
+				}}>{nav?.nextlabel ?? 'Next'}</button
+			>
+		{/if}
+	{/if}
 </nav>
 
-
 <style>
-
-.button-navigation {
-    width: 100%;
-    padding: 0;
-    margin: auto;
-    display: flex;
-    align-content: stretch;
-}
-.spacer {
-    flex-grow: 10;
-}
-button {
-    flex-grow: 1;
-}
-button.page {
-    padding: var(--page-btn-padding);
-    color: var(--page-btn-txt);
-    background-color: var(--page-btn-bg);
-    font-weight: var(--page-btn-font-weight);
-}
-button.section {
-    padding: var(--section-btn-padding);
-    color: var(--section-btn-txt);
-    background-color: var(--section-btn-bg);
-    font-weight: var(--section-btn-font-weight);
-}
-
+	.button-navigation {
+		width: 100%;
+		padding: 0;
+		margin: auto;
+		display: flex;
+		align-content: stretch;
+	}
+	.spacer {
+		flex-grow: 10;
+	}
+	button {
+		flex-grow: 1;
+	}
+	button.page {
+		padding: var(--page-btn-padding);
+		color: var(--page-btn-txt);
+		background-color: var(--page-btn-bg);
+		font-weight: var(--page-btn-font-weight);
+	}
+	button.section {
+		padding: var(--section-btn-padding);
+		color: var(--section-btn-txt);
+		background-color: var(--section-btn-bg);
+		font-weight: var(--section-btn-font-weight);
+	}
 </style>

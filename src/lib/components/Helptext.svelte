@@ -1,28 +1,25 @@
 <script>
-    let hidden = true;
+	let hidden = true;
 
-    function toggle(event) {
-        hidden = !hidden;
-    }
+	function toggle(event) {
+		hidden = !hidden;
+	}
 </script>
 
-
-<button type="button" on:click="{toggle}">
-    <slot name="button">help</slot>
+<button type="button" on:click={toggle}>
+	<slot name="button">help</slot>
 </button>
-<div class="help {hidden?'hidden':''}">
-    <slot></slot>
+<div class="help {hidden ? 'hidden' : ''}">
+	<slot />
 </div>
 
-
 <style>
-.help {
-    background-color: var(--help-bg);
-    color: var(--help-txt);
-    border: var(--help-border);
-}
-.help.hidden {
-    display: none;
-}
-
+	.help {
+		background-color: var(--help-bg);
+		color: var(--help-txt);
+		border: var(--help-border);
+	}
+	.help.hidden {
+		display: none;
+	}
 </style>
