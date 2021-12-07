@@ -1,4 +1,7 @@
 import type { VehicleType } from '$lib/types/vehicle';
+import { displayValueStore } from '$lib/stores/displayvaluestore';
+import { goto } from '$app/navigation';
+import { sessionStorageStore } from '$lib/stores/sessionstoragestore';
 import { validationStore } from '$lib/stores/validationstore';
 import { valueStore } from '$lib/stores/valuestore';
 
@@ -11,23 +14,25 @@ export let actions = {
 		);
 		valueUnsubscriber();
 	},
-	vehicleregnum: lookupVehicle
+	vehicleregnum: lookupVehicle,
+	'page-outcomeid': gotoPaymentGateway, // TODO: trigger this from page navigation button
+	sessionstoretestvalue: gotoPaymentGateway // TODO: remove when above works
 };
 
 async function lookupVehicle() {
-	console.log('lookupVehicle()');
+	console.debug('lookupVehicle()');
 	let values;
 	let vehicle: VehicleType;
-	const inputUnsubscriber = valueStore.subscribe((value) => (values = value));
+	const valueUnsubscriber = valueStore.subscribe((value) => (values = value));
 
 	if (!!values['vehicleregnum']) {
-		console.log('lookup vehicle by regnum');
+		console.debug('lookup vehicle by regnum');
 		await fetch(`/api/vehicle/` + values['vehicleregnum'])
 			.then((resp) => resp.json())
 			.then((data) => (vehicle = data));
 	}
 	if (!!vehicle?.abicode) {
-		console.log('vehicle found');
+		console.debug('vehicle found');
 		valueStore.set('vehiclemake', vehicle.make ?? ''); // TODO: work out how to standardise case to work with backend provider mapping (suggest UI only ever sees lowercase codes/keys)
 		valueStore.set('vehiclemanufactureyear', vehicle.year?.toString() ?? '');
 		valueStore.set('vehicleenginesize', vehicle.enginecc ?? '');
@@ -36,7 +41,7 @@ async function lookupVehicle() {
 		valueStore.set('vehicledoorcount', vehicle.doors?.toString() ?? '');
 		valueStore.set('vehicleseatbeltcount', vehicle.seatbelts?.toString() ?? '');
 	} else {
-		console.log('reset vehicle fields');
+		console.debug('reset vehicle fields');
 		valueStore.set('vehiclemake', '');
 		valueStore.set('vehiclemanufactureyear', '');
 		valueStore.set('vehicleenginesize', '');
@@ -46,7 +51,7 @@ async function lookupVehicle() {
 		valueStore.set('vehicleseatbeltcount', '');
 	}
 	// avoid memory leaks
-	inputUnsubscriber();
+	valueUnsubscriber();
 }
 const mapFuel = {
 	D: 'FuelDiesel',
@@ -57,3 +62,37 @@ const mapTransmission = {
 	M: 'TransMan',
 	A: 'TransAuto'
 };
+
+async function gotoPaymentGateway() {
+	console.debug('gotoPaymentGateway()');
+	const sessionId = 'demosessionid';
+	const returnpath = 'paymentprocessing';
+	let session: object;
+	let values: object;
+	let displayValues: object;
+	let validations: object;
+	const valueUnsubscriber = valueStore.subscribe((val) => (values = val));
+	const displayValueUnsubscriber = displayValueStore.subscribe((val) => (displayValues = val));
+	const validationUnsubscriber = validationStore.subscribe((val) => (validations = val));
+
+	const persistentValues = sessionStorageStore(`values-${sessionId}`, {});
+	const persistentDisplayValues = sessionStorageStore(`display-${sessionId}`, {});
+	const persistentValidations = sessionStorageStore(`valid-${sessionId}`, {});
+
+	// copy the in-memory store data into a sessionStorage object
+	// TODO: encrypt before storing
+	persistentValues.set(values);
+	persistentDisplayValues.set(displayValues);
+	persistentValidations.set(validations);
+
+	// avoid memory leaks
+	valueUnsubscriber();
+	displayValueUnsubscriber();
+	validationUnsubscriber();
+
+	// Jump out of the journey on to a separate website which will redirect us back when done with the same sessionId
+	// TODO: parameterise this centrally (env)
+	goto(
+		`https://kind-grass-07eb6d703.azurestaticapps.net?sessionid=${sessionId}&returnpath=${returnpath}}`
+	);
+}

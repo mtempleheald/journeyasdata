@@ -14,5 +14,4 @@
 	export let pageurl: string;
 </script>
 
-
 <Journey currentpage={pageurl} />

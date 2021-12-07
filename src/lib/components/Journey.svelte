@@ -7,7 +7,6 @@
 	const journey: JourneyType = getContext('journey');
 </script>
 
-
 {#each journey.pages as p}
 	{#if p.url == currentpage}
 		<Page page={p} />
