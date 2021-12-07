@@ -9,13 +9,13 @@ import { writable } from 'svelte/store';
 */
 
 function store() {
-    const { subscribe, set, update} = writable({});
+	const { subscribe, set, update } = writable({});
 
-    return {
-        subscribe,
-        load: (store) => set(store),
-        reset: () => set({})
-    };
+	return {
+		subscribe,
+		load: (store) => set(store),
+		reset: () => set({})
+	};
 }
 
 export const actionStore = store();

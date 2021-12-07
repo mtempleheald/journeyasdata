@@ -7,19 +7,19 @@ import { writable } from 'svelte/store';
 */
 
 function setValue(inputs, key: string, value: boolean) {
-    // create new entry or overwrite regardless of what was set
-    inputs[key] = value;
-    return inputs;
+	// create new entry or overwrite regardless of what was set
+	inputs[key] = value;
+	return inputs;
 }
 
 function store() {
-    const { subscribe, set, update} = writable({});
+	const { subscribe, set, update } = writable({});
 
-    return {
-        subscribe,
-        set: (key: string, value: boolean) => update(store => setValue(store, key, value)),
-        reset: () => set({})
-    };
+	return {
+		subscribe,
+		set: (key: string, value: boolean) => update((store) => setValue(store, key, value)),
+		reset: () => set({})
+	};
 }
 
 export const validationStore = store();

@@ -15,10 +15,10 @@
 		};
 	}
 </script>
+
 <script>
 	export let user;
 </script>
-
 
 <p>
 	Congratulations on your privileged access {user?.username}

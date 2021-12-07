@@ -1,8 +1,8 @@
 <script>
-    import { post } from '$lib/utils/api'
-	import { session } from '$app/stores'
+	import { post } from '$lib/utils/api';
+	import { session } from '$app/stores';
 
-    async function logout() {
+	async function logout() {
 		await post(`api/auth/logout`);
 
 		// this will trigger a redirect, because it
@@ -11,37 +11,36 @@
 	}
 </script>
 
-
 <header>
-    <h1>Questionset Administration</h1>
-    {#if $session.user}
-        <p>Logged in as {$session?.user?.username}</p>
-        <button on:click={logout}>Logout</button>
-    {/if}
+	<h1>Questionset Administration</h1>
+	{#if $session.user}
+		<p>Logged in as {$session?.user?.username}</p>
+		<button on:click={logout}>Logout</button>
+	{/if}
 </header>
 
-<slot></slot>
-
+<slot />
 
 <style>
-    :global(body) {
-        margin: 0;
-    }
-    header {
-        width: 100%;
-        background-color: lightgrey;
-        margin: 0;
-        padding: 0;
-        display: flex;
-    }
-    header > * {
-        flex-grow: 1;
-    }
-    h1, p {
-        margin: 0;
-        padding: 1rem;
-    }
-    button {
-        margin: 1rem;
-    }
+	:global(body) {
+		margin: 0;
+	}
+	header {
+		width: 100%;
+		background-color: lightgrey;
+		margin: 0;
+		padding: 0;
+		display: flex;
+	}
+	header > * {
+		flex-grow: 1;
+	}
+	h1,
+	p {
+		margin: 0;
+		padding: 1rem;
+	}
+	button {
+		margin: 1rem;
+	}
 </style>

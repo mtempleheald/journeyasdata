@@ -2,7 +2,7 @@
   This library is designed to provide a wrapper for multiple APIs that removes the authentication cross-cutting concern
   TODO: Consolidate with /utils/api.ts
 */
-import { APIHOSTNAME } from '$lib/env'
+import { APIHOSTNAME } from '$lib/env';
 
 async function send({ method, path, data, token }) {
 	const opts = { method, headers: {} };
