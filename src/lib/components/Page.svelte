@@ -1,16 +1,62 @@
 <script lang="ts">
 	import type { PageType, JourneyType } from '$lib/types/journey';
 	import { getContext } from 'svelte';
+	import { goto } from '$app/navigation';
+	import { page as pageStore } from '$app/stores';
+	import { DISABLEVALIDATION } from '$lib/env';
+	import { actionStore } from '$lib/stores/actionstore';
+	import { validationStore } from '$lib/stores/validationstore';
+	import { valueStore } from '$lib/stores/valuestore';
+	import { nextPageUrl, prevPageUrl } from '$lib/utils/navigation';
+	import { pageValid } from '$lib/utils/validators';
 	import Cookiepreference from '$lib/components/Cookiepreference.svelte';
-	import DisplayBlock from './DisplayBlock.svelte';
+	import DisplayBlock from '$lib/components//DisplayBlock.svelte';
 	import Navbuttons from '$lib/components/Navbuttons.svelte';
 	import Progressbar from '$lib/components/Progressbar.svelte';
-	import Repeatinggroup from './Repeatinggroup.svelte';
-	import Section from './Section.svelte';
+	import Repeatinggroup from '$lib/components/Repeatinggroup.svelte';
+	import Section from '$lib/components/Section.svelte';
 
 	export let page: PageType;
 
 	const journey: JourneyType = getContext('journey');
+
+	$: {
+		// run bespoke action tied to page load
+		let f = $actionStore[`pageload-${page.id}`];
+		if (typeof f === 'function') f();
+	}
+
+	function backPage() {
+		// Run any defined bespoke actions
+		let f = $actionStore[`pageback-${page.id}`];
+		if (typeof f === 'function') f();
+
+		// Run the default action
+		console.debug('Navigating to previous page');
+		goto(prevPageUrl(journey, page.url));
+	}
+	function nextPage() {
+		if (
+			DISABLEVALIDATION != 'Y' &&
+			!pageValid(
+				journey.pages.find((p) => p.url == page.url),
+				$valueStore,
+				$validationStore
+			)
+		) {
+			console.debug('Page invalid, correct before trying again');
+			// TODO: Show something to the user, preferably jump to first invalid component
+			return;
+		}
+
+		// Run any defined bespoke actions (may redirect, meaning that usual navigation is overwritten)
+		let f = $actionStore[`pagenext-${page.id}`];
+		if (typeof f === 'function') f();
+
+		// Run the default action
+		console.debug('Navigating to next page');
+		goto(nextPageUrl(journey, page.url));
+	}
 </script>
 
 <Cookiepreference cookiepreferences={journey.cookiepreferences} />
@@ -35,6 +81,7 @@
 {/if}
 
 <main>
+
 	<!-- require a form element for accessibility -->
 	<form on:submit|preventDefault={() => {}}>
 		{#if (page.displaytitle ?? false) && !!page.title}
@@ -55,7 +102,20 @@
 			{/if}
 		{/each}
 
-		<Navbuttons nav={page.navigation} pageurl={page.url} sectionid="" />
+		<nav class="button-navigation">
+			{#if page.navigation?.showback ?? true}
+				<button type="button" class="page back" on:click={backPage}
+					>{page.navigation?.backlabel ?? 'Back'}</button
+				>
+			{/if}
+			<span class="spacer" />
+			{#if page.navigation?.shownext ?? true}
+				<button type="button" class="page next" on:click={nextPage}
+					>{page.navigation?.nextlabel ?? 'Next'}</button
+				>
+			{/if}
+		</nav>
+
 	</form>
 </main>
 
@@ -115,5 +175,25 @@
 		max-width: var(--page-ftr-width);
 		padding: var(--page-ftr-padding);
 		border: var(--page-ftr-border);
+	}
+
+	nav {
+		width: 100%;
+		padding: 0;
+		margin: auto;
+		display: flex;
+		align-content: stretch;
+	}
+	.spacer {
+		flex-grow: 10;
+	}
+	button {
+		flex-grow: 1;
+	}
+	button {
+		padding: var(--page-btn-padding);
+		color: var(--page-btn-txt);
+		background-color: var(--page-btn-bg);
+		font-weight: var(--page-btn-font-weight);
 	}
 </style>

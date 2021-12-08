@@ -9,11 +9,13 @@ import { writable } from 'svelte/store';
   On return extract this object and regenerate individual in-memory stores.
 */
 
+// TODO: decrypt before returning
 function getValue(key: string): object {
 	const sessionValue = sessionStorage.getItem(key);
 	if (!sessionValue) return {};
 	return JSON.parse(sessionValue);
 }
+// TODO: encrypt before storing
 function setValue(key: string, value: object): void {
 	sessionStorage.setItem(key, JSON.stringify(value));
 }

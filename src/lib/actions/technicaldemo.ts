@@ -15,8 +15,8 @@ export let actions = {
 		valueUnsubscriber();
 	},
 	vehicleregnum: lookupVehicle,
-	'page-outcomeid': gotoPaymentGateway, // TODO: trigger this from page navigation button
-	sessionstoretestvalue: gotoPaymentGateway // TODO: remove when above works
+	'pagenext-outcome': gotoPaymentGateway,
+	'pageload-paymentprocessing': returnFromPaymentGateway
 };
 
 async function lookupVehicle() {
@@ -67,7 +67,6 @@ async function gotoPaymentGateway() {
 	console.debug('gotoPaymentGateway()');
 	const sessionId = 'demosessionid';
 	const returnpath = 'paymentprocessing';
-	let session: object;
 	let values: object;
 	let displayValues: object;
 	let validations: object;
@@ -80,7 +79,6 @@ async function gotoPaymentGateway() {
 	const persistentValidations = sessionStorageStore(`valid-${sessionId}`, {});
 
 	// copy the in-memory store data into a sessionStorage object
-	// TODO: encrypt before storing
 	persistentValues.set(values);
 	persistentDisplayValues.set(displayValues);
 	persistentValidations.set(validations);
@@ -93,6 +91,16 @@ async function gotoPaymentGateway() {
 	// Jump out of the journey on to a separate website which will redirect us back when done with the same sessionId
 	// TODO: parameterise this centrally (env)
 	goto(
-		`https://kind-grass-07eb6d703.azurestaticapps.net?sessionid=${sessionId}&returnpath=${returnpath}}`
+		`https://kind-grass-07eb6d703.azurestaticapps.net?sessionid=${sessionId}&returnpath=${returnpath}`
 	);
+}
+
+async function returnFromPaymentGateway() {
+	console.debug('returnFromPaymentGateway()');
+	const sessionId = 'demosessionid';
+	let session: object;
+	let values: object;
+	let displayValues: object;
+	let validations: object;
+	
 }

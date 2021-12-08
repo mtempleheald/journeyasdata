@@ -13,6 +13,7 @@ export type NavigationOptionsType = {
 	nextlabel?: string; // default "Next"
 };
 export type PageType = {
+	id?: string; // exclusively for triggering bespoke actions, dev-maintained
 	url: string;
 	title: string;
 	displaytitle?: boolean;
@@ -24,7 +25,7 @@ export type PageType = {
 // A repeating group has no presentation elements of its own, it simply wraps one or more sections
 export type RepeatingGroupType = {
 	type: 'repeatinggroup';
-	id?: string;
+	id?: string; // exclusively for triggering bespoke actions, dev-maintained
 	sections: SectionType[];
 	summarycontent: string | string[];
 	minrepeats?: number;
@@ -35,7 +36,7 @@ export type RepeatingGroupType = {
 };
 export type SectionType = {
 	type?: 'section'; // section is default if excluded
-	id?: string;
+	id?: string; // exclusively for triggering bespoke actions, dev-maintained
 	instanceid?: number; // used only when section is contained within a repeating group
 	title?: string;
 	logo?: ImageType;
@@ -60,17 +61,6 @@ export type ValueType = {
 	image?: ImageType; // TODO: Consider replacing this with an identifier for an image rather than a url - let styling handle how this is included (e.g. font icons)
 	textLocation?: string; // TODO: Consider removing this, it is not intuitive and belongs in styling
 };
-
-// Content is stored as a string, parsed as markdown, enriched with dynamic content
-// TODO: Build up fluent API to improve readability by removing nested function calls e.g. markdownContent.injectDynamicContent().toHtml().sanitise() 
-// TypeScript example https://medium.com/@bensammons/building-a-fluent-interface-with-typescript-using-generics-in-typescript-3-4d206f00dba5
-// VanillaJS example https://medium.com/simply-web-development/how-to-create-fluent-interfaces-the-easy-way-with-vanilla-javascript-2a61b6558f01
-class ContentBuilder<
-	RawMarkdown extends string = never, // as stored in journey.json
-	DynamicContent extends string = never, // processed to inject values from session based on token replacement
-	Html extends string = never, // After markdown parsing
-	Sanitised extends string = never // Sanitise the rendered html (not essential given the content is managed internally)
->{}
 
 // Use "type" property to select from this discriminated union
 export type ComponentType =
