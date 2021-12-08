@@ -25,10 +25,10 @@ function removeValue(key: string): void {
 
 // Use the svelte writable store as a base
 // Example: https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Client-side_JavaScript_frameworks/Svelte_stores#implementing_our_custom_todos_store
-export const sessionStorageStore = (key: string, initial: any) => {
+export const sessionStorageStore = (key: string) => {
 	// initialise sessionStorage
 	if (sessionStorage.getItem(key) === null) {
-		setValue(key, initial);
+		setValue(key, {});
 	}
 
 	// create the store
@@ -36,7 +36,7 @@ export const sessionStorageStore = (key: string, initial: any) => {
 
 	return {
 		subscribe,
-		set: (value) => {
+		set: (value: object) => {
 			setValue(key, value);
 			return set(value);
 		},

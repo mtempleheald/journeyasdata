@@ -4,6 +4,7 @@ import { goto } from '$app/navigation';
 import { sessionStorageStore } from '$lib/stores/sessionstoragestore';
 import { validationStore } from '$lib/stores/validationstore';
 import { valueStore } from '$lib/stores/valuestore';
+import { get } from 'svelte/store';
 
 export let actions = {
 	simpleimagebutton: function () {
@@ -74,9 +75,9 @@ async function gotoPaymentGateway() {
 	const displayValueUnsubscriber = displayValueStore.subscribe((val) => (displayValues = val));
 	const validationUnsubscriber = validationStore.subscribe((val) => (validations = val));
 
-	const persistentValues = sessionStorageStore(`values-${sessionId}`, {});
-	const persistentDisplayValues = sessionStorageStore(`display-${sessionId}`, {});
-	const persistentValidations = sessionStorageStore(`valid-${sessionId}`, {});
+	const persistentValues = sessionStorageStore(`values-${sessionId}`);
+	const persistentDisplayValues = sessionStorageStore(`display-${sessionId}`);
+	const persistentValidations = sessionStorageStore(`valid-${sessionId}`);
 
 	// copy the in-memory store data into a sessionStorage object
 	persistentValues.set(values);
@@ -97,10 +98,16 @@ async function gotoPaymentGateway() {
 
 async function returnFromPaymentGateway() {
 	console.debug('returnFromPaymentGateway()');
+	// TODO: consider adding a unique sessionid, more relevant for localStorage shared across tabs but may be required
 	const sessionId = 'demosessionid';
-	let session: object;
-	let values: object;
-	let displayValues: object;
-	let validations: object;
-	
+
+	// get the current value from sessionStorage (since we don't have any in-memory data now)
+	let values: object = get(sessionStorageStore(`values-${sessionId}`))
+	let displayValues: object = get(sessionStorageStore(`display-${sessionId}`));
+	let validations: object = get(sessionStorageStore(`valid-${sessionId}`));
+
+	// Regenerate the in-memory stores with values from sessionStorage
+	valueStore.reset(values);
+	displayValueStore.reset(displayValues);
+	validationStore.reset(validations);
 }

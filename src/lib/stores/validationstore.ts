@@ -18,7 +18,7 @@ function store() {
 	return {
 		subscribe,
 		set: (key: string, value: boolean) => update((store) => setValue(store, key, value)),
-		reset: () => set({})
+		reset: (value: object) => set(value)
 	};
 }
 

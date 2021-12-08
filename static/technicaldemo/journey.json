@@ -634,6 +634,7 @@
 		},
 		{
 			"url": "outcome",
+			"id": "outcome",
 			"title": "Outcome",
 			"displayprogress": false,
 			"sections": [
@@ -655,22 +656,20 @@
 						{
 							"id": "sessionstoretestvalue",
 							"type": "Text",
-							"label": "Pre-payment test value capture"
-						},
-						{
-							"type": "Displayblock",
-							"content": "[Payment Gateway](https://kind-grass-07eb6d703.azurestaticapps.net?sessionid=TESTSESSIONID123&returnpath=paymentprocessing)"
+							"label": "Pre-payment test value"
 						}
 					]
 				}
 			],
 			"navigation": {
-				"shownext": false,
+				"shownext": true,
+				"nextlabel": "Go to payment gateway",
 				"backlabel": "Go back to fix something"
 			}
 		},
 		{
 			"url": "paymentprocessing",
+			"id": "paymentprocessing",
 			"title": "Payment Processing",
 			"displayprogress": false,
 			"sections": [
@@ -681,9 +680,18 @@
 							"type": "Displayblock",
 							"content": "Redirected here from payment gateway, you set this pre-payment test value: {{ sessionstoretestvalue }}"
 						}
-					]
+					],
+					"navigation": {
+						"shownext": false,
+						"showback": false
+					}
 				}
-			]
+			],
+			"navigation": {
+				"includeinjourney": false,
+				"shownext": false,
+				"showback": false
+			}
 		}
 	],
 	"cookiepreferences": {
