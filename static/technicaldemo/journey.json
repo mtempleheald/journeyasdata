@@ -692,6 +692,63 @@
 				"shownext": false,
 				"showback": false
 			}
+		},
+		{
+			"url": "payment-error",
+			"title": "Payment Error",
+			"displayprogress": false,
+			"sections": [
+				{
+					"title": "Payment Error",
+					"components": [
+						{
+							"type": "Displayblock",
+							"content": "An error was encountered during payment, payment has not been taken."
+						}
+					]
+				}
+			],
+			"navigation": {
+				"includeinjourney": false
+			}
+		},
+		{
+			"url": "technical-error",
+			"title": "Technical Error",
+			"displayprogress": false,
+			"sections": [
+				{
+					"title": "Technical Error",
+					"components": [
+						{
+							"type": "Displayblock",
+							"content": "A technical error was encountered."
+						}
+					]
+				}
+			],
+			"navigation": {
+				"includeinjourney": false
+			}
+		},
+		{
+			"url": "confirmation",
+			"title": "Confirmation",
+			"displayprogress": false,
+			"sections": [
+				{
+					"title": "Confirmation",
+					"components": [
+						{
+							"type": "Displayblock",
+							"content": "We can confirm that you've purchased the service we offered, thanks for that.<br/> Here's what you entered on the textbox on page 1 {{ 1 }}."
+						}
+					]
+				}
+			],
+			"navigation": {
+				"includeinjourney": false
+			}
 		}
 	],
 	"cookiepreferences": {

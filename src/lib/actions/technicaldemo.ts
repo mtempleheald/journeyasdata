@@ -110,4 +110,21 @@ async function returnFromPaymentGateway() {
 	valueStore.reset(values);
 	displayValueStore.reset(displayValues);
 	validationStore.reset(validations);
+
+	// redirect based on the payment status provided by the payment gateway
+	const queryParams = new URLSearchParams(window.location.search);
+	const paymentstatus = queryParams.get('paymentstatus');
+	switch (paymentstatus) {
+		case 'CANCELLED':
+			goto('/outcome'); // back to just before payment, let the user decide what to do next
+			break;
+		case 'COMPLETED':
+			goto('/confirmation'); // all successful, have paid, we just need to confirm details to the user
+			break;
+		case 'ERROR':
+			goto('/payment-error'); // failed to take payment, tell the user this so that they can trust us
+			break;
+		default:
+			goto('technical-error'); // We haven't handled all routes, best assume something went wrong here, fix and redeploy
+	}
 }
