@@ -9,8 +9,8 @@ export async function get({ query }) {
 	const house = query.get('house');
 
 	const result: AddressType = {
-		postcode: 'MK10 0BZ',
-		property: '123',
+		postcode: postcode,
+		property: house,
 		addressline1: 'Fake Street',
 		addressline2: 'Springfield',
 		addressline3: '',

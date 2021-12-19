@@ -5,7 +5,7 @@ import type { JourneyType } from '$lib/types/journey';
  * @param journey           Journey metadata from journey.json used to establish validation criteria
  * @returns                 boolean
  */
-export function componentsHaveUniqueIdentifiers(journey: JourneyType): boolean {
+export function componentsHaveUniqueIdentifiers(_journey: JourneyType): boolean {
 	// TODO: map journey to single value array containing IDs,
 	// check for presence before inserting, if already present we have a problem
 	// don't worry about repeating groups, if the ids are unique within then they will be unique afterwards

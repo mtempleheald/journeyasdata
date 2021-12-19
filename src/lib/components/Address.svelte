@@ -3,9 +3,6 @@
 	import type { AddressComponent } from '$lib/types/journey';
 	import type { AddressType } from '$lib/types/address';
 	import { createEventDispatcher } from 'svelte';
-	import { displayValueStore } from '$lib/stores/displayvaluestore';
-	import { parseMarkdown } from '$lib/utils/markdown';
-	import { replaceTokens } from '$lib/utils/replacetokens';
 	import { validationStore } from '$lib/stores/validationstore';
 	import { valueStore } from '$lib/stores/valuestore';
 	import InputTextbox from '$lib/components/InputTextbox.svelte';
@@ -15,7 +12,7 @@
 	export let component: AddressComponent;
 
 	// internal properties to support component logic
-	let active: string;
+	let active = '';
 	let addresses: AddressType[];
 	let address: AddressType | null;
 	let propertyLov: any[] = [];
@@ -28,19 +25,19 @@
 	function leave() {
 		active = '';
 	}
-	async function lookupAddresses(postcode) {
+	async function lookupAddresses(postcode: string) {
 		await fetch(`/api/addresses?postcode=${postcode}`)
 			.then((resp) => resp.json())
 			.then((data) => {
 				addresses = data;
-				propertyLov = data.map((a) => ({
+				propertyLov = data.map((a: any) => ({
 					value: a.property,
 					display: a.property
 				}));
 			})
 			.finally(() => console.debug('lookupAddresses propertyLov', propertyLov));
 	}
-	async function postcodeTouched(event) {
+	async function postcodeTouched(event: any) {
 		console.debug(
 			`{key: "${event.detail.key}", value: "${event.detail.value}", valid: "${event.detail.valid}}"`
 		);
@@ -72,7 +69,7 @@
 			}
 		}
 	}
-	function propertyTouched(event) {
+	function propertyTouched(event: any) {
 		console.debug(
 			`{key: "${event.detail.key}", value: "${event.detail.value}", valid: "${event.detail.valid}}"`
 		);

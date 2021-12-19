@@ -6,7 +6,7 @@ import { writable } from 'svelte/store';
     - value is a boolean, true if the input is valid, false otherwise.  Missing should be assumed invalid.
 */
 
-function setValue(inputs, key: string, value: boolean) {
+function setValue(inputs: object, key: string, value: boolean) {
 	// create new entry or overwrite regardless of what was set
 	inputs[key] = value;
 	return inputs;

@@ -3,7 +3,7 @@
 
 	export let component: DisplayComponent;
 
-	let active;
+	let active = '';
 	function enter() {
 		active = 'active';
 	}

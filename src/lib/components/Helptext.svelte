@@ -1,7 +1,7 @@
-<script>
+<script lang="ts">
 	let hidden = true;
 
-	function toggle(event) {
+	function toggle(_event: any) {
 		hidden = !hidden;
 	}
 </script>

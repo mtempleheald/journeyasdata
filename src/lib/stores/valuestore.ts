@@ -22,7 +22,7 @@ import { writable } from 'svelte/store';
     Example https://github.com/bradphelan/immer.loves.svelte
 */
 
-function setValue(values, key: string, value: string) {
+function setValue(values: object, key: string, value: string) {
 	// create new entry or overwrite regardless of what was set
 	values[key] = value;
 	return values;

@@ -1,52 +1,51 @@
 :root {
-    /* complete colour palette */
-    --lightpink: #f9e5ea;
-    --pink: #e5007d;
-    --darkpink: #b80565;
-    --darkestpink: #a8045c;
-    --lightgreen: #f3f9eb;
-    --green: #8dc63f;
-    --darkgreen: #7fb339;
-    --darkestgreen: #74a234;
-    --offwhite: #fafaf2;
-    --white: #fff;
-    --lightestgrey: #cecece;
-    --lightgrey: #f7f7f7;
-    --grey: #f2f2f2;
-    --darkgrey: #707070;
-    --black: #414141;
-    --red: #d2232a;    
-    --yellow: #f6cf28;
-    /* fonts */
-    --mainfont: ITCAvantGardePro-Md;
-    --infofont: ITCAvantGardePro-Bk;  
+	/* complete colour palette */
+	--lightpink: #f9e5ea;
+	--pink: #e5007d;
+	--darkpink: #b80565;
+	--darkestpink: #a8045c;
+	--lightgreen: #f3f9eb;
+	--green: #8dc63f;
+	--darkgreen: #7fb339;
+	--darkestgreen: #74a234;
+	--offwhite: #fafaf2;
+	--white: #fff;
+	--lightestgrey: #cecece;
+	--lightgrey: #f7f7f7;
+	--grey: #f2f2f2;
+	--darkgrey: #707070;
+	--black: #414141;
+	--red: #d2232a;
+	--yellow: #f6cf28;
+	/* fonts */
+	--mainfont: ITCAvantGardePro-Md;
+	--infofont: ITCAvantGardePro-Bk;
 
+	/* Brand-Component style mapping */
+	--page-hdr-bg: var(--white);
+	--page-hdr-txt: var(--green);
+	--page-hdr-border: none;
+	--page-hdr-width: 1000px;
+	--page-hdr-head-height: 50px;
+	--page-hdr-head-pad: 0 1rem;
+	--page-logo-height: 50px;
 
-    /* Brand-Component style mapping */
-    --page-hdr-bg:               var(--white);
-    --page-hdr-txt:              var(--green);
-    --page-hdr-border:           none;
-    --page-hdr-width:            1000px;
-    --page-hdr-head-height:      50px;
-    --page-hdr-head-pad:         0 1rem;
-    --page-logo-height:          50px;
+	--page-width: 1000px;
+	--page-head-height: 50px;
+	--page-head-pad: 0 1rem;
 
-    --page-width:                1000px;
-    --page-head-height:          50px;
-    --page-head-pad:             0 1rem;
+	--page-ftr-bg: var(--darkgrey);
+	--page-ftr-txt: var(--white);
+	--page-ftr-width: 1000px;
 
-    --page-ftr-bg:               var(--darkgrey);
-    --page-ftr-txt:              var(--white);
-    --page-ftr-width:            1000px;
-
-    --section-hdr-height:        75px;
-    --section-logo-height:       75px;
-    --section-txt:               var(--green);
-    --section-bg:                var(--white);
-    --section-margin:            2rem;
-    --section-hdr-border:        1px solid var(--green);
-    /* exposed properties (don't cross-reference, inherit or pull from above) */             
-    /* --cookie-bg:                 var(--sg-lightgreen);
+	--section-hdr-height: 75px;
+	--section-logo-height: 75px;
+	--section-txt: var(--green);
+	--section-bg: var(--white);
+	--section-margin: 2rem;
+	--section-hdr-border: 1px solid var(--green);
+	/* exposed properties (don't cross-reference, inherit or pull from above) */
+	/* --cookie-bg:                 var(--sg-lightgreen);
     --cookie-txt:                var(--sg-darkgrey);
     --cookie-link:               var(--sg-darkgreen);
     --cookie-button-bg:          var(--sg-darkgreen);
@@ -94,13 +93,13 @@
 
 /* global settings */
 body {
-    background-color: var(--sg-lightgrey);
-    font-family: var(--sg-font);
-    margin: 0;
-    padding: 0;
-    border: 0;
+	background-color: var(--sg-lightgrey);
+	font-family: var(--sg-font);
+	margin: 0;
+	padding: 0;
+	border: 0;
 }
 section {
-    max-width: 1000px;
-    margin: 0.5rem auto;
+	max-width: 1000px;
+	margin: 0.5rem auto;
 }

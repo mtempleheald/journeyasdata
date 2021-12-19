@@ -513,7 +513,11 @@
 					"labeladd": "Add new",
 					"labeledit": "Edit",
 					"labelremove": "Remove",
-					"summarycontent": ["Component 1: {{component1}}", "Component 2: {{ component2 }}"],
+					"summarycontent": [
+						"Repeating summary block",
+						"Component 1: {{component1}}",
+						"Component 2: {{ component2 }}"
+					],
 					"sections": [
 						{
 							"title": "Section 1",

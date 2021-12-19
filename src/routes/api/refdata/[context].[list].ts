@@ -12,6 +12,7 @@ export async function get({ params, query }) {
 	const list = params.list;
 	const filter = query.get('filter'); // used for typeahead functionality
 	const parent = query.get('parent'); // used for cascading list of values
+	console.debug(`GET: /api/refdata/${context}/${list}?filter=${filter}&parent=${parent}`);
 
 	let result: ValueType[];
 

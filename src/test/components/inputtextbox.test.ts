@@ -83,7 +83,7 @@ test.skip('Textbox renders pre-text correctly', () => {
 		type: 'Text',
 		id: 'uniqueidentifier'
 	};
-	const pre = 'Some text';
+	//const pre = 'Some text';
 	const { getByText } = render(InputTextbox, { component: component });
 	expect(getByText('Some text')).toBeInTheDocument();
 });

@@ -21,9 +21,9 @@
 	let user: string;
 	let pass: string;
 	let errors: any;
-	let disabled: boolean = false;
+	let disabled = false;
 
-	async function login(event) {
+	async function login(_event: any) {
 		disabled = true;
 
 		const response = await post('/api/auth/login', { username: user, password: pass });

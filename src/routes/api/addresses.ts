@@ -11,7 +11,7 @@ export async function get({ query }) {
 	return {
 		body: [
 			{
-				postcode: 'MK10 0BZ',
+				postcode: postcode,
 				property: '123',
 				addressline1: 'Fake Street',
 				addressline2: 'Springfield',
@@ -19,7 +19,7 @@ export async function get({ query }) {
 				addressline4: 'Ohia Maud'
 			},
 			{
-				postcode: 'MK10 0BZ',
+				postcode: postcode,
 				property: '456',
 				addressline1: 'Fake Street',
 				addressline2: 'Springfield',
@@ -27,7 +27,7 @@ export async function get({ query }) {
 				addressline4: 'Ohia Maud'
 			},
 			{
-				postcode: 'MK10 0BZ',
+				postcode: postcode,
 				property: '789',
 				addressline1: 'Fake Street',
 				addressline2: 'Springfield',
@@ -35,7 +35,7 @@ export async function get({ query }) {
 				addressline4: 'Ohia Maud'
 			},
 			{
-				postcode: 'MK10 0BZ',
+				postcode: postcode,
 				property: 'The pig sty',
 				addressline1: 'Fake Street',
 				addressline2: 'Springfield',

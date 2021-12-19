@@ -2,7 +2,7 @@
 // This is a secure, httpOnly cookie that can't be manipulated using JavaScript
 // Otherwise return unauthorised response
 
-export function respond(body) {
+export function respond(body: any) {
 	if (body.errors) {
 		return { status: 401, body };
 	}

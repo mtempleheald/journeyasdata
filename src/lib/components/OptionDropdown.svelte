@@ -18,9 +18,9 @@
 
 	// internal properties to support component logic
 	const dispatch = createEventDispatcher();
-	let fallbackError;
+	let fallbackError = 'Please select an option';
 	let invalid = false;
-	let active;
+	let active = '';
 	let effectiveValues: ValueType[]; // overwriting component.values directly triggers an onMount loop
 
 	// component actions
@@ -30,7 +30,7 @@
 	function leave() {
 		active = '';
 	}
-	function act(event) {
+	function act(event: any) {
 		// publish value changes up to parent too
 		dispatch('valueChange', {
 			key: component.id,

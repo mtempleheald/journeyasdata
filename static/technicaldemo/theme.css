@@ -1,121 +1,121 @@
 :root {
-    /* complete colour palette */
-    --black:      #111;
-    --darkgrey:   #333;
-    --lightgrey:  #eee;
-    --pink:       rgba(214,1,18,.2);
-    --red:        #d60112;
-    --white:      #fff;
-    --highlight:    rgb(255, 255, 214);  
+	/* complete colour palette */
+	--black: #111;
+	--darkgrey: #333;
+	--lightgrey: #eee;
+	--pink: rgba(214, 1, 18, 0.2);
+	--red: #d60112;
+	--white: #fff;
+	--highlight: rgb(255, 255, 214);
 
-    /* font family */
-    --font:      "Arial";
+	/* font family */
+	--font: 'Arial';
 
-    /* Brand-Component mappings */
-    --page-width:                1000px;
-    --page-bg:                   var(--white);
-    --page-padding:              0;
+	/* Brand-Component mappings */
+	--page-width: 1000px;
+	--page-bg: var(--white);
+	--page-padding: 0;
 
-    --title-bg:                  var(--darkgrey);
-    --title-txt:                 var(--white);
-    --title-padding:             2rem;
-    --title-border:              0;
-    --title-height:              5rem;
+	--title-bg: var(--darkgrey);
+	--title-txt: var(--white);
+	--title-padding: 2rem;
+	--title-border: 0;
+	--title-height: 5rem;
 
-    --page-hdr-bg:               var(--darkgrey);
-    --page-hdr-txt:              var(--white);
-    --page-hdr-border:           none;
-    --page-hdr-padding:          1rem 2rem;
-    --page-hdr-width:            1000px;
-    --page-hdr-height:           3rem;
+	--page-hdr-bg: var(--darkgrey);
+	--page-hdr-txt: var(--white);
+	--page-hdr-border: none;
+	--page-hdr-padding: 1rem 2rem;
+	--page-hdr-width: 1000px;
+	--page-hdr-height: 3rem;
 
-    --page-ftr-bg:               var(--darkgrey);
-    --page-ftr-txt:              var(--white);
-    --page-ftr-border:           none;
-    --page-ftr-padding:          0;
-    --page-ftr-width:            1000px;
+	--page-ftr-bg: var(--darkgrey);
+	--page-ftr-txt: var(--white);
+	--page-ftr-border: none;
+	--page-ftr-padding: 0;
+	--page-ftr-width: 1000px;
 
-    --page-btn-padding:          0.75rem;
-    --page-btn-bg:               var(--darkgrey);
-    --page-btn-txt:              var(--white);
-    --page-btn-font-weight:      bold;
-    
-    --section-hdr-bg:            var(--lightgrey);
-    --section-hdr-txt:           var(--darkgrey);
-    --section-hdr-border:        1px solid var(--black);
-    --section-hdr-padding:       0 1rem;
-    --section-hdr-height:        3rem;
+	--page-btn-padding: 0.75rem;
+	--page-btn-bg: var(--darkgrey);
+	--page-btn-txt: var(--white);
+	--page-btn-font-weight: bold;
 
-    --section-txt:               var(--black);
-    --section-bg:                var(--white);
-    --section-padding:           2rem 1rem;
-    --section-border:            none;
+	--section-hdr-bg: var(--lightgrey);
+	--section-hdr-txt: var(--darkgrey);
+	--section-hdr-border: 1px solid var(--black);
+	--section-hdr-padding: 0 1rem;
+	--section-hdr-height: 3rem;
 
-    --section-btn-padding:       1rem;
-    --section-btn-bg:            var(--lightgrey);
-    --section-btn-txt:           var(--black);
-    --section-btn-font-weight:   normal;
+	--section-txt: var(--black);
+	--section-bg: var(--white);
+	--section-padding: 2rem 1rem;
+	--section-border: none;
 
-    --component-padding:         1rem;
-    --component-bg:              var(--white);
-    --component-txt:             var(--darkgrey);
-    --component-border:          1px solid var(--darkgrey);
-    --component-active-bg:       var(--highlight);
-    --component-active-txt:      inherit;
-    --component-error-bg:        var(--pink);
-    --component-error-txt:       var(--red);
+	--section-btn-padding: 1rem;
+	--section-btn-bg: var(--lightgrey);
+	--section-btn-txt: var(--black);
+	--section-btn-font-weight: normal;
 
-    --display-bg:                var(--white);
-    --display-txt:               var(--darkgrey);
-    --display-border:            1px solid var(--darkgrey);
-    --display-padding:           1.5rem;
-    --display-active-bg:         var(--white);
-    --display-active-txt:        var(--darkgrey);
+	--component-padding: 1rem;
+	--component-bg: var(--white);
+	--component-txt: var(--darkgrey);
+	--component-border: 1px solid var(--darkgrey);
+	--component-active-bg: var(--highlight);
+	--component-active-txt: inherit;
+	--component-error-bg: var(--pink);
+	--component-error-txt: var(--red);
 
-    --input-padding:             0.25rem;
-    --input-txt:                 var(--darkgrey);
-    --input-bg:                  var(--white);
-    --input-active-bg:           var(--highlight);
-    --input-active-txt:          var(--darkgrey);
-    --input-error-bg:            var(--pink);
-    --input-error-txt:           var(--red);
-    --input-error-border:        2px solid var(--red);
+	--display-bg: var(--white);
+	--display-txt: var(--darkgrey);
+	--display-border: 1px solid var(--darkgrey);
+	--display-padding: 1.5rem;
+	--display-active-bg: var(--white);
+	--display-active-txt: var(--darkgrey);
 
-    --input-btn-txt:             var(--darkgrey);
-    --input-btn-bg:              var(--white);
-    --input-btn-padding:         0.5rem;
-    --input-btn-border:          1px solid var(--darkgrey);
-    --input-btn-active-bg:       var(--darkgrey);
-    --input-btn-active-txt:      var(--white);
-    --input-btn-hover-bg:        var(--lightgrey);
-    --input-btn-hover-txt:       var(--darkgrey);
+	--input-padding: 0.25rem;
+	--input-txt: var(--darkgrey);
+	--input-bg: var(--white);
+	--input-active-bg: var(--highlight);
+	--input-active-txt: var(--darkgrey);
+	--input-error-bg: var(--pink);
+	--input-error-txt: var(--red);
+	--input-error-border: 2px solid var(--red);
 
-    --help-bg:                   inherit;
-    --help-txt:                  var(--darkgrey);
-    --help-border:               1px dashed var(--lightgrey);
+	--input-btn-txt: var(--darkgrey);
+	--input-btn-bg: var(--white);
+	--input-btn-padding: 0.5rem;
+	--input-btn-border: 1px solid var(--darkgrey);
+	--input-btn-active-bg: var(--darkgrey);
+	--input-btn-active-txt: var(--white);
+	--input-btn-hover-bg: var(--lightgrey);
+	--input-btn-hover-txt: var(--darkgrey);
 
-    --progress-bg:               var(--white);
-    --progress-txt:              var(--darkgrey);
-    --progress-padding:          0;
-    --progress-border:           1px solid var(--darkgrey);
-    --progress-active-bg:        var(--lightgrey);
+	--help-bg: inherit;
+	--help-txt: var(--darkgrey);
+	--help-border: 1px dashed var(--lightgrey);
+
+	--progress-bg: var(--white);
+	--progress-txt: var(--darkgrey);
+	--progress-padding: 0;
+	--progress-border: 1px solid var(--darkgrey);
+	--progress-active-bg: var(--lightgrey);
 }
 
 /* global settings */
 body {
-    background-color: var(--lightgrey);
-    font-family: var(--font);
-    margin: 0;
-    padding: 0;
-    border: 0;
+	background-color: var(--lightgrey);
+	font-family: var(--font);
+	margin: 0;
+	padding: 0;
+	border: 0;
 }
 a {
-    text-decoration: none;
-    color: inherit;
-    font-style: italic;
-    font-weight: 550;
+	text-decoration: none;
+	color: inherit;
+	font-style: italic;
+	font-weight: 550;
 }
 a:hover {
-    text-decoration: underline;
-    cursor: pointer;
+	text-decoration: underline;
+	cursor: pointer;
 }

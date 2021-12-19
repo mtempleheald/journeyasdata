@@ -1,4 +1,4 @@
-export async function stubRefdata(context, list) {
+export async function stubRefdata(context: string, list: string) {
 	return [
 		{
 			value: '1',

@@ -2,7 +2,7 @@
 	import type { DisplaySelections } from '$lib/types/journey';
 	export let component: DisplaySelections;
 
-	let active;
+	let active = '';
 	function enter() {
 		active = 'active';
 	}

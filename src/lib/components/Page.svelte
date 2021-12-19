@@ -2,7 +2,6 @@
 	import type { PageType, JourneyType } from '$lib/types/journey';
 	import { getContext } from 'svelte';
 	import { goto } from '$app/navigation';
-	import { page as pageStore } from '$app/stores';
 	import { DISABLEVALIDATION } from '$lib/env';
 	import { actionStore } from '$lib/stores/actionstore';
 	import { validationStore } from '$lib/stores/validationstore';
@@ -81,9 +80,8 @@
 {/if}
 
 <main>
-
 	<!-- require a form element for accessibility -->
-	<form on:submit|preventDefault={() => {}}>
+	<form on:submit|preventDefault>
 		{#if (page.displaytitle ?? false) && !!page.title}
 			<header>
 				<h1>{page.title}</h1>
@@ -115,7 +113,6 @@
 				>
 			{/if}
 		</nav>
-
 	</form>
 </main>
 

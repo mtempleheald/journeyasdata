@@ -8,16 +8,16 @@
 	export let component: TriBoxDateComponent;
 
 	// internal properties to support component logic
-	let fallbackError;
+	let fallbackError = 'Date entered is invalid';
 	let valid = true;
-	let active;
-	let dateElem: HTMLInputElement;
+	let active = '';
+	let dateElem: HTMLInputElement; // TODO: rework this to use the hidden date field and HTML5 validation
 	let yearElem: HTMLInputElement;
 	let monthElem: HTMLInputElement;
 	let dayElem: HTMLInputElement;
-	let yearAttempted: boolean = false;
-	let monthAttempted: boolean = false;
-	let dayAttempted: boolean = false;
+	let yearAttempted = false;
+	let monthAttempted = false;
+	let dayAttempted = false;
 
 	onMount(async () => {
 		if (component.value) {
@@ -31,7 +31,7 @@
 		}
 	});
 
-	function updateDay(event) {
+	function updateDay(event: any) {
 		// skip update if reset is clicked
 		if (event.explicitOriginalTarget.parentNode.name != 'reset') {
 			dayAttempted = true;
@@ -43,7 +43,7 @@
 			}
 		}
 	}
-	function updateMonth(event) {
+	function updateMonth(event: any) {
 		// skip update if reset is clicked or we are going back to day because it is invalid
 		if (event.explicitOriginalTarget.parentNode.name == 'reset' || event.relatedTarget == dayElem)
 			return;
@@ -56,7 +56,7 @@
 			}, 0);
 		}
 	}
-	function updateYear(event) {
+	function updateYear(event: any) {
 		// skip update if reset is clicked or we are going back to month because it is invalid
 		if (event.explicitOriginalTarget.parentNode.name == 'reset' || event.relatedTarget == monthElem)
 			return;
@@ -106,14 +106,14 @@
 		const min = new Date(component.validation?.min);
 		const max = new Date(component.validation?.max);
 		let maxDynamic = new Date(now);
-		if (!!component.validation?.maxyearsahead)
+		if (component.validation?.maxyearsahead)
 			maxDynamic.setUTCFullYear(now.getUTCFullYear() + component.validation?.maxyearsahead);
-		if (!!component.validation?.minyearsago)
+		if (component.validation?.minyearsago)
 			maxDynamic.setUTCFullYear(now.getUTCFullYear() - component.validation?.minyearsago);
 		let minDynamic = new Date(now);
-		if (!!component.validation?.minyearsahead)
+		if (component.validation?.minyearsahead)
 			minDynamic.setUTCFullYear(now.getUTCFullYear() + component.validation?.minyearsahead);
-		if (!!component.validation?.maxyearsago)
+		if (component.validation?.maxyearsago)
 			minDynamic.setUTCFullYear(now.getUTCFullYear() - component.validation?.maxyearsago);
 
 		console.debug('date', date);

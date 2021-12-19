@@ -1,3 +1,5 @@
+export {};
+
 const validationStoreObject = {
 	trueKey: true,
 	falseKey: false,
@@ -22,7 +24,7 @@ test('empty store key lookup returns undefined', () => {
 });
 
 // This should never happen because the store is set up as an empty object during initialisation
-const undefinedStore = undefined;
+const undefinedStore: any = undefined;
 test('undefined store key lookup crashes out', () => {
 	expect(() => undefinedStore['someKey']).toThrow(Error);
 });

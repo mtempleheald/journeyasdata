@@ -33,19 +33,21 @@
 		return newSections;
 	}
 
+	// find {{ componentid }} and replace with {{ componentid.instanceid }}
+	// whitespace in the brackets should not matter but the component id should be alphanumeric
 	function updateSummaryInstance(summary: string, instanceid: number) {
-		const re = new RegExp(/\{\{\s*(\w|\.)*\s*\}\}/gi);
-		// @ts-ignore
-		function replacer(match, _p1, _p2, _p3, _offset, _string) {
-			const result = `{{${match.substring(2, match.length - 2).trim()}.${instanceid}}}`;
+		const re = new RegExp(/\{\{\s*(\w*)\s*\}\}/gi);
+
+		function replacer(_match: string, p1: any) {
+			const result = `{{${p1}.${instanceid}}}`;
 			return result;
 		}
 		return summary.replace(re, replacer);
 	}
 
 	// Hide/show functionality
-	let currentInstance: number = 0;
-	let totalInstances: number = 0;
+	let currentInstance = 0;
+	let totalInstances = 0;
 	// add is simple - just grab the next id if we've not reached max instances
 	function add() {
 		if (currentInstance < repeatinggroup.maxrepeats) {

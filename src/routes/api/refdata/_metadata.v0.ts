@@ -5,13 +5,13 @@ import type { ValueType } from '$lib/types/journey';
 import { APIHOSTNAME } from '$lib/env';
 import { getToken } from '../_token';
 
-export async function getMetadata(context, list) {
+export async function getMetadata(context: string, list: string) {
 	const url = `${APIHOSTNAME}/api/reference-data/metadata`;
 	console.debug(`calling url ${url} ...`);
 
-	let token = await getToken();
+	const token = await getToken();
 
-	let options = {
+	const options = {
 		method: 'POST',
 		headers: new Headers({
 			'Content-Type': 'application/json',
@@ -27,12 +27,12 @@ export async function getMetadata(context, list) {
 		})
 	};
 
-	var result: ValueType[] = await fetch(url, options)
+	const result: ValueType[] = await fetch(url, options)
 		.then((res) => res.json())
 		.then((json) =>
 			json
-				? json.ResultObj[0].Values.map((obj) => {
-						let rObj = {};
+				? json.ResultObj[0].Values.map((obj: any) => {
+						const rObj = {};
 						rObj['value'] = obj.Value;
 						rObj['display'] = obj.Name;
 						return rObj;

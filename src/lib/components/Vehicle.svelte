@@ -13,18 +13,17 @@
 	export let component: VehicleComponent;
 
 	// internal properties to support component logic
-	let regnum: string = '';
 	let vehicle: VehicleType | null;
-	let active: string;
+	//let active: string;
 
 	// component actions
-	function enter() {
-		active = 'active';
-	}
-	function leave() {
-		active = '';
-	}
-	async function regUpdated(event) {
+	// function enter() {
+	// 	active = 'active';
+	// }
+	// function leave() {
+	// 	active = '';
+	// }
+	async function regUpdated(event: any) {
 		if (event.detail.value) {
 			await fetch(`/api/vehicle/` + event.detail.value.toUpperCase())
 				.then((resp) => resp.json())
@@ -33,8 +32,7 @@
 			reset(event);
 		}
 	}
-	function reset(event) {
-		regnum = '';
+	function reset(_event: any) {
 		vehicle = null;
 	}
 </script>

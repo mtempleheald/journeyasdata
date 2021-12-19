@@ -8,7 +8,7 @@
 
 	// internal properties to support component logic
 	const dispatch = createEventDispatcher();
-	let active;
+	let active = '';
 
 	// component actions
 	function enter() {
@@ -17,7 +17,7 @@
 	function leave() {
 		active = '';
 	}
-	function updateValue(newValue, newDisplay) {
+	function updateValue(newValue: string, newDisplay: string) {
 		if (component.value == newValue) {
 			component.value = null; // toggle off
 		} else {

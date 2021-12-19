@@ -50,7 +50,7 @@ export function sectionValid(
 ): boolean {
 	// function duplicated from Repeatinggroup.svelte
 	function updateSection(section: SectionType, index: number) {
-		let newComponents: ComponentType[] = section.components.map((comp) => {
+		const newComponents: ComponentType[] = section.components.map((comp) => {
 			return {
 				...comp,
 				id: comp.id ? `${comp.id}.${index}` : undefined

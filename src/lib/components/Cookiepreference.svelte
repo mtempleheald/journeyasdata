@@ -10,7 +10,7 @@
 
 	export let cookiepreferences: CookiePreferenceType;
 
-	let selected: string = !!$valueStore['cookiestatus'] ? 'selected' : '';
+	let selected: string = $valueStore['cookiestatus'] ? 'selected' : '';
 	let active: string;
 	function enter() {
 		active = 'active';
@@ -18,7 +18,7 @@
 	function leave() {
 		active = '';
 	}
-	function componentUpdated(event) {
+	function componentUpdated(event: any) {
 		console.debug(
 			`{key: "${event.detail.key}", value: "${event.detail.value}", valid: "${event.detail.valid}}"`
 		);

@@ -7,7 +7,7 @@ export async function get({ params }) {
 	console.debug('loading journey');
 	// TODO: rework the journey loading to avoid reloads mid journey
 	// static files found in /build/assets after build
-	var j = path.resolve('assets', params.brand, 'journey.json');
+	let j = path.resolve('assets', params.brand, 'journey.json');
 	if (!fs.existsSync(j)) {
 		// static files found in /static during development
 		j = path.resolve('static', params.brand, 'journey.json');

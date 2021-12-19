@@ -3,8 +3,8 @@
 
 	export let component: DisplayComponent;
 
-	let dismissed;
-	let active;
+	let dismissed = '';
+	let active = '';
 	function enter() {
 		active = 'active';
 	}

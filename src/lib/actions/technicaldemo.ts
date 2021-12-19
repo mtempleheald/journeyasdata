@@ -6,9 +6,9 @@ import { validationStore } from '$lib/stores/validationstore';
 import { valueStore } from '$lib/stores/valuestore';
 import { get } from 'svelte/store';
 
-export let actions = {
+export const actions = {
 	simpleimagebutton: function () {
-		let values;
+		let values: object;
 		const valueUnsubscriber = valueStore.subscribe((x) => (values = x));
 		console.debug(
 			`Simple Image Button action was triggered with value ${values['simpleimagebutton']}`
@@ -22,7 +22,7 @@ export let actions = {
 
 async function lookupVehicle() {
 	console.debug('lookupVehicle()');
-	let values;
+	let values: object;
 	let vehicle: VehicleType;
 	const valueUnsubscriber = valueStore.subscribe((value) => (values = value));
 
@@ -102,9 +102,9 @@ async function returnFromPaymentGateway() {
 	const sessionId = 'demosessionid';
 
 	// get the current value from sessionStorage (since we don't have any in-memory data now)
-	let values: object = get(sessionStorageStore(`values-${sessionId}`))
-	let displayValues: object = get(sessionStorageStore(`display-${sessionId}`));
-	let validations: object = get(sessionStorageStore(`valid-${sessionId}`));
+	const values: object = get(sessionStorageStore(`values-${sessionId}`));
+	const displayValues: object = get(sessionStorageStore(`display-${sessionId}`));
+	const validations: object = get(sessionStorageStore(`valid-${sessionId}`));
 
 	// Regenerate the in-memory stores with values from sessionStorage
 	valueStore.reset(values);

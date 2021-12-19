@@ -1,6 +1,7 @@
+// TODO: Consider rewriting this copy/pasted code, it flags many code warnings and is hard to read
 export function flatten(input: object) {
 	const result = {};
-	function recurse(cur, prop) {
+	function recurse(cur: any, prop: any) {
 		if (Object(cur) !== cur) {
 			result[prop] = cur;
 		} else if (Array.isArray(cur)) {
@@ -31,12 +32,12 @@ export function unflatten(input: object) {
 	if (Object(input) !== input || Array.isArray(input)) {
 		return input;
 	}
-	let regex = /\.?([^.\[\]]+)|\[(\d+)\]/g;
+	const regex = /\.?([^.\[\]]+)|\[(\d+)\]/g;
 	let resultholder = {};
 	for (const p in input) {
 		let cur = resultholder;
 		let prop = '';
-		let m;
+		let m: any;
 		while ((m = regex.exec(p))) {
 			// eslint-disable-line
 			// console.debug('m[1]', m[1])

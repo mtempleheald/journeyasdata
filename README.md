@@ -82,7 +82,15 @@ SvelteKit depends on node v14 which is the latest LTS version.
 # Contribution guide
 
 I advise using VS Code with default configuration and using the extension 'Svelte for VS Code'.  
-TypeScript warnings must be addressed for a PR to be accepted.
+Errors and warnings must be addressed for a PR to be accepted.  
+We may change the rules but we never ignore errors and warnings.
+
+`npm run dev` to dev/test locally  
+`npm run test` to run automation tests  
+`npm run build` to verify the build, followed by `node build` or `npm run preview` to test this locally  
+`npm run format` to reformat to prettier standards  
+`npm run check` to resolve svelte-check warnings  
+`npm run lint` to resolve eslint warnings
 
 To toggle between websites for development add a new `.env.development` file as a copy of `.env`.  
 This file is listed in `.gitignore` to facilitate different developers working with shared components and separate websites.

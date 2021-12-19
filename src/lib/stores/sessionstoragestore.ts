@@ -19,9 +19,10 @@ function getValue(key: string): object {
 function setValue(key: string, value: object): void {
 	sessionStorage.setItem(key, JSON.stringify(value));
 }
-function removeValue(key: string): void {
-	sessionStorage.removeItem(key);
-}
+// TODO: Consider tidying up, or rely on browser tab close
+// function removeValue(key: string): void {
+// 	sessionStorage.removeItem(key);
+// }
 
 // Use the svelte writable store as a base
 // Example: https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Client-side_JavaScript_frameworks/Svelte_stores#implementing_our_custom_todos_store
@@ -50,13 +51,13 @@ export const sessionStorageStoreManual = (key: string, initial: any = {}) => {
 	let value = getValue(key) ?? initial;
 	let subscribers = [];
 
-	const subscribe = (handler) => {
+	const subscribe = (handler: any) => {
 		subscribers = [...subscribers, handler]; // add this handler to array of subscribers
 		handler(getValue(key)); // call handler with current value
 		return () => (subscribers = subscribers.filter((sub) => sub !== handler)); // return unsubscribe function
 	};
 
-	const set = (new_value) => {
+	const set = (new_value: any) => {
 		if (value === new_value) return;
 		// value has changed, update store and sessionStorage
 		value = new_value;
@@ -64,7 +65,7 @@ export const sessionStorageStoreManual = (key: string, initial: any = {}) => {
 		subscribers.forEach((sub) => sub(value)); // update all current subscribers
 	};
 
-	const update = (update_fn) => set(update_fn(value));
+	const update = (update_fn: any) => set(update_fn(value));
 
 	return { subscribe, set, update }; // store contract
 };

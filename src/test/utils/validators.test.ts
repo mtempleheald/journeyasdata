@@ -1,41 +1,41 @@
-import type { DisplayComponent, InputComponent } from '$lib/types/journey';
+import type { InputComponent } from '$lib/types/journey';
 import { componentValid } from '$lib/utils/validators';
 
 test('input provided, valid', () => {
-	let comp: InputComponent = {
+	const comp: InputComponent = {
 		id: '1',
 		type: 'Text'
 	};
-	let value = {
+	const value = {
 		'1': 'test'
 	};
-	let validity = {
+	const validity = {
 		'1': true
 	};
 	expect(componentValid(comp, value, validity)).toBe(true);
 });
 test('input provided, invalid', () => {
-	let comp: InputComponent = {
+	const comp: InputComponent = {
 		id: '1',
 		type: 'Text'
 	};
-	let value = {
+	const value = {
 		'1': 'test'
 	};
-	let validity = {
+	const validity = {
 		'1': false
 	};
 	expect(componentValid(comp, value, validity)).toBe(false);
 });
 test('input optional, skipped', () => {
-	let comp: InputComponent = {
+	const comp: InputComponent = {
 		id: '1',
 		type: 'Text'
 	};
 	expect(componentValid(comp, {}, {})).toBe(true);
 });
 test('input required, skipped', () => {
-	let comp: InputComponent = {
+	const comp: InputComponent = {
 		id: '1',
 		type: 'Text',
 		required: true
@@ -43,7 +43,7 @@ test('input required, skipped', () => {
 	expect(componentValid(comp, {}, {})).toBe(false);
 });
 test('input required, skipped, hidden', () => {
-	let comp: InputComponent = {
+	const comp: InputComponent = {
 		id: '2',
 		type: 'Text',
 		required: true,
@@ -52,16 +52,16 @@ test('input required, skipped, hidden', () => {
 			value: 'Y'
 		}
 	};
-	let value = {
+	const value = {
 		'1': 'N'
 	};
-	let validity = {
+	const validity = {
 		'1': true
 	};
 	expect(componentValid(comp, value, validity)).toBe(true);
 });
 test('input required, skipped, not hidden', () => {
-	let comp: InputComponent = {
+	const comp: InputComponent = {
 		id: '2',
 		type: 'Text',
 		required: true,
@@ -70,16 +70,16 @@ test('input required, skipped, not hidden', () => {
 			value: 'Y'
 		}
 	};
-	let value = {
+	const value = {
 		'1': 'Y'
 	};
-	let validity = {
+	const validity = {
 		'1': true
 	};
 	expect(componentValid(comp, value, validity)).toBe(false);
 });
 test('display component', () => {
-	let comp = {
+	const comp = {
 		type: 'Displayblock',
 		content: 'test'
 	};
@@ -87,14 +87,14 @@ test('display component', () => {
 	expect(componentValid(comp, {}, {})).toBe(true);
 });
 test('repeating group component', () => {
-	let comp: InputComponent = {
+	const comp: InputComponent = {
 		id: 'componentid.0',
 		type: 'Text'
 	};
-	let value = {
+	const value = {
 		'componentid.0': 'test'
 	};
-	let validity = {
+	const validity = {
 		'componentid.0': true
 	};
 	expect(componentValid(comp, value, validity)).toBe(true);
@@ -104,7 +104,7 @@ test('repeating group component', () => {
 
 // TODO: this is more of a component test than a validator test, move it out of here...
 test.skip('input (required, all fields) valid', () => {
-	let comp: InputComponent = {
+	const comp: InputComponent = {
 		id: '1',
 		type: 'Text',
 		label: 'Label',
@@ -116,10 +116,10 @@ test.skip('input (required, all fields) valid', () => {
 		required: true,
 		value: 'default value'
 	};
-	let value = {
+	const value = {
 		'1': 'test'
 	};
-	let valid = {
+	const valid = {
 		'1': true
 	};
 	expect(componentValid(comp, value, valid)).toBe(true);

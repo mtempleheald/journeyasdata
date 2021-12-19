@@ -2,13 +2,13 @@ import type { VehicleType } from '$lib/types/vehicle';
 import { APIHOSTNAME } from '$lib/env';
 import { getToken } from '../_token';
 
-export async function lookup(regnum) {
+export async function lookup(regnum: string) {
 	const url = `${APIHOSTNAME}/api/V1/vehicle/lookup?RegistrationNumber=${regnum}`;
 	console.debug(`calling url ${url} ...`);
 
-	let token = await getToken();
+	const token = await getToken();
 
-	let options = {
+	const options = {
 		method: 'GET',
 		headers: new Headers({
 			'Content-Type': 'application/json',
@@ -16,12 +16,12 @@ export async function lookup(regnum) {
 		})
 	};
 
-	var result: VehicleType[] = await fetch(url, options)
+	const result: VehicleType[] = await fetch(url, options)
 		.then((res) => res.json())
 		.then((json) =>
 			json && json.IsSuccess
-				? json.ResultObj.map((obj) => {
-						let rObj: VehicleType = {};
+				? json.ResultObj.map((obj: any) => {
+						const rObj: VehicleType = {};
 						rObj['abicode'] = obj.AbiCode ?? '';
 						rObj['doors'] = obj.Doors ?? '';
 						rObj['enginecc'] = obj.Engine ?? '';
@@ -38,5 +38,5 @@ export async function lookup(regnum) {
 		)
 		.catch((error) => console.debug(error));
 	console.debug(result);
-	return !!result ? result[0] : {};
+	return result ? result[0] : {};
 }

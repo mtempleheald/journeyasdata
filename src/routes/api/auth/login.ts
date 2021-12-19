@@ -3,10 +3,10 @@
 // If login is successful a user record will be entered into session (request.locals)
 // This can then be used by the application to direct users appropriately
 
-import * as api from '$lib/api.js';
+//import * as api from '$lib/api.js';
 import { respond } from './_respond';
 
-export async function post(request) {
+export async function post(request: any) {
 	// TODO: call real API for authentication
 	const body = {
 		user: {

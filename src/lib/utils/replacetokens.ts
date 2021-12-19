@@ -3,14 +3,14 @@
  ** Return a string with all tokens replaced
  */
 
-export const replaceTokens = function (input: string, values: {}) {
+export const replaceTokens = function (input: string, values: object) {
 	if (!input) return '';
 
 	let output: string = input;
 
 	// a valid key can only consist of alphanumeric characters or . (full stop) which is only allowed within repeating groups
 	const re = new RegExp(/\{\{\s*(\w|\.)*\s*\}\}/gi);
-	let tokens = input.match(re); // ['{{ tokentobereplaced }}', '{{anothertokentobereplaced}}']
+	const tokens = input.match(re); // ['{{ tokentobereplaced }}', '{{anothertokentobereplaced}}']
 
 	tokens &&
 		tokens.forEach((t) => {

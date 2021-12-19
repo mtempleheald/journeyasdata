@@ -19,7 +19,7 @@
 
 	export let component: ComponentType;
 
-	function componentUpdated(event) {
+	function componentUpdated(event: any) {
 		console.debug(event.detail);
 		// update value store with latest value, regardless of validity
 		// ensure that the key is a string, even if the id entered as numeric, required for retrieval

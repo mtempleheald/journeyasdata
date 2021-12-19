@@ -5,13 +5,14 @@
 
 	export let section: SectionType;
 
-	let hidden: boolean = false;
+	let collapsed = false;
 
-	function collapse() {
-		if (section.collapsible) {
-			hidden = !hidden;
-		}
-	}
+	// TODO: Consider mobile when reintroducing this
+	// function collapse() {
+	// 	if (section.collapsible) {
+	// 		collapsed = !collapsed;
+	// 	}
+	// }
 </script>
 
 <section>
@@ -34,7 +35,7 @@
 		</header>
 	{/if}
 
-	<div class={hidden ? 'hidden' : ''}>
+	<div class={collapsed ? 'collapsed' : ''}>
 		{#each section.components as component}
 			<Component {component} />
 		{/each}
@@ -68,7 +69,7 @@
 		); /* Some healthy padding, could vary if really needed */
 		vertical-align: middle;
 	}
-	.hidden {
+	.collapsed {
 		display: none;
 	}
 </style>
