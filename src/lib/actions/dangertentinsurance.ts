@@ -3,6 +3,6 @@ import { valueStore } from '$lib/stores/valuestore';
 
 export let actions = {
 	_template: function () {
-		console.log('_template was triggered');
+		console.debug('_template was triggered');
 	}
 };

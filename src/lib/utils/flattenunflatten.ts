@@ -39,8 +39,8 @@ export function unflatten(input: object) {
 		let m;
 		while ((m = regex.exec(p))) {
 			// eslint-disable-line
-			// console.log('m[1]', m[1])
-			// console.log('m[2]', m[2])
+			// console.debug('m[1]', m[1])
+			// console.debug('m[2]', m[2])
 			// cur = cur[prop] || (cur[prop] = ((m[2] || !isNaN(m[1])) ? [] : {}))
 			cur = cur[prop] || (cur[prop] = m[2] ? [] : {});
 			prop = m[2] || m[1];

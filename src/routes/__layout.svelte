@@ -35,7 +35,7 @@
 	// load bespoke actions once, call throughout user journey
 	if (browser) {
 		actionStore.load(getActions(brand));
-		console.log(`${Object.keys($actionStore).length} actions loaded for ${brand}`);
+		console.debug(`${Object.keys($actionStore).length} actions loaded for ${brand}`);
 	}
 </script>
 

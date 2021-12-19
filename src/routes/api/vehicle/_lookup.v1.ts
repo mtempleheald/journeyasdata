@@ -4,7 +4,7 @@ import { getToken } from '../_token';
 
 export async function lookup(regnum) {
 	const url = `${APIHOSTNAME}/api/V1/vehicle/lookup?RegistrationNumber=${regnum}`;
-	console.log(`calling url ${url} ...`);
+	console.debug(`calling url ${url} ...`);
 
 	let token = await getToken();
 
@@ -36,7 +36,7 @@ export async function lookup(regnum) {
 				  })
 				: []
 		)
-		.catch((error) => console.log(error));
-	console.log(result);
+		.catch((error) => console.debug(error));
+	console.debug(result);
 	return !!result ? result[0] : {};
 }

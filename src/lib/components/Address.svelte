@@ -38,10 +38,10 @@
 					display: a.property
 				}));
 			})
-			.finally(() => console.log('lookupAddresses propertyLov', propertyLov));
+			.finally(() => console.debug('lookupAddresses propertyLov', propertyLov));
 	}
 	async function postcodeTouched(event) {
-		console.log(
+		console.debug(
 			`{key: "${event.detail.key}", value: "${event.detail.value}", valid: "${event.detail.valid}}"`
 		);
 		// Address is a composite component meaning it is responsible for handling the store for its (sub)components
@@ -68,12 +68,12 @@
 			} else {
 				// if the postcode is valid, proceed to call the API
 				await lookupAddresses($valueStore['postcode']);
-				console.log('propertyLov', propertyLov);
+				console.debug('propertyLov', propertyLov);
 			}
 		}
 	}
 	function propertyTouched(event) {
-		console.log(
+		console.debug(
 			`{key: "${event.detail.key}", value: "${event.detail.value}", valid: "${event.detail.valid}}"`
 		);
 		if (event.detail.value) {

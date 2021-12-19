@@ -130,7 +130,7 @@
 			// each field may be valid, but a valid date it is not (e.g. 30/2/2017)
 			valid = false;
 		} else if ((!isNaN(min.valueOf()) && date < min) || (!isNaN(max.valueOf()) && date > max)) {
-			console.log('date is outside static allowed range');
+			console.debug('date is outside static allowed range');
 			console.debug('min', min);
 			console.debug('max', max);
 			valid = false;
@@ -140,7 +140,7 @@
 			((!isNaN(component.validation?.maxyearsahead) || !isNaN(component.validation?.minyearsago)) &&
 				date.valueOf() > maxDynamic.valueOf())
 		) {
-			console.log('date is outside dynamic allowed range');
+			console.debug('date is outside dynamic allowed range');
 			console.debug(
 				'minyearsahead',
 				component.validation?.minyearsahead,

@@ -19,7 +19,7 @@
 		active = '';
 	}
 	function componentUpdated(event) {
-		console.log(
+		console.debug(
 			`{key: "${event.detail.key}", value: "${event.detail.value}", valid: "${event.detail.valid}}"`
 		);
 		// update input store with latest value, regardless of validity

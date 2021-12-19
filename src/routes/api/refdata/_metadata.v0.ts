@@ -7,7 +7,7 @@ import { getToken } from '../_token';
 
 export async function getMetadata(context, list) {
 	const url = `${APIHOSTNAME}/api/reference-data/metadata`;
-	console.log(`calling url ${url} ...`);
+	console.debug(`calling url ${url} ...`);
 
 	let token = await getToken();
 
@@ -39,7 +39,7 @@ export async function getMetadata(context, list) {
 				  })
 				: []
 		)
-		.catch((error) => console.log(error));
+		.catch((error) => console.debug(error));
 
 	return result;
 }

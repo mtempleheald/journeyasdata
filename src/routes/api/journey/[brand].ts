@@ -4,7 +4,7 @@ import fs from 'fs';
 
 /* @type {import('@sveltejs/kit').RequestHandler} */
 export async function get({ params }) {
-	console.log('loading journey');
+	console.debug('loading journey');
 	// TODO: rework the journey loading to avoid reloads mid journey
 	// static files found in /build/assets after build
 	var j = path.resolve('assets', params.brand, 'journey.json');

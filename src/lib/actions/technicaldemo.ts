@@ -10,7 +10,7 @@ export let actions = {
 	simpleimagebutton: function () {
 		let values;
 		const valueUnsubscriber = valueStore.subscribe((x) => (values = x));
-		console.log(
+		console.debug(
 			`Simple Image Button action was triggered with value ${values['simpleimagebutton']}`
 		);
 		valueUnsubscriber();

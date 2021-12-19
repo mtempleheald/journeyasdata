@@ -15,12 +15,12 @@
 	const journey: JourneyType = getContext('journey');
 
 	function backPage() {
-		console.log('Navigating to previous page');
+		console.debug('Navigating to previous page');
 		goto(prevPageUrl(journey, pageurl));
 	}
 	function nextPage() {
 		if (DISABLEVALIDATION == 'Y') {
-			console.log('Validation disabled, redirecting to next page');
+			console.debug('Validation disabled, redirecting to next page');
 			goto(nextPageUrl(journey, pageurl));
 		} else if (
 			pageValid(
@@ -29,10 +29,10 @@
 				$validationStore
 			)
 		) {
-			console.log('Page valid, redirecting to next page');
+			console.debug('Page valid, redirecting to next page');
 			goto(nextPageUrl(journey, pageurl));
 		} else {
-			console.log('Page invalid, correct before trying again');
+			console.debug('Page invalid, correct before trying again');
 		}
 	}
 </script>
@@ -47,7 +47,7 @@
 				type="button"
 				class="section back"
 				on:click={() => {
-					console.log('not yet implemented section navigation');
+					console.debug('not yet implemented section navigation');
 				}}>{nav?.backlabel ?? 'Back'}</button
 			>
 		{/if}
@@ -62,7 +62,7 @@
 				type="button"
 				class="section next"
 				on:click={() => {
-					console.log('not yet implemented section navigation');
+					console.debug('not yet implemented section navigation');
 				}}>{nav?.nextlabel ?? 'Next'}</button
 			>
 		{/if}
