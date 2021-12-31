@@ -233,7 +233,7 @@
 						{
 							"id": "optiondropdown_datalist",
 							"type": "OptionDropdown",
-							"label": "Data passed in via QS",
+							"label": "Data passed in via journey content",
 							"values": [
 								{
 									"value": "example1",

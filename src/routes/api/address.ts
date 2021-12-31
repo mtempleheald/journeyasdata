@@ -4,9 +4,9 @@ import type { AddressType } from '$lib/types/address';
 /**
  * @type {import('@sveltejs/kit').RequestHandler}
  */
-export async function get({ query }) {
-	const postcode = query.get('postcode');
-	const house = query.get('house');
+export async function get({ url }) {
+	const postcode = url.searchParams.get('postcode');
+	const house = url.searchParams.get('house');
 
 	const result: AddressType = {
 		postcode: postcode,

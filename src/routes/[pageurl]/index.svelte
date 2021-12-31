@@ -1,9 +1,9 @@
 <script context="module">
 	/** @type {import('@sveltejs/kit').Load} */
-	export async function load({ page }) {
+	export async function load({ params }) {
 		return {
 			props: {
-				pageurl: `${page.params.pageurl}`
+				pageurl: params.pageurl
 			}
 		};
 	}
