@@ -2,10 +2,10 @@
 	import type { CookiePreferenceType } from '$lib/types/journey';
 	import { actionStore } from '$lib/stores/actionstore';
 	import { displayValueStore } from '$lib/stores/displayvaluestore';
-	import { parseMarkdown } from '$lib/utils/markdown';
 	import { replaceTokens } from '$lib/utils/replacetokens';
 	import { validationStore } from '$lib/stores/validationstore';
 	import { valueStore } from '$lib/stores/valuestore';
+	import markdown from '$lib/utils/markdown';
 	import OptionButtons from '$lib/components/OptionButtons.svelte';
 
 	export let cookiepreferences: CookiePreferenceType;
@@ -46,10 +46,10 @@
 				on:valueChange={componentUpdated}
 			>
 				<svelte:fragment slot="pre">
-					{@html parseMarkdown(replaceTokens(cookiepreferences.pre, $displayValueStore))}
+					{@html markdown(replaceTokens(cookiepreferences.pre, $displayValueStore))}
 				</svelte:fragment>
 				<svelte:fragment slot="post">
-					{@html parseMarkdown(replaceTokens(cookiepreferences.post, $displayValueStore))}
+					{@html markdown(replaceTokens(cookiepreferences.post, $displayValueStore))}
 				</svelte:fragment>
 			</OptionButtons>
 		{/if}

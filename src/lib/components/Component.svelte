@@ -3,7 +3,6 @@
 	import { actionStore } from '$lib/stores/actionstore';
 	import { browser } from '$app/env';
 	import { displayValueStore } from '$lib/stores/displayvaluestore';
-	import { parseMarkdown } from '$lib/utils/markdown';
 	import { replaceTokens } from '$lib/utils/replacetokens';
 	import { validationStore } from '$lib/stores/validationstore';
 	import { valueStore } from '$lib/stores/valuestore';
@@ -12,6 +11,7 @@
 	import DisplayModal from '$lib/components/DisplayModal.svelte';
 	import DisplaySelections from '$lib/components/DisplaySelections.svelte';
 	import InputTextbox from '$lib/components/InputTextbox.svelte';
+	import markdown from '$lib/utils/markdown';
 	import OptionButtons from '$lib/components/OptionButtons.svelte';
 	import OptionDropdown from '$lib/components/OptionDropdown.svelte';
 	import InputTriboxdate from '$lib/components/InputTriboxdate.svelte';
@@ -70,10 +70,10 @@
 			on:valueChange={componentUpdated}
 		>
 			<svelte:fragment slot="pre">
-				{@html parseMarkdown(replaceTokens(component.pre, $displayValueStore))}
+				{@html markdown(replaceTokens(component.pre, $displayValueStore))}
 			</svelte:fragment>
 			<svelte:fragment slot="post">
-				{@html parseMarkdown(replaceTokens(component.post, $displayValueStore))}
+				{@html markdown(replaceTokens(component.post, $displayValueStore))}
 			</svelte:fragment>
 		</svelte:component>
 	{:else if ['OptionButtons', 'OptionDropdown', 'YesNo'].includes(component.type)}
@@ -90,10 +90,10 @@
 				on:valueChange={componentUpdated}
 			>
 				<svelte:fragment slot="pre">
-					{@html parseMarkdown(replaceTokens(comp.pre, $displayValueStore))}
+					{@html markdown(replaceTokens(comp.pre, $displayValueStore))}
 				</svelte:fragment>
 				<svelte:fragment slot="post">
-					{@html parseMarkdown(replaceTokens(comp.post, $displayValueStore))}
+					{@html markdown(replaceTokens(comp.post, $displayValueStore))}
 				</svelte:fragment>
 			</svelte:component>
 		{/await}
@@ -106,30 +106,30 @@
 			component={{
 				...component,
 				content: Array.isArray(component.content)
-					? component.content.map((c) => parseMarkdown(replaceTokens(c, $displayValueStore)))
-					: parseMarkdown(replaceTokens(component.content, $displayValueStore))
+					? component.content.map((c) => markdown(replaceTokens(c, $displayValueStore)))
+					: markdown(replaceTokens(component.content, $displayValueStore))
 			}}
 		>
 			<svelte:fragment slot="pre">
-				{@html parseMarkdown(replaceTokens(component.pre, $displayValueStore))}
+				{@html markdown(replaceTokens(component.pre, $displayValueStore))}
 			</svelte:fragment>
 			<!-- <svelte:fragment slot="main">
-    {@html parseMarkdown(replaceTokens(comp.content, $displayValueStore))}
+    {@html markdown(replaceTokens(comp.content, $displayValueStore))}
   </svelte:fragment> -->
 			<svelte:fragment slot="post">
-				{@html parseMarkdown(replaceTokens(component.post, $displayValueStore))}
+				{@html markdown(replaceTokens(component.post, $displayValueStore))}
 			</svelte:fragment>
 		</svelte:component>
 	{:else if component.type == 'Displayselections'}
 		<DisplaySelections {component}>
 			<svelte:fragment slot="pre">
-				{@html parseMarkdown(replaceTokens(component.pre, $displayValueStore))}
+				{@html markdown(replaceTokens(component.pre, $displayValueStore))}
 			</svelte:fragment>
 			<svelte:fragment slot="main">
-				{@html parseMarkdown(replaceTokens(component.content, $displayValueStore))}
+				{@html markdown(replaceTokens(component.content, $displayValueStore))}
 			</svelte:fragment>
 			<svelte:fragment slot="post">
-				{@html parseMarkdown(replaceTokens(component.post, $displayValueStore))}
+				{@html markdown(replaceTokens(component.post, $displayValueStore))}
 			</svelte:fragment>
 		</DisplaySelections>
 	{:else if component.type == 'Address'}

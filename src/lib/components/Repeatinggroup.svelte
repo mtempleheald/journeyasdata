@@ -1,11 +1,11 @@
 <script lang="ts">
 	import type { ComponentType, RepeatingGroupType, SectionType } from '$lib/types/journey';
 	import { displayValueStore } from '$lib/stores/displayvaluestore';
-	import { parseMarkdown } from '$lib/utils/markdown';
 	import { replaceTokens } from '$lib/utils/replacetokens';
 	import { validationStore } from '$lib/stores/validationstore';
 	import { valueStore } from '$lib/stores/valuestore';
 	import DisplayBlock from '$lib/components/DisplayBlock.svelte';
+	import markdown from '$lib/utils/markdown';
 	import Section from '$lib/components/Section.svelte';
 
 	export let repeatinggroup: RepeatingGroupType;
@@ -88,9 +88,9 @@
 					type: 'Displayblock',
 					content: Array.isArray(repeatinggroup.summarycontent)
 						? repeatinggroup.summarycontent.map((c) =>
-								parseMarkdown(replaceTokens(updateSummaryInstance(c, idx + 1), $displayValueStore))
+								markdown(replaceTokens(updateSummaryInstance(c, idx + 1), $displayValueStore))
 						  )
-						: parseMarkdown(
+						: markdown(
 								replaceTokens(
 									updateSummaryInstance(repeatinggroup.summarycontent, idx + 1),
 									$displayValueStore
