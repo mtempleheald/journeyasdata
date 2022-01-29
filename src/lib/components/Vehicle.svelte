@@ -23,16 +23,16 @@
 	// function leave() {
 	// 	active = '';
 	// }
-	async function regUpdated(event: any) {
+	async function regUpdated(event) {
 		if (event.detail.value) {
 			await fetch(`/api/vehicle/` + event.detail.value.toUpperCase())
 				.then((resp) => resp.json())
 				.then((data) => (vehicle = data));
 		} else {
-			reset(event);
+			reset();
 		}
 	}
-	function reset(_event: any) {
+	function reset() {
 		vehicle = null;
 	}
 </script>

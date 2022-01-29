@@ -20,10 +20,10 @@
 
 	let user: string;
 	let pass: string;
-	let errors: any;
+	let errors;
 	let disabled = false;
 
-	async function login(_event: any) {
+	async function login() {
 		disabled = true;
 
 		const response = await post('/api/auth/login', { username: user, password: pass });
@@ -42,7 +42,7 @@
 <header>
 	<h1>Login</h1>
 </header>
-<form on:submit|preventDefault={login} method="post">
+<form method="post" action="/api/auth/login">
 	<div class="row">
 		<label for="username">Username:</label>
 		<input type="text" id="username" name="username" bind:value={user} />

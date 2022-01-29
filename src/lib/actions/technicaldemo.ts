@@ -26,13 +26,13 @@ async function lookupVehicle() {
 	let vehicle: VehicleType;
 	const valueUnsubscriber = valueStore.subscribe((value) => (values = value));
 
-	if (!!values['vehicleregnum']) {
+	if (values['vehicleregnum']) {
 		console.debug('lookup vehicle by regnum');
 		await fetch(`/api/vehicle/` + values['vehicleregnum'])
 			.then((resp) => resp.json())
 			.then((data) => (vehicle = data));
 	}
-	if (!!vehicle?.abicode) {
+	if (vehicle?.abicode) {
 		console.debug('vehicle found');
 		valueStore.set('vehiclemake', vehicle.make ?? ''); // TODO: work out how to standardise case to work with backend provider mapping (suggest UI only ever sees lowercase codes/keys)
 		valueStore.set('vehiclemanufactureyear', vehicle.year?.toString() ?? '');

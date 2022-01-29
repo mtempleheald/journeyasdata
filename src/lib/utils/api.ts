@@ -2,7 +2,7 @@
 This library is used by the admin screens, ensuring that credentials are included.
 TODO: Consolidate with ../api.js
 */
-export async function post(endpoint: string, data: any) {
+export async function post(endpoint: string, data) {
 	return fetch(endpoint, {
 		method: 'POST',
 		credentials: 'include',

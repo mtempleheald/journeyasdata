@@ -1,21 +1,14 @@
 <script>
-	import { post } from '$lib/utils/api';
 	import { session } from '$app/stores';
-
-	async function logout() {
-		await post(`api/auth/logout`);
-
-		// this will trigger a redirect, because it
-		// causes the `load` function to run again
-		$session.user = null;
-	}
 </script>
 
 <header>
 	<h1>Questionset Administration</h1>
 	{#if $session.user}
 		<p>Logged in as {$session?.user?.username}</p>
-		<button on:click={logout}>Logout</button>
+		<form method="post" action="/api/auth/logout">
+			<button type="submit">Logout</button>
+		</form>
 	{/if}
 </header>
 

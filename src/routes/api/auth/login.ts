@@ -1,38 +1,34 @@
 // POST: /api/auth/login { "username": "someone", "password": "somepassword"}
 
-// If login is successful a user record will be entered into session (request.locals)
-// This can then be used by the application to direct users appropriately
+// Useful blog on JWT auth in Svelte Kit https://blog.satyam.life/blog/svelte-kit-jwt-auth
 
-//import * as api from '$lib/api.js';
-import { respond } from './_respond';
-
-export async function post(request: any) {
+export async function post({ request }) {
+	
+	const data = await request.formData();
+	const username = data.get('username');
+	const password = data.get('password');
+	
 	// TODO: call real API for authentication
-	const body = {
-		user: {
-			username: request.body.username,
-			password: request.body.password
+	if (username === "mth" && password === "letmein") {
+		const json = JSON.stringify({username: username, password: password});
+		console.debug(json);
+		const value = Buffer.from(json).toString('base64');
+		return {
+			status: 302,			
+			headers: {
+				'set-cookie': `jwt=${value}; Path=/; Secure; HttpOnly;`,
+				'Location': '/admin'
+			},
 		}
-	};
-	// const body = {
-	//     errors: {
-	//         "email or password": [
-	//             "is invalid"
-	//         ],
-	//         "password": [
-	//             "must be entered",
-	//             "must be at least 8 characters"
-	//         ]
-	//     }
-	// }
-
-	// This example uses the conduit API (see manual tests)
-	// const body = await api.post('users/login', {
-	// 	user: {
-	// 		email: request.body.email,
-	// 		password: request.body.password
-	// 	}
-	// });
-
-	return respond(body);
+	}
+	else {
+		return {
+			status: 301,
+			headers: {
+				'set-cookie': 'jwt=deleted; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT',
+				'Location': '/admin/login'
+				
+			}
+		}
+	}
 }

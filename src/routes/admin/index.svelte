@@ -3,12 +3,12 @@
 	export async function load({ session }) {
 		const { user } = session;
 
-		if (!user) {
-			return {
-				status: 302,
-				redirect: '/admin/login'
-			};
-		}
+		// if (!user) {
+		// 	return {
+		// 		status: 302,
+		// 		redirect: '/admin/login'
+		// 	};
+		// }
 
 		return {
 			props: { user }

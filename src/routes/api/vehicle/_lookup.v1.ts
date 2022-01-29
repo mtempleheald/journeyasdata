@@ -20,7 +20,7 @@ export async function lookup(regnum: string) {
 		.then((res) => res.json())
 		.then((json) =>
 			json && json.IsSuccess
-				? json.ResultObj.map((obj: any) => {
+				? json.ResultObj.map((obj) => {
 						const rObj: VehicleType = {};
 						rObj['abicode'] = obj.AbiCode ?? '';
 						rObj['doors'] = obj.Doors ?? '';

@@ -30,7 +30,7 @@
 	function leave() {
 		active = '';
 	}
-	function act(event: any) {
+	function act(event) {
 		// publish value changes up to parent too
 		dispatch('valueChange', {
 			key: component.id,

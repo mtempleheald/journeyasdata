@@ -41,7 +41,7 @@
 	function leave() {
 		active = '';
 	}
-	function act(event: any) {
+	function act(event) {
 		// transform
 		let val = component.type == 'Upper' ? event.target.value.toUpperCase() : event.target.value;
 		// validate
@@ -55,7 +55,7 @@
 		// publish changes up to parent, let it handle state
 		dispatch('valueChange', { key: component.id, value: val, valid: valid });
 	}
-	function focus(_event: any) {
+	function focus() {
 		dispatch('focus', component.id);
 	}
 </script>

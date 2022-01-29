@@ -15,7 +15,7 @@
 	let active = '';
 	let addresses: AddressType[];
 	let address: AddressType | null;
-	let propertyLov: any[] = [];
+	let propertyLov = [];
 	const dispatch = createEventDispatcher();
 
 	// component actions
@@ -30,14 +30,14 @@
 			.then((resp) => resp.json())
 			.then((data) => {
 				addresses = data;
-				propertyLov = data.map((a: any) => ({
+				propertyLov = data.map((a) => ({
 					value: a.property,
 					display: a.property
 				}));
 			})
 			.finally(() => console.debug('lookupAddresses propertyLov', propertyLov));
 	}
-	async function postcodeTouched(event: any) {
+	async function postcodeTouched(event) {
 		console.debug(
 			`{key: "${event.detail.key}", value: "${event.detail.value}", valid: "${event.detail.valid}}"`
 		);
@@ -69,7 +69,7 @@
 			}
 		}
 	}
-	function propertyTouched(event: any) {
+	function propertyTouched(event) {
 		console.debug(
 			`{key: "${event.detail.key}", value: "${event.detail.value}", valid: "${event.detail.valid}}"`
 		);

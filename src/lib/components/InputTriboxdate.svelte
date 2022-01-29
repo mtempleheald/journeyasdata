@@ -31,7 +31,7 @@
 		}
 	});
 
-	function updateDay(event: any) {
+	function updateDay(event) {
 		// skip update if reset is clicked
 		if (event.explicitOriginalTarget.parentNode.name != 'reset') {
 			dayAttempted = true;
@@ -43,7 +43,7 @@
 			}
 		}
 	}
-	function updateMonth(event: any) {
+	function updateMonth(event) {
 		// skip update if reset is clicked or we are going back to day because it is invalid
 		if (event.explicitOriginalTarget.parentNode.name == 'reset' || event.relatedTarget == dayElem)
 			return;
@@ -56,7 +56,7 @@
 			}, 0);
 		}
 	}
-	function updateYear(event: any) {
+	function updateYear(event) {
 		// skip update if reset is clicked or we are going back to month because it is invalid
 		if (event.explicitOriginalTarget.parentNode.name == 'reset' || event.relatedTarget == monthElem)
 			return;

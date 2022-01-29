@@ -130,6 +130,39 @@ I like to keep dependencies to an absolute minimum and all of them as devDepende
 [Introductory blog to configuring SvelteKit with Jest](https://koenvg.medium.com/setting-up-jest-with-sveltekit-4f0a0e379668)  
 [Svelte-jester documentation](https://github.com/mihar-22/svelte-jester#typescript)
 
+## Upgrade process
+
+Kit is currently in beta, some people I'm trying to involve in this are less than comfortable fixing version issues.  
+Therefore the upgrade process needs to be bulletproof.  
+I'm sticking to Node LTS version, managing using NVM `nvm install --lts`  
+I want the latest version of npm aligned with this `nvm install-latest-npm`
+
+npm package versioning follows MAJOR.MINOR.PATCH format.  
+`^` prefix allows install/update of the minor or patch versions  
+`~` prefix allows install/update of only the patch version
+
+Check for package vulnerabilities at any time `npm audit check`  
+Compare current version against latest `npm outdated`
+
+Upgrade a single package at a time and guarantee that nothing has broken by following the steps:
+
+1. `npm update <package> --save` - update package version, saving latest in package.json to improve developer consistency.
+1. `npm run test` to run all automated tests - if anything breaks then this must be fixed or rolled back.
+1. `npm run lint` does two things
+   - verify file formatting (consistency) - if upgrading linters the standard may evolve, we need to make a conscious decision to roll back or run `npm run format` and then commit.
+   - check type usage - we are aiming for 0 errors and 0 warnings but as long as we're not adding new issues we can continue with the upgrade.
+1. `npm run check` runs svelte-check - any errors must be fixed, any warnings should be fixed, any hints should be reviewed.
+1. `npm run dev` manual testing in dev mode - until we can automate all testing the entire application should be tested.
+1. `npm run build` followed by `node build` - run in release mode, ideally with node_packages removed/renamed - this helps catch deployment issues
+1. Commit changes when happy
+   Repeat for all outdated packages.
+
+The exceptions here are sveltekit itself and adapter-node.
+Manually update package.json to match the latest version (`npm outdated`), do not use `^`, this way we can be certain which beta version we're using.
+
+We use `npm ci` for environments (using package-lock.json) so this should always match the versions last verified by a developer.  
+If we follow the steps above we should experience no deployment issues.
+
 ## Workflow
 
 ### Journey workflow

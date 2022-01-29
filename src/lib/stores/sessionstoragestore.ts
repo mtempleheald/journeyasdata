@@ -47,17 +47,17 @@ export const sessionStorageStore = (key: string) => {
 
 // Implement Svelte's store contract directly without dependency on svelte/store
 // Example: https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Client-side_JavaScript_frameworks/Svelte_stores#how_to_implement_a_store_contract_the_theory
-export const sessionStorageStoreManual = (key: string, initial: any = {}) => {
+export const sessionStorageStoreManual = (key: string, initial = {}) => {
 	let value = getValue(key) ?? initial;
 	let subscribers = [];
 
-	const subscribe = (handler: any) => {
+	const subscribe = (handler) => {
 		subscribers = [...subscribers, handler]; // add this handler to array of subscribers
 		handler(getValue(key)); // call handler with current value
 		return () => (subscribers = subscribers.filter((sub) => sub !== handler)); // return unsubscribe function
 	};
 
-	const set = (new_value: any) => {
+	const set = (new_value) => {
 		if (value === new_value) return;
 		// value has changed, update store and sessionStorage
 		value = new_value;
@@ -65,7 +65,7 @@ export const sessionStorageStoreManual = (key: string, initial: any = {}) => {
 		subscribers.forEach((sub) => sub(value)); // update all current subscribers
 	};
 
-	const update = (update_fn: any) => set(update_fn(value));
+	const update = (update_fn) => set(update_fn(value));
 
 	return { subscribe, set, update }; // store contract
 };

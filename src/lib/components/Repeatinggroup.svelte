@@ -38,7 +38,7 @@
 	function updateSummaryInstance(summary: string, instanceid: number) {
 		const re = new RegExp(/\{\{\s*(\w*)\s*\}\}/gi);
 
-		function replacer(_match: string, p1: any) {
+		function replacer(_match: string, p1) {
 			const result = `{{${p1}.${instanceid}}}`;
 			return result;
 		}

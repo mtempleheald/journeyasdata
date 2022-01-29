@@ -18,7 +18,7 @@
 	function leave() {
 		active = '';
 	}
-	function componentUpdated(event: any) {
+	function componentUpdated(event) {
 		console.debug(
 			`{key: "${event.detail.key}", value: "${event.detail.value}", valid: "${event.detail.valid}}"`
 		);
@@ -29,7 +29,7 @@
 		// execute action if applicable
 		let f = $actionStore[event.detail.key];
 		if (typeof f === 'function') f();
-		selected = !!event.detail.value ? 'selected' : '';
+		selected = event.detail.value ? 'selected' : '';
 	}
 </script>
 

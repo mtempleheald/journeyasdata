@@ -31,7 +31,7 @@ export async function getMetadata(context: string, list: string) {
 		.then((res) => res.json())
 		.then((json) =>
 			json
-				? json.ResultObj[0].Values.map((obj: any) => {
+				? json.ResultObj[0].Values.map((obj) => {
 						const rObj = {};
 						rObj['value'] = obj.Value;
 						rObj['display'] = obj.Name;
