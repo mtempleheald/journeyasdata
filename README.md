@@ -119,6 +119,7 @@ Svelte components
 
 I like to keep dependencies to an absolute minimum and all of them as devDependencies:
 
+- svelte2tsx - used for [packaging](https://kit.svelte.dev/docs#packaging) components for use elsewhere (back-office tool?)
 - jest - test framework
 - ts-jest - allows jest to test TypeScript components
 - @types/jest - provides access to useful Jest types
