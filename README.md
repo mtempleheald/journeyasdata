@@ -133,7 +133,10 @@ I like to keep dependencies to an absolute minimum and all of them as devDepende
 ## Upgrade process
 
 Kit is currently in beta, some people I'm trying to involve in this are less than comfortable fixing version issues.  
-Therefore the upgrade process needs to be bulletproof.  
+Therefore the upgrade process needs to be bulletproof.
+
+See [create-svelte template](https://github.com/sveltejs/kit/tree/master/packages/create-svelte/templates/default) for defaults of various config files.
+
 I'm sticking to Node LTS version, managing using NVM `nvm install --lts`  
 I want the latest version of npm aligned with this `nvm install-latest-npm`
 

@@ -3,12 +3,13 @@
 	export async function load({ session }) {
 		const { user } = session;
 
-		// if (!user) {
-		// 	return {
-		// 		status: 302,
-		// 		redirect: '/admin/login'
-		// 	};
-		// }
+		// TODO: Move this to Handle hook for all /admin/... paths
+		if (!user) {
+			return {
+				status: 302,
+				redirect: '/admin/login'
+			};
+		}
 
 		return {
 			props: { user }

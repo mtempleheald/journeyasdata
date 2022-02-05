@@ -5,7 +5,7 @@ export async function post() {
 		status: 301,
 		headers: {
 			'set-cookie': 'jwt=deleted; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT',
-			'Location': '/admin/login'			
+			Location: '/admin/login'
 		}
-	}
+	};
 }

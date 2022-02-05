@@ -14,29 +14,8 @@
 </script>
 
 <script lang="ts">
-	import { goto } from '$app/navigation';
-	import { post } from '$lib/utils/api';
-	import { session } from '$app/stores';
-
-	let user: string;
-	let pass: string;
-	let errors;
+	let errors: string;
 	let disabled = false;
-
-	async function login() {
-		disabled = true;
-
-		const response = await post('/api/auth/login', { username: user, password: pass });
-
-		// TODO handle network errors
-		errors = response.errors;
-
-		if (response.user) {
-			$session.user = response.user;
-			goto('/admin');
-		}
-		disabled = false;
-	}
 </script>
 
 <header>
@@ -45,11 +24,11 @@
 <form method="post" action="/api/auth/login">
 	<div class="row">
 		<label for="username">Username:</label>
-		<input type="text" id="username" name="username" bind:value={user} />
+		<input type="text" id="username" name="username" />
 	</div>
 	<div class="row">
 		<label for="password">Password:</label>
-		<input type="password" id="password" name="password" bind:value={pass} />
+		<input type="password" id="password" name="password" />
 	</div>
 	<div class="row">
 		<button type="submit" {disabled}>Login</button>

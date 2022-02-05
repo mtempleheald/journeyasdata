@@ -91,7 +91,7 @@
 </script>
 
 <div
-	class="address {active} {!!$validationStore['address'] ? '' : 'invalid'}"
+	class="address {active} {$validationStore['address'] ?? false ? '' : 'invalid'}"
 	on:mouseenter={enter}
 	on:mouseleave={leave}
 >
