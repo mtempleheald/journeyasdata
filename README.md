@@ -133,13 +133,15 @@ I like to keep dependencies to an absolute minimum and all of them as devDepende
 
 ## Upgrade process
 
-Kit is currently in beta, some people I'm trying to involve in this are less than comfortable fixing version issues.  
-Therefore the upgrade process needs to be bulletproof.
+Some people I'm trying to involve in this are less than comfortable fixing version issues.  
+Therefore the upgrade process needs to be bulletproof.  
+The main dependency this project has is Kit which is currently in beta and therefore subject to change.  
 
-See [create-svelte template](https://github.com/sveltejs/kit/tree/master/packages/create-svelte/templates/default) for defaults of various config files.
+See [create-svelte template](https://github.com/sveltejs/kit/tree/master/packages/create-svelte/templates/default) for defaults of various config files.  
+See [kit dependencies](https://github.com/sveltejs/kit/blob/master/packages/kit/package.json) for versions of dependencies which kit itself has.  When we use the same libraries it makes more sense to align to the version of kit than to try to be cutting edge since this requires multiple versions of the same package to co-exist or relies upon implicit up/downgrades.  
 
-I'm sticking to Node LTS version, managing using NVM `nvm install --lts`  
-I want the latest version of npm aligned with this `nvm install-latest-npm`
+Stick to Node LTS version, managed using NVM `nvm install --lts`  
+Use the latest version of npm aligned with this `nvm install-latest-npm`
 
 npm package versioning follows MAJOR.MINOR.PATCH format.  
 `^` prefix allows install/update of the minor or patch versions  
