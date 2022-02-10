@@ -64,6 +64,7 @@ export type ValueType = {
 
 // Use "type" property to select from this discriminated union
 export type ComponentType =
+	| Unknown // Used by admin pages when prototyping
 	| AddressComponent
 	| DisplayComponent
 	| DisplaySelections
