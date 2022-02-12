@@ -63,7 +63,7 @@ test('Textbox renders without value if not specified', () => {
 		label: 'My label'
 	};
 	const { getByRole } = render(InputTextbox, { component: component });
-	expect(getByRole('textbox', { name: component.label })).toHaveValue(undefined);
+	expect(getByRole('textbox', { name: component.label })).toHaveValue('');
 });
 
 test('Textbox renders with default value if specified', () => {
