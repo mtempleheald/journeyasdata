@@ -36,16 +36,12 @@
 	let theme: string;
 	let component: ComponentType = {
 		type: "Unknown",
-		id: "default-id"
+		id: "default-id",
+		values: []
 	};
 	async function toListComponent(component: ComponentType): Promise<OptionComponent> {
 		return {
-			...component,
-			values: [
-				{ value: 'Y', display: 'Yes' },
-				{ value: 'N', display: 'No' },
-				{ value: 'Other', display: 'Other' }
-			]
+			...component
 		};
 	}
 </script>
@@ -145,8 +141,21 @@
 		component={{
 			type: "OptionButtons",
 			id: "required",
-			label: "Required? (true or false)",
+			label: "Required?",
 			values: [{value:"true",display:"True"},{value:"false",display:"False"}]
+		}} />
+	<InputTextbox on:valueChange={(event) => {
+		component.values = event.detail.value.split(',').map((val) => {
+				const obj = {};
+				obj['value'] = val;
+				obj['display'] = val;
+				return obj;
+			})
+		}}
+		component={{
+			type: "Text",
+			id: "values",
+			label: "Values"
 		}} />
 	<InputTextbox on:valueChange={(event) => {component.pre = event.detail.value}}
 		component={{
@@ -181,25 +190,23 @@
 		</svelte:fragment>
 	</svelte:component>
 {:else if ['OptionButtons', 'OptionDropdown', 'YesNo'].includes(component.type)}
-	{#await toListComponent(component)}
-		<!-- looking up refdata (maybe) -->
-	{:then comp}
+
 		<svelte:component
 			this={{
 				OptionButtons: OptionButtons,
 				OptionDropdown: OptionDropdown,
 				YesNo: OptionButtons
 			}[component.type]}
-			component={comp}
+			component={component}
 		>
 			<svelte:fragment slot="pre">
-				{@html markdown(comp.pre, )}
+				{@html markdown(component.pre, )}
 			</svelte:fragment>
 			<svelte:fragment slot="post">
-				{@html markdown(comp.post, )}
+				{@html markdown(component.post, )}
 			</svelte:fragment>
 		</svelte:component>
-	{/await}
+
 {:else if component.type == 'Displayblock' || component.type == 'Displaymodal'}
 	<svelte:component
 		this={{
