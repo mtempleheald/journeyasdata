@@ -166,15 +166,16 @@
 	button {
 		background-color: var(--input-btn-bg);
 		color: var(--input-btn-txt);
-		border: var(--input-btn-border);
-		padding: var(--input-btn-padding);
+		border: var(--input-btn-border, 1px solid black);
+		padding: var(--input-btn-padding, 0.25rem);
+		margin: var(--input-btn-margin, 0.25rem);
 	}
 	button:hover {
 		color: var(--input-btn-hover-txt);
-		background-color: var(--input-btn-hover-bg);
+		background-color: var(--input-btn-hover-bg, #E8E8E8);
 	}
 	button.active {
-		background-color: var(--input-btn-active-bg);
+		background-color: var(--input-btn-active-bg, #E8E8E8);
 		color: var(--input-btn-active-txt);
 	}
 
