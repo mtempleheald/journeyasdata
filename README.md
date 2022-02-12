@@ -95,6 +95,13 @@ We may change the rules but we never ignore errors and warnings.
 To toggle between websites for development add a new `.env.development` file as a copy of `.env`.  
 This file is listed in `.gitignore` to facilitate different developers working with shared components and separate websites.
 
+Since this project has such a heavy dependency on svelte and sveltekit I like to have my own local copy/fork.
+This is mostly for investigations into bugs, but maybe one day I'll contribute, also it protects me in case the project goes in a different direction which no longer suits me.  
+`git clone` (of the fork), followed by `git remote add upstream https://github.com/sveltejs/kit.git` gives me a local copy linked to the main kit repo.  
+To keep this up to date is as simple as `git fetch upstream` and `git rebase upstream/master`.  
+Check using `git remote` which should now include "origin" and "upstream".
+
+
 # Testing approach
 
 I am keen to include useful testing in this framework, but not go overboard.
