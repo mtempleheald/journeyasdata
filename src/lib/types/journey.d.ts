@@ -1,3 +1,4 @@
+// TODO: make these types global in app.d.ts
 export type JourneyType = {
 	title: string;
 	pages: PageType[];

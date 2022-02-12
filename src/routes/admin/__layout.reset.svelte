@@ -2,10 +2,6 @@
 	import { session } from '$app/stores';
 </script>
 
-<svelte:head>
-	<link rel="stylesheet" href="/technicaldemo/theme.css" />
-</svelte:head>
-
 <header>
 	<h1>Questionset Administration</h1>
 	{#if $session.user}

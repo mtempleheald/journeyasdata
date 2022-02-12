@@ -33,9 +33,10 @@
 	import InputTriboxdate from '$lib/components/InputTriboxdate.svelte';
 	import Vehicle from '$lib/components/Vehicle.svelte';
 
+	let theme: string;
 	let component: ComponentType = {
 		type: "Unknown",
-		id: ""
+		id: "default-id"
 	};
 	async function toListComponent(component: ComponentType): Promise<OptionComponent> {
 		return {
@@ -49,13 +50,42 @@
 	}
 </script>
 
+<svelte:head>
+	{#key theme}
+	<link rel="stylesheet" href={`${theme}/theme.css`}/>
+	{/key}
+</svelte:head>
+
+<section>
+
+<h2>Component Builder</h2>
+
 <form on:submit|preventDefault>
+	<OptionButtons on:valueChange={(event) => {theme = event.detail.value}}
+		component={{
+			type: "OptionButtons", 
+			id: "theme", 
+			label: "Theme",
+			values: [
+				{value:"technicaldemo",display:"Technical Demo"},
+				{value:"dangertentinsurance", display:"Danger Tent Insurance"}
+			]}} />
+	<InputTextbox on:valueChange={(event) => {component.id = event.detail.value}}
+		component={{
+			type: "Text",
+			id: "id",
+			label: "Id",
+			value: component.id,
+			required: true,
+			help: "id is required to render most components"
+		}} />
 	<OptionButtons on:valueChange={(event) => {component.type = event.detail.value}}
 		component={{
 			type: "OptionButtons", 
 			id: "component-type", 
-			label: "Type",
+			label: "Component Type",
 			values: [
+				{value: 'Text', display: 'Text'},
 				{value: 'Colour',  display: 'Colour'}, 
 				{value: 'Date', display: 'Date'},
 				{value: 'Datetime', display: 'Datetime'},
@@ -65,7 +95,6 @@
 				{value: 'Range', display: 'Range'},
 				{value: 'Search', display: 'Search'},
 				{value: 'Telephone', display: 'Telephone'},
-				{value: 'Text', display: 'Text'},
 				{value: 'Time', display: 'Time'},
 				{value: 'Upper', display: 'Upper'},
 				{value: 'Url', display: 'Url'},
@@ -82,12 +111,6 @@
 				{value: 'Triboxdate', display: 'Triboxdate'}
 			] 
 		}} />
-	<InputTextbox on:valueChange={(event) => {component.id = event.detail.value}}
-		component={{
-			type: "Text",
-			id: "id",
-			label: "ID"
-		}} />
 	<InputTextbox on:valueChange={(event) => {component.label = event.detail.value}}
 		component={{
 			type: "Text",
@@ -99,6 +122,31 @@
 			type: "Text",
 			id: "placeholder",
 			label: "Placeholder"
+		}} />
+	<InputTextbox on:valueChange={(event) => {component.value = event.detail.value}}
+		component={{
+			type: "Text",
+			id: "value",
+			label: "Default value"
+		}} />
+	<InputTextbox on:valueChange={(event) => {component.value = event.detail.value}}
+		component={{
+			type: "Text",
+			id: "errorMessage",
+			label: "Error messages"
+		}} />
+	<InputTextbox on:valueChange={(event) => {component.value = event.detail.value}}
+		component={{
+			type: "Text",
+			id: "help",
+			label: "Help text"
+		}} />
+	<OptionButtons on:valueChange={(event) => {component.required = event.detail.value}}
+		component={{
+			type: "OptionButtons",
+			id: "required",
+			label: "Required? (true or false)",
+			values: [{value:"true",display:"True"},{value:"false",display:"False"}]
 		}} />
 	<InputTextbox on:valueChange={(event) => {component.pre = event.detail.value}}
 		component={{
@@ -113,6 +161,8 @@
 			label: "Post-text"
 		}} />
 </form>
+
+</section>
 
 <section>
 	<h2>Preview</h2>

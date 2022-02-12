@@ -84,9 +84,9 @@
 				class={component.type?.toLowerCase()}
 				id={component.id}
 				name={component.id}
-				placeholder={component.placeholder}
+				placeholder={component.placeholder ?? ''}
 				required={component.required ?? false}
-				value={component.value}
+				value={component.value ?? ''}
 				on:blur={act}
 				on:focus={focus}
 			/>
@@ -150,7 +150,7 @@
 	}
 
 	input {
-		padding: var(--input-padding);
+		padding: var(--input-padding, 0.25rem);
 		color: var(--input-txt);
 		background-color: var(--input-bg);
 	}
