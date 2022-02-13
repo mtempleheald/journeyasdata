@@ -26,7 +26,7 @@ export type PageType = {
 // A repeating group has no presentation elements of its own, it simply wraps one or more sections
 export type RepeatingGroupType = {
 	type: 'repeatinggroup';
-	id?: string; // exclusively for triggering bespoke actions, dev-maintained
+	id?: string; // used for triggering bespoke actions
 	sections: SectionType[];
 	summarycontent: string | string[];
 	minrepeats?: number;
@@ -37,7 +37,7 @@ export type RepeatingGroupType = {
 };
 export type SectionType = {
 	type?: 'section'; // section is default if excluded
-	id?: string; // exclusively for triggering bespoke actions, dev-maintained
+	id?: string; // used for triggering bespoke actions
 	instanceid?: number; // used only when section is contained within a repeating group
 	title?: string;
 	logo?: ImageType;

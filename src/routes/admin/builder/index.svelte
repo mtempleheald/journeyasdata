@@ -1,6 +1,6 @@
 <script lang="ts">
-    import type { JourneyType } from '$lib/types/journey';
-import { tick } from 'svelte';
+    import Section from '$lib/components/Section.svelte';
+import type { JourneyType } from '$lib/types/journey';
 	
     let journey: JourneyType = {
         title: "sample",
@@ -29,36 +29,79 @@ import { tick } from 'svelte';
     }
     function page_add_section(pageUrl) {
         console.debug("page_add_section", pageUrl);
-        journey.pages.filter((p) => p != pageUrl)[0].sections = [...journey.pages.filter((p) => p != pageUrl)[0].sections, {
-            type: "section",
-            components: []
-        }]
-        // reassign to trigger reactivity
-        journey = journey
+        journey.pages.find((p) => p.url == pageUrl)
+            .sections = [...journey.pages.find((p) => p.url == pageUrl).sections, {
+                type: "section",
+                id: "sample",
+                components: [],
+                sections: [] // only relevant for repeatinggroup section type but we don't know the type yet
+            }];
+        journey = journey; // reassign to trigger reactivity
     }
-    function section_remove(event) {
-        console.debug("section_remove", event);
+    function section_remove(sectionId) {
+        console.debug("section_remove", sectionId);
     }
-    function section_move_up(event) {
-        console.debug("section_move_up", event);
+    function section_move_up(sectionId) {
+        console.debug("section_move_up", sectionId);
     }
-    function section_move_down(event) {
-        console.debug("section_move_down", event);
+    function section_move_down(sectionId) {
+        console.debug("section_move_down", sectionId);
     }
-    function section_add_section(event) {
-        console.debug("section_add_section", event);
+    function section_add_component(sectionId) {
+        console.debug("section_add_component", sectionId);
+        journey = {
+            ...journey, 
+            pages: journey.pages.map ((p) => { return {
+                ...p, 
+                sections: p.sections.map((s) => {
+                    if (s.id != sectionId) {                        
+                        return s
+                    }
+                    else {
+                        return {
+                            ...s, 
+                            pages: [...s.components, {
+                                type: "Unknown",
+                                id: "sample"
+                            }]
+                        }
+                    }
+                })
+            }})
+        }
     }
-    function section_add_component(event) {
-        console.debug("section_add_component", event);
+    function section_add_section(sectionId) {
+        console.debug("section_add_section", sectionId);
+        journey = {
+            ...journey, 
+            pages: journey.pages.map ((p) => { return {
+                ...p, 
+                sections: p.sections.map((s) => {
+                    if (s.id != sectionId) {                        
+                        return s
+                    }
+                    else {
+                        return {
+                            ...s, 
+                            sections: [...s.sections, {
+                                type: "section",
+                                id: "sample",
+                                components: []
+                            }]
+                        }
+                    }
+                })
+            }})
+        }
     }
-    function component_remove(event) {
-        console.debug("component_remove", event);
+    function component_remove(component_id) {
+        console.debug("component_remove", component_id);
     }
-    function component_move_up(event) {
-        console.debug("component_move_up", event);
+    function component_move_up(component_id) {
+        console.debug("component_move_up", component_id);
     }
-    function component_move_down(event) {
-        console.debug("component_move_down", event);
+    function component_move_down(component_id) {
+        console.debug("component_move_down", component_id);
     }
 
 </script>
@@ -78,6 +121,11 @@ import { tick } from 'svelte';
         {#each journey.pages as page}
         <div class="page">
             <h3>Page</h3>
+            <button type="button" on:click="{() => {page_remove(page.url)}}">&#10007;</button>
+            <button type="button" on:click="{() => {page_move_up(page.url)}}">&#8593;</button>
+            <button type="button" on:click="{() => {page_move_down(page.url)}}">&#8595;</button>
+            <br/>
+
             <label for="page_url">Url</label>
             <input id="page_url" type="text" bind:value="{page.url}">
             <label for="page_title">Title</label>
@@ -86,7 +134,8 @@ import { tick } from 'svelte';
             <input id="page_id" type="text" bind:value="{page.id}">
 
             <div class="navigation">
-                <h3>Navigation</h3>                
+                <h3>Navigation</h3>
+                <br/>
                 <label for="page_include">Include in main journey</label>
                 <select id="page_include">
                     <option value="true" selected>Yes</option>
@@ -99,40 +148,88 @@ import { tick } from 'svelte';
             {#each page.sections as section}
             <div class="section">
                 <h3>Section</h3>
+                <button type="button" on:click="{() => {section_remove(section.id)}}">&#10007;</button>
+                <button type="button" on:click="{() => {section_move_up(section.id)}}">&#8593;</button>
+                <button type="button" on:click="{() => {section_move_down(section.id)}}">&#8595;</button>                
+                <br/>
+
                 <label for="section_type">Section Type</label>
                 <select id="section_type" bind:value="{section.type}">
                     <option value="section" selected>Normal</option>
                     <option value="repeatinggroup">Repeating</option>
                 </select>
+                <label for="section_id">Id</label>
+                <input id="section_id" type="text" bind:value="{section.id}">
+                
+                {#if section.type == "repeatinggroup"}
 
+                {#each section.sections as subsection}
+                <div class="subsection">
+                    <h3>Section</h3>
+                    <label for="section_id">Id</label>
+                    <input id="section_id" type="text" bind:value="{subsection.id}">
+
+                    <br/>
+                    <button type="button" on:click="{() => {section_add_component(subsection.id)}}">Add component</button>                        
+                </div>                    
+                {/each}
+                <br/>
+                <button type="button" on:click="{() => {section_add_section(section.id)}}">Add subsection</button>
+                
+                {:else}
+
+                {#each section.components as component}
                 <div class="component">
                     <h2>Component</h2>
+                    <button type="button" on:click="{() => component_remove(component.id)}">{#each section.components as component}
+                <div class="component">
+                    <h2>Component</h2>
+                    <button type="button" on:click="{() => component_remove(component.id)}">{#each section.components as component}
+                <div class="component">
+                    <h2>Component</h2>
+                    <button type="button" on:click="{() => component_remove(component.id)}">&#10007;</button>
+                    <button type="button" on:click="{() => component_move_up(component.id)}">&#8593;</button>
+                    <button type="button" on:click="{() => component_move_down(component.id)}">&#8595;</button>
+                    <br/>
 
                     <label for="component_id">Id</label>
-                    <input id="component_id" type="text">
-
-                    <button type="button" on:click="{component_remove}">Remove component</button>
-                    <button type="button" on:click="{component_move_up}">Move component up</button>
-                    <button type="button" on:click="{component_move_down}">Move component down</button>
+                    <input id="component_id" type="text" bind:value="{component.id}">
+                   
                 </div>
+                {/each}</button>
+                    <button type="button" on:click="{() => component_move_up(component.id)}">&#8593;</button>
+                    <button type="button" on:click="{() => component_move_down(component.id)}">&#8595;</button>
+                    <br/>
 
-                <button type="button" on:click="{section_remove}">Remove Section</button>
-                <button type="button" on:click="{section_move_up}">Move Section up</button>
-                <button type="button" on:click="{section_move_down}">Move Section down</button>
-                <button type="button" on:click="{section_add_section}">Add Section</button>
-                <button type="button" on:click="{section_add_component}">Add Page</button>
+                    <label for="component_id">Id</label>
+                    <input id="component_id" type="text" bind:value="{component.id}">
+                   
+                </div>
+                {/each}</button>
+                    <button type="button" on:click="{() => component_move_up(component.id)}">&#8593;</button>
+                    <button type="button" on:click="{() => component_move_down(component.id)}">&#8595;</button>
+                    <br/>
+
+                    <label for="component_id">Id</label>
+                    <input id="component_id" type="text" bind:value="{component.id}">
+                
+                </div>                
+                {/each}
+
+                <br/>
+                <button type="button" on:click="{() => {section_add_component(section.id)}}">Add component</button>
+
+                {/if}
             </div>
             {/each}
 
-            <button type="button" on:click="{() => {page_remove(page.url)}}">Remove Page</button>
-            <button type="button" on:click="{() => {page_move_up(page.url)}}">Move Page up</button>
-            <button type="button" on:click="{() => {page_move_down(page.url)}}">Move Page down</button>
-            <button type="button" on:click="{() => {page_add_section(page.url)}}">Add Section</button>
+            <br/>
+            <button type="button" on:click="{() => {page_add_section(page.url)}}">Add section</button>
         </div>
         
         {/each}
-
-        <button id="journey_add_page" type="button" on:click="{journey_add_page}">Add Page</button>
+        <br/>
+        <button id="journey_add_page" type="button" on:click="{journey_add_page}">Add page</button>
 
     </div>
 
@@ -146,6 +243,9 @@ import { tick } from 'svelte';
 
 
 <style>
+    h3 {
+        display: inline-block;
+    }
     div {
         border: 1px solid black;
         margin: 0.25rem;
@@ -162,6 +262,9 @@ import { tick } from 'svelte';
     }
     .section {
         background-color: palegoldenrod;
+    }
+    .subsection {
+        background-color: aquamarine;
     }
     .component {
         background-color: lightcyan;

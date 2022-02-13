@@ -31,8 +31,12 @@
 </ul>
 
 <style>
-	ul {
+	li {
 		list-style: none;
+		padding: 0.25rem;
+	}
+	li::before {
+		content: "\27A0";
 	}
 	a {
 		text-decoration: none;
