@@ -1,8 +1,7 @@
 <script lang="ts">
-    import Section from '$lib/components/Section.svelte';
-import type { JourneyType } from '$lib/types/journey';
+    import type { JourneyType } from '$lib/types/journey';
 	
-    let journey: JourneyType = {
+    export let journey: JourneyType = {
         title: "sample",
         pages: [],
         footercontent: "test"
@@ -17,20 +16,20 @@ import type { JourneyType } from '$lib/types/journey';
         }];
 
     }
-    function page_remove(pageUrl) {
-        console.debug("page_remove", pageUrl);
-        journey.pages = journey.pages.filter((p) => p.url != pageUrl);
+    function page_remove(page_url) {
+        console.debug("page_remove", page_url);
+        journey.pages = journey.pages.filter((p) => p.url != page_url);
     }
-    function page_move_up(pageUrl) {
-        console.debug("page_move_up", pageUrl);
+    function page_move_up(page_url) {
+        console.debug("page_move_up", page_url);
     }
-    function page_move_down(pageUrl) {
-        console.debug("page_move_down", pageUrl);
+    function page_move_down(page_url) {
+        console.debug("page_move_down", page_url);
     }
-    function page_add_section(pageUrl) {
-        console.debug("page_add_section", pageUrl);
-        journey.pages.find((p) => p.url == pageUrl)
-            .sections = [...journey.pages.find((p) => p.url == pageUrl).sections, {
+    function page_add_section(page_url) {
+        console.debug("page_add_section", page_url);
+        journey.pages.find((p) => p.url == page_url)
+            .sections = [...journey.pages.find((p) => p.url == page_url).sections, {
                 type: "section",
                 id: "sample",
                 components: [],
@@ -38,29 +37,36 @@ import type { JourneyType } from '$lib/types/journey';
             }];
         journey = journey; // reassign to trigger reactivity
     }
-    function section_remove(sectionId) {
-        console.debug("section_remove", sectionId);
+    function section_remove(section_id) {
+        console.debug("section_remove", section_id);
+        journey = {
+            ...journey, 
+            pages: journey.pages.map ((p) => { return {
+                ...p,
+                sections: p.sections.filter((s) => s.id != section_id)
+            }})
+        }
     }
-    function section_move_up(sectionId) {
-        console.debug("section_move_up", sectionId);
+    function section_move_up(section_id) {
+        console.debug("section_move_up", section_id);
     }
-    function section_move_down(sectionId) {
-        console.debug("section_move_down", sectionId);
+    function section_move_down(section_id) {
+        console.debug("section_move_down", section_id);
     }
-    function section_add_component(sectionId) {
-        console.debug("section_add_component", sectionId);
+    function section_add_component(section_id) {
+        console.debug("section_add_component", section_id);
         journey = {
             ...journey, 
             pages: journey.pages.map ((p) => { return {
                 ...p, 
                 sections: p.sections.map((s) => {
-                    if (s.id != sectionId) {                        
+                    if (s.id != section_id) {                        
                         return s
                     }
                     else {
                         return {
                             ...s, 
-                            pages: [...s.components, {
+                            components: [...s.components, {
                                 type: "Unknown",
                                 id: "sample"
                             }]
@@ -70,14 +76,14 @@ import type { JourneyType } from '$lib/types/journey';
             }})
         }
     }
-    function section_add_section(sectionId) {
-        console.debug("section_add_section", sectionId);
+    function section_add_section(section_id) {
+        console.debug("section_add_section", section_id);
         journey = {
             ...journey, 
             pages: journey.pages.map ((p) => { return {
                 ...p, 
                 sections: p.sections.map((s) => {
-                    if (s.id != sectionId) {                        
+                    if (s.id != section_id) {                        
                         return s
                     }
                     else {
@@ -90,6 +96,18 @@ import type { JourneyType } from '$lib/types/journey';
                             }]
                         }
                     }
+                })
+            }})
+        };
+    }
+    function subsection_add_component(section_id) {
+        console.debug("section_add_component", section_id);
+        journey = {
+            ...journey, 
+            pages: journey.pages.map ((p) => { return {
+                ...p, 
+                sections: p.sections.map((s) => {
+                    return s // TODO
                 })
             }})
         }
@@ -161,73 +179,50 @@ import type { JourneyType } from '$lib/types/journey';
                 <label for="section_id">Id</label>
                 <input id="section_id" type="text" bind:value="{section.id}">
                 
-                {#if section.type == "repeatinggroup"}
+                {#if section.type == "repeatinggroup" }
 
-                {#each section.sections as subsection}
-                <div class="subsection">
-                    <h3>Section</h3>
-                    <label for="section_id">Id</label>
-                    <input id="section_id" type="text" bind:value="{subsection.id}">
+                    {#each section.sections as subsection}                    
+                    <div class="subsection">
+                        <h3>Section</h3>
+                        <label for="section_id">Id</label>
+                        <input id="section_id" type="text" bind:value="{subsection.id}">
+
+                        <br/>
+                        <button type="button" on:click="{() => {subsection_add_component(subsection.id)}}">Add component</button>                        
+                    </div>                    
+                    {/each}<!-- section.sections as subsection -->
 
                     <br/>
-                    <button type="button" on:click="{() => {section_add_component(subsection.id)}}">Add component</button>                        
-                </div>                    
-                {/each}
-                <br/>
-                <button type="button" on:click="{() => {section_add_section(section.id)}}">Add subsection</button>
-                
+                    <button type="button" on:click="{() => {section_add_section(section.id)}}">Add subsection</button>
+
                 {:else}
 
-                {#each section.components as component}
-                <div class="component">
-                    <h2>Component</h2>
-                    <button type="button" on:click="{() => component_remove(component.id)}">{#each section.components as component}
-                <div class="component">
-                    <h2>Component</h2>
-                    <button type="button" on:click="{() => component_remove(component.id)}">{#each section.components as component}
-                <div class="component">
-                    <h2>Component</h2>
-                    <button type="button" on:click="{() => component_remove(component.id)}">&#10007;</button>
-                    <button type="button" on:click="{() => component_move_up(component.id)}">&#8593;</button>
-                    <button type="button" on:click="{() => component_move_down(component.id)}">&#8595;</button>
+                    {#each section.components as component}
+                    <div class="component">
+                        <h2>Component</h2>
+                        <button type="button" on:click="{() => {component_remove(component.id)}}">&#10007;</button>
+                        <button type="button" on:click="{() => {component_move_up(component.id)}}">&#8593;</button>
+                        <button type="button" on:click="{() => {component_move_down(component.id)}}">&#8595;</button>
+                        <br/>
+
+                        <label for="component_id">Id</label>
+                        <input id="component_id" type="text" bind:value="{component.id}">
+                    
+                    </div>
+                    {/each}<!-- section.components as component -->
+
                     <br/>
-
-                    <label for="component_id">Id</label>
-                    <input id="component_id" type="text" bind:value="{component.id}">
-                   
-                </div>
-                {/each}</button>
-                    <button type="button" on:click="{() => component_move_up(component.id)}">&#8593;</button>
-                    <button type="button" on:click="{() => component_move_down(component.id)}">&#8595;</button>
-                    <br/>
-
-                    <label for="component_id">Id</label>
-                    <input id="component_id" type="text" bind:value="{component.id}">
-                   
-                </div>
-                {/each}</button>
-                    <button type="button" on:click="{() => component_move_up(component.id)}">&#8593;</button>
-                    <button type="button" on:click="{() => component_move_down(component.id)}">&#8595;</button>
-                    <br/>
-
-                    <label for="component_id">Id</label>
-                    <input id="component_id" type="text" bind:value="{component.id}">
-                
-                </div>                
-                {/each}
-
-                <br/>
-                <button type="button" on:click="{() => {section_add_component(section.id)}}">Add component</button>
+                    <button type="button" on:click="{() => section_add_component(section.id)}">Add component</button>
 
                 {/if}
             </div>
-            {/each}
+            {/each}<!-- page.sections as section -->
 
             <br/>
             <button type="button" on:click="{() => {page_add_section(page.url)}}">Add section</button>
         </div>
         
-        {/each}
+        {/each}<!-- journey.pages as page -->
         <br/>
         <button id="journey_add_page" type="button" on:click="{journey_add_page}">Add page</button>
 
