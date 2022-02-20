@@ -4,7 +4,7 @@ export type JourneyType = {
 	pages: PageType[];
 	logo?: ImageType;
 	cookiepreferences?: CookiePreferenceType;
-	footercontent: string | string[];
+	footercontent?: string | string[];
 };
 export type NavigationOptionsType = {
 	includeinjourney?: boolean; // default true, disable if needed e.g. remove error pages from main journey flow
@@ -141,6 +141,7 @@ export interface DisplayComponent extends BaseComponent {
 	collapsible?: boolean;
 }
 // selected/unselected items is more important than content for this component
+// TODO: consider merging with DisplayComponent, complicating content's type and removing items
 export interface DisplaySelections extends BaseComponent {
 	type: 'Displayselections';
 	id?: string; // included to remove TS warnings only
