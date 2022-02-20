@@ -6,10 +6,9 @@
 			"url": "welcome",
 			"title": "Welcome to Imaginary Autos",
 			"displayprogress": false,
-			"displaytitle": true,
+			"displaytitle": false,
 			"sections": [
 				{
-					"title": "Single Step - Page 1, Section 1",
 					"logo": {
 						"url": "static/demo_imaginary_autos/logo.png",
 						"width": "500px",
@@ -18,12 +17,86 @@
 					"components": [
 						{
 							"type": "Displayblock",
-							"content": "The journey of a thousand miles begins with a *single step*."
+							"pre": "Welcome to 'Imaginary Autos' - Resellers of the ultimate in luxury automobiles.",
+							"content": "Available in a range of ulta eco-friendly electric to 6L v12's offering an impressive 2.3 miles per gallon.",
+							"post" : "In just a few questions, we will have you matched with your perfect automobile."
+						}
+					]
+				}
+			]
+		},
+		{
+			"url": "q1",
+			"title": "q1",
+			"displayprogress": false,
+			"displaytitle": false,
+			"sections": [
+				{
+					"components": [
+						{
+							"id": "vehicle_type",
+							"type": "OptionButtons",
+							"required": true,							
+							"label" : "What type or car are you looking for?",
+							"errorMessage": "Please select a vehicle type",
+							"help": "Simply select the type of vehicle you are interested in.",
+							"values": [
+								{
+									"display": "Family",
+									"value": "lifes-over",
+									"image": {
+										"url": "static/demo_imaginary_autos/images/car-type-family.png",
+										"width": "100",
+										"height": "100"
+									},
+									"textLocation": "bottom"
+								},
+								{
+									"display": "Compact",
+									"value": "single-and-ugly",
+									"image": {
+										"url": "static/demo_imaginary_autos/images/car-type-compact.png",
+										"width": "100",
+										"height": "100"
+									},
+									"textLocation": "bottom"
+								},
+								{
+									"display":"4x4",
+									"value": "wannabe-farmer",
+									"image": {
+										"url": "static/demo_imaginary_autos/images/car-type-4x4.png",
+										"width": "100",
+										"height": "100"
+									},
+									"textLocation": "bottom"
+								},
+								{
+									"display": "SUV",
+									"value": "moms-school-run",
+									"image": {
+										"url": "static/demo_imaginary_autos/images/car-type-suv.png",
+										"width": "100",
+										"height": "100"
+									},
+									"textLocation": "bottom"
+								},
+								{
+									"display": "Sports",
+									"value": "small-penis",
+									"image": {
+										"url": "static/demo_imaginary_autos/images/car-type-sports.png",
+										"width": "100",
+										"height": "100"
+									},
+									"textLocation": "bottom"
+								}
+							]
 						}
 					]
 				}
 			]
 		}
 	],
-	"footercontent": ["Information correct at time of checking", "", "&copy; 2022 Vision Autos"]
+	"footercontent": ["Information correct at time of checking", "", "&copy; 2022 Imaginary Autos"]
 }
