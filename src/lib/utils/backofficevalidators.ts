@@ -159,3 +159,28 @@ export function input_components_have_ids(journey: JourneyType): boolean {
 	return true;
 }
 
+
+/**
+ * Check if any bespoke actions are linked to a page before deletion
+ * Actions are dev-controlled, content is not, yet can still break code
+ */
+ export function page_has_bespoke_actions(journey: JourneyType, page_url: string): boolean {
+	// TODO: figure out how to implement this
+	return true;
+}
+/**
+ * Check if any bespoke actions are linked to a section before deletion
+ * Actions are dev-controlled, content is not, yet can still break code
+ */
+ export function section_has_bespoke_actions(journey: JourneyType, section_id: string): boolean {
+	// TODO: figure out how to implement this
+	return true;
+}
+/**
+ * Check if any bespoke actions are linked to a component before deletion
+ * Actions are dev-controlled, content is not, yet can still break code
+ */
+export function component_has_bespoke_actions(journey: JourneyType, component_id: string): boolean {
+	// TODO: figure out how to implement this
+	return true;
+}
