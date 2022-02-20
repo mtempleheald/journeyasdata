@@ -2,13 +2,13 @@
 import { writable } from 'svelte/store';
 
 type StateType = {
-    key: string;
-    value: string;
-    display_value: string;
-    valid: boolean;
-}
+	key: string;
+	value: string;
+	display_value: string;
+	valid: boolean;
+};
 
-function upsert(store: {[key: string]: StateType}, key: string, state: StateType) {
+function upsert(store: { [key: string]: StateType }, key: string, state: StateType) {
 	// create new entry or overwrite regardless of what was set
 	store[key] = state;
 	return store;
@@ -20,7 +20,7 @@ function store() {
 	return {
 		subscribe,
 		set: (key: string, state: StateType) => update((store) => upsert(store, key, state)),
-		reset: (value: {[key: string]: StateType}) => set(value)
+		reset: (value: { [key: string]: StateType }) => set(value)
 	};
 }
 

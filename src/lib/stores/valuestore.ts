@@ -1,3 +1,4 @@
+import type { ValueStoreType } from '$lib/types/journey';
 import { writable } from 'svelte/store';
 
 /*
@@ -22,7 +23,7 @@ import { writable } from 'svelte/store';
     Example https://github.com/bradphelan/immer.loves.svelte
 */
 
-function setValue(values: object, key: string, value: string) {
+function setValue(values: ValueStoreType, key: string, value: string) {
 	// create new entry or overwrite regardless of what was set
 	values[key] = value;
 	return values;
@@ -34,7 +35,7 @@ function store() {
 	return {
 		subscribe,
 		set: (key: string, value: string) => update((store) => setValue(store, key, value)),
-		reset: (value: object) => set(value)
+		reset: (value: ValueStoreType) => set(value)
 	};
 }
 

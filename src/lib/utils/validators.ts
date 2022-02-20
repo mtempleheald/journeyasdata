@@ -4,8 +4,11 @@ import type {
 	JourneyType,
 	PageType,
 	RepeatingGroupType,
-	SectionType
+	SectionType,
+	ValidationStoreType,
+	ValueStoreType
 } from '$lib/types/journey';
+import { to_section_list } from './converters';
 
 /**
  * Establish the validity for a component, trusting the component's judgement if provided
@@ -16,8 +19,8 @@ import type {
  */
 export function componentValid(
 	component: InputComponent,
-	valueStore: object,
-	validationStore: object
+	valueStore: ValueStoreType,
+	validationStore: ValidationStoreType
 ): boolean {
 	// (ineligible) - component has no identifier, it must be a display component only, we have no reason to validate
 	if (!component.id) return true;
@@ -45,8 +48,8 @@ export function componentValid(
  */
 export function sectionValid(
 	section: SectionType | RepeatingGroupType,
-	valueStore: object,
-	validationStore: object
+	valueStore: ValueStoreType,
+	validationStore: ValidationStoreType
 ): boolean {
 	// function duplicated from Repeatinggroup.svelte
 	function updateSection(section: SectionType, index: number) {
@@ -77,7 +80,11 @@ export function sectionValid(
  * @param validationStore   $validationStore from the SvelteKit runtime, or an object consisting of simple string key value pairs
  * @returns                 boolean
  */
-export function pageValid(page: PageType, valueStore: object, validationStore: object): boolean {
+export function pageValid(
+	page: PageType,
+	valueStore: ValueStoreType,
+	validationStore: ValidationStoreType
+): boolean {
 	return page.sections.every((s) => sectionValid(s, valueStore, validationStore));
 }
 
@@ -90,8 +97,8 @@ export function pageValid(page: PageType, valueStore: object, validationStore: o
  */
 export function journeyValid(
 	journey: JourneyType,
-	valueStore: object,
-	validationStore: object
+	valueStore: ValueStoreType,
+	validationStore: ValidationStoreType
 ): boolean {
 	return journey.pages.every((p) => pageValid(p, valueStore, validationStore));
 }
@@ -100,3 +107,33 @@ export function journeyValid(
 // Questionset structure = journey.page.section.component - sections can be repeated
 // Value store uses identifier {section id}.{section index}.{component id} which can be unflattened to a similar struture
 // For non-repeating sections this value store identifier is simply {component id}
+
+export function first_invalid_component_in_section(
+	section: SectionType,
+	valueStore: ValueStoreType,
+	validationStore: ValidationStoreType
+): string | null {
+	return section.components.find((c) => !componentValid(c, valueStore, validationStore))?.id;
+}
+
+export function first_invalid_component_in_page(
+	page: PageType,
+	valueStore: ValueStoreType,
+	validationStore: ValidationStoreType
+): string | null {
+	return page.sections
+		.flatMap((s) => {
+			if (s.type == 'repeatinggroup') {
+				return to_section_list(s).flatMap((ss) => {
+					return ss.components.map((c) => {
+						return { sectionid: s.id, componentid: c.id };
+					});
+				});
+			} else {
+				return s.components.map((c) => {
+					return { sectionid: s.id, componentid: c.id };
+				});
+			}
+		})
+		.find((x) => !componentValid(x.componentid, valueStore, validationStore))?.componentid;
+}

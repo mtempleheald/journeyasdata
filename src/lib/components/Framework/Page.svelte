@@ -7,7 +7,7 @@
 	import { validationStore } from '$lib/stores/validationstore';
 	import { valueStore } from '$lib/stores/valuestore';
 	import { nextPageUrl, prevPageUrl } from '$lib/utils/navigation';
-	import { pageValid } from '$lib/utils/validators';
+	import { first_invalid_component_in_page, pageValid } from '$lib/utils/validators';
 	import Cookiepreference from '$lib/components/Cookiepreference.svelte';
 	import DisplayBlock from '$lib/components//DisplayBlock.svelte';
 	import Navbuttons from '$lib/components/Navbuttons.svelte';
@@ -44,7 +44,9 @@
 			)
 		) {
 			console.debug('Page invalid, correct before trying again');
-			// TODO: Show something to the user, preferably jump to first invalid component
+			const first_error = first_invalid_component_in_page(page, $valueStore, $validationStore);
+			console.debug('Error with component id ', first_error); // TODO: currently undefined, fix this
+			goto(`#${first_error}`);
 			return;
 		}
 
