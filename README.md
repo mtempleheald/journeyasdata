@@ -101,7 +101,6 @@ This is mostly for investigations into bugs, but maybe one day I'll contribute, 
 To keep this up to date is as simple as `git fetch upstream` and `git rebase upstream/master`.  
 Check using `git remote` which should now include "origin" and "upstream".
 
-
 # Testing approach
 
 I am keen to include useful testing in this framework, but not go overboard.
@@ -142,10 +141,10 @@ I like to keep dependencies to an absolute minimum and all of them as devDepende
 
 Some people I'm trying to involve in this are less than comfortable fixing version issues.  
 Therefore the upgrade process needs to be bulletproof.  
-The main dependency this project has is Kit which is currently in beta and therefore subject to change.  
+The main dependency this project has is Kit which is currently in beta and therefore subject to change.
 
 See [create-svelte template](https://github.com/sveltejs/kit/tree/master/packages/create-svelte/templates/default) for defaults of various config files.  
-See [kit dependencies](https://github.com/sveltejs/kit/blob/master/packages/kit/package.json) for versions of dependencies which kit itself has.  When we use the same libraries it makes more sense to align to the version of kit than to try to be cutting edge since this requires multiple versions of the same package to co-exist or relies upon implicit up/downgrades.  
+See [kit dependencies](https://github.com/sveltejs/kit/blob/master/packages/kit/package.json) for versions of dependencies which kit itself has. When we use the same libraries it makes more sense to align to the version of kit than to try to be cutting edge since this requires multiple versions of the same package to co-exist or relies upon implicit up/downgrades.
 
 Stick to Node LTS version, managed using NVM `nvm install --lts`  
 Use the latest version of npm aligned with this `nvm install-latest-npm`

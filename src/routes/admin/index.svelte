@@ -21,7 +21,6 @@
 	export let user;
 </script>
 
-
 <h2>Admin portal</h2>
 <p>Congratulations on your privileged access {user.username}, what would you like to do now?</p>
 
@@ -36,7 +35,7 @@
 		padding: 0.25rem;
 	}
 	li::before {
-		content: "\27A0";
+		content: '\27A0';
 	}
 	a {
 		text-decoration: none;
