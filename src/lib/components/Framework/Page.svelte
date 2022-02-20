@@ -12,8 +12,8 @@
 	import DisplayBlock from '$lib/components//DisplayBlock.svelte';
 	import Navbuttons from '$lib/components/Navbuttons.svelte';
 	import Progressbar from '$lib/components/Progressbar.svelte';
-	import Repeatinggroup from '$lib/components/Repeatinggroup.svelte';
-	import Section from '$lib/components/Section.svelte';
+	import Repeatinggroup from '$lib/components/Framework/Repeatinggroup.svelte';
+	import Section from '$lib/components/Framework/Section.svelte';
 
 	export let page: PageType;
 

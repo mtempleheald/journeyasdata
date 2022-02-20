@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { SectionType } from '$lib/types/journey';
-	import Component from '$lib/components/Component.svelte';
+	import Component from '$lib/components/Framework/Component.svelte';
 	import Navbuttons from '$lib/components/Navbuttons.svelte';
 
 	export let section: SectionType;

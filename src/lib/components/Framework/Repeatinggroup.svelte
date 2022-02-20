@@ -6,7 +6,7 @@
 	import { valueStore } from '$lib/stores/valuestore';
 	import DisplayBlock from '$lib/components/DisplayBlock.svelte';
 	import markdown from '$lib/utils/markdown';
-	import Section from '$lib/components/Section.svelte';
+	import Section from '$lib/components/Framework/Section.svelte';
 
 	export let repeatinggroup: RepeatingGroupType;
 
