@@ -1,4 +1,6 @@
-export async function stubVehicleData() {
+import type { VehicleType } from '$lib/types/vehicle';
+
+export async function stubVehicleData(): Promise<VehicleType> {
 	return {
 		abicode: 'ABI Code',
 		doors: 4,
