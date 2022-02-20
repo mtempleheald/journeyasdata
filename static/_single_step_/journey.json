@@ -1,15 +1,15 @@
 {
-	"title": "[Site Title]: Single Step",
+	"title": "Single Step Site",
 	"pages": 
 	[
 		{
 			"url": "index",
-			"title": "[Page Title]: Single Step",
+			"title": "Single Step - Page 1",
 			"displayprogress": false,
 			"displaytitle": true,
 			"sections": [
 				{
-					"title": "[Section Title]: Single Step ",
+					"title": "Single Step - Page 1, Section 1",
 					"logo": {
 						"url": "http://quotivee.com/wp-content/uploads/2013/05/quotivee_1280x800_0016_A-journey-of-a-thousand-miles-must-begin-with-a-single-step.-.jpg",
 						"width": "500px",
