@@ -1,16 +1,20 @@
 /// <reference types="@sveltejs/kit" />
 
-// https://kit.svelte.dev/docs#typescript
-declare namespace App {
-	interface Locals {
-		userid: string;
+// Sveltekit typeScript docs https://kit.svelte.dev/docs/typescript
+// Importing types discussion https://github.com/sveltejs/kit/discussions/3772#discussioncomment-2131563
+
+declare global {
+	declare namespace App {
+		interface Locals {
+			userid: string;
+		}
+
+		interface Platform {}
+
+		interface Session {}
+
+		interface Stuff {}
 	}
-
-	interface Platform {}
-
-	interface Session {}
-
-	interface Stuff {}
 }
 
 // TODO: Add whatever is needed to facilitate authentication and authorisation
