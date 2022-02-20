@@ -1,0 +1,43 @@
+{
+	"title": "[Site Title]: Single Step",
+	"pages": 
+	[
+		{
+			"url": "index",
+			"title": "[Page Title]: Single Step",
+			"displayprogress": false,
+			"displaytitle": true,
+			"sections": [
+				{
+					"title": "[Section Title]: Single Step ",
+					"logo": {
+						"url": "http://quotivee.com/wp-content/uploads/2013/05/quotivee_1280x800_0016_A-journey-of-a-thousand-miles-must-begin-with-a-single-step.-.jpg",
+						"width": "500px",
+						"height": "500px"
+					},
+					"components": [
+						{
+							"type": "Displayblock",
+							"content": "The journey of a thousand miles begins with a *single step*."
+						}
+					]
+				}
+			]
+		}
+	],
+	"cookiepreferences": {
+		"pre": "# Cookie preferences \n\n This website may require cookies to function. \n\n We would also appreciate your concept to use additional cookies for analytics purposes, please select an option.",
+		"post": "",
+		"values": [
+			{
+				"value": "essential",
+				"display": "Essential cookies only"
+			},
+			{
+				"value": "all",
+				"display": "Accept all cookies"
+			}
+		]
+	},
+	"footercontent": ["Left aligned footer content", "Middle aligned footer content", "right aligned footer content"]
+}
