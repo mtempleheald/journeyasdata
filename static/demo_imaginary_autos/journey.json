@@ -92,6 +92,46 @@
 									"textLocation": "bottom"
 								}
 							]
+						},
+						{
+							"id": "transmission_type",
+							"type": "OptionButtons",
+							"required": true,							
+							"label" : "What transmission do you need?",
+							"errorMessage": "Please select a transmission type",
+							"help": "Simply select the type of transmission you are eligible to drive.",
+							"values": [
+								{
+									"display": "Manual",
+									"value": "manual",
+									"image": {
+										"url": "static/demo_imaginary_autos/images/transmission-manual.png",
+										"width": "100",
+										"height": "100"
+									},
+									"textLocation": "bottom"
+								},
+								{
+									"display": "Auto / Semi-Auto",
+									"value": "auto",
+									"image": {
+										"url": "static/demo_imaginary_autos/images/transmission-automatic.png",
+										"width": "100",
+										"height": "100"
+									},
+									"textLocation": "bottom"
+								},
+								{
+									"display":"Either",
+									"value": "either",
+									"image": {
+										"url": "static/demo_imaginary_autos/images/transmission-either.png",
+										"width": "100",
+										"height": "100"
+									},
+									"textLocation": "bottom"
+								}
+							]
 						}
 					]
 				}
