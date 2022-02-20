@@ -1,0 +1,29 @@
+{
+	"title": "Imaginary Autos - Car Sales",
+	"pages": 
+	[
+		{
+			"url": "welcome",
+			"title": "Welcome to Imaginary Autos",
+			"displayprogress": false,
+			"displaytitle": true,
+			"sections": [
+				{
+					"title": "Single Step - Page 1, Section 1",
+					"logo": {
+						"url": "static/demo_imaginary_autos/logo.png",
+						"width": "500px",
+						"height": "500px"
+					},
+					"components": [
+						{
+							"type": "Displayblock",
+							"content": "The journey of a thousand miles begins with a *single step*."
+						}
+					]
+				}
+			]
+		}
+	],
+	"footercontent": ["Information correct at time of checking", "", "&copy; 2022 Vision Autos"]
+}
