@@ -258,6 +258,107 @@
 									"value": "more_than_500"
 								}
 							]
+						},
+						{
+							"id": "mileage_suggestion_electric",
+							"type": "Displayblock",
+							"content": "Based upon the mileage selected, I would recommend you go with an ELECTRIC vehicle.",
+							"dependsUpon": {
+								"id": "mileage",
+								"value": "less_than_300"
+							}
+						},
+						{
+							"id": "mileage_suggestion_petrol",
+							"type": "Displayblock",
+							"content": "Based upon the mileage selected, I would recommend you go with an PETROL vehicle.",
+							"dependsUpon": {
+								"id": "mileage",
+								"value": "301-500"
+							}
+						},
+						{
+							"id": "mileage_suggestion_diesel",
+							"type": "Displayblock",
+							"content": "Based upon the mileage selected, I would recommend you go with an DIESEL vehicle.",
+							"dependsUpon": {
+								"id": "mileage",
+								"value": "more_than_500"
+							}
+						}
+					]
+				},
+				{
+					"title": "Towing",
+					"navigation": {
+						"showback": false,
+						"shownext": false
+					},
+					"components": [
+						{
+							"id": "towing",
+							"type": "YesNo",
+							"required": true,
+							"label" : "Do you need to tow a caravan or a trailer?",
+							"errorMessage": "Please tell us if you need to tow a caravan or trailer.",
+							"help": "Please select yes or no."
+						}
+					]
+				}
+			]
+		},
+		{
+			"url": "payment",
+			"title": "We need to know some financial information from you.",
+			"displayprogress": false,
+			"displaytitle": false,
+			"sections": [
+				{
+					"title": "Payment",
+					"navigation": {
+						"showback": false,
+						"shownext": false
+					},
+					"components": [
+						{
+							"id": "payment",
+							"type": "OptionDropdown",
+							"required": true,							
+							"label" : "How do you want to pay for the vehicle?",
+							"errorMessage": "Please tell us how intend to fund the vehicle",
+							"help": "Please tell us how you want to pay for the vehicle.",
+							"values": [
+								{
+									"display": "PCP",
+									"value": "pcp"
+								},
+								{
+									"display": "HP",
+									"value": "hp"
+								},
+								{
+									"display":"Pay in Full",
+									"value": "pay_in_full"
+								}
+							]
+						},
+						{
+							"id": "min_price",
+							"type": "Number",
+							"required": true,							
+							"label" : "Minimum price to pay for the vehicle?",
+							"errorMessage": "Please tell us what the minimum amount you have to spend is",
+							"help": "Enter a number in whole pounds.",
+							"placeholder": "£99"
+						},
+						{
+							"id": "max_price",
+							"type": "Number",
+							"required": true,
+							"label" : "Maximum price to pay for the vehicle?",
+							"errorMessage": "Please tell us what the maximum amount you have to spend is",
+							"help": "Enter a number in whole pounds.",
+							"placeholder": "£99,999"
 						}
 					]
 				}
