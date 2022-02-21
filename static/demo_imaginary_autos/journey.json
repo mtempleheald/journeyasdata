@@ -7,6 +7,10 @@
 			"title": "Welcome to Imaginary Autos",
 			"displayprogress": false,
 			"displaytitle": false,
+			"navigation": {
+				"showback": false,
+				"shownext": true
+			},
 			"sections": [
 				{
 					"logo": {
@@ -26,12 +30,17 @@
 			]
 		},
 		{
-			"url": "q1",
-			"title": "q1",
+			"url": "vehicle",
+			"title": "About the Vehicle",
 			"displayprogress": false,
 			"displaytitle": false,
 			"sections": [
 				{
+					"title": "Vehicle Type",
+					"navigation": {
+						"showback": false,
+						"shownext": false
+					},
 					"components": [
 						{
 							"id": "vehicle_type",
@@ -92,7 +101,16 @@
 									"textLocation": "bottom"
 								}
 							]
-						},
+						}
+					]
+				},
+				{
+					"title": "Transmission Type",
+					"navigation": {
+						"showback": false,
+						"shownext": false
+					},
+					"components": [
 						{
 							"id": "transmission_type",
 							"type": "OptionButtons",
@@ -130,6 +148,114 @@
 										"height": "100"
 									},
 									"textLocation": "bottom"
+								}
+						 	]
+						}
+					]
+				},
+				{
+					"title": "Fuel Type",
+					"navigation": {
+						"showback": false,
+						"shownext": false
+					},
+					"components": [
+						{
+							"id": "fuel_type",
+							"type": "OptionButtons",
+							"required": true,							
+							"label" : "What fuel would you like?",
+							"errorMessage": "Please select a type of fuel to power the vehicle.",
+							"help": "Simply select the type of fuel you would like to power the vehicle.",
+							"values": [
+								{
+									"display": "Petrol",
+									"value": "petrol",
+									"image": {
+										"url": "static/demo_imaginary_autos/images/fuel-petrol.png",
+										"width": "100",
+										"height": "100"
+									},
+									"textLocation": "bottom"
+								},
+								{
+									"display": "Diesel",
+									"value": "diesel",
+									"image": {
+										"url": "static/demo_imaginary_autos/images/fuel-diesel.png",
+										"width": "100",
+										"height": "100"
+									},
+									"textLocation": "bottom"
+								},
+								{
+									"display":"Hybrid",
+									"value": "hybrid",
+									"image": {
+										"url": "static/demo_imaginary_autos/images/fuel-hybrid.jpg",
+										"width": "100",
+										"height": "100"
+									},
+									"textLocation": "bottom"
+								},
+								{
+									"display":"Electric",
+									"value": "electric",
+									"image": {
+										"url": "static/demo_imaginary_autos/images/fuel-electric.jpg",
+										"width": "100",
+										"height": "100"
+									},
+									"textLocation": "bottom"
+								},
+								{
+									"display":"Hydrogen",
+									"value": "hydrogen",
+									"image": {
+										"url": "static/demo_imaginary_autos/images/fuel-hydrogen.png",
+										"width": "100",
+										"height": "100"
+									},
+									"textLocation": "bottom"
+								}
+						 	]
+						}
+					]
+				}
+			]
+		},
+		{
+			"url": "usage",
+			"title": "How would you use the vehicle",
+			"displayprogress": false,
+			"displaytitle": false,
+			"sections": [
+				{
+					"title": "Mileage",
+					"navigation": {
+						"showback": false,
+						"shownext": false
+					},
+					"components": [
+						{
+							"id": "mileage",
+							"type": "OptionDropdown",
+							"required": true,							
+							"label" : "How many miles per week would you do?",
+							"errorMessage": "Please tell us how many miles you intend to drive",
+							"help": "Please use the drop down to select the number of miles per week you would drive",
+							"values": [
+								{
+									"display": "Less than 300",
+									"value": "less_than_300"
+								},
+								{
+									"display": "301-500",
+									"value": "301-500"
+								},
+								{
+									"display":"More than 500",
+									"value": "more_than_500"
 								}
 							]
 						}

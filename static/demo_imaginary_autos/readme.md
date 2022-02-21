@@ -1,5 +1,5 @@
 # Vision Auto's
-The ultimate in futuristic luxy automobiles.
+The ultimate in luxy automobiles.
 
 Available in a range of ulta eco-friendly electric to 6L v12's offering an impressive 2.3 miles per gallon.
 
@@ -14,19 +14,23 @@ Questions:
 - Transmission? [Option - text]
   - Manual, Auto / Semi-Auto,  Not bothered
 
-- How many miles would you do in a week?
-  - [Text] - 1 - 300 = Electric
-          - 301 - 500 = Petrol
-          - 500 + = diesel
-
-- Box recommending Electric, Petrol, Diesel
-
 - Fuel type:
   - Petrol
   - Diesel
   - Hybrid
   - Electric
   - Hydrogen
+
+
+---- usage
+
+
+- How many miles would you do in a week?
+  - [Text] - 1 - 300 = Electric
+          - 301 - 500 = Petrol
+          - 500 + = diesel
+
+- Box recommending Electric, Petrol, Diesel
 
 - Do you need to be able to tow a caravan or trailer? [Option / y/n]
   - Yes, No
