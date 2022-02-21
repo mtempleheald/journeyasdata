@@ -172,10 +172,10 @@
 	}
 	button:hover {
 		color: var(--input-btn-hover-txt);
-		background-color: var(--input-btn-hover-bg, #E8E8E8);
+		background-color: var(--input-btn-hover-bg, #e8e8e8);
 	}
 	button.active {
-		background-color: var(--input-btn-active-bg, #E8E8E8);
+		background-color: var(--input-btn-active-bg, #e8e8e8);
 		color: var(--input-btn-active-txt);
 	}
 

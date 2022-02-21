@@ -1,37 +1,18 @@
 <script lang="ts">
-	import type { ComponentType, RepeatingGroupType, SectionType } from '$lib/types/journey';
+	import type { RepeatingGroupType, SectionType } from '$lib/types/journey';
 	import { displayValueStore } from '$lib/stores/displayvaluestore';
+	import { to_section_list } from '$lib/utils/converters';
 	import { replaceTokens } from '$lib/utils/replacetokens';
 	import { validationStore } from '$lib/stores/validationstore';
 	import { valueStore } from '$lib/stores/valuestore';
 	import DisplayBlock from '$lib/components/DisplayBlock.svelte';
 	import markdown from '$lib/utils/markdown';
-	import Section from '$lib/components/Section.svelte';
+	import Section from '$lib/components/Framework/Section.svelte';
 
 	export let repeatinggroup: RepeatingGroupType;
 
-	// sections within a repeating group are just instances of the section template
-	// must ensure that section instances are identifiable for hide/show/add/remove functionality
-	// All input components across the entire journey must have unique identifier for integration purposes - componentid.repeatindex
-	// (assume here that components have unique ids except for iterations which we're handling here)
-	let sections: SectionType[] = updateSections(repeatinggroup.sections);
-
-	function updateSections(sections: SectionType[]) {
-		let newSections: SectionType[] = [];
-
-		for (var i = 1; i <= repeatinggroup.maxrepeats; i++) {
-			sections.forEach((s) => {
-				let newComponents: ComponentType[] = s.components.map((comp) => {
-					return {
-						...comp,
-						id: comp.id ? `${comp.id}.${i}` : undefined
-					};
-				});
-				newSections.push({ ...s, instanceid: i, components: newComponents });
-			});
-		}
-		return newSections;
-	}
+	// expand repeating group out into its sections based on maxrepeats
+	let sections: SectionType[] = to_section_list(repeatinggroup);
 
 	// find {{ componentid }} and replace with {{ componentid.instanceid }}
 	// whitespace in the brackets should not matter but the component id should be alphanumeric

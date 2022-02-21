@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { getContext } from 'svelte';
-	import Page from '$lib/components/Page.svelte';
+	import Page from '$lib/components/Framework/Page.svelte';
 	import type { JourneyType } from '$lib/types/journey';
 
 	export let currentpage: string;

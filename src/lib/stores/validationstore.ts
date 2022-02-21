@@ -1,3 +1,4 @@
+import type { ValidationStoreType } from '$lib/types/journey';
 import { writable } from 'svelte/store';
 
 /*
@@ -6,7 +7,7 @@ import { writable } from 'svelte/store';
     - value is a boolean, true if the input is valid, false otherwise.  Missing should be assumed invalid.
 */
 
-function setValue(inputs: object, key: string, value: boolean) {
+function setValue(inputs: ValidationStoreType, key: string, value: boolean) {
 	// create new entry or overwrite regardless of what was set
 	inputs[key] = value;
 	return inputs;
@@ -18,7 +19,7 @@ function store() {
 	return {
 		subscribe,
 		set: (key: string, value: boolean) => update((store) => setValue(store, key, value)),
-		reset: (value: object) => set(value)
+		reset: (value: ValidationStoreType) => set(value)
 	};
 }
 

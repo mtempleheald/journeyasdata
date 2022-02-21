@@ -10,7 +10,7 @@
 </script>
 
 <script lang="ts">
-	import Journey from '$lib/components/Journey.svelte';
+	import Journey from '$lib/components/Framework/Journey.svelte';
 	export let pageurl: string;
 </script>
 
