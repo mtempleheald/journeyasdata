@@ -178,3 +178,30 @@ export function component_has_bespoke_actions(journey: JourneyType, component_id
 	// TODO: figure out how to implement this
 	return true;
 }
+
+/**
+ * Ensure all components have a unique identifier
+ * Actions are dev-controlled, content is not, yet can still break code
+ */
+export function componentsHaveUniqueIdentifiers(journey: JourneyType) : boolean {
+	// TODO: figure out how to implement this
+	return true;
+}
+
+/**
+ * Ensure components do not have a full stop
+ * Actions are dev-controlled, content is not, yet can still break code
+ */
+export function componentIdentifiersMustNotHaveAFullStop(journey: JourneyType) : boolean {
+	// TODO: figure out how to implement this
+	return true;
+}
+
+/**
+ * Ensure components do not have a full stop
+ * Actions are dev-controlled, content is not, yet can still break code
+ */
+ export function componentIdentifiersMustNotBeNumerical(journey: JourneyType) : boolean {
+	// TODO: figure out how to implement this
+	return true;
+}
