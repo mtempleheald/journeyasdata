@@ -38,15 +38,16 @@
 		if (
 			DISABLEVALIDATION != 'Y' &&
 			!pageValid(
-				journey.pages.find((p) => p.url == page.url),
+				page, 
 				$valueStore,
 				$validationStore
 			)
 		) {
 			console.debug('Page invalid, correct before trying again');
 			const first_error = first_invalid_component_in_page(page, $valueStore, $validationStore);
-			console.debug('Error with component id ', first_error); // TODO: currently undefined, fix this
-			goto(`#${first_error}`);
+			if (first_error != undefined) {
+				goto(`#${first_error}`);
+			}			
 			return;
 		}
 
