@@ -20,8 +20,9 @@
 		<header>
 			{#if section.logo}
 				<img
+					class="section-logo"
 					src={section.logo.url}
-					alt="{section.logo.alt} section logo"
+					alt="{section.logo.alt}"
 					width={section.logo.width}
 					height={section.logo.height}
 				/>
