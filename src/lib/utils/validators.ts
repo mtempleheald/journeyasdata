@@ -126,14 +126,14 @@ export function first_invalid_component_in_page(
 			if (s.type == 'repeatinggroup') {
 				return to_section_list(s).flatMap((ss) => {
 					return ss.components.map((c) => {
-						return { sectionid: s.id, componentid: c.id };
+						return c;
 					});
 				});
 			} else {
 				return s.components.map((c) => {
-					return { sectionid: s.id, componentid: c.id };
+					return c;
 				});
 			}
 		})
-		.find((x) => !componentValid(x.componentid, valueStore, validationStore))?.componentid;
+		.find((x) => !componentValid(x, valueStore, validationStore))?.id;
 }
