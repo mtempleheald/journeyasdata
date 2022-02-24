@@ -35,6 +35,9 @@ Questions:
 - Do you need to be able to tow a caravan or trailer? [Option / y/n]
   - Yes, No
   
+
+-- payment
+
 - How do you want to pay?
   - PCP, HP, Pay in full
 
