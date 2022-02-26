@@ -67,7 +67,7 @@
 				value={component.value}
 				data-reference={component.refdata}
 				required={component.required}
-				on:change={act}
+				on:blur={act}
 			>
 				<option value="">{!component.placeholder ? '-- select --' : component.placeholder}</option>
 
