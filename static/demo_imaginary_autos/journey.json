@@ -246,44 +246,57 @@
 							"help": "Please use the drop down to select the number of miles per week you would drive",
 							"values": [
 								{
-									"display": "Less than 300",
-									"value": "less_than_300"
+									"display":"Less than 300",
+									"value": "low",
+									"textLocation": "bottom"
 								},
 								{
-									"display": "301-500",
-									"value": "301-500"
+									"display":"301-500",
+									"value": "medium",
+									"textLocation": "bottom"
 								},
 								{
-									"display":"More than 500",
-									"value": "more_than_500"
+									"display":"500-1000",
+									"value": "high",
+									"textLocation": "bottom"
+								},
+								{
+									"display":"More than 1,000",
+									"value": "ultrahigh",
+									"textLocation": "bottom"
 								}
 							]
 						},
 						{
-							"id": "mileage_suggestion_electric",
 							"type": "Displayblock",
 							"content": "Based upon the mileage selected, I would recommend you go with an ELECTRIC vehicle.",
-							"dependsUpon": {
+							"dependsupon": {
 								"id": "mileage",
-								"value": "less_than_300"
+								"value": "low"
 							}
 						},
 						{
-							"id": "mileage_suggestion_petrol",
 							"type": "Displayblock",
 							"content": "Based upon the mileage selected, I would recommend you go with an PETROL vehicle.",
-							"dependsUpon": {
+							"dependsupon": {
 								"id": "mileage",
-								"value": "301-500"
+								"value": "medium"
 							}
 						},
 						{
-							"id": "mileage_suggestion_diesel",
 							"type": "Displayblock",
 							"content": "Based upon the mileage selected, I would recommend you go with an DIESEL vehicle.",
-							"dependsUpon": {
+							"dependsupon": {
 								"id": "mileage",
-								"value": "more_than_500"
+								"value": "high"
+							}
+						},
+						{
+							"type": "Displayblock",
+							"content": "Based upon the mileage selected, I would recommend you buy a helicopter or invest in crude oil, a garage and car parts.",
+							"dependsupon": {
+								"id": "mileage",
+								"value": "ultrahigh"
 							}
 						}
 					]
