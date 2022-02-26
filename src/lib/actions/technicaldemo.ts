@@ -102,9 +102,9 @@ async function returnFromPaymentGateway() {
 	const sessionId = 'demosessionid';
 
 	// get the current value from sessionStorage (since we don't have any in-memory data now)
-	const values: object = get(sessionStorageStore(`values-${sessionId}`));
-	const displayValues: object = get(sessionStorageStore(`display-${sessionId}`));
-	const validations: object = get(sessionStorageStore(`valid-${sessionId}`));
+	const values = get(sessionStorageStore(`values-${sessionId}`));
+	const displayValues = get(sessionStorageStore(`display-${sessionId}`));
+	const validations = get(sessionStorageStore(`valid-${sessionId}`));
 
 	// Regenerate the in-memory stores with values from sessionStorage
 	valueStore.reset(values);

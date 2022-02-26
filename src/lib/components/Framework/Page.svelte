@@ -35,19 +35,12 @@
 		goto(prevPageUrl(journey, page.url));
 	}
 	function nextPage() {
-		if (
-			DISABLEVALIDATION != 'Y' &&
-			!pageValid(
-				page, 
-				$valueStore,
-				$validationStore
-			)
-		) {
+		if (DISABLEVALIDATION != 'Y' && !pageValid(page, $valueStore, $validationStore)) {
 			console.debug('Page invalid, correct before trying again');
 			const first_error = first_invalid_component_in_page(page, $valueStore, $validationStore);
 			if (first_error != undefined) {
 				goto(`#${first_error}`);
-			}			
+			}
 			return;
 		}
 

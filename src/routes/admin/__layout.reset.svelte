@@ -3,7 +3,7 @@
 </script>
 
 <header>
-	<h1>Questionset Administration</h1>
+	<h1>Journey Management</h1>
 	{#if $session.user}
 		<p>Logged in as {$session?.user?.username}</p>
 		<form method="post" action="/api/auth/logout">

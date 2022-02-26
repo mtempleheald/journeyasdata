@@ -181,6 +181,6 @@ export interface VehicleComponent extends BaseComponent, InputComponent {
 	buttonLabel?: string;
 }
 
-export type ValueStoreType = { [key: string]: string };
-export type DisplayValueStoreType = { [key: string]: string };
-export type ValidationStoreType = { [key: string]: boolean };
+export type ValueStoreType = { [key: string]: string } | {};
+export type DisplayValueStoreType = { [key: string]: string } | {};
+export type ValidationStoreType = { [key: string]: boolean } | {};

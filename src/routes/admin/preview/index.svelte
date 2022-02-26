@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { ComponentType, OptionComponent } from '$lib/types/journey';
+	import type { ComponentType } from '$lib/types/journey';
 	import { valueStore } from '$lib/stores/valuestore';
 	import Address from '$lib/components/Address.svelte';
 	import DisplayBlock from '$lib/components/DisplayBlock.svelte';
@@ -149,7 +149,7 @@
 		/>
 		<OptionButtons
 			on:valueChange={(event) => {
-				component.required = event.detail.value;
+				component.required = event.detail.value == 'true';
 			}}
 			component={{
 				type: 'OptionButtons',

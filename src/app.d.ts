@@ -9,11 +9,11 @@ declare global {
 			userid: string;
 		}
 
-		interface Platform {}
+		//interface Platform {}
 
-		interface Session {}
+		//interface Session {}
 
-		interface Stuff {}
+		//interface Stuff {}
 	}
 }
 

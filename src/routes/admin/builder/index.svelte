@@ -6,8 +6,8 @@
 		pages: [],
 		footercontent: 'test'
 	};
-	function journey_add_page(event) {
-		console.debug('journey_add_page', event.target);
+	function journey_add_page() {
+		console.debug('journey_add_page');
 		// note that .push() doesn't trigger reactivity, need to reassign the entire journey
 		journey.pages = [
 			...journey.pages,
@@ -18,17 +18,17 @@
 			}
 		];
 	}
-	function page_remove(page_url) {
+	function page_remove(page_url: string) {
 		console.debug('page_remove', page_url);
 		journey.pages = journey.pages.filter((p) => p.url != page_url);
 	}
-	function page_move_up(page_url) {
+	function page_move_up(page_url: string) {
 		console.debug('page_move_up', page_url);
 	}
-	function page_move_down(page_url) {
+	function page_move_down(page_url: string) {
 		console.debug('page_move_down', page_url);
 	}
-	function page_add_section(page_url) {
+	function page_add_section(page_url: string) {
 		console.debug('page_add_section', page_url);
 		journey.pages.find((p) => p.url == page_url).sections = [
 			...journey.pages.find((p) => p.url == page_url).sections,
@@ -40,7 +40,7 @@
 		];
 		journey = journey; // reassign to trigger reactivity
 	}
-	function section_remove(section_id) {
+	function section_remove(section_id: string) {
 		console.debug('section_remove', section_id);
 		journey = {
 			...journey,
@@ -52,13 +52,13 @@
 			})
 		};
 	}
-	function section_move_up(section_id) {
+	function section_move_up(section_id: string) {
 		console.debug('section_move_up', section_id);
 	}
-	function section_move_down(section_id) {
+	function section_move_down(section_id: string) {
 		console.debug('section_move_down', section_id);
 	}
-	function section_add_component(section_id) {
+	function section_add_component(section_id: string) {
 		console.debug('section_add_component', section_id);
 		journey = {
 			...journey,
@@ -85,7 +85,7 @@
 			})
 		};
 	}
-	function section_add_section(section_id) {
+	function section_add_section(section_id: string) {
 		console.debug('section_add_section', section_id);
 		journey = {
 			...journey,
@@ -113,7 +113,7 @@
 			})
 		};
 	}
-	function subsection_add_component(section_id) {
+	function subsection_add_component(section_id: string) {
 		console.debug('section_add_component', section_id);
 		journey = {
 			...journey,
@@ -127,13 +127,13 @@
 			})
 		};
 	}
-	function component_remove(component_id) {
+	function component_remove(component_id: string) {
 		console.debug('component_remove', component_id);
 	}
-	function component_move_up(component_id) {
+	function component_move_up(component_id: string) {
 		console.debug('component_move_up', component_id);
 	}
-	function component_move_down(component_id) {
+	function component_move_down(component_id: string) {
 		console.debug('component_move_down', component_id);
 	}
 </script>
