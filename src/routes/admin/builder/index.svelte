@@ -99,7 +99,7 @@
 							return {
 								...s,
 								sections: [
-									...s.sections ?? [],
+									...(s.sections ?? []),
 									{
 										type: 'section',
 										id: 'sample',

@@ -40,8 +40,7 @@
 <nav class="button-navigation">
 	{#if nav?.backlabel?.length > 0}
 		{#if !!pageurl}
-			<button type="button" class="page back" on:click={backPage}>{nav.backlabel ?? 'Back'}</button
-			>
+			<button type="button" class="page back" on:click={backPage}>{nav.backlabel ?? 'Back'}</button>
 		{:else if !!sectionid}
 			<button
 				type="button"
@@ -55,8 +54,7 @@
 	<span class="spacer" />
 	{#if nav?.nextlabel?.length > 0}
 		{#if !!pageurl}
-			<button type="button" class="page next" on:click={nextPage}>{nav.nextlabel ?? 'Next'}</button
-			>
+			<button type="button" class="page next" on:click={nextPage}>{nav.nextlabel ?? 'Next'}</button>
 		{:else if !!sectionid}
 			<button
 				type="button"

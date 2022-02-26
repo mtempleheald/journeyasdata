@@ -1,13 +1,8 @@
 export {};
-//import journey from './../../../static/technicaldemo/journey.json';
-//import { componentsHaveUniqueIdentifiers } from '$lib/utils/backofficevalidators';
+import journey from './../../../static/technicaldemo/journey.json';
+import { component_ids_are_unique } from '$lib/utils/backofficevalidators';
+import type { JourneyType } from '$lib/types/journey';
 
-// TODO: Rework journey.d.ts until journey registers as valid
-//       currently not using discriminated union correctly - picking wrong type
-describe('', () => {
-	test.todo('Component identifiers should be unique'); //    expect(componentsHaveUniqueIdentifiers(journey))
+test('Component IDs are unique', () => {
+	expect(component_ids_are_unique(journey as JourneyType)); // Cast to map string to "enum" and remove type warnings
 });
-
-// TODO: IDs must not contain a full stop
-// TODO: IDs should be alphanumeric, not pure numbers
-// TODO: Allow multiple journeys to be validated here

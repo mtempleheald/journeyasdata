@@ -42,3 +42,16 @@ export function targetPageLater(
 	if (pageUrls.indexOf(targetPageUrl) > pageUrls.indexOf(currentPageUrl)) return true;
 	else return false;
 }
+
+// Useful for finding out where we are from a component's perspective
+export function get_page_url(journey: JourneyType, component_id: string) {
+	return journey.pages.filter((p) =>
+		p.sections.some((s) => {
+			if (s.type === 'repeatinggroup') {
+				return false;
+			} else {
+				return s.components.some((c) => c.id == component_id);
+			}
+		})
+	)[0]?.url;
+}

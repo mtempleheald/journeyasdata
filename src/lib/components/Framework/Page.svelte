@@ -55,7 +55,6 @@
 </script>
 
 <Cookiepreference cookiepreferences={journey.cookiepreferences} />
-
 <header>
 	{#if journey.logo}
 		<img
