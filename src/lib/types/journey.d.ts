@@ -45,6 +45,10 @@ export type SectionType = {
 	collapsible?: boolean;
 	components: ComponentType[];
 	navigation?: NavigationOptionsType;
+	dependsupon?: {
+		id: string;
+		value: string;
+	};
 };
 
 // Currently just a cut down OptionButtons component, this may change

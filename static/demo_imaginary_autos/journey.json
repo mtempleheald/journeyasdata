@@ -398,50 +398,27 @@
 							"label" : "Do you want to pay a deposit?",
 							"errorMessage": "Do you have funds to pay a deposit?",
 							"help": "Securing a vehicle with a deposit will mean lower overall costs"
-						},
+						}
+					]
+				},
+				{
+					"title": "Trade In Vehicle",
+					"navigation": {
+						"showback": false,
+						"shownext": false
+					},
+					"dependsupon": {
+						"id": "deposit_required",
+						"value": "Y"
+					},
+					"components": [
 						{
-							"id": "deposit_type",
-							"type": "OptionButtons",
-							"required": true,
-							"label" : "How do you want to pay for the deposit?",
-							"errorMessage": "Please tell us the type of deposit you are using",
-							"help": "Select a type of deposit.",
-							"dependsUpon": {
-								"id": "deposit_required",
-								"value": "yes"
-							},
-							"values": [
-								{
-									"display": "Cash",
-									"value": "cash",
-									"image": {
-										"url": "static/demo_imaginary_autos/images/deposit-cash.png",
-										"width": "100",
-										"height": "100"
-									},
-									"textLocation": "bottom"
-								},
-								{
-									"display": "Trade-In",
-									"value": "trade-in",
-									"image": {
-										"url": "static/demo_imaginary_autos/images/deposit-car.jpg",
-										"width": "100",
-										"height": "100"
-									},
-									"textLocation": "bottom"
-								},
-								{
-									"display":"Other",
-									"value": "other",
-									"image": {
-										"url": "static/demo_imaginary_autos/images/deposit-other.png",
-										"width": "100",
-										"height": "100"
-									},
-									"textLocation": "bottom"
-								}
-						 	]
+							"id": "aa",
+							"type": "YesNo",
+							"required": true,							
+							"label" : "Do you want to pay a deposit?",
+							"errorMessage": "Do you have funds to pay a deposit?",
+							"help": "Securing a vehicle with a deposit will mean lower overall costs"
 						}
 					]
 				}
