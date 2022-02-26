@@ -1,6 +1,7 @@
 // TODO: make these types global in app.d.ts
 export type JourneyType = {
 	title: string;
+	journeyflow?: 'classic' | 'questionperpage' | 'infinitescroll'; // https://github.com/mtempleheald/journeyasdata/issues/95
 	pages: PageType[];
 	logo?: ImageType;
 	cookiepreferences?: CookiePreferenceType;
@@ -178,6 +179,10 @@ export interface VehicleComponent extends BaseComponent, InputComponent {
 	buttonLabel?: string;
 }
 
-export type ValueStoreType = { [key: string]: string } | {};
-export type DisplayValueStoreType = { [key: string]: string } | {};
-export type ValidationStoreType = { [key: string]: boolean } | {};
+export type ValueStoreType = { [key: string]: string } | Record<{ [key: string]: string }, never>;
+export type DisplayValueStoreType =
+	| { [key: string]: string }
+	| Record<{ [key: string]: string }, never>;
+export type ValidationStoreType =
+	| { [key: string]: boolean }
+	| Record<{ [key: string]: boolean }, unknown>;

@@ -1,0 +1,61 @@
+{
+	"title": "Question per page demo",
+	"journeyflow": "questionperpage",
+	"pages": [
+		{
+			"id": "page1",
+			"url": "one",
+			"title": "Question per page introduction",
+			"sections": [
+				{
+					"id": "section1",
+					"components": [
+						{
+							"id": "component1",
+							"type": "Text",
+							"label": "Component 1",
+							"required": true,
+							"help": "When you update this the page navigation should automatically fire, including validation."
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "page2",
+			"url": "two",
+			"title": "Second page",
+			"sections": [
+				{
+					"id": "section2",
+					"components": [
+						{
+							"id": "component2",
+							"type": "Text",
+							"label": "Component 2",
+							"required": true,
+							"help": "When you update this the page navigation should automatically fire, including validation."
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "page3",
+			"url": "three",
+			"title": "Third page",
+			"sections": [
+				{
+					"id": "section3",
+					"components": [
+						{
+							"type": "Displayblock",
+							"label": "Component 3",
+							"content": "# Congratulations \r\n You just completed a question-per-page journey"
+						}
+					]
+				}
+			]
+		}
+	]
+}
