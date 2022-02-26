@@ -7,11 +7,8 @@ export type JourneyType = {
 	footercontent?: string | string[];
 };
 export type NavigationOptionsType = {
-	//includeinjourney?: boolean; // default true, disable if needed e.g. remove error pages from main journey flow
-	//showback?: boolean; // default true
-	backlabel?: string; // default "Back"
-	//shownext?: boolean; // default true
-	nextlabel?: string; // default "Next"
+	backlabel?: string; // omit to not provide a back button
+	nextlabel?: string; // omit to not provide a next button
 };
 export type PageType = {
 	id?: string; // exclusively for triggering bespoke actions, dev-maintained
