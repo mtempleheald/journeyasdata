@@ -21,79 +21,99 @@
 	--mainfont: ITCAvantGardePro-Md;
 	--infofont: ITCAvantGardePro-Bk;
 
-	/* Brand-Component style mapping */
-	--page-hdr-bg: var(--white);
+	/* Brand-Component mappings */
+	--page-width: 1000px;
+	--page-bg: var(--lightgreen);
+	--page-padding: 0;
+
+	--title-bg: var(--white);
+	--title-txt: var(--green);
+	--title-padding: 2rem;
+	--title-border: 0;
+	--title-height: 5rem;
+
+	--page-hdr-bg: var(--darkgrey);
 	--page-hdr-txt: var(--green);
 	--page-hdr-border: none;
+	--page-hdr-padding: 1rem 2rem;
 	--page-hdr-width: 1000px;
-	--page-hdr-head-height: 50px;
-	--page-hdr-head-pad: 0 1rem;
-	--page-logo-height: 50px;
-
-	--page-width: 1000px;
-	--page-head-height: 50px;
-	--page-head-pad: 0 1rem;
+	--page-hdr-height: 3rem;
 
 	--page-ftr-bg: var(--darkgrey);
 	--page-ftr-txt: var(--white);
+	--page-ftr-border: none;
+	--page-ftr-padding: 0;
 	--page-ftr-width: 1000px;
 
-	--section-hdr-height: 75px;
-	--section-logo-height: 75px;
-	--section-txt: var(--green);
+	--page-btn-padding: 0.75rem;
+	--page-btn-bg: var(--darkgrey);
+	--page-btn-txt: var(--white);
+	--page-btn-font-weight: bold;
+
+	--section-hdr-bg: var(--white);
+	--section-hdr-txt: var(--green);
+	--section-hdr-border: 2px solid var(--grey);
+	--section-hdr-padding: 1rem;
+	--section-hdr-height: 3rem;
+
+	--section-txt: var(--black);
 	--section-bg: var(--white);
-	--section-margin: 2rem;
-	--section-hdr-border: 1px solid var(--green);
-	/* exposed properties (don't cross-reference, inherit or pull from above) */
-	/* --cookie-bg:                 var(--sg-lightgreen);
-    --cookie-txt:                var(--sg-darkgrey);
-    --cookie-link:               var(--sg-darkgreen);
-    --cookie-button-bg:          var(--sg-darkgreen);
-    --cookie-button-txt:         var(--sg-white);
-    --header-bg:                 var(--sg-white);
-    --header-txt:                var(--sg-darkgreen);
-    --header-link:               var(--sg-darkgreen);
-    --header-border:             none;
-    --nav-bg:                    var(--sg-lightgrey);
-    --nav-border:                1px solid var(--sg-darkgrey);
-    --nav-txt:                   var(--sg-darkgrey);
-    --nav-highlight-bg:          var(--sg-darkgreen);
-    --nav-highlight-txt:         var(--sg-white);
-    --footer-bg:                 var(--sg-lightgreen);
-    --footer-txt:                var(--sg-darkgrey);
-    --footer-link:               var(--sg-darkgreen);
-    --section-bg:                var(--sg-white);
-    --section-txt:               var(--sg-darkgreen);
-    --section-border:            none;
-    --section-link:              inherit;
-    --section-header-bg:         var(--sg-darkgrey);
-    --section-header-txt:        var(--sg-lightgreen);
-    --section-navbtn-bg:         var(--sg-darkgreen);
-    --section-navbtn-txt:        var(--sg-white);
-    --input-bg:                  var(--sg-white);
-    --input-txt:                 var(--sg-darkgrey);
-    --input-active-txt:          var(--sg-darkgrey);
-    --input-active-bg:           var(--sg-white);
-    --input-actionbtn-bg:        var(--sg-lightgreen);
-    --input-actionbtn-txt:       var(--sg-darkgreen);
-    --input-btn-bg:              var(--sg-lightgreen);
-    --input-btn-txt:             var(--sg-darkgrey);
-    --input-error-bg:            var(--sg-pink);
-    --input-error-txt:           var(--sg-darkgrey);
-    --input-error-msg-bg:        var(--sg-pink);
-    --input-error-msg-txt:       var(--sg-red);
-    --help-btn-bg:               var(--sg-darkgreen);
-    --help-btn-txt:              var(--sg-white);
-    --help-btn-active-bg:        var(--sg-pink);
-    --help-btn-active-txt:       var(--sg-white);
-    --help-bg:                   var(--sg-white);
-    --help-txt:                  var(--sg-darkgrey);
-    --help-border:               1px solid var(--sg-white); */
+	--section-padding: 2rem 1rem;
+	--section-border: none;
+
+	--section-btn-padding: 1rem;
+	--section-btn-bg: var(--lightgrey);
+	--section-btn-txt: var(--black);
+	--section-btn-font-weight: normal;
+
+	--component-padding: 1rem;
+	--component-bg: var(--white);
+	--component-txt: var(--darkgrey);
+	--component-border: none;
+	--component-active-bg: var(--highlight);
+	--component-active-txt: inherit;
+	--component-error-bg: var(--pink);
+	--component-error-txt: var(--red);
+
+	--display-bg: var(--white);
+	--display-txt: var(--darkgrey);
+	--display-border: 1px solid var(--darkgrey);
+	--display-padding: 1.5rem;
+	--display-active-bg: var(--white);
+	--display-active-txt: var(--darkgrey);
+
+	--input-padding: 0.25rem;
+	--input-txt: var(--darkgrey);
+	--input-bg: var(--white);
+	--input-active-bg: var(--highlight);
+	--input-active-txt: var(--darkgrey);
+	--input-error-bg: var(--pink);
+	--input-error-txt: var(--red);
+	--input-error-border: 2px solid var(--red);
+
+	--input-btn-txt: var(--darkgrey);
+	--input-btn-bg: var(--white);
+	--input-btn-padding: 0.5rem;
+	--input-btn-border: 1px solid var(--darkgrey);
+	--input-btn-active-bg: var(--darkgrey);
+	--input-btn-active-txt: var(--white);
+	--input-btn-hover-bg: var(--lightgrey);
+	--input-btn-hover-txt: var(--darkgrey);
+
+	--help-bg: inherit;
+	--help-txt: var(--darkgrey);
+	--help-border: 1px dashed var(--lightgrey);
+
+	--progress-bg: var(--white);
+	--progress-txt: var(--darkgrey);
+	--progress-padding: 0;
+	--progress-border: 1px solid var(--darkgrey);
+	--progress-active-bg: var(--lightgrey);
 }
 
 /* global settings */
 body {
-	background-color: var(--sg-lightgrey);
+	background-color: var(--lightgreen);
 	font-family: var(--sg-font);
 	margin: 0;
 	padding: 0;

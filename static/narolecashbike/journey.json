@@ -62,7 +62,11 @@
 						}
 					]
 				}
-			]
+			],
+			"navigation": {
+				"nextlabel": "Continue",
+				"backlabel": "Back"
+			}
 		},
 		{
 			"url": "your-motorcycle",
@@ -274,7 +278,11 @@
 						}
 					]
 				}
-			]
+			],
+			"navigation": {
+				"nextlabel": "Continue",
+				"backlabel": "Back"
+			}
 		},
 		{
 			"url": "about-you",
@@ -754,7 +762,11 @@
 						}
 					]
 				}
-			]
+			],
+			"navigation": {
+				"nextlabel": "Continue",
+				"backlabel": "Back"
+			}
 		},
 		{
 			"url": "buttons",
@@ -831,7 +843,11 @@
 						}
 					]
 				}
-			]
+			],
+			"navigation": {
+				"nextlabel": "Continue",
+				"backlabel": "Back"
+			}
 		},
 		{
 			"url": "displayonly",
@@ -865,7 +881,11 @@
 						}
 					]
 				}
-			]
+			],
+			"navigation": {
+				"nextlabel": "Continue",
+				"backlabel": "Back"
+			}
 		},
 		{
 			"url": "xx",
@@ -887,7 +907,11 @@
 						}
 					]
 				}
-			]
+			],
+			"navigation": {
+				"nextlabel": "Continue",
+				"backlabel": "Back"
+			}
 		},
 		{
 			"url": "outcome",
@@ -904,7 +928,11 @@
 						}
 					]
 				}
-			]
+			],
+			"navigation": {
+				"nextlabel": "Continue",
+				"backlabel": "Back"
+			}
 		}
 	]
 }

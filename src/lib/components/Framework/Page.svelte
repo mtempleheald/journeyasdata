@@ -97,13 +97,13 @@
 		{/each}
 
 		<nav class="button-navigation">
-			{#if page.navigation?.showback ?? true}
+			{#if page.navigation?.backlabel}
 				<button type="button" class="page back" on:click={backPage}
 					>{page.navigation?.backlabel ?? 'Back'}</button
 				>
 			{/if}
 			<span class="spacer" />
-			{#if page.navigation?.shownext ?? true}
+			{#if page.navigation?.nextlabel}
 				<button type="button" class="page next" on:click={nextPage}
 					>{page.navigation?.nextlabel ?? 'Next'}</button
 				>

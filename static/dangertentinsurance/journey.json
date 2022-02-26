@@ -414,7 +414,11 @@
 						}
 					]
 				}
-			]
+			],
+			"navigation": {
+				"nextlabel": "Continue",
+				"backlabel": "Back"
+			}
 		},
 		{
 			"url": "driver",
@@ -499,7 +503,11 @@
 					"logo": "https://fakeimg.pl/100x50/?text=Experience%20Logo",
 					"components": []
 				}
-			]
+			],
+			"navigation": {
+				"nextlabel": "Continue",
+				"backlabel": "Back"
+			}
 		},
 		{
 			"url": "other-people",
@@ -550,7 +558,11 @@
 						}
 					]
 				}
-			]
+			],
+			"navigation": {
+				"nextlabel": "Continue",
+				"backlabel": "Back"
+			}
 		},
 		{
 			"url": "legal",
@@ -570,12 +582,20 @@
 						}
 					]
 				}
-			]
+			],
+			"navigation": {
+				"nextlabel": "Continue",
+				"backlabel": "Back"
+			}
 		},
 		{
 			"url": "contractual",
 			"title": "Contract stuff",
-			"sections": []
+			"sections": [],
+			"navigation": {
+				"nextlabel": "Continue",
+				"backlabel": "Back"
+			}
 		}
 	]
 }

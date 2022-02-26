@@ -23,7 +23,6 @@
 				}
 			],
 			"navigation": {
-				"showback": false,
 				"nextlabel": "Start"
 			},
 			"showtopnav": true
@@ -199,7 +198,11 @@
 						}
 					]
 				}
-			]
+			],
+			"navigation": {
+				"backlabel": "Back",
+				"nextlabel": "Next"
+			}
 		},
 		{
 			"url": "list-inputs",
@@ -344,7 +347,11 @@
 						"backlabel": "Go back to OptionDropdown section"
 					}
 				}
-			]
+			],
+			"navigation": {
+				"backlabel": "Back",
+				"nextlabel": "Next"
+			}
 		},
 		{
 			"url": "display",
@@ -484,7 +491,11 @@
 						}
 					]
 				}
-			]
+			],
+			"navigation": {
+				"backlabel": "Back",
+				"nextlabel": "Next"
+			}
 		},
 		{
 			"url": "repeating",
@@ -541,7 +552,11 @@
 						}
 					]
 				}
-			]
+			],
+			"navigation": {
+				"backlabel": "Back",
+				"nextlabel": "Next"
+			}
 		},
 		{
 			"url": "complex",
@@ -634,7 +649,11 @@
 						}
 					]
 				}
-			]
+			],
+			"navigation": {
+				"backlabel": "Back",
+				"nextlabel": "Next"
+			}
 		},
 		{
 			"url": "outcome",
@@ -666,7 +685,6 @@
 				}
 			],
 			"navigation": {
-				"shownext": true,
 				"nextlabel": "Go to payment gateway",
 				"backlabel": "Go back to fix something"
 			}
@@ -684,18 +702,9 @@
 							"type": "Displayblock",
 							"content": "Redirected here from payment gateway, you set this pre-payment test value: {{ sessionstoretestvalue }}"
 						}
-					],
-					"navigation": {
-						"shownext": false,
-						"showback": false
-					}
+					]
 				}
-			],
-			"navigation": {
-				"includeinjourney": false,
-				"shownext": false,
-				"showback": false
-			}
+			]
 		},
 		{
 			"url": "payment-error",
@@ -711,10 +720,7 @@
 						}
 					]
 				}
-			],
-			"navigation": {
-				"includeinjourney": false
-			}
+			]
 		},
 		{
 			"url": "technical-error",
@@ -730,10 +736,7 @@
 						}
 					]
 				}
-			],
-			"navigation": {
-				"includeinjourney": false
-			}
+			]
 		},
 		{
 			"url": "confirmation",
@@ -749,10 +752,7 @@
 						}
 					]
 				}
-			],
-			"navigation": {
-				"includeinjourney": false
-			}
+			]
 		}
 	],
 	"cookiepreferences": {

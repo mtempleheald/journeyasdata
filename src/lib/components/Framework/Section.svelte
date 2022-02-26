@@ -57,7 +57,7 @@
 		color: var(--section-hdr-txt);
 		background-color: var(--section-hdr-bg);
 		border-bottom: var(--section-hdr-border);
-		max-height: var(--section-hdr-height);
+		max-height: calc(var(--section-hdr-height) + 2 * var(--section-hdr-padding));
 	}
 	header h1 {
 		margin: 0;

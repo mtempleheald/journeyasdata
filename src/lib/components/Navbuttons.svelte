@@ -38,9 +38,9 @@
 </script>
 
 <nav class="button-navigation">
-	{#if nav?.showback ?? true}
+	{#if nav?.backlabel?.length > 0}
 		{#if !!pageurl}
-			<button type="button" class="page back" on:click={backPage}>{nav?.backlabel ?? 'Back'}</button
+			<button type="button" class="page back" on:click={backPage}>{nav.backlabel ?? 'Back'}</button
 			>
 		{:else if !!sectionid}
 			<button
@@ -48,14 +48,14 @@
 				class="section back"
 				on:click={() => {
 					console.debug('not yet implemented section navigation');
-				}}>{nav?.backlabel ?? 'Back'}</button
+				}}>{nav.backlabel ?? 'Back'}</button
 			>
 		{/if}
 	{/if}
 	<span class="spacer" />
-	{#if nav?.shownext ?? true}
+	{#if nav?.nextlabel?.length > 0}
 		{#if !!pageurl}
-			<button type="button" class="page next" on:click={nextPage}>{nav?.nextlabel ?? 'Next'}</button
+			<button type="button" class="page next" on:click={nextPage}>{nav.nextlabel ?? 'Next'}</button
 			>
 		{:else if !!sectionid}
 			<button
@@ -63,7 +63,7 @@
 				class="section next"
 				on:click={() => {
 					console.debug('not yet implemented section navigation');
-				}}>{nav?.nextlabel ?? 'Next'}</button
+				}}>{nav.nextlabel ?? 'Next'}</button
 			>
 		{/if}
 	{/if}
