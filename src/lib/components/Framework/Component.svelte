@@ -16,9 +16,11 @@
 	import OptionDropdown from '$lib/components/OptionDropdown.svelte';
 	import InputTriboxdate from '$lib/components/InputTriboxdate.svelte';
 	import Vehicle from '$lib/components/Vehicle.svelte';
+	import { journey } from '$lib/stores/journeystore';
 
 	export let component: ComponentType;
 
+	// TODO: break this function out to a dedicated place where it can be tested
 	function componentUpdated(event) {
 		console.debug(event.detail);
 		// update value store with latest value, regardless of validity
@@ -31,6 +33,13 @@
 		// execute action if applicable
 		let f = $actionStore[event.detail.key];
 		if (typeof f === 'function') f();
+
+		if ($journey.journeyflow == 'questionperpage') {
+			console.debug('Question changed, triggering validation and navigation...');
+			let comp_change_trigger_nav = $actionStore['comp_change_trigger_nav'];
+			// TODO: consider making this a direct function call rather than using actionStore (I had a reason for this but can't remember it)
+			comp_change_trigger_nav($journey, event.detail.key.toString(), $valueStore, $validationStore);
+		}
 	}
 
 	async function toListComponent(component: ComponentType): Promise<OptionComponent> {

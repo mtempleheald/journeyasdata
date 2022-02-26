@@ -1,15 +1,13 @@
+import { actions as common } from '$lib/actions/common';
 import { actions as dangertentinsurance } from '$lib/actions/dangertentinsurance';
 import { actions as technicaldemo } from '$lib/actions/technicaldemo';
-import { actions as questionperpagedemo } from '$lib/actions/questionperpagedemo';
 
 export const getActions = function (brand: string) {
 	switch (brand) {
 		case 'technicaldemo':
-			return technicaldemo;
+			return Object.assign(common, technicaldemo);
 		case 'dangertentinsurance':
-			return dangertentinsurance;
-		case 'questionperpagedemo':
-			return questionperpagedemo;
+			return Object.assign(common, dangertentinsurance);
 		default:
 			return {};
 	}

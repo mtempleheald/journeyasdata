@@ -1,3 +1,4 @@
+export const DEV = import.meta.env.DEV;
 export const BRAND = import.meta.env.VITE_BRAND;
 export const APIHOSTNAME = import.meta.env.VITE_APIHOSTNAME;
 export const APIUSERNAME = import.meta.env.VITE_APIUSERNAME;
