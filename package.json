@@ -17,16 +17,16 @@
 		"test:coverage": "jest --coverage"
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-node": "1.0.0-next.70",
-		"@sveltejs/kit": "1.0.0-next.287",
+		"@sveltejs/adapter-node": "1.0.0-next.71",
+		"@sveltejs/kit": "1.0.0-next.294",
 		"@testing-library/jest-dom": "^5.16.2",
 		"@testing-library/svelte": "^3.0.3",
 		"@types/cookie": "^0.4.1",
 		"@types/jest": "^27.4.1",
-		"@typescript-eslint/eslint-plugin": "^5.12.1",
-		"@typescript-eslint/parser": "^5.12.1",
+		"@typescript-eslint/eslint-plugin": "^5.13.0",
+		"@typescript-eslint/parser": "^5.13.0",
 		"eslint": "^8.10.0",
-		"eslint-config-prettier": "^8.4.0",
+		"eslint-config-prettier": "^8.5.0",
 		"eslint-plugin-svelte3": "^3.4.1",
 		"jest": "^27.5.1",
 		"prettier": "^2.5.1",
@@ -39,7 +39,7 @@
 		"svelte-preprocess": "^4.10.4",
 		"ts-jest": "^27.0.7",
 		"tslib": "^2.3.1",
-		"typescript": "^4.5.5"
+		"typescript": "^4.6.2"
 	},
 	"dependencies": {
 		"cookie": "^0.4.2"
