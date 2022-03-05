@@ -1,14 +1,9 @@
 // Alternative approach to valueStore + displayValueStore + validationStore, https://github.com/mtempleheald/journeyasdata/issues/103
+import type { StateRecordType, StateStoreType } from '$lib/types/journey';
 import { writable } from 'svelte/store';
 
-type StateType = {
-	key: string;
-	value: string;
-	display_value: string;
-	valid: boolean;
-};
 
-function upsert(store: { [key: string]: StateType }, key: string, state: StateType) {
+function upsert(store: StateStoreType, key: string, state: StateRecordType) {
 	// create new entry or overwrite regardless of what was set
 	store[key] = state;
 	return store;
@@ -19,8 +14,8 @@ function store() {
 
 	return {
 		subscribe,
-		set: (key: string, state: StateType) => update((store) => upsert(store, key, state)),
-		reset: (value: { [key: string]: StateType }) => set(value)
+		set: (key: string, state: StateRecordType) => update((store) => upsert(store, key, state)),
+		reset: (value: { [key: string]: StateRecordType }) => set(value)
 	};
 }
 
