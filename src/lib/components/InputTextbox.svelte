@@ -4,7 +4,6 @@
 	import { createEventDispatcher } from 'svelte';
 	import { state } from '$lib/stores/statestore';
 	import Helptext from '$lib/components/Helptext.svelte';
-	import Address from './Address.svelte';
 
 	// expose component properties
 	export let component: InputComponent;
