@@ -45,7 +45,7 @@
 					display: $state[error_comp_id]?.display ?? '',
 					valid: false
 				});
-				goto(`#${error_comp_id}`, {replaceState: true});
+				goto(`#${error_comp_id}`, { replaceState: true });
 			}
 			return;
 		}

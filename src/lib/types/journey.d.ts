@@ -186,11 +186,12 @@ export type DisplayValueStoreType =
 export type ValidationStoreType =
 	| { [key: string]: boolean }
 	| Record<{ [key: string]: boolean }, unknown>;
-export type StateRecordType = {
-	value: string; 
-	display: string; 
+
+export type StateValueType = {
+	value: string;
+	display: string;
 	valid: boolean;
-}
-export type StateStoreType = 
-	| { [key: string]: StateRecordType } 
-	| Record<{ [key: string]: StateRecordType, unknown}>;
+};
+export type StateStoreType =
+	| { [key: string]: StateValueType }
+	| Record<{ [key: string]: StateValueType; unknown }>;

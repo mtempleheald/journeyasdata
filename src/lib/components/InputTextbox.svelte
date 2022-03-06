@@ -4,6 +4,7 @@
 	import { createEventDispatcher } from 'svelte';
 	import { state } from '$lib/stores/statestore';
 	import Helptext from '$lib/components/Helptext.svelte';
+	import Address from './Address.svelte';
 
 	// expose component properties
 	export let component: InputComponent;
@@ -44,13 +45,17 @@
 	}
 	function act(event) {
 		state.set(component.id, {
-			value: event.target.value, 
-			display: component.type == 'Upper' ? event.target.value.toUpperCase() : event.target.value, 
+			value: event.target.value,
+			display: component.type == 'Upper' ? event.target.value.toUpperCase() : event.target.value,
 			valid: event.target.validity.valid
 		});
 		fallbackError = event.target.validity.valid ? '' : event.target.validationMessage;
 		// publish changes up to parent, for any additional actions
-		dispatch('valueChange', { key: component.id, value: event.target.value, valid: event.target.validity.valid });
+		dispatch('valueChange', {
+			key: component.id,
+			value: event.target.value,
+			valid: event.target.validity.valid
+		});
 	}
 	function focus() {
 		dispatch('focus', component.id);
@@ -58,6 +63,7 @@
 </script>
 
 <div
+	id={component.id}
 	class="component {active} {valid ? '' : 'invalid'}"
 	transition:blur
 	on:mouseenter={enter}
@@ -79,7 +85,7 @@
 			<input
 				type={html5type}
 				class={component.type?.toLowerCase()}
-				id={component.id}
+				id="{component.id}-input"
 				name={component.id}
 				placeholder={component.placeholder ?? ''}
 				required={component.required ?? false}
