@@ -2,6 +2,7 @@
 	import type { TriBoxDateComponent } from '$lib/types/journey';
 	import { blur } from 'svelte/transition';
 	import { createEventDispatcher, onMount } from 'svelte';
+	import { state } from '$lib/stores/statestore';
 	import Helptext from '$lib/components/Helptext.svelte';
 
 	// expose component properties
@@ -9,7 +10,7 @@
 
 	// internal properties to support component logic
 	let fallbackError = 'Date entered is invalid';
-	let valid = true;
+	let valid: boolean = $state[component.id]?.valid ?? true;
 	let active = '';
 	let dateElem: HTMLInputElement; // TODO: rework this to use the hidden date field and HTML5 validation
 	let yearElem: HTMLInputElement;
@@ -178,6 +179,12 @@
 		// validate that this is an actual date and apply custom validation
 		validate();
 
+		state.set(component.id, {
+			value: component.value,
+			display: formatDate(),
+			valid: valid
+		});
+
 		// publish changes up to parent, let it handle state
 		dispatch('dateChange', {
 			key: component.id,
@@ -190,6 +197,7 @@
 </script>
 
 <div
+	id={component.id}
 	class="component {active} {valid ? '' : 'invalid'}"
 	transition:blur
 	on:mouseenter={enter}
@@ -201,14 +209,14 @@
 		<!-- Use date field (hidden) to take advantage of browser validator api -->
 		<input
 			type="date"
-			id={component.id}
+			id="{component.id}-input"
 			bind:value={component.value}
 			bind:this={dateElem}
 			required={component.required}
 			class="hidden"
 		/>
 		{#if component.label}
-			<label for={component.id}>
+			<label for="{component.id}-input">
 				{component.label}
 				{#if component.required}
 					<span class="required">*</span>

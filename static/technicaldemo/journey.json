@@ -183,7 +183,7 @@
 						},
 						{
 							"type": "TriBoxDate",
-							"id": "purchaseDate",
+							"id": "purchaseDate2",
 							"label": "Enter future date",
 							"required": true,
 							"displayFormat": "long",

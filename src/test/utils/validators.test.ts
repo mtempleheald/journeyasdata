@@ -1,5 +1,28 @@
 import type { InputComponent } from '$lib/types/journey';
-import { componentValid } from '$lib/utils/validators';
+import { componentValid, component_valid } from '$lib/utils/validators';
+
+test('InputComponent valid if state store says it is', () => {
+	const comp: InputComponent = {
+		id: '1',
+		type: 'Text'
+	};
+	const state: StateStoreType = {
+		'1': {
+			value: '',
+			display: '',
+			valid: true
+		}		
+	}
+	expect (component_valid(comp, state)).toBe(true);
+})
+// TODO: rework all below functions to use state store
+
+
+
+
+
+
+
 
 test('input provided, valid', () => {
 	const comp: InputComponent = {

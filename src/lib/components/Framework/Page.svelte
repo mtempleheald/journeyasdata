@@ -4,6 +4,7 @@
 	import { goto } from '$app/navigation';
 	import { DISABLEVALIDATION } from '$lib/env';
 	import { actionStore } from '$lib/stores/actionstore';
+	import { state } from '$lib/stores/statestore';
 	import { validationStore } from '$lib/stores/validationstore';
 	import { valueStore } from '$lib/stores/valuestore';
 	import { nextPageUrl, prevPageUrl } from '$lib/utils/navigation';
@@ -37,9 +38,14 @@
 	function nextPage() {
 		if (DISABLEVALIDATION != 'Y' && !pageValid(page, $valueStore, $validationStore)) {
 			console.debug('Page invalid, correct before trying again');
-			const first_error = first_invalid_component_in_page(page, $valueStore, $validationStore);
-			if (first_error != undefined) {
-				goto(`#${first_error}`);
+			const error_comp_id = first_invalid_component_in_page(page, $valueStore, $validationStore);
+			if (error_comp_id != undefined) {
+				state.set(error_comp_id, {
+					value: $state[error_comp_id]?.value ?? '',
+					display: $state[error_comp_id]?.display ?? '',
+					valid: false
+				});
+				goto(`#${error_comp_id}`, { replaceState: true });
 			}
 			return;
 		}
