@@ -194,4 +194,4 @@ export type StateValueType = {
 };
 export type StateStoreType =
 	| { [key: string]: StateValueType }
-	| Record<{ [key: string]: StateValueType; unknown }>;
+	| Record<{ [key: string]: StateValueType }, unknown>;
