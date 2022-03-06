@@ -45,6 +45,7 @@
 </script>
 
 <div
+	id={component.id}
 	class="component {active} {invalid ? 'invalid' : ''}"
 	on:mouseenter={enter}
 	on:mouseleave={leave}
@@ -53,7 +54,7 @@
 
 	<div class="container">
 		{#if component.label}
-			<label for={component.id}>
+			<label for="{component.id}-input">
 				{component.label}
 				{#if component.required}
 					<span class="required">*</span>
@@ -62,7 +63,7 @@
 		{/if}
 		{#if component.id}
 			<select
-				id={component.id}
+				id="{component.id}-input"
 				name={component.id}
 				value={component.value}
 				data-reference={component.refdata}

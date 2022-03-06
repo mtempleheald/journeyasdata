@@ -34,6 +34,7 @@
 </script>
 
 <div
+	id={component.id}
 	class="component {active} {component.required && component.value == null ? 'invalid' : ''}"
 	on:mouseenter={enter}
 	on:mouseleave={leave}
@@ -42,13 +43,13 @@
 
 	<input
 		type="hidden"
-		id={component.id}
+		id="{component.id}-input"
 		bind:value={component.value}
 		required={component.required}
 	/>
 	<div class="container">
 		{#if component.label}
-			<label for={component.id}>
+			<label for="{component.id}-input">
 				{component.label}
 				{#if component.required}
 					<span class="required">*</span>
