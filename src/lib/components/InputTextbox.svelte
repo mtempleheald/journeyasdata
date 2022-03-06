@@ -72,7 +72,7 @@
 
 	<div class="container">
 		{#if component.label}
-			<label for={component.id}>
+			<label for="{component.id}-input">
 				{component.label}
 				{#if component.required}
 					<span class="required">*</span>
