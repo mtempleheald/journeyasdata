@@ -11,6 +11,37 @@ import type {
 import { to_section_list } from './converters';
 
 /**
+ * Establish whether a component's value is valid, trusting the component's judgement if provided
+ */
+export function component_valid(component: InputComponent, state: StateStoreType): boolean {
+	// (ineligible) - component has no identifier, it must be a display component only, we have no reason to validate
+	if (!component.id) return true;
+
+	// (passed|failed) - input component has been attempted and has a validation status, trust this value
+	if (state[component.id]?.valid != null) return state[component.id]?.valid;
+
+	// (skipped) - component is optional and has been skipped, don't need to validate
+	if (!component.required ?? false) return true;
+
+	// (hidden) - component is hidden due to dependency on another component, don't fail validation
+	if (
+		component.dependsupon &&
+		state[component.dependsupon.id]?.value != component.dependsupon.value
+	)
+		return true;
+
+	// (missing) - component has not been answered, yet is required and not hidden, so it must be invalid
+	return false;
+}
+
+/*
+TODO: 
+  - valueStore | validationStore | displayValueStore to be removed in favour of stateStore.
+  - functions to use snake_case as it is easier to read
+  - rework functions below here to meet the above, update/create tests, delete the rest
+*/
+
+/**
  * Establish the validity for a component, trusting the component's judgement if provided
  * @param component         Component metadata from journey.json used to establish validation criteria
  * @param valueStore        $valueStore from the SvelteKit runtime, or an object consisting of simple string key value pairs
