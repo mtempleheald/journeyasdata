@@ -35,7 +35,6 @@
 		if (currentInstance < repeatinggroup.maxrepeats) {
 			let new_total = totalInstances + 1;
 			state.set(repeatinggroup.id, {value: JSON.stringify([new_total, new_total]), display: null, valid: null});
-			console.debug($state[repeatinggroup.id]?.value, currentInstance, totalInstances)
 		}
 	}
 	// edit is simple - just toggle the selected instance into view
@@ -43,7 +42,6 @@
 		if (instance <= repeatinggroup.maxrepeats) {
 			state.set(repeatinggroup.id, {value: JSON.stringify([instance, totalInstances]), display: null, valid: null});
 		}
-		console.debug($state[repeatinggroup.id]?.value)
 	}
 	// remove is more complicated
 	// if latest instance, just delete from value/displayValue/validation store and return to summary view
@@ -61,12 +59,10 @@
 			);
 		}
 		state.set(repeatinggroup.id, {value: JSON.stringify([0, totalInstances - 1]), display: null, valid: null});
-		console.debug($state[repeatinggroup.id]?.value)
 	}
 
 	function save() {
 		state.set(repeatinggroup.id, {value: JSON.stringify([0, totalInstances]), display: null, valid: null});
-		console.debug($state[repeatinggroup.id]?.value)
 	}
 </script>
 
