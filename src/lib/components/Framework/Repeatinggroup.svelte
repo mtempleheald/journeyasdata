@@ -8,6 +8,7 @@
 	import DisplayBlock from '$lib/components/DisplayBlock.svelte';
 	import markdown from '$lib/utils/markdown';
 	import Section from '$lib/components/Framework/Section.svelte';
+	import { state } from '$lib/stores/statestore';
 
 	export let repeatinggroup: RepeatingGroupType;
 
@@ -27,18 +28,22 @@
 	}
 
 	// Hide/show functionality
-	let currentInstance = 0;
-	let totalInstances = 0;
+	$: currentInstance = JSON.parse($state[repeatinggroup.id]?.value ?? '[0,0]')[0];
+	$: totalInstances  = JSON.parse($state[repeatinggroup.id]?.value ?? '[0,0]')[1];
 	// add is simple - just grab the next id if we've not reached max instances
 	function add() {
 		if (currentInstance < repeatinggroup.maxrepeats) {
-			totalInstances++;
-			currentInstance = totalInstances;
+			let new_total = totalInstances + 1;
+			state.set(repeatinggroup.id, {value: JSON.stringify([new_total, new_total]), display: null, valid: null});
+			console.debug($state[repeatinggroup.id]?.value, currentInstance, totalInstances)
 		}
 	}
 	// edit is simple - just toggle the selected instance into view
 	function edit(instance: number) {
-		if (instance <= repeatinggroup.maxrepeats) currentInstance = instance;
+		if (instance <= repeatinggroup.maxrepeats) {
+			state.set(repeatinggroup.id, {value: JSON.stringify([instance, totalInstances]), display: null, valid: null});
+		}
+		console.debug($state[repeatinggroup.id]?.value)
 	}
 	// remove is more complicated
 	// if latest instance, just delete from value/displayValue/validation store and return to summary view
@@ -55,8 +60,13 @@
 					})
 			);
 		}
-		currentInstance = 0; // jump back to summary view
-		totalInstances = totalInstances - 1;
+		state.set(repeatinggroup.id, {value: JSON.stringify([0, totalInstances - 1]), display: null, valid: null});
+		console.debug($state[repeatinggroup.id]?.value)
+	}
+
+	function save() {
+		state.set(repeatinggroup.id, {value: JSON.stringify([0, totalInstances]), display: null, valid: null});
+		console.debug($state[repeatinggroup.id]?.value)
 	}
 </script>
 
@@ -101,7 +111,7 @@
 {/each}
 <!-- TODO: save might need to be part of section, the key thing is setting current back to 0 for display -->
 {#if currentInstance > 0}
-	<button type="button" on:click={() => (currentInstance = 0)}>Save</button>
+	<button type="button" on:click={save}>Save</button>
 {/if}
 
 <!-- Keep styles aligned to Section component -->
