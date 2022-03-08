@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { OptionComponent } from '$lib/types/journey';
 	import { createEventDispatcher } from 'svelte';
+	import { state } from '$lib/stores/statestore';
 	import Helptext from '$lib/components/Helptext.svelte';
 
 	// expose component properties
@@ -17,7 +18,22 @@
 	function leave() {
 		active = '';
 	}
-	function updateValue(newValue: string, newDisplay: string) {
+	function update_state(newValue: string, newDisplay: string) {
+		if (newValue == component.value) {
+			state.set(component.id, {
+				value: undefined,
+				display: undefined,
+				valid: !component.required
+			});
+		}
+		else {
+			state.set(component.id, {
+				value: newValue,
+				display: newDisplay,
+				valid: true
+			});
+		}
+		// TODO: remove this when state store is in use everywhere (dispatch event should be id only)
 		if (component.value == newValue) {
 			component.value = null; // toggle off
 		} else {
@@ -35,7 +51,7 @@
 
 <div
 	id={component.id}
-	class="component {active} {component.required && component.value == null ? 'invalid' : ''}"
+	class="component {active} {!($state[component.id]?.valid ?? true) ? 'invalid' : ''}"
 	on:mouseenter={enter}
 	on:mouseleave={leave}
 >
@@ -63,7 +79,7 @@
 					<button
 						type="button"
 						value={v.value}
-						on:click={() => updateValue(v.value, v.display)}
+						on:click={() => update_state(v.value, v.display)}
 						class={component.value == v.value ? 'active' : ''}
 					>
 						{#if v.textLocation == 'top' && v.display != null}
