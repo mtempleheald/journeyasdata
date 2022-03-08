@@ -2,7 +2,7 @@
 	import type { InputComponent } from '$lib/types/journey';
 	import { blur } from 'svelte/transition';
 	import { createEventDispatcher } from 'svelte';
-	import { validationStore } from '$lib/stores/validationstore';
+	import { state } from '$lib/stores/statestore';
 	import Helptext from '$lib/components/Helptext.svelte';
 
 	// expose component properties
@@ -31,7 +31,8 @@
 			html5type = component.type?.toLowerCase() ?? 'text';
 	}
 	let fallbackError: string;
-	let valid: boolean = $validationStore[component.id] ?? true;
+	let valid: boolean;
+	$: valid = $state[component.id]?.valid ?? true;
 	let active: string;
 
 	// component actions
@@ -42,18 +43,18 @@
 		active = '';
 	}
 	function act(event) {
-		// transform
-		let val = component.type == 'Upper' ? event.target.value.toUpperCase() : event.target.value;
-		// validate
-		if (event.target.validity.valid) {
-			valid = true;
-			fallbackError = '';
-		} else {
-			valid = false;
-			fallbackError = event.target.validationMessage;
-		}
-		// publish changes up to parent, let it handle state
-		dispatch('valueChange', { key: component.id, value: val, valid: valid });
+		state.set(component.id, {
+			value: event.target.value,
+			display: component.type == 'Upper' ? event.target.value.toUpperCase() : event.target.value,
+			valid: event.target.validity.valid
+		});
+		fallbackError = event.target.validity.valid ? '' : event.target.validationMessage;
+		// publish changes up to parent, for any additional actions
+		dispatch('valueChange', {
+			key: component.id,
+			value: event.target.value,
+			valid: event.target.validity.valid
+		});
 	}
 	function focus() {
 		dispatch('focus', component.id);
@@ -61,6 +62,7 @@
 </script>
 
 <div
+	id={component.id}
 	class="component {active} {valid ? '' : 'invalid'}"
 	transition:blur
 	on:mouseenter={enter}
@@ -70,7 +72,7 @@
 
 	<div class="container">
 		{#if component.label}
-			<label for={component.id}>
+			<label for="{component.id}~">
 				{component.label}
 				{#if component.required}
 					<span class="required">*</span>
@@ -82,7 +84,7 @@
 			<input
 				type={html5type}
 				class={component.type?.toLowerCase()}
-				id={component.id}
+				id="{component.id}~"
 				name={component.id}
 				placeholder={component.placeholder ?? ''}
 				required={component.required ?? false}

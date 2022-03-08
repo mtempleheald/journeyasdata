@@ -113,7 +113,15 @@ export function component_ids_are_unique(journey: JourneyType): boolean {
  * Component ids must not contain full stops
  * This breaks the repeating group functionality
  */
-export function component_ids_do_not_contain_full_stops(journey: JourneyType): boolean {
+export function component_ids_do_not_contain_full_stop(journey: JourneyType): boolean {
+	// TODO: implement this
+	return true;
+}
+/**
+ * Component ids must not contain tildes
+ * This would clash with input identifiers
+ */
+ export function component_ids_do_not_contain_tilde(journey: JourneyType): boolean {
 	// TODO: implement this
 	return true;
 }
