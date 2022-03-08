@@ -1,6 +1,5 @@
 <script lang="ts">
 	import type { ComponentType } from '$lib/types/journey';
-	import { valueStore } from '$lib/stores/valuestore';
 	import Address from '$lib/components/Address.svelte';
 	import DisplayBlock from '$lib/components/DisplayBlock.svelte';
 	import DisplayModal from '$lib/components/DisplayModal.svelte';
@@ -129,7 +128,7 @@
 		/>
 		<InputTextbox
 			on:valueChange={(event) => {
-				component.value = event.detail.value;
+				component.error = event.detail.value;
 			}}
 			component={{
 				type: 'Text',
@@ -139,7 +138,7 @@
 		/>
 		<InputTextbox
 			on:valueChange={(event) => {
-				component.value = event.detail.value;
+				component.help = event.detail.value;
 			}}
 			component={{
 				type: 'Text',
@@ -264,7 +263,7 @@
 		{:else if component.type == 'Address'}
 			<Address {component} />
 		{:else if component.type == 'TriBoxDate'}
-			<InputTriboxdate component={{ ...component, value: $valueStore[component.id] ?? '' }} />
+			<InputTriboxdate {component} />
 		{:else if component.type == 'Vehicle'}
 			<Vehicle {component} />
 		{/if}
