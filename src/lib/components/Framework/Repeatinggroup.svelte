@@ -1,10 +1,7 @@
 <script lang="ts">
 	import type { RepeatingGroupType, SectionType } from '$lib/types/journey';
-	import { displayValueStore } from '$lib/stores/displayvaluestore';
 	import { to_section_list } from '$lib/utils/converters';
-	import { replaceTokens } from '$lib/utils/replacetokens';
-	import { validationStore } from '$lib/stores/validationstore';
-	import { valueStore } from '$lib/stores/valuestore';
+	import { replace_tokens } from '$lib/utils/replacetokens';
 	import DisplayBlock from '$lib/components/DisplayBlock.svelte';
 	import markdown from '$lib/utils/markdown';
 	import Section from '$lib/components/Framework/Section.svelte';
@@ -13,7 +10,7 @@
 	export let repeatinggroup: RepeatingGroupType;
 
 	let sections: SectionType[] = to_section_list(repeatinggroup);
-	
+
 	// expand repeating group out into its sections based on maxrepeats
 	// find {{ componentid }} and replace with {{ componentid.instanceid }}
 	// whitespace in the brackets should not matter but the component id should be alphanumeric
@@ -30,20 +27,22 @@
 	// Hide/show functionality (use state to guarantee behaviour after navigation)
 	$: totalInstances = parseInt($state[repeatinggroup.id]?.value ?? 0);
 	let currentInstance = 0;
-	$: console.debug($state[repeatinggroup.id], currentInstance);
-	
-	// add is simple - just grab the next id if we've not reached max instances
+	$: console.debug($state);
+
+	// add is simple - just grab the next id
 	function add() {
-		if (currentInstance < repeatinggroup.maxrepeats) {
-			currentInstance = totalInstances + 1;
-			state.set(repeatinggroup.id, {value: JSON.stringify(currentInstance), display: null, valid: null});
-		}
+		currentInstance = totalInstances + 1;
+		state.set(repeatinggroup.id, {
+			value: JSON.stringify(currentInstance),
+			display: undefined,
+			valid: undefined
+		});
 	}
-	// edit is simple - just toggle the selected instance into view
 	function edit(instance: number) {
-		if (instance <= repeatinggroup.maxrepeats) {
-			currentInstance = instance;
-		}
+		currentInstance = instance;
+	}
+	function save() {
+		currentInstance = 0;
 	}
 	// remove is more complicated
 	// if latest instance, just delete from value/displayValue/validation store and return to summary view
@@ -54,18 +53,21 @@
 				s.components
 					.filter((c) => !!c.id)
 					.forEach((c) => {
-						valueStore.set(`${c.id}.${i}`, $valueStore[`${c.id}.${i + 1}`]);
-						displayValueStore.set(`${c.id}.${i}`, $valueStore[`${c.id}.${i + 1}`]);
-						validationStore.set(`${c.id}.${i}`, $valueStore[`${c.id}.${i + 1}`]);
+						const x = $state[`${c.id}.${i + 1}`];
+						state.set(`${c.id}.${i}`, {
+							value: x?.value,
+							display: x?.display,
+							valid: x?.valid
+						});
 					})
 			);
 		}
 		currentInstance = 0;
-		state.set(repeatinggroup.id, {value: JSON.stringify(totalInstances - 1), display: null, valid: null});
-	}
-
-	function save() {
-		currentInstance = 0;
+		state.set(repeatinggroup.id, {
+			value: JSON.stringify(totalInstances - 1),
+			display: undefined,
+			valid: undefined
+		});
 	}
 </script>
 
@@ -78,12 +80,12 @@
 					type: 'Displayblock',
 					content: Array.isArray(repeatinggroup.summarycontent)
 						? repeatinggroup.summarycontent.map((c) =>
-								markdown(replaceTokens(updateSummaryInstance(c, idx + 1), $displayValueStore))
+								markdown(replace_tokens(updateSummaryInstance(c, idx + 1), $state))
 						  )
 						: markdown(
-								replaceTokens(
+								replace_tokens(
 									updateSummaryInstance(repeatinggroup.summarycontent, idx + 1),
-									$displayValueStore
+									$state
 								)
 						  )
 				}}
@@ -108,12 +110,10 @@
 		<Section section={s} />
 	{/if}
 {/each}
-<!-- TODO: save might need to be part of section, the key thing is setting current back to 0 for display -->
 {#if currentInstance > 0}
 	<button type="button" on:click={save}>Save</button>
 {/if}
 
-<!-- Keep styles aligned to Section component -->
 <style>
 	section {
 		border: var(--section-border);
