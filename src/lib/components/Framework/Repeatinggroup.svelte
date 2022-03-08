@@ -12,9 +12,9 @@
 
 	export let repeatinggroup: RepeatingGroupType;
 
-	// expand repeating group out into its sections based on maxrepeats
 	let sections: SectionType[] = to_section_list(repeatinggroup);
-
+	
+	// expand repeating group out into its sections based on maxrepeats
 	// find {{ componentid }} and replace with {{ componentid.instanceid }}
 	// whitespace in the brackets should not matter but the component id should be alphanumeric
 	function updateSummaryInstance(summary: string, instanceid: number) {
@@ -27,20 +27,22 @@
 		return summary.replace(re, replacer);
 	}
 
-	// Hide/show functionality
-	$: currentInstance = JSON.parse($state[repeatinggroup.id]?.value ?? '[0,0]')[0];
-	$: totalInstances  = JSON.parse($state[repeatinggroup.id]?.value ?? '[0,0]')[1];
+	// Hide/show functionality (use state to guarantee behaviour after navigation)
+	$: totalInstances = parseInt($state[repeatinggroup.id]?.value ?? 0);
+	let currentInstance = 0;
+	$: console.debug($state[repeatinggroup.id], currentInstance);
+	
 	// add is simple - just grab the next id if we've not reached max instances
 	function add() {
 		if (currentInstance < repeatinggroup.maxrepeats) {
-			let new_total = totalInstances + 1;
-			state.set(repeatinggroup.id, {value: JSON.stringify([new_total, new_total]), display: null, valid: null});
+			currentInstance = totalInstances + 1;
+			state.set(repeatinggroup.id, {value: JSON.stringify(currentInstance), display: null, valid: null});
 		}
 	}
 	// edit is simple - just toggle the selected instance into view
 	function edit(instance: number) {
 		if (instance <= repeatinggroup.maxrepeats) {
-			state.set(repeatinggroup.id, {value: JSON.stringify([instance, totalInstances]), display: null, valid: null});
+			currentInstance = instance;
 		}
 	}
 	// remove is more complicated
@@ -58,11 +60,12 @@
 					})
 			);
 		}
-		state.set(repeatinggroup.id, {value: JSON.stringify([0, totalInstances - 1]), display: null, valid: null});
+		currentInstance = 0;
+		state.set(repeatinggroup.id, {value: JSON.stringify(totalInstances - 1), display: null, valid: null});
 	}
 
 	function save() {
-		state.set(repeatinggroup.id, {value: JSON.stringify([0, totalInstances]), display: null, valid: null});
+		currentInstance = 0;
 	}
 </script>
 
