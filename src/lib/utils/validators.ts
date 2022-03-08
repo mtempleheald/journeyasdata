@@ -15,20 +15,27 @@ import { to_section_list } from './converters';
  */
 export function component_valid(component: InputComponent, state: StateStoreType): boolean {
 	// (ineligible) - component has no identifier, it must be a display component only, we have no reason to validate
-	if (!component.id) return true;
+	if (!component.id) {
+		return true;
+	}
 
 	// (passed|failed) - input component has been attempted and has a validation status, trust this value
-	if (state[component.id]?.valid != null) return state[component.id]?.valid;
+	if (state[component.id]?.valid != null) {
+		return state[component.id]?.valid;
+	}
 
 	// (skipped) - component is optional and has been skipped, don't need to validate
-	if (!component.required ?? false) return true;
+	if (!component.required ?? false) {
+		return true;
+	}
 
 	// (hidden) - component is hidden due to dependency on another component, don't fail validation
 	if (
 		component.dependsupon &&
-		state[component.dependsupon.id]?.value != component.dependsupon.value
-	)
+		component.dependsupon.value != state[component.dependsupon.id]?.value
+	){
 		return true;
+	}
 
 	// (missing) - component has not been answered, yet is required and not hidden, so it must be invalid
 	return false;
