@@ -188,9 +188,9 @@ export type ValidationStoreType =
 	| Record<{ [key: string]: boolean }, unknown>;
 
 export type StateValueType = {
-	value: string;
-	display: string;
-	valid: boolean;
+	value: string | undefined;
+	display: string | undefined;
+	valid: boolean | undefined;
 };
 export type StateStoreType =
 	| { [key: string]: StateValueType }
