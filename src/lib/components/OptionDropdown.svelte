@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { OptionComponent, ValueType } from '$lib/types/journey';
 	import { createEventDispatcher, onMount } from 'svelte';
+	import { state } from '$lib/stores/statestore';
 	import Helptext from '$lib/components/Helptext.svelte';
 
 	// load refdata on component creation
@@ -19,7 +20,7 @@
 	// internal properties to support component logic
 	const dispatch = createEventDispatcher();
 	let fallbackError = 'Please select an option';
-	let invalid = false;
+	$: invalid = !($state[component.id]?.valid ?? true);
 	let active = '';
 	let effectiveValues: ValueType[]; // overwriting component.values directly triggers an onMount loop
 
@@ -30,17 +31,22 @@
 	function leave() {
 		active = '';
 	}
-	function act(event) {
+	function update_state(event: Event) {
+		const elem = <HTMLSelectElement>event.target;
+		state.set(component.id, {
+			value: elem.value,
+			display: component.values.find((c) => c.value === elem.value)?.display,
+			valid: elem.validity.valid
+		});
 		// publish value changes up to parent too
 		dispatch('valueChange', {
 			key: component.id,
-			value: event.target.value,
-			display: event.target.value
-				? component.values.find((v) => v.value === event.target.value).display
+			value: elem.value,
+			display: elem.value
+				? component.values.find((v) => v.value === elem.value).display
 				: '',
-			valid: !component.required || !!event.target.value
+			valid: !component.required || !!elem.value
 		});
-		invalid = component.required && !event.target.value;
 	}
 </script>
 
@@ -68,7 +74,7 @@
 				value={component.value}
 				data-reference={component.refdata}
 				required={component.required}
-				on:blur={act}
+				on:blur={update_state}
 			>
 				<option value="">{!component.placeholder ? '-- select --' : component.placeholder}</option>
 
