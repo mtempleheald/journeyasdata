@@ -27,7 +27,7 @@
 	// Hide/show functionality (use state to guarantee behaviour after navigation)
 	$: totalInstances = parseInt($state[repeatinggroup.id]?.value ?? 0);
 	let currentInstance = 0;
-	$: console.debug($state);
+	//$: console.debug($state);
 
 	// add is simple - just grab the next id
 	function add() {
