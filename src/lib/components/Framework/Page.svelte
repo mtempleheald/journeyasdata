@@ -8,7 +8,7 @@
 	import { validationStore } from '$lib/stores/validationstore';
 	import { valueStore } from '$lib/stores/valuestore';
 	import { nextPageUrl, prevPageUrl } from '$lib/utils/navigation';
-	import { first_invalid_component_in_page, pageValid } from '$lib/utils/validators';
+	import { get_first_invalid_component_in_page, page_valid } from '$lib/utils/validators';
 	import Cookiepreference from '$lib/components/Cookiepreference.svelte';
 	import DisplayBlock from '$lib/components//DisplayBlock.svelte';
 	import Navbuttons from '$lib/components/Navbuttons.svelte';
@@ -36,16 +36,16 @@
 		goto(prevPageUrl(journey, page.url));
 	}
 	function nextPage() {
-		if (DISABLEVALIDATION != 'Y' && !pageValid(page, $valueStore, $validationStore)) {
+		if (DISABLEVALIDATION != 'Y' && !page_valid(page, $state)) {
 			console.debug('Page invalid, correct before trying again');
-			const error_comp_id = first_invalid_component_in_page(page, $valueStore, $validationStore);
-			if (error_comp_id != undefined) {
-				state.set(error_comp_id, {
-					value: $state[error_comp_id]?.value ?? '',
-					display: $state[error_comp_id]?.display ?? '',
+			const error_comp = get_first_invalid_component_in_page(page, $state);
+			if (error_comp != undefined) {
+				state.set(error_comp.id, {
+					value: $state[error_comp.id]?.value ?? '',
+					display: $state[error_comp.id]?.display ?? '',
 					valid: false
 				});
-				goto(`#${error_comp_id}`, { replaceState: true });
+				goto(`#${error_comp.id}`, { replaceState: true });
 			}
 			return;
 		}

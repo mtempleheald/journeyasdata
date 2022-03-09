@@ -4,9 +4,8 @@
 	import { getContext } from 'svelte';
 	import { goto } from '$app/navigation';
 	import { nextPageUrl, prevPageUrl } from '$lib/utils/navigation';
-	import { pageValid } from '$lib/utils/validators';
-	import { validationStore } from '$lib/stores/validationstore';
-	import { valueStore } from '$lib/stores/valuestore';
+	import { page_valid } from '$lib/utils/validators';
+	import { state } from '$lib/stores/statestore';
 
 	export let nav: NavigationOptionsType;
 	export let pageurl: string;
@@ -23,10 +22,9 @@
 			console.debug('Validation disabled, redirecting to next page');
 			goto(nextPageUrl(journey, pageurl));
 		} else if (
-			pageValid(
+			page_valid(
 				journey.pages.find((p) => p.url == pageurl),
-				$valueStore,
-				$validationStore
+				$state
 			)
 		) {
 			console.debug('Page valid, redirecting to next page');
