@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { SectionType } from '$lib/types/journey';
+	import { valueStore } from '$lib/stores/valuestore';
 	import Component from '$lib/components/Framework/Component.svelte';
 	import Navbuttons from '$lib/components/Navbuttons.svelte';
 
@@ -15,37 +16,39 @@
 	// }
 </script>
 
-<section>
-	{#if section.logo || section.title}
-		<header>
-			{#if section.logo}
-				<img
-					src={section.logo.url}
-					alt="{section.logo.alt} section logo"
-					width={section.logo.width}
-					height={section.logo.height}
-				/>
-			{/if}
-			{#if section.title}
-				<h1>{section.title}</h1>
-			{/if}
-			{#if section.instanceid}
-				<input type="hidden" id="instanceid" value={section.instanceid} />
-			{/if}
-		</header>
-	{/if}
+{#if !section.dependsupon || $valueStore[section.dependsupon.id] == section.dependsupon.value}
+	<section>
+		{#if section.logo || section.title}
+			<header>
+				{#if section.logo}
+					<img
+						class="section-logo"
+						src={section.logo.url}
+						alt="{section.logo.alt}"
+						width={section.logo.width}
+						height={section.logo.height}
+					/>
+				{/if}
+				{#if section.title}
+					<h1>{section.title}</h1>
+				{/if}
+				{#if section.instanceid}
+					<input type="hidden" id="instanceid" value={section.instanceid} />
+				{/if}
+			</header>
+		{/if}
 
-	<div class={collapsed ? 'collapsed' : ''}>
-		{#each section.components as component}
-			<Component {component} />
-		{/each}
-	</div>
+		<div class={collapsed ? 'collapsed' : ''}>
+			{#each section.components as component}
+				<Component {component} />
+			{/each}
+		</div>
 
-	<slot />
+		<slot />
 
-	<Navbuttons nav={section.navigation} pageurl="" sectionid={section.id ?? section.title} />
-</section>
-
+		<Navbuttons nav={section.navigation} pageurl="" sectionid={section.id ?? section.title} />
+	</section>
+{/if}
 <style>
 	section {
 		padding: var(--section-padding);

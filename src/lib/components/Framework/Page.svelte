@@ -61,13 +61,13 @@
 <Cookiepreference cookiepreferences={journey.cookiepreferences} />
 <header>
 	{#if journey.logo}
-		<img
-			class="logo"
-			src={journey.logo.url}
-			alt={journey.logo.alt}
-			width={journey.logo.width}
-			height={journey.logo.height}
-		/>
+			<img
+				class="logo"
+				src={journey.logo.url}
+				alt={journey.logo.alt}
+				width={journey.logo.width}
+				height={journey.logo.height}
+			/>
 	{/if}
 	{#if journey.title}
 		<h1>{journey.title}</h1>
@@ -137,6 +137,7 @@
 	header .logo {
 		height: var(--page-logo-height);
 		width: var(--page-logo-width);
+		display: var(--page-logo-display);
 	}
 	header h1 {
 		margin: 0;

@@ -1,0 +1,429 @@
+{
+	"title": "Imaginary Autos - Car Sales",
+	"pages": 
+	[
+		{
+			"url": "welcome",
+			"title": "Welcome to Imaginary Autos",
+			"displayprogress": false,
+			"displaytitle": false,
+			"navigation": {
+				"showback": false,
+				"shownext": true
+			},
+			"sections": [
+				{
+					"logo": {
+						"url": "static/demo_imaginary_autos/logo.png",
+						"alt": "Imaginary Autos - the best bangers in town",
+						"height": "500px"
+					},
+					"components": [
+						{
+							"type": "Displayblock",
+							"pre": "Welcome to 'Imaginary Autos' - Resellers of the ultimate in luxury automobiles.",
+							"content": "Available in a range of ulta eco-friendly electric to 6L v12's offering an impressive 2.3 miles per gallon.",
+							"post" : "In just a few questions, we will have you matched with your perfect automobile."
+						}
+					]
+				}
+			]
+		},
+		{
+			"url": "vehicle",
+			"title": "About the Vehicle",
+			"displayprogress": false,
+			"displaytitle": false,
+			"sections": [
+				{
+					"title": "Vehicle Type",
+					"navigation": {
+						"showback": false,
+						"shownext": false
+					},
+					"components": [
+						{
+							"id": "vehicle_type",
+							"type": "OptionButtons",
+							"required": true,							
+							"label" : "What type or car are you looking for?",
+							"errorMessage": "Please select a vehicle type",
+							"help": "Simply select the type of vehicle you are interested in.",
+							"values": [
+								{
+									"display": "Family",
+									"value": "lifes-over",
+									"image": {
+										"url": "static/demo_imaginary_autos/images/car-type-family.png",
+										"width": "100",
+										"height": "100"
+									},
+									"textLocation": "bottom"
+								},
+								{
+									"display": "Compact",
+									"value": "single-and-ugly",
+									"image": {
+										"url": "static/demo_imaginary_autos/images/car-type-compact.png",
+										"width": "100",
+										"height": "100"
+									},
+									"textLocation": "bottom"
+								},
+								{
+									"display":"4x4",
+									"value": "wannabe-farmer",
+									"image": {
+										"url": "static/demo_imaginary_autos/images/car-type-4x4.png",
+										"width": "100",
+										"height": "100"
+									},
+									"textLocation": "bottom"
+								},
+								{
+									"display": "SUV",
+									"value": "moms-school-run",
+									"image": {
+										"url": "static/demo_imaginary_autos/images/car-type-suv.png",
+										"width": "100",
+										"height": "100"
+									},
+									"textLocation": "bottom"
+								},
+								{
+									"display": "Sports",
+									"value": "small-penis",
+									"image": {
+										"url": "static/demo_imaginary_autos/images/car-type-sports.png",
+										"width": "100",
+										"height": "100"
+									},
+									"textLocation": "bottom"
+								}
+							]
+						}
+					]
+				},
+				{
+					"title": "Transmission Type",
+					"navigation": {
+						"showback": false,
+						"shownext": false
+					},
+					"components": [
+						{
+							"id": "transmission_type",
+							"type": "OptionButtons",
+							"required": true,							
+							"label" : "What transmission do you need?",
+							"errorMessage": "Please select a transmission type",
+							"help": "Simply select the type of transmission you are eligible to drive.",
+							"values": [
+								{
+									"display": "Manual",
+									"value": "manual",
+									"image": {
+										"url": "static/demo_imaginary_autos/images/transmission-manual.png",
+										"width": "100",
+										"height": "100"
+									},
+									"textLocation": "bottom"
+								},
+								{
+									"display": "Auto / Semi-Auto",
+									"value": "auto",
+									"image": {
+										"url": "static/demo_imaginary_autos/images/transmission-automatic.png",
+										"width": "100",
+										"height": "100"
+									},
+									"textLocation": "bottom"
+								},
+								{
+									"display":"Either",
+									"value": "either",
+									"image": {
+										"url": "static/demo_imaginary_autos/images/transmission-either.png",
+										"width": "100",
+										"height": "100"
+									},
+									"textLocation": "bottom"
+								}
+						 	]
+						}
+					]
+				},
+				{
+					"title": "Fuel Type",
+					"navigation": {
+						"showback": false,
+						"shownext": false
+					},
+					"components": [
+						{
+							"id": "fuel_type",
+							"type": "OptionButtons",
+							"required": true,							
+							"label" : "What fuel would you like?",
+							"errorMessage": "Please select a type of fuel to power the vehicle.",
+							"help": "Simply select the type of fuel you would like to power the vehicle.",
+							"values": [
+								{
+									"display": "Petrol",
+									"value": "petrol",
+									"image": {
+										"url": "static/demo_imaginary_autos/images/fuel-petrol.png",
+										"width": "100",
+										"height": "100"
+									},
+									"textLocation": "bottom"
+								},
+								{
+									"display": "Diesel",
+									"value": "diesel",
+									"image": {
+										"url": "static/demo_imaginary_autos/images/fuel-diesel.png",
+										"width": "100",
+										"height": "100"
+									},
+									"textLocation": "bottom"
+								},
+								{
+									"display":"Hybrid",
+									"value": "hybrid",
+									"image": {
+										"url": "static/demo_imaginary_autos/images/fuel-hybrid.png",
+										"width": "100",
+										"height": "100"
+									},
+									"textLocation": "bottom"
+								},
+								{
+									"display":"Electric",
+									"value": "electric",
+									"image": {
+										"url": "static/demo_imaginary_autos/images/fuel-electric.png",
+										"width": "100",
+										"height": "100"
+									},
+									"textLocation": "bottom"
+								},
+								{
+									"display":"Hydrogen",
+									"value": "hydrogen",
+									"image": {
+										"url": "static/demo_imaginary_autos/images/fuel-hydrogen.png",
+										"width": "100",
+										"height": "100"
+									},
+									"textLocation": "bottom"
+								}
+						 	]
+						}
+					]
+				}
+			]
+		},
+		{
+			"url": "usage",
+			"title": "How would you use the vehicle",
+			"displayprogress": false,
+			"displaytitle": false,
+			"sections": [
+				{
+					"title": "Mileage",
+					"navigation": {
+						"showback": false,
+						"shownext": false
+					},
+					"components": [
+						{
+							"id": "mileage",
+							"type": "OptionDropdown",
+							"required": true,							
+							"label" : "How many miles per week would you do?",
+							"errorMessage": "Please tell us how many miles you intend to drive",
+							"help": "Please use the drop down to select the number of miles per week you would drive",
+							"values": [
+								{
+									"display":"Less than 300",
+									"value": "low",
+									"textLocation": "bottom"
+								},
+								{
+									"display":"301-500",
+									"value": "medium",
+									"textLocation": "bottom"
+								},
+								{
+									"display":"500-1000",
+									"value": "high",
+									"textLocation": "bottom"
+								},
+								{
+									"display":"More than 1,000",
+									"value": "ultrahigh",
+									"textLocation": "bottom"
+								}
+							]
+						},
+						{
+							"type": "Displayblock",
+							"content": "Based upon the mileage selected, I would recommend you go with an ELECTRIC vehicle.",
+							"dependsupon": {
+								"id": "mileage",
+								"value": "low"
+							}
+						},
+						{
+							"type": "Displayblock",
+							"content": "Based upon the mileage selected, I would recommend you go with an PETROL vehicle.",
+							"dependsupon": {
+								"id": "mileage",
+								"value": "medium"
+							}
+						},
+						{
+							"type": "Displayblock",
+							"content": "Based upon the mileage selected, I would recommend you go with an DIESEL vehicle.",
+							"dependsupon": {
+								"id": "mileage",
+								"value": "high"
+							}
+						},
+						{
+							"type": "Displayblock",
+							"content": "Based upon the mileage selected, I would recommend you buy a helicopter or invest in crude oil, a garage and car parts.",
+							"dependsupon": {
+								"id": "mileage",
+								"value": "ultrahigh"
+							}
+						}
+					]
+				},
+				{
+					"title": "Towing",
+					"navigation": {
+						"showback": false,
+						"shownext": false
+					},
+					"components": [
+						{
+							"id": "towing",
+							"type": "YesNo",
+							"required": true,
+							"label" : "Do you need to tow a caravan or a trailer?",
+							"errorMessage": "Please tell us if you need to tow a caravan or trailer.",
+							"help": "Please select yes or no."
+						}
+					]
+				}
+			]
+		},
+		{
+			"url": "payment",
+			"title": "We need to know some financial information from you.",
+			"displayprogress": false,
+			"displaytitle": false,
+			"sections": [
+				{
+					"title": "Payment",
+					"navigation": {
+						"showback": false,
+						"shownext": false
+					},
+					"components": [
+						{
+							"id": "payment",
+							"type": "OptionDropdown",
+							"required": true,							
+							"label" : "How do you want to pay for the vehicle?",
+							"errorMessage": "Please tell us how intend to fund the vehicle",
+							"help": "Please tell us how you want to pay for the vehicle.",
+							"values": [
+								{
+									"display": "PCP",
+									"value": "pcp"
+								},
+								{
+									"display": "HP",
+									"value": "hp"
+								},
+								{
+									"display":"Pay in Full",
+									"value": "pay_in_full"
+								}
+							]
+						}
+					]
+				},
+				{
+					"title": "Price",
+					"navigation": {
+						"showback": false,
+						"shownext": false
+					},
+					"components": [
+						{
+							"id": "min_price",
+							"type": "Number",
+							"required": true,							
+							"label" : "Minimum price to pay for the vehicle?",
+							"errorMessage": "Please tell us what the minimum amount you have to spend is",
+							"help": "Enter a number in whole pounds.",
+							"placeholder": "£99"
+						},
+						{
+							"id": "max_price",
+							"type": "Number",
+							"required": true,
+							"label" : "Maximum price to pay for the vehicle?",
+							"errorMessage": "Please tell us what the maximum amount you have to spend is",
+							"help": "Enter a number in whole pounds.",
+							"placeholder": "£99,999"
+						}
+					]
+				},
+				{
+					"title": "Deposit",
+					"navigation": {
+						"showback": false,
+						"shownext": false
+					},
+					"components": [
+						{
+							"id": "deposit_required",
+							"type": "YesNo",
+							"required": true,							
+							"label" : "Do you want to pay a deposit?",
+							"errorMessage": "Do you have funds to pay a deposit?",
+							"help": "Securing a vehicle with a deposit will mean lower overall costs"
+						}
+					]
+				},
+				{
+					"title": "Trade In Vehicle",
+					"navigation": {
+						"showback": false,
+						"shownext": false
+					},
+					"dependsupon": {
+						"id": "deposit_required",
+						"value": "Y"
+					},
+					"components": [
+						{
+							"id": "aa",
+							"type": "YesNo",
+							"required": true,							
+							"label" : "Do you want to pay a deposit?",
+							"errorMessage": "Do you have funds to pay a deposit?",
+							"help": "Securing a vehicle with a deposit will mean lower overall costs"
+						}
+					]
+				}
+			]
+		}
+	],
+	"footercontent": ["Information correct at time of checking", "", "&copy; 2022 Imaginary Autos"]
+}
