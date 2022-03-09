@@ -35,8 +35,10 @@ The basic data structure which drives the entire solution:
 - Configurable journey - content editors manage content (labels, helptext...), developers manage code.
 - Configurable themes - components functional layout, responsible for responsive design, exposing key CSS variables for theming. Themes managed separately, decoupling services from brand elements such as colour palettes.
 - Session data management
-  - The `valueStore` is a key-value store holding the component id against its value, see `/lib/stores/valueStore.ts`
-  - This is updated whenever a user action triggers a change, this could be direct or via a custom action.
+  - `state` is a key-value store which holds state for all components in the journey, see `/lib/stores/statestore.ts` and `/lib/types/stores.d.ts`.  
+  - Each components is responsible for updating its own state upon user action.
+  - The state store may also be updated from a bespoke action, maybe after calling a backend API.
+  - The state store relies on ids being unique across the journey but does not enforce that itself.
 - Injectable functionality
   - The entire journey is dynamic, with the majority of validation and display logic being data-driven.
   - In order to perform bespoke actions we need a trigger mechanism.

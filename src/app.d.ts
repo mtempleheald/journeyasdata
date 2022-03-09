@@ -3,7 +3,7 @@
 // Sveltekit typeScript docs https://kit.svelte.dev/docs/typescript
 // Importing types discussion https://github.com/sveltejs/kit/discussions/3772#discussioncomment-2131563
 
-import * as _journey from '$lib/types/journey';
+import * as _stores from '$lib/types/stores';
 
 declare global {
 	declare namespace App {
@@ -19,7 +19,8 @@ declare global {
 	}
 
 	// State is expected to be used frequently across the application, remove the need for references
-	type StateStoreType = _journey.StateStoreType;
+	type StateStoreType = _stores.StateStoreType;
+	type StateValueType = _stores.StateValueType;
 }
 
 // TODO: Add whatever is needed to facilitate authentication and authorisation

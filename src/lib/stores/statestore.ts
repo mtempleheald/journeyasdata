@@ -1,5 +1,4 @@
 // Alternative approach to valueStore + displayValueStore + validationStore, https://github.com/mtempleheald/journeyasdata/issues/103
-import type { StateValueType, StateStoreType } from '$lib/types/journey';
 import { writable } from 'svelte/store';
 
 function upsert(store: StateStoreType, key: string, state: StateValueType) {

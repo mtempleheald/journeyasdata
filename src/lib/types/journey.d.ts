@@ -178,20 +178,3 @@ export interface VehicleComponent extends BaseComponent, InputComponent {
 	regnumPlaceholder?: string;
 	buttonLabel?: string;
 }
-
-export type ValueStoreType = { [key: string]: string } | Record<{ [key: string]: string }, never>;
-export type DisplayValueStoreType =
-	| { [key: string]: string }
-	| Record<{ [key: string]: string }, never>;
-export type ValidationStoreType =
-	| { [key: string]: boolean }
-	| Record<{ [key: string]: boolean }, unknown>;
-
-export type StateValueType = {
-	value: string | undefined;
-	display: string | undefined;
-	valid: boolean | undefined;
-};
-export type StateStoreType =
-	| { [key: string]: StateValueType }
-	| Record<{ [key: string]: StateValueType }, unknown>;

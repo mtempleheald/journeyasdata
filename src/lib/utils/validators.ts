@@ -4,9 +4,7 @@ import type {
 	JourneyType,
 	PageType,
 	RepeatingGroupType,
-	SectionType,
-	ValidationStoreType,
-	ValueStoreType
+	SectionType
 } from '$lib/types/journey';
 import { to_section_list } from './converters';
 
