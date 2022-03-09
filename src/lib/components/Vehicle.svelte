@@ -2,8 +2,8 @@
 <script lang="ts">
 	import type { VehicleComponent } from '$lib/types/journey';
 	import type { VehicleType } from '$lib/types/vehicle';
-	import { displayValueStore } from '$lib/stores/displayvaluestore';
-	import { replaceTokens } from '$lib/utils/replacetokens';
+	import { state } from '$lib/stores/statestore';
+	import { replace_tokens } from '$lib/utils/replacetokens';
 	import { valueStore } from '$lib/stores/valuestore';
 	import markdown from '$lib/utils/markdown';
 	import InputTextbox from '$lib/components/InputTextbox.svelte';
@@ -58,10 +58,10 @@
 		component={{ ...component, type: 'OptionDropdown', value: $valueStore[component.id] ?? '' }}
 	>
 		<svelte:fragment slot="pre">
-			{@html markdown(replaceTokens(component.pre, $displayValueStore))}
+			{@html markdown(replace_tokens(component.pre, $state))}
 		</svelte:fragment>
 		<svelte:fragment slot="post">
-			{@html markdown(replaceTokens(component.post, $displayValueStore))}
+			{@html markdown(replace_tokens(component.post, $state))}
 		</svelte:fragment>
 	</OptionDropdown>
 
@@ -95,10 +95,10 @@
 		component={{ ...component, type: 'OptionDropdown', value: $valueStore[component.id] ?? '' }}
 	>
 		<svelte:fragment slot="pre">
-			{@html markdown(replaceTokens(component.pre, $displayValueStore))}
+			{@html markdown(replace_tokens(component.pre, $state))}
 		</svelte:fragment>
 		<svelte:fragment slot="post">
-			{@html markdown(replaceTokens(component.post, $displayValueStore))}
+			{@html markdown(replace_tokens(component.post, $state))}
 		</svelte:fragment>
 	</OptionDropdown>
 </div>

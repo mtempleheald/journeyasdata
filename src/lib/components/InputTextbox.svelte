@@ -88,7 +88,7 @@
 				name={component.id}
 				placeholder={component.placeholder ?? ''}
 				required={component.required ?? false}
-				value={$state[component.id]?.value ?? component.value ?? ''}
+				value={($state[component.id] ? $state[component.id].value : component.value) ?? ''}
 				on:blur={act}
 				on:focus={focus}
 			/>

@@ -1,16 +1,14 @@
 <script lang="ts">
 	import type { CookiePreferenceType } from '$lib/types/journey';
 	import { actionStore } from '$lib/stores/actionstore';
-	import { displayValueStore } from '$lib/stores/displayvaluestore';
-	import { replaceTokens } from '$lib/utils/replacetokens';
-	import { validationStore } from '$lib/stores/validationstore';
-	import { valueStore } from '$lib/stores/valuestore';
+	import { state } from '$lib/stores/statestore';
+	import { replace_tokens } from '$lib/utils/replacetokens';
 	import markdown from '$lib/utils/markdown';
 	import OptionButtons from '$lib/components/OptionButtons.svelte';
 
 	export let cookiepreferences: CookiePreferenceType;
 
-	let selected: string = $valueStore['cookiestatus'] ? 'selected' : '';
+	let selected: string = $state['cookiestatus'] ? 'selected' : '';
 	let active: string;
 	function enter() {
 		active = 'active';
@@ -18,14 +16,7 @@
 	function leave() {
 		active = '';
 	}
-	function componentUpdated(event) {
-		console.debug(
-			`{key: "${event.detail.key}", value: "${event.detail.value}", valid: "${event.detail.valid}}"`
-		);
-		// update input store with latest value, regardless of validity
-		valueStore.set(event.detail.key, event.detail.value);
-		// update validation store for use by validators
-		validationStore.set(event.detail.key, event.detail.valid);
+	function execute_actions(event) {
 		// execute action if applicable
 		let f = $actionStore[event.detail.key];
 		if (typeof f === 'function') f();
@@ -40,16 +31,16 @@
 				component={{
 					type: 'OptionButtons',
 					id: 'cookiestatus',
-					value: $valueStore['cookiestatus'] ?? '',
+					value: $state['cookiestatus']?.value ?? '',
 					values: cookiepreferences.values
 				}}
-				on:valueChange={componentUpdated}
+				on:valueChange={execute_actions}
 			>
 				<svelte:fragment slot="pre">
-					{@html markdown(replaceTokens(cookiepreferences.pre, $displayValueStore))}
+					{@html markdown(replace_tokens(cookiepreferences.pre, $state))}
 				</svelte:fragment>
 				<svelte:fragment slot="post">
-					{@html markdown(replaceTokens(cookiepreferences.post, $displayValueStore))}
+					{@html markdown(replace_tokens(cookiepreferences.post, $state))}
 				</svelte:fragment>
 			</OptionButtons>
 		{/if}
