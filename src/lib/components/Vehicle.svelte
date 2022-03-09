@@ -4,7 +4,6 @@
 	import type { VehicleType } from '$lib/types/vehicle';
 	import { state } from '$lib/stores/statestore';
 	import { replace_tokens } from '$lib/utils/replacetokens';
-	import { valueStore } from '$lib/stores/valuestore';
 	import markdown from '$lib/utils/markdown';
 	import InputTextbox from '$lib/components/InputTextbox.svelte';
 	import OptionDropdown from '$lib/components/OptionDropdown.svelte';
@@ -55,7 +54,7 @@
 
 	TODO: Year Of Manufacture - Drop down in Vehicle.svelte
 	<OptionDropdown
-		component={{ ...component, type: 'OptionDropdown', value: $valueStore[component.id] ?? '' }}
+		component={{ ...component, type: 'OptionDropdown', value: $state[component.id]?.value ?? '' }}
 	>
 		<svelte:fragment slot="pre">
 			{@html markdown(replace_tokens(component.pre, $state))}
@@ -92,7 +91,7 @@
 
 	TODO: Select Bike - Drop down component in Vehicle.svelte
 	<OptionDropdown
-		component={{ ...component, type: 'OptionDropdown', value: $valueStore[component.id] ?? '' }}
+		component={{ ...component, type: 'OptionDropdown', value: $state[component.id]?.value ?? '' }}
 	>
 		<svelte:fragment slot="pre">
 			{@html markdown(replace_tokens(component.pre, $state))}

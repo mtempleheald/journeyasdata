@@ -5,8 +5,6 @@
 	import { DISABLEVALIDATION } from '$lib/env';
 	import { actionStore } from '$lib/stores/actionstore';
 	import { state } from '$lib/stores/statestore';
-	import { validationStore } from '$lib/stores/validationstore';
-	import { valueStore } from '$lib/stores/valuestore';
 	import { nextPageUrl, prevPageUrl } from '$lib/utils/navigation';
 	import { get_first_invalid_component_in_page, page_valid } from '$lib/utils/validators';
 	import Cookiepreference from '$lib/components/Cookiepreference.svelte';

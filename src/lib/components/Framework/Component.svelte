@@ -2,11 +2,8 @@
 	import type { ComponentType, OptionComponent } from '$lib/types/journey';
 	import { actionStore } from '$lib/stores/actionstore';
 	import { browser } from '$app/env';
-	import { displayValueStore } from '$lib/stores/displayvaluestore';
 	import { replace_tokens } from '$lib/utils/replacetokens';
 	import { state } from '$lib/stores/statestore';
-	import { validationStore } from '$lib/stores/validationstore';
-	import { valueStore } from '$lib/stores/valuestore';
 	import Address from '$lib/components/Address.svelte';
 	import DisplayBlock from '$lib/components/DisplayBlock.svelte';
 	import DisplayModal from '$lib/components/DisplayModal.svelte';
@@ -26,11 +23,11 @@
 		console.debug(event.detail);
 		// update value store with latest value, regardless of validity
 		// ensure that the key is a string, even if the id entered as numeric, required for retrieval
-		valueStore.set(event.detail.key.toString(), event.detail.value);
+//		valueStore.set(event.detail.key.toString(), event.detail.value);
 		// update display value in line with value store
-		displayValueStore.set(event.detail.key, event.detail.display ?? event.detail.value);
+//		displayValueStore.set(event.detail.key, event.detail.display ?? event.detail.value);
 		// update validation store for use by validators
-		validationStore.set(event.detail.key, event.detail.valid);
+//		validationStore.set(event.detail.key, event.detail.valid);
 		// execute action if applicable
 		let f = $actionStore[event.detail.key];
 		if (typeof f === 'function') f();
@@ -39,7 +36,7 @@
 			console.debug('Question changed, triggering validation and navigation...');
 			let comp_change_trigger_nav = $actionStore['comp_change_trigger_nav'];
 			// TODO: consider making this a direct function call rather than using actionStore (I had a reason for this but can't remember it)
-			comp_change_trigger_nav($journey, event.detail.key.toString(), $valueStore, $validationStore);
+			comp_change_trigger_nav($journey, event.detail.key.toString(), $state);
 		}
 	}
 
@@ -47,7 +44,7 @@
 		if (component.type == 'YesNo') {
 			return {
 				...component,
-				value: $valueStore[component.id] ?? '',
+				value: $state[component.id]?.value ?? '',
 				values: [
 					{ value: 'Y', display: 'Yes' },
 					{ value: 'N', display: 'No' }
@@ -64,19 +61,19 @@
 			}
 			return {
 				...listComponent,
-				value: $valueStore[listComponent.id] ?? '', // TODO: Verify that this is a valid value in the list of values
+				value: $state[listComponent.id]?.value ?? '', // TODO: Verify that this is a valid value in the list of values
 				values: effectiveValues,
-				refdataparent: $valueStore[listComponent.refdataparent] ?? ''
+				refdataparent: $state[listComponent.refdataparent]?.value ?? ''
 			};
 		}
 	}
 </script>
 
-{#if !component.dependsupon || $valueStore[component.dependsupon.id] == component.dependsupon.value}
+{#if !component.dependsupon || $state[component.dependsupon.id]?.value == component.dependsupon.value}
 	{#if ['Colour', 'Date', 'Datetime', 'Email', 'Month', 'Number', 'Range', 'Search', 'Telephone', 'Text', 'Time', 'Upper', 'Url', 'Week', 'Year'].includes(component.type)}
 		<svelte:component
 			this={InputTextbox}
-			component={{ ...component, value: $valueStore[component.id] ?? '' }}
+			component={{ ...component, value: $state[component.id]?.value ?? '' }}
 			on:valueChange={componentUpdated}
 		>
 			<svelte:fragment slot="pre">
@@ -146,7 +143,7 @@
 		<Address {component} on:addressChange={componentUpdated} />
 	{:else if component.type == 'TriBoxDate'}
 		<InputTriboxdate
-			component={{ ...component, value: $valueStore[component.id] ?? '' }}
+			component={{ ...component, value: $state[component.id]?.value ?? '' }}
 			on:dateChange={componentUpdated}
 		/>
 	{:else if component.type == 'Vehicle'}
