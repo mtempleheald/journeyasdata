@@ -123,11 +123,12 @@ Svelte components
 - should not be tested for presentation (yet)
   - consider a snapshot library for this later on
 
-# Test setup
+# Dependencies and Test setup
 
 I like to keep dependencies to an absolute minimum and all of them as devDependencies:
 
-- svelte2tsx - used for [packaging](https://kit.svelte.dev/docs#packaging) components for use elsewhere (back-office tool?)
+- svelte2tsx - required by [svelte-kit package](https://kit.svelte.dev/docs#packaging) if including types.  
+- @playwright/test - provides headless browser simulation for e2e tests
 - jest - test framework
 - ts-jest - allows jest to test TypeScript components
 - @types/jest - provides access to useful Jest types
@@ -135,9 +136,18 @@ I like to keep dependencies to an absolute minimum and all of them as devDepende
 - svelte-testing-library - svelte-specific testing library
 - @testing-library/jest-dom - provides DOM element matchers, convenience methods
 
+## Playwright
+
+[Playwright](https://playwright.dev) now comes as an option in [create-svelte](https://github.com/sveltejs/kit/pull/4056).  
+It does need installing first `npx playwright install --with-deps`  
+Execute using `npm run test`
+
+## Svelte Testing Library & Jest
+
 [Official Svelte Testing Library documentation](https://testing-library.com/docs/svelte-testing-library/setup)  
 [Introductory blog to configuring SvelteKit with Jest](https://koenvg.medium.com/setting-up-jest-with-sveltekit-4f0a0e379668)  
 [Svelte-jester documentation](https://github.com/mihar-22/svelte-jester#typescript)
+
 
 ## Upgrade process
 
@@ -161,7 +171,7 @@ Compare current version against latest `npm outdated`
 Upgrade a single package at a time and guarantee that nothing has broken by following the steps:
 
 1. `npm update <package> --save` - update package version, saving latest in package.json to improve developer consistency.
-1. `npm run test` to run all automated tests - if anything breaks then this must be fixed or rolled back.
+1. `npm run test` | `npm run jest` to run automated tests - if anything breaks then this must be fixed or rolled back.
 1. `npm run lint` does two things
    - verify file formatting (consistency) - if upgrading linters the standard may evolve, we need to make a conscious decision to roll back or run `npm run format` and then commit.
    - check type usage - we are aiming for 0 errors and 0 warnings but as long as we're not adding new issues we can continue with the upgrade.
