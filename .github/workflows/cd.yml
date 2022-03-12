@@ -73,6 +73,7 @@ jobs:
       #       name: node-app
 
       - name: Deploy application
+        if: github.ref == 'refs/heads/main'
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
