@@ -6,7 +6,13 @@ const config = {
 	// https://github.com/sveltejs/svelte-preprocess
 	preprocess: preprocess(),
 	kit: {
-		adapter: node()
+		adapter: node(),
+		vite: {
+			test: {
+				environment: 'jsdom',
+				globals: true
+			}
+		}
 	}
 };
 
