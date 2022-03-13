@@ -1,4 +1,5 @@
-import type { JourneyType, ValidationStoreType, StateStoreType } from '$lib/types/journey';
+import type { JourneyType } from '$lib/types/journey';
+import type { StateStoreType } from '$lib/types/stores';
 import { browser } from '$app/env';
 import { goto } from '$app/navigation';
 import { get_page_url, nextPageUrl } from '$lib/utils/navigation';

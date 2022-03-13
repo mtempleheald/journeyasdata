@@ -19,5 +19,5 @@ module.exports = {
 		]
 	},
 	setupFilesAfterEnv: ['<rootDir>/jest-setup.ts'],
-	collectCoverageFrom: ['src/**/*.{ts,tsx,svelte,js,jsx}']
+	collectCoverageFrom: ['src/lib/**/*.{ts,tsx,svelte,js,jsx}']
 };
