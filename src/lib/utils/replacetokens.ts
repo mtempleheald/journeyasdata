@@ -1,5 +1,5 @@
 /**
- * Replace dynamic content tokens with display values from the state store 
+ * Replace dynamic content tokens with display values from the state store
  */
 export const replace_tokens = function (input: string, state: StateStoreType) {
 	if (!input) return '';
@@ -15,8 +15,11 @@ export const replace_tokens = function (input: string, state: StateStoreType) {
 			// extract token id minus the brackets and any whitespace
 			const id = t.substring(2, t.length - 2).trim();
 			// Replace tokens with their values from the store, empty string if not found
-			output = output.replace(t, `<output for="${id}">${state[id.toString()]?.display ?? ''}</output>`);
+			output = output.replace(
+				t,
+				`<output for="${id}">${state[id.toString()]?.display ?? ''}</output>`
+			);
 		});
 
 	return output;
-}
+};

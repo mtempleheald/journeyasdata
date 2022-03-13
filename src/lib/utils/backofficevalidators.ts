@@ -121,7 +121,7 @@ export function component_ids_do_not_contain_full_stop(journey: JourneyType): bo
  * Component ids must not contain tildes
  * This would clash with input identifiers
  */
- export function component_ids_do_not_contain_tilde(journey: JourneyType): boolean {
+export function component_ids_do_not_contain_tilde(journey: JourneyType): boolean {
 	// TODO: implement this
 	return true;
 }

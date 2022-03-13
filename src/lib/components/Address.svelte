@@ -39,11 +39,11 @@
 	async function postcodeTouched(event) {
 		// postcode state was set by base component
 		// update dependent fields here
-		state.set('property', {value: undefined, display: undefined, valid: undefined});
-		state.set('addressline1', {value: undefined, display: undefined, valid: undefined});
-		state.set('addressline2', {value: undefined, display: undefined, valid: undefined});
-		state.set('addressline3', {value: undefined, display: undefined, valid: undefined});
-		state.set('addressline4', {value: undefined, display: undefined, valid: undefined});
+		state.set('property', { value: undefined, display: undefined, valid: undefined });
+		state.set('addressline1', { value: undefined, display: undefined, valid: undefined });
+		state.set('addressline2', { value: undefined, display: undefined, valid: undefined });
+		state.set('addressline3', { value: undefined, display: undefined, valid: undefined });
+		state.set('addressline4', { value: undefined, display: undefined, valid: undefined });
 		addresses = [];
 		propertyLov = [];
 		address = null;
@@ -51,9 +51,8 @@
 		if (event.detail.valid) {
 			// if the postcode is valid, proceed to call the API
 			await lookupAddresses($state['postcode']?.value);
-		}
-		else {
-			state.set('address', {value: undefined, display: undefined, valid: false});
+		} else {
+			state.set('address', { value: undefined, display: undefined, valid: false });
 			dispatch('addressChange', { key: 'address', value: '', valid: false });
 		}
 	}
@@ -63,15 +62,31 @@
 		);
 		if (event.detail.value) {
 			address = addresses.filter((a) => a.property == event.detail.value.toString())[0];
-			state.set('addressline1', {value: address.addressline1, display: address.addressline1, valid: undefined});
-			state.set('addressline2', {value: address.addressline2, display: address.addressline2, valid: undefined});
-			state.set('addressline3', {value: address.addressline3, display: address.addressline3, valid: undefined});
-			state.set('addressline4', {value: address.addressline4, display: address.addressline4, valid: undefined});
+			state.set('addressline1', {
+				value: address.addressline1,
+				display: address.addressline1,
+				valid: undefined
+			});
+			state.set('addressline2', {
+				value: address.addressline2,
+				display: address.addressline2,
+				valid: undefined
+			});
+			state.set('addressline3', {
+				value: address.addressline3,
+				display: address.addressline3,
+				valid: undefined
+			});
+			state.set('addressline4', {
+				value: address.addressline4,
+				display: address.addressline4,
+				valid: undefined
+			});
 
-			state.set('address', {value: undefined, display: undefined, valid: true});
+			state.set('address', { value: undefined, display: undefined, valid: true });
 			dispatch('addressChange', { key: 'address', value: '', valid: true });
 		} else {
-			state.set('address', {value: undefined, display: undefined, valid: false});
+			state.set('address', { value: undefined, display: undefined, valid: false });
 			dispatch('addressChange', { key: 'address', value: '', valid: false });
 		}
 	}
@@ -128,7 +143,11 @@
 				label: 'Address Line 1'
 			}}
 			on:valueChange={(e) => {
-				state.set('addressline1', {value: e.detail.value, display: e.detail.value, valid: undefined});
+				state.set('addressline1', {
+					value: e.detail.value,
+					display: e.detail.value,
+					valid: undefined
+				});
 			}}
 		/>
 		<InputTextbox
@@ -139,7 +158,11 @@
 				label: 'Address Line 2'
 			}}
 			on:valueChange={(e) => {
-				state.set('addressline2', {value: e.detail.value, display: e.detail.value, valid: undefined});
+				state.set('addressline2', {
+					value: e.detail.value,
+					display: e.detail.value,
+					valid: undefined
+				});
 			}}
 		/>
 		<InputTextbox
@@ -150,7 +173,11 @@
 				label: 'Address Line 3'
 			}}
 			on:valueChange={(e) => {
-				state.set('addressline3', {value: e.detail.value, display: e.detail.value, valid: undefined});
+				state.set('addressline3', {
+					value: e.detail.value,
+					display: e.detail.value,
+					valid: undefined
+				});
 			}}
 		/>
 		<InputTextbox
@@ -161,7 +188,11 @@
 				label: 'Address Line 4'
 			}}
 			on:valueChange={(e) => {
-				state.set('addressline4', {value: e.detail.value, display: e.detail.value, valid: undefined});
+				state.set('addressline4', {
+					value: e.detail.value,
+					display: e.detail.value,
+					valid: undefined
+				});
 			}}
 		/>
 	{/if}

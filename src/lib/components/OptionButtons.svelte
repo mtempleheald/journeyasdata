@@ -25,8 +25,7 @@
 				display: undefined,
 				valid: !component.required
 			});
-		}
-		else {
+		} else {
 			state.set(component.id, {
 				value: newValue,
 				display: newDisplay,

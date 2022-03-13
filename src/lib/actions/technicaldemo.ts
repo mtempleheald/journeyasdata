@@ -32,22 +32,46 @@ async function lookupVehicle() {
 	}
 	if (vehicle?.abicode) {
 		console.debug('vehicle found');
-		state.set('vehiclemake', {value: vehicle.make ?? '', display: vehicle.make, valid: true}); // TODO: work out how to standardise case to work with backend provider mapping (suggest UI only ever sees lowercase codes/keys)
-		state.set('vehiclemanufactureyear', {value: vehicle.year?.toString() ?? '', display: vehicle.year?.toString(), valid: true});
-		state.set('vehicleenginesize', {value: vehicle.enginecc ?? '', display: vehicle.enginecc ?? '', valid: true});
-		state.set('vehiclefuel', {value: mapFuel[vehicle.fueltype] ?? '', display: mapFuel[vehicle.fueltype] ?? '', valid: true});
-		state.set('vehicletransmission', {value: mapTransmission[vehicle.transmission] ?? '', display: mapTransmission[vehicle.transmission] ?? '', valid: true});
-		state.set('vehicledoorcount', {value: vehicle.doors?.toString() ?? '', display: vehicle.doors?.toString() ?? '', valid: true});
-		state.set('vehicleseatbeltcount', {value: vehicle.seatbelts?.toString() ?? '', display: vehicle.seatbelts?.toString() ?? '', valid: true});
+		state.set('vehiclemake', { value: vehicle.make ?? '', display: vehicle.make, valid: true }); // TODO: work out how to standardise case to work with backend provider mapping (suggest UI only ever sees lowercase codes/keys)
+		state.set('vehiclemanufactureyear', {
+			value: vehicle.year?.toString() ?? '',
+			display: vehicle.year?.toString(),
+			valid: true
+		});
+		state.set('vehicleenginesize', {
+			value: vehicle.enginecc ?? '',
+			display: vehicle.enginecc ?? '',
+			valid: true
+		});
+		state.set('vehiclefuel', {
+			value: mapFuel[vehicle.fueltype] ?? '',
+			display: mapFuel[vehicle.fueltype] ?? '',
+			valid: true
+		});
+		state.set('vehicletransmission', {
+			value: mapTransmission[vehicle.transmission] ?? '',
+			display: mapTransmission[vehicle.transmission] ?? '',
+			valid: true
+		});
+		state.set('vehicledoorcount', {
+			value: vehicle.doors?.toString() ?? '',
+			display: vehicle.doors?.toString() ?? '',
+			valid: true
+		});
+		state.set('vehicleseatbeltcount', {
+			value: vehicle.seatbelts?.toString() ?? '',
+			display: vehicle.seatbelts?.toString() ?? '',
+			valid: true
+		});
 	} else {
 		console.debug('reset vehicle fields');
-		state.set('vehiclemake', {value: undefined, display: undefined, valid: undefined});
-		state.set('vehiclemanufactureyear', {value: undefined, display: undefined, valid: undefined});
-		state.set('vehicleenginesize', {value: undefined, display: undefined, valid: undefined});
-		state.set('vehiclefuel', {value: undefined, display: undefined, valid: undefined});
-		state.set('vehicletransmission', {value: undefined, display: undefined, valid: undefined});
-		state.set('vehicledoorcount', {value: undefined, display: undefined, valid: undefined});
-		state.set('vehicleseatbeltcount', {value: undefined, display: undefined, valid: undefined});
+		state.set('vehiclemake', { value: undefined, display: undefined, valid: undefined });
+		state.set('vehiclemanufactureyear', { value: undefined, display: undefined, valid: undefined });
+		state.set('vehicleenginesize', { value: undefined, display: undefined, valid: undefined });
+		state.set('vehiclefuel', { value: undefined, display: undefined, valid: undefined });
+		state.set('vehicletransmission', { value: undefined, display: undefined, valid: undefined });
+		state.set('vehicledoorcount', { value: undefined, display: undefined, valid: undefined });
+		state.set('vehicleseatbeltcount', { value: undefined, display: undefined, valid: undefined });
 	}
 	// avoid memory leaks
 	unsubscriber();

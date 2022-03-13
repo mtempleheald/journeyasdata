@@ -42,9 +42,7 @@
 		dispatch('valueChange', {
 			key: component.id,
 			value: elem.value,
-			display: elem.value
-				? component.values.find((v) => v.value === elem.value).display
-				: '',
+			display: elem.value ? component.values.find((v) => v.value === elem.value).display : '',
 			valid: !component.required || !!elem.value
 		});
 	}

@@ -23,11 +23,11 @@
 		console.debug(event.detail);
 		// update value store with latest value, regardless of validity
 		// ensure that the key is a string, even if the id entered as numeric, required for retrieval
-//		valueStore.set(event.detail.key.toString(), event.detail.value);
+		//		valueStore.set(event.detail.key.toString(), event.detail.value);
 		// update display value in line with value store
-//		displayValueStore.set(event.detail.key, event.detail.display ?? event.detail.value);
+		//		displayValueStore.set(event.detail.key, event.detail.display ?? event.detail.value);
 		// update validation store for use by validators
-//		validationStore.set(event.detail.key, event.detail.valid);
+		//		validationStore.set(event.detail.key, event.detail.valid);
 		// execute action if applicable
 		let f = $actionStore[event.detail.key];
 		if (typeof f === 'function') f();
