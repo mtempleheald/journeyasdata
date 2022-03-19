@@ -35,7 +35,7 @@ The basic data structure which drives the entire solution:
 - Configurable journey - content editors manage content (labels, helptext...), developers manage code.
 - Configurable themes - components functional layout, responsible for responsive design, exposing key CSS variables for theming. Themes managed separately, decoupling services from brand elements such as colour palettes.
 - Session data management
-  - `state` is a key-value store which holds state for all components in the journey, see `/lib/stores/statestore.ts` and `/lib/types/stores.d.ts`.  
+  - `state` is a key-value store which holds state for all components in the journey, see `/lib/stores/statestore.ts` and `/lib/types/stores.d.ts`.
   - Each components is responsible for updating its own state upon user action.
   - The state store may also be updated from a bespoke action, maybe after calling a backend API.
   - The state store relies on ids being unique across the journey but does not enforce that itself.
@@ -125,16 +125,46 @@ Svelte components
 
 # Dependencies and Test setup
 
-I like to keep dependencies to an absolute minimum and all of them as devDependencies:
+I like to keep dependencies to an absolute minimum, justfied, and if possible as devDependencies.
 
-- svelte2tsx - required by [svelte-kit package](https://kit.svelte.dev/docs#packaging) if including types.  
-- @playwright/test - provides headless browser simulation for e2e tests
-- jest - test framework
-- ts-jest - allows jest to test TypeScript components
-- @types/jest - provides access to useful Jest types
-- svelte-jester - handles precompilation, required for testing svelte components
-- svelte-testing-library - svelte-specific testing library
-- @testing-library/jest-dom - provides DOM element matchers, convenience methods
+- core dependencies (sveltekit)
+  - sveltejs/kit - core dependency, without this we have nothing
+  - @sveltejs/adapter-node - current choice of hosting
+  - svelte - core dependency, without this we have nothing
+  - svelte-check - check code quality of .svelte files
+  - svelte-preprocess - extend svelte parser to handle typescript, scss etc
+  - svelte2tsx - required by [svelte-kit package](https://kit.svelte.dev/docs#packaging) if including types.
+- extras
+  - cookie - for secure cookie management
+  - @types/cookie - for cookie types
+  - snarkdown - for markdown processing, a key feature of the project
+- type safety
+  - typescript - building a new web app in JS post 2020 would be crazy
+  - tslib - typescript runtime library containing helper functions
+- code quality
+  - eslint - identify/report patterns in ECMAScript code
+  - eslint-config-prettier - turn off eslint rules that conflict with prettier
+  - eslint-plugin-svelte3 - eslint idea ported to Svelte v3 components
+  - @typescript-eslint/eslint-plugin - typescript plugin for eslint
+  - @typescript-eslint/parser - An ESLint custom parser which leverages TypeScript ESTree
+  - prettier - opinionated code formatter, helps to guarantee all contributors writing code in the same style.
+  - prettier-plugin-svelte - prettier logic applied to svelte components
+- playwright
+  - @playwright/test - provides headless browser simulation for e2e tests
+- vitest
+  - vitest - use the vitest library to eventually remove jest dependencies, with the benefits of HMR etc.
+  - vitest-svelte-kit - helps to configure vitest using existing svelte config
+  - jsdom - required by vitest
+  - @testing-library/svelte - svelte-specific testing library
+- jest
+  - jest - test framework
+  - ts-jest - allows jest to test TypeScript components
+  - @types/jest - provides access to useful Jest types
+  - svelte-jester - handles precompilation, required for testing svelte components
+  - @testing-library/svelte - svelte-specific testing library
+  - @testing-library/jest-dom - provides DOM element matchers, convenience methods. Depends on jest itself, this is the blocker on using vitest instead of jest.
+
+# Testing
 
 ## Playwright
 
@@ -142,12 +172,25 @@ I like to keep dependencies to an absolute minimum and all of them as devDepende
 It does need installing first `npx playwright install --with-deps`  
 Execute using `npm run test`
 
-## Svelte Testing Library & Jest
+## Vitest & Svelte Testing Library
+
+[Vitest](vitest.dev/) is in beta. Sveltekit is in beta. This is not stable yet, but work is progressing. [Watch this issue](https://github.com/sveltejs/kit/issues/4143).
+
+[Svelte example in vitest repo](https://github.com/vitest-dev/vitest/tree/main/examples/svelte)  
+[Simple explanation of sharing config with main app](https://github.com/vitest-dev/vitest/discussions/331)  
+When I try to use this approach I get error: `Error: Vitest was initialized with native Node instead of Vite Node`. [vite-node](https://www.npmjs.com/package/vite-node).
+
+[vitest-svelte-kit](https://github.com/nickbreaton/vitest-svelte-kit/blob/master/examples/svelte-kit-demo-app/src/routes/about.test.ts) seems to work better. This package finds svelte.config.js and imports config. Requires `vite.test.environment` to be set to `jsdom` in svelte.config.js.  
+There's also a new dev dependency on [jsdom](https://www.npmjs.com/package/jsdom).  
+`Error: Invalid Chai property: toBeInTheDocument` now appears though, this was provided by [testing-library/jest-dom](https://github.com/testing-library/jest-dom#tobeinthedocument).  
+Someone has forked jest-dom to make [vitest-dom](https://github.com/AndrewLeedham/vitest-dom) but this is definitely not ready to use.  
+Parking this for now.
+
+## Jest & Svelte Testing Library
 
 [Official Svelte Testing Library documentation](https://testing-library.com/docs/svelte-testing-library/setup)  
 [Introductory blog to configuring SvelteKit with Jest](https://koenvg.medium.com/setting-up-jest-with-sveltekit-4f0a0e379668)  
 [Svelte-jester documentation](https://github.com/mihar-22/svelte-jester#typescript)
-
 
 ## Upgrade process
 
