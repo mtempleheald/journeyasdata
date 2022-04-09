@@ -209,14 +209,14 @@
 		<!-- Use date field (hidden) to take advantage of browser validator api -->
 		<input
 			type="date"
-			id="{component.id}~"
+			id="_{component.id}"
 			bind:value={component.value}
 			bind:this={dateElem}
 			required={component.required}
 			class="hidden"
 		/>
 		{#if component.label}
-			<label for="{component.id}~">
+			<label for="_{component.id}">
 				{component.label}
 				{#if component.required}
 					<span class="required">*</span>

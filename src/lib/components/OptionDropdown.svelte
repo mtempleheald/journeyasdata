@@ -58,7 +58,7 @@
 
 	<div class="container">
 		{#if component.label}
-			<label for="{component.id}~">
+			<label for="_{component.id}">
 				{component.label}
 				{#if component.required}
 					<span class="required">*</span>
@@ -67,7 +67,7 @@
 		{/if}
 		{#if component.id}
 			<select
-				id="{component.id}~"
+				id="_{component.id}"
 				name={component.id}
 				value={component.value}
 				data-reference={component.refdata}

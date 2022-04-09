@@ -72,7 +72,7 @@
 
 	<div class="container">
 		{#if component.label}
-			<label for="{component.id}~">
+			<label for="_{component.id}">
 				{component.label}
 				{#if component.required}
 					<span class="required">*</span>
@@ -84,7 +84,7 @@
 			<input
 				type={html5type}
 				class={component.type?.toLowerCase()}
-				id="{component.id}~"
+				id="_{component.id}"
 				name={component.id}
 				placeholder={component.placeholder ?? ''}
 				required={component.required ?? false}

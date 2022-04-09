@@ -15,7 +15,8 @@ describe('Textbox component', () => {
 			id: 'uniqueidentifier'
 		};
 		const { container } = render(InputTextbox, { component: component });
-		expect(container.querySelector('#uniqueidentifier')).toBeDefined(); // TODO: replace ~ with something that is valid in css too - oops :(
+		expect(container.querySelector('#_uniqueidentifier'))
+			.toBeInstanceOf(HTMLInputElement);
 	});
 });
 // TODO: port over the remaining Jest tests (without depending on Jest), resolving issues such as:

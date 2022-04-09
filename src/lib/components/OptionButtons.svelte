@@ -58,13 +58,13 @@
 
 	<input
 		type="hidden"
-		id="{component.id}~"
+		id="_{component.id}"
 		bind:value={component.value}
 		required={component.required}
 	/>
 	<div class="container">
 		{#if component.label}
-			<label for="{component.id}~">
+			<label for="_{component.id}">
 				{component.label}
 				{#if component.required}
 					<span class="required">*</span>
