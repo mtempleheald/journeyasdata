@@ -12,7 +12,7 @@ test('Textbox renders with only required properties', () => {
 		id: 'uniqueidentifier'
 	};
 	const { container } = render(InputTextbox, { component: component });
-	expect(container).toContainHTML('id="uniqueidentifier~"');
+	expect(container).toContainHTML('id="_uniqueidentifier"');
 });
 
 test('Textbox renders label correctly', () => {
