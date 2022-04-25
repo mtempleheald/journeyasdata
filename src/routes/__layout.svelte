@@ -10,9 +10,9 @@
 			props: {
 				// TODO: resolve root path load error/ pick best approach for loading journey.json
 				// dynamically load content, making use of HMR for quick feedback
-				journey: await import(`./../../static/${BRAND}/journey.json`).then(
-					(module) => module.default
-				),
+				journey: await import(`./../../static/${BRAND}/journey.json`)
+					.then((module) => module.default)
+					.catch((err) => console.error(err)),
 				actions: await getActions(BRAND.toString()),
 				// or use the fetch API to import the journey
 				//journey: await fetch(`/api/journey/${BRAND}`).then(j => j.json()),
@@ -42,7 +42,7 @@
 </script>
 
 <svelte:head>
-	<title>{journey.title}</title>
+	<title>{journey?.title}</title>
 	<link rel="stylesheet" href="/{brand}/theme.css" />
 </svelte:head>
 

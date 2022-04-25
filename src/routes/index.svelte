@@ -6,4 +6,4 @@
 	const journey: JourneyType = getContext('journey');
 </script>
 
-<Page page={journey.pages[0]} />
+<Page page={journey?.pages[0]} />

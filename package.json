@@ -22,7 +22,7 @@
 		"vitest:coverage": "vitest src/vitest --coverage"
 	},
 	"devDependencies": {
-		"@playwright/test": "^1.20.2",
+		"@playwright/test": "^1.21.1",
 		"@sveltejs/adapter-node": "1.0.0-next.73",
 		"@sveltejs/kit": "1.0.0-next.304",
 		"@testing-library/jest-dom": "^5.16.3",
