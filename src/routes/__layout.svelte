@@ -1,5 +1,6 @@
 <script context="module">
 	import { BRAND } from '$lib/env';
+	import { getActions } from '$lib/actions/actionprovider';
 	/** @type {import('@sveltejs/kit').Load} */
 	export async function load() {
 		// or use the fetch API to import the journey
@@ -12,6 +13,7 @@
 				journey: await import(`./../../static/${BRAND}/journey.json`).then(
 					(module) => module.default
 				),
+				actions: await getActions(BRAND.toString()),
 				// or use the fetch API to import the journey
 				//journey: await fetch(`/api/journey/${BRAND}`).then(j => j.json()),
 				brand: BRAND.toString()
@@ -24,17 +26,17 @@
 	import type { JourneyType } from '$lib/types/journey';
 	import { actionStore } from '$lib/stores/actionstore';
 	import { browser } from '$app/env';
-	import { getActions } from '$lib/actions/actionprovider';
 	import { setContext } from 'svelte';
 
 	export let brand: string;
 	export let journey: JourneyType;
+	export let actions: never;
 
 	// load journey once, reference throughout user journey
 	setContext('journey', journey);
 	// load bespoke actions once, call throughout user journey
 	if (browser) {
-		actionStore.load(getActions(brand));
+		actionStore.load(actions);
 		console.debug(`${Object.keys($actionStore).length} actions loaded for ${brand}`);
 	}
 </script>
