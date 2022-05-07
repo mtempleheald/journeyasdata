@@ -1,5 +1,5 @@
 export {};
-import journey from './../../../static/technicaldemo/journey.json';
+import * as journey from '../../../static/technicaldemo/journey.json';
 import { component_ids_are_unique } from '$lib/utils/backofficevalidators';
 import type { JourneyType } from '$lib/types/journey';
 
