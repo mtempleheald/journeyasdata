@@ -55,7 +55,7 @@
 			let effectiveValues = listComponent.values;
 			if (listComponent.refdata && browser) {
 				const res = await fetch(
-					`/api/refdata/${listComponent.refdata}?parent=${listComponent.refdataparent}`
+					`/api/refdata/${listComponent.refdata}.json?parent=${listComponent.refdataparent}`
 				);
 				effectiveValues = (await res.json()) ?? [];
 			}

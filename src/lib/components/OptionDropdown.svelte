@@ -4,16 +4,6 @@
 	import { state } from '$lib/stores/statestore';
 	import Helptext from '$lib/components/Helptext.svelte';
 
-	// load refdata on component creation
-	onMount(async () => {
-		effectiveValues = component.values;
-		if (component.refdata) {
-			await fetch('/api/refdata/' + component.refdata)
-				.then((resp) => resp.json())
-				.then((data) => (effectiveValues = data));
-		}
-	});
-
 	// expose component properties
 	export let component: OptionComponent;
 
@@ -22,7 +12,6 @@
 	let fallbackError = 'Please select an option';
 	$: invalid = !($state[component.id]?.valid ?? true);
 	let active = '';
-	let effectiveValues: ValueType[]; // overwriting component.values directly triggers an onMount loop
 
 	// component actions
 	function enter() {
@@ -76,8 +65,8 @@
 			>
 				<option value="">{!component.placeholder ? '-- select --' : component.placeholder}</option>
 
-				{#if effectiveValues}
-					{#each effectiveValues as val}
+				{#if component.values}
+					{#each component.values as val}
 						<option value={val.value} selected={component.value == val.value}>{val.display}</option>
 					{/each}
 				{/if}
