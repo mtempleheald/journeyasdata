@@ -1,6 +1,6 @@
 <script context="module">
 	import { BRAND } from '$lib/env';
-	import { getActions } from '$lib/actions/actionprovider';
+	import { load_actions } from '$lib/actions/actionprovider';
 	/** @type {import('@sveltejs/kit').Load} */
 	export async function load() {
 		// or use the fetch API to import the journey
@@ -8,15 +8,15 @@
 		console.debug('Loading journey (should appear in browser dev tools only once)');
 		return {
 			props: {
+				brand: BRAND.toString(),
+				actions: await load_actions(BRAND.toString()),
 				// TODO: resolve root path load error/ pick best approach for loading journey.json
 				// dynamically load content, making use of HMR for quick feedback
 				journey: await import(`./../../static/${BRAND}/journey.json`)
 					.then((module) => module.default)
 					.catch((err) => console.error(err)),
-				actions: await getActions(BRAND.toString()),
 				// or use the fetch API to import the journey
 				//journey: await fetch(`/api/journey/${BRAND}`).then(j => j.json()),
-				brand: BRAND.toString()
 			}
 		};
 	}
