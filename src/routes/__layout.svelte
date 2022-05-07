@@ -1,22 +1,17 @@
 <script context="module">
 	import { BRAND } from '$lib/env';
 	import { load_actions } from '$lib/actions/actionprovider';
+
 	/** @type {import('@sveltejs/kit').Load} */
-	export async function load() {
-		// or use the fetch API to import the journey
-		//export async function load({ fetch }) {
+	export async function load({ fetch }) {
 		console.debug('Loading journey (should appear in browser dev tools only once)');
 		return {
 			props: {
 				brand: BRAND.toString(),
 				actions: await load_actions(BRAND.toString()),
-				// TODO: resolve root path load error/ pick best approach for loading journey.json
-				// dynamically load content, making use of HMR for quick feedback
-				journey: await import(`./../../static/${BRAND}/journey.json`)
-					.then((module) => module.default)
-					.catch((err) => console.error(err)),
-				// or use the fetch API to import the journey
-				//journey: await fetch(`/api/journey/${BRAND}`).then(j => j.json()),
+				journey: await fetch(`/api/journey/${BRAND}.json`)
+					.then((res) => res.json())
+					.catch((err) => console.error(err))
 			}
 		};
 	}
@@ -25,15 +20,15 @@
 <script lang="ts">
 	import type { JourneyType } from '$lib/types/journey';
 	import { actionStore } from '$lib/stores/actionstore';
+	import { journey as journeyStore } from '$lib/stores/journeystore';
 	import { browser } from '$app/env';
-	import { setContext } from 'svelte';
 
 	export let brand: string;
-	export let journey: JourneyType;
 	export let actions: never;
+	export let journey: JourneyType;
 
-	// load journey once, reference throughout user journey
-	setContext('journey', journey);
+	journeyStore.set(journey);
+
 	// load bespoke actions once, call throughout user journey
 	if (browser) {
 		actionStore.load(actions);

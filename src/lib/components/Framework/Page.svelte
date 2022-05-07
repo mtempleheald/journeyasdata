@@ -1,6 +1,5 @@
 <script lang="ts">
-	import type { PageType, JourneyType } from '$lib/types/journey';
-	import { getContext } from 'svelte';
+	import type { PageType } from '$lib/types/journey';
 	import { goto } from '$app/navigation';
 	import { DISABLEVALIDATION } from '$lib/env';
 	import { actionStore } from '$lib/stores/actionstore';
@@ -13,10 +12,9 @@
 	import Progressbar from '$lib/components/Progressbar.svelte';
 	import Repeatinggroup from '$lib/components/Framework/Repeatinggroup.svelte';
 	import Section from '$lib/components/Framework/Section.svelte';
+	import { journey } from '$lib/stores/journeystore';
 
 	export let page: PageType;
-
-	const journey: JourneyType = getContext('journey');
 
 	$: {
 		// run bespoke action tied to page load
@@ -31,7 +29,7 @@
 
 		// Run the default action
 		console.debug('Navigating to previous page');
-		goto(prevPageUrl(journey, page.url));
+		goto(prevPageUrl($journey, page.url));
 	}
 	function nextPage() {
 		if (DISABLEVALIDATION != 'Y' && !page_valid(page, $state)) {
@@ -54,28 +52,28 @@
 
 		// Run the default action
 		console.debug('Navigating to next page');
-		goto(nextPageUrl(journey, page.url));
+		goto(nextPageUrl($journey, page.url));
 	}
 </script>
 
-<Cookiepreference cookiepreferences={journey.cookiepreferences} />
+<Cookiepreference cookiepreferences={$journey.cookiepreferences} />
 <header>
-	{#if journey.logo}
+	{#if $journey.logo}
 		<img
 			class="logo"
-			src={journey.logo.url}
-			alt={journey.logo.alt}
-			width={journey.logo.width}
-			height={journey.logo.height}
+			src={$journey.logo.url}
+			alt={$journey.logo.alt}
+			width={$journey.logo.width}
+			height={$journey.logo.height}
 		/>
 	{/if}
-	{#if journey.title}
-		<h1>{journey.title}</h1>
+	{#if $journey.title}
+		<h1>{$journey.title}</h1>
 	{/if}
 </header>
 
 {#if page.displayprogress ?? true}
-	<Progressbar {journey} pageurl={page.url} />
+	<Progressbar journey={$journey} pageurl={page.url} />
 {/if}
 
 <main>
@@ -119,7 +117,7 @@
 	<DisplayBlock
 		component={{
 			type: 'Displayblock',
-			content: journey.footercontent
+			content: $journey.footercontent
 		}}
 	/>
 </footer>
