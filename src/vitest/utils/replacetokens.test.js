@@ -1,3 +1,5 @@
+import { test, expect } from 'vitest';
+
 import { replace_tokens } from '$lib/utils/replacetokens';
 
 test('String identifier without whitespace, expect replacement', () => {

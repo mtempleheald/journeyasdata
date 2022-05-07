@@ -1,3 +1,5 @@
+import { test, expect } from 'vitest';
+
 import { flatten, unflatten } from '$lib/utils/flattenunflatten';
 
 test('unflatten value store', () => {

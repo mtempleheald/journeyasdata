@@ -1,3 +1,5 @@
+import { test, expect } from 'vitest';
+
 import type { JourneyType } from '$lib/types/journey';
 import { get_page_url, nextPageUrl } from '$lib/utils/navigation';
 

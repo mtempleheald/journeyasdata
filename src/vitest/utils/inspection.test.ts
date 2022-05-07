@@ -1,3 +1,5 @@
+import { test, expect } from 'vitest';
+
 import type { JourneyType } from '$lib/types/journey';
 import { get_component_from_id } from '$lib/utils/inspection';
 

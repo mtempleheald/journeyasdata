@@ -1,3 +1,5 @@
+import { test, expect } from 'vitest';
+
 import markdown from '$lib/utils/markdown';
 
 test('title', () => {

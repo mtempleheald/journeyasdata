@@ -1,3 +1,5 @@
+import { test, expect } from 'vitest';
+
 import type { InputComponent } from '$lib/types/journey';
 import { component_valid } from '$lib/utils/validators';
 
