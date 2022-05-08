@@ -6,8 +6,7 @@
 // Important - Currently technical demo's pageload-paymentprocessing action is firing early, whilst still on the external payment gateway stub
 //             This prevents us from clearing sessionStorage manually on return without losing all state.
 //             The in-memory values can be considered as the single source of truth under normal use, sessionStorage will clear when the tab is closed.
-//			   TODO: Work out why this is happening - pageload events are in onMount so [should not be an SSR issue](https://svelte.dev/tutorial/onmount).
-//					 I suspect it is a dev mode thing only
+//			   This is caused because Page.svelte performs the action which includes a goto and then performs its normal goto (next page based on journey)
 //
 import { writable } from 'svelte/store';
 

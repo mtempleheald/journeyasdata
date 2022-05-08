@@ -52,6 +52,7 @@
 		if (typeof f === 'function') f();
 
 		// Run the default action
+		// TODO: Fix issue #116
 		console.debug('Navigating to next page');
 		goto(nextPageUrl($journey, page.url));
 	}
