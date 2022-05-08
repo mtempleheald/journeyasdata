@@ -1,8 +1,7 @@
 import type { VehicleType } from '$lib/types/vehicle';
 import { goto } from '$app/navigation';
-import { sessionStorageStore } from '$lib/stores/sessionstoragestore';
 import { state } from '$lib/stores/statestore';
-import { get } from 'svelte/store';
+import { PAYMENTGATEWAYURL } from '$lib/env';
 
 export const actions = {
 	simpleimagebutton: function () {
@@ -90,21 +89,13 @@ async function gotoPaymentGateway() {
 	console.debug('gotoPaymentGateway()');
 	const sessionId = 'demosessionid';
 	const returnpath = 'paymentprocessing';
-	let s: StateStoreType;
-	const unsubscriber = state.subscribe((val) => (s = val));
 
-	const persistentValues = sessionStorageStore(`values-${sessionId}`);
-
-	// copy the in-memory store data into a sessionStorage object
-	persistentValues.set(s);
-
-	// avoid memory leaks
-	unsubscriber();
+	state.cache(sessionId);
 
 	// Jump out of the journey on to a separate website which will redirect us back when done with the same sessionId
 	// TODO: parameterise this centrally (env)
 	goto(
-		`https://kind-grass-07eb6d703.azurestaticapps.net?sessionid=${sessionId}&returnpath=${returnpath}`
+		`${PAYMENTGATEWAYURL}?sessionid=${sessionId}&returnpath=${returnpath}`
 	);
 }
 
@@ -113,11 +104,8 @@ async function returnFromPaymentGateway() {
 	// TODO: consider adding a unique sessionid, more relevant for localStorage shared across tabs but may be required
 	const sessionId = 'demosessionid';
 
-	// get the current value from sessionStorage (since we don't have any in-memory data now)
-	const s = get(sessionStorageStore(`values-${sessionId}`));
-
 	// Regenerate the in-memory stores with values from sessionStorage
-	state.reset(s as StateStoreType);
+	state.retrieve(sessionId);
 
 	// redirect based on the payment status provided by the payment gateway
 	const queryParams = new URLSearchParams(window.location.search);

@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { PageType } from '$lib/types/journey';
+	import { onMount } from 'svelte';
 	import { goto } from '$app/navigation';
 	import { DISABLEVALIDATION } from '$lib/env';
 	import { actionStore } from '$lib/stores/actionstore';
@@ -16,11 +17,11 @@
 
 	export let page: PageType;
 
-	$: {
-		// run bespoke action tied to page load
+	onMount(async () => {
+		// run bespoke action tied to page load, but not during SSR
 		let f = $actionStore[`pageload-${page.id}`];
 		if (typeof f === 'function') f();
-	}
+	});
 
 	function backPage() {
 		// Run any defined bespoke actions
