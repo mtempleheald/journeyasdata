@@ -2,11 +2,8 @@
 	import type { PageType } from '$lib/types/journey';
 	import { onMount } from 'svelte';
 	import { goto } from '$app/navigation';
-	import { DISABLEVALIDATION } from '$lib/env';
 	import { actionStore } from '$lib/stores/actionstore';
-	import { state } from '$lib/stores/statestore';
-	import { nextPageUrl, prevPageUrl } from '$lib/utils/navigation';
-	import { get_first_invalid_component_in_page, page_valid } from '$lib/utils/validators';
+	import { prevPageUrl } from '$lib/utils/navigation';
 	import Cookiepreference from '$lib/components/Cookiepreference.svelte';
 	import DisplayBlock from '$lib/components//DisplayBlock.svelte';
 	import Navbuttons from '$lib/components/Navbuttons.svelte';
@@ -19,13 +16,13 @@
 
 	onMount(async () => {
 		// run bespoke action tied to page load, but not during SSR
-		let f = $actionStore[`pageload-${page.id}`];
+		let f = $actionStore[`pageload_${page.id}`];
 		if (typeof f === 'function') f();
 	});
 
 	function backPage() {
 		// Run any defined bespoke actions
-		let f = $actionStore[`pageback-${page.id}`];
+		let f = $actionStore[`pageback_${page.id}`];
 		if (typeof f === 'function') f();
 
 		// Run the default action
@@ -33,28 +30,9 @@
 		goto(prevPageUrl($journey, page.url));
 	}
 	function nextPage() {
-		if (DISABLEVALIDATION != 'Y' && !page_valid(page, $state)) {
-			console.debug('Page invalid, correct before trying again');
-			const error_comp = get_first_invalid_component_in_page(page, $state);
-			if (error_comp != undefined) {
-				state.set(error_comp.id, {
-					value: $state[error_comp.id]?.value ?? '',
-					display: $state[error_comp.id]?.display ?? '',
-					valid: false
-				});
-				goto(`#${error_comp.id}`, { replaceState: true });
-			}
-			return;
-		}
-
-		// Run any defined bespoke actions (may redirect, meaning that usual navigation is overwritten)
-		let f = $actionStore[`pagenext-${page.id}`];
-		if (typeof f === 'function') f();
-
-		// Run the default action
-		// TODO: Fix issue #116
-		console.debug('Navigating to next page');
-		goto(nextPageUrl($journey, page.url));
+		// Defer all page navigation logic to bespoke actions with a fallback default, for maximum flexibility
+		let f = $actionStore[`pagenext_${page.url}`] ?? $actionStore['pagenext_default'];
+		if (typeof f === 'function') f(page);
 	}
 </script>
 

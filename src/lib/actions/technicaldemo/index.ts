@@ -13,8 +13,8 @@ export const actions = {
 		valueUnsubscriber();
 	},
 	vehicleregnum: lookupVehicle,
-	'pagenext-outcome': gotoPaymentGateway,
-	'pageload-paymentprocessing': returnFromPaymentGateway
+	pagenext_outcome: gotoPaymentGateway,
+	pageload_paymentprocessing: returnFromPaymentGateway
 };
 
 async function lookupVehicle() {

@@ -1,13 +1,18 @@
-import type { JourneyType } from '$lib/types/journey';
+import type { JourneyType, PageType } from '$lib/types/journey';
 import type { StateStoreType } from '$lib/types/stores';
 import { browser } from '$app/env';
 import { goto } from '$app/navigation';
 import { get_page_url, nextPageUrl } from '$lib/utils/navigation';
-import { component_valid } from '$lib/utils/validators';
+import { component_valid, get_first_invalid_component_in_page, page_valid } from '$lib/utils/validators';
 import { get_component_from_id } from '$lib/utils/inspection';
+import { journey as journeystore } from '$lib/stores/journeystore';
+import { state as statestore } from '$lib/stores/statestore';
+import { get } from 'svelte/store';
+import { DISABLEVALIDATION } from '$lib/env';
 
 export const actions = {
-	comp_change_trigger_nav: validate_and_navigate
+	comp_change_trigger_nav: validate_and_navigate,
+	pagenext_default: pagenext_default
 };
 
 async function validate_and_navigate(
@@ -29,4 +34,32 @@ async function validate_and_navigate(
 			console.debug('Page invalid, correct before trying again');
 		}
 	}
+}
+
+// A pagenext action is expected to have a single parameter - PageType
+async function pagenext_default(
+	page: PageType
+) {
+	console.debug(`pagenext_default(${page.url})`);
+
+	const journey = get(journeystore);
+	let state;
+	const stateUnsubscriber = statestore.subscribe((x) => (state = x));	
+
+	if (DISABLEVALIDATION != 'Y' && !page_valid(page, state)) {
+		console.debug('Page invalid, correct before trying again');
+		const error_comp = get_first_invalid_component_in_page(page, state);
+		if (error_comp != undefined) {
+			statestore.set(error_comp.id, {
+				value: state[error_comp.id]?.value ?? '',
+				display: state[error_comp.id]?.display ?? '',
+				valid: false
+			});
+			goto(`#${error_comp.id}`, { replaceState: true });
+		}
+		return;
+	}
+	stateUnsubscriber();
+	
+	goto(nextPageUrl(journey, page.url));
 }
