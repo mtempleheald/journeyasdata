@@ -2,7 +2,7 @@
 // Each component is responsible for setting its own state - value and validation status.
 // Any component at any time is allowed to access the store and refer to values set by other components.
 // At times the journey may jump off to a third-party hosted page, for this we use sessionStorage to cache and retrieve the state.
-// 
+//
 // Important - Currently technical demo's pageload-paymentprocessing action is firing early, whilst still on the external payment gateway stub
 //             This prevents us from clearing sessionStorage manually on return without losing all state.
 //             The in-memory values can be considered as the single source of truth under normal use, sessionStorage will clear when the tab is closed.
@@ -34,7 +34,11 @@ function store() {
 		subscribe,
 		set: (key: string, state: StateValueType) => update((store) => upsert(store, key, state)),
 		reset: (value: { [key: string]: StateValueType }) => set(value),
-		cache: (sessionId: string) => update((store) => { toSessionStorage(`state-${sessionId}`, store); return {} }),
+		cache: (sessionId: string) =>
+			update((store) => {
+				toSessionStorage(`state-${sessionId}`, store);
+				return {};
+			}),
 		retrieve: (sessionId: string) => set(fromSessionStorage(`state-${sessionId}`))
 	};
 }

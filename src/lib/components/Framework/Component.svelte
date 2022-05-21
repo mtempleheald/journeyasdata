@@ -14,14 +14,13 @@
 	import OptionDropdown from '$lib/components/OptionDropdown.svelte';
 	import InputTriboxdate from '$lib/components/InputTriboxdate.svelte';
 	import Vehicle from '$lib/components/Vehicle.svelte';
-	import { journey } from '$lib/stores/journeystore';
 
 	export let component: ComponentType;
 
 	function componentUpdated(event) {
 		// Defer all post-interaction logic to bespoke actions with fallback default
 		let f = $actionStore[event.detail.key] ?? $actionStore['component'];
-		if (typeof f === 'function') f(component);		
+		if (typeof f === 'function') f(component);
 	}
 
 	async function toListComponent(component: ComponentType): Promise<OptionComponent> {

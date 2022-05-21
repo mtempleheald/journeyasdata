@@ -94,9 +94,7 @@ async function go_to_payment_gateway() {
 
 	// Jump out of the journey on to a separate website which will redirect us back when done with the same sessionId
 	// TODO: parameterise this centrally (env)
-	goto(
-		`${PAYMENTGATEWAYURL}?sessionid=${sessionId}&returnpath=${returnpath}`
-	);
+	goto(`${PAYMENTGATEWAYURL}?sessionid=${sessionId}&returnpath=${returnpath}`);
 }
 
 async function return_from_payment_gateway() {

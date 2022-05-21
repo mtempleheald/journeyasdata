@@ -1,6 +1,6 @@
 <script lang="ts">
-	import type { OptionComponent, ValueType } from '$lib/types/journey';
-	import { createEventDispatcher, onMount } from 'svelte';
+	import type { OptionComponent } from '$lib/types/journey';
+	import { createEventDispatcher } from 'svelte';
 	import { state } from '$lib/stores/statestore';
 	import Helptext from '$lib/components/Helptext.svelte';
 

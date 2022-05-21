@@ -1,9 +1,7 @@
 <script lang="ts">
 	import type { PageType } from '$lib/types/journey';
 	import { onMount } from 'svelte';
-	import { goto } from '$app/navigation';
 	import { actionStore } from '$lib/stores/actionstore';
-	import { prevPageUrl } from '$lib/utils/navigation';
 	import Cookiepreference from '$lib/components/Cookiepreference.svelte';
 	import DisplayBlock from '$lib/components//DisplayBlock.svelte';
 	import Navbuttons from '$lib/components/Navbuttons.svelte';
