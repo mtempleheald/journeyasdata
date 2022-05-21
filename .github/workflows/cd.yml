@@ -43,8 +43,8 @@ jobs:
           path: playwright-report/
           retention-days: 30
 
-      - name: Run Jest tests
-        run: npm run jest -- --json --coverage
+      - name: Run Vitest tests
+        run: npm run vitest:coverage
 
       - name: Include missing packages
         run: |

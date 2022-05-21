@@ -156,13 +156,7 @@ I like to keep dependencies to an absolute minimum, justfied, and if possible as
   - vitest-svelte-kit - helps to configure vitest using existing svelte config
   - jsdom - required by vitest
   - @testing-library/svelte - svelte-specific testing library
-- jest
-  - jest - test framework
-  - ts-jest - allows jest to test TypeScript components
-  - @types/jest - provides access to useful Jest types
-  - svelte-jester - handles precompilation, required for testing svelte components
-  - @testing-library/svelte - svelte-specific testing library
-  - @testing-library/jest-dom - provides DOM element matchers, convenience methods. Depends on jest itself, this is the blocker on using vitest instead of jest.
+  - @testing-library/jest-dom - provides DOM element matchers, convenience methods. To remove if/when possible.
 
 # Testing
 
