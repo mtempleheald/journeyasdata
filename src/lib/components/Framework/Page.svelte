@@ -21,17 +21,13 @@
 	});
 
 	function backPage() {
-		// Run any defined bespoke actions
-		let f = $actionStore[`pageback_${page.id}`];
-		if (typeof f === 'function') f();
-
-		// Run the default action
-		console.debug('Navigating to previous page');
-		goto(prevPageUrl($journey, page.url));
+		// Defer all page navigation logic to bespoke actions with a fallback default, for maximum flexibility
+		let f = $actionStore[`pageback_${page.id}`] ?? $actionStore['pageback'];
+		if (typeof f === 'function') f(page);
 	}
 	function nextPage() {
 		// Defer all page navigation logic to bespoke actions with a fallback default, for maximum flexibility
-		let f = $actionStore[`pagenext_${page.url}`] ?? $actionStore['pagenext_default'];
+		let f = $actionStore[`pagenext_${page.url}`] ?? $actionStore['pagenext'];
 		if (typeof f === 'function') f(page);
 	}
 </script>

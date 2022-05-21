@@ -2,7 +2,7 @@ import type { JourneyType, PageType } from '$lib/types/journey';
 import type { StateStoreType } from '$lib/types/stores';
 import { browser } from '$app/env';
 import { goto } from '$app/navigation';
-import { get_page_url, nextPageUrl } from '$lib/utils/navigation';
+import { get_page_url, nextPageUrl, prevPageUrl } from '$lib/utils/navigation';
 import { component_valid, get_first_invalid_component_in_page, page_valid } from '$lib/utils/validators';
 import { get_component_from_id } from '$lib/utils/inspection';
 import { journey as journeystore } from '$lib/stores/journeystore';
@@ -12,7 +12,8 @@ import { DISABLEVALIDATION } from '$lib/env';
 
 export const actions = {
 	comp_change_trigger_nav: validate_and_navigate,
-	pagenext_default: pagenext_default
+	pagenext: pagenext,
+	pageback: pageback
 };
 
 async function validate_and_navigate(
@@ -37,10 +38,10 @@ async function validate_and_navigate(
 }
 
 // A pagenext action is expected to have a single parameter - PageType
-async function pagenext_default(
+async function pagenext(
 	page: PageType
 ) {
-	console.debug(`pagenext_default(${page.url})`);
+	console.debug(`pagenext(${page.url})`);
 
 	const journey = get(journeystore);
 	let state;
@@ -62,4 +63,13 @@ async function pagenext_default(
 	stateUnsubscriber();
 	
 	goto(nextPageUrl(journey, page.url));
+}
+
+// A pageback action is expected to have a single parameter - PageType
+async function pageback(
+	page: PageType
+) {
+	console.debug(`pageback(${page.url})`);
+	const journey = get(journeystore);
+	goto(prevPageUrl(journey, page.url));
 }
