@@ -12,12 +12,12 @@ export const actions = {
 		);
 		valueUnsubscriber();
 	},
-	vehicleregnum: lookupVehicle,
-	pagenext_outcome: gotoPaymentGateway,
-	pageload_paymentprocessing: returnFromPaymentGateway
+	vehicleregnum: lookup_vehicle,
+	pagenext_outcome: go_to_payment_gateway,
+	pageload_paymentprocessing: return_from_payment_gateway
 };
 
-async function lookupVehicle() {
+async function lookup_vehicle() {
 	console.debug('lookupVehicle()');
 	let s: StateStoreType;
 	let vehicle: VehicleType;
@@ -85,8 +85,8 @@ const mapTransmission = {
 	A: 'TransAuto'
 };
 
-async function gotoPaymentGateway() {
-	console.debug('gotoPaymentGateway()');
+async function go_to_payment_gateway() {
+	console.debug('go_to_payment_gateway()');
 	const sessionId = 'demosessionid';
 	const returnpath = 'paymentprocessing';
 
@@ -99,8 +99,8 @@ async function gotoPaymentGateway() {
 	);
 }
 
-async function returnFromPaymentGateway() {
-	console.debug('returnFromPaymentGateway()');
+async function return_from_payment_gateway() {
+	console.debug('return_from_payment_gateway()');
 	// TODO: consider adding a unique sessionid, more relevant for localStorage shared across tabs but may be required
 	const sessionId = 'demosessionid';
 
