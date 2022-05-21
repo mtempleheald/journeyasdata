@@ -157,6 +157,7 @@ I like to keep dependencies to an absolute minimum, justfied, and if possible as
   - jsdom - required by vitest
   - @testing-library/svelte - svelte-specific testing library
   - @testing-library/jest-dom - provides DOM element matchers, convenience methods. To remove if/when possible.
+  - c8 - test coverage when using vitest
 
 # Testing
 
