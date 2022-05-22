@@ -10,6 +10,9 @@ import { to_section_list } from './converters';
 
 /**
  * Establish whether a component's value is valid, trusting the component's judgement if provided
+ * @param component Component metadata from journey.json used to establish validation criteria
+ * @param state 	Application state
+ * @returns         boolean
  */
 export function component_valid(component: InputComponent, state: StateStoreType): boolean {
 	// (ineligible) - component has no identifier, it must be a display component only, we have no reason to validate
@@ -37,10 +40,9 @@ export function component_valid(component: InputComponent, state: StateStoreType
 
 /**
  * Establish section validity by checking each component within it, if any component is invalid, so is the section
- * @param section           Section metadata from journey.json used to establish validation criteria
- * @param valueStore        $valueStore from the SvelteKit runtime, or an object consisting of simple string key value pairs
- * @param validationStore   $validationStore from the SvelteKit runtime, or an object consisting of simple string key value pairs
- * @returns                 boolean
+ * @param section   Section metadata from journey.json used to establish validation criteria
+ * @param state 	Application state
+ * @returns         boolean
  */
 export function section_valid(
 	section: SectionType | RepeatingGroupType,
@@ -66,21 +68,19 @@ export function section_valid(
 
 /**
  * Establish page validity by checking each section within it, if any section is invalid, so is the page
- * @param page              Page metadata from journey.json used to establish validation criteria
- * @param valueStore        $valueStore from the SvelteKit runtime, or an object consisting of simple string key value pairs
- * @param validationStore   $validationStore from the SvelteKit runtime, or an object consisting of simple string key value pairs
- * @returns                 boolean
+ * @param page  Page metadata from journey.json used to establish validation criteria
+ * @param state Application state
+ * @returns     boolean
  */
 export function page_valid(page: PageType, state: StateStoreType): boolean {
 	return page.sections.every((s) => section_valid(s, state));
 }
 
 /**
- * Establish journey validity by checking each page within it, if any page is invalid, so is the journey
- * @param journey           Journey metadata from journey.json used to establish validation criteria
- * @param valueStore        $valueStore from the SvelteKit runtime, or an object consisting of simple string key value pairs
- * @param validationStore   $validationStore from the SvelteKit runtime, or an object consisting of simple string key value pairs
- * @returns                 boolean
+ * Establish page validity by checking each section within it, if any section is invalid, so is the page
+ * @param page  Page metadata from journey.json used to establish validation criteria
+ * @param state Application state
+ * @returns     boolean
  */
 export function journey_valid(journey: JourneyType, state: StateStoreType): boolean {
 	return journey.pages.every((p) => page_valid(p, state));
