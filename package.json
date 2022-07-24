@@ -19,7 +19,7 @@
 		"vitest:coverage": "vitest src/test --coverage"
 	},
 	"devDependencies": {
-		"@playwright/test": "^1.21.2",
+		"@playwright/test": "^1.24.0",
 		"@sveltejs/adapter-node": "1.0.0-next.73",
 		"@sveltejs/kit": "1.0.0-next.338",
 		"@testing-library/jest-dom": "^5.16.3",
@@ -27,7 +27,7 @@
 		"@types/cookie": "^0.5.0",
 		"@typescript-eslint/eslint-plugin": "^5.30.7",
 		"@typescript-eslint/parser": "^5.30.7",
-		"c8": "^7.11.3",
+		"c8": "^7.12.0",
 		"eslint": "^8.20.0",
 		"eslint-config-prettier": "^8.5.0",
 		"eslint-plugin-svelte3": "^4.0.0",
