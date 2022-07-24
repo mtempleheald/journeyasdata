@@ -20,7 +20,7 @@ export async function GET({ params }) {
 	// const journey: JourneyType = await import(`/static/${params.brand}/journey.json`)
 	//     .then((module) => module.default)
 	//     .catch((err) => console.error(err));
-	let j = path.resolve('assets', params.brand, 'journey.json');
+	let j = path.resolve('client', params.brand, 'journey.json');
 	if (!fs.existsSync(j)) {
 		// static files found in /static during development
 		j = path.resolve('static', params.brand, 'journey.json');
