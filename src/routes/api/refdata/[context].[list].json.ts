@@ -5,7 +5,7 @@ import { stubRefdata } from './_stub';
 import { STUBAPIS } from '$lib/env';
 
 /** @type {import('@sveltejs/kit').RequestHandler} */
-export async function get({ params, url }) {
+export async function GET({ params, url }) {
 	const context = params.context;
 	const list = params.list;
 	const filter = url.searchParams.get('filter'); // used for typeahead functionality

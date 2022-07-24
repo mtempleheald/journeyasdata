@@ -2,7 +2,7 @@
 
 // Useful blog on JWT auth in Svelte Kit https://blog.satyam.life/blog/svelte-kit-jwt-auth
 
-export async function post({ request }) {
+export async function POST({ request }) {
 	const data = await request.formData();
 	const username = data.get('username');
 	const password = data.get('password');

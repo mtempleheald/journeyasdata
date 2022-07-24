@@ -3,7 +3,7 @@
 /**
  * @type {import('@sveltejs/kit').RequestHandler}
  */
-export async function get({ url }) {
+export async function GET({ url }) {
 	const postcode = url.searchParams.get('postcode');
 
 	// TODO: call actual API using https://www.npmjs.com/package/node-fetch

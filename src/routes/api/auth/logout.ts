@@ -1,6 +1,6 @@
 // POST: /api/auth/logout
 
-export async function post() {
+export async function POST() {
 	return {
 		status: 301,
 		headers: {

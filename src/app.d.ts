@@ -1,12 +1,12 @@
 /// <reference types="@sveltejs/kit" />
 
-// Sveltekit typeScript docs https://kit.svelte.dev/docs/typescript
+// Sveltekit type docs https://kit.svelte.dev/docs/types#app
 // Importing types discussion https://github.com/sveltejs/kit/discussions/3772#discussioncomment-2131563
 
 import * as _stores from '$lib/types/stores';
 
 declare global {
-	declare namespace App {
+	namespace App {
 		interface Locals {
 			userid: string;
 		}

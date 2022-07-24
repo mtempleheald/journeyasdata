@@ -15,7 +15,7 @@ const readFile = (filePath) => {
 };
 
 /* @type {import('@sveltejs/kit').RequestHandler} */
-export async function get({ params }) {
+export async function GET({ params }) {
 	//const journey: JourneyType = await import(`./${params.brand}.json`)
 	// const journey: JourneyType = await import(`/static/${params.brand}/journey.json`)
 	//     .then((module) => module.default)

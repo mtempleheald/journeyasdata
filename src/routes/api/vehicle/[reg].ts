@@ -5,7 +5,7 @@ import { lookup } from './_lookup.v1';
 import { stubVehicleData } from './_stub';
 
 /** @type {import('@sveltejs/kit').RequestHandler} */
-export async function get({ params }) {
+export async function GET({ params }) {
 	const reg = params.reg;
 	let result: VehicleType;
 
