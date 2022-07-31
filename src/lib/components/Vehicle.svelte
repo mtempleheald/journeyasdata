@@ -24,7 +24,7 @@
 	// }
 	async function regUpdated(event) {
 		if (event.detail.value) {
-			await fetch(`/api/vehicle/` + event.detail.value.toUpperCase())
+			await fetch(`/api/vehicle/${event.detail.value.toUpperCase()}`)
 				.then((resp) => resp.json())
 				.then((data) => (vehicle = data));
 		} else {

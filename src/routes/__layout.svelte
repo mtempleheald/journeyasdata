@@ -9,7 +9,7 @@
 			props: {
 				brand: BRAND.toString(),
 				actions: await load_actions(BRAND.toString()),
-				journey: await fetch(`/api/journey/${BRAND}.json`)
+				journey: await fetch(`/api/journey/${BRAND}`)
 					.then((res) => res.json())
 					.catch((err) => console.error(err))
 			}

@@ -26,7 +26,7 @@
 		active = '';
 	}
 	async function lookupAddresses(postcode: string) {
-		await fetch(`/api/addresses?postcode=${postcode}`)
+		await fetch(`/api/addresses/${postcode}`)
 			.then((resp) => resp.json())
 			.then((data) => {
 				addresses = data;

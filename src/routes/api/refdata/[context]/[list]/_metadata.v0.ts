@@ -3,7 +3,7 @@
 
 import type { ValueType } from '$lib/types/journey';
 import { APIHOSTNAME } from '$lib/env';
-import { getToken } from '../_token';
+import { getToken } from '../../../_token';
 
 export async function getMetadata(context: string, list: string) {
 	const url = `${APIHOSTNAME}/api/reference-data/metadata`;

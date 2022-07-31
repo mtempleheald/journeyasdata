@@ -25,7 +25,7 @@ async function lookup_vehicle() {
 
 	if (s['vehicleregnum']?.value) {
 		console.debug('lookup vehicle by regnum');
-		await fetch(`/api/vehicle/` + s['vehicleregnum']?.value)
+		await fetch(`/api/vehicle/${s['vehicleregnum']?.value}`)
 			.then((resp) => resp.json())
 			.then((data) => (vehicle = data));
 	}
