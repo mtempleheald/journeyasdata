@@ -46,12 +46,15 @@ jobs:
       - name: Run Vitest tests
         run: npm run vitest:coverage
 
+      # Sveltekit no longer bundles prod dependencies, adapter node does not fix this - kit issue 3176
       - name: Include missing packages
         run: |
-          mkdir -p ./build/node_modules/snarkdown
           mkdir -p ./build/node_modules/cookie
-          cp -r ./node_modules/snarkdown/* ./build/node_modules/snarkdown/
           cp -r ./node_modules/cookie/* ./build/node_modules/cookie/
+          mkdir -p ./build/node_modules/devalue
+          cp -r ./node_modules/devalue/* ./build/node_modules/devalue/
+          mkdir -p ./build/node_modules/set-cookie-parser
+          cp -r ./node_modules/set-cookie-parser/* ./build/node_modules/set-cookie-parser/
 
       #   - name: Upload artifact for deployment job
       #     uses: actions/upload-artifact@v2
