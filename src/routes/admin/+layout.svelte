@@ -1,16 +1,13 @@
-<script>
-	import { session } from '$app/stores';
-</script>
-
 <header>
 	<h1>Journey Management</h1>
-	{#if $session.user}
-		<p>Logged in as {$session?.user?.username}</p>
-		<form method="post" action="/api/auth/logout">
-			<button type="submit">Logout</button>
-		</form>
-	{/if}
 </header>
+
+<nav>
+	<ul>
+		<li><a href="/admin/preview">Preview components</a></li>
+		<li><a href="/admin/builder">Build a journey</a></li>
+	</ul>
+</nav>
 
 <slot />
 
@@ -28,12 +25,22 @@
 	header > * {
 		flex-grow: 1;
 	}
-	h1,
-	p {
+	h1 {
 		margin: 0;
 		padding: 1rem;
 	}
-	button {
-		margin: 1rem;
+	li {
+		list-style: none;
+		padding: 0.25rem;
+	}
+	li::before {
+		content: '\27A0';
+	}
+	a {
+		text-decoration: none;
+		color: inherit;
+	}
+	a:hover {
+		text-decoration: underline;
 	}
 </style>
