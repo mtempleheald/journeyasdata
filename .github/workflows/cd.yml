@@ -49,6 +49,8 @@ jobs:
       # Sveltekit no longer bundles prod dependencies, adapter node does not fix this - kit issue 3176
       - name: Include missing packages
         run: |
+          mkdir -p ./build/node_modules/snarkdown
+          cp -r ./node_modules/snarkdown/* ./build/node_modules/snarkdown/
           mkdir -p ./build/node_modules/cookie
           cp -r ./node_modules/cookie/* ./build/node_modules/cookie/
           mkdir -p ./build/node_modules/devalue
