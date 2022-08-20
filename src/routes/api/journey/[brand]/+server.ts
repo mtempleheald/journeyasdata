@@ -1,3 +1,4 @@
+import { json as jsonResponse } from '@sveltejs/kit';
 import type { JourneyType } from '$lib/types/journey';
 import * as path from 'path';
 import * as fs from 'fs';
@@ -14,7 +15,7 @@ const readFile = (filePath) => {
 	});
 };
 
-/* @type {import('@sveltejs/kit').RequestHandler} */
+/** @type {import('./$types').RequestHandler} */
 export async function GET({ params }) {
 	//const journey: JourneyType = await import(`./${params.brand}.json`)
 	// const journey: JourneyType = await import(`/static/${params.brand}/journey.json`)
@@ -32,7 +33,5 @@ export async function GET({ params }) {
 		.then((data) => JSON.parse(data.toString()))
 		.catch((err) => console.error(err));
 
-	return {
-		body: journey
-	};
+	return jsonResponse(journey);
 }

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { JourneyType } from '$lib/types/journey';
 
-	export let journey: JourneyType = {
+	let journey: JourneyType = {
 		title: 'sample',
 		pages: [],
 		footercontent: 'test'

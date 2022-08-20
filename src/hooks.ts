@@ -1,4 +1,5 @@
 // TODO: Revisit authentication using template app https://github.com/sveltejs/kit/blob/master/packages/create-svelte/templates/default/src/hooks.ts
+// TODO: rework based on https://github.com/sveltejs/kit/discussions/5883
 
 import { parse } from 'cookie';
 //import {verify} from 'jsonwebtoken'
@@ -18,7 +19,6 @@ export async function handle({ event, resolve }) {
 	const response = await resolve(event);
 	return response;
 }
-
 /** @type {import('@sveltejs/kit').GetSession} */
 export function getSession(event) {
 	return event.locals.user

@@ -1,4 +1,5 @@
-// GET: /api/address?postcode=[postcode]&house=[house]
+import { json as jsonResponse } from '@sveltejs/kit';
+// GET: /api/address/[postcode]/[residence]
 import type { AddressType } from '$lib/types/address';
 
 /**
@@ -17,7 +18,5 @@ export async function GET({ params }) {
 		addressline4: 'Ohia Maud'
 	};
 
-	return {
-		body: result
-	};
+	return jsonResponse(result);
 }

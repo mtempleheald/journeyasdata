@@ -1,18 +1,3 @@
-<script context="module">
-	/** @type {import('@sveltejs/kit').Load} */
-	export async function load({ session }) {
-		// An authorised user will have a user record in session
-		// Redirect them to the admin home page
-		if (session.user) {
-			return {
-				status: 302,
-				redirect: '/admin'
-			};
-		}
-		return {};
-	}
-</script>
-
 <script lang="ts">
 	let errors: string;
 	let disabled = false;

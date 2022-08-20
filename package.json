@@ -8,7 +8,6 @@
 		"build": "vite build",
 		"package": "svelte-kit package",
 		"preview": "vite preview",
-		"prepare": "svelte-kit sync",
 		"test": "playwright test tests/playwright",
 		"check": "svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-check --tsconfig ./tsconfig.json --watch",
@@ -19,16 +18,16 @@
 		"vitest:coverage": "vitest src/test --coverage"
 	},
 	"devDependencies": {
-		"@playwright/test": "^1.24.2",
-		"@sveltejs/adapter-node": "1.0.0-next.85",
-		"@sveltejs/kit": "1.0.0-next.398",
-		"@testing-library/jest-dom": "^5.16.3",
-		"@testing-library/svelte": "^3.1.3",
+		"@playwright/test": "^1.25.0",
+		"@sveltejs/adapter-node": "1.0.0-next.86",
+		"@sveltejs/kit": "1.0.0-next.427",
+		"@testing-library/jest-dom": "^5.16.5",
+		"@testing-library/svelte": "^3.2.0",
 		"@types/cookie": "^0.5.0",
-		"@typescript-eslint/eslint-plugin": "^5.31.0",
-		"@typescript-eslint/parser": "^5.31.0",
+		"@typescript-eslint/eslint-plugin": "^5.33.1",
+		"@typescript-eslint/parser": "^5.33.1",
 		"c8": "^7.12.0",
-		"eslint": "^8.20.0",
+		"eslint": "^8.22.0",
 		"eslint-config-prettier": "^8.5.0",
 		"eslint-plugin-svelte3": "^4.0.0",
 		"jsdom": "^20.0.0",
@@ -41,8 +40,8 @@
 		"svelte2tsx": "^0.5.13",
 		"tslib": "^2.4.0",
 		"typescript": "^4.7.4",
-		"vite": "^3.0.4",
-		"vitest": "^0.19.1"
+		"vite": "^3.0.9",
+		"vitest": "^0.22.1"
 	},
 	"dependencies": {
 		"cookie": "^0.5.0"

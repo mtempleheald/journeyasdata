@@ -1,3 +1,4 @@
+import { json as jsonResponse } from '@sveltejs/kit';
 // GET: /api/vehicle/[reg]
 import type { VehicleType } from '$lib/types/vehicle';
 import { STUBAPIS } from '$lib/env';
@@ -15,7 +16,5 @@ export async function GET({ params }) {
 		result = await lookup(reg);
 	}
 
-	return {
-		body: result
-	};
+	return jsonResponse(result);
 }

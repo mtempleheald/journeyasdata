@@ -1,4 +1,5 @@
 // GET: /api/refdata/context/list?filter=[filter]&parent=[parent]
+import { json as jsonResponse } from '@sveltejs/kit';
 import type { ValueType } from '$lib/types/journey';
 import { getMetadata } from './_metadata.v0';
 import { stubRefdata } from './_stub';
@@ -21,7 +22,5 @@ export async function GET({ params, url }) {
 		result = await getMetadata(context, list);
 	}
 
-	return {
-		body: result
-	};
+	return jsonResponse(result);
 }

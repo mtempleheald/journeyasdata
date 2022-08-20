@@ -1,24 +1,8 @@
-<script context="module">
-	/** @type {import('@sveltejs/kit').Load} */
-	export async function load({ session }) {
-		const { user } = session;
-
-		// TODO: Move this to Handle hook for all /admin/... paths
-		if (!user) {
-			return {
-				status: 302,
-				redirect: '/admin/login'
-			};
-		}
-
-		return {
-			props: { user }
-		};
-	}
-</script>
-
 <script lang="ts">
-	export let user;
+	import type { PageData } from './$types';
+	export let data: PageData;
+	let user;
+	$: ({ user } = data);
 </script>
 
 <h2>Admin portal</h2>
