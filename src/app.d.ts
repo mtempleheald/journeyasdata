@@ -11,11 +11,11 @@ declare global {
 			userid: string;
 		}
 
-		//interface Platform {}
+		// interface PageData {}
 
-		//interface Session {}
+		// interface PageError {}
 
-		//interface Stuff {}
+		// interface Platform {}
 	}
 
 	// State is expected to be used frequently across the application, remove the need for references
