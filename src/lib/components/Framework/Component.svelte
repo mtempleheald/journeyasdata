@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { ComponentType, OptionComponent } from '$lib/types/journey';
 	import { actionStore } from '$lib/stores/actionstore';
-	import { browser } from '$app/env';
+	import { browser } from '$app/environment';
 	import { replace_tokens } from '$lib/utils/replacetokens';
 	import { state } from '$lib/stores/statestore';
 	import Address from '$lib/components/Address.svelte';

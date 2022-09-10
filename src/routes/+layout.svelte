@@ -2,7 +2,7 @@
 	import type { LayoutData } from './$types';
 	import { actionStore } from '$lib/stores/actionstore';
 	import { journey as journeyStore } from '$lib/stores/journeystore';
-	import { browser } from '$app/env';
+	import { browser } from '$app/environment';
 
 	export let data: LayoutData;
 
