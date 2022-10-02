@@ -13,7 +13,7 @@ declare global {
 
 		// interface PageData {}
 
-		// interface PageError {}
+		// interface Error {}
 
 		// interface Platform {}
 	}
