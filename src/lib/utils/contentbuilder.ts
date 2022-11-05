@@ -1,4 +1,4 @@
-import snarkdown from 'snarkdown';
+/*import snarkdown from 'snarkdown';
 
 // Content is stored as a string, parsed as markdown, enriched with dynamic content
 // TODO: Build up fluent API to improve readability by removing nested function calls e.g. content.injectDynamicContent().toHtml().sanitise()
@@ -28,3 +28,4 @@ Object.defineProperty(String.prototype, 'toHtml', {
 		return snarkdown(this);
 	}
 });
+*/

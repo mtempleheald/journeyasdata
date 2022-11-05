@@ -1,11 +1,11 @@
 // TODO: Consider rewriting this copy/pasted code, it flags many code warnings and is hard to read
 export function flatten(input: object) {
 	const result = {};
-	function recurse(cur: any, prop: any) {
+	function recurse(cur, prop) {
 		if (Object(cur) !== cur) {
 			result[prop] = cur;
 		} else if (Array.isArray(cur)) {
-			for (var i = 0, l = cur.length; i < l; i++) {
+			for (let i = 0, l = cur.length; i < l; i++) {
 				// eslint-disable-line
 				recurse(cur[i], `${prop}[${i}]`);
 			}
@@ -32,12 +32,12 @@ export function unflatten(input: object) {
 	if (Object(input) !== input || Array.isArray(input)) {
 		return input;
 	}
-	const regex = /\.?([^.\[\]]+)|\[(\d+)\]/g;
-	let resultholder = {};
+	const regex = /\.?([^.[\]]+)|\[(\d+)\]/g;
+	const resultholder = {};
 	for (const p in input) {
 		let cur = resultholder;
 		let prop = '';
-		let m: any;
+		let m;
 		while ((m = regex.exec(p))) {
 			// eslint-disable-line
 			// console.debug('m[1]', m[1])

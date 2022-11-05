@@ -11,14 +11,14 @@ import type { JourneyType } from '$lib/types/journey';
  * Journey cannot be empty (contain no pages)
  */
 export function journey_is_not_empty(journey: JourneyType): boolean {
-	// TODO: implement this
+	console.debug('Not yet implemented, journey: ', journey);
 	return true;
 }
 /**
  * Journey must have a title
  */
 export function journey_has_title(journey: JourneyType): boolean {
-	// TODO: implement this
+	console.debug('Not yet implemented, journey: ', journey);
 	return true;
 }
 
@@ -26,28 +26,28 @@ export function journey_has_title(journey: JourneyType): boolean {
  * Pages are identified by their url, these must be unique across the journey
  */
 export function page_urls_are_unique(journey: JourneyType): boolean {
-	// TODO: implement this
+	console.debug('Not yet implemented, journey: ', journey);
 	return true;
 }
 /**
  * Pages are identified by their url, all pages must have a url
  */
 export function pages_have_url(journey: JourneyType): boolean {
-	// TODO: implement this
+	console.debug('Not yet implemented, journey: ', journey);
 	return true;
 }
 /**
  * Page must not be empty (contain no sections)
  */
 export function page_is_not_empty(journey: JourneyType, page_url: string): boolean {
-	// TODO: implement this
+	console.debug('Not yet implemented, journey: ', journey, 'page: ', page_url);
 	return true;
 }
 /**
  * Pages must not be empty across the journey
  */
 export function pages_are_not_empty(journey: JourneyType): boolean {
-	// TODO: implement this
+	console.debug('Not yet implemented, journey: ', journey);
 	return true;
 }
 
@@ -55,42 +55,42 @@ export function pages_are_not_empty(journey: JourneyType): boolean {
  * Section ids must be unique in a journey - check before adding an invalid one
  */
 export function section_id_is_available(journey: JourneyType, section_id: string): boolean {
-	// TODO: implement this
+	console.debug('Not yet implemented, journey: ', journey, 'section: ', section_id);
 	return true;
 }
 /**
  * Section ids must be unique in a journey - confirm this
  */
 export function section_ids_are_unique(journey: JourneyType): boolean {
-	// TODO: implement this
+	console.debug('Not yet implemented, journey: ', journey);
 	return true;
 }
 /**
  * Section must not be empty (contain no child components or sections)
  */
 export function section_is_not_empty(journey: JourneyType, section_id: string): boolean {
-	// TODO: implement this
+	console.debug('Not yet implemented, journey: ', journey, 'section: ', section_id);
 	return true;
 }
 /**
  * Sections must not be empty across the journey (contain no child components or sections)
  */
 export function sections_are_not_empty(journey: JourneyType): boolean {
-	// TODO: implement this
+	console.debug('Not yet implemented, journey: ', journey);
 	return true;
 }
 /**
  * Section must have a type (repeatinggroup or section)
  */
 export function section_has_a_type(journey: JourneyType, section_id: string): boolean {
-	// TODO: implement this
+	console.debug('Not yet implemented, journey: ', journey, 'section: ', section_id);
 	return true;
 }
 /**
  * Sections must have a type across the journey
  */
 export function sections_have_a_type(journey: JourneyType): boolean {
-	// TODO: implement this
+	console.debug('Not yet implemented, journey: ', journey);
 	return true;
 }
 
@@ -98,14 +98,14 @@ export function sections_have_a_type(journey: JourneyType): boolean {
  * Check that a component id is available before using it
  */
 export function component_id_is_available(journey: JourneyType, component_id: string): boolean {
-	// TODO: implement this
+	console.debug('Not yet implemented, journey: ', journey, 'component: ', component_id);
 	return true;
 }
 /**
  * Component ids must be unique across the journey
  */
 export function component_ids_are_unique(journey: JourneyType): boolean {
-	// TODO: implement this
+	console.debug('Not yet implemented, journey: ', journey);
 	// don't worry about repeating groups, if the ids are unique within then they will be unique afterwards
 	return true;
 }
@@ -114,7 +114,7 @@ export function component_ids_are_unique(journey: JourneyType): boolean {
  * This breaks the repeating group functionality
  */
 export function component_ids_do_not_contain_full_stop(journey: JourneyType): boolean {
-	// TODO: implement this
+	console.debug('Not yet implemented, journey: ', journey);
 	return true;
 }
 /**
@@ -122,28 +122,28 @@ export function component_ids_do_not_contain_full_stop(journey: JourneyType): bo
  * This would clash with input identifiers
  */
 export function component_ids_do_not_contain_tilde(journey: JourneyType): boolean {
-	// TODO: implement this
+	console.debug('Not yet implemented, journey: ', journey);
 	return true;
 }
 /**
  * Component must have a type
  */
 export function component_has_a_type(journey: JourneyType, component_id: string): boolean {
-	// TODO: implement this
+	console.debug('Not yet implemented, journey: ', journey, 'component: ', component_id);
 	return true;
 }
 /**
  * Components must have a type across the journey
  */
 export function components_have_a_type(journey: JourneyType): boolean {
-	// TODO: implement this
+	console.debug('Not yet implemented, journey: ', journey);
 	return true;
 }
 /**
  * Components of type InputComponent must have ids
  */
 export function input_components_have_ids(journey: JourneyType): boolean {
-	// TODO: implement this
+	console.debug('Not yet implemented, journey: ', journey);
 	return true;
 }
 /**
@@ -151,14 +151,14 @@ export function input_components_have_ids(journey: JourneyType): boolean {
  * Either refdata or values must be set
  */
 export function option_components_have_values(journey: JourneyType): boolean {
-	// TODO: implement this
+	console.debug('Not yet implemented, journey: ', journey);
 	return true;
 }
 /**
  * Components of type DisplayComponent must have content
  */
 export function display_components_have_content(journey: JourneyType): boolean {
-	// TODO: implement this
+	console.debug('Not yet implemented, journey: ', journey);
 	return true;
 }
 
@@ -167,7 +167,7 @@ export function display_components_have_content(journey: JourneyType): boolean {
  * Actions are dev-controlled, content is not, yet can still break code
  */
 export function page_has_bespoke_actions(journey: JourneyType, page_url: string): boolean {
-	// TODO: figure out how to implement this
+	console.debug('Not yet implemented, journey: ', journey, 'page: ', page_url);
 	return true;
 }
 /**
@@ -175,7 +175,7 @@ export function page_has_bespoke_actions(journey: JourneyType, page_url: string)
  * Actions are dev-controlled, content is not, yet can still break code
  */
 export function section_has_bespoke_actions(journey: JourneyType, section_id: string): boolean {
-	// TODO: figure out how to implement this
+	console.debug('Not yet implemented, journey: ', journey, 'section: ', section_id);
 	return true;
 }
 /**
@@ -183,6 +183,6 @@ export function section_has_bespoke_actions(journey: JourneyType, section_id: st
  * Actions are dev-controlled, content is not, yet can still break code
  */
 export function component_has_bespoke_actions(journey: JourneyType, component_id: string): boolean {
-	// TODO: figure out how to implement this
+	console.debug('Not yet implemented, journey: ', journey, 'component: ', component_id);
 	return true;
 }
