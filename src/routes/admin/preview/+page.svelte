@@ -11,7 +11,7 @@
 	import InputTriboxdate from '$lib/components/InputTriboxdate.svelte';
 	import Vehicle from '$lib/components/Vehicle.svelte';
 
-	let theme: string;
+	let theme = 'technicaldemo';
 	let component: ComponentType = {
 		type: 'Unknown',
 		id: 'default-id',
