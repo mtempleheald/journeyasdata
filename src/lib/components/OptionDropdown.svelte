@@ -24,14 +24,14 @@
 		const elem = <HTMLSelectElement>event.target;
 		state.set(component.id, {
 			value: elem.value,
-			display: component.values.find((c) => c.value === elem.value)?.display,
+			display: component.values?.find((c) => c.value === elem.value)?.display,
 			valid: elem.validity.valid
 		});
 		// publish value changes up to parent too
 		dispatch('valueChange', {
 			key: component.id,
 			value: elem.value,
-			display: elem.value ? component.values.find((v) => v.value === elem.value).display : '',
+			display: elem.value ? component.values?.find((v) => v.value === elem.value)?.display : '',
 			valid: !component.required || !!elem.value
 		});
 	}

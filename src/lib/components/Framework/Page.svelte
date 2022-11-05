@@ -30,7 +30,9 @@
 	}
 </script>
 
-<Cookiepreference cookiepreferences={$journey.cookiepreferences} />
+{#if $journey.cookiepreferences}
+	<Cookiepreference cookiepreferences={$journey.cookiepreferences} />
+{/if}
 <header>
 	{#if $journey.logo}
 		<img
@@ -59,7 +61,7 @@
 			</header>
 		{/if}
 
-		{#if page.showtopnav}
+		{#if page.navigation && page.showtopnav}
 			<Navbuttons nav={page.navigation} pageurl={page.url} sectionid="" />
 		{/if}
 
@@ -88,12 +90,14 @@
 </main>
 
 <footer>
-	<DisplayBlock
-		component={{
-			type: 'Displayblock',
-			content: $journey.footercontent
-		}}
-	/>
+	{#if $journey.footercontent}
+		<DisplayBlock
+			component={{
+				type: 'Displayblock',
+				content: $journey.footercontent
+			}}
+		/>
+	{/if}
 </footer>
 
 <style>

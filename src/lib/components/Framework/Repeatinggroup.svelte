@@ -17,7 +17,7 @@
 	function updateSummaryInstance(summary: string, instanceid: number) {
 		const re = new RegExp(/\{\{\s*(\w*)\s*\}\}/gi);
 
-		function replacer(_match: string, p1) {
+		function replacer(_match: string, p1: string) {
 			const result = `{{${p1}.${instanceid}}}`;
 			return result;
 		}
@@ -25,14 +25,14 @@
 	}
 
 	// Hide/show functionality (use state to guarantee behaviour after navigation)
-	$: totalInstances = parseInt($state[repeatinggroup.id]?.value ?? 0);
+	$: totalInstances = repeatinggroup.id ? parseInt($state[repeatinggroup.id]?.value ?? '0') : 0;
 	let currentInstance = 0;
 	//$: console.debug($state);
 
 	// add is simple - just grab the next id
 	function add() {
 		currentInstance = totalInstances + 1;
-		state.set(repeatinggroup.id, {
+		state.set(repeatinggroup.id!, {
 			value: JSON.stringify(currentInstance),
 			display: undefined,
 			valid: undefined
@@ -48,7 +48,7 @@
 	// if latest instance, just delete from value/displayValue/validation store and return to summary view
 	// if not, we need to rejig all the store values to avoid sparse population, 2 becomes 1, 3 becomes 2 etc
 	function remove(instanceid: number) {
-		for (var i = instanceid; i <= repeatinggroup.maxrepeats; i++) {
+		for (var i = instanceid; i <= repeatinggroup.maxrepeats!; i++) {
 			repeatinggroup.sections.forEach((s) =>
 				s.components
 					.filter((c) => !!c.id)
@@ -63,7 +63,7 @@
 			);
 		}
 		currentInstance = 0;
-		state.set(repeatinggroup.id, {
+		state.set(repeatinggroup.id!, {
 			value: JSON.stringify(totalInstances - 1),
 			display: undefined,
 			valid: undefined
@@ -99,7 +99,7 @@
 			</DisplayBlock>
 		{/each}
 
-		{#if totalInstances < repeatinggroup.maxrepeats}
+		{#if totalInstances < (repeatinggroup.maxrepeats ?? 0)}
 			<button type="button" on:click={add}>{repeatinggroup.labeladd}</button>
 		{/if}
 	{/if}

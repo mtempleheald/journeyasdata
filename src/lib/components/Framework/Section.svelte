@@ -42,8 +42,13 @@
 	</div>
 
 	<slot />
-
-	<Navbuttons nav={section.navigation} pageurl="" sectionid={section.id ?? section.title} />
+	{#if section.navigation}
+		<Navbuttons
+			nav={section.navigation}
+			pageurl=""
+			sectionid={section.id ?? section.title ?? 'todo-tidy-up-nav'}
+		/>
+	{/if}
 </section>
 
 <style>

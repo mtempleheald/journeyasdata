@@ -1,6 +1,6 @@
 <!-- DEPRECATED - see action providers for alternative implementation -->
 <script lang="ts">
-	import type { AddressComponent } from '$lib/types/journey';
+	import type { AddressComponent, ValueType } from '$lib/types/journey';
 	import type { AddressType } from '$lib/types/address';
 	import { createEventDispatcher } from 'svelte';
 	import { state } from '$lib/stores/statestore';
@@ -14,7 +14,7 @@
 	let active = '';
 	let addresses: AddressType[];
 	let address: AddressType | null;
-	let propertyLov = [];
+	let propertyLov: ValueType[] = [];
 	const dispatch = createEventDispatcher();
 	//$: console.debug ($state);
 
@@ -36,7 +36,15 @@
 				}));
 			});
 	}
-	async function postcodeTouched(event) {
+	type ValueChangeEvent = {
+		detail: {
+			key: string;
+			value: string;
+			display: string;
+			valid: boolean;
+		};
+	};
+	async function postcodeTouched(event: ValueChangeEvent) {
 		// postcode state was set by base component
 		// update dependent fields here
 		state.set('property', { value: undefined, display: undefined, valid: undefined });
@@ -56,7 +64,7 @@
 			dispatch('addressChange', { key: 'address', value: '', valid: false });
 		}
 	}
-	function propertyTouched(event) {
+	function propertyTouched(event: ValueChangeEvent) {
 		console.debug(
 			`{key: "${event.detail.key}", value: "${event.detail.value}", valid: "${event.detail.valid}}"`
 		);

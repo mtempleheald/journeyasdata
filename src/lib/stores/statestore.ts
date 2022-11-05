@@ -8,15 +8,15 @@
 //             The in-memory values can be considered as the single source of truth under normal use, sessionStorage will clear when the tab is closed.
 //			   This is caused because Page.svelte performs the action which includes a goto and then performs its normal goto (next page based on journey)
 //
-import { writable } from 'svelte/store';
+import { writable, type Writable } from 'svelte/store';
 
-function fromSessionStorage(key: string): object {
+function fromSessionStorage(key: string): StateStoreType {
 	console.debug('Retrieving state from sessionStorage');
 	const sessionValue = sessionStorage.getItem(key);
 	if (!sessionValue) return {};
 	return JSON.parse(sessionValue);
 }
-function toSessionStorage(key: string, value: object): void {
+function toSessionStorage(key: string, value: StateStoreType): void {
 	console.debug('Persisting state to sessionStorage');
 	sessionStorage.setItem(key, JSON.stringify(value));
 }
@@ -28,7 +28,7 @@ function upsert(store: StateStoreType, key: string, state: StateValueType) {
 }
 
 function store() {
-	const { subscribe, set, update } = writable({});
+	const { subscribe, set, update }: Writable<StateStoreType> = writable({});
 
 	return {
 		subscribe,

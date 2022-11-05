@@ -17,7 +17,15 @@
 
 	export let component: ComponentType;
 
-	function componentUpdated(event) {
+	type ValueChangeEvent = {
+		detail: {
+			key: string;
+			value: string;
+			display: string;
+			valid: boolean;
+		};
+	};
+	function componentUpdated(event: ValueChangeEvent) {
 		// Defer all post-interaction logic to bespoke actions with fallback default
 		let f = $actionStore[event.detail.key] ?? $actionStore['component'];
 		if (typeof f === 'function') f(component);
@@ -48,7 +56,9 @@
 				...listComponent,
 				value: $state[listComponent.id]?.value ?? '', // TODO: Verify that this is a valid value in the list of values
 				values: effectiveValues,
-				refdataparent: $state[listComponent.refdataparent]?.value ?? ''
+				refdataparent: listComponent.refdataparent
+					? $state[listComponent.refdataparent]?.value ?? ''
+					: ''
 			};
 		}
 	}
@@ -82,10 +92,15 @@
 				on:valueChange={componentUpdated}
 			>
 				<svelte:fragment slot="pre">
-					{@html markdown(replace_tokens(comp.pre, $state))}
+					{#if comp.pre}
+						{@html markdown(replace_tokens(comp.pre, $state))}
+					{/if}
 				</svelte:fragment>
+
 				<svelte:fragment slot="post">
-					{@html markdown(replace_tokens(comp.post, $state))}
+					{#if comp.post}
+						{@html markdown(replace_tokens(comp.post, $state))}
+					{/if}
 				</svelte:fragment>
 			</svelte:component>
 		{/await}

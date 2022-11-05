@@ -22,7 +22,15 @@
 	// function leave() {
 	// 	active = '';
 	// }
-	async function regUpdated(event) {
+	type ValueChangeEvent = {
+		detail: {
+			key: string;
+			value: string;
+			display: string;
+			valid: boolean;
+		};
+	};
+	async function regUpdated(event: ValueChangeEvent) {
 		if (event.detail.value) {
 			await fetch(`/api/vehicle/${event.detail.value.toUpperCase()}`)
 				.then((resp) => resp.json())
@@ -57,10 +65,14 @@
 		component={{ ...component, type: 'OptionDropdown', value: $state[component.id]?.value ?? '' }}
 	>
 		<svelte:fragment slot="pre">
-			{@html markdown(replace_tokens(component.pre, $state))}
+			{#if component.pre}
+				{@html markdown(replace_tokens(component.pre, $state))}
+			{/if}
 		</svelte:fragment>
 		<svelte:fragment slot="post">
-			{@html markdown(replace_tokens(component.post, $state))}
+			{#if component.post}
+				{@html markdown(replace_tokens(component.post, $state))}
+			{/if}
 		</svelte:fragment>
 	</OptionDropdown>
 
@@ -94,10 +106,14 @@
 		component={{ ...component, type: 'OptionDropdown', value: $state[component.id]?.value ?? '' }}
 	>
 		<svelte:fragment slot="pre">
-			{@html markdown(replace_tokens(component.pre, $state))}
+			{#if component.pre}
+				{@html markdown(replace_tokens(component.pre, $state))}
+			{/if}
 		</svelte:fragment>
 		<svelte:fragment slot="post">
-			{@html markdown(replace_tokens(component.post, $state))}
+			{#if component.post}
+				{@html markdown(replace_tokens(component.post, $state))}
+			{/if}
 		</svelte:fragment>
 	</OptionDropdown>
 </div>

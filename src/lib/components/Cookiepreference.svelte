@@ -16,7 +16,15 @@
 	function leave() {
 		active = '';
 	}
-	function execute_actions(event) {
+	type ValueChangeEvent = {
+		detail: {
+			key: string;
+			value: string;
+			display: string;
+			valid: boolean;
+		};
+	};
+	function execute_actions(event: ValueChangeEvent) {
 		// execute action if applicable
 		let f = $actionStore[event.detail.key];
 		if (typeof f === 'function') f();
@@ -37,10 +45,14 @@
 				on:valueChange={execute_actions}
 			>
 				<svelte:fragment slot="pre">
-					{@html markdown(replace_tokens(cookiepreferences.pre, $state))}
+					{#if cookiepreferences.pre}
+						{@html markdown(replace_tokens(cookiepreferences.pre, $state))}
+					{/if}
 				</svelte:fragment>
 				<svelte:fragment slot="post">
-					{@html markdown(replace_tokens(cookiepreferences.post, $state))}
+					{#if cookiepreferences.post}
+						{@html markdown(replace_tokens(cookiepreferences.post, $state))}
+					{/if}
 				</svelte:fragment>
 			</OptionButtons>
 		{/if}

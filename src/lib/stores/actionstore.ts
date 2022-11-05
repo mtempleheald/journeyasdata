@@ -1,4 +1,5 @@
-import { writable } from 'svelte/store';
+import type { ActionStoreType } from '$lib/types/stores';
+import { writable, type Writable } from 'svelte/store';
 
 /*
     The action store is a Dictionary of key-value pairs (JavaScript object, dict["key"] = "value")
@@ -9,11 +10,11 @@ import { writable } from 'svelte/store';
 */
 
 function store() {
-	const { subscribe, set } = writable({});
+	const { subscribe, set }: Writable<ActionStoreType> = writable({});
 
 	return {
 		subscribe,
-		load: (store: object) => set(store),
+		load: (store: ActionStoreType) => set(store),
 		reset: () => set({})
 	};
 }

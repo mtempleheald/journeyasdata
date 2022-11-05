@@ -18,7 +18,7 @@ test('missing from store returns undefined', () => {
 	expect(validationStoreObject['missingKey']).toBeUndefined();
 });
 
-const emptyStore = {};
+const emptyStore: { [key: string]: any } = {};
 test('empty store key lookup returns undefined', () => {
 	expect(emptyStore['someKey']).toBeUndefined();
 });
@@ -26,5 +26,5 @@ test('empty store key lookup returns undefined', () => {
 // This should never happen because the store is set up as an empty object during initialisation
 const undefinedStore = undefined;
 test('undefined store key lookup crashes out', () => {
-	expect(() => undefinedStore['someKey']).toThrow(Error);
+	expect(() => undefinedStore!['someKey']).toThrow(Error);
 });

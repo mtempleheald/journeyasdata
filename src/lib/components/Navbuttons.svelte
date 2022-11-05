@@ -18,15 +18,11 @@
 		goto(prevPageUrl(journey, pageurl));
 	}
 	function nextPage() {
+		const next_page = journey.pages.find((p) => p.url == pageurl);
 		if (DISABLEVALIDATION == 'Y') {
 			console.debug('Validation disabled, redirecting to next page');
 			goto(nextPageUrl(journey, pageurl));
-		} else if (
-			page_valid(
-				journey.pages.find((p) => p.url == pageurl),
-				$state
-			)
-		) {
+		} else if (next_page && page_valid(next_page, $state)) {
 			console.debug('Page valid, redirecting to next page');
 			goto(nextPageUrl(journey, pageurl));
 		} else {
@@ -36,7 +32,7 @@
 </script>
 
 <nav class="button-navigation">
-	{#if nav?.backlabel?.length > 0}
+	{#if nav?.backlabel?.length ?? 0 > 0}
 		{#if !!pageurl}
 			<button type="button" class="page back" on:click={backPage}>{nav.backlabel ?? 'Back'}</button>
 		{:else if !!sectionid}
@@ -50,7 +46,7 @@
 		{/if}
 	{/if}
 	<span class="spacer" />
-	{#if nav?.nextlabel?.length > 0}
+	{#if nav?.nextlabel?.length ?? 0 > 0}
 		{#if !!pageurl}
 			<button type="button" class="page next" on:click={nextPage}>{nav.nextlabel ?? 'Next'}</button>
 		{:else if !!sectionid}

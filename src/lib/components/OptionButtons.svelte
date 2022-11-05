@@ -34,7 +34,7 @@
 		}
 		// TODO: remove this when state store is in use everywhere (dispatch event should be id only)
 		if (component.value == newValue) {
-			component.value = null; // toggle off
+			component.value = undefined; // toggle off
 		} else {
 			component.value = newValue;
 		}
@@ -48,94 +48,98 @@
 	}
 </script>
 
-<div
-	id={component.id}
-	class="component {active} {!($state[component.id]?.valid ?? true) ? 'invalid' : ''}"
-	on:mouseenter={enter}
-	on:mouseleave={leave}
->
-	<slot name="pre" />
+<template>
+	{#if component.id}
+		<div
+			id={component.id}
+			class="component {active} {!($state[component.id]?.valid ?? true) ? 'invalid' : ''}"
+			on:mouseenter={enter}
+			on:mouseleave={leave}
+		>
+			<slot name="pre" />
 
-	<input
-		type="hidden"
-		id="_{component.id}"
-		bind:value={component.value}
-		required={component.required}
-	/>
-	<div class="container">
-		{#if component.label}
-			<label for="_{component.id}">
-				{component.label}
-				{#if component.required}
-					<span class="required">*</span>
+			<input
+				type="hidden"
+				id="_{component.id}"
+				bind:value={component.value}
+				required={component.required}
+			/>
+			<div class="container">
+				{#if component.label}
+					<label for="_{component.id}">
+						{component.label}
+						{#if component.required}
+							<span class="required">*</span>
+						{/if}
+					</label>
 				{/if}
-			</label>
-		{/if}
 
-		{#if component.id}
-			<span class="buttons">
-				{#each component.values as v}
-					<button
-						type="button"
-						value={v.value}
-						on:click={() => update_state(v.value, v.display)}
-						class={component.value == v.value ? 'active' : ''}
-					>
-						{#if v.textLocation == 'top' && v.display != null}
-							<div class="top">{v.display}</div>
-						{/if}
-
-						<div class="image-container">
-							{#if v.textLocation == 'left' && v.display != null}
-								<span class="left">{v.display}</span>
-							{/if}
-
-							<span
-								class="{v.textLocation == 'right'
-									? 'left'
-									: v.textLocation == 'left'
-									? 'right'
-									: ''};"
+				<span class="buttons">
+					{#if component.values}
+						{#each component.values as v}
+							<button
+								type="button"
+								value={v.value}
+								on:click={() => update_state(v.value, v.display)}
+								class={component.value == v.value ? 'active' : ''}
 							>
-								{v.image != null ? '' : v.display ?? ''}
-								{#if v.image != null}
-									<img
-										src={v.image.url}
-										width={v.image.width}
-										height={v.image.height}
-										class={component.value == v.value ? 'active' : ''}
-										alt={v.display}
-									/>
+								{#if v.textLocation == 'top' && v.display != null}
+									<div class="top">{v.display}</div>
 								{/if}
-							</span>
 
-							{#if v.textLocation == 'right' && v.display != null}
-								<div class="right">{v.display}</div>
-							{/if}
-						</div>
+								<div class="image-container">
+									{#if v.textLocation == 'left' && v.display != null}
+										<span class="left">{v.display}</span>
+									{/if}
 
-						{#if v.textLocation == 'bottom' && v.display != null}
-							<div class="bottom">{v.display}</div>
-						{/if}
-					</button>
-				{/each}
-			</span>
-		{/if}
+									<span
+										class="{v.textLocation == 'right'
+											? 'left'
+											: v.textLocation == 'left'
+											? 'right'
+											: ''};"
+									>
+										{v.image != null ? '' : v.display ?? ''}
+										{#if v.image != null}
+											<img
+												src={v.image.url}
+												width={v.image.width}
+												height={v.image.height}
+												class={component.value == v.value ? 'active' : ''}
+												alt={v.display}
+											/>
+										{/if}
+									</span>
 
-		{#if component.help}
-			<Helptext>
-				<svelte:fragment slot="button">Help</svelte:fragment>
-				{component.help}
-			</Helptext>
-		{/if}
-	</div>
+									{#if v.textLocation == 'right' && v.display != null}
+										<div class="right">{v.display}</div>
+									{/if}
+								</div>
 
-	{#if component.required && component.value == null}
-		<div class="error">{component.errorMessage}</div>
+								{#if v.textLocation == 'bottom' && v.display != null}
+									<div class="bottom">{v.display}</div>
+								{/if}
+							</button>
+						{/each}
+					{/if}
+				</span>
+
+				{#if component.help}
+					<Helptext>
+						<svelte:fragment slot="button">Help</svelte:fragment>
+						{component.help}
+					</Helptext>
+				{/if}
+			</div>
+
+			{#if component.required && component.value == null}
+				<div class="error">{component.errorMessage}</div>
+			{/if}
+
+			<slot name="post" />
+		</div>
 	{/if}
-
-	<slot name="post" />
-</div>
+</template>
 
 <style>
 	.component {
