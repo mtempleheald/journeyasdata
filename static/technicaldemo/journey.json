@@ -171,9 +171,9 @@
 							"id": "purchaseDate",
 							"label": "Enter date",
 							"required": true,
-							"displayFormat": "long",
+							"displayformat": "long",
 							"separator": "/",
-							"resetLabel": "Skip",
+							"resetlabel": "Skip",
 							"errorMessage": "Please enter a valid date",
 							"help": "This example can't be more than 4 years ahead or before 1/1/1970",
 							"validation": {
@@ -186,9 +186,9 @@
 							"id": "purchaseDate2",
 							"label": "Enter future date",
 							"required": true,
-							"displayFormat": "long",
+							"displayformat": "long",
 							"separator": "/",
-							"resetLabel": "Skip",
+							"resetlabel": "Skip",
 							"errorMessage": "Please enter a valid date",
 							"help": "This example can't be in the past, and must be within 7 years from now",
 							"validation": {

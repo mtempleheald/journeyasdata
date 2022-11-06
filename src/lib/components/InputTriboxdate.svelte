@@ -13,95 +13,67 @@
 	let fallbackError = 'Date entered is invalid';
 	let valid: boolean = $state[component.id]?.valid ?? true;
 	let active = '';
-	let dateElem: HTMLInputElement; // TODO: rework this to use the hidden date field and HTML5 validation
 	let yearElem: HTMLInputElement;
 	let monthElem: HTMLInputElement;
 	let dayElem: HTMLInputElement;
-	let yearAttempted = false;
-	let monthAttempted = false;
-	let dayAttempted = false;
 
 	onMount(async () => {
 		if (component.value) {
 			dayElem.value = component.value.substring(8, 10);
 			monthElem.value = component.value.substring(5, 7);
 			yearElem.value = component.value.substring(0, 4);
-			dayAttempted = true;
-			monthAttempted = true;
-			yearAttempted = true;
 			update();
 		}
 	});
 
-	function focus_day (event: FocusEvent) {
+	function focus_day () {
 		dayElem.value = ''
 		monthElem.value = '';
 		yearElem.value = '';
 		valid = true;
 	}
-	function focus_month (event: FocusEvent) {
-		monthElem.value = '';
-		yearElem.value = '';
-	}
-	function focus_year (event: FocusEvent) {
-		yearElem.value = '';
-	}
-
-	function updateDay(event: FocusEvent) {
-		console.log(event)
-		// skip update if reset is clicked
-		if (event.explicitOriginalTarget.parentNode.name != 'reset') {
-			dayAttempted = true;
-			update();
-			if (!dayElem.validity.valid) {
-				setTimeout(function () {
-					dayElem.focus();
-				}, 0);
-			}
+	function leave_day () {
+		if (!dayElem.validity.valid) {
+			setTimeout(function () {
+				dayElem.focus();
+			}, 0);
 		}
 	}
-	function updateMonth(event) {
-		// skip update if reset is clicked or we are going back to day because it is invalid
-		if (event.explicitOriginalTarget.parentNode.name == 'reset' || event.relatedTarget == dayElem)
-			return;
-
-		monthAttempted = true;
-		update();
+	function focus_month () {
+		monthElem.value = '';
+		yearElem.value = '';
+		valid = true;
+	}
+	function leave_month () {
 		if (!monthElem.validity.valid) {
 			setTimeout(function () {
 				monthElem.focus();
 			}, 0);
 		}
 	}
-	function updateYear(event) {
-		// skip update if reset is clicked or we are going back to month because it is invalid
-		if (event.explicitOriginalTarget.parentNode.name == 'reset' || event.relatedTarget == monthElem)
-			return;
-
-		yearAttempted = true;
-		update();
+	function focus_year () {
+		yearElem.value = '';
+		valid = true;
+	}
+	function leave_year () {
 		if (!yearElem.validity.valid) {
 			setTimeout(function () {
 				yearElem.focus();
 			}, 0);
 		}
+		update();
 	}
+
 	function reset() {
 		yearElem.value = '';
 		monthElem.value = '';
 		dayElem.value = '';
-		yearAttempted = false;
-		monthAttempted = false;
-		dayAttempted = false;
 		valid = true;
 		update();
 	}
-	function formatDate() {
-		if (!valid || !yearAttempted) return '';
-
-		const date = new Date(component.value);
-
-		return new Intl.DateTimeFormat([], { dateStyle: component.displayFormat ?? 'short' }).format(
+	function format_date(value: string) {
+		const date = new Date(value);
+		return new Intl.DateTimeFormat([], { dateStyle: component.displayformat ?? 'short' }).format(
 			date
 		);
 	}
@@ -121,12 +93,17 @@
 		const d = dayElem.validity.valid ? dayElem.value : '00';
 		component.value = `${y.padStart(4, '0')}-${m.padStart(2, '0')}-${d.padStart(2, '0')}`;
 
-		// validate that this is an actual date and apply custom validation
-		valid = date_valid(component, component.value);
+		if (!component.required && component.value == '0000-00-00') {
+			valid = true;
+		}
+		else {
+			// validate that this is an actual date and apply custom validation
+			valid = date_valid(component, component.value);
+		}
 
 		state.set(component.id, {
 			value: component.value,
-			display: formatDate(),
+			display: valid ? format_date(component.value) : '',
 			valid: valid
 		});
 
@@ -134,7 +111,7 @@
 		dispatch('dateChange', {
 			key: component.id,
 			value: component.value,
-			displayValue: formatDate(),
+			displayValue: valid ? format_date(component.value) : '',
 			valid: valid
 		});
 	}
@@ -151,12 +128,10 @@
 	<slot name="pre" />
 
 	<div class="container">
-		<!-- Use date field (hidden) to take advantage of browser validator api -->
 		<input
 			type="date"
 			id="_{component.id}"
 			bind:value={component.value}
-			bind:this={dateElem}
 			required={component.required}
 			class="hidden"
 		/>
@@ -180,7 +155,8 @@
 				title="day"
 				min="1"
 				max="31"
-				on:blur={updateDay}
+				on:focus={focus_day}
+				on:blur={leave_day}
 			/>
 			<span>{component.separator ?? ''}</span>
 			<input
@@ -193,7 +169,8 @@
 				title="month"
 				min="1"
 				max="12"
-				on:blur={updateMonth}
+				on:focus={focus_month}
+				on:blur={leave_month}
 			/>
 			<span>{component.separator ?? ''}</span>
 			<input
@@ -206,11 +183,12 @@
 				title="year"
 				min="0"
 				max="9999"
-				on:blur={updateYear}
+				on:focus={focus_year}
+				on:blur={leave_year}
 			/>
 		{/if}
 
-		<button type="button" name="reset" on:click={reset}>{component.resetLabel ?? 'Reset'}</button>
+		<button type="button" name="reset" on:click={reset}>{component.resetlabel ?? 'Reset'}</button>
 
 		{#if component.help}
 			<Helptext>

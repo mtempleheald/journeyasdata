@@ -144,8 +144,8 @@ export interface DisplaySelections extends BaseComponent {
 export interface TriBoxDateComponent extends BaseComponent, BaseInputComponent {
 	type: 'TriBoxDate';
 	separator?: string;
-	resetLabel: string;
-	displayFormat: 'full' | 'long' | 'medium' | 'short';
+	resetlabel: string;
+	displayformat: 'full' | 'long' | 'medium' | 'short';
 	validation?: {
 		min?: string; // DD/MM/YYYY
 		max?: string; // DD/MM/YYYY
