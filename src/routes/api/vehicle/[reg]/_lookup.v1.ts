@@ -18,25 +18,30 @@ export async function lookup(regnum: string) {
 
 	const result: VehicleType[] = await fetch(url, options)
 		.then((res) => res.json())
-		.then((json) =>
-			json && json.IsSuccess
-				? json.ResultObj.map((obj) => {
-						const rObj: VehicleType = {};
-						rObj['abicode'] = obj.AbiCode ?? '';
-						rObj['doors'] = obj.Doors ?? '';
-						rObj['enginecc'] = obj.Engine ?? '';
-						rObj['fueltype'] = obj.Fuel ?? '';
-						rObj['make'] = obj.Make ?? '';
-						rObj['model'] = obj.Model ?? '';
-						rObj['registration'] = regnum ?? '';
-						rObj['seatbelts'] = obj.Seats ?? '';
-						rObj['transmission'] = obj.Transmission ?? '';
-						rObj['year'] = obj.FromToYear?.substring(0, 3);
-						return rObj;
-				  })
-				: []
-		)
-		.catch((error) => console.debug(error));
+		.then((json) => {
+			const values: [{ [key: string]: unknown }] =
+				json && json.IsSuccess ? json.ResultObj ?? [] : [];
+			return (
+				values.map((obj) => {
+					return {
+						abicode: (obj.AbiCode as string) ?? '',
+						doors: (obj.Doors as number) ?? null,
+						enginecc: (obj.Engine as string) ?? '',
+						fueltype: (obj.Fuel as string) ?? '',
+						make: (obj.Make as string) ?? '',
+						model: (obj.Model as string) ?? '',
+						registration: (regnum as string) ?? '',
+						seatbelts: (obj.Seats as number) ?? null,
+						transmission: (obj.Transmission as string) ?? '',
+						year: parseInt((obj.FromToYear as string).substring(0, 3)) ?? null
+					};
+				}) ?? []
+			);
+		})
+		.catch((error) => {
+			console.debug(error);
+			return [];
+		});
 	console.debug(result);
 	return result ? result[0] : {};
 }

@@ -29,3 +29,4 @@ Object.defineProperty(String.prototype, 'toHtml', {
 	}
 });
 */
+export {};

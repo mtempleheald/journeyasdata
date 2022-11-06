@@ -8,20 +8,24 @@ import type { ComponentType, RepeatingGroupType, SectionType } from '$lib/types/
 export function to_section_list(rg: RepeatingGroupType): SectionType[] {
 	const sections: SectionType[] = [];
 
-	for (let i = 1; i <= rg.maxrepeats; i++) {
-		rg.sections.forEach((s) => {
-			const components: ComponentType[] = s.components.map((c) => {
-				return {
-					...c,
-					id: c.id ? `${c.id}.${i}` : undefined
-				};
+	if (rg && rg.maxrepeats) {
+		for (let i = 1; i <= rg.maxrepeats; i++) {
+			rg.sections.forEach((s) => {
+				const components: ComponentType[] = s.components.map((c) => {
+					return c.id
+						? {
+								...c,
+								id: `${c.id}.${i}`
+						  }
+						: c;
+				});
+				sections.push({
+					...s,
+					instanceid: i,
+					components: components
+				});
 			});
-			sections.push({
-				...s,
-				instanceid: i,
-				components: components
-			});
-		});
+		}
 	}
 	return sections;
 }

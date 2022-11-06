@@ -1,4 +1,4 @@
-import type { PageType } from './journey';
+import type { ComponentType, PageType } from './journey';
 
 export type StateValueType = {
 	value: string | undefined;
@@ -9,6 +9,7 @@ export type StateStoreType = { [key: string]: StateValueType };
 
 type ParameterlessAction = () => void;
 type PageParameterisedAction = (page: PageType) => void;
+type ComponentParameterisedAction = (component: ComponentType) => void;
 export type ActionStoreType = {
-	[key: string]: ParameterlessAction | PageParameterisedAction;
+	[key: string]: ParameterlessAction | PageParameterisedAction | ComponentParameterisedAction;
 };

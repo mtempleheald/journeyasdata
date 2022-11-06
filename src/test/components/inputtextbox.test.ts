@@ -36,7 +36,7 @@ describe('Textbox component', () => {
 			placeholder: 'My placeholder'
 		};
 		const { getByPlaceholderText } = render(InputTextbox, { component: component });
-		expect(getByPlaceholderText(component.placeholder)).toBeInTheDocument();
+		expect(getByPlaceholderText(component.placeholder!)).toBeInTheDocument();
 	});
 
 	it('renders required if required', () => {

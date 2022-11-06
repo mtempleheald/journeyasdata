@@ -14,21 +14,15 @@
 	import OptionDropdown from '$lib/components/OptionDropdown.svelte';
 	import InputTriboxdate from '$lib/components/InputTriboxdate.svelte';
 	import Vehicle from '$lib/components/Vehicle.svelte';
+	import type { ValueChangeEvent } from '$lib/types/events';
+	import type { ComponentParameterisedAction } from '$lib/types/stores';
 
 	export let component: ComponentType;
 
-	type ValueChangeEvent = {
-		detail: {
-			key: string;
-			value: string;
-			display: string;
-			valid: boolean;
-		};
-	};
 	function componentUpdated(event: ValueChangeEvent) {
 		// Defer all post-interaction logic to bespoke actions with fallback default
 		let f = $actionStore[event.detail.key] ?? $actionStore['component'];
-		if (typeof f === 'function') f(component);
+		if (typeof f === 'function') (f as ComponentParameterisedAction)(component);
 	}
 
 	async function toListComponent(component: ComponentType): Promise<OptionComponent> {
@@ -65,20 +59,26 @@
 </script>
 
 {#if !component.dependsupon || $state[component.dependsupon.id]?.value == component.dependsupon.value}
-	{#if ['Colour', 'Date', 'Datetime', 'Email', 'Month', 'Number', 'Range', 'Search', 'Telephone', 'Text', 'Time', 'Upper', 'Url', 'Week', 'Year'].includes(component.type)}
+	<!-- {#if ['Colour', 'Date', 'Datetime', 'Email', 'Month', 'Number', 'Range', 'Search', 'Telephone', 'Text', 'Time', 'Upper', 'Url', 'Week', 'Year'].includes(component.type)} -->
+	{#if component.type == 'Colour' || component.type == 'Date' || component.type == 'Datetime' || component.type == 'Email' || component.type == 'Month' || component.type == 'Number' || component.type == 'Range' || component.type == 'Search' || component.type == 'Telephone' || component.type == 'Text' || component.type == 'Time' || component.type == 'Upper' || component.type == 'Url' || component.type == 'Week' || component.type == 'Year'}
 		<svelte:component
 			this={InputTextbox}
 			component={{ ...component, value: $state[component.id]?.value ?? '' }}
 			on:valueChange={componentUpdated}
 		>
 			<svelte:fragment slot="pre">
-				{@html markdown(replace_tokens(component.pre, $state))}
+				{#if component.pre}
+					{@html markdown(replace_tokens(component.pre, $state))}
+				{/if}
 			</svelte:fragment>
 			<svelte:fragment slot="post">
-				{@html markdown(replace_tokens(component.post, $state))}
+				{#if component.post}
+					{@html markdown(replace_tokens(component.post, $state))}
+				{/if}
 			</svelte:fragment>
 		</svelte:component>
-	{:else if ['OptionButtons', 'OptionDropdown', 'YesNo'].includes(component.type)}
+		<!-- {:else if ['OptionButtons', 'OptionDropdown', 'YesNo'].includes(component.type)} -->
+	{:else if component.type == 'OptionButtons' || component.type == 'OptionDropdown' || component.type == 'YesNo'}
 		{#await toListComponent(component)}
 			<!-- looking up refdata (maybe) -->
 		{:then comp}
@@ -118,25 +118,35 @@
 			}}
 		>
 			<svelte:fragment slot="pre">
-				{@html markdown(replace_tokens(component.pre, $state))}
+				{#if component.pre}
+					{@html markdown(replace_tokens(component.pre, $state))}
+				{/if}
 			</svelte:fragment>
 			<!-- <svelte:fragment slot="main">
     {@html markdown(replace_tokens(comp.content, $state))}
   </svelte:fragment> -->
 			<svelte:fragment slot="post">
-				{@html markdown(replace_tokens(component.post, $state))}
+				{#if component.post}
+					{@html markdown(replace_tokens(component.post, $state))}
+				{/if}
 			</svelte:fragment>
 		</svelte:component>
 	{:else if component.type == 'Displayselections'}
 		<DisplaySelections {component}>
 			<svelte:fragment slot="pre">
-				{@html markdown(replace_tokens(component.pre, $state))}
+				{#if component.pre}
+					{@html markdown(replace_tokens(component.pre, $state))}
+				{/if}
 			</svelte:fragment>
 			<svelte:fragment slot="main">
-				{@html markdown(replace_tokens(component.content, $state))}
+				{#if component.content}
+					{@html markdown(replace_tokens(component.content, $state))}
+				{/if}
 			</svelte:fragment>
 			<svelte:fragment slot="post">
-				{@html markdown(replace_tokens(component.post, $state))}
+				{#if component.post}
+					{@html markdown(replace_tokens(component.post, $state))}
+				{/if}
 			</svelte:fragment>
 		</DisplaySelections>
 	{:else if component.type == 'Address'}

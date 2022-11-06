@@ -32,7 +32,7 @@
 	// add is simple - just grab the next id
 	function add() {
 		currentInstance = totalInstances + 1;
-		state.set(repeatinggroup.id!, {
+		state.set(repeatinggroup.id, {
 			value: JSON.stringify(currentInstance),
 			display: undefined,
 			valid: undefined
@@ -48,22 +48,22 @@
 	// if latest instance, just delete from value/displayValue/validation store and return to summary view
 	// if not, we need to rejig all the store values to avoid sparse population, 2 becomes 1, 3 becomes 2 etc
 	function remove(instanceid: number) {
-		for (var i = instanceid; i <= repeatinggroup.maxrepeats!; i++) {
+		for (var i = instanceid; i <= repeatinggroup.maxrepeats; i++) {
 			repeatinggroup.sections.forEach((s) =>
-				s.components
-					.filter((c) => !!c.id)
-					.forEach((c) => {
+				s.components.forEach((c) => {
+					if (c.id) {
 						const x = $state[`${c.id}.${i + 1}`];
 						state.set(`${c.id}.${i}`, {
 							value: x?.value,
 							display: x?.display,
 							valid: x?.valid
 						});
-					})
+					}
+				})
 			);
 		}
 		currentInstance = 0;
-		state.set(repeatinggroup.id!, {
+		state.set(repeatinggroup.id, {
 			value: JSON.stringify(totalInstances - 1),
 			display: undefined,
 			valid: undefined
@@ -71,48 +71,54 @@
 	}
 </script>
 
-<section class="repeat-summary">
-	{#if currentInstance == 0}
-		{#each Array(totalInstances) as _, idx}
-			<DisplayBlock
-				component={{
-					...repeatinggroup,
-					type: 'Displayblock',
-					content: Array.isArray(repeatinggroup.summarycontent)
-						? repeatinggroup.summarycontent.map((c) =>
-								markdown(replace_tokens(updateSummaryInstance(c, idx + 1), $state))
-						  )
-						: markdown(
-								replace_tokens(
-									updateSummaryInstance(repeatinggroup.summarycontent, idx + 1),
-									$state
-								)
-						  )
-				}}
-			>
-				<svelte:fragment slot="post">
-					<button type="button" on:click={() => edit(idx + 1)}>{repeatinggroup.labeledit}</button>
-					<button type="button" on:click={() => remove(idx + 1)}
-						>{repeatinggroup.labelremove}</button
+<template>
+	{#if repeatinggroup.id}
+		<section class="repeat-summary">
+			{#if currentInstance == 0}
+				{#each Array(totalInstances) as _, idx}
+					<DisplayBlock
+						component={{
+							...repeatinggroup,
+							type: 'Displayblock',
+							content: Array.isArray(repeatinggroup.summarycontent)
+								? repeatinggroup.summarycontent.map((c) =>
+										markdown(replace_tokens(updateSummaryInstance(c, idx + 1), $state))
+								  )
+								: markdown(
+										replace_tokens(
+											updateSummaryInstance(repeatinggroup.summarycontent, idx + 1),
+											$state
+										)
+								  )
+						}}
 					>
-				</svelte:fragment>
-			</DisplayBlock>
-		{/each}
+						<svelte:fragment slot="post">
+							<button type="button" on:click={() => edit(idx + 1)}
+								>{repeatinggroup.labeledit}</button
+							>
+							<button type="button" on:click={() => remove(idx + 1)}
+								>{repeatinggroup.labelremove}</button
+							>
+						</svelte:fragment>
+					</DisplayBlock>
+				{/each}
 
-		{#if totalInstances < (repeatinggroup.maxrepeats ?? 0)}
-			<button type="button" on:click={add}>{repeatinggroup.labeladd}</button>
+				{#if totalInstances < (repeatinggroup.maxrepeats ?? 0)}
+					<button type="button" on:click={add}>{repeatinggroup.labeladd}</button>
+				{/if}
+			{/if}
+		</section>
+
+		{#each sections as s}
+			{#if s.instanceid == currentInstance}
+				<Section section={s} />
+			{/if}
+		{/each}
+		{#if currentInstance > 0}
+			<button type="button" on:click={save}>Save</button>
 		{/if}
 	{/if}
-</section>
-
-{#each sections as s}
-	{#if s.instanceid == currentInstance}
-		<Section section={s} />
-	{/if}
-{/each}
-{#if currentInstance > 0}
-	<button type="button" on:click={save}>Save</button>
-{/if}
+</template>
 
 <style>
 	section {

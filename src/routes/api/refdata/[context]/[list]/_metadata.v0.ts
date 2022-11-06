@@ -29,17 +29,19 @@ export async function getMetadata(context: string, list: string) {
 
 	const result: ValueType[] = await fetch(url, options)
 		.then((res) => res.json())
-		.then((json) =>
-			json
-				? json.ResultObj[0].Values.map((obj) => {
-						const rObj = {};
-						rObj['value'] = obj.Value;
-						rObj['display'] = obj.Name;
-						return rObj;
-				  })
-				: []
-		)
-		.catch((error) => console.debug(error));
+		.then((json) => {
+			const values: [{ Value: string; Name: string }] = json ? json.ResultObj[0]?.Values ?? [] : [];
+			return values.map((obj) => {
+				return {
+					value: obj.Value,
+					display: obj.Name
+				};
+			});
+		})
+		.catch((error) => {
+			console.debug(error);
+			return [];
+		});
 
 	return result;
 }

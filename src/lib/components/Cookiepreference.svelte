@@ -5,6 +5,7 @@
 	import { replace_tokens } from '$lib/utils/replacetokens';
 	import markdown from '$lib/utils/markdown';
 	import OptionButtons from '$lib/components/OptionButtons.svelte';
+	import type { ValueChangeEvent } from '$lib/types/events';
 
 	export let cookiepreferences: CookiePreferenceType;
 
@@ -16,14 +17,7 @@
 	function leave() {
 		active = '';
 	}
-	type ValueChangeEvent = {
-		detail: {
-			key: string;
-			value: string;
-			display: string;
-			valid: boolean;
-		};
-	};
+
 	function execute_actions(event: ValueChangeEvent) {
 		// execute action if applicable
 		let f = $actionStore[event.detail.key];

@@ -9,24 +9,25 @@
 	import Repeatinggroup from '$lib/components/Framework/Repeatinggroup.svelte';
 	import Section from '$lib/components/Framework/Section.svelte';
 	import { journey } from '$lib/stores/journeystore';
+	import type { PageParameterisedAction, ParameterlessAction } from '$lib/types/stores';
 
 	export let page: PageType;
 
 	onMount(async () => {
 		// run bespoke action tied to page load, but not during SSR
 		let f = $actionStore[`pageload_${page.id}`];
-		if (typeof f === 'function') f();
+		if (typeof f === 'function') (f as ParameterlessAction)();
 	});
 
 	function backPage() {
 		// Defer all page navigation logic to bespoke actions with a fallback default, for maximum flexibility
 		let f = $actionStore[`pageback_${page.id}`] ?? $actionStore['pageback'];
-		if (typeof f === 'function') f(page);
+		if (typeof f === 'function') (f as PageParameterisedAction)(page);
 	}
 	function nextPage() {
 		// Defer all page navigation logic to bespoke actions with a fallback default, for maximum flexibility
 		let f = $actionStore[`pagenext_${page.url}`] ?? $actionStore['pagenext'];
-		if (typeof f === 'function') f(page);
+		if (typeof f === 'function') (f as PageParameterisedAction)(page);
 	}
 </script>
 

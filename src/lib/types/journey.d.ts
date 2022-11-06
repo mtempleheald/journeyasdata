@@ -24,11 +24,11 @@ export type PageType = {
 // A repeating group has no presentation elements of its own, it simply wraps one or more sections
 export type RepeatingGroupType = {
 	type: 'repeatinggroup';
-	id?: string; // used for triggering bespoke actions
+	id: string; // used for triggering bespoke actions
 	sections: SectionType[];
 	summarycontent: string | string[];
 	minrepeats?: number;
-	maxrepeats?: number;
+	maxrepeats: number;
 	labeladd?: string;
 	labeledit?: string;
 	labelremove?: string;
@@ -63,17 +63,18 @@ export type ValueType = {
 
 // Use "type" property to select from this discriminated union
 export type ComponentType =
-	| Unknown // Used by admin pages when prototyping
 	| AddressComponent
 	| DisplayComponent
 	| DisplaySelections
 	| InputComponent
 	| OptionComponent
 	| TriBoxDateComponent
-	| VehicleComponent;
+	| VehicleComponent
+	| UnknownComponent;
 
 // Every component must have a type or we have no way to render it
 interface BaseComponent {
+	type: string;
 	pre?: string;
 	post?: string;
 	dependsupon?: {
@@ -81,9 +82,17 @@ interface BaseComponent {
 		value: string;
 	};
 }
-
-// Input components must have an identity for their value to be useful
-export interface InputComponent extends BaseComponent {
+// Every input must have an id and a label for integration and accessibility respectively
+interface BaseInputComponent extends BaseComponent {
+	id: string; // id must not contain a . (full stop) - this is reserved for components within repeating groups
+	label?: string;
+	required?: boolean;
+	placeholder?: string;
+	value?: string; // TODO: Consider renaming to defaultvalue
+	errorMessage?: string;
+	help?: string;
+}
+export interface InputComponent extends BaseComponent, BaseInputComponent {
 	type:
 		| 'Colour'
 		| 'Date'
@@ -100,31 +109,9 @@ export interface InputComponent extends BaseComponent {
 		| 'Url'
 		| 'Week'
 		| 'Year';
-	id: string; // id must not contain a . (full stop) - this is reserved for components within repeating groups
-	label?: string;
-	required?: boolean;
-	placeholder?: string;
-	value?: string;
-	errorMessage?: string;
-	help?: string;
-}
-// Composite component, an alternative to "Date"
-export interface TriBoxDateComponent extends BaseComponent, InputComponent {
-	type: 'TriBoxDate';
-	separator?: string;
-	resetLabel: string;
-	displayFormat: 'full' | 'long' | 'medium' | 'short';
-	validation?: {
-		min?: string; // YYYY-MM-DD
-		max?: string; // YYYY-MM-DD
-		minyearsago?: number;
-		maxyearsago?: number;
-		minyearsahead?: number;
-		maxyearsahead?: number;
-	};
 }
 // Option components require a source list of options to render, which may cascade hierarchically
-export interface OptionComponent extends BaseComponent, InputComponent {
+export interface OptionComponent extends BaseComponent, BaseInputComponent {
 	type: 'OptionButtons' | 'OptionDropdown' | 'YesNo';
 	values?: ValueType[];
 	refdata?: string;
@@ -153,6 +140,21 @@ export interface DisplaySelections extends BaseComponent {
 	}[];
 }
 
+// Composite component, an alternative to "Date"
+export interface TriBoxDateComponent extends BaseComponent, BaseInputComponent {
+	type: 'TriBoxDate';
+	separator?: string;
+	resetLabel: string;
+	displayFormat: 'full' | 'long' | 'medium' | 'short';
+	validation?: {
+		min?: string; // YYYY-MM-DD
+		max?: string; // YYYY-MM-DD
+		minyearsago?: number;
+		maxyearsago?: number;
+		minyearsahead?: number;
+		maxyearsahead?: number;
+	};
+}
 // TODO: Consider icons/fonts vs images - images are content, but icons are styling and don't belong in journey
 type ImageType = {
 	url: string;
@@ -162,7 +164,7 @@ type ImageType = {
 };
 
 // TODO: Consider removing Address composite component in favour of action provider solution
-export interface AddressComponent extends BaseComponent, InputComponent {
+export interface AddressComponent extends BaseComponent, BaseInputComponent {
 	type: 'Address';
 	postcodeLabel?: string;
 	postcodePlaceholder?: string;
@@ -172,9 +174,13 @@ export interface AddressComponent extends BaseComponent, InputComponent {
 	postcodeError?: string;
 }
 // TODO: Consider removing Vehicle composite component in favour of action provider solution
-export interface VehicleComponent extends BaseComponent, InputComponent {
+export interface VehicleComponent extends BaseComponent, BaseInputComponent {
 	type: 'Vehicle';
 	regnumLabel?: string;
 	regnumPlaceholder?: string;
 	buttonLabel?: string;
+}
+export interface UnknownComponent extends BaseComponent {
+	type: 'unknown';
+	id?: string;
 }

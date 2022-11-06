@@ -1,9 +1,12 @@
-// GET: /api/addresses/[postcode]
-import { json as jsonResponse } from '@sveltejs/kit';
+import { json as jsonResponse, type RequestHandler } from '@sveltejs/kit';
 
-/** @type {import('@sveltejs/kit').RequestHandler} */
-export async function GET({ params }) {
+// GET: /api/addresses/[postcode]
+export const GET: RequestHandler = async ({ params }) => {
 	const postcode = params.postcode;
+
+	if (!postcode) {
+		return jsonResponse([]);
+	}
 
 	// TODO: call actual API using https://www.npmjs.com/package/node-fetch
 
@@ -42,4 +45,4 @@ export async function GET({ params }) {
 		}
 	];
 	return jsonResponse(resp);
-}
+};

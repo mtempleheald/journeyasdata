@@ -5,7 +5,7 @@ import { PAYMENTGATEWAYURL } from '$lib/env';
 
 export const actions = {
 	simpleimagebutton: function () {
-		let s: object;
+		let s: StateStoreType = {};
 		const valueUnsubscriber = state.subscribe((x) => (s = x));
 		console.debug(
 			`Simple Image Button action was triggered with value ${s['simpleimagebutton']?.value}`
@@ -19,8 +19,8 @@ export const actions = {
 
 async function lookup_vehicle() {
 	console.debug('lookupVehicle()');
-	let s: StateStoreType;
-	let vehicle: VehicleType;
+	let s: StateStoreType = {};
+	let vehicle: VehicleType = {};
 	const unsubscriber = state.subscribe((value) => (s = value));
 
 	if (s['vehicleregnum']?.value) {
@@ -43,13 +43,13 @@ async function lookup_vehicle() {
 			valid: true
 		});
 		state.set('vehiclefuel', {
-			value: mapFuel[vehicle.fueltype] ?? '',
-			display: mapFuel[vehicle.fueltype] ?? '',
+			value: vehicle.fueltype ? mapFuel[vehicle.fueltype] ?? '' : '',
+			display: vehicle.fueltype ? mapFuel[vehicle.fueltype] ?? '' : '',
 			valid: true
 		});
 		state.set('vehicletransmission', {
-			value: mapTransmission[vehicle.transmission] ?? '',
-			display: mapTransmission[vehicle.transmission] ?? '',
+			value: vehicle.transmission ? mapTransmission[vehicle.transmission] ?? '' : '',
+			display: vehicle.transmission ? mapTransmission[vehicle.transmission] ?? '' : '',
 			valid: true
 		});
 		state.set('vehicledoorcount', {
@@ -75,12 +75,12 @@ async function lookup_vehicle() {
 	// avoid memory leaks
 	unsubscriber();
 }
-const mapFuel = {
+const mapFuel: { [key: string]: string } = {
 	D: 'FuelDiesel',
 	P: 'FuelPetrol',
 	E: 'FuelElec'
 };
-const mapTransmission = {
+const mapTransmission: { [key: string]: string } = {
 	M: 'TransMan',
 	A: 'TransAuto'
 };

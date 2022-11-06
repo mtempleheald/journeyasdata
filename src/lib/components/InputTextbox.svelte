@@ -42,18 +42,19 @@
 	function leave() {
 		active = '';
 	}
-	function act(event) {
+	function act(event: Event) {
+		const elem = <HTMLSelectElement>event.target;
 		state.set(component.id, {
-			value: event.target.value,
-			display: component.type == 'Upper' ? event.target.value.toUpperCase() : event.target.value,
-			valid: event.target.validity.valid
+			value: elem.value,
+			display: component.type == 'Upper' ? elem.value.toUpperCase() : elem.value,
+			valid: elem.validity.valid
 		});
-		fallbackError = event.target.validity.valid ? '' : event.target.validationMessage;
+		fallbackError = elem.validity.valid ? '' : elem.validationMessage;
 		// publish changes up to parent, for any additional actions
 		dispatch('valueChange', {
 			key: component.id,
-			value: event.target.value,
-			valid: event.target.validity.valid
+			value: elem.value,
+			valid: elem.validity.valid
 		});
 	}
 	function focus() {

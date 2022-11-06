@@ -6,6 +6,7 @@
 	import { state } from '$lib/stores/statestore';
 	import InputTextbox from '$lib/components/InputTextbox.svelte';
 	import OptionDropdown from '$lib/components/OptionDropdown.svelte';
+	import type { ValueChangeEvent } from '$lib/types/events';
 
 	// expose component properties
 	export let component: AddressComponent;
@@ -36,14 +37,6 @@
 				}));
 			});
 	}
-	type ValueChangeEvent = {
-		detail: {
-			key: string;
-			value: string;
-			display: string;
-			valid: boolean;
-		};
-	};
 	async function postcodeTouched(event: ValueChangeEvent) {
 		// postcode state was set by base component
 		// update dependent fields here
@@ -56,7 +49,7 @@
 		propertyLov = [];
 		address = null;
 
-		if (event.detail.valid) {
+		if (event.detail.valid && $state['postcode']?.value) {
 			// if the postcode is valid, proceed to call the API
 			await lookupAddresses($state['postcode']?.value);
 		} else {

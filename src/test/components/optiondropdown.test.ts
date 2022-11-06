@@ -40,7 +40,7 @@ describe('Textbox component', () => {
 			]
 		};
 		const { getAllByRole } = render(OptionDropdown, { component: component });
-		expect(getAllByRole('option')).toHaveLength(component.values.length + 1);
+		expect(getAllByRole('option')).toHaveLength((component.values?.length ?? 0) + 1);
 	});
 
 	it('renders a single default option if values not provided', () => {

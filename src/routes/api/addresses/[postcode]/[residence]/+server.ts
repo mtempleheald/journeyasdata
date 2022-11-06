@@ -1,13 +1,14 @@
-import { json as jsonResponse } from '@sveltejs/kit';
-// GET: /api/address/[postcode]/[residence]
+import { json as jsonResponse, type RequestHandler } from '@sveltejs/kit';
 import type { AddressType } from '$lib/types/address';
 
-/**
- * @type {import('@sveltejs/kit').RequestHandler}
- */
-export async function GET({ params }) {
+// GET: /api/address/[postcode]/[residence]
+export const GET: RequestHandler = async ({ params }) => {
 	const postcode = params.postcode;
 	const house = params.residence;
+
+	if (!postcode || !house) {
+		return jsonResponse({});
+	}
 
 	const result: AddressType = {
 		postcode: postcode,
@@ -19,4 +20,4 @@ export async function GET({ params }) {
 	};
 
 	return jsonResponse(result);
-}
+};

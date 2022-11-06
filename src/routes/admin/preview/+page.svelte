@@ -13,7 +13,7 @@
 
 	let theme = 'technicaldemo';
 	let component: ComponentType = {
-		type: 'Unknown',
+		type: 'unknown',
 		id: 'default-id',
 		values: [
 			{ value: 'one', display: 'one' },
@@ -203,16 +203,22 @@
 	<h2>Preview</h2>
 
 	{#key component}
-		{#if ['Colour', 'Date', 'Datetime', 'Email', 'Month', 'Number', 'Range', 'Search', 'Telephone', 'Text', 'Time', 'Upper', 'Url', 'Week', 'Year'].includes(component.type)}
+		<!-- {#if ['Colour', 'Date', 'Datetime', 'Email', 'Month', 'Number', 'Range', 'Search', 'Telephone', 'Text', 'Time', 'Upper', 'Url', 'Week', 'Year'].includes(component.type)} -->
+		{#if component.type == 'Colour' || component.type == 'Date' || component.type == 'Datetime' || component.type == 'Email' || component.type == 'Month' || component.type == 'Number' || component.type == 'Range' || component.type == 'Search' || component.type == 'Telephone' || component.type == 'Text' || component.type == 'Time' || component.type == 'Upper' || component.type == 'Url' || component.type == 'Week' || component.type == 'Year'}
 			<svelte:component this={InputTextbox} {component}>
 				<svelte:fragment slot="pre">
-					{@html markdown(component.pre)}
+					{#if component.pre}
+						{@html markdown(component.pre)}
+					{/if}
 				</svelte:fragment>
 				<svelte:fragment slot="post">
-					{@html markdown(component.post)}
+					{#if component.post}
+						{@html markdown(component.post)}
+					{/if}
 				</svelte:fragment>
 			</svelte:component>
-		{:else if ['OptionButtons', 'OptionDropdown', 'YesNo'].includes(component.type)}
+			<!-- {:else if ['OptionButtons', 'OptionDropdown', 'YesNo'].includes(component.type)} -->
+		{:else if component.type == 'OptionButtons' || component.type == 'OptionDropdown' || component.type == 'YesNo'}
 			<svelte:component
 				this={{
 					OptionButtons: OptionButtons,
@@ -222,10 +228,14 @@
 				{component}
 			>
 				<svelte:fragment slot="pre">
-					{@html markdown(component.pre)}
+					{#if component.pre}
+						{@html markdown(component.pre)}
+					{/if}
 				</svelte:fragment>
 				<svelte:fragment slot="post">
-					{@html markdown(component.post)}
+					{#if component.post}
+						{@html markdown(component.post)}
+					{/if}
 				</svelte:fragment>
 			</svelte:component>
 		{:else if component.type == 'Displayblock' || component.type == 'Displaymodal'}
@@ -242,22 +252,32 @@
 				}}
 			>
 				<svelte:fragment slot="pre">
-					{@html markdown(component.pre)}
+					{#if component.pre}
+						{@html markdown(component.pre)}
+					{/if}
 				</svelte:fragment>
 				<svelte:fragment slot="post">
-					{@html markdown(component.post)}
+					{#if component.post}
+						{@html markdown(component.post)}
+					{/if}
 				</svelte:fragment>
 			</svelte:component>
 		{:else if component.type == 'Displayselections'}
 			<DisplaySelections {component}>
 				<svelte:fragment slot="pre">
-					{@html markdown(component.pre)}
+					{#if component.pre}
+						{@html markdown(component.pre)}
+					{/if}
 				</svelte:fragment>
 				<svelte:fragment slot="main">
-					{@html markdown(component.content)}
+					{#if component.content}
+						{@html markdown(component.content)}
+					{/if}
 				</svelte:fragment>
 				<svelte:fragment slot="post">
-					{@html markdown(component.post)}
+					{#if component.post}
+						{@html markdown(component.post)}
+					{/if}
 				</svelte:fragment>
 			</DisplaySelections>
 		{:else if component.type == 'Address'}

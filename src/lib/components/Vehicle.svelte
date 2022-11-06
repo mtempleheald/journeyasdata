@@ -7,6 +7,7 @@
 	import markdown from '$lib/utils/markdown';
 	import InputTextbox from '$lib/components/InputTextbox.svelte';
 	import OptionDropdown from '$lib/components/OptionDropdown.svelte';
+	import type { ValueChangeEvent } from '$lib/types/events';
 
 	// expose component properties
 	export let component: VehicleComponent;
@@ -22,14 +23,7 @@
 	// function leave() {
 	// 	active = '';
 	// }
-	type ValueChangeEvent = {
-		detail: {
-			key: string;
-			value: string;
-			display: string;
-			valid: boolean;
-		};
-	};
+
 	async function regUpdated(event: ValueChangeEvent) {
 		if (event.detail.value) {
 			await fetch(`/api/vehicle/${event.detail.value.toUpperCase()}`)
