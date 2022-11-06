@@ -133,7 +133,7 @@
 			</div>
 
 			{#if component.required && component.value == null}
-				<div class="error">{component.errorMessage}</div>
+				<div class="error">{component.error}</div>
 			{/if}
 
 			<slot name="post" />

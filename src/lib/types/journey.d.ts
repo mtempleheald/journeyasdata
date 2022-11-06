@@ -89,7 +89,7 @@ interface BaseInputComponent extends BaseComponent {
 	required?: boolean;
 	placeholder?: string;
 	value?: string; // TODO: Consider renaming to defaultvalue
-	errorMessage?: string;
+	error?: string;
 	help?: string;
 }
 export interface InputComponent extends BaseComponent, BaseInputComponent {

@@ -104,7 +104,7 @@
 	</div>
 
 	{#if !valid}
-		<div class="error">{component.errorMessage ?? fallbackError}</div>
+		<div class="error">{component.error ?? fallbackError}</div>
 	{/if}
 
 	<slot name="post" />

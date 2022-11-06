@@ -25,7 +25,7 @@ export function date_valid(component: TriBoxDateComponent, value: string): boole
 
 	// Date must be after the minimum date specified
 	const miniso = convert_uk_to_iso(component.validation?.min ?? '');
-    if (miniso) {
+	if (miniso) {
 		const min = new Date(miniso);
 		if (isNaN(min.valueOf())) {
 			//console.debug('Cannot validate against min metadata');
@@ -51,24 +51,30 @@ export function date_valid(component: TriBoxDateComponent, value: string): boole
 	now.setUTCHours(0, 0, 0);
 
 	// Dynamic date comparisons (beware of 0 when using ? operator)
-    if (component.validation?.maxyearsago !== undefined || component.validation?.minyearsahead !== undefined) {
-        const min_dyn = new Date(now);
-        if (component.validation?.maxyearsago !== undefined) {
-            min_dyn.setUTCFullYear(now.getUTCFullYear() - component.validation?.maxyearsago);
-        } else if (component.validation?.minyearsahead !== undefined) {
-            min_dyn.setUTCFullYear(now.getUTCFullYear() + component.validation?.minyearsahead);
-        }
-        if (date.valueOf() < min_dyn.valueOf()) {
-            //console.debug('Date earlier than allowed (dynamic)', min_dyn);
-            return false;
-        }
-    }
+	if (
+		component.validation?.maxyearsago !== undefined ||
+		component.validation?.minyearsahead !== undefined
+	) {
+		const min_dyn = new Date(now);
+		if (component.validation?.maxyearsago !== undefined) {
+			min_dyn.setUTCFullYear(now.getUTCFullYear() - component.validation?.maxyearsago);
+		} else if (component.validation?.minyearsahead !== undefined) {
+			min_dyn.setUTCFullYear(now.getUTCFullYear() + component.validation?.minyearsahead);
+		}
+		if (date.valueOf() < min_dyn.valueOf()) {
+			//console.debug('Date earlier than allowed (dynamic)', min_dyn);
+			return false;
+		}
+	}
 
-	if (component.validation?.maxyearsahead !== undefined || component.validation?.minyearsago !== undefined) {
+	if (
+		component.validation?.maxyearsahead !== undefined ||
+		component.validation?.minyearsago !== undefined
+	) {
 		const max_dyn = new Date(now);
 		if (component.validation?.maxyearsahead !== undefined) {
 			max_dyn.setUTCFullYear(now.getUTCFullYear() + component.validation?.maxyearsahead);
-        } else if (component.validation?.minyearsago !== undefined) {
+		} else if (component.validation?.minyearsago !== undefined) {
 			max_dyn.setUTCFullYear(now.getUTCFullYear() - component.validation?.minyearsago);
 		}
 		if (date.valueOf() > max_dyn.valueOf()) {

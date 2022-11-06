@@ -48,7 +48,7 @@
 			placeholder: component.regnumPlaceholder,
 			help: 'help us to help you',
 			required: true,
-			errorMessage: component.errorMessage
+			error: component.error
 		}}
 		on:valueChange={regUpdated}
 	/>

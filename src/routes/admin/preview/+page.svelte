@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { ComponentType } from '$lib/types/journey';
+	import type { BaseInputComponent, ComponentType, OptionComponent } from '$lib/types/journey';
 	import Address from '$lib/components/Address.svelte';
 	import DisplayBlock from '$lib/components/DisplayBlock.svelte';
 	import DisplayModal from '$lib/components/DisplayModal.svelte';
@@ -21,6 +21,33 @@
 			{ value: 'three', display: 'three' }
 		]
 	};
+
+	function update_label(value: string | undefined) {
+		(component as BaseInputComponent).label = value;
+	}
+	function update_placeholder(value: string | undefined) {
+		(component as BaseInputComponent).placeholder = value;
+	}
+	function update_value(value: string | undefined) {
+		(component as BaseInputComponent).value = value;
+	}
+	function update_error(value: string | undefined) {
+		(component as BaseInputComponent).error = value;
+	}
+	function update_help(value: string | undefined) {
+		(component as BaseInputComponent).help = value;
+	}
+	function update_required(value: boolean) {
+		(component as BaseInputComponent).required = value;
+	}
+	function update_values(value_csv: string) {
+		(component as OptionComponent).values = value_csv.split(',').map((val) => {
+			return {
+				value: val,
+				display: val
+			};
+		});
+	}
 </script>
 
 <svelte:head>
@@ -98,7 +125,7 @@
 		/>
 		<InputTextbox
 			on:valueChange={(event) => {
-				component.label = event.detail.value;
+				update_label(event.detail.value);
 			}}
 			component={{
 				type: 'Text',
@@ -108,7 +135,7 @@
 		/>
 		<InputTextbox
 			on:valueChange={(event) => {
-				component.placeholder = event.detail.value;
+				update_placeholder(event.detail.value);
 			}}
 			component={{
 				type: 'Text',
@@ -118,7 +145,7 @@
 		/>
 		<InputTextbox
 			on:valueChange={(event) => {
-				component.value = event.detail.value;
+				update_value(event.detail.value);
 			}}
 			component={{
 				type: 'Text',
@@ -128,17 +155,17 @@
 		/>
 		<InputTextbox
 			on:valueChange={(event) => {
-				component.error = event.detail.value;
+				update_error(event.detail.value);
 			}}
 			component={{
 				type: 'Text',
-				id: 'errorMessage',
+				id: 'error',
 				label: 'Error messages'
 			}}
 		/>
 		<InputTextbox
 			on:valueChange={(event) => {
-				component.help = event.detail.value;
+				update_help(event.detail.value);
 			}}
 			component={{
 				type: 'Text',
@@ -148,7 +175,7 @@
 		/>
 		<OptionButtons
 			on:valueChange={(event) => {
-				component.required = event.detail.value == 'true';
+				update_required(event.detail.value == 'true');
 			}}
 			component={{
 				type: 'OptionButtons',
@@ -162,12 +189,7 @@
 		/>
 		<InputTextbox
 			on:valueChange={(event) => {
-				component.values = event.detail.value.split(',').map((val) => {
-					const obj = {};
-					obj['value'] = val;
-					obj['display'] = val;
-					return obj;
-				});
+				update_values(event.detail.value);
 			}}
 			component={{
 				type: 'Text',

@@ -17,7 +17,7 @@
 							"label": "Vehicle registration number",
 							"placeholder": "YOUR REG",
 							"required": false,
-							"errorMessage": "Please enter a reg",
+							"error": "Please enter a reg",
 							"help": "the yellow rectangle on the back of your car has some letters on it, we need those"
 						},
 						{
@@ -25,7 +25,7 @@
 							"type": "ButtonSelect",
 							"label": "Select your vehicle",
 							"required": true,
-							"errorMessage": "Pick a vehicle to continue",
+							"error": "Pick a vehicle to continue",
 							"post": "__TODO:__ replace with Iconbutton",
 							"values": [
 								{
@@ -55,7 +55,7 @@
 							"type": "Dropdown",
 							"label": "Base vehicle make",
 							"required": true,
-							"errorMessage": "Please select an option to continue.",
+							"error": "Please select an option to continue.",
 							"values": [
 								{
 									"value": "ground",
@@ -72,7 +72,7 @@
 							"type": "Dropdown",
 							"label": "Manufacturer/Converter",
 							"required": true,
-							"errorMessage": "Please select an option to continue.",
+							"error": "Please select an option to continue.",
 							"values": [
 								{
 									"value": "gooutdoors",
@@ -93,7 +93,7 @@
 							"type": "Dropdown",
 							"label": "Model",
 							"required": true,
-							"errorMessage": "Please select an option to continue.",
+							"error": "Please select an option to continue.",
 							"values": [
 								{
 									"value": "red",
@@ -114,14 +114,14 @@
 							"type": "Number",
 							"label": "Year of manufacture",
 							"required": true,
-							"errorMessage": "Please select an option to continue."
+							"error": "Please select an option to continue."
 						},
 						{
 							"id": "vehicleennginesize",
 							"type": "Number",
 							"label": "Engine cc",
 							"required": true,
-							"errorMessage": "Please complete this question to continue.",
+							"error": "Please complete this question to continue.",
 							"help": "Please enter the engine size in cubic centimeters (cc) rather than litres e.g. 1998 for the engine cc, rather than 2.0 for litres."
 						},
 						{
@@ -130,7 +130,7 @@
 							"label": "Fuel type",
 							"placeholder": "Please Select",
 							"required": true,
-							"errorMessage": "Please select an answer from the list.",
+							"error": "Please select an answer from the list.",
 							"values": [
 								{
 									"value": "electric",
@@ -151,7 +151,7 @@
 							"type": "Dropdown",
 							"label": "Transmission type",
 							"required": true,
-							"errorMessage": "Please select an answer from the list.",
+							"error": "Please select an answer from the list.",
 							"values": [
 								{
 									"value": "manual",
@@ -168,7 +168,7 @@
 							"type": "Number",
 							"label": "Number of doors",
 							"required": true,
-							"errorMessage": "Please select an answer from the list.",
+							"error": "Please select an answer from the list.",
 							"post": "__TODO:__ add min/max for numeric inputs"
 						}
 					]
@@ -182,7 +182,7 @@
 							"type": "YesNo",
 							"label": "Is the vehicle fitted with an alarm/immobiliser?",
 							"required": true,
-							"errorMessage": "Please select an answer from the list."
+							"error": "Please select an answer from the list."
 						},
 						{
 							"id": "vehiclehastracker",
@@ -195,7 +195,7 @@
 							"type": "ButtonSelect",
 							"label": "Is the vehicle right or left hand drive?",
 							"required": true,
-							"errorMessage": "Please select an option to continue.",
+							"error": "Please select an option to continue.",
 							"post": "__TODO:__ replace with Iconbutton",
 							"values": [
 								{
@@ -216,7 +216,7 @@
 							"label": "How many belted seats does the vehicle have?",
 							"placeholder": "Please Select",
 							"required": true,
-							"errorMessage": "Please select an answer from the list.",
+							"error": "Please select an answer from the list.",
 							"post": "__TODO:__ add min/max for numeric inputs"
 						},
 						{
@@ -224,7 +224,7 @@
 							"type": "Number",
 							"label": "What is the estimated value?",
 							"required": true,
-							"errorMessage": "Please complete this question to continue.",
+							"error": "Please complete this question to continue.",
 							"help": "Please note that this should be the approximate market value of the vehicle at present, to the nearest pound. Please enter only digits - no commas or full stops, e.g. 1000 or 20000."
 						},
 						{
@@ -232,7 +232,7 @@
 							"type": "YesNo",
 							"label": "Have you bought the vehicle yet?",
 							"required": true,
-							"errorMessage": "Please complete this question to continue."
+							"error": "Please complete this question to continue."
 						}
 					]
 				},
@@ -245,7 +245,7 @@
 							"type": "ButtonSelect",
 							"label": "Where was the vehicle manufactured?",
 							"required": true,
-							"errorMessage": "Please complete this question to continue.",
+							"error": "Please complete this question to continue.",
 							"post": "__TODO:__ replace with Iconbutton",
 							"values": [
 								{
@@ -270,14 +270,14 @@
 							"type": "YesNo",
 							"label": "Is the vehicle professionally converted/purpose built?",
 							"required": true,
-							"errorMessage": "Please complete this question to continue."
+							"error": "Please complete this question to continue."
 						},
 						{
 							"id": "vehiclemodified",
 							"type": "YesNo",
 							"label": "Has the vehicle been modified from the manufacturer’s or converter's specification?",
 							"required": true,
-							"errorMessage": "Please complete this question to continue.",
+							"error": "Please complete this question to continue.",
 							"help": "We only need to know about modifications that have been fitted to the vehicle after the motorhome or camper has been manufactured or professionally converted. These can include engine chipping or changes to the suspension, but only if completed retrospectively. We can only quote for a maximum of three modifications to a vehicle."
 						}
 					]
@@ -292,7 +292,7 @@
 							"label": "Who owns the vehicle?",
 							"placeholder": "Please Select",
 							"required": true,
-							"errorMessage": "Please select an answer from the list.",
+							"error": "Please select an answer from the list.",
 							"help": "The legal owner is the person or company who purchased the vehicle e.g. finance, hire purchase or leasing companies or the person purchasing the vehicle for spouse or child.",
 							"values": [
 								{
@@ -314,7 +314,7 @@
 							"type": "YesNo",
 							"label": "Is the registered keeper of the vehicle the proposer or spouse?",
 							"required": true,
-							"errorMessage": "Please select an option to continue.",
+							"error": "Please select an option to continue.",
 							"help": "The registered keeper is not necessarily the legal owner of the vehicle. The registered keeper is responsible for the vehicles day to day use on the road and is liable for licensing the vehicle. The registered keeper is named on the vehicle's V5C or log book."
 						},
 						{
@@ -323,7 +323,7 @@
 							"label": " Where is the vehicle normally parked overnight? ",
 							"placeholder": "Please Select",
 							"required": true,
-							"errorMessage": "Please select an answer from the list.",
+							"error": "Please select an answer from the list.",
 							"help": "Please note that any off-road parking other than your driveway or a locked garage should be entered as On the Road. For storage at a storage location, please enter driveway.",
 							"values": [
 								{
@@ -345,14 +345,14 @@
 							"type": "YesNo",
 							"label": "Is the vehicle parked overnight at your home address?",
 							"required": true,
-							"errorMessage": "Please select an option to continue."
+							"error": "Please select an option to continue."
 						},
 						{
 							"id": "vehicleuse",
 							"type": "Dropdown",
 							"label": "What will the vehicle be used for?",
 							"required": true,
-							"errorMessage": "Please select an answer from the list.",
+							"error": "Please select an answer from the list.",
 							"help": "Social Domestic and Pleasure Only - covers normal leisure use (such as camping, visiting friends and family, shopping) but not driving to and from work.  Social Domestic and Pleasure including commuting - covers leisure use plus commuting to a single, permanent place of work.  Business use - includes leisure use and also covers the designated drivers in connection with their jobs (for things like driving to different sites or offices and meetings away from the normal workplace).  Business Use including Commercial Travelling - Covers leisure use and also using the vehicle for commercial travel, for example delivering goods or door-to-door sales.",
 							"values": [
 								{
@@ -374,7 +374,7 @@
 							"type": "Number",
 							"label": "Approximately how many miles will this vehicle be driven in the UK in the next 12 months?",
 							"required": true,
-							"errorMessage": "Please complete this question to continue.",
+							"error": "Please complete this question to continue.",
 							"placeholder": "",
 							"help": "This includes mileage driven by any users of the vehicle as well as yourself within the UK.",
 							"post": "__TODO:__ replace with slider/number select"
@@ -384,7 +384,7 @@
 							"type": "Number",
 							"label": "Approximately how many miles will this vehicle be driven in Europe in the next 12 months?",
 							"required": true,
-							"errorMessage": "Please enter a value between 0 and 99999.",
+							"error": "Please enter a value between 0 and 99999.",
 							"placeholder": "",
 							"help": "This includes mileage driven by any users of the vehicle as well as yourself within the Europe, if you don’t drive in Europe, enter 0."
 						},
@@ -393,7 +393,7 @@
 							"type": "ButtonSelect",
 							"label": "How did you pay for your last insurance?",
 							"required": true,
-							"errorMessage": "Please complete this question to continue.",
+							"error": "Please complete this question to continue.",
 							"values": [
 								{
 									"value": "annual",
@@ -577,7 +577,7 @@
 							"type": "YesNo",
 							"label": "Got any convictions?",
 							"required": true,
-							"errorMessage": "Select an option",
+							"error": "Select an option",
 							"help": "we don't serve criminals yo"
 						}
 					]

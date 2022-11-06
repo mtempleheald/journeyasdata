@@ -22,7 +22,7 @@
 							"id": "assumptionsbikeselect",
 							"type": "ButtonSelect",
 							"required": true,
-							"errorMessage": "Please select an option",
+							"error": "Please select an option",
 							"values": [
 								{
 									"key": "policytype",
@@ -81,7 +81,7 @@
 							"regnumLabel": "Registration number",
 							"regnumPlaceholder": "YOUR REG",
 							"buttonLabel": "Find Motorcycle",
-							"errorMessage": "Failed to find vehicle"
+							"error": "Failed to find vehicle"
 						},
 						{
 							"type": "Displayblock",
@@ -347,7 +347,7 @@
 								"to": "Today"
 							},
 							"required": true,
-							"errorMessage": "Please enter valid data",
+							"error": "Please enter valid data",
 							"help": "Help text"
 						},
 						{
@@ -448,7 +448,7 @@
 								"to": "Today"
 							},
 							"required": true,
-							"errorMessage": "Please enter valid data",
+							"error": "Please enter valid data",
 							"help": "Help text",
 							"dependsupon": {
 								"id": "residentsincebirth",
@@ -782,7 +782,7 @@
 							"label": "This is a simple text button",
 							"type": "ButtonSelect",
 							"required": false,
-							"errorMessage": "Please select an option",
+							"error": "Please select an option",
 							"help": "Surely you can figure this out",
 							"values": [
 								{
@@ -796,7 +796,7 @@
 							"label": "This is a simple image  button",
 							"type": "ButtonSelect",
 							"required": true,
-							"errorMessage": "Please select an option",
+							"error": "Please select an option",
 							"help": "Surely you can figure this out",
 							"values": [
 								{
@@ -827,7 +827,7 @@
 							"label": "It is a simple Yes/No question",
 							"type": "YesNo",
 							"required": true,
-							"errorMessage": "Please select an option",
+							"error": "Please select an option",
 							"help": "Surely you can figure this out"
 						},
 						{

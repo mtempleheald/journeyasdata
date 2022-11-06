@@ -44,7 +44,7 @@
 							"type": "Text",
 							"placeholder": "Placeholder...",
 							"required": true,
-							"errorMessage": "Please enter valid data",
+							"error": "Please enter valid data",
 							"help": "Help text",
 							"pre": "# Markdown before question 1",
 							"post": "__Markdown after question 1__"
@@ -174,7 +174,7 @@
 							"displayformat": "long",
 							"separator": "/",
 							"resetlabel": "Skip",
-							"errorMessage": "Please enter a valid date",
+							"error": "Please enter a valid date",
 							"help": "This example can't be more than 4 years ahead or before 1/1/1970",
 							"validation": {
 								"min": "01/01/1970",
@@ -189,7 +189,7 @@
 							"displayformat": "long",
 							"separator": "/",
 							"resetlabel": "Skip",
-							"errorMessage": "Please enter a valid date",
+							"error": "Please enter a valid date",
 							"help": "This example can't be in the past, and must be within 7 years from now",
 							"validation": {
 								"maxyearsago": 0,
@@ -222,7 +222,7 @@
 							"placeholder": "Placeholder...",
 							"required": true,
 							"refdata": "context1.list1",
-							"errorMessage": "Please select an option",
+							"error": "Please select an option",
 							"help": "Help text",
 							"pre": "# Markdown before question 1",
 							"post": "__Markdown after question 1__"
@@ -264,7 +264,7 @@
 							"type": "OptionButtons",
 							"label": "This is a simple text button",
 							"required": false,
-							"errorMessage": "Please select an option",
+							"error": "Please select an option",
 							"help": "Surely you can figure this out",
 							"values": [
 								{
@@ -278,7 +278,7 @@
 							"type": "OptionButtons",
 							"label": "This is a simple image  button",
 							"required": true,
-							"errorMessage": "Please select an option",
+							"error": "Please select an option",
 							"help": "Surely you can figure this out",
 							"values": [
 								{
@@ -328,7 +328,7 @@
 							"type": "YesNo",
 							"label": "It is a simple Yes/No question",
 							"required": true,
-							"errorMessage": "Please select an option",
+							"error": "Please select an option",
 							"help": "Surely you can figure this out"
 						},
 						{
@@ -428,7 +428,7 @@
 							"type": "YesNo",
 							"label": "Select yes to trigger modal",
 							"required": true,
-							"errorMessage": "Please select an option"
+							"error": "Please select an option"
 						},
 						{
 							"type": "Displaymodal",
@@ -446,7 +446,7 @@
 							"type": "YesNo",
 							"label": "Select yes to trigger 2-column modal",
 							"required": true,
-							"errorMessage": "Please select an option"
+							"error": "Please select an option"
 						},
 						{
 							"type": "Displaymodal",
@@ -590,7 +590,7 @@
 							"type": "Vehicle",
 							"regnumLabel": "Registration number",
 							"regnumPlaceholder": "YOUR REG",
-							"errorMessage": "Failed to find vehicle"
+							"error": "Failed to find vehicle"
 						}
 					]
 				},
@@ -610,7 +610,7 @@
 							"label": "Registration number",
 							"placeholder": "YOUR REG",
 							"required": true,
-							"errorMessage": "Please enter a valid registration number"
+							"error": "Please enter a valid registration number"
 						},
 						{
 							"id": "vehiclemake",

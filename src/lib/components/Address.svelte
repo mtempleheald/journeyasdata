@@ -107,7 +107,7 @@
 			placeholder: component.postcodePlaceholder,
 			help: component.postcodeHelp,
 			required: true,
-			errorMessage: component.postcodeError
+			error: component.postcodeError
 		}}
 		on:valueChange={postcodeTouched}
 	/>

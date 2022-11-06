@@ -26,36 +26,36 @@
 		}
 	});
 
-	function focus_day () {
-		dayElem.value = ''
+	function focus_day() {
+		dayElem.value = '';
 		monthElem.value = '';
 		yearElem.value = '';
 		valid = true;
 	}
-	function leave_day () {
+	function leave_day() {
 		if (!dayElem.validity.valid) {
 			setTimeout(function () {
 				dayElem.focus();
 			}, 0);
 		}
 	}
-	function focus_month () {
+	function focus_month() {
 		monthElem.value = '';
 		yearElem.value = '';
 		valid = true;
 	}
-	function leave_month () {
+	function leave_month() {
 		if (!monthElem.validity.valid) {
 			setTimeout(function () {
 				monthElem.focus();
 			}, 0);
 		}
 	}
-	function focus_year () {
+	function focus_year() {
 		yearElem.value = '';
 		valid = true;
 	}
-	function leave_year () {
+	function leave_year() {
 		if (!yearElem.validity.valid) {
 			setTimeout(function () {
 				yearElem.focus();
@@ -95,8 +95,7 @@
 
 		if (!component.required && component.value == '0000-00-00') {
 			valid = true;
-		}
-		else {
+		} else {
 			// validate that this is an actual date and apply custom validation
 			valid = date_valid(component, component.value);
 		}
@@ -199,7 +198,7 @@
 	</div>
 
 	{#if !valid}
-		<div class="error">{component.errorMessage ?? fallbackError}</div>
+		<div class="error">{component.error ?? fallbackError}</div>
 	{/if}
 
 	<slot name="post" />
