@@ -4,6 +4,7 @@
 	import { createEventDispatcher, onMount } from 'svelte';
 	import { state } from '$lib/stores/statestore';
 	import Helptext from '$lib/components/Helptext.svelte';
+	import { date_valid } from '$lib/utils/datevalidators';
 
 	// expose component properties
 	export let component: TriBoxDateComponent;
@@ -32,7 +33,22 @@
 		}
 	});
 
-	function updateDay(event) {
+	function focus_day (event: FocusEvent) {
+		dayElem.value = ''
+		monthElem.value = '';
+		yearElem.value = '';
+		valid = true;
+	}
+	function focus_month (event: FocusEvent) {
+		monthElem.value = '';
+		yearElem.value = '';
+	}
+	function focus_year (event: FocusEvent) {
+		yearElem.value = '';
+	}
+
+	function updateDay(event: FocusEvent) {
+		console.log(event)
 		// skip update if reset is clicked
 		if (event.explicitOriginalTarget.parentNode.name != 'reset') {
 			dayAttempted = true;
@@ -71,9 +87,9 @@
 		}
 	}
 	function reset() {
-		yearElem.value = null;
-		monthElem.value = null;
-		dayElem.value = null;
+		yearElem.value = '';
+		monthElem.value = '';
+		dayElem.value = '';
 		yearAttempted = false;
 		monthAttempted = false;
 		dayAttempted = false;
@@ -97,78 +113,7 @@
 	function leave() {
 		active = '';
 	}
-	// TODO: Move all of this into a date utility module and write test scenarios
-	//
-	// always perform calculations based on comparisons, build dates in the same way, timezone issues should cancel out
-	function validate() {
-		const date = new Date(component.value);
-		const now = new Date();
-		now.setUTCHours(0, 0, 0); // take time out of the equation by setting to midnight
-		const min = new Date(component.validation?.min);
-		const max = new Date(component.validation?.max);
-		let maxDynamic = new Date(now);
-		if (component.validation?.maxyearsahead)
-			maxDynamic.setUTCFullYear(now.getUTCFullYear() + component.validation?.maxyearsahead);
-		if (component.validation?.minyearsago)
-			maxDynamic.setUTCFullYear(now.getUTCFullYear() - component.validation?.minyearsago);
-		let minDynamic = new Date(now);
-		if (component.validation?.minyearsahead)
-			minDynamic.setUTCFullYear(now.getUTCFullYear() + component.validation?.minyearsahead);
-		if (component.validation?.maxyearsago)
-			minDynamic.setUTCFullYear(now.getUTCFullYear() - component.validation?.maxyearsago);
 
-		console.debug('date', date);
-		console.debug('now', now);
-		console.debug('min', min);
-		console.debug('max', max);
-		console.debug('minDynamic', minDynamic);
-		console.debug('maxDynamic', maxDynamic);
-
-		if (!yearAttempted || !monthAttempted || !dayAttempted) {
-			// don't show as error until the user has finished with all boxes
-			valid = true;
-		} else if (isNaN(date.valueOf())) {
-			// each field may be valid, but a valid date it is not (e.g. 30/2/2017)
-			valid = false;
-		} else if ((!isNaN(min.valueOf()) && date < min) || (!isNaN(max.valueOf()) && date > max)) {
-			console.debug('date is outside static allowed range');
-			console.debug('min', min);
-			console.debug('max', max);
-			valid = false;
-		} else if (
-			((!isNaN(component.validation?.minyearsahead) || !isNaN(component.validation?.maxyearsago)) &&
-				date.valueOf() < minDynamic.valueOf()) ||
-			((!isNaN(component.validation?.maxyearsahead) || !isNaN(component.validation?.minyearsago)) &&
-				date.valueOf() > maxDynamic.valueOf())
-		) {
-			console.debug('date is outside dynamic allowed range');
-			console.debug(
-				'minyearsahead',
-				component.validation?.minyearsahead,
-				!isNaN(component.validation?.minyearsahead)
-			);
-			console.debug(
-				'maxyearsago',
-				component.validation?.maxyearsago,
-				!isNaN(component.validation?.maxyearsago)
-			);
-			console.debug(
-				'maxyearsahead',
-				component.validation?.maxyearsahead,
-				!isNaN(component.validation?.maxyearsahead)
-			);
-			console.debug(
-				'minyearsago',
-				component.validation?.minyearsago,
-				!isNaN(component.validation?.minyearsago)
-			);
-			console.debug('before min', date.valueOf() < minDynamic.valueOf());
-			console.debug('beyond max', date.valueOf() > maxDynamic.valueOf());
-			valid = false;
-		} else {
-			valid = true;
-		}
-	}
 	function update() {
 		// ensure that the date format is always respected, even if it isn't a valid date
 		const y = yearElem.validity.valid ? yearElem.value : '0000';
@@ -177,7 +122,7 @@
 		component.value = `${y.padStart(4, '0')}-${m.padStart(2, '0')}-${d.padStart(2, '0')}`;
 
 		// validate that this is an actual date and apply custom validation
-		validate();
+		valid = date_valid(component, component.value);
 
 		state.set(component.id, {
 			value: component.value,

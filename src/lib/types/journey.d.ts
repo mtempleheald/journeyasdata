@@ -147,8 +147,8 @@ export interface TriBoxDateComponent extends BaseComponent, BaseInputComponent {
 	resetLabel: string;
 	displayFormat: 'full' | 'long' | 'medium' | 'short';
 	validation?: {
-		min?: string; // YYYY-MM-DD
-		max?: string; // YYYY-MM-DD
+		min?: string; // DD/MM/YYYY
+		max?: string; // DD/MM/YYYY
 		minyearsago?: number;
 		maxyearsago?: number;
 		minyearsahead?: number;
@@ -183,4 +183,5 @@ export interface VehicleComponent extends BaseComponent, BaseInputComponent {
 export interface UnknownComponent extends BaseComponent {
 	type: 'unknown';
 	id?: string;
+	values?: ValueType[];
 }

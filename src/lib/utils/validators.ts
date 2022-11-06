@@ -21,7 +21,7 @@ export function component_valid(component: ComponentType, state: StateStoreType)
 		return true;
 	}
 	// (passed|failed) - input component has been attempted and has a validation status, trust this value
-	const explicit_status = state[input.id]?.valid
+	const explicit_status = state[input.id]?.valid;
 	if (explicit_status != undefined) {
 		return explicit_status;
 	}
