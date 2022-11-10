@@ -6,6 +6,7 @@
 	import markdown from '$lib/utils/markdown';
 	import OptionButtons from '$lib/components/OptionButtons.svelte';
 	import type { ValueChangeEvent } from '$lib/types/events';
+	import type { ParameterlessAction } from '$lib/types/stores';
 
 	export let cookiepreferences: CookiePreferenceType;
 
@@ -21,7 +22,7 @@
 	function execute_actions(event: ValueChangeEvent) {
 		// execute action if applicable
 		let f = $actionStore[event.detail.key];
-		if (typeof f === 'function') f();
+		if (typeof f === 'function') (f as ParameterlessAction)();
 		selected = event.detail.value ? 'selected' : '';
 	}
 </script>

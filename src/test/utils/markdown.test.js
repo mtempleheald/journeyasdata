@@ -27,6 +27,11 @@ test('link', () => {
 	const expected = 'a hyperlink <a href="https://bbc.co.uk">BBC</a> with some text after';
 	expect(markdown(input)).toEqual(expected);
 });
+test('undefined input', () => {
+	const input = undefined;
+	const expected = '';
+	expect(markdown(input)).toEqual(expected);
+});
 test('null input', () => {
 	const input = null;
 	const expected = '';

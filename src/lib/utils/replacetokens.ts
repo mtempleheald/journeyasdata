@@ -1,7 +1,7 @@
 /**
  * Replace dynamic content tokens with display values from the state store
  */
-export const replace_tokens = function (input: string, state: StateStoreType) {
+export const replace_tokens = function (input: string | null | undefined, state: StateStoreType) {
 	if (!input) return '';
 
 	let output: string = input;

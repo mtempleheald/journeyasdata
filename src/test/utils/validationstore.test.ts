@@ -1,21 +1,22 @@
 import { test, expect } from 'vitest';
 
-const validationStoreObject = {
+const storeObject = {
 	trueKey: true,
 	falseKey: false,
 	nullKey: null
 };
 test('true in store returns true', () => {
-	expect(validationStoreObject['trueKey']).toBe(true);
+	expect(storeObject['trueKey']).toBe(true);
 });
 test('false in store returns false', () => {
-	expect(validationStoreObject['falseKey']).toBe(false);
+	expect(storeObject['falseKey']).toBe(false);
 });
 test('null in store returns null', () => {
-	expect(validationStoreObject['nullKey']).toBeNull();
+	expect(storeObject['nullKey']).toBeNull();
 });
 test('missing from store returns undefined', () => {
-	expect(validationStoreObject['missingKey']).toBeUndefined();
+	const val: { [key: string]: unknown } = storeObject;
+	expect(val['missingKey']).toBeUndefined();
 });
 
 const emptyStore: { [key: string]: any } = {};

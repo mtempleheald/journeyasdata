@@ -55,7 +55,7 @@ test('numeric identifier, nummeric in store, with repeat index', () => {
 
 test('identifier not in store should replace with empty string', () => {
 	const input = 'string containing {{componentid}}';
-	const state = {};
+	const state = <StateStoreType>{};
 	const expected = 'string containing <output for="componentid"></output>';
 	expect(replace_tokens(input, state)).toEqual(expected);
 });

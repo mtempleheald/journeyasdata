@@ -31,7 +31,7 @@
 			.then((resp) => resp.json())
 			.then((data) => {
 				addresses = data;
-				propertyLov = data.map((a) => ({
+				propertyLov = data.map((a: AddressType) => ({
 					value: a.property,
 					display: a.property
 				}));
