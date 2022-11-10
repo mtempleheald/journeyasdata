@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { JourneyType } from '$lib/types/journey';
+	import type { JourneyType, PageType } from '$lib/types/journey';
 
 	let journey: JourneyType = {
 		title: 'sample',
@@ -30,14 +30,17 @@
 	}
 	function page_add_section(page_url: string | undefined) {
 		console.debug('page_add_section', page_url);
-		journey.pages.find((p) => p.url == page_url).sections = [
-			...journey.pages.find((p) => p.url == page_url).sections,
-			{
-				type: 'section',
-				id: 'sample',
-				components: []
-			}
-		];
+		let page = journey.pages.find((p: PageType) => p.url == page_url);
+		if (page) {
+			page.sections = [
+				...page.sections ?? [],
+				{
+					type: 'section',
+					id: 'sample',
+					components: []
+				}
+			];
+		}
 		journey = journey; // reassign to trigger reactivity
 	}
 	function section_remove(section_id: string | undefined) {
@@ -85,7 +88,7 @@
 			})
 		};
 	}
-	function section_add_section(section_id: string | undefined) {
+	function section_add_section(section_id?: string | undefined) {
 		console.debug('section_add_section', section_id);
 		journey = {
 			...journey,
@@ -130,10 +133,10 @@
 	function component_remove(component_id: string | undefined) {
 		console.debug('component_remove', component_id);
 	}
-	function component_move_up(component_id: string) {
+	function component_move_up(component_id: string | undefined) {
 		console.debug('component_move_up', component_id);
 	}
-	function component_move_down(component_id: string) {
+	function component_move_down(component_id: string | undefined) {
 		console.debug('component_move_down', component_id);
 	}
 </script>
