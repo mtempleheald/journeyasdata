@@ -13,7 +13,7 @@
 
 	let theme = 'technicaldemo';
 	let component: ComponentType = {
-		type: 'unknown',
+		type: 'Unknown',
 		id: 'default-id',
 		values: [
 			{ value: 'one', display: 'one' },

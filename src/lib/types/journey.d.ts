@@ -181,7 +181,7 @@ export interface VehicleComponent extends BaseComponent, BaseInputComponent {
 	buttonLabel?: string;
 }
 export interface UnknownComponent extends BaseComponent {
-	type: 'unknown';
+	type: 'Unknown';
 	id?: string;
 	values?: ValueType[];
 }

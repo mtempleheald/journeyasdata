@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { JourneyType, PageType } from '$lib/types/journey';
+	import type { JourneyType, PageType, RepeatingGroupType, SectionType } from '$lib/types/journey';
 
 	let journey: JourneyType = {
 		title: 'sample',
@@ -33,7 +33,7 @@
 		let page = journey.pages.find((p: PageType) => p.url == page_url);
 		if (page) {
 			page.sections = [
-				...page.sections ?? [],
+				...(page.sections ?? []),
 				{
 					type: 'section',
 					id: 'sample',
@@ -65,10 +65,10 @@
 		console.debug('section_add_component', section_id);
 		journey = {
 			...journey,
-			pages: journey.pages.map((p) => {
+			pages: journey.pages.map((p: PageType) => {
 				return {
 					...p,
-					sections: p.sections.map((s) => {
+					sections: p.sections.map((s: SectionType | RepeatingGroupType) => {
 						if (s.id != section_id || s.type == 'repeatinggroup') {
 							return s;
 						} else {
@@ -92,10 +92,10 @@
 		console.debug('section_add_section', section_id);
 		journey = {
 			...journey,
-			pages: journey.pages.map((p) => {
+			pages: journey.pages.map((p: PageType) => {
 				return {
 					...p,
-					sections: p.sections.map((s) => {
+					sections: p.sections.map((s: SectionType | RepeatingGroupType) => {
 						if (s.id != section_id || s.type != 'repeatinggroup') {
 							return s;
 						} else {
@@ -107,7 +107,7 @@
 										type: 'section',
 										id: 'sample',
 										components: []
-									}
+									} as SectionType
 								]
 							};
 						}
