@@ -100,7 +100,7 @@
 											: ''};"
 									>
 										{v.image != null ? '' : v.display ?? ''}
-										{#if v.image != null}
+										{#if v.image}
 											<img
 												src={v.image.url}
 												width={v.image.width}

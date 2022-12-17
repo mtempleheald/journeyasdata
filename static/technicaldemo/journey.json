@@ -285,9 +285,9 @@
 									"value": "car",
 									"display": "Car (top)",
 									"image": {
-										"url": "https://image.flaticon.com/icons/svg/58/58463.svg",
-										"width": "128",
-										"height": "128"
+										"url": "https://fakeimg.pl/100x100/?text=Car",
+										"width": "100",
+										"height": "100"
 									},
 									"textLocation": "top"
 								},
@@ -295,9 +295,9 @@
 									"value": "bike",
 									"display": "Bike (left)",
 									"image": {
-										"url": "https://image.flaticon.com/icons/png/128/130/130278.png",
-										"width": "128",
-										"height": "128"
+										"url": "https://fakeimg.pl/100x100/?text=Bike",
+										"width": "100",
+										"height": "100"
 									},
 									"textLocation": "left"
 								},
@@ -305,9 +305,9 @@
 									"value": "bus",
 									"display": "Bus (bottom)",
 									"image": {
-										"url": "https://image.freepik.com/free-icon/bus_318-142528.jpg",
-										"width": "128",
-										"height": "128"
+										"url": "https://fakeimg.pl/100x100/?text=Bus",
+										"width": "100",
+										"height": "100"
 									},
 									"textLocation": "bottom"
 								},
@@ -315,9 +315,9 @@
 									"value": "train",
 									"display": "Train (right)",
 									"image": {
-										"url": "https://image.flaticon.com/icons/png/512/1249/1249786.png",
-										"width": "128",
-										"height": "128"
+										"url": "https://fakeimg.pl/100x100/?text=Train",
+										"width": "100",
+										"height": "100"
 									},
 									"textLocation": "right"
 								}
