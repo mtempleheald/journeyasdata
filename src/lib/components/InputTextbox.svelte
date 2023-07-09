@@ -68,6 +68,7 @@
 	transition:blur
 	on:mouseenter={enter}
 	on:mouseleave={leave}
+	role="presentation"
 >
 	<slot name="pre" />
 

@@ -55,6 +55,7 @@
 			class="component {active} {!($state[component.id]?.valid ?? true) ? 'invalid' : ''}"
 			on:mouseenter={enter}
 			on:mouseleave={leave}
+			role="presentation"
 		>
 			<slot name="pre" />
 

@@ -42,6 +42,7 @@
 	class="component {active} {invalid ? 'invalid' : ''}"
 	on:mouseenter={enter}
 	on:mouseleave={leave}
+	role="presentation"
 >
 	<slot name="pre" />
 

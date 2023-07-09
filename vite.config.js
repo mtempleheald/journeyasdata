@@ -5,7 +5,16 @@ const config = {
 	plugins: [sveltekit()],
 	test: {
 		environment: 'jsdom',
-		globals: true
+		globals: true,
+		include: ['src/**/*.{test,spec}.{js,ts}']
+	},
+	csp: {
+		directives: {
+			'script-src': ['self']
+		},
+		reportOnly: {
+			'script-src': ['self']
+		}
 	}
 };
 

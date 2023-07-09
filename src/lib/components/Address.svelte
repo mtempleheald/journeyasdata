@@ -97,6 +97,7 @@
 	class="address {active} {$state['address']?.valid ?? false ? '' : 'invalid'}"
 	on:mouseenter={enter}
 	on:mouseleave={leave}
+	role="presentation"
 >
 	<InputTextbox
 		component={{

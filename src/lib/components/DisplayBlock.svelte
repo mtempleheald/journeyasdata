@@ -12,7 +12,7 @@
 	}
 </script>
 
-<div class="display {active}" on:mouseenter={enter} on:mouseleave={leave}>
+<div class="display {active}" on:mouseenter={enter} on:mouseleave={leave} role="presentation">
 	<p><slot name="pre" /></p>
 	{#if component.content}
 		<div class="content">

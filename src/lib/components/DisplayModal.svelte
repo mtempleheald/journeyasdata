@@ -17,7 +17,7 @@
 </script>
 
 <div class="modal-overlay {dismissed}">
-	<div class="display {active}" on:mouseenter={enter} on:mouseleave={leave}>
+	<div class="display {active}" on:mouseenter={enter} on:mouseleave={leave} role="presentation">
 		<p><slot name="pre" /></p>
 		<div class="content">
 			{#if Array.isArray(component.content)}

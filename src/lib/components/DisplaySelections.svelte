@@ -11,7 +11,7 @@
 	}
 </script>
 
-<div class="display {active}" on:mouseenter={enter} on:mouseleave={leave}>
+<div class="display {active}" on:mouseenter={enter} on:mouseleave={leave} role="presentation">
 	<p><slot name="pre" /></p>
 	<p><slot name="main" /></p>
 	<div class="container">

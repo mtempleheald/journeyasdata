@@ -28,7 +28,12 @@
 </script>
 
 {#if cookiepreferences}
-	<section class="{active} {selected}" on:mouseenter={enter} on:mouseleave={leave}>
+	<section
+		class="{active} {selected}"
+		on:mouseenter={enter}
+		on:mouseleave={leave}
+		role="presentation"
+	>
 		{#if cookiepreferences.values}
 			<OptionButtons
 				component={{
